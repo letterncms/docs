@@ -213,7 +213,7 @@ toast.success(t('Sent to {email}', { email }))
 plural(count, '{count} submission', '{count} submissions')
 ```
 
-Ship the translations in your package as `lang/<code>.json` — `{ "Send test email": "Testmail versturen" }`. The admin merges the core's and every active package's dictionaries for the user's language; a missing string shows in English. PHP reads the same files: use `__('…')` for messages you write, and labels you register (nav items, widgets, settings fields, permissions) are translated for you when they reach the admin. `./dev i18n` (in the Lettern workspace, [letterncms/dev](https://github.com/letterncms/dev)) adds new strings to every `lang/*.json` and `--check` lists the ones without a translation.
+Ship the translations in your package as `lang/<code>.json` — `{ "Send test email": "Testmail versturen" }`. The admin merges the core's and every active package's dictionaries for the user's language; a missing string shows in English. PHP reads the same files: use `__('…')` for messages you write, and labels you register (nav items, widgets, settings fields, permissions) are translated for you when they reach the admin.
 
 Each person picks their language in Account → Appearance; Settings → Admin sets a default for everyone else, and without one the browser's language is used (English when Lettern doesn't speak it) — the sign-in screen included. Dates and numbers follow it (`locale()` from `@letterncms/sdk`).
 

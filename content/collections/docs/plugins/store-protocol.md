@@ -47,7 +47,7 @@ cms-signature-v1\n<package>\n<version>\n<sha256>\n<released_at>\n
 security=<0|1>;fixes=<range>;first_party=<0|1>;capabilities=<sorted,comma,list>\n
 ```
 
-So a store can't serve one signed zip as another, relabel it as a security fix, or hide a capability. `tools/sign.php` in [letterncms/dev](https://github.com/letterncms/dev) writes all of this.
+So a store can't serve one signed zip as another, relabel it as a security fix, or hide a capability.
 
 ## Paid downloads
 
@@ -75,7 +75,3 @@ composer require acme/forms
 ```
 
 Free packages need no login. For a paid one, the username is the site's domain and the password is its licence key, and the store applies the same rules as for a paid download.
-
-## Try it locally
-
-`php tools/dev-store.php` in [letterncms/dev](https://github.com/letterncms/dev) writes a stand-in store signed with the public development keys, with one free and one paid plugin. Its header says how to serve it and point a site with `APP_ENV=local` at it.

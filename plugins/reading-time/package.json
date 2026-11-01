@@ -9,8 +9,9 @@
   "devDependencies": {
     "@letterncms/admin": "^0.1.0",
     "@letterncms/sdk": "^0.1.0",
-    "@vitejs/plugin-react": "6.1.2",
+    "@letterncms/ui": "^0.1.0",
     "@tailwindcss/vite": "4.3.3",
+    "@vitejs/plugin-react": "6.1.2",
     "react": "19.3.1",
     "vite": "8.3.5"
   }
