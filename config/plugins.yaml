@@ -1,0 +1,15 @@
+enabled:
+  - acme/reading-time
+  - letterncms/analytics
+  - letterncms/assistant
+  - letterncms/blocks
+  - letterncms/brevo
+  - letterncms/collab
+  - letterncms/forms
+  - letterncms/i18n
+  - letterncms/mail
+  - letterncms/mcp
+  - letterncms/media
+  - letterncms/navigation
+  - letterncms/seo
+  - letterncms/site

@@ -1,0 +1,7 @@
+timezone: UTC
+locale: en
+locales:
+  - en
+name: 'Lettern Docs'
+url: 'http://localhost:8002'
+favicon: /_cms/brand/mark.svg

@@ -1,0 +1,13 @@
+{
+  "{count} word": "{count} mot",
+  "{count} words": "{count} mots",
+  "{minutes} min": "{minutes} min",
+  "{minutes} min on average": "{minutes} min en moyenne",
+  "Estimate reading time": "Estimer le temps de lecture",
+  "Estimates reading time for entries.": "Estime le temps de lecture des entrées.",
+  "Longest reads": "Lectures les plus longues",
+  "Nothing published yet": "Rien de publié pour l’instant",
+  "Reading time": "Temps de lecture",
+  "The longest reads among published entries.": "Les lectures les plus longues parmi les entrées publiées.",
+  "Words per minute": "Mots par minute"
+}

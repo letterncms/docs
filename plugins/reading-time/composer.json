@@ -1,0 +1,19 @@
+{
+    "name": "acme/reading-time",
+    "description": "Estimates reading time for entries.",
+    "type": "cms-plugin",
+    "version": "1.0.0",
+    "license": "MIT",
+    "require": {
+        "letterncms/cms": "*",
+        "letterncms/blocks": "*"
+    },
+    "autoload": { "psr-4": { "Acme\\ReadingTime\\": "src/" } },
+    "extra": {
+        "cms": {
+            "label": "Reading time",
+            "icon": "clock",
+            "provider": "Acme\\ReadingTime\\ReadingTimePlugin"
+        }
+    }
+}

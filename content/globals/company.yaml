@@ -1,0 +1,10 @@
+title: Company
+icon: buildings
+fields:
+- handle: display_name
+  type: text
+  label: Name shown on the site
+- handle: vat_number
+  type: text
+  label: VAT number
+data: {}

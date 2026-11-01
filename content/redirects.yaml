@@ -1,0 +1,22 @@
+# Pages that moved when themes became the builder.
+redirects:
+  - { from: /themes, to: /design }
+  - { from: /themes/theme-json, to: /design/design-system }
+  - { from: /themes/templates, to: /design/templates }
+  - { from: /themes/template-helpers, to: /design/data }
+  - { from: /themes/static-builds, to: /design/static-builds }
+  - { from: /themes/seo-and-geo, to: /design/seo-and-geo }
+  - { from: /editing/design-canvas, to: /editing/canvas }
+  - { from: /editing/patterns, to: /editing/components }
+  # Extending became Plugins, so people looking for plugins find them.
+  - { from: /extending, to: /plugins }
+  - { from: /extending/plugins, to: /plugins/how-plugins-work }
+  - { from: /extending/modules, to: /plugins/modules }
+  - { from: /extending/your-first-plugin, to: /plugins/your-first-plugin }
+  - { from: /extending/hooks, to: /plugins/hooks }
+  - { from: /extending/settings, to: /plugins/settings }
+  - { from: /extending/admin-extensions, to: /plugins/admin-extensions }
+  - { from: /extending/admin-themes, to: /plugins/admin-extensions }
+  - { from: /plugins/admin-themes, to: /plugins/admin-extensions }
+  - { from: /design/kits, to: /design }
+  - { from: /extending/generative-ui, to: /plugins/generative-ui }

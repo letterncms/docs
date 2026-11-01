@@ -1,0 +1,12 @@
+title: Links
+icon: link
+fields:
+  - handle: website
+    type: url
+    label: Website
+  - handle: download
+    type: url
+    label: Download
+data:
+  website: 'https://lettern.eu'
+  download: 'https://lettern.eu/download'
