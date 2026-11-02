@@ -10,7 +10,7 @@ Edit text directly in the rendered blocks, insert content between sections or in
 
 The editing surface uses the site renderer, so the real template, styles, data and layout are visible while you work. **Preview** checks interactions without editing affordances. Templates control the layout: an article can use a narrow reading column while a landing page uses a wider composition.
 
-While an entry is open, the admin's navigation folds to its icon rail to give the editor room; expand it from the button at the top of the rail or with `⌘\`, and it folds again when you open the next entry. The right sidebar starts with the entry's details tab, followed by **History** and plugin panels. Saving, authorship, publishing, comments and error recovery work the same way across collections.
+For more room, hide the admin's navigation with `⌘\`; it stays hidden on every screen until you bring it back. The right sidebar starts with the entry's details tab, followed by **History** and plugin panels. Saving, authorship, publishing, comments and error recovery work the same way across collections.
 
 Press `⌘K` (or `Ctrl+K`) to find content or run a command. Exact title matches come first, followed by slug and partial title matches, then matches in the content. Use the arrow keys to choose a result and `Enter` to open it.
 

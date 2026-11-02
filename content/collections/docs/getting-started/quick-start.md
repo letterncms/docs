@@ -9,11 +9,11 @@ This walk-through uses the admin. Every step is also an ability, so you could do
 
 ## Finding your way
 
-The sidebar holds what you open every day: **Dashboard** and **Analytics**, then your content — *Pages*, *Blog*, *Media* and *Forms* — with the chat at the bottom, on every screen. Everything else is one click away under **More** (globals, menus, templates, components, the design system, redirects). Pin what you use often from there, hover a row to unpin it, right-click it to move it or open it in a new tab, drag rows to reorder them, or open **Customize Sidebar…** to arrange everything at once. Your sidebar is your own; an admin can make theirs the default for everyone.
+The sidebar holds what you open every day: **New Chat**, **Dashboard** and **Analytics**, then your content — *Pages*, *Blog*, *Media* and *Forms*. Hide it with `⌘\` when you want the room; it stays that way until you bring it back. Everything else is one click away under **More** (globals, menus, templates, components, the design system, redirects). Pin what you use often from there, hover a row to unpin it, right-click it to move it or open it in a new tab, drag rows to reorder them, or open **Customize Sidebar…** to arrange everything at once. Your sidebar is your own; an admin can make theirs the default for everyone.
 
 **Settings** (the gear next to your name, or `⌘⇧,`) turns the sidebar into the settings list: your account, the site's settings and administration — users, roles, collections, languages, modules and the audit log. **Back** or `Esc` returns you to where you were. `⌘K` finds any screen, setting, entry or command.
 
-The assistant is optional. Lettern works fully without an API key: the chat leads admins to set one up, and if you don't use AI, **Unpin Chat** puts it away under More.
+The assistant is optional. Lettern works fully without an API key: **New Chat** leads admins to set one up, and if you don't use AI, **Unpin New Chat** puts it away under More.
 
 ## 1. Model your content
 
