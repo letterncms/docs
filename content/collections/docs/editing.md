@@ -8,7 +8,7 @@ Every rich content field in Lettern is a tree of **blocks**: text, headings, ima
 
 Edit text directly in the rendered blocks, insert content between sections or inside compatible containers, and use **Outline** to navigate the structure. Select a block to open **Content**, **Design** and **Interact**. Layout and data blocks are available alongside prose blocks; an article is not limited to a smaller catalog.
 
-The editing surface uses the site renderer, so the real template, styles, data and layout are visible while you work. **Preview** checks interactions without editing affordances. Templates control the layout: an article can use a narrow reading column while a landing page uses a wider composition.
+The editing surface uses the site renderer, so the real template, styles, data and layout are visible while you work. **Preview**, in the **More** menu, checks interactions without editing affordances. Templates control the layout: an article can use a narrow reading column while a landing page uses a wider composition.
 
 There are never more than two side panels. For more room, hide the admin's navigation with `⌘\`; it stays hidden until you bring it back. The builder starts with it folded away, and the same button and key bring it out showing the outline, with a way back to the list, the way it shows the settings on a settings page. The right sidebar starts with the entry's details tab, followed by **History** and plugin panels. Saving, authorship, publishing, comments and error recovery work the same way across collections.
 
