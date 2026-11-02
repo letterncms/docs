@@ -43,7 +43,7 @@ If `runtime/` isn't writable, or the host lacks `ZipArchive` or `curl`, **Update
 
 ## Sites managed with Composer
 
-A site without `runtime/`, a folder with `.git`, `CMS_LOCKDOWN` and `CMS_ALLOW_FILE_MODS=false` all count as deployed: the screen only tells you a version is out, and you update through your deploy. Run `php cms sync` after the code changes, then `php cms build`.
+A site without `runtime/`, a folder with `.git` and `CMS_ALLOW_FILE_MODS=false` all count as deployed: the screen only tells you a version is out, and you update through your deploy. Run `php cms sync` after the code changes, then `php cms build`.
 
 ## What changed
 
