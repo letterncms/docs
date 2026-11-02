@@ -19,7 +19,7 @@ The chat opens at the right edge of the window, on any screen, and the page stay
 
 **Full Size** grows the same chat over the whole window, with your chats beside it and a URL of its own to bookmark. The page you came from stays open underneath, and **Back to the Page** returns to it as you left it. Opening anything else from the sidebar does the same with that screen.
 
-In an editor the chat shares the right edge with the inspector, one at a time, so there are never more than two panels on screen. Selecting a block with the chat open attaches it; asking for a block's settings, or the details button, brings the inspector back. Close the chat and the inspector is where you left it. In a small window or on a phone, the chat opens over the page.
+In an editor the chat floats over the page, so the inspector stays where it is and the canvas doesn't move; drag it by its top bar to wherever suits you. Selecting a block with the chat open attaches that block, so "rewrite this" means it. Anywhere else, **Detach** does the same and **Dock Beside the Page** puts it back; your choice sticks. On a phone the chat fills the screen.
 
 ### What it can see
 
