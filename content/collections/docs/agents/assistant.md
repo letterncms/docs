@@ -87,7 +87,7 @@ For overviews, comparisons and choices about what to do next, a reply can includ
 
 - **It acts as you.** It has your permissions, and its changes go in the audit log as yours, marked *assistant*.
 - **It never touches security.** Tokens, passwords, users and roles are out of its reach.
-- **You approve what matters.** Deleting anything, and admin-level changes, wait for you in the chat: **Allow**, **Decline**, or **Allow All**. To approve every change instead, set **Ask Before** to **Every change** in **Settings → Assistant**.
+- **You approve what matters.** Deleting anything, and admin-level changes, wait for you in the chat: **Allow**, **Decline**, or **Allow All**. Each one says in a sentence what it changes; the action's name under it shows exactly what it sends. To approve every change instead, set **Ask Before** to **Every change** in **Settings → Assistant**.
 - **Content is never an instruction.** Site content, form submissions, comments and anything else it reads are treated as data, the page on view too. Once a chat has read such content, it can still save drafts on its own: nothing there is live until it's published, and the history keeps what was there. Anything else waits for your approval, publishing included, so text planted by someone else can't reach your visitors or do anything you can't undo.
 - **Chats are private.** Nobody else can list, open, continue or delete yours, and they're deleted with your account. Titles and histories are encrypted in the database.
 
