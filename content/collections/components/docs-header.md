@@ -33,7 +33,7 @@ updated_at: '2026-10-30T12:00:00+00:00'
 :::::: search {"id":"dh-search","props":{"label":"Search","placeholder":"Search the docs","empty":"Nothing found. Try other words.","shortcut":true,"compact":"mobile"},"style":{"base":{"height":"2rem","width":"8.5rem","marginRight":"0.25rem"},"xl":{"width":"11rem"},"mobile":{"width":"2.75rem","height":"2.75rem","marginRight":"0"}},"class":"docs-search"}
 ::::::
 
-:::::: link {"id":"dh-web","props":{"label":"Website","url":"https://lettern.eu"},"style":{"base":{"color":"token:color.foreground","fontWeight":400,"fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","paddingInline":"0.75rem","paddingBlock":"0.375rem","borderRadius":"token:radius.md","display":"none","whiteSpace":"nowrap"},"hover":{"backgroundColor":"token:color.ink/6"},"xl":{"display":"inline-block"}}}
+:::::: link {"id":"dh-web","props":{"label":"Website","url":"https://lettern.org"},"style":{"base":{"color":"token:color.foreground","fontWeight":400,"fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","paddingInline":"0.75rem","paddingBlock":"0.375rem","borderRadius":"token:radius.md","display":"none","whiteSpace":"nowrap"},"hover":{"backgroundColor":"token:color.ink/6"},"xl":{"display":"inline-block"}}}
 ::::::
 
 :::::: box {"id":"dh-gh","props":{"link":"https://github.com/letterncms"},"style":{"base":{"display":"none","placeItems":"center","width":"2rem","height":"2rem","borderRadius":"token:radius.md","color":"token:color.foreground","cursor":"pointer","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease"},"hover":{"backgroundColor":"token:color.ink/6"},"xl":{"display":"grid"}}}
@@ -49,7 +49,7 @@ updated_at: '2026-10-30T12:00:00+00:00'
 :::::::
 ::::::
 
-:::::: button {"id":"dh-get","props":{"label":"Download","url":"https://lettern.eu/download","variant":"yellow"},"style":{"base":{"display":"none","height":"2rem","paddingInline":"0.75rem","marginLeft":"0.25rem"},"xl":{"display":"inline-flex"}}}
+:::::: button {"id":"dh-get","props":{"label":"Download","url":"https://lettern.org/download","variant":"yellow"},"style":{"base":{"display":"none","height":"2rem","paddingInline":"0.75rem","marginLeft":"0.25rem"},"xl":{"display":"inline-flex"}}}
 ::::::
 
 :::::: box {"id":"dh-menu","props":{"tag":"button"},"label":"Menu button","style":{"base":{"display":"grid","placeItems":"center","width":"2.75rem","height":"2.75rem","borderRadius":"token:radius.md","color":"token:color.ink","cursor":"pointer","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease"},"hover":{"backgroundColor":"token:color.ink/6"},"lg":{"display":"none"}},"attrs":{"aria-label":"Menu","aria-controls":"docs-menu"},"logic":{"on":[{"event":"click","actions":[{"do":"toggle","var":"nav"},{"do":"if","test":"nav","then":[{"do":"lock","on":true}],"else":[{"do":"lock","on":false}]}]}],"attrs":{"aria-expanded":"nav"}}}
@@ -92,10 +92,10 @@ updated_at: '2026-10-30T12:00:00+00:00'
 ::::::: link {"id":"dh-sheet-home","props":{"label":"Docs home","url":"/"},"style":{"base":{"display":"block","paddingBlock":"0.5rem","paddingInline":"0.75rem","marginInline":"-0.75rem","borderRadius":"token:radius.md","fontSize":"token:text.base","color":"token:color.foreground"},"current":{"backgroundColor":"token:color.ink/6","color":"token:color.ink","fontWeight":500}}}
 :::::::
 
-::::::: link {"id":"dh-sheet-web","props":{"label":"Lettern website","url":"https://lettern.eu"},"style":{"base":{"display":"block","paddingBlock":"0.5rem","paddingInline":"0.75rem","marginInline":"-0.75rem","borderRadius":"token:radius.md","fontSize":"token:text.base","color":"token:color.foreground"},"current":{"backgroundColor":"token:color.ink/6","color":"token:color.ink","fontWeight":500}}}
+::::::: link {"id":"dh-sheet-web","props":{"label":"Lettern website","url":"https://lettern.org"},"style":{"base":{"display":"block","paddingBlock":"0.5rem","paddingInline":"0.75rem","marginInline":"-0.75rem","borderRadius":"token:radius.md","fontSize":"token:text.base","color":"token:color.foreground"},"current":{"backgroundColor":"token:color.ink/6","color":"token:color.ink","fontWeight":500}}}
 :::::::
 
-::::::: link {"id":"dh-sheet-get","props":{"label":"Get Lettern","url":"https://lettern.eu/download"},"style":{"base":{"display":"block","paddingBlock":"0.5rem","paddingInline":"0.75rem","marginInline":"-0.75rem","borderRadius":"token:radius.md","fontSize":"token:text.base","color":"token:color.foreground"},"current":{"backgroundColor":"token:color.ink/6","color":"token:color.ink","fontWeight":500}}}
+::::::: link {"id":"dh-sheet-get","props":{"label":"Get Lettern","url":"https://lettern.org/download"},"style":{"base":{"display":"block","paddingBlock":"0.5rem","paddingInline":"0.75rem","marginInline":"-0.75rem","borderRadius":"token:radius.md","fontSize":"token:text.base","color":"token:color.foreground"},"current":{"backgroundColor":"token:color.ink/6","color":"token:color.ink","fontWeight":500}}}
 :::::::
 ::::::
 :::::

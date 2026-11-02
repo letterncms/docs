@@ -13,7 +13,7 @@ Nothing is preinstalled: you choose your plugins during setup, and can add or re
 
 For shared hosting and anyone who just wants a site.
 
-1. [Download the zip](https://lettern.eu/download). It is small, because it holds only what is needed to fetch the rest.
+1. [Download the zip](https://lettern.org/download). It is small, because it holds only what is needed to fetch the rest.
 2. Unzip it and upload the contents of its `site/` folder to your web root.
 3. Open your site in a browser.
 

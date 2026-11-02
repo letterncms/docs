@@ -8,5 +8,5 @@ fields:
     type: url
     label: Download
 data:
-  website: 'https://lettern.eu'
-  download: 'https://lettern.eu/download'
+  website: 'https://lettern.org'
+  download: 'https://lettern.org/download'

@@ -111,7 +111,7 @@ Put a Repeat in a **List Filter** block and visitors can narrow it down in the p
 
 Choices stay real radio buttons, the result links as `?category=seo&q=image&sort=name`, and screen readers hear the count. Without JavaScript the controls go and the whole list shows. Don't use it with `paginate`: it can only filter the items on the page.
 
-Lettern describes itself with the same sources anyone can use: this documentation and lettern.eu have no plugin of their own for their reference pages and facts. Plugins add their own sources — see [Plugins](/plugins/how-plugins-work#data-sources).
+Lettern describes itself with the same sources anyone can use: this documentation and lettern.org have no plugin of their own for their reference pages and facts. Plugins add their own sources — see [Plugins](/plugins/how-plugins-work#data-sources).
 
 - **Nesting** — give the outer Repeat an **Item name** (`as: "link"`) and an inner Repeat with `source: "list", path: "link.children"` renders sub-menus.
 - **Groups** — **Group by** (`group_by`) names a field of the items. The Repeat then runs once per group, in the order groups first appear, with `item.label` and `item.items`; nest a Repeat with `source: "list", path: "item.items"` for the items. Items without a value share a group with an empty label.

@@ -15,7 +15,7 @@ updated_at: '2026-10-30T12:00:00+00:00'
 :::: box {"id":"ft-sheet","style":{"base":{"paddingTop":"clamp(3rem,5vw,4rem)","paddingBottom":"clamp(2.5rem,4vw,3.5rem)"}}}
 ::::: box {"id":"ft-top","style":{"base":{"width":"calc(100% - 2 * token:space.gutter)","maxWidth":"81.25rem","marginInline":"auto","display":"grid","gridTemplateColumns":"25.75rem minmax(0,1fr)"},"tablet":{"gridTemplateColumns":"minmax(0,1fr)","gap":"2.5rem"}}}
 :::::: box {"id":"ft-brand","style":{"base":{"display":"flex","flexDirection":"column","alignItems":"flex-start","gap":"1rem"}}}
-::::::: link {"id":"ft-logo","props":{"url":"https://lettern.eu","label":""},"style":{"base":{"display":"flex","alignItems":"center","gap":"0.5rem"}},"attrs":{"aria-label":"Lettern website"}}
+::::::: link {"id":"ft-logo","props":{"url":"https://lettern.org","label":""},"style":{"base":{"display":"flex","alignItems":"center","gap":"0.5rem"}},"attrs":{"aria-label":"Lettern website"}}
 :::::::: icon {"id":"ft-mark","props":{"icon":"","svg":"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><rect width=\"100\" height=\"100\" rx=\"22\" fill=\"#ffe100\"/><path fill=\"#0a0a0a\" d=\"M26 20h15v45h33v15H26z\"/><circle cx=\"62\" cy=\"39\" r=\"12.5\" fill=\"#0a0a0a\"/></svg>"},"style":{"base":{"display":"block","width":"22px","height":"22px","flexShrink":0}}}
 ::::::::
 
@@ -51,27 +51,27 @@ updated_at: '2026-10-30T12:00:00+00:00'
 
 :::::::: box {"id":"ft-prod-l","props":{"tag":"ul"}}
 ::::::::: box {"id":"ft-prod-li0","props":{"tag":"li"}}
-:::::::::: link {"id":"ft-prod-a0","props":{"label":"Features","url":"https://lettern.eu/features"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+:::::::::: link {"id":"ft-prod-a0","props":{"label":"Features","url":"https://lettern.org/features"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 ::::::::::
 :::::::::
 
 ::::::::: box {"id":"ft-prod-li1","props":{"tag":"li"}}
-:::::::::: link {"id":"ft-prod-a1","props":{"label":"Store","url":"https://lettern.eu/store"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+:::::::::: link {"id":"ft-prod-a1","props":{"label":"Store","url":"https://lettern.org/store"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 ::::::::::
 :::::::::
 
 ::::::::: box {"id":"ft-prod-li2","props":{"tag":"li"}}
-:::::::::: link {"id":"ft-prod-a2","props":{"label":"Download","url":"https://lettern.eu/download"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+:::::::::: link {"id":"ft-prod-a2","props":{"label":"Download","url":"https://lettern.org/download"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 ::::::::::
 :::::::::
 
 ::::::::: box {"id":"ft-prod-li3","props":{"tag":"li"}}
-:::::::::: link {"id":"ft-prod-a3","props":{"label":"Compare","url":"https://lettern.eu/vs"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+:::::::::: link {"id":"ft-prod-a3","props":{"label":"Compare","url":"https://lettern.org/vs"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 ::::::::::
 :::::::::
 
 ::::::::: box {"id":"ft-prod-li4","props":{"tag":"li"}}
-:::::::::: link {"id":"ft-prod-a4","props":{"label":"Changelog","url":"https://lettern.eu/changelog"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+:::::::::: link {"id":"ft-prod-a4","props":{"label":"Changelog","url":"https://lettern.org/changelog"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 ::::::::::
 :::::::::
 ::::::::
@@ -83,22 +83,22 @@ updated_at: '2026-10-30T12:00:00+00:00'
 
 :::::::: box {"id":"ft-res-l","props":{"tag":"ul"}}
 ::::::::: box {"id":"ft-res-li0","props":{"tag":"li"}}
-:::::::::: link {"id":"ft-res-a0","props":{"label":"Guides","url":"https://lettern.eu/resources"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+:::::::::: link {"id":"ft-res-a0","props":{"label":"Guides","url":"https://lettern.org/resources"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 ::::::::::
 :::::::::
 
 ::::::::: box {"id":"ft-res-li1","props":{"tag":"li"}}
-:::::::::: link {"id":"ft-res-a1","props":{"label":"Blog","url":"https://lettern.eu/blog"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+:::::::::: link {"id":"ft-res-a1","props":{"label":"Blog","url":"https://lettern.org/blog"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 ::::::::::
 :::::::::
 
 ::::::::: box {"id":"ft-res-li2","props":{"tag":"li"}}
-:::::::::: link {"id":"ft-res-a2","props":{"label":"Support","url":"https://lettern.eu/support"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+:::::::::: link {"id":"ft-res-a2","props":{"label":"Support","url":"https://lettern.org/support"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 ::::::::::
 :::::::::
 
 ::::::::: box {"id":"ft-res-li3","props":{"tag":"li"}}
-:::::::::: link {"id":"ft-res-a3","props":{"label":"Community","url":"https://lettern.eu/community"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+:::::::::: link {"id":"ft-res-a3","props":{"label":"Community","url":"https://lettern.org/community"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 ::::::::::
 :::::::::
 ::::::::
@@ -110,22 +110,22 @@ updated_at: '2026-10-30T12:00:00+00:00'
 
 :::::::: box {"id":"ft-co-l","props":{"tag":"ul"}}
 ::::::::: box {"id":"ft-co-li0","props":{"tag":"li"}}
-:::::::::: link {"id":"ft-co-a0","props":{"label":"Partners","url":"https://lettern.eu/partners"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+:::::::::: link {"id":"ft-co-a0","props":{"label":"Partners","url":"https://lettern.org/partners"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 ::::::::::
 :::::::::
 
 ::::::::: box {"id":"ft-co-li1","props":{"tag":"li"}}
-:::::::::: link {"id":"ft-co-a1","props":{"label":"Security","url":"https://lettern.eu/security"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+:::::::::: link {"id":"ft-co-a1","props":{"label":"Security","url":"https://lettern.org/security"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 ::::::::::
 :::::::::
 
 ::::::::: box {"id":"ft-co-li2","props":{"tag":"li"}}
-:::::::::: link {"id":"ft-co-a2","props":{"label":"Contact","url":"https://lettern.eu/contact"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+:::::::::: link {"id":"ft-co-a2","props":{"label":"Contact","url":"https://lettern.org/contact"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 ::::::::::
 :::::::::
 
 ::::::::: box {"id":"ft-co-li3","props":{"tag":"li"}}
-:::::::::: link {"id":"ft-co-a3","props":{"label":"Sign in","url":"https://lettern.eu/sign-in"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+:::::::::: link {"id":"ft-co-a3","props":{"label":"Sign in","url":"https://lettern.org/sign-in"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 ::::::::::
 :::::::::
 ::::::::
@@ -148,17 +148,17 @@ updated_at: '2026-10-30T12:00:00+00:00'
 
 ::::: box {"id":"ft-legal","props":{"tag":"ul"},"style":{"base":{"display":"flex","flexWrap":"wrap","gap":"0.25rem 1.25rem","marginLeft":"auto"},"mobile":{"marginLeft":"0"}}}
 :::::: box {"id":"ft-imprint-li","props":{"tag":"li"}}
-::::::: link {"id":"ft-imprint","props":{"label":"Imprint","url":"https://lettern.eu/imprint"},"style":{"base":{"color":"token:color.muted","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease"},"hover":{"color":"token:color.ink"}}}
+::::::: link {"id":"ft-imprint","props":{"label":"Imprint","url":"https://lettern.org/imprint"},"style":{"base":{"color":"token:color.muted","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease"},"hover":{"color":"token:color.ink"}}}
 :::::::
 ::::::
 
 :::::: box {"id":"ft-terms-li","props":{"tag":"li"}}
-::::::: link {"id":"ft-terms","props":{"label":"Terms","url":"https://lettern.eu/terms"},"style":{"base":{"color":"token:color.muted","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease"},"hover":{"color":"token:color.ink"}}}
+::::::: link {"id":"ft-terms","props":{"label":"Terms","url":"https://lettern.org/terms"},"style":{"base":{"color":"token:color.muted","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease"},"hover":{"color":"token:color.ink"}}}
 :::::::
 ::::::
 
 :::::: box {"id":"ft-privacy-li","props":{"tag":"li"}}
-::::::: link {"id":"ft-privacy","props":{"label":"Privacy","url":"https://lettern.eu/privacy"},"style":{"base":{"color":"token:color.muted","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease"},"hover":{"color":"token:color.ink"}}}
+::::::: link {"id":"ft-privacy","props":{"label":"Privacy","url":"https://lettern.org/privacy"},"style":{"base":{"color":"token:color.muted","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease"},"hover":{"color":"token:color.ink"}}}
 :::::::
 ::::::
 :::::
