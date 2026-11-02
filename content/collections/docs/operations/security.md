@@ -39,7 +39,6 @@ Every response sets `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Po
 
 | Setting | Effect |
 |---|---|
-| `CMS_LOCKDOWN=true` | Configuration can only change through deployed files: collections, settings, roles and plugins are read-only on the web. Content editing keeps working. |
 | `CMS_ALLOW_FILE_MODS=false` | No installing, updating or deleting plugin files from the admin. |
 | `CMS_INSTALL_TOKEN` | The web installer requires this token. |
 | `APP_DEBUG=false` | Never show error details on a live site. |

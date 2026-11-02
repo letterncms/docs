@@ -18,7 +18,6 @@ Server-specific values and secrets. Never commit this file.
 | `APP_URL` | The public URL. When a `site.yaml` with another URL came with the site (from git, say), the installer leaves that file alone and sets `CMS_SITE_URL` here too. |
 | `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PREFIX` | The database. |
 | `CMS_INSTALL_TOKEN` | Required by the web installer when set. |
-| `CMS_LOCKDOWN` | `true` blocks configuration changes from the web: collections, settings, roles, the design system and plugins can then only change through files you deploy. Content editing keeps working. |
 | `CMS_ALLOW_FILE_MODS` | `false` stops installing, updating or deleting plugin files from the admin. |
 | `CMS_<NAMESPACE>_<KEY>` | Overrides any setting, e.g. `CMS_SITE_URL`, `CMS_MAIL_SMTP_PASSWORD` or `CMS_ASSISTANT_API_KEY`. |
 
