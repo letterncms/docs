@@ -23,7 +23,7 @@ php cms build
 
 3. What people change in the admin on the server, like settings or a collection, is saved to `config/` and `content/` there. Commit it from the server, or make the same change locally and deploy it, so the next deploy finds no difference.
 
-Store entries that should be versioned — documentation, landing pages — in collections with `driver: files`. Entries in the database (posts written by editors, form submissions) stay on the server.
+Store entries that should be versioned — documentation, landing pages — in collections with `driver: files`. Entries in the database (posts written by editors, form submissions) stay on the server. To move them and the media between your machine, staging and production, use [Sync](/operations/sync).
 
 ## Environments
 
