@@ -2,8 +2,7 @@
 id: 01m6c2l1cq7n4x8v0t3e9h5r2a
 title: Licence
 position: 6
-group: 'Your project'
-description: Free and open source under the MIT licence, for any use on any number of sites. Paid plugins carry a licence of their own.
+description: Lettern is free and open source under the MIT licence, for any use on any number of sites. Paid plugins carry a licence of their own.
 ---
 Lettern is free and open source, under the MIT licence. The text is `LICENSE.md`, in the root of every release, and the source is [on GitHub](https://github.com/letterncms).
 
@@ -19,15 +18,15 @@ Your content, templates and plugins are yours. Third-party components keep their
 
 ## Paid plugins
 
-A paid plugin from the [store](/plugins/store-protocol) carries its own licence: paid once, per site. Commerce and [Sync](/operations/sync) are paid, each with its terms in `LICENSE.md` in its own folder. With Composer, a paid plugin comes from the store's own repository, with your site's domain and licence key as the login:
+A paid plugin from the [store](/plugins/store-protocol) carries its own licence: paid once, per site. Commerce and [Sync](/operations/sync) are paid, each with its terms in `LICENSE.md` in its own folder. A plugin's licence covers that plugin only: it says nothing about Lettern, and Lettern doesn't need one.
+
+With Composer, a paid plugin comes from the store's own repository, with your site's domain and licence key as the login:
 
 ```bash
 composer config repositories.store composer https://lettern.org/composer
 composer config http-basic.lettern.org example.com "<licence key>"
 composer require letterncms/commerce
 ```
-
- Its licence says nothing about Lettern, and Lettern doesn't need one.
 
 A site with no paid plugin has no licence screen, no banner and nothing to check.
 

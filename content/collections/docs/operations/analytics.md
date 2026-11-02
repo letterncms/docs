@@ -1,60 +1,78 @@
 ---
 id: 01m5yz76zg040qnw6kerbpt360
 title: Analytics
-position: 4
-description: See what people read on the published site. Page views by default, with visitors, sources and devices as an option.
+position: 6
+description: See which pages people read, counted on your own server. Page views by default, with visitors, sources and devices if you want them.
 ---
-The **Analytics** plugin (`letterncms/analytics`) counts visits to the published site on your own server. Open **Analytics** in the sidebar for the numbers; the *Analytics* widget on the home screen shows the last 30 days at a glance.
+The Analytics plugin counts visits to your published site on your own server. Nothing goes to another company, and by default nothing is read from the visitor's browser at all.
 
-## What it counts
+Open **Analytics** in the sidebar for the numbers. The **Analytics** card on the dashboard shows the last 30 days at a glance.
 
-Under **Settings → Analytics**, **What to count** has two settings. Page views only is the default.
+## Choose what to count
 
-| | Page views only (`counts`) | Visitors, sources and devices (`visitors`) |
+Under **Settings → Analytics**, **What to Count** has two options:
+
+| | **Page views only** (the default) | **Visitors, sources and devices** |
 |---|---|---|
-| On the page | One 1×1 image, no script | A few hundred bytes of script |
-| Sent | The page's path, written into the page at build | Path, referrer, campaign name, window width |
-| Read from the browser | Nothing | Referrer, window width, Do Not Track |
-| Kept | Views per day and path | Also a daily hash per visitor, source, device, browser and operating system |
-| IP address and browser string | Read in memory to skip bots, then gone | Hashed with a salt that is replaced daily and thrown away |
-| Reports | Page views, top pages, languages | All of them |
+| You see | Page views, top pages, languages | Everything, including visitors, where they came from and what they use |
+| On the page | One invisible image, no script | A tiny script |
+| Read from the browser | Nothing | Where they came from, window width, Do Not Track |
+| Kept about visitors | Nothing | A daily code per visitor that can't be traced back, replaced every day |
 
-In both, people who ask not to be tracked (**Do Not Track** or **Global Privacy Control**) and bots are skipped, nothing is counted in previews or the block workspace, and people signed in to the admin aren't counted. That last one uses a `cms_staff` cookie set when someone with admin access signs in. It's HTTP-only and no page or script reads it. A site's members are counted like any visitor.
+Visitors mode reads data from the browser and keeps that daily code. Whether that needs your visitors' consent depends on their countries, so check the rules for them. By default it waits for your consent tool to say yes; turn off **Wait for Consent** if you've decided you don't need it.
 
-Visitors mode stores a pseudonymous hash and reads data from the browser. Whether that needs consent depends on your visitors' countries, so check the rules for them. By default it waits for a signal from your consent tool: `window.cmsConsent = { analytics: true }` set before the page's script runs, or a `cms:consent` event on `document` with `detail: { analytics: true }`. Turn off **Wait for consent** if you've decided you don't need it. Web server logs are separate from all of this, and are your host's matter.
+Going back to page views only deletes the visitor data. Views per page stay.
 
-Going back to page views only deletes the visitor data and its salt. Views per page stay. Switching to visitors starts collecting from that day.
+## Who isn't counted
 
-## What you see
+In both modes, Lettern skips bots, people who ask not to be tracked (**Do Not Track** or **Global Privacy Control**), previews, the editor, and people signed in to the admin. So you and your client don't inflate the numbers. Members of the site are counted like any visitor.
+
+## What the numbers mean
 
 | Number | Means |
 |---|---|
-| **Page views** | Every page opened. |
+| **Page Views** | Every page opened. |
 | **Visitors** | Different people per day, added up over the period. Visitors mode. |
-| **Views per visit** | Page views divided by visitors. Visitors mode. |
-| **Bounce rate** | The share of visitors who opened one page and left. Visitors mode. |
+| **Views per Visit** | Page views divided by visitors. Visitors mode. |
+| **Bounce Rate** | The share of visitors who opened one page and left. Visitors mode. |
 
-Each number is compared with the period before (7, 30 or 90 days), and you can chart it per day. Below are the top pages and the views per language. In visitors mode you also get the pages visits start on, sources (the site that linked to you, or the campaign in a link's `utm_source` or `ref` parameter, "Direct" when there is none), devices, browsers and operating systems, and *On the site now*, which counts visitors active in the last five minutes.
+Choose 7, 30 or 90 days. Each number is compared with the period before, and you can chart it per day. Below are the **Top Pages** and the views per language.
+
+Visitors mode adds the **Entry Pages** where visits start, **Sources** (the site that linked to you, the campaign in a link's `utm_source` or `ref`, or "Direct"), devices, browsers and operating systems, and how many people are on the site now.
 
 ## Settings
 
-**Settings → Analytics**:
+All under **Settings → Analytics**:
 
 | Setting | |
 |---|---|
-| **Count visits** | Off stops counting; the numbers collected so far stay. |
-| **What to count** | See above. |
-| **Wait for consent** | Visitors mode only. |
-| **Paths not to count** | Paths or patterns with `*`, e.g. `/drafts/*`. |
-| **Keep data for** | Days of history to keep (730 by default); 0 keeps everything. |
+| **Count Visits** | Off stops counting. The numbers collected so far stay. |
+| **What to Count** | See above. |
+| **Wait for Consent** | Visitors mode only. |
+| **Paths Not to Count** | Paths, or patterns with `*`, like `/drafts/*`. |
+| **Days to Keep Data** | 730 by default. 0 keeps everything. |
 | **Lettern URL** | Only for a site published to another domain: the address of this Lettern, which pages report to. |
 
-## How it works
+## For developers
 
-In counts mode, a page ends with `<img src="/api/analytics/view?p=/pricing">`. The endpoint always answers with the same 1×1 GIF and `Cache-Control: no-store`, counted or not, so it reveals nothing. It reads no session and counts only paths that exist, with a same-origin `Sec-Fetch-Site` header when the browser sends one. Its rate limit is one bucket of 600 a minute for everybody, because a key per visitor would mean storing a hash of their address. Past the limit a view isn't counted.
+### Page views only
 
-In visitors mode, the script posts to `/api/analytics/hit` after the page loads. Lettern keeps one row per visitor and day and daily totals per page; the endpoint is rate-limited per address and accepts views from the site's own pages only.
+A page ends with `<img src="/api/analytics/view?p=/pricing">`, with the path written in at build. The endpoint always answers with the same 1×1 GIF and `Cache-Control: no-store`, counted or not, so it reveals nothing. It reads no session, counts only paths that exist, and requires a same-origin `Sec-Fetch-Site` header when the browser sends one. The IP address and browser string are read in memory to skip bots, then dropped. Its rate limit is one bucket of 600 a minute for everybody, because a key per visitor would mean storing a hash of their address. Past the limit a view isn't counted. Lettern keeps views per day and path.
 
-Agents and the API read the same numbers through the `analytics/summary` and `analytics/breakdown` abilities (permission `analytics.view`, which editors have by default). In counts mode, numbers it can't know are `null`, and breakdowns other than `pages` and `languages` answer `{"unavailable": "mode"}`. A plugin with pages of its own that aren't entries lets them be counted through the `analytics.known-path` filter.
+### Visitors, sources and devices
 
-For development, `php cms analytics:demo` fills an empty site with made-up traffic for the pages it has (`--days=120`, `--fresh` to replace what is there). It refuses to run in production.
+A few hundred bytes of script post the path, referrer, campaign and window width to `/api/analytics/hit` after the page loads. The endpoint is rate-limited per address and accepts views from the site's own pages only. The IP address and browser string are hashed with a salt that is replaced daily and thrown away. Lettern keeps one row per visitor and day, daily totals per page, and the source, device, browser and operating system. Switching to this mode starts collecting from that day; switching back deletes the visitor data and its salt.
+
+The consent signal is `window.cmsConsent = { analytics: true }` set before the page's script runs, or a `cms:consent` event on `document` with `detail: { analytics: true }`. Web server logs are separate from all of this, and are your host's matter.
+
+### Staff aren't counted
+
+When someone with admin access signs in, Lettern sets an HTTP-only `cms_staff` cookie. Nothing on a page reads it; the endpoints use it to skip the visit.
+
+### Abilities and hooks
+
+Agents and the API read the same numbers through `analytics/summary` and `analytics/breakdown`, with `analytics.view` (Editors have it by default). In page-views mode, numbers it can't know are `null`, and breakdowns other than `pages` and `languages` answer `{"unavailable": "mode"}`. A plugin with pages of its own that aren't entries lets them be counted through the `analytics.known-path` filter.
+
+### Demo data
+
+`php cms analytics:demo` fills an empty site with made-up traffic for the pages it has (`--days=120`, `--fresh` to replace what's there). It refuses to run in production.

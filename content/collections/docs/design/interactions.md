@@ -2,12 +2,131 @@
 id: 01m5x92hk2a210v3pxvc1vx998
 title: Interactions
 position: 5
-group: 'Data and behaviour'
-description: Menus, tabs, modals, filters and "load more" — built from state, events and actions in the inspector, and run by Alpine.js on the site.
+description: Menus that open, buttons that react, lists that load more. Build them in a block's Interact tab, without writing code.
 ---
-Select a block and open **Interact**. Below the animations are the block's scripts: **State**, **Events**, **Show and states**, **Behaviors** and, for links and forms, **Load into**. On the site they run on [Alpine.js](https://alpinejs.dev) — its CSP build, which never evaluates free-form JavaScript — plus [Alpine AJAX](https://alpine-ajax.js.org). Pages without interactions load no JavaScript at all.
+Interactions make your pages respond to visitors: a menu that opens on a phone, a header that shrinks as you scroll, a "Load more" button under a blog list. You build them in a block's **Interact** tab, under its animations.
 
-A mobile menu, start to finish:
+![A heading selected on the home page, with its Interact settings open on the right.](/media/screens/design-interact.webp)
+
+Pages without interactions load no JavaScript at all.
+
+## How it works
+
+An interaction has three parts. **State** remembers something, like whether the menu is open. **Events** change it, like a click on the menu button. And blocks react to it: the menu shows while it's open.
+
+::: html {"props":{"html":"<figure class=\"docs-fig\" role=\"img\" aria-label=\"A click on the menu button toggles the open state, and the menu shows while open is true.\"><div class=\"docs-fig__flow\"><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Event</b><span class=\"docs-card__field\">Click</span></div><b>Something happens</b><small>On the menu button</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>State</b><span class=\"docs-card__field\">open = true</span></div><b>Something changes</b><small>Remembered by the header</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Show when</b><span class=\"docs-card__field\">open</span></div><b>Blocks react</b><small>The menu appears</small></div></div></figure>"}}
+:::
+
+## Build a mobile menu
+
+Here's the whole thing, start to finish. You need a header that holds a menu button and the menu itself.
+
+1. **Remember whether it's open.** Select the header, open **Interact**, and under **State** press **Add Variable**. Name it `open`, with the value `false`.
+2. **Open and close it.** Select the menu button. Under **Events**, press **Add Event** and keep **Click**. Press **Add Action** and choose **Toggle State**, then the variable `open`.
+3. **Show the menu while it's open.** Select the menu. Under **Show and States**, set **Show When** to `open`, and pick the **Collapse** transition.
+4. **Close it with Escape.** Select the header again and add an event: **Key Pressed**, with the key `escape`. In its options, choose **Anywhere on the Page**. Add the action **Set State**: `open` to `false`.
+5. **Tell screen readers.** On the menu button, under **Show and States → Attributes**, press **Bind Attribute** and set `aria-expanded` to `open`.
+
+Choose **Preview** in the **⋯** menu at the top of the editor to try it.
+
+::: callout {"props":{"tone":"tip","text":"To restyle the header while the menu is open, add a state under <strong>Show and States → States</strong>: <code>open</code> when <code>open</code>. Then style it in <strong>Design</strong>. See <a href=\"/design/styles#custom-states\">Custom states</a>."}}
+:::
+
+## State
+
+Variables that a block and everything inside it can read and change: `open` set to `false`, `tab` to `'overview'`, `count` to `0`. Values are true or false, numbers, quoted text, or JSON lists and objects.
+
+Put the variable on the block that holds everything that needs it, like the header for a mobile menu.
+
+## Events
+
+An event runs a list of actions, one after the other, when something happens.
+
+| Event | When |
+|---|---|
+| **Click**, **Pointer Enters**, **Pointer Leaves** | The pointer clicks, or moves over or off the block |
+| **Gets Focus**, **Loses Focus** | Keyboard or pointer focus arrives or leaves |
+| **Typing**, **Value Changes**, **Form Submit** | In inputs and forms |
+| **Key Pressed** | A key, like `escape`, `enter`, `k` or `meta.k` |
+| **Scrolls into View**, **Scrolls Out of View** | The block enters or leaves the screen |
+| **Page Scrolls**, **Window Resizes** | On the whole window |
+| **Page Loads** | When the block starts |
+
+The options of an event (the sliders icon) fine-tune it: **Prevent Default**, **Stop Propagation**, **Outside This Element** (to close a menu when visitors click elsewhere), **Anywhere on the Page**, **Only Once**, **On This Element Only** and **Debounce**.
+
+### Actions
+
+| Action | Does |
+|---|---|
+| **Set State** | Sets a variable: `open` to `false`, `tab` to `'pricing'`, `count` to `count + 1` |
+| **Toggle State** | Flips a true or false variable |
+| **Add to Number** | Adds to (or subtracts from) a number |
+| **If … Then … Else** | Runs one list of actions or another, depending on a condition |
+| **Play Animation** | Plays, reverses, toggles or restarts a block's [animation](/design/animations) with the **On Event** trigger |
+| **Scroll To** | The top or bottom of the page, a section or a block, with an offset for sticky headers |
+| **Load Page Part** | Fetches a page and swaps in the blocks you choose from it |
+| **Copy to Clipboard** | A value, or a block's text |
+| **Go to Link** | Opens a link, optionally in a new tab |
+| **Light or Dark Mode** | Switches, or sets light, dark or the system's choice. Remembered across visits |
+| **Focus Element** | Moves keyboard focus to a block |
+| **Lock Page Scrolling** | Stops the page scrolling behind a modal or a full-screen menu, or lets it scroll again |
+| **Wait** | Pauses before the next action |
+| **Send Event** | Sends a named event that other blocks can listen for |
+| **Expression** | Anything else, written as an expression |
+
+Conditions and values are short expressions: `open`, `!open`, `tab === 'a'`, `count > 3 && ready`, `query.length`.
+
+## Show and states
+
+Under **Show and States**, a block reacts to its variables:
+
+- **Show When** shows the block only while a condition is true, with an optional **Fade**, **Scale** or **Collapse** transition. To select a block it hides, use the **Outline** in the sidebar.
+- **States** add a custom state while a condition is true, like `open`. Style it in **Design**, and style children with **in open**: see [Custom states](/design/styles#custom-states).
+- **Text** replaces the block's text with a value, like `count`.
+- **Attributes** keep `aria-expanded`, `aria-selected`, `hidden`, `disabled`, `href` and others in sync with a variable.
+- **Input Value**, on an **Input** block, keeps a variable in sync with what visitors type. Use it for live filters and calculators.
+
+## Behaviors
+
+Ready-made interactions you switch on under **Behaviors**:
+
+| Behavior | Does |
+|---|---|
+| **Scroll States** | Gives the block the state *scrolled* once the page scrolls past a distance you set, and optionally *hidden* while scrolling down. For headers that shrink or hide |
+| **Scroll Spy** | Links inside to `#sections` get the state *current* while their section is in view. For tables of contents |
+| **Hover Group** | Blocks inside can react when the whole block is hovered, with the **Hover on Hover Group** state |
+| **Menu** | A navigation menu with one panel that moves between items. Each child is a link or button, with an optional panel after it. A pill follows the pointer and keyboard focus, the panel's background changes shape to fit the next item, and its content cross-fades. Escape closes it, the Down arrow goes into it, and it respects reduced motion |
+| **Marquee** | The children scroll sideways in an endless loop, at a **Speed** in pixels per second, optionally reversed and paused on hover |
+| **Carousel** | A row to step through. The first child scrolls sideways (give it overflow and scroll snap in **Design**), and the first two buttons after it go back and forward by one item. A button is disabled at its end of the row. Blocks with a `data-carousel-to` attribute are thumbnails: each goes to the item in its own position, and has `data-current` while that item shows |
+
+## Load more without a reload
+
+Links, buttons and forms can load the next page in the background and swap in only some blocks, without a full reload. Use it for **Load more** buttons, filters, and tabs with their own links.
+
+1. Select the link or button, and open **Load Into** in its **Interact** tab.
+2. Under **Update**, add the blocks to swap.
+3. Turn on **Update the Address Bar** to keep the link shareable.
+4. On each block you swap, **When Loaded** in the same section decides how the new content arrives: **Replace It** (the default), **Replace What Is Inside**, **Add to the End**, **Add to the Start** or **Morph (Keep State)**.
+
+A "Load more" button under a paginated blog list is a **Link** connected to **Next Page of a List**, loading into the Repeat, with the Repeat set to add to the end. **Load Into** shows on links, buttons and boxes, so a Repeat's setting is stored as `"merge": "append"` in its `logic`: ask the [assistant](/agents/assistant) to set it, or see [For developers](#all-logic-settings). Without JavaScript, the link simply opens the next page.
+
+## Tabs
+
+For tabs, use the **Tabs** block instead of building them from state. Add a **Tab** per panel, and put anything in it. **Look** chooses underlined tabs, a segmented control, or a column of tabs beside the panels, which becomes a row on a phone.
+
+Tabs follow the [ARIA tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/), with arrow keys, Home and End. Find in page opens the panel it finds something in, and so does a link to something inside one. Without JavaScript every panel shows, one after the other, under its label. In the editor all panels show, so you can select each one.
+
+## Code components
+
+When something can't be built from state, events and actions, like a calculator, a chart or a third-party widget, a developer can write it as a small component in the site's custom JavaScript. Name it under **Interact → Code Component**. The block then uses that component instead of its own **State**; everything inside can read its values and call its functions, and the other interaction settings keep working. See [Custom CSS and JavaScript](/design/design-system#custom-css-and-javascript).
+
+## For developers
+
+### What runs on the site
+
+Interactions run on [Alpine.js](https://alpinejs.dev), in its CSP build, which never evaluates free-form JavaScript, plus [Alpine AJAX](https://alpine-ajax.js.org) for **Load Into** and **Load Page Part**. Expressions are Alpine's; the CSP build has no access to `window`, `document` or other globals and no arrow functions, so editors can't run arbitrary code. Developers add JavaScript in `custom.js`.
+
+### The mobile menu, as stored
 
 ```json
 {
@@ -26,86 +145,7 @@ A mobile menu, start to finish:
 }
 ```
 
-## State
-
-Variables the element and everything inside it can read and change: `open: false`, `tab: 'overview'`, `count: 0`. Values are true/false, numbers, quoted text or JSON lists and objects.
-
-## Events
-
-Each event runs a list of actions in order.
-
-| Event | When |
-|---|---|
-| Click, Pointer enters, Pointer leaves | The usual |
-| Gets focus, Loses focus | Keyboard and pointer focus |
-| Typing (input), Value changes, Form submit | Inputs and forms |
-| Key pressed | With a key: `escape`, `enter`, `k`, `meta.k`… |
-| Scrolls into view, Scrolls out of view | The element enters or leaves the screen |
-| Page scrolls, Window resizes | On the whole window |
-| Page loads | When the element starts |
-
-Options (the sliders icon): **Prevent default**, **Stop propagation**, **Outside this element** (close a menu on an outside click), **Anywhere on the page**, **Only once**, **On this element only**, **Debounce**.
-
-### Actions
-
-| Action | Does |
-|---|---|
-| Set state | `open` to `false`, `tab` to `'pricing'`, `count` to `count + 1` |
-| Toggle state | Flips a true/false variable |
-| Add to number | Adds (or subtracts) from a number |
-| If … then … else | Runs one list or the other, by a condition |
-| Play animation | Plays, reverses, toggles or restarts an element's [animation](/design/animations) with the *On event* trigger |
-| Scroll to | The top, the bottom, an `#anchor` or an element, with an offset for sticky headers |
-| Load page part (AJAX) | Fetches a URL and swaps in the elements with the same identity from it |
-| Copy to clipboard | A value, or an element's text |
-| Go to URL | Navigates, optionally in a new tab |
-| Light / dark mode | Switch, light, dark or system — remembered across visits |
-| Focus element | Moves keyboard focus |
-| Lock page scrolling | For modals and full-screen menus |
-| Wait | Pauses before the next action |
-| Send event | Dispatches a custom event other elements can listen for |
-| Expression | An Alpine expression, for anything else |
-
-Expressions are Alpine's: `open`, `!open`, `tab === 'a'`, `count > 3 && ready`, `query.length`. The CSP build has no access to `window`, `document` or other globals and no arrow functions, so editors can't run arbitrary code — developers add JavaScript in [custom.js](/design/design-system#custom-css-and-javascript).
-
-## Show and states
-
-- **Show when** — the element is shown only while the expression is true, with an optional **Fade**, **Scale** or **Collapse** transition. Use **Outline** to select and edit a block even when its visibility condition hides it in the rendered page.
-- **States** — `is-<name>` while an expression is true. Style the state in **Design**, and its children with `in-<name>` — see [Styles](/design/styles#custom-states).
-- **Text** — replace the element's text with a value, like `count`.
-- **Attributes** — keep `aria-expanded`, `aria-selected`, `hidden`, `disabled`, `href`… in sync with state.
-- **Input value** — on an **Input** block, keeps a variable in sync with what is typed: build live filters and calculators.
-
-## Behaviors
-
-Ready-made interactions you switch on:
-
-| Behavior | Does |
-|---|---|
-| Scroll states | Adds `is-scrolled` after the page scrolls past a threshold, and optionally `is-hidden` while scrolling down — headers that shrink or hide |
-| Scroll spy | In-page links inside (`#section`) get `is-current` and `aria-current` while their section is in view — tables of contents |
-| Hover group | Children can style the `group-hover` state: they react when the whole element is hovered |
-| Menu | A navigation menu with one panel that moves between items. Each child is a link or button, with an optional panel as its second element. A pill follows the pointer and keyboard focus, the panel's background changes shape to fit the next item, and its content cross-fades. Escape closes it, the Down arrow goes into it, and it respects reduced motion |
-| Marquee | The children scroll sideways in an endless loop, at a speed in pixels per second, optionally reversed and paused on hover |
-| Carousel | A row to step through. The first child scrolls sideways (give it overflow and scroll snap in **Design**), and the first two buttons after it go back and forward by one item. A button is disabled at its end of the row. Elements with a `data-carousel-to` attribute are thumbnails: each goes to the item in its own position, and has `data-current` while that item shows |
-
-## Load into
-
-Links and forms can load the next page in the background and swap only some elements — **Load more**, filters, tabs with real URLs — without a full reload. Choose the elements to update; on each of those, **When loaded** decides how new content arrives: replace it, replace what is inside, add to the end or start, or morph. **Update the address bar** keeps the URL shareable. Without JavaScript the link simply opens the page.
-
-A "Load more" button under a paginated blog list: a **Link** bound to `pagination.next`, loading into the Repeat, with the Repeat's **When loaded** set to *Add to the end*.
-
-## Tabs
-
-For tabs, use the **Tabs** block instead of wiring up state: add a **Tab** per panel, and put anything in it. **Look** chooses underlined tabs, a segmented control, or a column of tabs beside the panels, which becomes a row on a phone. It follows the [ARIA tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/), with arrow keys, Home and End. Find in page opens the panel it finds something in, and so does a link to something inside one. Without JavaScript every panel shows, one after the other, under its label. On the canvas all panels show, so each can be selected.
-
-## Code components
-
-When something can't be built from state, events and actions — a calculator, a chart, a third-party widget — write an Alpine component in the site's custom JavaScript (**Design system → Code**, see [Design system](/design/design-system#custom-css-and-javascript)) and name it under **Interact → Code component**. The element then uses that component instead of its own **State**; everything inside can read its values and call its methods, and the other interaction settings keep working.
-
-## How it is stored
-
-A block's `logic`:
+### All logic settings
 
 ```json
 {
@@ -124,4 +164,9 @@ A block's `logic`:
 }
 ```
 
-Action types are `set`, `toggle`, `add`, `if`, `wait`, `play`, `scroll`, `copy`, `go`, `theme`, `focus`, `dispatch`, `fetch`, `lock` and `run`. Lettern checks every value when it is saved; `blocks/types` lists the events, options, actions and transitions for agents.
+- Events: `click`, `mouseenter`, `mouseleave`, `focus`, `blur`, `input`, `change`, `submit`, `keydown` (with `key`), `enter`, `leave`, `scroll`, `resize`; **Page Loads** is stored as `init`, a list of actions.
+- Event options (`mods`): `prevent`, `stop`, `outside`, `window`, `once`, `self`, `debounce`.
+- Action types: `set`, `toggle`, `add`, `if`, `wait`, `play`, `scroll`, `copy`, `go`, `theme`, `focus`, `dispatch`, `fetch`, `lock` and `run`.
+- `states` add `is-<name>`; `model` is **Input Value**; `target`, `push` and `merge` are **Load Into**; `component` names a code component.
+
+Lettern checks every value when it is saved; `blocks/types` lists the events, options, actions and transitions for agents.

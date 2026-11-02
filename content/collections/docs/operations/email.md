@@ -1,27 +1,51 @@
 ---
 id: 01m5wnc9y2yajdbdkwgmtxz24s
 title: Email
-position: 3
-description: Send invitations, password resets and form notifications through SMTP or an email API.
+position: 5
+description: Connect a mail service so invitations, password resets and form notifications reach people's inboxes.
 ---
-Choose how Lettern sends email under **Settings → Email**:
+Lettern sends email for invitations, password resets, form notifications and, with Commerce, invoices. A new site only writes emails to a log, so nothing goes out by accident while you build. Connect a real mail service before launch.
 
-| Transport | For |
+## Set up email
+
+1. Open **Settings → Email**.
+2. Under **Send With**, choose how mail goes out. Each choice asks for its own details.
+3. Fill in the **From Address** and **From Name** people will see.
+4. Add an **Email Footer** if you like, such as your address. It's shown under every email.
+
+| Send With | For |
 |---|---|
-| Log | Development: messages are written to the log instead of sent. The default. |
-| SMTP | Any mail server or provider with SMTP credentials. |
-| Server mail | The server's own `sendmail`, with nothing to fill in. Only offered where the host lets PHP run it: many shared hosts turn `proc_open` off, and then SMTP is the way. |
-| Brevo | Brevo's transactional API, with an API key. Install the free Brevo plugin first, from **Modules → Store**. |
+| **SMTP** | Any mail server or provider that gives you SMTP details: a host, a port, a username and a password. |
+| **Brevo** | Brevo's email service, with an API key. Install the free Brevo plugin first, from **Modules → Store**. |
+| **Server mail (sendmail)** | The hosting server's own mail, with nothing to fill in. Only offered where the host lets PHP run it: many shared hosts don't, and then SMTP is the way. |
+| **Log only (development)** | Nothing is sent: messages are written to the log. The default. |
 
-Set the sender address and name, and an optional footer for every message. Use **Send a test email to me** in the command palette to check the setup, and **Email log** to see what was sent and what failed.
+Emails wear your site's colors: the background, text and buttons come from your [design system](/design/design-system).
 
-Mail wears your site's colours: the background, text and button come from the design system, through the `mail.colors` filter.
+## Check that it works
 
-Passwords and API keys are stored encrypted; on servers you can set them as environment variables instead (`CMS_MAIL_SMTP_PASSWORD`, `CMS_MAIL_BREVO_API_KEY`).
+Press `⌘K` and choose **Send a Test Email to Me**. It goes to the address you sign in with.
 
-## Other providers
+The **Email** card on the dashboard shows how mail is sent, how many emails went out or failed in the last 7 days, and the latest ones. It says **Not delivering** while you're still on **Log only**.
 
-Sending is a plugin contract. A provider plugin registers a transport with its settings fields — the Brevo plugin is twenty lines and a good template:
+::: callout {"props":{"tone":"tip","text":"With Brevo, your sender domain must be verified in Brevo first. Find the API key in Brevo under <strong>SMTP &amp; API → API keys</strong>. A <strong>Brevo</strong> card on the dashboard then shows deliveries, opens, clicks and bounces for the week."}}
+:::
+
+## For developers
+
+### Passwords and keys
+
+Passwords and API keys entered in the settings are stored encrypted in `storage/`, not in `config/mail.yaml`. On servers you can set them as environment variables instead: `CMS_MAIL_SMTP_PASSWORD`, `CMS_MAIL_BREVO_API_KEY`.
+
+The `mail/test`, `mail/status` and `mail/log` abilities send a test, report the transport and counts, and list recent emails. They need `settings.manage`.
+
+### Colors
+
+Mail takes its background, text and button colors from the design system through the `mail.colors` filter. A plugin can change them there.
+
+### Add another provider
+
+Sending is a plugin contract. A provider plugin registers a transport with its settings fields. The Brevo plugin is a few lines and a good template:
 
 ```php
 $this->cms()->whenAvailable(\Cms\Mail\Transports::class, function ($transports) {
@@ -30,3 +54,5 @@ $this->cms()->whenAvailable(\Cms\Mail\Transports::class, function ($transports) 
     ], fn (array $settings) => new PostmarkTransport($settings['postmark_token'] ?? ''));
 });
 ```
+
+Fields marked `secret` are stored encrypted, and the transport appears under **Send With**.

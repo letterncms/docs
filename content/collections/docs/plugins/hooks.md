@@ -2,9 +2,17 @@
 id: 01m5wnc9yws2p0yzvc96tkd6pc
 title: Hooks
 position: 2
-group: 'Build'
-description: Actions tell you something happened; filters let you change a value on its way through. Every hook Lettern fires is listed here.
+description: React when something happens in Lettern, or change a value on its way through. Every hook is listed here.
 ---
+Hooks let your plugin join in when Lettern does something. There are two kinds:
+
+- An **action** tells you something happened: an entry was published, a form was sent. You react.
+- A **filter** hands you a value on its way through, like an entry's URL or a page's HTML. You return it, changed or not.
+
+## Use a hook
+
+Register hooks in your provider's `boot()`:
+
 ```php
 $hooks = $this->cms()->hooks();
 
@@ -17,14 +25,30 @@ $hooks->on('entry.published', function (Entry $entry, ?User $user) {
 $hooks->addFilter('entry.uri', fn (string $uri, Entry $entry) => $entry->collection === 'jobs' ? '/careers'.$uri : $uri);
 ```
 
-Both take an optional priority (lower runs first, default 10). Prefer [abilities](/agents/abilities) for things people or agents should be able to *do*; use hooks to react and adjust.
+Both take an optional priority as a third argument: lower runs first, and the default is 10.
+
+::: callout {"props":{"tone":"tip","text":"Hooks are for reacting and adjusting. For something people or agents should be able to do, register an <a href=\"/agents/abilities\">ability</a> instead."}}
+:::
+
+## Fire your own
+
+Your plugin can offer hooks to others the same way. `dispatch()` fires an action, `filter()` passes a value through every filter and returns the result, and `has()` says whether anything listens:
+
+```php
+$hooks->dispatch('reviews.approved', $review, $user);
+$html = $hooks->filter('reviews.card', $html, $review);
+```
+
+Name them after your plugin, so they never clash with Lettern's own.
 
 ## Actions
+
+### Content
 
 | Action | Arguments | Fired when |
 |---|---|---|
 | `entry.saved` | `$entry, $user, $action` | An entry is created, saved, published or unpublished (`$action` says which). |
-| `entry.published` | `$entry, $user` | An entry goes live — also when a scheduled one comes due. |
+| `entry.published` | `$entry, $user` | An entry goes live, also when a scheduled one comes due. |
 | `entry.unpublished` | `$entry, $user` | An entry is taken offline. |
 | `entry.deleting`, `entry.deleted` | `$entry, $user` | Around deletion. |
 | `entry.uri-changed` | `$entry, $old, $new` | A live entry's URL changed. |
@@ -33,22 +57,42 @@ Both take an optional priority (lower runs first, default 10). Prefer [abilities
 | `collection.saved`, `collection.deleted` | `$collection` / `$handle` | A collection definition changed. |
 | `globals.saved` | `$set` | A global set's fields or values changed. |
 | `navigation.saved`, `form.saved` | `$handle` | A menu or form changed. (Templates and components are entries: use `entry.saved` and `entry.published`.) |
-| `redirects.saved` | — | The redirect list changed. |
+| `redirects.saved` | | The redirect list changed. |
+
+### Media, forms and comments
+
+| Action | Arguments | Fired when |
+|---|---|---|
 | `media.uploaded` | `$item, $user` | A file was added. |
 | `media.updated`, `media.deleted` | `$item` | A file changed or was removed. |
 | `form.submitted` | `$form, $data, $submission` | A valid submission arrived. |
 | `comment.created` | `$comment, $entry, $author` | Someone commented. |
-| `users.fields.saved` | — | The user profile fields changed. |
+
+### Settings and design
+
+| Action | Arguments | Fired when |
+|---|---|---|
+| `users.fields.saved` | | The user profile fields changed. |
 | `settings.saved` | `$namespace, $values` | A settings namespace was saved (`site` is `config/site.yaml`). |
-| `design.saved` | — | The design system or custom code changed. |
+| `design.saved` | | The design system or custom code changed. |
+
+### Publishing and rendering
+
+| Action | Arguments | Fired when |
+|---|---|---|
 | `site.page.built` | `$uri, $entry, $file, $page` | The static build wrote a page. |
 | `site.page.removed` | `$uri, $file` | The static build removed a page. |
 | `site.built` | `$manifest` | A build finished. |
 | `render.begin` | `$context` | A page starts rendering. |
-| `render.head`, `render.foot` | `$key, $html` | Add markup to the page's head or end of body (deduplicated by key). |
+| `render.head`, `render.foot` | `$key, $html` | Add markup to the page's head or the end of its body (deduplicated by key). |
 | `render.style` | `$key, $css, $order` | Add CSS to the page (blocks use this). |
 | `render.depend` | `$key` | Record that the page depends on something (`entry:<id>`, `collection:<handle>`), so the static build rebuilds it when that changes. |
 | `render.structured` | `$key, $data` | Add JSON-LD to the page's graph. |
+
+### Abilities and people
+
+| Action | Arguments | Fired when |
+|---|---|---|
 | `ability.executing` | `$ability, $input, $context` | Before any ability runs. |
 | `ability.executed` | `$ability, $input, $result, $context` | After it ran (letterncms/audit records changes here). |
 | `user.login` | `$user` | Someone signed in to the admin. |
@@ -56,6 +100,10 @@ Both take an optional priority (lower runs first, default 10). Prefer [abilities
 | `oauth.authorized` | `$user, $client` | An agent was granted access. |
 
 ## Filters
+
+The first argument is the value you return; the rest are there to help you decide.
+
+### Content
 
 | Filter | Value, then arguments | Lets you change |
 |---|---|---|
@@ -65,36 +113,63 @@ Both take an optional priority (lower runs first, default 10). Prefer [abilities
 | `collections` | `$collections` | The list of collections (add code-defined ones). |
 | `collections.defaults` | `$definition` | The initial definition returned by `collections/options`. The blocks plugin contributes an explicit blocks body; without it, the core starts with no body. Creators apply explicit values afterward. |
 | `collections.settings` | `$fields, $collection` | The settings a collection offers in **Collections** (the site plugin adds its template picker). |
+| `revisions.keep` | `$count` | How many revisions each entry keeps (letterncms/content makes it a setting). |
+| `gate.allows` | `$allowed, $user, $entry, $rule` | Whether someone may read a [gated](/content/gated-content) entry. |
+| `fields.options.<name>` | `$options` | Options of select fields with `dynamic: <name>` (`templates`, `collections`, `timezones`). |
+| `fields.definition.<name>` | `$field, $context` | Resolved definition of a `dynamic: <name>` field. The collection host supplies `$context['collection']`; use it for presentation such as the inherited template name. Raw collection YAML stays unchanged. |
+
+### Abilities, settings and people
+
+| Filter | Value, then arguments | Lets you change |
+|---|---|---|
 | `ability.input` | `$input, $ability, $context` | Validated input before the handler. |
 | `ability.result` | `$result, $ability, $input, $context` | What an ability returns. |
-| `users.fields` | `$fields` | The fields of user profiles (add your own). A field with `public: true` can be edited on the public profile page. |
-| `gate.allows` | `$allowed, $user, $entry, $rule` | Whether someone may read a [gated](/content/gated-content) entry. |
-| `settings.fields` | `$fields, $namespace` | A settings namespace's fields — add to another's, or take one over (the languages plugin manages the site's language). |
+| `settings.fields` | `$fields, $namespace` | A settings namespace's fields: add to another's, or take one over (the languages plugin manages the site's language). |
 | `settings.saving` | `$values, $namespace, $stored` | Settings right before they are validated and stored. |
+| `users.fields` | `$fields` | The fields of user profiles (add your own). A field with `public: true` can be edited on the public profile page. |
+
+### The admin and agents
+
+| Filter | Value, then arguments | Lets you change |
+|---|---|---|
 | `admin.manifest` | `$manifest, $user` | What the admin receives at start-up (modules add `collections`, `globals`, the home screen and `config.<namespace>` here). |
 | `admin.nav` | `$items` | Sidebar items that come and go (letterncms/content adds one per collection, letterncms/settings one per settings page). |
-| `revisions.keep` | `$count` | How many revisions each entry keeps (letterncms/content makes it a setting). |
 | `agent.guide` | `$guide` | The instructions every AI agent gets. |
+| `mcp.prompts` | `$prompts` | Prompts offered to MCP clients: the site's skills (`cms()->skills()`). |
+| `i18n.translator` | `null` | The machine translator (the assistant registers Claude). |
+
+### Pages
+
+| Filter | Value, then arguments | Lets you change |
+|---|---|---|
 | `site.head` | `$tags, $context` | Tags in a page's `<head>`. |
 | `site.foot` | `$tags, $context` | Scripts at the end of a page's `<body>`. |
 | `site.scope` | `$scope, $context` | The data templates and blocks can bind to (`site`, `entry`, `globals`, `page`, `pagination`…). `$context->mode` says who the page is for: only add a signed-in person's data in `request`, as a `build` goes to a public file. |
 | `site.html` | `$html, $context` | A rendered page. |
 | `site.build.extras` | `$extras` | Extra files the static build writes (sitemap, feeds…). |
 | `site.search.record` | `$record, $entry` | A page's search index record (`null` leaves it out). |
+| `site.links.answered` | `$answered, $path` | Whether an address your plugin answers itself is real, so `cms links:check` accepts it. |
 | `seo.alternates` | `$alternates, $entry` | `hreflang` alternates. |
 | `seo.sitemap` | `$urls` | Addresses your plugin answers itself, for the sitemap: `['uri' => …, 'updated' => …]`. |
-| `site.links.answered` | `$answered, $path` | Whether an address your plugin answers itself is real, so `cms links:check` accepts it. |
+
+### Blocks
+
+| Filter | Value, then arguments | Lets you change |
+|---|---|---|
 | `blocks.render.data` | `$data, $type` | What a block's render function receives. |
-| `blocks.data-sources` | `$sources` | Lists the Repeat block can loop over — see [Plugins](/plugins/how-plugins-work#data-sources). |
+| `blocks.data-sources` | `$sources` | Lists the Repeat block can loop over: see [Data sources](/plugins/how-plugins-work#data-sources). |
 | `blocks.scope` | `$scope` | Data for blocks rendered outside a page (Markdown twins, search). |
 | `blocks.svg` | `$svg, $source` | Sanitize the custom SVG of an Icon block. |
-| `fields.options.<name>` | `$options` | Options of select fields with `dynamic: <name>` (`templates`, `collections`, `timezones`). |
-| `fields.definition.<name>` | `$field, $context` | Resolved definition of a `dynamic: <name>` field. The collection host supplies `$context['collection']`; use it for presentation such as the inherited template name. Raw collection YAML remains unchanged. |
 | `blocks.variants` | `$variants` | Block variants offered to editors. |
 | `blocks.folders`, `blocks.pattern-sources` | `$sources` | Folders with blocks (`block.json`) or read-only patterns (`<handle>.json`). |
 | `blocks.breakpoints` | `$breakpoints` | Breakpoints for block styles. |
+
+### Media, forms and menus
+
+| Filter | Value, then arguments | Lets you change |
+|---|---|---|
 | `media.url`, `media.img` | `null, $image…` | How images resolve and render (point them at a CDN). |
 | `form.data` | `$data, $form, $request` | A submission before it is stored. |
-| `navigation.entry`, `navigation.item` | — | How menu items resolve. |
-| `i18n.translator` | `null` | The machine translator (the assistant registers Claude). |
-| `mcp.prompts` | `$prompts` | Prompts offered to MCP clients: the site's skills (`cms()->skills()`). |
+| `navigation.entry`, `navigation.item` | | How menu items resolve. |
+
+Plugins add hooks of their own: see [Using accounts](/plugins/accounts#hooks) and [Commerce](/plugins/commerce).

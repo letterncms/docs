@@ -1,50 +1,98 @@
 ---
 id: 01m5wnc9y6x6a2key5cx74nqer
 title: Users and roles
-position: 1
-description: Invite people, give them roles, and decide exactly what each role may do — down to a single collection.
+position: 3
+description: Let your clients and team in, each with exactly the access they need, down to a single collection.
 ---
-## Users
+Everyone who works on the site gets their own sign-in. A **role** decides what they can do: your team may change everything, while a client only updates their menu and photos, and never touches the design.
 
-Add people under **Users**. Without a password, Lettern emails an invitation link to set one. People manage their own name, password, two-factor authentication and API tokens under **Account**.
+![A role made for a client: the restaurant team can change dishes and upload photos, nothing else.](/media/screens/operations-roles.webp)
 
-**Super administrators** may do everything regardless of role; keep that to one or two people.
+## Invite someone
 
-Someone whose roles don't include **Access the admin** is a site visitor. They appear under **Visitors** and use the [public account pages](/operations/public-accounts) instead of the admin. The `member` role is there for them, and pages can be [limited to a role](/content/gated-content).
+1. Open **Users** and press **Invite User**.
+2. Fill in their name and email, and choose one or more **Roles**.
+3. Press **Send Invitation**.
 
-Entry authorship is separate from roles and edit history. Editors can assign or clear an entry's author through its details panel; see [Entries](/content/entries#entry-details).
+They get an email with a link to set their password. It works for 7 days, and **Resend Invitation** sends a new one. Invitations need [working email](/operations/email).
 
-Admin user pickers use `users/lookup`, available with `admin.access`. It returns paginated `PersonSummary` records containing only `id`, `name`, `initials` and `avatar`. This lets editors find an author without access to user-management records, email addresses or roles. Use the protected user-management abilities when you need to administer accounts.
+## Choose a role
 
-### Profile fields
-
-Every account has a name, an email and roles. For anything else — a bio, a job title, a photo — add fields under **Users → Profile fields**, with the same field editor collections use. They are stored in `content/users.yaml`; people fill them in under **Account**, admins in the user dialog. Required profile fields may stay empty until someone completes their profile. Agents read and change them through `users/fields`, and `data` on `users/update` and `account/update`.
-
-## Roles
-
-Roles are lists of permissions, edited under **Settings → Roles** (from the `letterncms/users` module) and stored in `config/roles.yaml` — a settings namespace like any other, so agents change them with `settings/update`. The Administrator role always exists and keeps every permission. Lettern starts with three:
+Lettern starts with these roles. Change them, or add your own.
 
 | Role | Can |
 |---|---|
-| Administrator | Everything. |
-| Editor | All content, media, menus, forms, comments and publishing the site. |
-| Author | Write and edit content and upload media, but not publish; comment. |
+| **Administrator** | Everything, including users, plugins and settings. |
+| **Editor** | All content, media, menus, forms and comments, and publishing the site. |
+| **Author** | Write and edit content and upload media, but not publish. |
+| **Member** | Nothing in the admin. For visitors with an account on your site. |
 
-## Permissions
+Someone with more than one role can do everything any of them allows.
 
-Permissions are dotted names; `*` matches any part:
+## Make a role for your client
+
+Most clients need less than an Editor. Give them a role that fits.
+
+1. Open **Settings → Roles** and press **New Role**.
+2. Name it, like *Restaurant team*, and describe it in a few words.
+3. Tick what it may do. Each collection has its own **View**, **Create**, **Edit**, **Publish** and **Delete**, so a role can be limited to just the dishes.
+4. Save, and give the role to your client under **Users**.
+
+Every permission is listed with what it does. The **Administrator** role always keeps every permission, so nobody can lock the site out.
+
+::: callout {"props":{"tone":"tip","text":"To keep the design as it is, give a client only the collections they write in, like Dishes, and leave out Templates, Components and the settings."}}
+:::
+
+## Team and visitors
+
+**Users** shows your **Team**, the people who can open the admin, and your **Visitors** apart. A visitor is someone with an account on your site but no admin access, like a customer or a member. They use the [public account pages](/operations/public-accounts), and pages can be [limited to them](/content/gated-content).
+
+## Suspend or remove someone
+
+Open the menu on a person's row:
+
+- **Suspend** stops them signing in straight away. **Reactivate** lets them back in.
+- **Remove User…** takes away their access for good. The content they wrote stays.
+
+## Super admins
+
+A **Super Admin** can do everything, whatever their roles say. Only another super admin can make someone one. Keep it to one or two people.
+
+## Add fields to profiles
+
+Every person has a name, an email and roles. To add more, like a job title, a bio or a photo, open **Users**, then **Profile Fields** in the menu at the top. You add them with the same field editor as collections. People fill them in under **Account**.
+
+## Your own account
+
+Under **Account**, everyone manages their own name, email, password, [two-factor authentication](/operations/security), API tokens, and the admin's theme and language.
+
+## For developers
+
+### Roles and permissions
+
+Roles are stored in `config/roles.yaml`, a settings namespace like any other, so agents change them with `settings/update`. A role is a label, a description and a list of permissions. Permissions are dotted names, and `*` matches any part:
 
 | Permission | Allows |
 |---|---|
-| `admin.access` | Signing in to the admin. |
-| `entries.pages.view`, `.create`, `.edit`, `.publish`, `.delete` | Working with one collection — `entries.*.edit` for all of them. `entries.templates.*` and `entries.components.*` decide who designs templates and components. |
+| `admin.access` | Signing in to the admin. A role without it is a visitor's role. |
+| `entries.pages.view`, `.create`, `.edit`, `.publish`, `.delete` | Working with one collection. `entries.*.edit` covers all of them. `entries.templates.*` and `entries.components.*` decide who designs templates and components. |
 | `media.view`, `media.upload`, `media.edit`, `media.delete` | Media. |
 | `globals.view`, `globals.edit`, `globals.manage` | Global sets: reading, changing values, creating sets and changing their fields. |
 | `collections.manage` | Creating and changing collections and fieldsets. |
 | `users.view`, `users.manage`, `tokens.manage`, `audit.view` | People, tokens and the audit log. |
 | `settings.manage`, `packages.manage` | Settings, the design system, modules and plugins. |
 | `site.build` | Publishing the whole site. |
-| `blocks.html` | Adding raw HTML blocks — only for trusted people. |
-| `site.code` | Editing the site's custom CSS and JavaScript — only for trusted people. |
+| `blocks.html` | Adding raw HTML blocks. Only for trusted people. |
+| `site.code` | Editing the site's custom CSS and JavaScript. Only for trusted people. |
 
-Each permission belongs to the module or plugin that registers it, so switching one off removes its permissions from **Roles** too. Plugins register their own (`forms.view`, `navigation.manage`, `comments.moderate`, `assistant.use`…); **Roles** lists every permission with a description. A user's permissions are the union of their roles. API tokens can only narrow them further.
+Each permission belongs to the module or plugin that registers it, so switching one off removes its permissions from **Roles** too. Plugins register their own (`forms.view`, `navigation.manage`, `comments.moderate`, `assistant.use`, `analytics.view`…). API tokens can only narrow a person's permissions, never widen them.
+
+The default roles in full: Editor has `admin.access`, `entries.*`, `globals.*`, `media.*`, `navigation.*`, `forms.*`, `site.build`, `comments.*`, `assistant.use` and `analytics.view`. Author has `admin.access`, `entries.*.view`, `.create` and `.edit`, `media.view`, `media.upload`, `comments.view`, `comments.create` and `assistant.use`. Member has none.
+
+### Profile fields
+
+Profile fields are stored in `content/users.yaml`. Required ones may stay empty until someone completes their profile. Agents read and change them through `users/fields`, and `data` on `users/update` and `account/update`. To let visitors edit a field on the site, see [Public accounts](/operations/public-accounts).
+
+### Looking people up
+
+Entry authorship is separate from roles and edit history: see [Entries](/content/entries#entry-details). Admin user pickers use `users/lookup`, available with `admin.access`. It returns paginated `PersonSummary` records with only `id`, `name`, `initials` and `avatar`, so editors can find an author without seeing email addresses or roles. Use the user-management abilities to administer accounts.

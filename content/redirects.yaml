@@ -4,10 +4,10 @@ redirects:
   - { from: /themes/theme-json, to: /design/design-system }
   - { from: /themes/templates, to: /design/templates }
   - { from: /themes/template-helpers, to: /design/data }
-  - { from: /themes/static-builds, to: /design/static-builds }
-  - { from: /themes/seo-and-geo, to: /design/seo-and-geo }
+  - { from: /themes/static-builds, to: /operations/publishing }
+  - { from: /themes/seo-and-geo, to: /operations/seo-and-geo }
   - { from: /editing/design-canvas, to: /editing/canvas }
-  - { from: /editing/patterns, to: /editing/components }
+  - { from: /editing/patterns, to: /design/components }
   # Extending became Plugins, so people looking for plugins find them.
   - { from: /extending, to: /plugins }
   - { from: /extending/plugins, to: /plugins/how-plugins-work }
@@ -20,3 +20,16 @@ redirects:
   - { from: /plugins/admin-themes, to: /plugins/admin-extensions }
   - { from: /design/kits, to: /design }
   - { from: /extending/generative-ui, to: /plugins/generative-ui }
+  # The reference moved out of the guides, and Requirements became part of Installation.
+  - { from: /getting-started/requirements, to: /getting-started/installation }
+  - { from: /getting-started/project-structure, to: /reference/project-structure }
+  - { from: /getting-started/configuration, to: /reference/configuration }
+  - { from: /getting-started/licence, to: /reference/licence }
+  - { from: /editing/blocks, to: /reference/blocks }
+  - { from: /editing/block-markdown, to: /reference/block-markdown }
+  - { from: /content/field-types, to: /reference/field-types }
+  - { from: /agents/abilities-reference, to: /reference/abilities }
+  - { from: /editing/components, to: /design/components }
+  # Publishing and SEO are about running a site, not designing it.
+  - { from: /design/static-builds, to: /operations/publishing }
+  - { from: /design/seo-and-geo, to: /operations/seo-and-geo }

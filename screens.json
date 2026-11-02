@@ -1,0 +1,302 @@
+{
+  "url": "http://php:8013",
+  "size": [
+    1100,
+    700
+  ],
+  "scale": 2,
+  "quality": 88,
+  "sidebar": "open",
+  "sites": {
+    "examples": {
+      "url": "http://php:8013",
+      "dir": "website/example-site",
+      "users": {
+        "client": "marta@example.com"
+      }
+    }
+  },
+  "mask": [
+    [
+      "dev-admin@example\\.com",
+      "studio@example.com"
+    ],
+    [
+      "Dev Admin",
+      "Your studio"
+    ],
+    [
+      "^DA$",
+      "YS"
+    ],
+    [
+      ", Dev$",
+      ""
+    ],
+    [
+      "php:8013",
+      "ondine.example"
+    ]
+  ],
+  "shots": {
+    "dashboard": {
+      "site": "examples",
+      "path": "/admin",
+      "size": [
+        1100,
+        640
+      ]
+    },
+    "editor": {
+      "site": "examples",
+      "path": "/admin/content/pages/{entry:pages/home}",
+      "sidebar": "collapsed",
+      "steps": [
+        {
+          "select": "h1"
+        },
+        {
+          "blur": true
+        },
+        {
+          "clickText": "Design"
+        }
+      ]
+    },
+    "entry": {
+      "site": "examples",
+      "as": "client",
+      "path": "/admin/content/dishes/{entry:dishes/turbot}",
+      "sidebar": "collapsed",
+      "size": [
+        1100,
+        620
+      ]
+    },
+    "entries": {
+      "site": "examples",
+      "path": "/admin/content/dishes",
+      "size": [
+        1100,
+        600
+      ]
+    },
+    "collection": {
+      "site": "examples",
+      "path": "/admin/collections/dishes",
+      "sidebar": "collapsed",
+      "size": [
+        960,
+        560
+      ]
+    },
+    "design-system": {
+      "site": "examples",
+      "path": "/admin/design",
+      "size": [
+        1100,
+        700
+      ],
+      "sidebar": "collapsed"
+    },
+    "template": {
+      "site": "examples",
+      "path": "/admin/content/templates/{entry:templates/page}",
+      "sidebar": "collapsed"
+    },
+    "publish": {
+      "site": "examples",
+      "path": "/admin",
+      "size": [
+        960,
+        560
+      ],
+      "sidebar": "collapsed",
+      "steps": [
+        {
+          "clickText": "Publish Site"
+        },
+        {
+          "waitText": "Site published"
+        }
+      ]
+    },
+    "editing-comments": {
+      "site": "examples",
+      "path": "/admin/content/pages/{entry:pages/home}",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "collapsed",
+      "tab": "Comments"
+    },
+    "agents-connect": {
+      "site": "examples",
+      "path": "/admin/account",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "collapsed",
+      "steps": [
+        {
+          "scrollToText": "Connect an AI Agent"
+        }
+      ]
+    },
+    "agents-token": {
+      "site": "examples",
+      "path": "/admin/account",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "collapsed",
+      "steps": [
+        {
+          "clickText": "New Token"
+        }
+      ]
+    },
+    "agents-assistant-settings": {
+      "site": "examples",
+      "path": "/admin/settings/assistant",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "open"
+    },
+    "audit": {
+      "site": "examples",
+      "path": "/admin/audit",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "collapsed"
+    },
+    "operations-roles": {
+      "site": "examples",
+      "path": "/admin/settings/roles",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "collapsed",
+      "steps": [
+        {
+          "clickText": "Restaurant team"
+        }
+      ]
+    },
+    "operations-seo": {
+      "site": "examples",
+      "path": "/admin/content/pages/{entry:pages/home}",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "collapsed",
+      "tab": "SEO"
+    },
+    "operations-commerce": {
+      "site": "examples",
+      "path": "/admin/commerce",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "collapsed"
+    },
+    "operations-sync": {
+      "site": "examples",
+      "path": "/admin/sync",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "collapsed"
+    },
+    "plugins-settings": {
+      "site": "examples",
+      "path": "/admin/settings/seo",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "open"
+    },
+    "design-component": {
+      "site": "examples",
+      "path": "/admin/content/components/{entry:components/header}",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "collapsed"
+    },
+    "design-repeat": {
+      "site": "examples",
+      "path": "/admin/content/pages/{entry:pages/home}",
+      "sidebar": "collapsed",
+      "size": [
+        1100,
+        700
+      ],
+      "steps": [
+        {
+          "scrollPage": "[data-cms-node=\"menu-l\"]"
+        },
+        {
+          "select": "[data-cms-node=\"menu-l\"]"
+        },
+        {
+          "blur": true
+        },
+        {
+          "clickText": "Content"
+        }
+      ]
+    },
+    "design-interact": {
+      "site": "examples",
+      "path": "/admin/content/pages/{entry:pages/home}",
+      "size": [
+        1100,
+        700
+      ],
+      "sidebar": "collapsed",
+      "steps": [
+        {
+          "select": "h1"
+        },
+        {
+          "blur": true
+        },
+        {
+          "clickText": "Interact"
+        }
+      ]
+    },
+    "content-new-collection": {
+      "site": "examples",
+      "path": "/admin/collections/new",
+      "size": [
+        960,
+        640
+      ],
+      "sidebar": "collapsed"
+    },
+    "content-menu": {
+      "site": "examples",
+      "path": "/admin/navigation/main",
+      "size": [
+        960,
+        560
+      ],
+      "sidebar": "collapsed"
+    }
+  }
+}

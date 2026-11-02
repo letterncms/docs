@@ -1,36 +1,76 @@
 ---
 id: 01m5wmrf5pxyen1ww2w88nffby
 title: Quick start
-position: 2
-group: 'Set up'
-description: From an empty install to a designed, published page in ten minutes.
+position: 1
+description: A tour of the admin, from your first edit to a published page. Ten minutes, no code.
 ---
-This walk-through uses the admin. Every step is also an ability, so you could do the same from the [CLI](/agents/cli), the [REST API](/agents/rest-api) or an [AI agent](/agents/mcp).
+You've installed Lettern and signed in. This tour walks you through the five things you'll do most: find your way, edit a page, set your style, add content and publish.
 
-## Finding your way
+## 1. Find your way around
 
-The sidebar holds what you open every day: **Dashboard** and **Analytics**, then your content — *Pages*, *Blog*, *Media* and *Forms*. Hide it with `⌘\` when you want the room; it stays that way until you bring it back. Everything else is one click away under **More** (globals, menus, templates, components, the design system, redirects). Pin what you use often from there, hover a row to unpin it, right-click it to move it or open it in a new tab, drag rows to reorder them, or open **Customize Sidebar…** to arrange everything at once. Your sidebar is your own; an admin can make theirs the default for everyone.
+After signing in you land on the **dashboard**: what changed recently, and whether your live site is up to date.
 
-**Settings** (the gear next to your name, or `⌘⇧,`) turns the sidebar into the settings list: your account, the site's settings and administration — users, roles, collections, languages, modules and the audit log. **Back** or `Esc` returns you to where you were. `⌘K` finds any screen, setting, entry or command.
+![The dashboard, with the sidebar on the left.](/media/screens/dashboard.webp)
 
-The assistant is optional. Lettern works fully without an API key: **Chat** in the top bar leads admins to set one up, and if you don't use AI, **Hide Chat** there takes it out of the bar.
+The sidebar on the left holds what you use every day: your pages, your other content, media and forms. **Settings**, the gear next to your name, holds the rest: menus, templates, components, the design system, users and the site's settings.
 
-## 1. Model your content
+A few shortcuts save a lot of clicking:
 
-With the Site plugin on, a new site starts from its starter kit: *Pages* (a tree with a Home, About and Blog page) and *Blog* (`posts`), templates, a header and a footer, and a main menu. Open **Settings → Collections** to change them or add your own — say *Services* with a **Blocks** field for the body and any additional structured fields you need. Collections are saved as YAML in `content/collections/`, so you can commit them.
+| Press | To |
+|---|---|
+| `⌘K` | Find any page, setting or command |
+| `⌘\` | Hide or show the sidebar |
+| `⌘J` | Open the assistant |
 
-## 2. Write and shape a page
+## 2. Edit a page
 
-Open **Pages** and press **New page** (or `C`). Edit text in the rendered page, rest the pointer between blocks and press `+` to add text, media, layouts and data blocks, and use **Outline** to navigate. Select a block for the shared **Design**, **Content** and **Interact** inspector. Posts, templates and components use this same workspace. The site renderer shows the real layout while you work. Changes save as you go; **Preview** checks interactions without editing controls.
+Open **Pages** and click **Home**. The page opens exactly as visitors see it, and you edit it right there.
 
-## 3. Shape the design system
+![The page editor: the page itself on the left, the settings of the selected heading on the right.](/media/screens/editor.webp)
 
-Open **Design System** (under **More** — pin it while you build) to edit the tokens — colors, fonts, sizes, spacing — with a live preview. Every block uses these tokens, so one change restyles the whole site. Open **Templates** or **Components** to change the frame around pages or the header and footer; they use the same block editor.
+- **Click any text** and type to change it.
+- **Point between two blocks** and press the `+` that appears to add something new: text, an image, a button, columns, a form.
+- **Select a block** to see its settings on the right, under **Content**, **Design** and **Interact**.
 
-## 4. Publish
+Changes save as you go. Nobody sees them until you publish.
 
-Press **Publish**. Lettern renders the page with its template to `public/`, updates the sitemap, `llms.txt` and the page's Markdown twin, and the change is live — no deploy step, no cache to clear.
+::: callout {"props":{"tone":"tip","text":"To start a new page, press <strong>New page</strong> in Pages, or just press <code>C</code>."}}
+:::
 
-## 5. Let an agent help
+Learn more in [Writing](/editing/writing) and [Block settings](/editing/canvas).
 
-Press `⌘J` to open the assistant and ask it to *"add a pricing section with three plans"*. It uses the same abilities you do and asks before deleting anything. To work from your own AI tools instead, connect them over [MCP](/agents/mcp).
+## 3. Set your style
+
+Open **Settings → Design System**. This is where your site's colors, fonts and spacing live, with a live preview on the right.
+
+![The design system: colors in the middle, a preview of the site on the right.](/media/screens/design-system.webp)
+
+Every block on every page uses these values. Change your main color once, and the whole site follows: there's nothing to update page by page. See [Design system](/design/design-system).
+
+## 4. Add your own kind of content
+
+Pages aren't the only content a site has. A restaurant has dishes, an agency has projects, a blog has posts. Each kind of content is a **collection**, with its own fields.
+
+Open **Settings → Collections** to make one, say *Dishes* with a price, a description and a photo. Then everyone fills in a simple form, and your pages show the dishes in your design.
+
+![Filling in a dish: one simple form, with the fields the collection asks for.](/media/screens/entry.webp)
+
+See [Collections](/content/collections) to set one up.
+
+## 5. Publish
+
+When you're happy, press **Publish**. The page goes live straight away: there's no deploy step and no cache to clear.
+
+![Publishing the site from the dashboard.](/media/screens/publish.webp)
+
+## 6. Get help from AI
+
+Press `⌘J` and ask the assistant, for example: *"Add a pricing section with three plans to the home page."* It works in the admin just as you do, and asks before deleting anything.
+
+Lettern works fully without AI. If you don't use it, **Hide Chat** takes it out of the bar. See [Assistant](/agents/assistant), or [connect your own AI tools](/agents/mcp).
+
+## Where next
+
+- [How Lettern works](/getting-started/how-it-works) explains the few ideas everything is built on.
+- [Templates](/design/templates) change the frame around your pages: the header, the footer, the layout.
+- [Users and roles](/operations/users-and-roles) lets your clients and team in, with the right access.

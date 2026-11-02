@@ -19,12 +19,6 @@ fields:
     instructions: 'Shown under the page title.'
     section: sidebar
   -
-    handle: group
-    type: text
-    label: Group
-    instructions: 'Heading this page sits under in its section''s sidebar. Pages with the same group stay together.'
-    section: sidebar
-  -
     handle: template
     type: select
     label: Template
