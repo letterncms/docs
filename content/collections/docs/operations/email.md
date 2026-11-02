@@ -10,6 +10,7 @@ Choose how Lettern sends email under **Settings → Email**:
 |---|---|
 | Log | Development: messages are written to the log instead of sent. The default. |
 | SMTP | Any mail server or provider with SMTP credentials. |
+| Server mail | The server's own `sendmail`, with nothing to fill in. Only offered where the host lets PHP run it: many shared hosts turn `proc_open` off, and then SMTP is the way. |
 | Brevo | Brevo's transactional API, with an API key. Install the free Brevo plugin first, from **Modules → Store**. |
 
 Set the sender address and name, and an optional footer for every message. Use **Send a test email to me** in the command palette to check the setup, and **Email log** to see what was sent and what failed.
