@@ -41,3 +41,5 @@ Everything on a block survives a round trip — ids, names, styles, attributes, 
 ::: heading {"props":{"level":"1"},"bind":{"text":"entry.title"},"motion":[{"id":"m1","trigger":{"type":"load"},"steps":[{"target":"words","from":{"opacity":0,"y":24}}]}]}
 :::
 ```
+
+A text block stays plain Markdown only while Markdown says everything about it. A `tag`, an anchor, a style or an id something points at keeps it a directive. Blocks written without an id get one when the page is read, the same one every time, and a save leaves it out again unless something points at it, so hand-written Markdown stays as you wrote it.
