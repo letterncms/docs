@@ -13,13 +13,13 @@ The assistant is optional: everything else in Lettern works without it. Until a 
 
 ## Using it
 
-Click **New Chat** at the top of the sidebar or the chat button at the end of the top bar, press `⌘J`, or type a request in the command palette (`⌘K`) and press `Enter`. It opens ready to type in.
+Click **New Chat** at the top of the sidebar or **Chat** in the top bar, press `⌘J`, or type a request in the command palette (`⌘K`) and press `Enter`. It opens ready to type in.
 
 The chat opens at the right edge of the window, on any screen, and the page stays open and usable beside it. Whatever you ask it to change shows there as it happens, in the builder too. Links in its replies open in the page next to the chat, so you can keep going. Drag its left edge to make it wider. `⌘J` from inside the chat, `Esc` or the close button puts it away; a reply keeps coming, and **New Chat** in the sidebar shows when it is working or waiting for your go-ahead.
 
 **Full Size** grows the same chat over the whole window, with your chats beside it and a URL of its own to bookmark. The page you came from stays open underneath, and **Back to the Page** returns to it as you left it. Opening anything else from the sidebar does the same with that screen.
 
-In an editor the chat floats over the page, so the inspector stays where it is and the canvas doesn't move; drag it by its top bar to wherever suits you. Selecting a block with the chat open attaches that block, so "rewrite this" means it. Anywhere else, **Detach** does the same and **Dock Beside the Page** puts it back; your choice sticks. On a phone the chat fills the screen.
+In an editor the chat floats over the page, at the right of the canvas, so the inspector stays where it is and the canvas doesn't move; drag it by its top bar to wherever suits you. Selecting a block with the chat open attaches that block, so "rewrite this" means it. Anywhere else, **Detach** does the same and **Dock Beside the Page** puts it back; your choice sticks. On a phone the chat fills the screen.
 
 ### What it can see
 
