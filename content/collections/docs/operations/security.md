@@ -15,7 +15,7 @@ description: How Lettern protects sites, accounts and content — and the switch
 - Personal access tokens (`cms_…`) are shown once and stored only as a hash. Give them **scopes** and an **expiry**; each shows when it was last used.
 - OAuth for agents uses PKCE (S256 only), short-lived access tokens and rotating refresh tokens; you approve every client on a consent screen.
 - Abilities that could take over an account — creating tokens, changing passwords or two-factor settings, managing users and roles — are never available to agents or the assistant.
-- The assistant asks before deleting anything, treats site content and visitor-written text as data, never as instructions, and asks before every change once a chat has read such content. Chats are private to their owner and encrypted at rest.
+- The assistant asks before deleting anything, treats site content and visitor-written text as data, never as instructions, and once a chat has read such content, asks before anything but saving a draft. Chats are private to their owner and encrypted at rest.
 
 ## Every action
 

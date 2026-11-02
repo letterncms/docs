@@ -7,7 +7,7 @@ description: Claude inside the admin. It builds, writes and fixes things with th
 ---
 ## Setting up
 
-Add an Anthropic API key under **Settings → Assistant** (stored encrypted), or set `ANTHROPIC_API_KEY` in `.env`. To route requests through an API gateway or proxy, set `ANTHROPIC_BASE_URL` in `.env` (HTTPS only); it cannot be changed from the admin, since every chat would pass through it. Choose the default model for new chats — Claude Opus 5.5 unless you change it — and how much effort it may spend thinking. Anyone can switch models from the picker under the chat box: the choice applies from the next message, stays with that chat, and becomes their starting model for new chats.
+Add an Anthropic API key under **Settings → Assistant** (stored encrypted), or set `ANTHROPIC_API_KEY` in `.env`. To route requests through an API gateway or proxy, set `ANTHROPIC_BASE_URL` in `.env` (HTTPS only); it cannot be changed from the admin, since every chat would pass through it. Choose the default model for new chats — Claude Opus 5.5 unless you change it — and how much effort it may spend thinking. **Model for Small Tasks** names chats and suggests what to do next, so it runs often: Claude Haiku 5.5 unless you change it. Anyone can switch models from the picker under the chat box: the choice applies from the next message, stays with that chat, and becomes their starting model for new chats.
 
 The assistant is optional: everything else in Lettern works without it. Until a key is set, **New Chat** shows only to those who can add one, and opens the setup; nobody else sees an assistant they cannot use. If you don't use AI, **Unpin New Chat** on that screen (or **Unpin** on its context menu) puts it under **More**, where it stays one click away.
 
@@ -41,7 +41,7 @@ Type `/` at the start of a line for a skill, a ready-made way of working: `/proo
 
 Your chats are in one place, in the chat: a new chat lists all of them by age, the history button at the top of a chat takes you there, and at full size they have a column of their own. To permanently remove a chat, choose **Delete Chat** from the trash button on its row, its right-click menu or the three-dot menu at the top of the chat, then confirm; **Discard Draft** does the same for an unsent new chat. Stop any running reply first.
 
-**New Chat**, and the **+** at the top of the chat, start a fresh conversation; an unsent one waits there. Empty chats are never saved: a conversation is created only when you send the first message. Drafts stay attached to their chat while you move around the admin in the same browser session; reloading clears unsent drafts, and brings back the chat you had open. Selecting another conversation stops listening to the previous reply.
+**New Chat**, and the **+** at the top of the chat, start a fresh conversation; an unsent one waits there. It suggests what to work on, based on what you have on view; a suggestion goes into the composer for you to read and send. A chat names itself after the first reply. Empty chats are never saved: a conversation is created only when you send the first message. Drafts stay attached to their chat while you move around the admin in the same browser session; reloading clears unsent drafts, and brings back the chat you had open. Selecting another conversation stops listening to the previous reply.
 
 You see what it does as it works: its reasoning summary, every tool call with its input and result, and its answer. Changes appear in the admin immediately.
 
@@ -54,7 +54,7 @@ Installed widgets become available automatically. Plugins can also contribute sc
 - It acts **as you**: same permissions, same audit log (marked *assistant*).
 - It never sees security abilities — tokens, passwords, users and roles.
 - **Deleting** anything, and admin-level changes, wait for your approval in the chat. Under **Settings → Assistant** you can require approval for every change instead.
-- Site content, form submissions, comments and anything else it reads are treated as data, never as instructions. That goes for the page on view too. Once a chat has read such content, every change it wants to make waits for your approval, so text planted by someone else cannot make it act on its own.
+- Site content, form submissions, comments and anything else it reads are treated as data, never as instructions. That goes for the page on view too. Once a chat has read such content, it can still save drafts on its own: nothing there is live until it's published, and the history keeps what was there. Anything else it wants to do waits for your approval, including publishing, so text planted by someone else cannot reach your visitors or do anything you can't undo.
 - Chats are private to you: nobody else can list, open, continue or delete them, and they are deleted with your account. Titles and histories are encrypted in the database.
 
 ## Translation
