@@ -20,7 +20,7 @@ A block's `bind` maps a setting to a **path**:
 | Key | Does |
 |---|---|
 | A setting (`text`, `url`, `image`, `label`…) | Takes its value from the path. |
-| `visible`, `hidden` | Renders the block only when the path has (or lacks) a value. |
+| `visible`, `hidden` | Renders the block only when the path has (or lacks) a value. On `account`, a page everyone gets the same copy of leaves it to the browser: see [Public accounts](/operations/public-accounts#sign-in-and-my-account-in-your-header). |
 | `state:<name>` | Adds the custom state `is-<name>` when the path has a value — style it in [Styles](/design/styles#custom-states). |
 | `attr:<name>` | Sets an attribute (`attr:aria-label`, `attr:href`, `attr:title`, `attr:open` on a `details`, `aria-*`, `data-*`…). |
 | `style:<property>` | Sets one style inline — `style:backgroundImage` with an image field makes a cover background. |

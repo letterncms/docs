@@ -38,11 +38,17 @@ The pages are block documents: they use your `default` template and design syste
 
 Account pages are never static files, never cached and never indexed. The binding `account.name` (also `email`, `roles`, `fields`) is available on pages rendered per person; a static page has no visitor to show.
 
+## Sign in and My account in your header
+
+Any block can be shown only to people signed in, by binding `visible` to `account`, or only to people signed out, by binding `hidden` to `account`. That works on every page, built in advance or not: on a page everyone gets the same copy of, both are in the page, and the browser shows the right one before it's painted. It knows from a cookie that says only that someone is signed in, and comes and goes with the session.
+
+The data `accounts` has the addresses and words to link to, in the page's language: `accounts.sign_in`, `accounts.sign_up` and `accounts.account`, each with a `url` and a `label` ("Sign in", "Create an account", "My account"). It's only there while public accounts are on, so a block with `visible` bound to `accounts` disappears when you turn them off. The starter header already has **Sign in** and **My account** this way.
+
 ## Who is who
 
 **Users** lists your **Team** (who can open the admin) and your **Visitors** apart, so authors, pickers and the home screen only ever show the team. In someone's dialog you see and change their [access](/content/gated-content), and in the menu you can suspend them: they cannot sign in, and are signed out at their next request.
 
-The admin's sign-in stays the admin's. A visitor's password does not open it, and answers exactly like a wrong one. The team does not use the public pages: they sign in at `/admin`, with two-factor sign-in if they set it up, and the public forms refuse their accounts rather than offering a second door. Once signed in at `/admin` they are recognised on the site too.
+The admin's sign-in stays the admin's. A visitor's password does not open it, and answers exactly like a wrong one. The team signs in at `/admin`, with two-factor sign-in if they set it up, and the public sign-in and reset forms refuse their accounts rather than offering a second door. Once signed in at `/admin` they are recognised on the site too, and have its account pages, with what they bought there like anyone. Their profile, password and data stay in the admin: those pages send them to **Account** there.
 
 ## Security and privacy
 
