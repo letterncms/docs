@@ -119,8 +119,8 @@ The sidebar has two states, both drawn from registered sections and items. The s
 | `order` | Its default place in the section. |
 | `pinned` | In everyone's sidebar until they pin their own; otherwise it waits under **More**. Keep it for screens people open every week. |
 | `shortcut` | A key that opens it, shown with the label (e.g. `mod+j`). |
-| `placement` | `footer` takes it off the list: a `sidebar.footer` panel draws it, under the same pin (the assistant's chat). |
-| `permission` | Who may open it. `visible` (a `fn (User $user): bool`) decides per person beyond that — the assistant shows its chat only once it can work, or to those who can set it up. |
+| `command` | A registered command the row runs instead of leading to `path`, which stays for **Open in New Tab** (**New Chat** opens the chat beside the page). A `nav.<id>` panel draws beside its label, for its status. |
+| `permission` | Who may open it. `visible` (a `fn (User $user): bool`) decides per person beyond that — the assistant shows **New Chat** only once it can work, or to those who can set it up. |
 | `badge` | A callable returning a count (new form submissions), shown with the label. |
 
 ```php
@@ -227,8 +227,7 @@ Each person picks their language in Account → Appearance; Settings → Admin s
 | `entry.body` | Extra content after the main body, supplied through the workspace footer | Same |
 | `entry.editor` | The shared body workspace for the explicitly configured blocks field | `EntryEditorProps` |
 | `shell.aside` | Workspace panels available on every screen, over the screen | `full` |
-| `shell.dock` | A column between the sidebar and the workspace, on every screen. Draw it with `Dock` from `@letterncms/ui` (`open`, `full`, `label`): the sidebar keeps to its rail beside it, the page stays usable next to it, people can drag it wider, and small windows get it over the page — the assistant's chat | `full` |
-| `sidebar.footer` | Above the account in the sidebar, in both its states — the way to the assistant's chat. Go with a nav item of `placement: footer` to share its pin | `collapsed`, `onNavigate` |
+| `shell.dock` | A column at the right edge, on every screen. Draw it with `Dock` from `@letterncms/ui` (`open`, `full`, `label`): the page stays usable next to it, people can drag it wider, `full` grows it over the workspace, and small windows get it over the page — the assistant's chat | `full` |
 | `account.sections` | A section of **Account** — core's profile, password, two-factor, appearance and tokens are panels here too (order 10–60); the MCP plugin adds *Connect an AI agent* at 50 | — |
 
 ```typescript
@@ -237,7 +236,7 @@ registry.panels.set('reviews-summary', { id: 'reviews-summary', slot: 'entry.sid
 
 `EntryPanelProps` is exported by `@letterncms/sdk`. `entry` is `null` until the first save. Every entry panel receives `content: EntryContent`, the complete current working snapshot of `title`, `slug`, `data` and `authorId`; `values` and `title` expose its data and title separately. Use `editable` to disable editing, `can` for the collection's `create`, `edit`, `publish` and `delete` capabilities, and `errors` for field validation messages. Panels must respect these capabilities rather than assuming everyone can edit or restore a version.
 
-The site plugin owns the single toolbar **Preview** dialog. It previews the complete unsaved snapshot, including before the first save, with `play: true` through the site renderer. Extensions can request this same action with `events.emit('entry.preview')` from `@letterncms/sdk` instead of adding another preview control or rendering store. A screen that needs the room can fold the admin sidebar to its rail with `events.emit('shell.compact', true)` and release it with `events.emit('shell.compact', false)` when it unmounts; the entry editor does this.
+The site plugin owns the single toolbar **Preview** dialog. It previews the complete unsaved snapshot, including before the first save, with `play: true` through the site renderer. Extensions can request this same action with `events.emit('entry.preview')` from `@letterncms/sdk` instead of adding another preview control or rendering store. The sidebar stays as each person leaves it: a screen can't change it.
 
 ### What's on the screen
 
