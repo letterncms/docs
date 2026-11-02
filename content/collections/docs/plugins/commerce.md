@@ -64,13 +64,23 @@ cms()->whenAvailable(Gateways::class, fn (Gateways $g) => $g->register('acme', f
 Four rules keep the contract swappable:
 
 - **A webhook is a hint.** `verifyWebhook()` authenticates and says which resources it's about. It changes nothing. Commerce then calls `fetch()`, and only that answer changes an order. A gateway with unsigned, id-only webhooks returns `authenticated: false`, and Commerce only acts on references it already knows.
-- **It sees only a gross amount.** It gets no tax details, and returns none.
+- **It sees only a gross amount.** A payment carries no tax details, and returns none. A gateway that also works out tax does it [apart from the payment](#work-out-tax-outside-the-eu).
 - **It never issues the legal document.** Commerce does, the same for every gateway.
 - **It's always a redirect.** `startCheckout()` returns a hosted page's address, and `capabilities()->checkoutHosts` lists its hosts for the page's content security policy.
 
 `startCheckout()`, `refund()` and the subscription calls get a key that's the same on a retry, with the same body. Throw `GatewayUnknownOutcome` when a call may have worked (a timeout, a 5xx), `GatewayUnavailable` when it surely didn't go through, and `GatewayRejected` when the gateway refused. Commerce looks up an unknown outcome with `findByLocalId()`, or retries with the same key, and never with a new one.
 
 Webhooks reach you at `POST /api/commerce/webhooks/{gateway}/{mode}`, each mode with its own address. `changesSince()` is the catch-up for missed ones. Return `liveAllowed: false` from `capabilities()` for anything that takes no real money: going live refuses it.
+
+## Work out tax outside the EU
+
+A gateway that also offers a tax service implements `Cms\Commerce\Tax\TaxService`. When **Buyers Outside the EU** is set to the gateway's tax, Commerce prices every sale to a buyer outside the EU through it. EU VAT never does.
+
+- `calculate()` gets a `TaxRequest`: the buyer's country, postal code, city and address line, whether they're a business and their tax number, and the lines in minor units. Lines are before tax, or include it when `inclusive` is set, as for a renewal already charged. It answers with a `TaxCalculation`: the exact tax, the rate in basis points, the service's own rate and the tax's type when there's one, and whether it's a reverse charge. Throw `GatewayRejected` for an address or number it can't place, and the buyer is asked to check it. Throw `GatewayUnavailable` or `GatewayUnknownOutcome` when it can't be asked. The same request is asked once per 30 minutes.
+- `record()` is called once the sale is paid, with the calculation and the order number. `reverse()` is called for each refund, with the amount refunded, tax included. Both run in the background and are tried again, so they must be safe to repeat under the same reference.
+- `taxProblems()` lists what stops it working with real money. **Go Live** shows it.
+
+Stripe's driver does this with Stripe Tax's calculations and transactions.
 
 ## Add an e-invoicing channel
 
