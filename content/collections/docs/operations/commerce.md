@@ -35,7 +35,7 @@ To try a business sale without anyone's real VAT number, use zeros and one of th
 - a tax regime, which you have to choose
 - a payment provider with live keys
 - working email, because invoices go out by email
-- when you [run a store](#run-a-store): live signing keys, an `https://` address, public accounts turned on, and payouts later than the refund window
+- when you [run a store](#run-a-store): live signing keys, an `https://` address and public accounts turned on
 
 Nothing fills in your company details for you. You can type them under **Settings → Commerce**, or name a global there whose fields have the same names. A site where a required field later goes empty stops taking new orders until it's filled in, and raises an alert. Payments already made still settle.
 
@@ -147,11 +147,9 @@ In test mode a store makes its own keys. Going live needs real ones, which sites
 
 ### Authors
 
-Others sell in your store by invitation. Under **Commerce → Store**, invite someone. The link works once, for that address, for 14 days. They choose a vendor name, which all their packages start with, and work from `/account/store`: listings, uploads and earnings. They set up payouts on the payment provider's own page, so nothing of theirs reaches your server, and a listing can't go on sale until they can be paid.
+Others publish in your store by invitation. Under **Commerce → Store**, invite someone. The link works once, for that address, for 14 days. They choose a vendor name, which all their packages start with, and work from `/account/store`: their listings and uploads. What an author lists is free. Only you sell, so nobody else is paid through your store.
 
-Nothing an author does reaches a buyer without you. Each version waits for your review, where the scan lists what its code can do and points at lines worth reading. That's a filter, not a proof: a plugin runs with full access to a site, and your approval is what signs it. A price waits for you too.
-
-You sell to the buyer, on your own invoice, and pay the author. The author gets the price without VAT, less **Store Commission** (15% unless you change it, per sale at the rate of that day), **31 days** after the sale, with **Days Before an Author Is Paid** set above your refund window. Set **Refund Window** to 30 days to match. What's due is added up per author and sent in one transfer, in the background. A refund or chargeback takes back the author's share: before the payout it simply comes off, and after it, it's set against their next one. A sale under dispute waits, and so does a suspended author's money. Payouts need a provider that can pay others, which with Stripe means Connect: turn it on in Stripe's dashboard.
+Nothing an author does reaches a site without you. Each version waits for your review, where the scan lists what its code can do and points at lines worth reading. That's a filter, not a proof: a plugin runs with full access to a site, and your approval is what signs it. Suspending an author delists their listings, and copies already installed keep working.
 
 Items on the shelf are ordered by downloads over the last 90 days, then the most recent release. A search matches the title first, then the summary and categories. **Featured** adds a label, and a page of yours can show featured items first. Nobody can pay for a higher place, and the shelf says so.
 

@@ -72,10 +72,6 @@ Four rules keep the contract swappable:
 
 Webhooks reach you at `POST /api/commerce/webhooks/{gateway}/{mode}`, each mode with its own address. `changesSince()` is the catch-up for missed ones. Return `liveAllowed: false` from `capabilities()` for anything that takes no real money: going live refuses it.
 
-## Pay other people
-
-A gateway that can also pay others implements `Cms\Commerce\Gateways\PayoutGateway`: `registerPayee()`, `onboardingUrl()`, `payeeReady()` and `transfer()`. It's only needed to pay a [store's authors](/operations/commerce#authors), and a gateway without it sells as usual. `transfer()` gets a key that's the same on a retry. Stripe's driver does this with Connect: Express accounts, and separate transfers after the sale.
-
 ## Add an e-invoicing channel
 
 Implement `Cms\Commerce\Transports\InvoiceTransport`, and call `app(Transports::class)->register($transport)`. It says which buyers it covers and whether it can reach them, and sends the frozen document. Everyone also gets the PDF by mail, whatever the channel. To use another Peppol provider, bind your own `Cms\Commerce\Transports\Peppol\AccessPoint`, and UBL and the flow stay as they are.
