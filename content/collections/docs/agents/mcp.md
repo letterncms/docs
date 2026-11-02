@@ -25,7 +25,7 @@ Clients without OAuth can send a personal access token instead: `Authorization: 
 
 **Resources** — context to plan with: `cms://collections` (content types and their schemas), `cms://site/design` (the design system: tokens, fonts, element styles), `cms://blocks` (how to compose pages, templates and components — the node model, styles, bindings, interactions and animations, with worked examples), `cms://forms`, `cms://navigation`, `cms://languages` and more from plugins.
 
-**Prompts** — ready-made workflows: *Build a page* from a brief, *Write a blog post*, *Audit the site* for SEO and GEO problems.
+**Prompts** — the site's skills, ready-made workflows: *Build a page* from a brief, *Write a blog post*, *Audit the site* for SEO and GEO problems, and whatever plugins add.
 
 **Instructions** — how to build the Lettern way: read the collections and the design system first, reuse components and templates (`patterns/list`, `templates/list`), style with tokens, give images alt text, publish when done.
 

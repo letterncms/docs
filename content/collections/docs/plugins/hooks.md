@@ -97,4 +97,4 @@ Both take an optional priority (lower runs first, default 10). Prefer [abilities
 | `form.data` | `$data, $form, $request` | A submission before it is stored. |
 | `navigation.entry`, `navigation.item` | — | How menu items resolve. |
 | `i18n.translator` | `null` | The machine translator (the assistant registers Claude). |
-| `mcp.prompts` | `$prompts` | Prompts offered to MCP clients. |
+| `mcp.prompts` | `$prompts` | Prompts offered to MCP clients: the site's skills (`cms()->skills()`). |
