@@ -34,6 +34,7 @@ To try a business sale without anyone's real VAT number, use zeros and one of th
 - company details: legal name, address, country, email and, for EU VAT, a VAT number
 - a tax regime, which you have to choose
 - a payment provider with live keys
+- when **Buyers Outside the EU** is set to the payment gateway's tax: a tax service that works, which for Stripe means a head office address in [Stripe Tax](#stripe-tax)
 - working email, because invoices go out by email
 - when you [run a store](#run-a-store): live signing keys, an `https://` address and public accounts turned on
 
@@ -43,7 +44,7 @@ The licence is checked only here, once. **After a site has gone live, no failed,
 
 ## Stripe
 
-Choose Stripe under **Settings → Commerce**, and add your keys. A restricted key (`rk_live_…`) is best. Then add a webhook endpoint in Stripe's dashboard, and copy its signing secret into the settings:
+Choose Stripe under **Settings → Commerce**, and add your keys. A restricted key (`rk_live_…`) is best. With [Stripe Tax](#stripe-tax), it also needs to write tax calculations and transactions and read tax settings. Then add a webhook endpoint in Stripe's dashboard, and copy its signing secret into the settings:
 
 | Mode | Endpoint |
 |---|---|
@@ -65,6 +66,18 @@ In Stripe's settings, turn off its own emails for successful payments and refund
 
 No webhook is lost for good: a sale also settles when the buyer returns, and missed events are picked up hourly. There's nothing to run on your server. Follow-up work happens after requests. If you do have cron, `php cms commerce:work` keeps things moving on a quiet site.
 
+### Stripe Tax
+
+Outside the EU, rates change by country, state and city, and what you collect depends on where you're registered. Stripe Tax keeps track of both. To use it:
+
+1. In Stripe, open **Tax → Settings**. Add your head office address, and set the preset product tax code to what you sell, such as software.
+2. Under **Tax → Registrations**, add each place you're registered outside the EU, such as the UK, Switzerland or a US state.
+3. Under **Settings → Commerce**, set **Buyers Outside the EU** to **Tax From the Payment Gateway, Like Stripe Tax**.
+
+At checkout, Commerce asks Stripe Tax for the tax on the buyer's address and lines, and charges exactly that. It's the same figure on the order summary, the payment and the invoice, which names the tax and its rate as Stripe does: sales tax at 8.875%, GST at 10%. Where you aren't registered, the tax is zero and the sale goes ahead. A business that gives its tax number is reverse charged where that applies. Each paid sale is recorded in Stripe Tax under its order number, and each refund takes its share back, so Stripe's reports, filings and threshold monitoring cover every sale. Its monitoring points out where you may need to register next; your accountant decides.
+
+Buyers in the EU are never sent to Stripe Tax: EU VAT stays as described below. Stripe charges for Stripe Tax per transaction where you're registered; see its [pricing](https://stripe.com/tax/pricing).
+
 ## VAT
 
 With **EU VAT** chosen, every sale gets one of these:
@@ -77,12 +90,14 @@ With **EU VAT** chosen, every sale gets one of these:
 | Business elsewhere in the EU, no number or not valid | As a consumer there | |
 | Consumer elsewhere in the EU, you're registered for OSS | Their country's rate | |
 | Consumer elsewhere in the EU, not registered, under EUR 10,000 a year | Your rate | |
-| Business outside the EU | None | Outside the scope of VAT |
-| Consumer outside the EU | Not sold, unless you choose otherwise | |
+| Business outside the EU | None, or what [Stripe Tax](#stripe-tax) works out | Outside the scope of VAT, or reverse charge |
+| Consumer outside the EU | Not sold, sold without tax, or what Stripe Tax works out | |
+
+**Buyers Outside the EU** decides the last two rows: **Businesses Only, Without Tax**, which is the default, **Everyone, Without Tax**, or **Tax From the Payment Gateway**. A gateway that can't work out tax sells as with the default.
 
 Past the EUR 10,000 limit without OSS, sales to consumers in other EU countries stop and you get an alert, until you register and turn on **Registered for OSS**. Sales outside this site count too: add them under **Cross-Border Sales Elsewhere**.
 
-If VIES is down at checkout, the buyer pays VAT and it's refunded by itself once the number checks out, with a credit note and a new invoice. **Commerce → VAT** gives you each quarter's figures: OSS per country and rate, domestic sales, the reverse-charge listing and sales outside scope, with a CSV download. Credit notes count in the quarter they're issued and name the quarter they correct.
+If VIES is down at checkout, the buyer pays VAT and it's refunded by itself once the number checks out, with a credit note and a new invoice. **Commerce → VAT** gives you each quarter's figures: OSS per country and rate, domestic sales, the reverse-charge listing, sales outside scope and, under **Tax Abroad**, what Stripe Tax priced, per country, with a CSV download. Credit notes count in the quarter they're issued and name the quarter they correct.
 
 Rates are in the plugin, per country and date. A seller outside the EU chooses **No Tax**, and another tax system is another `TaxResolver`; see [Gateways and hooks](/plugins/commerce).
 
