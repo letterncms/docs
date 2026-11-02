@@ -1,60 +1,111 @@
 ---
 id: 01m5wmrf4x420a7rv1n4vxnper
 title: Entries
-position: 4
-group: 'Manage'
-description: Write, save drafts, publish now or later, roll back — and never overwrite a colleague's work.
+position: 2
+description: Write, save as you go, publish now or later, and go back to an earlier version whenever you need to.
 ---
-## Draft, published, changed
+An entry is one item in a collection: a page, a blog post, a dish. You fill it in, Lettern saves as you type, and nothing goes live until you publish.
 
-A new entry is a **draft**: saved, previewable, not on the site. **Publishing** puts it live. After that, edits collect in a working copy — the entry shows **Changes** — while visitors keep seeing the published version until you publish again or **discard** the changes.
+![Filling in a dish: one simple form, with the fields the collection asks for.](/media/screens/entry.webp)
 
-The editor saves as you type. Press `⌘S` to save now and `⌘⇧P` to publish. Drafts can be incomplete; required fields must be filled before publishing. A failed save keeps your changes in the editor, shows an error with a retry, and warns before you leave. Autosave pauses on an edit conflict until you choose which version to keep.
+## Write and publish
 
-Use **Preview** in the entry toolbar to check the current working title, content, URL and author with the site's interactions enabled. Preview includes unsaved changes and works before the first save; it does not publish or save the entry.
+1. Open a collection from the sidebar and press the **New** button, such as **New Dish**.
+2. Give it a title and fill in the fields. Your work saves as you type.
+3. Press **Publish** when it's ready. It's live straight away.
+
+After that, your edits are kept apart from the live version. Visitors keep seeing what you published until you press **Publish Changes**.
+
+| Status | Means |
+|---|---|
+| **Draft** | Saved, but not on the site yet. |
+| **Published** | Live, and what visitors see. |
+| **Changes** | Live, with edits that aren't published yet. |
+| **Scheduled** | Goes live by itself at the time you chose. |
+
+Changed your mind? Open **More Actions** (the `…` button) and choose **Discard Unpublished Changes** to go back to the live version, or **Unpublish** to take the entry off the site.
+
+| Press | To |
+|---|---|
+| `⌘S` | Save now |
+| `⌘⇧P` | Publish |
+| `⌘.` | Show or hide the entry details |
+
+::: callout {"props":{"tone":"tip","text":"Drafts can be incomplete. Required fields only need to be filled in before you publish."}}
+:::
+
+If a save fails, your changes stay on screen with an error and a way to retry, and Lettern warns you before you leave the page.
+
+## Preview it
+
+Choose **More Actions → Preview** to see the entry as visitors will, at desktop, tablet or phone size, with the site's interactions working. It includes changes you haven't saved yet, and works even before the first save. Previewing never saves or publishes anything.
+
+## Schedule it for later
+
+Choose **More Actions → Schedule…**, pick a date and time, and press **Schedule**. The entry shows **Scheduled** and goes live by itself. Saving more edits doesn't change that time; use **Change schedule** to move it.
+
+An entry that's already live can't be scheduled for the future. Unpublish it first if you want to take it offline and bring it back later.
 
 ## Entry details
 
-The right sidebar starts with a tab named after the collection's entry type: **Page**, **Post**, **Template**, and so on. **History** follows it, then any plugin panels. Every collection uses these same entry details and panel definitions.
+Press the panel button in the toolbar, or `⌘.`, to open the details on the right. The first tab is named after the kind of entry (**Page**, **Post**, **Dish**). **History** follows it, then any tabs plugins add, like **SEO**.
 
-Use the first tab to edit the title, author and URL slug or non-page handle, and review publication state and record dates. For collections with a blocks body, the main body is edited directly in the live rendered surface and other collection fields appear in Details. Fields owned by an active plugin appear in that plugin's panel; when it is unavailable, the fields remain accessible in the entry details.
+On the first tab you change the title, the URL slug and the **Author**, and see when it was published, created and updated. Fields set to **Show as Property** appear here too.
 
-When a template renders the entry title through an exact `entry.title` text binding, you can edit it inline too. It changes the same title as Details. Sample titles shown while editing templates or components remain read-only.
+The **Author** is the person credited for the entry, not necessarily the last person who edited it. It starts as whoever created the entry. You can change it or clear it; an entry nobody is credited for shows **Unassigned**. On a live entry, a new author waits for your next publish, like any other change.
 
-The **Author** is the person credited for the content, not necessarily the last person who edited it. New entries default to their creator when there is one; imported or system-created entries can be **Unassigned**. An author reference that cannot be resolved appears as **Unavailable person**. You can change or clear the author. For a published entry, an author change stays in its working copy until you publish; discarding changes restores the published author. History separately records who performed each action. Lettern does not invent authors or dates for imported content.
+## Go back to an earlier version
 
-## Scheduling
+Every save is kept as a version. Several saves by the same person in a short time count as one.
 
-Use the publishing controls to schedule an unpublished entry or change an existing schedule. The entry shows **Scheduled** and goes live at the selected time. Saving content or author changes does not change the publication time. A live entry cannot be moved to a future publication time: unpublish it first if you want to take it offline and schedule it again.
+Open the details, choose **History**, and press **Restore** on the version you want. Its content comes back as unpublished changes, so you can check it before publishing. What you had before stays in the history.
 
-API clients set timing with `at` on `entries/publish`, or atomically with `status: "published"` on create or `publish: true` on update. `entries/create` and `entries/update` do not accept `publishedAt`; `at` is only meaningful when publishing. Scheduling future updates to content that remains live is not supported.
+## Order and nest pages
 
-Lettern catches up after web requests at most once a minute; on a server with cron, run the check every minute instead:
+In a collection with nested entries, like **Pages**, drag entries in the list to reorder them.
+
+To put a page under another one, open its details and press **Move** under **Record**. Choose the new parent, or **Root** for the top level. Moving a page changes its address and those of the pages under it. Deleting a page moves its children up a level.
+
+Moving doesn't publish anything: unpublished changes stay unpublished.
+
+## Work together safely
+
+When two people edit the same entry, Lettern never lets one save silently overwrite the other. If the entry changed since you opened it, Lettern asks whether to **Load Their Version** or **Keep Mine**.
+
+With the [collaboration plugin](/editing/collaboration), you also see who else has the entry open, and can leave comments for each other.
+
+## For developers
+
+### Scheduling from the API
+
+Set timing with `at` on `entries/publish`, or atomically with `status: "published"` on create or `publish: true` on update. `entries/create` and `entries/update` don't accept `publishedAt`; `at` only means something when publishing. Scheduling future updates to content that stays live is not supported.
+
+Lettern publishes scheduled entries after web requests, at most once a minute. On a server with cron, run the check every minute instead:
 
 ```bash
 * * * * * php /path/to/site/cms publish:scheduled
 ```
 
-## Revisions
+### Authors
 
-Each save records a revision (several saves by the same person in a short time count as one). **History** lists them; restoring one puts its content back as a draft, so you can review before publishing.
+`entries/create` and `entries/update` accept a nullable `authorId`. User pickers can look up safe person summaries with `users/lookup`. Imported or system-created entries can be unassigned, and an author reference that can't be resolved shows as **Unavailable person**. Lettern never invents authors or dates for imported content. History records separately who performed each action.
 
-## Trees
+### Moving and ordering
 
-In tree collections, reorder siblings in the list. To change a parent, open the entry's details tab and choose **Move** under **Record**. Select an eligible parent or **Root** for the top level; the entry and its descendants cannot be their own parent. Moving a page updates its URL and every descendant's. Deleting a page moves its children up a level. Structure changes do not publish a working content draft.
+`entries/move` changes a parent and `entries/reorder` orders siblings. They are structural commands, separate from saving content, and check the versions of the records they change.
 
-API clients use `entries/move` to change a parent and `entries/reorder` to order siblings. These are explicit structural commands, separate from saving content, and check the versions of the records they change.
+### Conflicts
 
-## Working together
-
-When two people edit the same entry, the second save would overwrite the first — so it doesn't. Lettern notices the entry changed since you opened it and asks whether to load the other version or keep yours. With the [collaboration plugin](/editing/collaboration) you also see who else has the entry open before it comes to that.
-
-API clients get the same protection by passing the entry's opaque `version` as `expectedVersion` when changing an existing record. Read the latest version after each successful mutation; timestamps are display metadata, not conflict tokens. The admin always supplies the version. Omitting it in an API call explicitly makes an unconditional write, so only do that when overwriting a concurrent change is intended.
+Pass the entry's opaque `version` as `expectedVersion` when changing an existing record. Read the latest version after each successful change; timestamps are display data, not conflict tokens. The admin always sends it. Leaving it out makes an unconditional write, so only do that when you mean to overwrite a concurrent change.
 
 ```json
 { "id": "01jc8w6m3x9k2h4v5t7r0p1q3s", "title": "New title", "expectedVersion": "<version returned by entries/get>" }
 ```
 
-## Abilities
+### Titles in templates
 
-Everything above is available to the API, the CLI and agents: `entries/create`, `entries/update`, `entries/publish`, `entries/unpublish`, `entries/discard-draft`, `entries/duplicate`, `entries/delete`, `entries/move`, `entries/reorder`, `entries/revisions`, `entries/restore` and more — see the [abilities reference](/agents/abilities-reference#ns-entries). Create and update accept a nullable `authorId`; user pickers can resolve safe person summaries with `users/lookup`.
+When a template shows the entry title through an exact `entry.title` text binding, editors can change the title right on the page; it's the same title as in the details. Sample titles shown while editing templates or components stay read-only.
+
+### Abilities
+
+Everything on this page is available to the API, the command line and agents: `entries/create`, `entries/update`, `entries/publish`, `entries/unpublish`, `entries/discard-draft`, `entries/duplicate`, `entries/delete`, `entries/move`, `entries/reorder`, `entries/revisions`, `entries/restore` and more. See the [abilities reference](/reference/abilities#ns-entries).

@@ -1,11 +1,10 @@
 ---
 id: 01m5wn8r9jwsewrfveme7cp117
 title: Block Markdown
-position: 6
-group: 'Reference'
-description: A plain-text form of any block tree — Markdown for text, directives for everything else. Used for files, agents and AI crawlers.
+position: 3
+description: Any page as plain text, with Markdown for the text and directives for every other block. Used in files, by AI agents and for AI crawlers.
 ---
-Text blocks are written as ordinary Markdown. Every other block becomes a **directive**: three colons, the block type and its settings as JSON, its children inside, and three colons to close. Nested directives use one more colon per level.
+Block Markdown is a way to write any page, template or component as plain text. Text blocks are ordinary Markdown. Every other block becomes a **directive**: three colons, the block type and its settings as JSON, its children inside, and three colons to close. Nested directives use one more colon per level.
 
 ```markdown
 ## Plans for every team
@@ -30,12 +29,14 @@ For all your clients.
 
 ## Where it is used
 
-- **Flat-file entries** store block fields as Block Markdown, so pages — and [templates](/design/templates) and [components](/design/components) — diff cleanly in git.
-- **Agents** can write a blocks field as a Block Markdown string instead of JSON — often shorter and easier to get right.
+- **Flat-file entries** store block fields as Block Markdown, so pages, [templates](/design/templates) and [components](/design/components) diff cleanly in git.
+- **Agents** can write a blocks field as a Block Markdown string instead of JSON. It's often shorter and easier to get right.
 - **Markdown twins**: every published page is also available as `/page.md`, a clean Markdown version for AI crawlers and tools.
 - **Conversion** abilities: `blocks/from-markdown` and `blocks/to-markdown`.
 
-Everything on a block survives a round trip — ids, names, styles, attributes, data bindings, interactions, animations, anchors and hidden flags — so converting back and forth never loses design:
+## Round trips
+
+Everything on a block survives a round trip, so converting back and forth never loses design: ids, names, styles, attributes, data bindings, interactions, animations, anchors and hidden flags. Here is a heading bound to the entry's title, with an animation:
 
 ```markdown
 ::: heading {"props":{"level":"1"},"bind":{"text":"entry.title"},"motion":[{"id":"m1","trigger":{"type":"load"},"steps":[{"target":"words","from":{"opacity":0,"y":24}}]}]}

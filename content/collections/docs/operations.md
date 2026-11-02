@@ -1,11 +1,7 @@
 ---
 id: 01m5wnc9xvhyp9tj18z3twt36d
-title: Operations
-position: 7
-description: People and permissions, email, security, deployment and analytics.
+title: 'Run your site'
+position: 5
+description: 'Publish, host and look after a live site, its people and its visitors.'
 ---
-- [Users and roles](/operations/users-and-roles)
-- [Email](/operations/email)
-- [Security](/operations/security)
-- [Deployment](/operations/deployment)
-- [Analytics](/operations/analytics)
+Everything that keeps a live site running well: publishing, hosting, search engines, the people who can sign in, email, visitors and sales.

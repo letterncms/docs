@@ -2,33 +2,89 @@
 id: 01m5wn8ra1rb2z4svj7jc29mr5
 title: Writing
 position: 0
-group: 'In the editor'
-description: Edit text and insert blocks directly in the rendered page, with the same model and controls for pages, posts and reusable layouts.
+description: Type, add blocks, move them around and format text, right on the page.
 ---
-Pages, posts, docs, templates and components share one live block editor. Edit text directly in the rendered content, use the full block catalog for structure and layout, and open the [shared inspector](/editing/canvas) for Content, Design and Interact. The collection's explicit `body` field supplies the block content; collections without a body use the normal field form.
+You write and build pages right on the page itself, exactly as visitors will see it. Click to type, press `+` to add something, and select a block to move or style it.
 
-## Adding blocks
+![The page editor: the page on the left, the settings of the selected heading on the right.](/media/screens/editor.webp)
 
-Rest the pointer between two blocks: a line marks the boundary and a `+` appears in its middle. The `+` opens the quick inserter: search, the six blocks you are most likely to want there, and **Browse all** for the full catalog with components and sections. The line stays on its boundary while you choose, and the new block lands exactly there. At the inner edge of a section or column the line hugs the first or last block inside it, so you can add content inside a container as well as between containers.
+Everything on a page is a **block**: a heading, a paragraph, an image, a button, a row of columns. The same editor works for pages, posts, templates and components.
 
-Clicking never adds content: it places the caret in text or selects a block. To insert next to a selected block, use **Insert before** or **Insert after** in its **⋯** menu (`⌥⌘T` / `⌥⌘Y`); an empty container shows its own `+` when you point at it, and an empty page offers to start writing. The toolbar's **Insert block** uses the same choices. Press `/` in an empty text block to insert while writing: the menu opens below the line, or above it near the bottom of the screen, so what you type stays visible. Keep typing to filter, press `Enter` to insert, and `Esc` or a click elsewhere to close it. Start a paragraph with a Markdown shortcut and it turns into the right block:
+## Type
+
+Click any text and start typing. Press `↵` for a new paragraph, or `⇧↵` for a line break inside the same one.
+
+While you type, block outlines and toolbars stay out of the way. Changes save as you go, and nobody sees them until you press **Publish**.
+
+## Add a block
+
+1. Point between two blocks. A line appears there, with a `+` in the middle.
+2. Press the `+`. A small menu opens with a search field, six suggestions (the blocks you used last come first) and **Browse all** for every block, component and section.
+3. Pick one. It lands exactly on the line.
+
+The line also works inside sections and columns: point near their inner edge to add something inside them.
+
+::: callout {"props":{"tone":"tip","text":"Faster while writing: in an empty line, type <code>/</code> and the name of a block, like <code>/image</code>, then press <code>Enter</code>. <code>Esc</code> closes the menu."}}
+:::
+
+A few other ways to add a block:
+
+- **Insert before** or **Insert after** in a selected block's **⋯** menu.
+- The `+` an empty section or column shows when you point at it.
+- An empty page invites you to start writing, or to press `/` for blocks.
+- **Insert block** in the toolbar at the top.
+
+Clicking on the page never adds anything by accident: it only places the caret or selects a block.
+
+### Markdown shortcuts
+
+Start a new line with one of these and it turns into the right block. Pasting Markdown or HTML from elsewhere becomes blocks too.
 
 | Type | To get |
 |---|---|
-| `#` to `####` then space | Heading level 1–4 |
-| `-` or `*` then space | Bulleted list |
-| `1.` then space | Numbered list |
-| `>` then space | Quote |
-| ```` ``` ```` | Code block |
-| `---` | Divider |
+| `#` to `####`, then a space | A heading, level 1 to 4 |
+| `-` or `*`, then a space | A bulleted list |
+| `1.`, then a space | A numbered list |
+| `>`, then a space | A quote |
+| `!`, then a space | A callout |
+| ```` ``` ```` | A code block |
+| `---` | A divider |
 
-Pasting Markdown or HTML from elsewhere becomes blocks too.
+## Select and move blocks
 
-Click rendered text to place the caret and write. Newly inserted text blocks focus their text directly. Text focus keeps block frames and structural controls out of the way, while an open sidebar shows that block's settings; press `Esc` to select the block when you want to move it or open its settings. An empty paragraph shows its hint only while you write in it; pointing at a block outlines it, so empty lines stay easy to find.
+Click a block anywhere that isn't text to select it. While you're typing, press `Esc` to select the block you're in. Click outside the page to clear the selection.
 
-## Formatting
+A selected block gets a small toolbar above it, with:
 
-Select text for the format toolbar, or use the keyboard:
+- the **drag handle**, to drag the block somewhere else,
+- an arrow to select the block it sits in,
+- the block's name,
+- **Move up** and **Move down**,
+- **⋯** for **Insert before**, **Insert after**, **Duplicate**, **Make a Component** and **Delete**.
+
+While you drag, a line shows where the block will land, and the page scrolls when you near an edge. Press `Esc`, or let go somewhere it can't go, to cancel.
+
+`⇧`-click a neighboring block to select the run of blocks between them. Hard-to-reach blocks, including hidden ones, are easiest to pick in the **Outline**: while you edit, it takes the place of the sidebar on the left (`⌘\` shows or hides it). Made a mistake? `⌘Z` undoes it, moves included.
+
+To reuse a selection elsewhere, choose **Make a Component**. See [Components](/design/components).
+
+## Format text
+
+Select some text and a format toolbar appears above it: bold, italic, underline, strikethrough, code and link. The shortcuts are below.
+
+## Style a block
+
+Selecting a block also opens its settings on the right, in three tabs: **Content**, **Design** and **Interact**. See [Block settings](/editing/canvas).
+
+## Page details
+
+The right sidebar starts with the page's own details, in a tab named after its collection (**Page**, **Dish**…). Edit the title, URL, author and other fields there. Next to it are **History** and the tabs plugins add, like **Comments**. Press `⌘.` to show or hide it. See [Entries](/content/entries).
+
+## Keyboard shortcuts
+
+On Windows and Linux, use `Ctrl` for `⌘` and `Alt` for `⌥`.
+
+### Formatting
 
 | Keys | Does |
 |---|---|
@@ -37,30 +93,37 @@ Select text for the format toolbar, or use the keyboard:
 | `⌘E` | Inline code |
 | `⌘K` | Link |
 
-## Moving around
+### Blocks
 
 | Keys | Does |
 |---|---|
 | `↑` `↓` at the edge of a block | Move to the previous or next block |
-| `Esc` | Select the current block |
+| `Esc` | Select the block you're typing in |
 | `↑` `↓` on a selected block | Select the previous or next block |
 | `↵` on a selected block | Write in its first text |
 | `⇧↑` `⇧↓` on a selected block | Extend the selection over neighboring blocks |
-| `⇧`-click a block | Extend the selection to it |
+| `⇧`-click a neighboring block | Extend the selection to it |
 | `⌥↑` `⌥↓` on a selected block | Move it up or down |
 | `⌘D` | Duplicate the selected block |
-| `⌥⌘T` `⌥⌘Y` | Insert before or after the selected block |
+| `⌥⌘T` / `⌥⌘Y` | Insert before or after the selected block |
 | `⌘C` `⌘X` `⌘V` on selected blocks | Copy, cut and paste whole blocks |
 | `⌫` on selected blocks | Delete them |
+| `⌘Z` / `⌘⇧Z` | Undo, redo |
 
-Selected blocks can be saved as a [component or section](/editing/components) with **Make a Component** in the block menu or the inspector.
+### The page
 
-Click a block (anywhere that isn't text) to select it; click outside the page content to clear the selection. A selected block has one toolbar above it: the drag handle on the left, select its parent, its name, **Move up** and **Move down** (disabled at either end), and **⋯** with **Insert before**, **Insert after**, **Duplicate**, **Make a Component** and **Delete**. You can also move blocks in Outline. During a drag, a line marks the compatible destination, including positions inside sections and columns, and the viewport scrolls near an edge. Press `Esc` or release outside a valid target to cancel. Movement participates in undo and redo.
+| Keys | Does |
+|---|---|
+| `⌘S` | Save now |
+| `⌘⇧P` | Publish |
+| `⌘.` | Show or hide the sidebar |
 
-The toolbar stays at the top of the view while a tall block is partly scrolled away, and disappears when the block leaves view.
+## For developers
 
-## Entry details and block settings
+### Which collections use this editor
 
-The right sidebar starts with the entry's details tab, named after its collection type, followed by **History** and available plugin panels. Edit the title, author, URL slug or handle and other collection fields there. A template's exact entry-title text binding also lets you edit the same title inline; sample titles in templates and components stay read-only. See [Entry details](/content/entries#entry-details).
+A collection gets the block editor when its `body` names a field of type `blocks`, like `body: content` for Pages: that field holds the page's blocks. A collection without a body shows its fields as a normal form instead. See [Collections](/content/collections).
 
-Use a block's settings to open its shared **Design**, **Content** and **Interact** controls. The same layout, data and motion tools are available for article blocks and page blocks. The live editing surface already uses the site renderer; **Preview** checks page interactions without editing controls.
+### Titles in templates
+
+When a template binds a text block to exactly the entry's title, you can edit the title inline on the page too. Sample titles in templates and components stay read-only.

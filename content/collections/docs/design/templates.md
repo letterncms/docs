@@ -2,49 +2,58 @@
 id: 01m5wn8rabhjdafzhbyn4mynmk
 title: Templates
 position: 2
-group: 'Foundations'
-description: A template is the frame around a page — header, footer, layout and the fields shown around the content — edited as blocks like any page.
+description: The frame around your pages, with the header, footer and layout, designed once and shared by every page that uses it.
 ---
-Open **Templates** in Settings. Each template is an entry of the `templates` collection and opens in the shared [block editor](/editing/writing). It holds blocks like a page does, plus one **Page content** block where each page's own blocks go.
+A template is the frame around a page: the header at the top, the footer at the bottom, and the layout in between. Each page only holds its own content, and the template puts it in place. Change the template, and every page that uses it changes with it.
 
-A typical template:
+![The Page template open in the editor: the header and footer around the Page Content block.](/media/screens/template.webp)
 
-```json
-[
-  { "type": "pattern", "props": { "ref": "header" } },
-  { "type": "box", "props": { "tag": "main" }, "anchor": "main", "children": [
-    { "type": "heading", "props": { "level": "1" }, "bind": { "text": "entry.title" } },
-    { "type": "outlet", "props": { "wrap": true }, "class": "cms-prose" }
-  ] },
-  { "type": "pattern", "props": { "ref": "footer" } }
-]
-```
+Templates are made of blocks, just like pages, so you design them the same way.
 
-- The header and footer are [components](/design/components), so every template shares them.
-- Blocks around the content can show the page's own fields — the title, a date, a cover image — through [data binding](/design/data).
-- Giving `main` the anchor `main` adds a **Skip to content** link to every page.
+## Edit a template
 
-## Which template a page gets
+1. Open **Settings → Templates** and choose one, like *Page*.
+2. Edit it like any page: select blocks, style them, add new ones.
+3. Press **Publish**. Every page that uses the template is rebuilt.
 
-1. The entry's own **Template** field, when its collection has one (`type: select`, `dynamic: templates`).
-2. The collection's `template` setting — the template's slug, e.g. `template: post`.
-3. The template called `default`.
+Your changes save as a draft while you work, and visitors only see them once you publish.
 
-Missing pages render the `404` template. A visitor who sends too many requests in a minute (a checkout form, say) gets a short message inside the `error` template, or `default` when there is none. A site without templates still works: pages show their content and nothing else until you add `default`.
+## The Page Content block
 
-A template's **Offered for** setting limits the collections whose entries can pick it; leave it empty to offer it everywhere.
+Every template has one **Page Content** block. It marks where each page's own blocks go. Style it like any other block, for example with a narrow width for articles.
 
-The Template picker shows the actual inherited template name with an **Inherited** hint. An entry inherits its collection's template; collection settings inherit the site's default. Choosing a template creates an explicit override, and clearing it restores inheritance. If a saved override is missing, the picker identifies it and shows the effective fallback rather than silently replacing the saved value.
+Around it you can add anything: a heading, a cover image, a date. Connect those blocks to the page's own fields, and each page shows its own title or image there. See [Showing content](/design/data).
 
-## Designing a template
+The header and footer are usually [components](/design/components), so every template shares the same ones.
 
-Edit the template as live rendered blocks. Its **Page content** block marks where each entry body is rendered. The same template context and styles appear in the editor and public output; **Preview** checks interactions without editing controls. An article template sets a narrow reading width within this same editor.
+## Choose a page's template
 
-Like any entry, a template saves a draft while you work and goes live when you **Publish** — and then every page using it is rebuilt.
+A page uses the first template it finds here:
 
-## Stored as files
+1. The page's own **Template** setting, when its collection has one.
+2. Its collection's **Template**, under **Settings → Collections**.
+3. The template called *default*.
 
-Templates are Markdown files with their blocks as [Block Markdown](/editing/block-markdown) in `content/collections/templates/`, so they are reviewed in pull requests with the rest of the site:
+The **Template** picker shows which template a page gets when you haven't chosen one, marked **Inherited**. Choose a template to override it; clear your choice to inherit again. If a chosen template has been deleted, the picker says so and shows the one used instead.
+
+A template's **Offered For** setting limits which collections can pick it. Leave it empty to offer it everywhere.
+
+## Special templates
+
+- *default* frames every page that has no other template.
+- *404* shows pages that don't exist.
+- *error* frames the short message a visitor gets after sending too many requests in a minute, like on a busy checkout form. Without it, *default* is used.
+
+A site without any templates still works: pages show their content and nothing else until you add *default*.
+
+::: callout {"props":{"tone":"tip","text":"Give the block around your content the anchor <code>main</code>, under <strong>Content → Element</strong>. Every page then gets a <strong>Skip to content</strong> link for keyboard users."}}
+:::
+
+## For developers
+
+### Stored as files
+
+Templates are entries of the `templates` collection, stored as Markdown files in `content/collections/templates/`, with their blocks as [Block Markdown](/reference/block-markdown). They are reviewed in pull requests with the rest of the site:
 
 ```markdown
 ---
@@ -61,6 +70,27 @@ collections:
 :::
 ```
 
-## For agents
+`collections` is **Offered For**. The **Page Content** block is `outlet`.
+
+### A typical template
+
+```json
+[
+  { "type": "pattern", "props": { "ref": "header" } },
+  { "type": "box", "props": { "tag": "main" }, "anchor": "main", "children": [
+    { "type": "heading", "props": { "level": "1" }, "bind": { "text": "entry.title" } },
+    { "type": "outlet", "props": { "wrap": true }, "class": "cms-prose" }
+  ] },
+  { "type": "pattern", "props": { "ref": "footer" } }
+]
+```
+
+### Choosing a template
+
+- An entry's own choice comes from a field like `{ type: select, dynamic: templates }` in its collection.
+- A collection names its template by slug: `template: post`.
+- Otherwise the template with the slug `default` is used. Missing pages render `404`; rate-limited requests render inside `error`, or `default`.
+
+### Abilities
 
 `templates/list` returns every template with its blocks (`working: true` includes unpublished changes). Create and change them with `entries/create` and `entries/update` in the `templates` collection; the body field is `blocks`.

@@ -2,33 +2,82 @@
 id: 01m5x9ea75bkfh9a0v0gsww8g7
 title: Components
 position: 3
-group: 'Foundations'
-description: Design something once — a header, a card, a pricing table — and reuse it everywhere. Properties let each copy show its own title, image or link.
+description: Design something once, like a header or a card, and reuse it everywhere. Change it once and every copy updates.
 ---
-Components are entries of the `components` collection. Open **Components** in Settings; each opens in the shared [block editor](/editing/writing). There are two kinds:
+A component is a piece of design you make once and use in many places: a header, a footer, a card, a call to action. Edit the component, and every page that uses it changes with it.
 
-- **Synced components** (the default) are inserted as a reference. Change the component and every page that uses it changes — headers, footers, cards, calls to action.
-- **Sections** (synced off) are copied into the page when inserted, then edited freely. Use them as a library of starting points.
+![The Header component open in the editor, with its settings on the right.](/media/screens/design-component.webp)
 
-For how editors insert, make and detach components, see [Components and sections](/editing/components).
+There are two kinds, and both live under **Settings → Components**:
 
-## Properties
+- **Components** stay linked. Edit one and every copy updates. Use them for headers, footers and cards.
+- **Sections** are copied into the page when you insert them, then edited freely. Use them as a library of starting points.
 
-A component's **Properties** are fields — like a collection's — that every instance fills in. Inside the component, blocks [bind](/design/data) to them as `props.<handle>`:
+The **Synced Component** switch in a component's settings turns one kind into the other.
+
+## Make a component
+
+1. Select the block you want to reuse, like a card. To take several blocks side by side, click the first and `⇧`-click the last.
+2. Press the diamond at the top of the block's settings, **Make a Component**. It's also in the block's **⋯** menu.
+3. Give it a **Name**, and optionally a **Category** and a **Description** that tell others when to use it.
+4. Leave **Keep Every Copy in Sync** on to make a component. Turn it off to save a section instead.
+
+A component replaces the blocks you selected, so this page updates with it too. A section leaves the page as it was.
+
+Some blocks only accept certain blocks inside them. Where a component can't go, what you make is saved as a section.
+
+## Insert a component
+
+Press the `+` between two blocks, or type `/` in an empty line, and search. Components and sections are listed with the blocks, under **Components** and **Sections**.
+
+## Give each copy its own content
+
+A card component is more useful when each copy can show its own title, image and link. Those are the component's **properties**.
+
+1. Open the component: select a copy and press **Edit Component** (the pencil) in its **Content** tab, or open it from **Settings → Components**.
+2. In the component's settings, under **Properties**, press **Add Property**. Choose a type, like text, image or link, and give it a label. It works like adding a field to a collection.
+3. Select the block inside the component that should show it, like the card's heading. Press the database icon next to its text, and pick the property under **Component Properties**.
+4. **Publish** the component.
+
+Now select a copy on any page. Its **Content** tab lists the properties: fill in each one for this copy. Text properties can also be edited right on the page, by clicking the text and typing. Your change only affects this copy, never the component or its other copies.
+
+Each property can come from data too. Press the database icon next to it: a card inside a [Repeat](/design/data#show-a-list-with-repeat) can take its title from each blog post.
+
+## Change a component
+
+- To change every copy, press **Edit Component** and edit it like a page. **Publish** it, and every page that uses it is rebuilt.
+- To make this copy different from the rest, press **Detach from Component** in its **Content** tab. The copy becomes ordinary blocks you can edit freely, and no longer follows the component.
+
+Pages always show a component's published version. The editor and preview show your latest changes.
+
+::: callout {"props":{"tone":"tip","text":"A copy has no <strong>Design</strong> settings of its own: the design belongs to the component. Edit the component to change it everywhere."}}
+:::
+
+## For developers
+
+### Stored as files
+
+Components and sections are entries of the `components` collection, stored as Markdown files in `content/collections/components/`. The settings are in the frontmatter (`synced`, `category`, `description`, `props`) and the blocks are [Block Markdown](/reference/block-markdown). `synced: true` makes a component; `false` a section.
+
+Plugins can ship read-only components and sections too, with the `blocks.pattern-sources` filter and folders of `<handle>.json`.
+
+### Properties
+
+`props` is a list of fields, like a collection's. Inside the component, blocks [bind](/design/data) to them as `props.<handle>`:
 
 ```yaml
-# The component's Properties setting
-- handle: title
-  type: text
-  label: Title
-  default: Fast by default
-- handle: image
-  type: media
-  label: Image
-  max: 1
-- handle: link
-  type: url
-  label: Link
+props:
+  - handle: title
+    type: text
+    label: Title
+    default: Fast by default
+  - handle: image
+    type: media
+    label: Image
+    max: 1
+  - handle: link
+    type: url
+    label: Link
 ```
 
 ```json
@@ -38,24 +87,16 @@ A component's **Properties** are fields — like a collection's — that every i
 ] }
 ```
 
-Select an instance on a page and its properties appear under **Content**. Each value can also come from data — inside a [Repeat](/design/data#repeat), a card component can take its title from each entry:
+### Instances
+
+A copy on a page is a `pattern` block. Its `props.values` holds the values set for this copy, and `bind` with `values.<handle>` takes a value from data:
 
 ```json
 { "type": "pattern", "props": { "ref": "card", "values": { "link": "/pricing" } }, "bind": { "values.title": "item.title", "values.image": "item.cover" } }
 ```
 
-An exact `props.<handle>` text binding to a declared `text`, `textarea` or `richtext` property can be edited inline as plain text, matching the server's escaped binding output. Editing an inherited default creates an override in that instance's `props.values`; the shared component stays unchanged. The Content inspector edits the same value.
+Text edited on the page is stored in the instance's `props.values`. Inline editing works for an exact `props.<handle>` text binding to a declared `text`, `textarea` or `richtext` property; editing an inherited default creates an override. A nested component can forward such a property with an exact binding like `"values.heading": "props.title"`, as long as each property it passes through has one of those types; the edit still belongs to the outer instance. Data-bound properties, bindings with filters, placeholders or `|raw`, repeats, nested constants and sample content keep their source controls instead.
 
-Nested components can forward an editable property with an exact binding such as `"values.heading": "props.title"`, provided each forwarded property has an eligible declared text type. The edit still belongs to the original instance. Data-bound properties, filtered, interpolated or raw bindings, repeats, nested constants and sample content retain their source controls instead of exposing arbitrary generated text as editable content.
-
-## Publishing
-
-Components save drafts and publish like any entry. Pages always show a component's published version; the editor and preview use your working copy. Publishing a component rebuilds exactly the pages that use it.
-
-## Stored as files
-
-Components are Markdown files in `content/collections/components/`, with the settings in the frontmatter and the blocks as [Block Markdown](/editing/block-markdown). Plugins can ship read-only patterns too (the `blocks.pattern-sources` filter, folders of `<handle>.json`).
-
-## For agents
+### Abilities
 
 `patterns/list` returns every component and section with its properties and blocks (`working: true` includes drafts). `patterns/save` creates or replaces one by handle; for anything else use the `entries/*` abilities in the `components` collection.

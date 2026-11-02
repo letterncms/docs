@@ -4,7 +4,7 @@ title: 'Documentation page'
 status: published
 published_at: '2026-10-26T23:31:53+00:00'
 position: 0
-description: 'Section pages, the page with its head and prev/next, and On this page.'
+description: 'The page with its head and prev/next, On this page, and a card for each page of a section.'
 collections:
   - docs
 created_at: '2026-10-26T23:31:53+00:00'
@@ -20,7 +20,7 @@ updated_at: '2026-10-30T12:00:00+00:00'
 :::::
 
 ::::: box {"id":"t-main","props":{"tag":"main"},"label":"Main","style":{"base":{"minWidth":"0","paddingTop":"1.5rem","paddingBottom":"5rem"},"lg":{"paddingTop":"2.5rem"}},"anchor":"main"}
-:::::: box {"id":"t-article","props":{"tag":"article"},"label":"Article","style":{"base":{"maxWidth":"token:container.prose","marginInline":"auto"}}}
+:::::: box {"id":"t-article","props":{"tag":"article"},"label":"Article","style":{"base":{"maxWidth":"46rem","marginInline":"auto"}}}
 ::::::: pattern {"id":"t-head","props":{"ref":"docs-page-head"}}
 :::::::
 
@@ -41,6 +41,16 @@ updated_at: '2026-10-30T12:00:00+00:00'
 
 ::::::: box {"id":"t-body","label":"Body","class":"cms-prose"}
 :::::::: outlet {"id":"t-outlet","props":{"permalinks":true}}
+::::::::
+:::::::
+
+::::::: repeat {"id":"t-kids","props":{"source":"children","of":"entry","as":"doc","tag":"nav"},"label":"Pages in this section","style":{"base":{"display":"grid","gridTemplateColumns":"repeat(2,minmax(0,1fr))","gap":"0.5rem","marginTop":"2rem"},"mobile":{"gridTemplateColumns":"minmax(0,1fr)"}},"attrs":{"aria-label":"In this section"}}
+:::::::: link {"id":"t-kid","style":{"base":{"display":"block","padding":"1rem 1.125rem 1.125rem","backgroundColor":"token:color.panel","borderRadius":"token:radius.xl","transition":"background-color 150ms ease"},"hover":{"backgroundColor":"token:color.panel-hover"}},"bind":{"url":"doc.url"}}
+::::::::: paragraph {"id":"t-kid-t","props":{"tag":"span"},"style":{"base":{"display":"block","fontSize":"token:text.base","lineHeight":"1.5","fontWeight":"token:weight.medium","color":"token:color.ink"}},"bind":{"text":"doc.title"}}
+:::::::::
+
+::::::::: paragraph {"id":"t-kid-d","props":{"tag":"span"},"style":{"base":{"display":"block","marginTop":"0.25rem","fontSize":"token:text.sm","lineHeight":"1.25rem","color":"token:color.muted","textWrap":"pretty"}},"bind":{"text":"doc.description","visible":"doc.description"}}
+:::::::::
 ::::::::
 :::::::
 

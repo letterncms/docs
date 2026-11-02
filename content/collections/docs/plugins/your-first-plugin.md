@@ -2,22 +2,42 @@
 id: 01m5wn8ra43mwhmr52e5p62qx4
 title: Your first plugin
 position: 0
-group: 'Build'
-description: Build a reading-time plugin with a setting, an ability, a value designers can show on pages, a panel in the editor and a home-screen widget — the same pieces Lettern's own plugins use.
+description: Build a small reading-time plugin, step by step, using the same pieces Lettern's own plugins are made of.
 ---
-We will build **Reading time**: it estimates how long an entry takes to read, lets editors see it while writing, lets agents ask for it, lets designers show it on pages and puts the longest reads on the home screen. Everything lives in one folder.
+In this tutorial you build **Reading time**: a plugin that works out how long an entry takes to read. It's small, but it touches everything a real plugin does, so by the end you'll know your way around.
 
-```markdown
+These docs run it: the "min read" under this page's title comes from it. The [complete plugin](https://github.com/letterncms/docs/tree/main/plugins/reading-time) is on GitHub.
+
+## What you'll build
+
+One folder, and when it's on:
+
+- **Settings → Reading time** lets editors set how fast people read.
+- Editors see the estimate in a **Reading time** tab while they write.
+- Designers can show `{readingTime.minutes}` on any page, with no template code.
+- The assistant, the API and the command line can ask for an estimate.
+- The home screen gets a widget with the longest reads.
+
+## 1. Make the folder
+
+Create a folder in your site's `plugins/` folder. When you're done, it holds this:
+
+```text
 plugins/reading-time/
-  composer.json
-  src/ReadingTimePlugin.php
-  src/ReadingTime.php
-  admin/src/index.tsx
-  package.json
-  vite.config.mjs
+  composer.json               who the plugin is and what it needs
+  src/ReadingTimePlugin.php   what it adds to Lettern
+  src/ReadingTime.php         the estimate itself
+  admin/src/index.tsx         the editor panel and the widget
+  lang/nl.json, lang/fr.json  translations
+  package.json                the admin build's packages
+  vite.config.mjs             the admin build
+  tsconfig.json               type checking
+  dist/admin.js               the built admin code
 ```
 
-## 1. The package
+## 2. Describe the package
+
+Every plugin is a Composer package. `composer.json` gives it a name, says what it needs, and points Lettern at its provider class under `extra.cms`.
 
 ```json
 {
@@ -25,9 +45,10 @@ plugins/reading-time/
     "description": "Estimates reading time for entries.",
     "type": "cms-plugin",
     "version": "1.0.0",
+    "license": "MIT",
     "require": {
-        "letterncms/cms": ">=0.1 <1",
-        "letterncms/blocks": ">=0.1 <1"
+        "letterncms/cms": "*",
+        "letterncms/blocks": "*"
     },
     "autoload": { "psr-4": { "Acme\\ReadingTime\\": "src/" } },
     "extra": {
@@ -40,9 +61,11 @@ plugins/reading-time/
 }
 ```
 
-`require` names what the plugin needs: the Lettern version (`letterncms/cms`) and other plugins. They are real Composer packages, so `composer require` brings them along, and without Composer Lettern checks the same list.
+`require` names the Lettern version (`letterncms/cms`) and the other plugins this one needs. They are real Composer packages, so `composer require` brings them along. Without Composer, Lettern checks the same list and keeps the plugin off until it's met.
 
-## 2. The estimate
+## 3. Write the estimate
+
+This is plain PHP with nothing Lettern-specific about it, apart from reading the entry. It counts the words in the title and every field, and divides by the reading speed.
 
 ```php
 <?php
@@ -72,9 +95,11 @@ final class ReadingTime
 }
 ```
 
-`Document::text()` comes from the blocks plugin — which is why `composer.json` requires it.
+`Document::text()` turns a page's blocks into plain text. It comes from the blocks plugin, which is why `composer.json` requires `letterncms/blocks`.
 
-## 3. The provider
+## 4. Add a setting and an ability
+
+The **provider** is the class Lettern starts when the plugin is on. It extends `Cms\Packages\Plugin`: bind your services in `register()`, and add everything else in `boot()`.
 
 ```php
 <?php
@@ -95,7 +120,7 @@ final class ReadingTimePlugin extends Plugin
     public function boot(): void
     {
         // A settings screen, for free: Settings → Reading time.
-        $this->cms()->settingsRegistry()->register('reading-time', 'Reading time', [
+        $this->cms()->settingsRegistry()->register('reading-time', __('Reading time'), [
             ['handle' => 'words_per_minute', 'type' => 'number', 'label' => 'Words per minute', 'default' => 230, 'min' => 50],
         ], icon: 'clock', package: $this->manifest->name);
 
@@ -125,11 +150,16 @@ final class ReadingTimePlugin extends Plugin
 }
 ```
 
-The permission is a closure because it depends on the entry: you may only estimate entries you can see.
+Two things happen here:
 
-## 4. A value designers can use
+- **A setting.** Declaring one field is enough for a page under **Settings**, with its own screen and API. See [Settings](/plugins/settings).
+- **An ability.** An [ability](/agents/abilities) is a named action with a description, an input schema and a permission. Register it once, and the admin, the REST API, AI agents and the command line can all run it. The permission is a closure here because it depends on the entry: you may only estimate entries you can see.
 
-Templates are designed on the block workspace, so instead of a helper function the plugin adds the estimate to the data pages are rendered with. Add this to `boot()`:
+`adminModule()` loads the admin code you write in step 6. `css: null` says this plugin brings no stylesheet of its own.
+
+## 5. Give designers a value
+
+Pages are designed in the browser, so instead of a template function, the plugin adds the estimate to the data pages are rendered with. Add this to `boot()`:
 
 ```php
 // Templates can show {readingTime.minutes} for the page being rendered.
@@ -138,11 +168,11 @@ $this->cms()->hooks()->addFilter('site.scope', fn (array $scope, $page) => $page
     : $scope);
 ```
 
-Now a designer opens the article template, adds a **Text** block under the title and connects its text to `{readingTime.minutes} min read` — no template code, and the value is right on every page.
+`site.scope` is a [hook](/plugins/hooks): a filter that lets you change a value on its way through. Now a designer opens the article template, adds a **Text** block under the title and connects its text to `{readingTime.minutes} min read`. The value is right on every page.
 
-## 5. A panel in the editor
+## 6. Add a panel to the editor
 
-Admin modules are small React bundles. React, `@letterncms/sdk` and `@letterncms/ui` come from the admin, so the bundle contains only your code.
+The admin is built with React. Your plugin's admin code is a small module that the admin loads; React, `@letterncms/sdk` and `@letterncms/ui` come from the admin, so the bundle holds only your code.
 
 ```typescript
 // admin/src/index.tsx
@@ -153,7 +183,7 @@ function ReadingTimePanel({ entry }: { entry: Entry | null }) {
   const estimate = useAbility<{ words: number; minutes: number }>('reading-time/estimate', { id: entry?.id ?? '' }, { enabled: !!entry })
 
   // Re-estimate after every save.
-  useEffect(() => invalidate('reading-time/'), [entry?.version])
+  useEffect(() => invalidate('reading-time/'), [entry?.updatedAt])
 
   if (!entry || !estimate.data) return null
 
@@ -168,77 +198,135 @@ function ReadingTimePanel({ entry }: { entry: Entry | null }) {
 registry.panels.set('reading-time', { id: 'reading-time', slot: 'entry.sidebar', label: t('Reading time'), icon: 'clock', component: ReadingTimePanel })
 ```
 
-Every string goes through `t()` (and `plural()` for counts), so the panel speaks the editor's language. Put the translations next to `composer.json` in `lang/nl.json`, `lang/fr.json`… — `{ "Reading time": "Leestijd", "{minutes} min": "{minutes} min" }`; anything missing shows in English. See [Translations](/plugins/admin-extensions#translations).
+`useAbility` runs the ability you registered in step 4, with the signed-in person's permissions. `registry.panels` puts the component in a named place: `entry.sidebar` is a tab in the entry editor's side panel. See [Admin extensions](/plugins/admin-extensions) for every slot.
+
+### Translate it
+
+Every string goes through `t()`, and counts through `plural()`, so the panel speaks the editor's language. Put the translations next to `composer.json`, in `lang/nl.json`, `lang/fr.json` and so on. Part of `lang/nl.json`:
+
+```json
+{
+  "{count} word": "{count} woord",
+  "{count} words": "{count} woorden",
+  "{minutes} min": "{minutes} min",
+  "Reading time": "Leestijd"
+}
+```
+
+Anything missing shows in English. See [Translations](/plugins/admin-extensions#translations).
+
+### Build it
+
+Three files set up the build. `package.json`:
 
 ```json
 {
   "name": "@acme/reading-time",
   "private": true,
+  "license": "MIT",
   "type": "module",
-  "scripts": { "build": "vite build" },
+  "scripts": {
+    "build": "vite build"
+  },
   "devDependencies": {
     "@letterncms/admin": "^0.1.0",
     "@letterncms/sdk": "^0.1.0",
     "@letterncms/ui": "^0.1.0",
-    "@tanstack/react-query": "5.105.0",
     "@tailwindcss/vite": "4.3.3",
-    "@types/react": "19.3.0",
     "@vitejs/plugin-react": "6.1.2",
     "react": "19.3.1",
-    "tailwindcss": "4.3.3",
-    "typescript": "7.0.2",
     "vite": "8.3.5"
   }
 }
 ```
 
+`vite.config.mjs`:
+
 ```javascript
-// vite.config.mjs
 import { defineConfig } from 'vite'
 import { cmsAdminModule } from '@letterncms/admin/vite'
 
 export default defineConfig(cmsAdminModule({ entry: 'admin/src/index.tsx' }))
 ```
 
-Build it with `npm install && npm run build`, or the same with pnpm or yarn; the output goes to `dist/admin.js`, which `adminModule()` loads. `@letterncms/admin` holds the Vite setup, and `@letterncms/sdk` and `@letterncms/ui` give you the types; the admin provides their code at runtime. Only you need Node, on your own machine: the people who install your plugin get `dist/` with it.
-
-To check your types, add a `tsconfig.json`:
+And `tsconfig.json`, so your editor can check your types:
 
 ```json
 {
-  "compilerOptions": { "target": "ES2023", "module": "ESNext", "moduleResolution": "bundler", "jsx": "react-jsx", "strict": true, "skipLibCheck": true, "noEmit": true, "types": ["vite/client"] },
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUncheckedIndexedAccess": false,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "types": ["vite/client"]
+  },
   "include": ["admin/src"]
 }
 ```
 
-## 6. A widget on the home screen
+Run `npm install && npm run build`, or the same with pnpm or yarn. The output goes to `dist/admin.js`, which `adminModule()` loads.
 
-Every plugin brings at least one widget for the home screen — something worth a glance there. People add it from the widget gallery when they customize their home screen; a plugin without one is reported as invalid. Reading time shows the longest reads.
+`@letterncms/admin` holds the Vite setup. `@letterncms/sdk` and `@letterncms/ui` give you the types; the admin provides their code at runtime. Only you need Node, on your own machine: people who install your plugin get `dist/` with it.
 
-Register it in `boot()`, with a second, read-only ability for its data:
+## 7. Add a home-screen widget
+
+Every plugin brings at least one widget for the home screen: something worth a glance. A plugin without one is reported as invalid. Reading time shows the longest reads.
+
+In `boot()`, register a second read-only ability for the widget's data, and the widget itself:
 
 ```php
+// A second one for the home-screen widget: the longest of the published entries you can see.
 $this->cms()->abilities()->register('reading-time/longest', [
     'label' => 'Longest reads',
     'description' => 'The published entries that take longest to read, and the average reading time.',
     'annotations' => ['readOnly' => true],
     'permission' => 'admin.access',
-    'input' => ['type' => 'object', 'properties' => ['limit' => ['type' => 'integer', 'minimum' => 1, 'maximum' => 20, 'default' => 5]]],
-    'handler' => function (array $input, AbilityContext $context) { /* … the published entries you may see, longest first … */ },
+    'input' => [
+        'type' => 'object',
+        'properties' => ['limit' => ['type' => 'integer', 'minimum' => 1, 'maximum' => 20, 'default' => 5]],
+    ],
+    'handler' => function (array $input, AbilityContext $context) {
+        $collections = array_keys(array_filter(
+            $this->cms()->collections()->all(),
+            fn ($collection) => $collection->routable() && ($context->system || $context->user?->hasPermission("entries.{$collection->handle}.view")),
+        ));
+        // The 200 published last are plenty for an overview.
+        $entries = $collections ? $this->cms()->entries()->query()->collection(...$collections)->live()->orderBy('-published_at')->limit(200)->get() : [];
+        $wordsPerMinute = (int) $this->cms()->settings('reading-time', 'words_per_minute', 230);
+
+        $reads = array_map(fn ($entry) => [
+            'id' => $entry->id,
+            'collection' => $entry->collection,
+            'title' => $entry->title,
+            ...$this->app->make(ReadingTime::class)->estimate($entry, $wordsPerMinute),
+        ], $entries);
+        usort($reads, fn ($a, $b) => $b['words'] <=> $a['words']);
+
+        return [
+            'average' => $reads ? round(array_sum(array_column($reads, 'minutes')) / count($reads), 1) : null,
+            'entries' => array_slice($reads, 0, $input['limit']),
+        ];
+    },
 ]);
 
-$this->cms()->admin()->widget('reading-time-longest', [
-    'label' => 'Reading time',
-    'description' => 'The longest reads among published entries.',   // shown in the gallery
-    'icon' => 'clock',
-    'column' => 'side',
-]);
+// A widget people can add to their home screen; its component is in admin/src/index.tsx.
+$this->cms()->admin()->widget('reading-time-longest', ['label' => 'Reading time', 'description' => __('The longest reads among published entries.'), 'icon' => 'clock', 'column' => 'side', 'order' => 70]);
 ```
 
-The component goes next to the panel. `Widget` from `@letterncms/ui` draws the header (the registered label and icon), the loading skeleton, errors and the empty state, so it looks like every other widget:
+The description is what people see in the widget gallery. Then add the component to `admin/src/index.tsx`. `Widget` from `@letterncms/ui` draws the header (the registered label and icon), loading, errors and the empty state, so it looks like every other widget:
 
 ```typescript
-import { registry, t, useAbility } from '@letterncms/sdk'
 import { Widget, WidgetRow } from '@letterncms/ui'
 
 interface Longest {
@@ -246,11 +334,17 @@ interface Longest {
   entries: { id: string; collection: string; title: string; minutes: number }[]
 }
 
+// A home-screen widget: <Widget> draws the header, loading, error and empty states.
 function LongestReads() {
   const longest = useAbility<Longest>('reading-time/longest', { limit: 5 })
+  const average = longest.data?.average
 
   return (
-    <Widget query={longest} empty={longest.data?.entries.length === 0 && { icon: 'clock', title: t('Nothing published yet') }}>
+    <Widget
+      query={longest}
+      action={average != null && <span className="text-xs text-faint">{t('{minutes} min on average', { minutes: average })}</span>}
+      empty={longest.data?.entries.length === 0 && { icon: 'clock', title: t('Nothing published yet') }}
+    >
       {longest.data?.entries.map((e) => (
         <WidgetRow key={e.id} to={`/content/${e.collection}/${e.id}`} icon="file-text" title={e.title} meta={t('{minutes} min', { minutes: e.minutes })} />
       ))}
@@ -261,11 +355,24 @@ function LongestReads() {
 registry.widgets.set('reading-time-longest', LongestReads)
 ```
 
-## 7. Turn it on
+Build again.
+
+## 8. Turn it on
+
+Turn the plugin on in **Modules**, or from the command line. Then try the ability right away:
 
 ```bash
 php cms plugin enable acme/reading-time
 php cms run reading-time/estimate id=01jc8w6m3x9k2h4v5t7r0p1q3s
 ```
 
-Open any entry: the side panel has a **Reading time** tab. On the home screen, **Customize → Add widget** offers *Reading time*. Ask the assistant "how long does this page take to read?" — it finds the new ability on its own. And **Settings → Reading time** lets editors adjust the speed.
+Now look around:
+
+- Open any entry: the side panel has a **Reading time** tab.
+- On the home screen, **Customize → Add Widget** offers *Reading time*.
+- Ask the assistant "how long does this page take to read?" It finds the new ability on its own.
+- **Settings → Reading time** lets editors adjust the speed.
+
+## Next
+
+[How plugins work](/plugins/how-plugins-work) explains everything a plugin package can hold, from blocks to collections.

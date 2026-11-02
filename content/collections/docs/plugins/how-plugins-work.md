@@ -2,10 +2,55 @@
 id: 01m5wn8ra7gs5ph45nagmkawqn
 title: How plugins work
 position: 1
-group: 'Build'
-description: A plugin is a Composer package with a service provider. It can add abilities, content types, blocks, routes, admin screens — or replace a built-in.
+description: What a plugin package holds, how Lettern starts it, and everything it can add, from blocks to collections.
 ---
+A plugin is a Composer package with one PHP class, its **provider**. Lettern finds the package in your site's `plugins/` folder, checks what it needs, and runs the provider, which adds abilities, blocks, settings, admin screens or anything else.
+
+Lettern's own features, like the page builder, forms and SEO, are plugins built exactly this way. Anything they do, yours can do too.
+
+::: html {"props":{"html":"<figure class=\"docs-fig\" role=\"img\" aria-label=\"A plugin is a folder in plugins/ with composer.json, a provider and its built admin code. When it is turned on, its migrations run and install() is called once. On every request, Lettern checks what it needs and calls register() and boot().\"><div class=\"docs-fig__flow\"><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>acme-reviews/</b><span class=\"docs-card__field\">composer.json</span><span class=\"docs-card__field\">src/ReviewsPlugin.php</span><span class=\"docs-card__field\">dist/admin.js</span><span class=\"docs-card__field\">lang/</span></div><b>The package</b><small>A folder in plugins/</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Turned on</b><span class=\"docs-card__field\">Migrations run</span><span class=\"docs-card__field\">install()</span></div><b>Once</b><small>Or upgrade() for a new version</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Running</b><span class=\"docs-card__field\">Requirements checked</span><span class=\"docs-card__field\">register()</span><span class=\"docs-card__field\">boot()</span></div><b>Every request</b><small>Adds abilities, blocks, screens</small></div></div></figure>"}}
+:::
+
+New to plugins? [Your first plugin](/plugins/your-first-plugin) builds a complete one, step by step.
+
+## A minimal plugin
+
+Two files make a working plugin. `composer.json` says who it is:
+
+```json
+{
+    "name": "acme/reviews",
+    "type": "cms-plugin",
+    "version": "1.0.0",
+    "require": { "letterncms/cms": ">=0.1 <1" },
+    "autoload": { "psr-4": { "Acme\\Reviews\\": "src/" } },
+    "extra": { "cms": { "label": "Reviews", "provider": "Acme\\Reviews\\ReviewsPlugin" } }
+}
+```
+
+And `src/ReviewsPlugin.php` adds what it brings:
+
+```php
+<?php
+
+namespace Acme\Reviews;
+
+use Cms\Packages\Plugin;
+
+final class ReviewsPlugin extends Plugin
+{
+    public function boot(): void
+    {
+        $this->cms()->admin()->widget('reviews-latest', ['label' => 'Latest reviews', 'description' => 'New reviews waiting for a reply.', 'icon' => 'star']);
+    }
+}
+```
+
+Put the folder in `plugins/`, turn it on in **Modules** or with `php cms plugin enable acme/reviews`, and it runs. Every plugin registers a home-screen widget like this one; what the widget shows comes from your admin code, in [Admin extensions](/plugins/admin-extensions#home-screen-widgets).
+
 ## The package
+
+`composer.json` is an ordinary Composer file, with `type: cms-plugin` and Lettern's part under `extra.cms`:
 
 ```json
 {
@@ -14,6 +59,8 @@ description: A plugin is a Composer package with a service provider. It can add 
     "type": "cms-plugin",
     "version": "1.0.0",
     "require": {
+        "letterncms/cms": ">=0.1 <1",
+        "letterncms/blocks": "*",
         "guzzlehttp/guzzle": "^7.8"
     },
     "autoload": { "psr-4": { "Acme\\Reviews\\": "src/" } },
@@ -22,33 +69,36 @@ description: A plugin is a Composer package with a service provider. It can add 
             "label": "Reviews",
             "icon": "star",
             "provider": "Acme\\Reviews\\ReviewsPlugin",
-            "provides": ["reviews"],
-            "requires": {
-                "letterncms/cms": ">=0.1 <2",
-                "letterncms/blocks": "*"
-            }
+            "provides": ["reviews"]
         }
     }
 }
 ```
 
-Lettern finds plugins in the site's `plugins/` folder, wherever they came from: `composer require` and the store put them in the same place, `plugins/<name>` for Lettern's own and `plugins/<vendor>-<name>` for anyone else's. `require` decides when a plugin may run: the Lettern version (`letterncms/cms`), other plugins and PHP libraries, with version constraints. If something is missing, the plugin stays off and **Modules** says why. Be careful with `^` before 1.0: `^0.1` stops matching at 0.2, so your plugin would turn off at the next Lettern release. `>=0.1 <1` doesn't.
+| Key in `extra.cms` | Meaning |
+|---|---|
+| `label` | The plugin's name in the admin. Defaults to the package name, in words. |
+| `icon` | Its icon in **Modules**. |
+| `provider` | The class Lettern starts. A package without one can still bring migrations, views and translations. |
+| `namespace` | The name for its settings, views and translations. Defaults to the part after the slash (`reviews`). |
+| `provides` | Capabilities it offers, such as `mail`, so others can ask who provides one. |
+| `sync` | How [Sync](/plugins/sync) treats its tables. |
+| `license` | For paid plugins: see [Licence tokens](/plugins/licence-tokens#sell-your-own-plugin). |
 
-Lettern's own plugins and everyone else's work identically.
+### Where plugins live
 
-## PHP libraries
+Lettern finds plugins in the site's `plugins/` folder, wherever they came from. `composer require` and the store put them in the same place: `plugins/<name>` for Lettern's own and `plugins/<vendor>-<name>` for anyone else's. Lettern's own plugins and everyone else's work identically.
 
-A site that uses Composer gets the libraries in your plugin's `require` the normal way. A site set up from the zip has no Composer, so a plugin that needs a library Lettern doesn't already have bundles it. Run `composer install --no-dev` before you zip it and ship its `vendor/`: Lettern reads `vendor/composer/installed.json` to check the constraints in `require`, then loads `vendor/autoload.php`. Files in composer's `autoload.files` load when the plugin starts.
+### Requirements
 
-Lettern's own libraries (Laravel, `anthropic-ai/sdk` and the rest of `letterncms/cms`) are shared with every plugin and always win, so a bundled copy can't replace what the core runs on. If two plugins bundle the same library at different versions, whichever loads first is used. Prefix the libraries in your `vendor/` (with [PHP-Scoper](https://github.com/humbug/php-scoper)) to be safe from that; packages sold on the store have to.
+`require` decides when a plugin may run: the Lettern version (`letterncms/cms`), other plugins and PHP libraries, with version constraints. If something is missing, the plugin stays off and **Modules** says why. A plugin can only be turned on after the plugins it needs, and those can't be turned off while it's on.
 
-## When a plugin fails
-
-A broken plugin stops itself, not the site. If it throws while it loads, registers, boots or migrates, it stays off, plugins that require it stay off, and **Modules** shows the error with its file and line. The error goes to the log as well. The state is kept in `storage/framework/failed-packages.json`.
-
-It starts again when its PHP files or version change, or when you turn it on again in **Modules**. A failure PHP could catch is also retried after five minutes, in case the cause has passed. A fatal error PHP can't catch stops the request it happened in; every later request runs without the plugin. Required modules are part of the admin, so their failures are real errors.
+::: callout {"props":{"tone":"warning","text":"Be careful with <code>^</code> before 1.0: <code>^0.1</code> stops matching at 0.2, so your plugin would turn off at the next Lettern release. <code>&gt;=0.1 &lt;1</code> doesn't."}}
+:::
 
 ## The provider
+
+A provider is a Laravel service provider with Lettern helpers. Bind your own services in `register()`, and add everything else in `boot()`:
 
 ```php
 namespace Acme\Reviews;
@@ -74,31 +124,47 @@ final class ReviewsPlugin extends Plugin
 }
 ```
 
-Every plugin registers at least one **home-screen widget** — see [Admin extensions](/plugins/admin-extensions#home-screen-widgets). Without one, the plugin keeps running but **Modules** and `cms plugins` report it as invalid.
+| Helper | Gives you |
+|---|---|
+| `$this->cms()` | The Lettern API, below. `cms()` is the same thing anywhere else. |
+| `$this->manifest` | The package, as read from `composer.json`. |
+| `$this->path('…')` | A path inside the package. |
+| `$this->settings('key', $default)` | A value of the plugin's own [settings](/plugins/settings). |
+| `$this->asset('file')` | The public URL of a file in its `dist/`. |
+| `$this->adminModule()` | Loads its built admin code, `dist/admin.js` (and `dist/admin.css` when there is one). See [Admin extensions](/plugins/admin-extensions). |
 
-A provider is a Laravel service provider with Lettern helpers: `$this->cms()` (the Lettern API), `$this->manifest` (the package), `$this->path()`, `$this->settings()`, `$this->asset()` and `$this->adminModule()`.
+`$this->cms()` is where everything is registered: `abilities()`, `hooks()`, `permissions()`, `settingsRegistry()` and `settings()`, `admin()`, `skills()`, `fields()`, `collections()`, `entries()`, `globals()`, `navigation()`, `accounts()`, `roles()`, `packages()` and `whenAvailable()`.
+
+### Every plugin has a widget
+
+Every plugin registers at least one **home-screen widget**: see [Admin extensions](/plugins/admin-extensions#home-screen-widgets). Without one, the plugin keeps running, but **Modules** and `cms plugins` report it as invalid.
 
 ## What a package can bring
 
+Besides the provider, a few folders are picked up by name:
+
 | Folder | Becomes |
 |---|---|
-| `database/migrations/` | Migrations, run on enable and by `cms sync`. |
-| `resources/views/` | Blade views, namespaced by the package name: `reviews::card` — for emails and your own screens, or a block's markup if you prefer Blade. |
-| `resources/lang/` | Translations. |
-| `dist/` | Built assets, published to `public/_cms/assets/<package>/`. |
-| `admin/` | Admin module sources (built to `dist/admin.js`). |
+| `database/migrations/` | Migrations, run when the plugin is turned on and by `cms sync`. |
+| `resources/views/` | Blade views, namespaced by the plugin: `reviews::card`. For emails and your own screens, or a block's markup if you prefer Blade. |
+| `resources/lang/` | Laravel translation files, in the same namespace. |
+| `lang/` | `<code>.json` translations for the admin and `__()`. See [Translations](/plugins/admin-extensions#translations). |
+| `dist/` | Built assets, published to `public/_cms/assets/<vendor>-<name>/`. |
+| `admin/` | Admin module sources, built to `dist/admin.js`. |
 
-## Lifecycle
+## Install, upgrade, uninstall
+
+Three optional methods on the provider run at the moments that matter:
 
 | Method | Runs |
 |---|---|
-| `install()` | Once, after the first migration — seed defaults. |
+| `install()` | Once, after the first migration. Seed defaults here. |
 | `upgrade($from)` | When the package version is newer than the installed one. |
-| `uninstall()` | Before migrations are rolled back on uninstall — clean up files and settings. |
+| `uninstall()` | Before migrations are rolled back on uninstall. Clean up files and settings. |
 
-Enable, disable and uninstall from **Modules**, the CLI or the `packages/*` abilities. Disabling keeps data; uninstalling removes it.
+Enable, disable and uninstall from **Modules**, with `php cms plugin enable|disable|uninstall <name>`, or with the `packages/*` abilities. Disabling keeps the data; uninstalling removes it.
 
-## Turning a plugin off
+## When a plugin is off
 
 Entries that use a plugin's blocks or fields still open and save while it's off, and everything is there when it comes back:
 
@@ -108,9 +174,26 @@ Entries that use a plugin's blocks or fields still open and save while it's off,
 
 Every default plugin is tested this way, off alone and two at a time, with `PluginIsolationTest`.
 
+## When a plugin fails
+
+A broken plugin stops itself, not the site. If it throws while it loads, registers, boots or migrates, it stays off, plugins that require it stay off, and **Modules** shows the error with its file and line. The error goes to the log as well. The state is kept in `storage/framework/failed-packages.json`.
+
+It starts again when its PHP files or version change, or when you turn it on again in **Modules**. A failure PHP could catch is also retried after five minutes, in case the cause has passed. A fatal error PHP can't catch stops the request it happened in; every later request runs without the plugin. Required [modules](/plugins/modules) are part of the admin, so their failures are real errors.
+
+## PHP libraries
+
+A site that uses Composer gets the libraries in your plugin's `require` the normal way. A site set up from the zip has no Composer, so a plugin that needs a library Lettern doesn't already have bundles it:
+
+1. Run `composer install --no-dev` in the plugin before you zip it.
+2. Ship its `vendor/`. Lettern reads `vendor/composer/installed.json` to check the constraints in `require`, then loads `vendor/autoload.php`.
+
+Files in Composer's `autoload.files` load when the plugin starts.
+
+Lettern's own libraries (Laravel, `anthropic-ai/sdk` and the rest of `letterncms/cms`) are shared with every plugin and always win, so a bundled copy can't replace what the core runs on. If two plugins bundle the same library at different versions, whichever loads first is used. Prefix the libraries in your `vendor/` with [PHP-Scoper](https://github.com/humbug/php-scoper) to be safe from that; packages sold on the store have to.
+
 ## Blocks
 
-Register blocks in `boot()`. A block is data — fields, the style sections it offers, whether it holds children — plus a PHP render function:
+A block is data (its fields, the style sections it offers, whether it holds children) plus a PHP render function. Register blocks in `boot()`:
 
 ```php
 $this->cms()->whenAvailable(\Cms\Blocks\BlockRegistry::class, fn ($blocks) => $blocks->register([
@@ -128,17 +211,45 @@ $this->cms()->whenAvailable(\Cms\Blocks\BlockRegistry::class, fn ($blocks) => $b
 ]));
 ```
 
-The render function gets `block` (props, with bindings already applied), `node`, `type`, `content` (rendered children), `attrs` (class, id, data and script attributes for the root element — always print it), `editor` (true for editor rendering), `scope` (the [data](/design/data) in reach) and `renderer`. Everything else — styles on every screen and state, data binding, interactions, animations, the block workspace, the inspector — works for your block without code. `children` (`true` or a list of allowed types), `styles` (style sections, all by default), `inline` (props edited as rich text on the block workspace), `defaults`, `template` (children when inserted), `example` and `view` (a Blade view instead of `render`) complete the definition.
+Everything else works for your block without code: styles on every screen and state, data binding, interactions, animations, the block workspace and the inspector.
 
-For an inline text property, print `\Cms\Blocks\Elements::editable($d, 'text')` on the element that contains that property, and declare the property in `inline`. This supplies an explicit editing slot in the live output; the editor does not guess which DOM text belongs to a field. The helper identifies editable source properties, exact `entry.title` text bindings and supported declared component-instance text properties. Instance edits write an override on the owning pattern node rather than changing its shared source. Other bindings and generated repeated or sample content remain controlled through their source settings. Always preserve the renderer's root `attrs`, which carry document ownership and selection information.
+### What the render function gets
 
-Component slots support exact `props.<handle>` bindings to declared `text`, `textarea` and `richtext` properties, including exact nested forwarding. They carry an explicit plain-text format because these bindings render escaped text; inline controls must preserve that format rather than introducing rich-text markup. Let `Elements::editable()` produce the ownership, property and resolved-value attributes. Do not infer writable slots from rendered text or add source node IDs to generated component descendants.
+| Key | Holds |
+|---|---|
+| `block` | The props, with bindings already applied. |
+| `attrs` | Class, id, data and script attributes for the root element. Always print it: it carries document ownership and selection. |
+| `content` | The rendered children. |
+| `node`, `type` | The block's node and its type. |
+| `editor` | `true` when rendering for the editor. |
+| `scope` | The [data](/design/data) in reach. |
+| `renderer` | The renderer. |
 
-Folders of `<name>/block.json` (+ `view.blade.php`) can be added with the `blocks.folders` filter.
+### The rest of the definition
+
+| Key | Meaning |
+|---|---|
+| `children` | `true`, or a list of allowed types. |
+| `styles` | The style sections it offers; all by default. |
+| `inline` | Props edited as rich text on the block workspace. |
+| `defaults` | Starting props. |
+| `template` | Children when inserted. |
+| `example` | Example props, listed for agents in the block catalog (`blocks/types`). |
+| `view` | A Blade view instead of `render`. |
+
+Folders of `<name>/block.json` (plus `view.blade.php`) can be added with the `blocks.folders` filter.
+
+### Text people edit on the page
+
+For an inline text property, declare it in `inline` and print `\Cms\Blocks\Elements::editable($d, 'text')` on the element that holds it. This gives the editor an explicit editing slot in the live output: it never guesses which text belongs to a field.
+
+The helper identifies editable source properties, exact `entry.title` text bindings and supported declared component-instance text properties. Instance edits write an override on the owning pattern node rather than changing its shared source. Other bindings and generated repeated or sample content stay controlled through their source settings.
+
+Component slots support exact `props.<handle>` bindings to declared `text`, `textarea` and `richtext` properties, including exact nested forwarding. They carry an explicit plain-text format, because these bindings render escaped text; inline controls must keep that format rather than introduce rich-text markup. Let `Elements::editable()` produce the ownership, property and resolved-value attributes. Don't infer writable slots from rendered text, and don't add source node IDs to generated component descendants.
 
 ## Data sources
 
-A data source is a list the **Repeat** block can loop over — then people design how each item looks. Plugins add them with the `blocks.data-sources` filter:
+A data source is a list the **Repeat** block can loop over, so designers decide how each item looks. Add one with the `blocks.data-sources` filter:
 
 ```php
 $this->cms()->hooks()->addFilter('blocks.data-sources', fn (array $sources) => [...$sources, 'reviews' => [
@@ -150,13 +261,19 @@ $this->cms()->hooks()->addFilter('blocks.data-sources', fn (array $sources) => [
 ]]);
 ```
 
-`fields` are the source's settings in the inspector, `item` documents what each item holds for the binding picker, and `resolve` returns a list of arrays or objects — `item.author`, `item.rating` in the block workspace. `$scope->get('entry')` is the page being rendered. Prefer this to a block with fixed markup: the design stays in the designer's hands. A built page is written again when what it read changes: record your own with `PageContext::depend('reviews')` in `resolve`, and call `SiteBuilder::queueForDependency('reviews')` when your data changes.
+- `fields` are the source's settings in the inspector.
+- `item` documents what each item holds, for the binding picker: `item.author`, `item.rating` in the block workspace.
+- `resolve` returns a list of arrays or objects. `$scope->get('entry')` is the page being rendered.
+
+Prefer this to a block with fixed markup: the design stays in the designer's hands.
+
+A built page is written again when what it read changes. Record your own dependency with `PageContext::depend('reviews')` in `resolve`, and call `SiteBuilder::queueForDependency('reviews')` when your data changes.
 
 To give templates a value of their own, add it to the render scope with the `site.scope` filter (`fn (array $scope, $context) => [...$scope, 'shop' => […]]`) and bind to `shop.*`.
 
 ## Collections
 
-A plugin can bring collections — they appear in the admin, use the same field and block workspace, and get every entries ability:
+A plugin can bring collections. They appear in the admin, use the same fields and block workspace, and get every entries ability:
 
 ```php
 $this->cms()->hooks()->addFilter('collections', fn (array $collections) => $collections + [
@@ -167,9 +284,13 @@ $this->cms()->hooks()->addFilter('collections', fn (array $collections) => $coll
 ]);
 ```
 
-`system: true` stops people deleting it; a site can still redefine it with its own `content/collections/<handle>.yaml`. The blocks plugin adds `templates` and `components` exactly this way, with `section: design` so they are listed under **Design** until an admin moves them.
+`system: true` stops people deleting it; a site can still redefine it with its own `content/collections/<handle>.yaml`. The blocks plugin adds `templates` and `components` exactly this way, with `section: design`, so they are listed under **Design** until an admin moves them.
 
-To change the starting definition offered when someone creates a collection, filter `collections.defaults`. `collections/options` returns this definition separately from the settings schema. The blocks plugin contributes a `content` blocks field and its explicit `body` handle; when it is disabled, the browser receives no blocks default and can create a field-only collection. This hook does not change existing collections.
+### The starting definition
+
+To change the definition offered when someone creates a collection, filter `collections.defaults`. `collections/options` returns this definition separately from the settings schema. The blocks plugin contributes a `content` blocks field and its explicit `body` handle; when it's off, the browser receives no blocks default and can create a field-only collection. This hook doesn't change existing collections.
+
+### A setting per collection
 
 A plugin that stores something per collection offers it as a field in the collection's settings, the same way the site plugin offers the template:
 
@@ -182,15 +303,17 @@ $this->cms()->hooks()->addFilter('collections.settings', fn (array $fields, ?Col
 
 The value is saved in the collection's YAML; read it with `$collection->get('reviews')`.
 
-## Contracts and replacements
+## Replace a built-in
 
-Some features are contracts with a default, so a plugin can swap the implementation: `Cms\Contracts\Mailer` (sending email — the mail plugin binds SMTP and API transports), `Cms\Contracts\SiteBuilder` (static publishing). Bind your own in `register()`:
+Some features are contracts with a default, so a plugin can swap the implementation: `Cms\Contracts\Mailer` (sending email; the mail plugin binds SMTP and API transports) and `Cms\Contracts\SiteBuilder` (static publishing). Bind your own in `register()`:
 
 ```php
 $this->app->singleton(\Cms\Contracts\Mailer::class, PostmarkMailer::class);
 ```
 
-Plugins that depend on another plugin's service only when it is there use `whenAvailable`:
+## Build on another plugin
+
+To use another plugin's service only when it's there, use `whenAvailable`. Your plugin keeps working without it:
 
 ```php
 $this->cms()->whenAvailable(\Cms\Mail\Transports::class, function ($transports) {

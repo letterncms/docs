@@ -1,66 +1,128 @@
 ---
 id: 01m5wn8r9bcb1yamdddxk5erm8
 title: Assistant
-position: 5
-group: 'Agents'
-description: Claude inside the admin. It builds, writes and fixes things with the same abilities you use, and asks before it deletes anything.
+position: 0
+description: Claude, built into the admin. Ask in plain words and watch it build, write and fix things on the page beside you.
 ---
-## Setting up
+The assistant is Claude, built into the admin. Ask it in plain words to build a page, rewrite a section or fix your SEO, and watch the change happen on the page beside the chat. It works as you, with your permissions, and asks before it deletes anything.
 
-Add an Anthropic API key under **Settings → Assistant** (stored encrypted), or set `ANTHROPIC_API_KEY` in `.env`. To route requests through an API gateway or proxy, set `ANTHROPIC_BASE_URL` in `.env` (HTTPS only); it cannot be changed from the admin, since every chat would pass through it. Choose the default model for new chats — Claude Opus 5.5 unless you change it — and how much effort it may spend thinking. **Model for Small Tasks** names chats and suggests what to do next, so it runs often: Claude Haiku 5.5 unless you change it. Anyone can switch models from the picker under the chat box: the choice applies from the next message, stays with that chat, and becomes their starting model for new chats.
+::: html {"props":{"html":"<figure class=\"docs-fig\" role=\"img\" aria-label=\"You ask in plain words. The assistant makes the change on the page, as you. Deleting waits for your go-ahead.\"><div class=\"docs-fig__flow\"><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>You</b><span class=\"docs-card__field\">Add a wine list under the menu</span></div><b>Ask</b><small>In plain words</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-mock docs-mock--live\"><i class=\"docs-mock__h\"></i><i class=\"docs-mock__l\"></i><i class=\"docs-mock__l docs-mock__l--short\"></i><i class=\"docs-mock__img\"></i></div><b>It works</b><small>On the page, as you</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Allow this action?</b><span class=\"docs-card__field\">Delete “Lemon tart”</span></div><b>You decide</b><small>Before anything is deleted</small></div></div></figure>"}}
+:::
 
-The assistant is optional: everything else in Lettern works without it. Until a key is set, **Chat** shows only to those who can add one, and opens the setup; nobody else sees an assistant they cannot use. If you don't use AI, **Hide Chat** on that screen takes it out of the top bar; `⌘J` still opens the setup, with **Show Chat** to bring it back.
+## Set it up
 
-## Using it
+The assistant runs on your own Anthropic API key, so you pay Anthropic directly for what you use.
 
-Click **Chat** in the top bar, on every screen, press `⌘J`, or type a request in the command palette (`⌘K`) and press `Enter`. It opens ready to type in.
+1. Create an API key at [console.anthropic.com](https://console.anthropic.com), under **API keys**.
+2. In the admin, open **Settings → Assistant** and paste it into **Anthropic API Key**. It's stored encrypted.
+3. Press `⌘J` and ask away.
 
-The chat opens at the right edge of the window, on any screen, and the page stays open and usable beside it. Whatever you ask it to change shows there as it happens, in the builder too. Links in its replies open in the page next to the chat, so you can keep going. Drag its left edge to make it wider. `⌘J` from inside the chat, `Esc` or the close button puts it away; a reply keeps coming, and **Chat** in the top bar shows when it is working or waiting for your go-ahead.
+![The assistant's settings: the API key, the models, and when it asks for approval.](/media/screens/agents-assistant-settings.webp)
 
-**Full Size** grows the same chat over the whole window, with your chats beside it and a URL of its own to bookmark. The page you came from stays open underneath, and **Back to the Page** returns to it as you left it. Opening anything else from the sidebar does the same with that screen.
+On the same screen you choose the **Default Model** for new chats (Claude Opus 5.5 unless you change it) and its **Effort**: how much it may think before it answers. The **Model for Small Tasks** names chats and suggests what to do next. It runs often, so it's a fast, inexpensive one: Claude Haiku 5.5 unless you change it.
 
-In an editor the chat floats over the page, at the right of the canvas, so the inspector stays where it is and the canvas doesn't move; drag it by its top bar to wherever suits you. Selecting a block with the chat open attaches that block, so "rewrite this" means it. Anywhere else, **Detach** does the same and **Dock Beside the Page** puts it back; your choice sticks. On a phone the chat fills the screen.
+You can also switch models from the picker under the chat box. Your choice applies from the next message, stays with that chat, and becomes your starting model for new chats.
 
-### What it can see
+::: callout {"props":{"tone":"tip","text":"Not using AI? Lettern works fully without it. Until a key is set, <strong>Chat</strong> shows only to people who can add one, and opens the setup. <strong>Hide Chat</strong> there takes it out of the top bar; <code>⌘J</code> still opens the setup, with <strong>Show Chat</strong> to bring it back."}}
+:::
 
-The chips in the composer show what your message will carry. Each comes off with its ×.
+## Open the chat
 
-Without you doing anything, that's what you have on view:
+Click **Chat** in the top bar, on any screen, or press `⌘J`. You can also type a request in the command palette (`⌘K`) and press `Enter`. The chat opens ready to type in.
 
-- **The page on view**. In an editor that is the entry as it stands, saved first, so the assistant works on what you see. On any other screen it is the screen's text. Values in form fields are not part of it.
-- **The block selected in the builder**, so "rewrite this" means that block.
-- **Text you selected on the page**.
+| Press | To |
+|---|---|
+| `⌘J` | Open or close the chat |
+| `⌘K`, then type and press `Enter` | Ask from the command palette |
+| `Esc` | Put the chat away |
+| `@` | Attach a page, a file or other context |
+| `/` at the start of a line | Use a skill |
 
-Type `@`, or click the **@** chip, to attach anything else: a page or post, a file from the library, a global set, the collections or the design system. Keep typing to narrow it down. For a file the assistant gets its details, not what the image shows. Something that hasn't changed since your last message isn't sent again.
+The chat opens at the right edge of the window, and the page stays open and usable beside it. Whatever the assistant changes shows there as it happens, in the builder too. Links in its replies open in the page next to the chat, so you can keep going. Drag the chat's left edge to make it wider.
 
-Type `/` at the start of a line for a skill, a ready-made way of working: `/proofread` this page, `/build-page`, `/write-post`, `/audit-site`, `/adjust-design`. Write the details in your message, or send the skill alone when it needs none.
+Putting the chat away doesn't stop a reply: it keeps coming, and **Chat** in the top bar shows when the assistant is working or waiting for your go-ahead.
 
-**Account**, **Users**, **Licence** and **Audit Log** stay private: they show no chip, and the assistant gets only the address of the screen. Each message you send shows what it carried, and clicking it takes you there.
+### Make it bigger, or move it
 
-### Your chats
+- **Full Size** grows the chat over the whole window, with your chats beside it and an address of its own to bookmark. **Back to the Page** returns to the page you came from, just as you left it. Opening anything from the sidebar does the same with that screen.
+- **In an editor**, the chat floats at the right of the canvas, so the inspector stays put and the canvas doesn't move. Drag it by its top bar to wherever suits you.
+- **Anywhere else**, **Detach** makes it float the same way, and **Dock Beside the Page** puts it back. Your choice sticks.
+- **On a phone**, the chat fills the screen.
 
-Your chats are in one place, in the chat: a new chat lists all of them by age, the history button at the top of a chat takes you there, and at full size they have a column of their own. To permanently remove a chat, choose **Delete Chat** from the trash button on its row, its right-click menu or the three-dot menu at the top of the chat, then confirm; **Discard Draft** does the same for an unsent new chat. Stop any running reply first.
+## Show it what you mean
 
-The **+** at the top of the chat starts a fresh conversation; an unsent one waits there. It suggests what to work on, based on what you have on view; a suggestion goes into the composer for you to read and send. A chat names itself after the first reply. Empty chats are never saved: a conversation is created only when you send the first message. Drafts stay attached to their chat while you move around the admin in the same browser session; reloading clears unsent drafts, and brings back the chat you had open. Selecting another conversation stops listening to the previous reply.
+The chips above the chat box show what your message will carry. Without you doing anything, that's what you have on view:
 
-You see what it does as it works: its reasoning summary, every tool call with its input and result, and its answer. Changes appear in the admin immediately.
+- **The page on view.** In an editor, that's the entry as it stands, saved first, so the assistant works on what you see. On any other screen, it's the screen's text. Values in form fields are not part of it.
+- **The block selected in the builder.** Select a block with the chat open, and "rewrite this" means that block.
+- **Text you selected on the page.**
 
-For overviews, comparisons and next-step choices, replies can include a contextual interface: live plugin widgets, metrics, trends, tables and actions composed for your request. These use the same components as the rest of the admin and remain available when you reopen the chat. Choosing a generated action follows the same permission, approval and audit rules as any other assistant action.
+Each chip comes off with its ×. To add something else, type `@` or click the **@** chip: a page or post, a file from the library, a global set, the collections or the design system. Keep typing to narrow it down. For a file, the assistant gets its details, not what the image shows.
 
-Installed widgets become available automatically. Plugins can also contribute schema-described components through the shared [generative UI SDK](/plugins/generative-ui), powered by json-render.
+Something that hasn't changed since your last message isn't sent again. Each message you send shows what it carried; click it to go there.
+
+**Account**, **Users**, **Licence** and **Audit Log** stay private: they show no chip, and the assistant gets only the address of the screen.
+
+## Use a skill
+
+A skill is a ready-made way of working. Type `/` at the start of a line and pick one, then write the details in your message, or send the skill alone when it needs none.
+
+| Skill | Does |
+|---|---|
+| `/proofread` | Fixes mistakes and tightens the copy of a page |
+| `/build-page` | Designs a complete page from a brief, with your design system and components |
+| `/write-post` | Drafts a blog post for you to review |
+| `/audit-site` | Checks every published page for SEO, GEO and accessibility problems, and proposes fixes |
+| `/adjust-design` | Changes the design system so the site feels a certain way |
+
+You see only the skills you have permission to use, and plugins can add their own.
+
+## Watch it work
+
+You see everything the assistant does, as it does it: a summary of its reasoning, every action it takes with what went in and what came out, and its answer. Changes appear in the admin straight away.
+
+For overviews, comparisons and choices about what to do next, a reply can include a small interface built for your question: live widgets from your plugins, numbers, trends, tables and buttons. They use the same components as the rest of the admin, and they're still there when you reopen the chat. A button in a reply follows the same permission, approval and audit rules as anything else the assistant does.
 
 ## Safety
 
-- It acts **as you**: same permissions, same audit log (marked *assistant*).
-- It never sees security abilities — tokens, passwords, users and roles.
-- **Deleting** anything, and admin-level changes, wait for your approval in the chat. Under **Settings → Assistant** you can require approval for every change instead.
-- Site content, form submissions, comments and anything else it reads are treated as data, never as instructions. That goes for the page on view too. Once a chat has read such content, it can still save drafts on its own: nothing there is live until it's published, and the history keeps what was there. Anything else it wants to do waits for your approval, including publishing, so text planted by someone else cannot reach your visitors or do anything you can't undo.
-- Chats are private to you: nobody else can list, open, continue or delete them, and they are deleted with your account. Titles and histories are encrypted in the database.
+- **It acts as you.** It has your permissions, and its changes go in the audit log as yours, marked *assistant*.
+- **It never touches security.** Tokens, passwords, users and roles are out of its reach.
+- **You approve what matters.** Deleting anything, and admin-level changes, wait for you in the chat: **Allow**, **Decline**, or **Allow All**. To approve every change instead, set **Ask Before** to **Every change** in **Settings → Assistant**.
+- **Content is never an instruction.** Site content, form submissions, comments and anything else it reads are treated as data, the page on view too. Once a chat has read such content, it can still save drafts on its own: nothing there is live until it's published, and the history keeps what was there. Anything else waits for your approval, publishing included, so text planted by someone else can't reach your visitors or do anything you can't undo.
+- **Chats are private.** Nobody else can list, open, continue or delete yours, and they're deleted with your account. Titles and histories are encrypted in the database.
 
-## Translation
+To use the assistant, a person's role needs the **Use the AI assistant** permission. See [Users and roles](/operations/users-and-roles).
 
-With the assistant set up, the [languages plugin](/content/languages) can translate pages: only the text is sent, and the result opens as a draft.
+## Your chats
 
-## Costs
+- **Start a new chat** with the **+** at the top of the chat. It suggests what to work on, based on what you have on view; a suggestion goes into the chat box for you to read and send.
+- **Find an old chat** with the history button at the top of a chat. A new chat lists all of them by age, and at full size they have a column of their own.
+- **Delete a chat** with **Delete Chat**, from the trash button on its row, its right-click menu or the three-dot menu at the top of the chat, then confirm. It's gone for good. **Discard Draft** does the same for an unsent new chat. Stop a running reply first.
 
-The assistant uses your API key and Anthropic's pricing. Lettern caches the stable part of every request (instructions, tools, earlier messages), so long conversations stay affordable. Token usage is stored with each conversation.
+A chat names itself after the first reply, and it's saved only once you send the first message, so empty chats never pile up. An unsent message stays with its chat while you move around the admin; reloading the page clears it, and brings back the chat you had open. Switching to another chat stops following the previous reply.
+
+## Translate pages
+
+With the assistant set up, the [languages plugin](/content/languages) can translate pages too. Only the text is sent, and the translation opens as a draft.
+
+## What it costs
+
+The assistant uses your API key at Anthropic's prices. Lettern caches the parts of each request that don't change (instructions, tools, earlier messages), so long conversations stay affordable. The token usage of each chat is stored with it.
+
+## For developers
+
+### Environment variables
+
+Instead of the admin setting, you can set `ANTHROPIC_API_KEY` in `.env`. To send requests through an API gateway or proxy, set `ANTHROPIC_BASE_URL` there: an `https://` address, or `http://` for localhost only. It can't be set from the admin, since every chat would pass through it.
+
+### Abilities and audit
+
+The assistant runs [abilities](/agents/abilities) through the `assistant` transport, the same set MCP agents get. An ability can opt out with `expose: ['assistant' => false]`. Which changes need approval follows the ability's annotations: `destructive` always asks, and so does any ability not exposed to MCP. See the annotations under [Abilities](/agents/abilities#for-developers).
+
+### Interfaces in replies
+
+Installed widgets are available in replies automatically. Plugins can add components described by a schema through the shared [generative UI SDK](/plugins/generative-ui), built on json-render.
+
+### Skills
+
+Skills are registered with `cms()->skills()->register()`. The same skills are prompts for [MCP](/agents/mcp) clients.

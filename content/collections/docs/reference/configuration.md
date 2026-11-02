@@ -1,15 +1,20 @@
 ---
 id: 01m5wmrf5tccz43yt9s7nj457y
 title: Configuration
-position: 4
-group: 'Your project'
-description: Environment variables for secrets and server behavior, YAML for everything you want in git, and settings for what editors change.
+position: 1
+description: Where each setting lives, from secrets in .env to YAML in git and what people change in the admin.
 ---
-Lettern has three layers of configuration. Use the one that matches who changes the value and where it should live.
+Lettern keeps configuration in three places. Pick the one that matches who changes a value and where it should live:
+
+| Where | For | Who changes it |
+|---|---|---|
+| `.env` | Secrets and what differs per server | Whoever runs the server |
+| YAML in `config/` | What describes the site, kept in git | Developers, and the admin when it saves settings |
+| **Settings** in the admin | What people change day to day | Anyone allowed to manage settings |
 
 ## Environment (`.env`)
 
-Server-specific values and secrets. Never commit this file.
+Values for this server, and secrets. Never commit this file.
 
 | Variable | Purpose |
 |---|---|
@@ -52,7 +57,14 @@ language: en
 
 ## Settings
 
-Everything people change in **Settings** is a settings namespace — the site itself (name, URL, timezone, language, favicon → `config/site.yaml`), the admin (its language and the default sidebar and home screen → `config/admin.yaml`), each module's (entries per page, audit retention) and each plugin's (email transport, SEO defaults, the assistant's model). Each is saved to `config/<namespace>.yaml`, except fields marked secret (passwords, API keys), which are encrypted into `storage/secrets.json` and never written to YAML or shown again in the admin.
+Everything people change in **Settings** belongs to a settings namespace:
+
+- the site itself: name, URL, timezone, language and favicon, in `config/site.yaml`
+- the admin: its language and the default sidebar and home screen, in `config/admin.yaml`
+- each module: entries per page, audit retention
+- each plugin: email transport, SEO defaults, the assistant's model
+
+Each is saved to `config/<namespace>.yaml`, except fields marked secret (passwords, API keys). Those are encrypted into `storage/secrets.json`, never written to YAML, and never shown again in the admin.
 
 Settings are abilities too: `settings/list`, `settings/get` and `settings/update`. See [Settings](/plugins/settings) to add your own.
 

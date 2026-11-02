@@ -2,31 +2,59 @@
 id: 01m5wn8r9r15yvxknmkg7x1nfh
 title: Block settings
 position: 1
-group: 'In the editor'
-description: The shared Content, Design and Interact inspector for every block, with live site rendering and inline block editing.
+description: Select any block to change what it says, how it looks and how it moves.
 ---
-Pages, posts, templates and components use one live block editor. The surface uses Lettern's site renderer, so authored content, styles, bindings and layout stay visible while you work. Edit text inline, insert any compatible block and use the shared inspector for content, design and interactions.
+Select any block and its settings open in the sidebar on the right, in three tabs: **Content** for what it says, **Design** for how it looks, and **Interact** for how it moves. Every block has the same three tabs, on every page, template and component.
 
-## The workspace
+![A heading selected on the home page, with its Design settings open on the right.](/media/screens/editor.webp)
 
-- **Live content** — rendered blocks in their real layout. An article follows its narrow template; a landing page keeps its designed composition. Click text to write without a selection frame; click anywhere else in a block to select it. Pointing at a block outlines it. Clicking never adds content.
-- **Insertion** — rest the pointer between blocks for a boundary line with a `+`, which opens the quick inserter (search, suggestions and **Browse all**). The line stays on its boundary while you choose. **Insert before/after** in a block's menu, an empty container's `+` and **Insert block** in the toolbar use the same catalog and structural rules. See [Writing](/editing/writing#adding-blocks).
-- **Block toolbar** — a selected block gets one toolbar above it: the drag handle, select parent, the block's name, **Move up** and **Move down**, and a **⋯** menu (insert before or after, duplicate, make a component, delete). Its settings open in the sidebar. Press `Esc` or drop outside a valid target to cancel a drag. The same validation and undo rules apply to every way of moving. The toolbar stays in view while a tall block scrolls and leaves with the block.
-- **Outline** — navigate the nested structure and select blocks that are difficult to reach on the page, including hidden or bound content.
-- **Right sidebar** — entry details, **History** and plugin tabs. Selecting a block opens its shared inspector, and writing in a block shows its inspector while the sidebar is open; the entry-name button returns to record details.
+The page you edit is the real site, drawn by the same engine that builds it for visitors. What you see while you work is what they get.
 
-## Content, Design, Interact
+## Open a block's settings
 
-- **Content** edits a block's settings or connects them to data with the database icon. Visibility, anchors, classes and attributes use the same panel. See [Data and Repeat](/design/data).
-- **Design** edits CSS: layout, position, size, spacing, typography, fill, border, effects, transform and transition. Choose the screen size and state to edit responsive or hover/focus variants. See [Styles](/design/styles).
-- **Interact** adds [animations](/design/animations) and [interactions](/design/interactions).
+1. Click a block anywhere that isn't text. Or, while typing in it, press `Esc`.
+2. Its settings open on the right, under its name.
+3. Pick **Content**, **Design** or **Interact**.
 
-Text option groups use the inspector's width and wrap in narrower panels. Use `Tab` to focus an option group and the arrow keys to choose an option. All collections share these controls and the same block catalog.
+If the sidebar is closed, press `⌘.` to open it. To get back to the page's own details, press the back button at the top of the sidebar, named after the collection (**Page**, **Dish**…).
 
-## Checking interactions
+The header also lets you rename the block (double-click its name), **Make a Component** from it, **Duplicate** it or **Delete** it.
 
-The editor already shows live rendering. The entry toolbar's **Preview** opens the current working content and page interactions without editing affordances. It includes unsaved title, content, URL and author changes, and is available before the first save. Return to the same surface to keep editing; there is no separate writing mode or second content model.
+## Content
 
-## Saving and publishing
+Change what the block says or shows, like a heading's level or a button's link. Then, further down:
 
-The shared editor saves a working copy as you type. **Publish** in the top bar makes the reviewed version public. Templates and components use the same lifecycle; publishing a shared source rebuilds pages that depend on it. See [Entries](/content/entries).
+- **Visibility** hides a block on the site, or shows it only when some data says so.
+- **Element** sets a layer name, an anchor to link to (`#menu`), extra CSS classes and HTML attributes.
+
+Any setting with a database icon can be connected to your content instead of typed in, like a dish's price or the latest posts. See [Showing content](/design/data).
+
+## Design
+
+Change how the block looks, section by section: **Layout**, **Position**, **Size**, **Spacing**, **Typography**, **Fill**, **Border**, **Effects**, **Transform** and **Transition**, plus **CSS** for any other property.
+
+Pick colors, fonts and sizes from your [design system](/design/design-system), and the block keeps matching the rest of the site when those change.
+
+### Different screens and states
+
+Use the screen menu at the top of the settings to switch between **Desktop**, **Tablet** and **Phone**. A change made for **Tablet** applies to tablets and phones, one for **Phone** only to phones.
+
+The state bar picks what you're styling: **Default**, **Hover**, **Pressed** or **Focus**, and more under its own menu, like **Dark Mode**. See [Styles](/design/styles).
+
+## Interact
+
+Add [animations](/design/animations), like fading in as the block scrolls into view, and [interactions](/design/interactions), like a mobile menu that opens and closes.
+
+## Check it before you publish
+
+The editor already shows the real page, so most of the time you just look. To try links, menus and animations without the editing controls, choose **Preview** in the **⋯** menu at the top. It shows your latest changes, even ones not saved yet.
+
+## Save and publish
+
+Your work saves by itself as you go. Nobody sees it until you press **Publish** at the top. Templates and components work the same way: publishing one updates every page that uses it. See [Entries](/content/entries).
+
+## Keyboard tips
+
+- In a row of options, press `Tab` to reach it and the arrow keys to choose.
+- `⌘D` duplicates the selected block, `⌫` deletes it.
+- More in [Writing](/editing/writing#keyboard-shortcuts).

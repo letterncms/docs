@@ -2,18 +2,45 @@
 id: 01m5wn8r9fm7mdbms8ycav18sz
 title: Collaboration
 position: 4
-group: 'In the editor'
-description: See who else is on a page, discuss it in comment threads, and never lose work to a simultaneous edit.
+description: See who else is on a page, talk it through in comments, and never lose work to someone else's save.
 ---
-## Presence
+When you build a site with a client or a team, Lettern shows who else has a page open, lets you discuss it in comments right next to it, and makes sure nobody's save quietly wipes out someone else's work.
 
-Open an entry and the toolbar shows everyone else who has it open, with a ring around people who are typing. If someone saves while you are reading, a **Reload** button appears. Presence works over short heartbeats, so it needs no websockets and runs on shared hosting.
+![A comment thread on the home page: a question from the studio and the client's answer.](/media/screens/editing-comments.webp)
 
-## Comments
+## See who's here
 
-Open the **Comments** tab in an entry's side panel. Start a thread, reply, and mention people with `@` — mentioned people get an email with a link to the entry. Replies notify everyone already in the thread. **Resolve** a thread when it is done; a new reply reopens it.
+Open a page and the toolbar at the top shows everyone else who has it open. A ring marks the people who are typing. Point at the faces to see who is editing and who is just viewing.
 
-The **Comments** widget lists open threads that mention you or sit on entries you created — add it to your home screen with **Customize → Add widget**.
+If someone saves while you have the page open, a button appears: **Marta saved · Reload**. Press it to load their version. Any edits you haven't saved yet are replaced.
+
+## Comment on a page
+
+1. Open the page, then the **Comments** tab in the sidebar on the right. Press `⌘.` if the sidebar is closed.
+2. Write your comment and press **Comment**, or `⌘↵`.
+3. To bring someone in, type `@` and pick their name. They get an email with a link to the page.
+
+Everyone can **Reply** under a thread, and everyone already in it gets an email. When it's settled, press the check mark to **Resolve** it. Resolved threads fold away at the bottom, and a new reply reopens them.
+
+To edit or delete your own comment, use the **⋯** next to it. Deleting a comment deletes its replies too.
+
+::: callout {"props":{"tone":"tip","text":"Keep an eye on everything waiting for you: on the dashboard, press <strong>Customize → Add Widget</strong> and add <strong>Comments</strong>. It lists open threads that mention you or sit on pages you created."}}
+:::
+
+The assistant can take part too. Ask it to *"go through the open comments on this page"*.
+
+## When two people edit at once
+
+If two people change the same page, the later save never silently overwrites the earlier one. Instead, a bar says who changed it, and saving pauses until you choose:
+
+- **Load Their Version** takes their changes and drops yours.
+- **Keep Mine** saves your version over theirs, on purpose.
+
+Until you choose, Lettern warns you before you leave the page, so your edits aren't lost by accident. Publishing and moving pages are protected the same way. See [Entries](/content/entries).
+
+## For developers
+
+### Permissions
 
 | Permission | Allows |
 |---|---|
@@ -21,8 +48,14 @@ The **Comments** widget lists open threads that mention you or sit on entries yo
 | `comments.create` | Commenting, replying, resolving, editing and deleting your own comments |
 | `comments.moderate` | Editing and deleting anyone's comments |
 
-Agents can take part too: `comments/list`, `comments/create` and `comments/resolve` are abilities — ask the assistant to "go through the open comments on this page".
+### Abilities
 
-## Edit conflicts
+Comments are abilities, for the assistant, MCP and the API: `comments/list`, `comments/create`, `comments/update`, `comments/resolve`, `comments/delete`, `comments/people` and `comments/inbox`. Presence uses `collab/presence`.
 
-If two people change the same entry, the later save does not silently overwrite the earlier one. Lettern shows who changed it, pauses autosave, and lets you load their version or explicitly keep yours. Your local edits remain protected from accidental navigation while the conflict is unresolved. Publication and structural commands use the same version checks, so a stale publish or tree move cannot silently overwrite a newer record. See [Entries](/content/entries#working-together).
+### How presence works
+
+Each open editor sends a short heartbeat every 15 seconds, kept in the cache. It needs no websockets, so it runs on shared hosting. A hidden browser tab stops sending until it's visible again.
+
+### Version checks
+
+Every save, publish and move sends the version it started from. If the entry has changed since, the request fails with a `conflict` instead of overwriting it.
