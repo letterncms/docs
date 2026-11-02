@@ -10,7 +10,7 @@ A plugin's admin code is an ES module, built with Vite to `dist/admin.js` and lo
 | Package | Holds |
 |---|---|
 | `react` | React 19 — one copy for everyone. |
-| `@letterncms/sdk` | Talking to Lettern: `t` and `plural` (translations), `brand` (the product's name, links and images: never write the name, and in a translated string use the `{brand}` placeholder, as in `t('Ask {brand}')`), `run`, `request`, `eventStream`, `useAbility`, `useAction`, `invalidate`, the router (`navigate`, `Link`, `useLocation`, `useTab` — tabs kept in the URL as `?tab=`, so a refresh opens the same one), `can`, `useManifest`, `useScreenContext`, `registry` and `events`. |
+| `@letterncms/sdk` | Talking to Lettern: `t` and `plural` (translations), `brand` (the product's name, links and images: never write the name, and in a translated string use the `{brand}` placeholder, as in `t('Ask {brand}')`), `run`, `request`, `eventStream`, `useAbility`, `useAction`, `invalidate`, the router (`navigate`, `Link`, `useLocation`, `useTab` — tabs kept in the URL as `?tab=`, so a refresh opens the same one), `can`, `useManifest`, `useScreenContext`, `registry` (with `registry.composer` for `@` and `/` in a chat) and `events`. |
 | `@letterncms/ui` | The admin's primitives: `Button`, `IconButton`, `Input`, `Textarea`, `Select`, `Switch`, `Checkbox`, `Segmented`, `Tabs`, `Field`, `Fields`, `Page`, `Section`, `List`, `Dialog`, `confirm`, `Popover`, `Menu`, `SidebarRow`, `Tooltip`, `Badge`, `Avatar`, `Spinner`, `EmptyState`, `SortableTree`, `BlueprintEditor`, `FieldsEditor`, `Icon` and `toast`, plus `useShortcut`, `slugify` and the color scheme. |
 | `@dnd-kit/*` | Drag and drop (`core`, `sortable`, `utilities`) — shared, so no module bundles its own. |
 
@@ -248,12 +248,48 @@ import { useScreenContext } from '@letterncms/sdk'
 useScreenContext({
   kind: 'order',
   data: () => ({ id: order.id, status: order.status }),  // read only when it's needed; takes the place of the screen's text
-  selection: line ? { id: line.id, label: line.title, data: () => line } : null,
+  items: line ? [{ id: line.id, label: line.title, icon: 'cart', read: () => line }] : [],  // what else it offers, like the block selected in the builder
   flush: () => save(),                                   // bring it up to date before someone reads or changes it
 })
 ```
 
-The entry editor gives the entry and saves first; the block workspace gives the selected block. To read it, use `useScreen()`, or `screenContext.get()` and `screenText(limit)`. A screen with something to keep to itself sets `private: true` on its route. After changing content from outside a screen, `events.emit('content.changed')` makes an open entry editor show the new version, unless it has unsaved edits.
+The entry editor gives the entry and saves first; the block workspace offers the selected blocks. To read it, use `useScreen()`, or `screenContext.get()` and `screenText(limit)`. A screen with something to keep to itself sets `private: true` on its route. After changing content from outside a screen, `events.emit('content.changed')` makes an open entry editor show the new version, unless it has unsaved edits.
+
+### @ and / in a chat
+
+Everything a chat message carries is a `ContextItem`: an `id`, a `label`, optionally an `icon`, a `kind`, a `to` (an admin path to open it at) and `read` (what it says, called when a message goes out). The page on view, what a screen offers and what's picked with `@` are all the same thing, shown as the same chip.
+
+To offer your own under `@` or `/`, register a source. It searches by what's typed after the trigger, and it's harmless without the assistant installed:
+
+```typescript
+import { registry, run, t } from '@letterncms/sdk'
+
+registry.composer.set('orders', {
+  id: 'orders', trigger: '@', label: t('Orders'), order: 30,
+  search: async (query) => (await run('orders/search', { query, limit: 5 })).map((order) => ({
+    id: `order:${order.id}`, kind: 'order', label: order.number, detail: order.customer, icon: 'cart',
+    to: `/commerce/orders/${order.id}`,
+    read: () => run('orders/get', { id: order.id }),
+  })),
+})
+```
+
+Reading through `run` keeps your ability's permission check. What picking a line does follows from what it has: `perform` runs it, `insert` writes text in the message, `skill` asks for that skill, and without any of those it's attached.
+
+Skills are registered on the server, and every agent gets them: `/` in the chat, prompts over MCP.
+
+```php
+cms()->skills()->register('order-summary', [
+    'label' => 'Summarize Orders',
+    'description' => 'What sold this week, and what stands out.',
+    'icon' => 'cart',
+    'prompt' => 'Summarize the orders of {period}. Lead with what stands out.',
+    'arguments' => [['name' => 'period', 'description' => 'Which days', 'required' => true]],
+    'permission' => 'commerce.view',
+]);
+```
+
+In a chat, the person's message gives the arguments.
 
 A sidebar panel that edits blueprint fields declares their handles with `fieldHandles` on its registration:
 

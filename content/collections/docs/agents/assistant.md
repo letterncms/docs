@@ -23,13 +23,19 @@ In the builder the canvas scales to the room that's left, so a page keeps its la
 
 ### What it can see
 
-The composer shows what your message will carry, as chips you can remove with their ×:
+The chips in the composer show what your message will carry. Each comes off with its ×.
 
-- **The page on view**. In an editor that is the entry as it stands, saved first, so the assistant works on what you see. On any other screen it is the screen's text. Values in form fields are not part of it. A page that hasn't changed since your last message isn't sent again.
+Without you doing anything, that's what you have on view:
+
+- **The page on view**. In an editor that is the entry as it stands, saved first, so the assistant works on what you see. On any other screen it is the screen's text. Values in form fields are not part of it.
 - **The block selected in the builder**, so "rewrite this" means that block.
 - **Text you selected on the page**.
 
-**Account**, **Users**, **Licence** and **Audit Log** stay private: they show no chip, and the assistant gets only the address of the screen. Each message you send shows the page it came from, and clicking that takes you back there.
+Type `@`, or click the **@** chip, to attach anything else: a page or post, a file from the library, a global set, the collections or the design system. Keep typing to narrow it down. For a file the assistant gets its details, not what the image shows. Something that hasn't changed since your last message isn't sent again.
+
+Type `/` at the start of a line for a skill, a ready-made way of working: `/proofread` this page, `/build-page`, `/write-post`, `/audit-site`, `/adjust-design`. Write the details in your message, or send the skill alone when it needs none.
+
+**Account**, **Users**, **Licence** and **Audit Log** stay private: they show no chip, and the assistant gets only the address of the screen. Each message you send shows what it carried, and clicking it takes you there.
 
 ### Your chats
 
