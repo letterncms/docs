@@ -9,13 +9,13 @@ description: Claude inside the admin. It builds, writes and fixes things with th
 
 Add an Anthropic API key under **Settings → Assistant** (stored encrypted), or set `ANTHROPIC_API_KEY` in `.env`. To route requests through an API gateway or proxy, set `ANTHROPIC_BASE_URL` in `.env` (HTTPS only); it cannot be changed from the admin, since every chat would pass through it. Choose the default model for new chats — Claude Opus 5.5 unless you change it — and how much effort it may spend thinking. **Model for Small Tasks** names chats and suggests what to do next, so it runs often: Claude Haiku 5.5 unless you change it. Anyone can switch models from the picker under the chat box: the choice applies from the next message, stays with that chat, and becomes their starting model for new chats.
 
-The assistant is optional: everything else in Lettern works without it. Until a key is set, **New Chat** shows only to those who can add one, and opens the setup; nobody else sees an assistant they cannot use. If you don't use AI, **Unpin New Chat** on that screen (or **Unpin** on its context menu) puts it under **More**, where it stays one click away.
+The assistant is optional: everything else in Lettern works without it. Until a key is set, **Chat** shows only to those who can add one, and opens the setup; nobody else sees an assistant they cannot use. If you don't use AI, **Hide Chat** on that screen takes it out of the top bar; `⌘J` still opens the setup, with **Show Chat** to bring it back.
 
 ## Using it
 
-Click **New Chat** at the top of the sidebar or **Chat** in the top bar, press `⌘J`, or type a request in the command palette (`⌘K`) and press `Enter`. It opens ready to type in.
+Click **Chat** in the top bar, on every screen, press `⌘J`, or type a request in the command palette (`⌘K`) and press `Enter`. It opens ready to type in.
 
-The chat opens at the right edge of the window, on any screen, and the page stays open and usable beside it. Whatever you ask it to change shows there as it happens, in the builder too. Links in its replies open in the page next to the chat, so you can keep going. Drag its left edge to make it wider. `⌘J` from inside the chat, `Esc` or the close button puts it away; a reply keeps coming, and **New Chat** in the sidebar shows when it is working or waiting for your go-ahead.
+The chat opens at the right edge of the window, on any screen, and the page stays open and usable beside it. Whatever you ask it to change shows there as it happens, in the builder too. Links in its replies open in the page next to the chat, so you can keep going. Drag its left edge to make it wider. `⌘J` from inside the chat, `Esc` or the close button puts it away; a reply keeps coming, and **Chat** in the top bar shows when it is working or waiting for your go-ahead.
 
 **Full Size** grows the same chat over the whole window, with your chats beside it and a URL of its own to bookmark. The page you came from stays open underneath, and **Back to the Page** returns to it as you left it. Opening anything else from the sidebar does the same with that screen.
 
@@ -41,7 +41,7 @@ Type `/` at the start of a line for a skill, a ready-made way of working: `/proo
 
 Your chats are in one place, in the chat: a new chat lists all of them by age, the history button at the top of a chat takes you there, and at full size they have a column of their own. To permanently remove a chat, choose **Delete Chat** from the trash button on its row, its right-click menu or the three-dot menu at the top of the chat, then confirm; **Discard Draft** does the same for an unsent new chat. Stop any running reply first.
 
-**New Chat**, and the **+** at the top of the chat, start a fresh conversation; an unsent one waits there. It suggests what to work on, based on what you have on view; a suggestion goes into the composer for you to read and send. A chat names itself after the first reply. Empty chats are never saved: a conversation is created only when you send the first message. Drafts stay attached to their chat while you move around the admin in the same browser session; reloading clears unsent drafts, and brings back the chat you had open. Selecting another conversation stops listening to the previous reply.
+The **+** at the top of the chat starts a fresh conversation; an unsent one waits there. It suggests what to work on, based on what you have on view; a suggestion goes into the composer for you to read and send. A chat names itself after the first reply. Empty chats are never saved: a conversation is created only when you send the first message. Drafts stay attached to their chat while you move around the admin in the same browser session; reloading clears unsent drafts, and brings back the chat you had open. Selecting another conversation stops listening to the previous reply.
 
 You see what it does as it works: its reasoning summary, every tool call with its input and result, and its answer. Changes appear in the admin immediately.
 
