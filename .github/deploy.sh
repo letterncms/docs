@@ -9,6 +9,12 @@
 set -euo pipefail
 cd "$HOME/$1"
 
+# Without its database a site would make itself an empty one and publish that.
+if [ ! -f storage/installed.json ]; then
+  echo "The site in $1 isn't installed. Run php cms install there first." >&2
+  exit 1
+fi
+
 git fetch --quiet origin main
 before="$(git rev-parse HEAD)"
 kept=
