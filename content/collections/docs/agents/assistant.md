@@ -19,7 +19,7 @@ The assistant runs on your own Anthropic API key, so you pay Anthropic directly 
 
 ![The assistant's settings: the API key, the models, and when it asks for approval.](/media/screens/agents-assistant-settings.webp)
 
-On the same screen you choose the **Default Model** for new chats (Claude Opus 5.5 unless you change it) and its **Effort**: how much it may think before it answers. The **Model for Small Tasks** names chats and suggests what to do next. It runs often, so it's a fast, inexpensive one: Claude Haiku 5.5 unless you change it.
+On the same screen you choose the **Default Model** for new chats (Claude Sonnet 5.5 unless you change it) and its **Effort**: how much it may think before it answers. Sonnet handles everyday site work well; pick Claude Opus 5.5 or Claude Fable 5.1 for harder jobs. The **Model for Small Tasks** names each chat after its first reply, so it's a fast, inexpensive one: Claude Haiku 5.5 unless you change it.
 
 You can also switch models from the picker under the chat box. Your choice applies from the next message, stays with that chat, and becomes your starting model for new chats.
 
@@ -95,7 +95,7 @@ To use the assistant, a person's role needs the **Use the AI assistant** permiss
 
 ## Your chats
 
-- **Start a new chat** with the **+** at the top of the chat. It suggests what to work on, based on what you have on view; a suggestion goes into the chat box for you to read and send.
+- **Start a new chat** with the **+** at the top of the chat. What you have on view is attached, ready for your first message.
 - **Find an old chat** with the history button at the top of a chat. A new chat lists all of them by age, and at full size they have a column of their own.
 - **Delete a chat** with **Delete Chat**, from the trash button on its row, its right-click menu or the three-dot menu at the top of the chat, then confirm. It's gone for good. **Discard Draft** does the same for an unsent new chat. Stop a running reply first.
 
