@@ -1,0 +1,30 @@
+# Deploys main to docs.lettern.org: the server pulls, updates its packages and builds (deploy.sh).
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github
+
+      - name: Deploy on the server
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" >~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
+          echo '801e917ab.agencyhosting.be ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFFDGai03UEmlAefu4SwR+y5i9Rkqs3VTOybi5pju4Sy' >~/.ssh/known_hosts
+          ssh vd36072@801e917ab.agencyhosting.be bash -s -- docs <.github/deploy.sh

@@ -80,33 +80,33 @@ updated_at: '2026-10-30T12:00:00+00:00'
 
 :::::: box {"id":"h-web"}
 ::::::: box {"id":"h-web-h","props":{"tag":"h2"},"style":{"base":{"fontSize":"token:text.sm","lineHeight":"1.25rem","letterSpacing":"token:tracking.normal","fontWeight":500}}}
-:::::::: link {"id":"h-web-t","props":{"label":"On the website","url":"https://lettern.eu"},"style":{"base":{"display":"block","marginBottom":"0.5rem","fontSize":"token:text.sm","lineHeight":"1.25rem","fontWeight":500,"color":"token:color.ink","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease"},"hover":{"color":"token:color.muted"}}}
+:::::::: link {"id":"h-web-t","props":{"label":"On the website","url":"https://lettern.org"},"style":{"base":{"display":"block","marginBottom":"0.5rem","fontSize":"token:text.sm","lineHeight":"1.25rem","fontWeight":500,"color":"token:color.ink","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease"},"hover":{"color":"token:color.muted"}}}
 ::::::::
 :::::::
 
 ::::::: box {"id":"h-web-l","props":{"tag":"ul"}}
 :::::::: box {"id":"h-web-li0","props":{"tag":"li"}}
-::::::::: link {"id":"h-web-a0","props":{"label":"Download","url":"https://lettern.eu/download"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+::::::::: link {"id":"h-web-a0","props":{"label":"Download","url":"https://lettern.org/download"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 :::::::::
 ::::::::
 
 :::::::: box {"id":"h-web-li1","props":{"tag":"li"}}
-::::::::: link {"id":"h-web-a1","props":{"label":"Plugin store","url":"https://lettern.eu/store"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+::::::::: link {"id":"h-web-a1","props":{"label":"Plugin store","url":"https://lettern.org/store"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 :::::::::
 ::::::::
 
 :::::::: box {"id":"h-web-li2","props":{"tag":"li"}}
-::::::::: link {"id":"h-web-a2","props":{"label":"Changelog","url":"https://lettern.eu/changelog"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+::::::::: link {"id":"h-web-a2","props":{"label":"Changelog","url":"https://lettern.org/changelog"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 :::::::::
 ::::::::
 
 :::::::: box {"id":"h-web-li3","props":{"tag":"li"}}
-::::::::: link {"id":"h-web-a3","props":{"label":"Support","url":"https://lettern.eu/support"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+::::::::: link {"id":"h-web-a3","props":{"label":"Support","url":"https://lettern.org/support"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 :::::::::
 ::::::::
 
 :::::::: box {"id":"h-web-li4","props":{"tag":"li"}}
-::::::::: link {"id":"h-web-a4","props":{"label":"Community","url":"https://lettern.eu/community"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
+::::::::: link {"id":"h-web-a4","props":{"label":"Community","url":"https://lettern.org/community"},"style":{"base":{"color":"token:color.muted","fontSize":"token:text.sm","lineHeight":"1.25rem","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease","display":"inline-block","paddingBlock":"0.1875rem"},"hover":{"color":"token:color.ink"}}}
 :::::::::
 ::::::::
 :::::::

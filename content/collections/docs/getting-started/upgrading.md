@@ -47,7 +47,7 @@ A site without `runtime/`, a folder with `.git`, `CMS_LOCKDOWN` and `CMS_ALLOW_F
 
 ## What changed
 
-The [changelog](https://lettern.eu/changelog) lists every release. Each package also has its own `CHANGELOG.md`, in English.
+The [changelog](https://lettern.org/changelog) lists every release. Each package also has its own `CHANGELOG.md`, in English.
 
 ## Plugins
 
