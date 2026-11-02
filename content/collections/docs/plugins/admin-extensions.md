@@ -10,7 +10,7 @@ A plugin's admin code is an ES module, built with Vite to `dist/admin.js` and lo
 | Package | Holds |
 |---|---|
 | `react` | React 19 — one copy for everyone. |
-| `@letterncms/sdk` | Talking to Lettern: `t` and `plural` (translations), `brand` (the product's name, links and images: never write the name, and in a translated string use the `{brand}` placeholder, as in `t('Ask {brand}')`), `run`, `request`, `eventStream`, `useAbility`, `useAction`, `invalidate`, the router (`navigate`, `Link`, `useLocation`, `useTab` — tabs kept in the URL as `?tab=`, so a refresh opens the same one), `can`, `useManifest`, `registry` and `events`. |
+| `@letterncms/sdk` | Talking to Lettern: `t` and `plural` (translations), `brand` (the product's name, links and images: never write the name, and in a translated string use the `{brand}` placeholder, as in `t('Ask {brand}')`), `run`, `request`, `eventStream`, `useAbility`, `useAction`, `invalidate`, the router (`navigate`, `Link`, `useLocation`, `useTab` — tabs kept in the URL as `?tab=`, so a refresh opens the same one), `can`, `useManifest`, `useScreenContext`, `registry` and `events`. |
 | `@letterncms/ui` | The admin's primitives: `Button`, `IconButton`, `Input`, `Textarea`, `Select`, `Switch`, `Checkbox`, `Segmented`, `Tabs`, `Field`, `Fields`, `Page`, `Section`, `List`, `Dialog`, `confirm`, `Popover`, `Menu`, `SidebarRow`, `Tooltip`, `Badge`, `Avatar`, `Spinner`, `EmptyState`, `SortableTree`, `BlueprintEditor`, `FieldsEditor`, `Icon` and `toast`, plus `useShortcut`, `slugify` and the color scheme. |
 | `@dnd-kit/*` | Drag and drop (`core`, `sortable`, `utilities`) — shared, so no module bundles its own. |
 
@@ -109,7 +109,7 @@ The admin starts loading code and data on link hover or focus. While an uncached
 
 The sidebar has two states, both drawn from registered sections and items. The screen on view decides which one shows:
 
-- **The main sidebar** — the items each person *pinned*, section by section, then **More** for every other item, then what plugins add after them (the assistant's chats). The kernel registers the sections `main` (no heading) and `content`, so the main sidebar is about content; each collection is an item too (`collection.<handle>`, in the section its definition names, pinned unless it is a system collection like templates and components).
+- **The main sidebar** — the items each person *pinned*, section by section, then **More** for every other item. The kernel registers the sections `main` (no heading) and `content`, so the main sidebar is about content; each collection is an item too (`collection.<handle>`, in the section its definition names, pinned unless it is a system collection like templates and components).
 - **The settings sidebar** — on any settings page: a way back, then the settings pages in `settings` sections. The kernel registers `account` (no heading), `site`, `tools` and `system` (*Administration*), and the blocks and site plugins add `design`; each settings namespace is an item (`settings.<namespace>`, in the section it was registered with). Settings are a place to visit, not something to arrange: these items are never pinned and keep their registered order.
 
 | Item key | Meaning |
@@ -119,7 +119,8 @@ The sidebar has two states, both drawn from registered sections and items. The s
 | `order` | Its default place in the section. |
 | `pinned` | In everyone's sidebar until they pin their own; otherwise it waits under **More**. Keep it for screens people open every week. |
 | `shortcut` | A key that opens it, shown with the label (e.g. `mod+j`). |
-| `permission` | Who may open it. `visible` (a `fn (User $user): bool`) decides per person beyond that — the assistant shows **New Chat** only once it can work, or to those who can set it up. |
+| `placement` | `footer` takes it off the list: a `sidebar.footer` panel draws it, under the same pin (the assistant's chat). |
+| `permission` | Who may open it. `visible` (a `fn (User $user): bool`) decides per person beyond that — the assistant shows its chat only once it can work, or to those who can set it up. |
 | `badge` | A callable returning a count (new form submissions), shown with the label. |
 
 ```php
@@ -127,7 +128,7 @@ $admin->section('shop', 'Shop', order: 30);                       // a section o
 $admin->section('billing', 'Billing', order: 15, settings: true); // a section of the settings sidebar
 ```
 
-Every row in the sidebar — pinned, under More, settings, chats — behaves the same: a label too long for the row slides to show its end on hover, the row's main action (**Unpin**, **Pin to Sidebar**, **Delete Chat**) shows as a button on hover, and right-click (long-press on touch) lists everything the row can do, starting with **Open in New Tab**. Everyone pins their own sidebar: **Pin to Sidebar** in **More**, **Unpin**, **Move Up** and **Move Down** on a row, drag to reorder, or **Customize Sidebar…** (in More, the site menu and `⌘K`) for every item at once. Their arrangement is the `sidebar` preference; until they make one they see the site's default — **Save as Default** in Customize Sidebar writes it to the `sidebar` value of the `admin` settings, **Settings → Admin** resets it. A new item lands in its section after what is there, pinned or not as registered; an item that disappears (a plugin turned off) keeps its place for when it returns. Items under More stay in `⌘K` — pinning is about focus, the item's `permission` decides access.
+Every row in the sidebar — pinned, under More, settings — and every `SidebarRow` a plugin draws behaves the same: a label too long for the row slides to show its end on hover, the row's main action (**Unpin**, **Pin to Sidebar**, **Delete Chat**) shows as a button on hover, and right-click (long-press on touch) lists everything the row can do, starting with **Open in New Tab**. Everyone pins their own sidebar: **Pin to Sidebar** in **More**, **Unpin**, **Move Up** and **Move Down** on a row, drag to reorder, or **Customize Sidebar…** (in More, the site menu and `⌘K`) for every item at once. Their arrangement is the `sidebar` preference; until they make one they see the site's default — **Save as Default** in Customize Sidebar writes it to the `sidebar` value of the `admin` settings, **Settings → Admin** resets it. A new item lands in its section after what is there, pinned or not as registered; an item that disappears (a plugin turned off) keeps its place for when it returns. Items under More stay in `⌘K` — pinning is about focus, the item's `permission` decides access.
 
 A module puts its own item away or back with `events.emit('sidebar.pin', { id, pinned })` (unpinning offers **Undo**); `events.emit('sidebar.customize')` opens Customize Sidebar.
 
@@ -167,7 +168,7 @@ The body is a size container: adapt to the column with container variants such a
 
 | Registry | For |
 |---|---|
-| `routes` | Screens. `layout: 'full'` hides the sidebar (editors). |
+| `routes` | Screens. `layout: 'full'` hides the sidebar (editors). `overlay: true` draws one over the screen it was opened from, which stays open underneath: go there and back with `navigate(path, { overlay: true })`, which doesn't ask about unsaved changes. `private: true` keeps a screen's title and text out of `useScreenContext` readers. |
 | `fields` | The editing component for a field type. |
 | `panels` | Components in named slots — see below. |
 | `widgets` | Home-screen widgets (declared in PHP, rendered from here). |
@@ -225,8 +226,9 @@ Each person picks their language in Account → Appearance; Settings → Admin s
 | `entry.sidebar` | Tabs in the entry side panel (give `label` and `icon`) | Same |
 | `entry.body` | Extra content after the main body, supplied through the workspace footer | Same |
 | `entry.editor` | The shared body workspace for the explicitly configured blocks field | `EntryEditorProps` |
-| `shell.aside` | Workspace panels available on every screen — the assistant renders an overlay here | `full` |
-| `sidebar.history` | Navigation that follows the pinned items — the assistant's chats; render nothing until there is something to show, and draw each row with `SidebarRow` from `@letterncms/ui` (its `actions` are the context menu, `quick` ones also buttons on hover) | `collapsed`, `onExpand`, `onNavigate` |
+| `shell.aside` | Workspace panels available on every screen, over the screen | `full` |
+| `shell.dock` | A column between the sidebar and the workspace, on every screen. Draw it with `Dock` from `@letterncms/ui` (`open`, `full`, `label`): the sidebar keeps to its rail beside it, the page stays usable next to it, people can drag it wider, and small windows get it over the page — the assistant's chat | `full` |
+| `sidebar.footer` | Above the account in the sidebar, in both its states — the way to the assistant's chat. Go with a nav item of `placement: footer` to share its pin | `collapsed`, `onNavigate` |
 | `account.sections` | A section of **Account** — core's profile, password, two-factor, appearance and tokens are panels here too (order 10–60); the MCP plugin adds *Connect an AI agent* at 50 | — |
 
 ```typescript
@@ -236,6 +238,23 @@ registry.panels.set('reviews-summary', { id: 'reviews-summary', slot: 'entry.sid
 `EntryPanelProps` is exported by `@letterncms/sdk`. `entry` is `null` until the first save. Every entry panel receives `content: EntryContent`, the complete current working snapshot of `title`, `slug`, `data` and `authorId`; `values` and `title` expose its data and title separately. Use `editable` to disable editing, `can` for the collection's `create`, `edit`, `publish` and `delete` capabilities, and `errors` for field validation messages. Panels must respect these capabilities rather than assuming everyone can edit or restore a version.
 
 The site plugin owns the single toolbar **Preview** dialog. It previews the complete unsaved snapshot, including before the first save, with `play: true` through the site renderer. Extensions can request this same action with `events.emit('entry.preview')` from `@letterncms/sdk` instead of adding another preview control or rendering store. A screen that needs the room can fold the admin sidebar to its rail with `events.emit('shell.compact', true)` and release it with `events.emit('shell.compact', false)` when it unmounts; the entry editor does this.
+
+### What's on the screen
+
+Something working alongside a screen (the assistant's chat) can read what that screen is about. Any screen is known by its title and its text. A screen can say more, for as long as a component is mounted:
+
+```typescript
+import { useScreenContext } from '@letterncms/sdk'
+
+useScreenContext({
+  kind: 'order',
+  data: () => ({ id: order.id, status: order.status }),  // read only when it's needed; takes the place of the screen's text
+  selection: line ? { id: line.id, label: line.title, data: () => line } : null,
+  flush: () => save(),                                   // bring it up to date before someone reads or changes it
+})
+```
+
+The entry editor gives the entry and saves first; the block workspace gives the selected block. To read it, use `useScreen()`, or `screenContext.get()` and `screenText(limit)`. A screen with something to keep to itself sets `private: true` on its route. After changing content from outside a screen, `events.emit('content.changed')` makes an open entry editor show the new version, unless it has unsaved edits.
 
 A sidebar panel that edits blueprint fields declares their handles with `fieldHandles` on its registration:
 

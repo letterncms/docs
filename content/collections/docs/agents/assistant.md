@@ -9,15 +9,33 @@ description: Claude inside the admin. It builds, writes and fixes things with th
 
 Add an Anthropic API key under **Settings → Assistant** (stored encrypted), or set `ANTHROPIC_API_KEY` in `.env`. To route requests through an API gateway or proxy, set `ANTHROPIC_BASE_URL` in `.env` (HTTPS only); it cannot be changed from the admin, since every chat would pass through it. Choose the default model for new chats — Claude Opus 5.5 unless you change it — and how much effort it may spend thinking. Anyone can switch models from the picker under the chat box: the choice applies from the next message, stays with that chat, and becomes their starting model for new chats.
 
-The assistant is optional: everything else in Lettern works without it. Until a key is set, **New Chat** shows only to those who can add one, and opens the setup; nobody else sees an assistant they cannot use. If you don't use AI, **Unpin New Chat** on that screen (or **Unpin** on its context menu) puts it under **More**, where it stays one click away.
+The assistant is optional: everything else in Lettern works without it. Until a key is set, the chat shows only to those who can add one, and opens the setup; nobody else sees an assistant they cannot use. If you don't use AI, **Unpin Chat** on that screen (or **Unpin** on its right-click menu) puts it under **More**, where it stays one click away.
 
 ## Using it
 
-Press `⌘J`, click **New Chat** at the top of the sidebar, or type a request in the command palette (`⌘K`) and press `Enter`. The assistant knows which screen you are on, so "tighten the copy on this page" works.
+The chat is on every screen, at the bottom of the sidebar, already saying what it would be about: *Ask about Home…*. Click it or press `⌘J`, or type a request in the command palette (`⌘K`) and press `Enter`.
 
-Chat is a workspace page alongside the CMS. **Chats**, after your pinned items in the sidebar, shows your recent conversations once there are any; **Show more** reveals older ones. Each saved chat has its own URL, so browser back and forward work as expected. Use a CMS link in the sidebar to return to your content. To permanently remove a saved conversation, choose **Delete Chat** from the trash button on its row, its right-click menu or the three-dot menu in its header, then confirm; **Discard Draft** does the same for an unsent new chat. Stop any running reply first.
+It opens beside the page, next to the sidebar's icons, and the page stays open and usable. Whatever you ask it to change shows there as it happens, in the builder too. Links in its replies open in the page next to the chat, so you can keep going. Drag the edge between them to make it wider. `⌘J` from inside the chat, `Esc` or the close button puts it away; a reply keeps coming, and the sidebar shows when it is working or waiting for your go-ahead.
 
-**New Chat** starts a fresh conversation; an unsent one waits there. `⌘J` does the same after a finished chat, and while you are writing a draft in a chat it returns to that draft and focuses the composer. Empty chats are never saved: a conversation is created only when you send the first message. Drafts stay attached to their chat while you move around the admin in the same browser session; reloading clears unsent drafts. A running reply continues when you visit a CMS screen; selecting another conversation stops listening to the previous reply.
+**Full Size** grows the same chat over the whole window, with your chats beside it and a URL of its own to bookmark. The page you came from stays open underneath, and **Back to the Page** returns to it as you left it. Opening anything else from the sidebar does the same with that screen.
+
+In the builder, the chat takes the place of the sidebar's room, not the page's: the canvas scales to what is left. If that gets too tight the inspector and outline step aside, and open over the canvas when you need them. On a phone or a small window, the chat opens over the page.
+
+### What it can see
+
+The composer shows what your message will carry, as chips you can remove with their ×:
+
+- **The page on view**. In an editor that is the entry as it stands, saved first, so the assistant works on what you see. On any other screen it is the screen's text. Values in form fields are not part of it. A page that hasn't changed since your last message isn't sent again.
+- **The block selected in the builder**, so "rewrite this" means that block.
+- **Text you selected on the page**.
+
+**Account**, **Users**, **Licence** and **Audit Log** stay private: the chip shows a lock, and the assistant gets only the address of the screen. Each message you send shows the page it came from, and clicking that takes you back there.
+
+### Your chats
+
+Your chats are in one place, in the chat: the button at the top left of the chat lists them all by age, a new chat shows the latest ones, and at full size they have a column of their own. To permanently remove a chat, choose **Delete Chat** from the trash button on its row, its right-click menu or the three-dot menu at the top of the chat, then confirm; **Discard Draft** does the same for an unsent new chat. Stop any running reply first.
+
+The compose button starts a fresh conversation; an unsent one waits there. Empty chats are never saved: a conversation is created only when you send the first message. Drafts stay attached to their chat while you move around the admin in the same browser session; reloading clears unsent drafts, and brings back the chat you had open. Selecting another conversation stops listening to the previous reply.
 
 You see what it does as it works: its reasoning summary, every tool call with its input and result, and its answer. Changes appear in the admin immediately.
 
@@ -30,7 +48,7 @@ Installed widgets become available automatically. Plugins can also contribute sc
 - It acts **as you**: same permissions, same audit log (marked *assistant*).
 - It never sees security abilities — tokens, passwords, users and roles.
 - **Deleting** anything, and admin-level changes, wait for your approval in the chat. Under **Settings → Assistant** you can require approval for every change instead.
-- Site content, form submissions, comments and anything else it reads are treated as data, never as instructions. Once a chat has read such content, every change it wants to make waits for your approval, so text planted by someone else cannot make it act on its own.
+- Site content, form submissions, comments and anything else it reads are treated as data, never as instructions. That goes for the page on view too. Once a chat has read such content, every change it wants to make waits for your approval, so text planted by someone else cannot make it act on its own.
 - Chats are private to you: nobody else can list, open, continue or delete them, and they are deleted with your account. Titles and histories are encrypted in the database.
 
 ## Translation
