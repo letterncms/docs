@@ -5,4 +5,3 @@ enabled:
   - letterncms/brevo
   - letterncms/forms
   - letterncms/seo
-  - letterncms/site

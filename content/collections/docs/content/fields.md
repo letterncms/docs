@@ -140,4 +140,4 @@ Values come out ready to use: dates format with `|date`, media fields give image
 
 ### In PHP
 
-In a plugin's block or data source, the same values come from `Cms\Site\Rendering\AugmentedEntry`: `$entry->title`, `$entry->author`, `$entry->hero`, and `$entry->raw('field')` for the stored value.
+In a plugin's block or data source, the same values come from `Cms\Modules\Site\Rendering\AugmentedEntry`: `$entry->title`, `$entry->author`, `$entry->hero`, and `$entry->raw('field')` for the stored value.

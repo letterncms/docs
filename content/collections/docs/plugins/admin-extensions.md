@@ -265,7 +265,7 @@ The entry host routes claimed fields to active panels. Unclaimed fields stay in 
 
 `registry.entryActions.set(id, { id, label, icon, order, when, perform })` adds a line to the entry editor's **More Actions** menu (`⋯`).
 
-The site plugin owns the single **Preview** dialog, opened from that menu. It previews the complete unsaved snapshot, including before the first save, with `play: true` through the site renderer. A live entry with nothing unpublished offers **View on Site** there instead. To open it from your code, use `events.emit('entry.preview')` from `@letterncms/sdk` instead of adding another preview control or rendering store.
+Site owns the single **Preview** dialog, opened from that menu. It previews the complete unsaved snapshot, including before the first save, with `play: true` through the site renderer. A live entry with nothing unpublished offers **View on Site** there instead. To open it from your code, use `events.emit('entry.preview')` from `@letterncms/sdk` instead of adding another preview control or rendering store.
 
 ### Screen layout
 

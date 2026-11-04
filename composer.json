@@ -5,13 +5,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
-        "letterncms/cms": ">=0.1 <1",
+        "letterncms/cms": ">=0.8 <1",
         "letterncms/analytics": ">=0.1 <1",
         "letterncms/assistant": ">=0.1 <1",
         "letterncms/brevo": ">=0.1 <1",
         "letterncms/forms": ">=0.1 <1",
-        "letterncms/seo": ">=0.1 <1",
-        "letterncms/site": ">=0.1 <1"
+        "letterncms/seo": ">=0.1 <1"
     },
     "config": {
         "allow-plugins": {

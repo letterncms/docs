@@ -43,7 +43,7 @@ locales: [en, de]
 # config/plugins.yaml — which plugins run (every plugin in plugins/ when the file is missing)
 # and which of the admin's optional modules don't (see /plugins/modules)
 enabled:
-  - letterncms/site
+  - letterncms/forms
   - letterncms/seo
 disabled:
   - letterncms/audit

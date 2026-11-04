@@ -37,7 +37,7 @@ The payload:
     "versions": [{
       "version": "2.1.0", "released_at": "2027-01-08T09:00:00Z", "sha256": "...", "size": 482133,
       "url": "https://store.example/api/store/v1/download/acme/forms/2.1.0",
-      "requires": { "core": "^1.2", "php": ">=8.4", "ext": ["zip"], "packages": { "letterncms/site": "^1.0" } },
+      "requires": { "core": "^1.2", "php": ">=8.4", "ext": ["zip"], "packages": { "letterncms/seo": "^1.0" } },
       "capabilities": ["network"], "security": false, "fixes": null, "first_party": false,
       "kid": "rel-2026", "sig": "..."
     }]
