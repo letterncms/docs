@@ -2,7 +2,7 @@
 
 namespace Acme\ReadingTime;
 
-use Cms\Blocks\Document;
+use Cms\Modules\Blocks\Document;
 use Cms\Content\Entries\Entry;
 
 final class ReadingTime

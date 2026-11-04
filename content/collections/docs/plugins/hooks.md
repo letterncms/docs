@@ -109,9 +109,9 @@ The first argument is the value you return; the rest are there to help you decid
 |---|---|---|
 | `entry.creating` | `$input, $collection, $user` | Input for a new entry. |
 | `entry.saving` | `$entry, $collection` | An entry right before it is stored. |
-| `entry.uri` | `$uri, $entry, $collection` | An entry's URL (the languages plugin adds prefixes here). |
+| `entry.uri` | `$uri, $entry, $collection` | An entry's URL (Languages adds prefixes here). |
 | `collections` | `$collections` | The list of collections (add code-defined ones). |
-| `collections.defaults` | `$definition` | The initial definition returned by `collections/options`. The blocks plugin contributes an explicit blocks body; without it, the core starts with no body. Creators apply explicit values afterward. |
+| `collections.defaults` | `$definition` | The initial definition returned by `collections/options`. The Blocks module contributes an explicit blocks body; without it, a collection starts with no body. Creators apply explicit values afterward. |
 | `collections.settings` | `$fields, $collection` | The settings a collection offers in **Collections** (the site plugin adds its template picker). |
 | `revisions.keep` | `$count` | How many revisions each entry keeps (100). |
 | `gate.allows` | `$allowed, $user, $entry, $rule` | Whether someone may read a [gated](/content/gated-content) entry. |
@@ -124,7 +124,7 @@ The first argument is the value you return; the rest are there to help you decid
 |---|---|---|
 | `ability.input` | `$input, $ability, $context` | Validated input before the handler. |
 | `ability.result` | `$result, $ability, $input, $context` | What an ability returns. |
-| `settings.fields` | `$fields, $namespace` | A settings namespace's fields: add to another's, or take one over (the languages plugin manages the site's language). |
+| `settings.fields` | `$fields, $namespace` | A settings namespace's fields: add to another's, or take one over (Languages manages the site's language). |
 | `settings.saving` | `$values, $namespace, $stored` | Settings right before they are validated and stored. |
 | `users.fields` | `$fields` | The fields of user profiles (add your own). A field with `public: true` can be edited on the public profile page. |
 
@@ -136,7 +136,7 @@ The first argument is the value you return; the rest are there to help you decid
 | `admin.nav` | `$items` | Sidebar items that come and go (letterncms/content adds one per collection, letterncms/settings one per settings page). |
 | `agent.guide` | `$guide` | The instructions every AI agent gets. |
 | `mcp.prompts` | `$prompts` | Prompts offered to MCP clients: the site's skills (`cms()->skills()`). |
-| `i18n.translator` | `null` | The machine translator (the assistant registers Claude). |
+| `languages.translator` | `null` | The machine translator (the assistant registers Claude). |
 
 ### Pages
 
@@ -146,6 +146,7 @@ The first argument is the value you return; the rest are there to help you decid
 | `site.foot` | `$tags, $context` | Scripts at the end of a page's `<body>`. |
 | `site.scope` | `$scope, $context` | The data templates and blocks can bind to (`site`, `entry`, `globals`, `page`, `pagination`…). `$context->mode` says who the page is for: only add a signed-in person's data in `request`, as a `build` goes to a public file. |
 | `site.html` | `$html, $context` | A rendered page. |
+| `render.page` | `null` | The page being rendered, as `{entry, uri, locale}` (the site plugin answers it; `cms_menu()` and `cms_translations()` read it). |
 | `site.build.extras` | `$extras` | Extra files the static build writes (sitemap, feeds…). |
 | `site.search.record` | `$record, $entry` | A page's search index record (`null` leaves it out). |
 | `site.links.answered` | `$answered, $path` | Whether an address your plugin answers itself is real, so `cms links:check` accepts it. |
@@ -159,16 +160,16 @@ The first argument is the value you return; the rest are there to help you decid
 | `blocks.render.data` | `$data, $type` | What a block's render function receives. |
 | `blocks.data-sources` | `$sources` | Lists the Repeat block can loop over: see [Data sources](/plugins/how-plugins-work#data-sources). |
 | `blocks.scope` | `$scope` | Data for blocks rendered outside a page (Markdown twins, search). |
-| `blocks.svg` | `$svg, $source` | Sanitize the custom SVG of an Icon block. |
 | `blocks.variants` | `$variants` | Block variants offered to editors. |
 | `blocks.folders`, `blocks.pattern-sources` | `$sources` | Folders with blocks (`block.json`) or read-only patterns (`<handle>.json`). |
 | `blocks.breakpoints` | `$breakpoints` | Breakpoints for block styles. |
 
-### Media, forms and menus
+### Media, email, forms and menus
 
 | Filter | Value, then arguments | Lets you change |
 |---|---|---|
-| `media.url`, `media.img` | `null, $image…` | How images resolve and render (point them at a CDN). |
+| `media.url`, `media.img` | `$url, $image` / `$html, $image, $alt, $options` | The address and markup of an image (point them at a CDN). |
+| `email.colors` | `$colors` | The background, text and button colors of every email. |
 | `form.data` | `$data, $form, $request` | A submission before it is stored. |
 | `navigation.entry`, `navigation.item` | | How menu items resolve. |
 

@@ -6,7 +6,7 @@ description: Work on your site from Claude, ChatGPT, Cursor or any other AI tool
 ---
 Connect Claude, ChatGPT, Cursor or another AI tool to your site, and ask it to build pages, write posts or fix your SEO from the app you already use. It signs in as you, can do only what you can, and every change it makes is in the audit log.
 
-These tools connect through **MCP**, the Model Context Protocol: an open standard for letting AI tools use other software. Every Lettern site with the MCP plugin is an MCP server. The plugin is among the recommended ones at setup, and you can add it from **Plugins → Store**.
+These tools connect through **MCP**, the Model Context Protocol: an open standard for letting AI tools use other software. Every Lettern site is an MCP server: it comes with Lettern, on from the start.
 
 ![The Account screen, with your site's server URL ready to copy.](/media/screens/agents-connect.webp)
 

@@ -22,7 +22,7 @@ Two files make a working plugin. `composer.json` says who it is:
     "name": "acme/reviews",
     "type": "cms-plugin",
     "version": "1.0.0",
-    "require": { "letterncms/cms": ">=0.1 <1" },
+    "require": { "letterncms/cms": ">=0.7 <1" },
     "autoload": { "psr-4": { "Acme\\Reviews\\": "src/" } },
     "extra": { "cms": { "label": "Reviews", "provider": "Acme\\Reviews\\ReviewsPlugin" } }
 }
@@ -59,8 +59,7 @@ Put the folder in `plugins/`, turn it on with its switch in **Plugins** or with 
     "type": "cms-plugin",
     "version": "1.0.0",
     "require": {
-        "letterncms/cms": ">=0.1 <1",
-        "letterncms/blocks": "*",
+        "letterncms/cms": ">=0.7 <1",
         "guzzlehttp/guzzle": "^7.8"
     },
     "autoload": { "psr-4": { "Acme\\Reviews\\": "src/" } },
@@ -69,7 +68,8 @@ Put the folder in `plugins/`, turn it on with its switch in **Plugins** or with 
             "label": "Reviews",
             "icon": "star",
             "provider": "Acme\\Reviews\\ReviewsPlugin",
-            "provides": ["reviews"]
+            "provides": ["reviews"],
+            "modules": ["letterncms/blocks"]
         }
     }
 }
@@ -81,7 +81,8 @@ Put the folder in `plugins/`, turn it on with its switch in **Plugins** or with 
 | `icon` | Its icon in **Plugins**. |
 | `provider` | The class Lettern starts. A package without one can still bring migrations, views and translations. |
 | `namespace` | The name for its settings, views and translations. Defaults to the part after the slash (`reviews`). |
-| `provides` | Capabilities it offers, such as `mail`, so others can ask who provides one. |
+| `provides` | Capabilities it offers, such as `forms`, so others can ask who provides one. |
+| `modules` | The optional [modules](/plugins/modules) it builds on, such as `letterncms/blocks`. They come with Lettern, so they aren't in `require`. |
 | `sync` | How [Sync](/plugins/sync) treats its tables. |
 | `license` | For paid plugins: see [License tokens](/plugins/license-tokens#sell-your-own-plugin). |
 
@@ -91,9 +92,9 @@ Lettern finds plugins in the site's `plugins/` folder, wherever they came from. 
 
 ### Requirements
 
-`require` decides when a plugin may run: the Lettern version (`letterncms/cms`), other plugins and PHP libraries, with version constraints. If something is missing, the plugin stays off and **Plugins** says why. A plugin can only be turned on after the plugins it needs, and those can't be turned off while it's on: their switch is grayed out, with the reason.
+`require` decides when a plugin may run: the Lettern version (`letterncms/cms`), other plugins and PHP libraries, with version constraints. `extra.cms.modules` adds the modules it builds on. If something is missing or off, the plugin stays off and **Plugins** says why. A plugin can only be turned on after the plugins and modules it needs, and those can't be turned off while it's on: their switch is grayed out, with the reason.
 
-::: callout {"props":{"tone":"warning","text":"Be careful with <code>^</code> before 1.0: <code>^0.1</code> stops matching at 0.2, so your plugin would turn off at the next Lettern release. <code>&gt;=0.1 &lt;1</code> doesn't."}}
+::: callout {"props":{"tone":"warning","text":"Be careful with <code>^</code> before 1.0: <code>^0.7</code> stops matching at 0.8, so your plugin would turn off at the next Lettern release. <code>&gt;=0.7 &lt;1</code> doesn't."}}
 :::
 
 ## The provider
@@ -170,7 +171,7 @@ Entries that use a plugin's blocks or fields still open and save while it's off,
 
 - A block whose plugin is off is kept as it is.
 - A field type whose plugin is off is shown as its `fallback` (`['type' => 'media', 'fallback' => 'url']`), and what it stored stays until it's replaced. Without a fallback, the value is kept as JSON.
-- A `dynamic` select accepts a name it can't list right now, such as the `menu` source without the navigation plugin. So a wrong name there isn't refused on save; it renders nothing.
+- A `dynamic` select accepts a name it can't list right now, such as a form while the Forms plugin is off. So a wrong name there isn't refused on save; it renders nothing.
 
 Every default plugin is tested this way, off alone and two at a time, with `PluginIsolationTest`.
 
@@ -196,7 +197,7 @@ Lettern's own libraries (Laravel, `anthropic-ai/sdk` and the rest of `letterncms
 A block is data (its fields, the style sections it offers, whether it holds children) plus a PHP render function. Register blocks in `boot()`:
 
 ```php
-$this->cms()->whenAvailable(\Cms\Blocks\BlockRegistry::class, fn ($blocks) => $blocks->register([
+$this->cms()->whenAvailable(\Cms\Modules\Blocks\BlockRegistry::class, fn ($blocks) => $blocks->register([
     'name' => 'reviews/stars',
     'title' => 'Star rating',
     'icon' => 'star',
@@ -206,7 +207,7 @@ $this->cms()->whenAvailable(\Cms\Blocks\BlockRegistry::class, fn ($blocks) => $b
         ['handle' => 'product', 'type' => 'entries', 'label' => 'Product', 'collection' => 'products', 'max' => 1],
     ],
     'render' => fn (array $d) => '<div '.$d['attrs'].' role="img" aria-label="'.e(Reviews::average($d['block']['product'])).' out of 5">'
-        .str_repeat(\Cms\Blocks\Icons::svg('star-fill'), (int) round(Reviews::average($d['block']['product'])))
+        .str_repeat(\Cms\Modules\Blocks\Icons::svg('star-fill'), (int) round(Reviews::average($d['block']['product'])))
         .'</div>',
 ]));
 ```
@@ -241,7 +242,7 @@ Folders of `<name>/block.json` (plus `view.blade.php`) can be added with the `bl
 
 ### Text people edit on the page
 
-For an inline text property, declare it in `inline` and print `\Cms\Blocks\Elements::editable($d, 'text')` on the element that holds it. This gives the editor an explicit editing slot in the live output: it never guesses which text belongs to a field.
+For an inline text property, declare it in `inline` and print `\Cms\Modules\Blocks\Elements::editable($d, 'text')` on the element that holds it. This gives the editor an explicit editing slot in the live output: it never guesses which text belongs to a field.
 
 The helper identifies editable source properties, exact `entry.title` text bindings and supported declared component-instance text properties. Instance edits write an override on the owning pattern node rather than changing its shared source. Other bindings and generated repeated or sample content stay controlled through their source settings.
 
@@ -257,7 +258,7 @@ $this->cms()->hooks()->addFilter('blocks.data-sources', fn (array $sources) => [
     'description' => 'Approved reviews of a product, newest first.',
     'fields' => [['handle' => 'limit', 'type' => 'number', 'label' => 'How many', 'default' => 6]],
     'item' => ['author' => 'Author', 'rating' => 'Stars (1–5)', 'text' => 'Review'],
-    'resolve' => fn (array $props, \Cms\Blocks\Scope $scope) => Reviews::latest((int) ($props['limit'] ?? 6)),
+    'resolve' => fn (array $props, \Cms\Modules\Blocks\Scope $scope) => Reviews::latest((int) ($props['limit'] ?? 6)),
 ]]);
 ```
 
@@ -284,11 +285,11 @@ $this->cms()->hooks()->addFilter('collections', fn (array $collections) => $coll
 ]);
 ```
 
-`system: true` keeps it out of **Collections** and stops people deleting it; a site can still redefine it with its own `content/collections/<handle>.yaml`. The blocks plugin adds `templates` and `components` exactly this way, with `section: design`, so they are listed under **Design** in the sidebar.
+`system: true` keeps it out of **Collections** and stops people deleting it; a site can still redefine it with its own `content/collections/<handle>.yaml`. The Blocks module adds `templates` and `components` exactly this way, with `section: design`, so they are listed under **Design** in the sidebar.
 
 ### The starting definition
 
-To change the definition offered when someone creates a collection, filter `collections.defaults`. `collections/options` returns this definition separately from the settings schema. The blocks plugin contributes a `content` blocks field and its explicit `body` handle; when it's off, the browser receives no blocks default and can create a field-only collection. This hook doesn't change existing collections.
+To change the definition offered when someone creates a collection, filter `collections.defaults`. `collections/options` returns this definition separately from the settings schema. The Blocks module contributes a `content` blocks field and its explicit `body` handle; when it's off, the browser receives no blocks default and can create a field-only collection. This hook doesn't change existing collections.
 
 ### A setting per collection
 
@@ -305,18 +306,20 @@ The value is saved in the collection's YAML; read it with `$collection->get('rev
 
 ## Replace a built-in
 
-Some features are contracts with a default, so a plugin can swap the implementation: `Cms\Contracts\Mailer` (sending email; the Email plugin binds SMTP and API transports) and `Cms\Contracts\SiteBuilder` (static publishing). Bind your own in `register()`:
+Some features are contracts with a default, so a plugin can swap the implementation: `Cms\Contracts\SiteBuilder` (static publishing; the Site plugin binds it) and `Cms\Contracts\Agent` (see [Agents](/plugins/agents)). Bind your own in `register()`:
 
 ```php
-$this->app->singleton(\Cms\Contracts\Mailer::class, PostmarkMailer::class);
+$this->app->singleton(\Cms\Contracts\SiteBuilder::class, NetlifyBuilder::class);
 ```
+
+Email isn't swapped: a plugin adds a way to send it, below.
 
 ## Build on another plugin
 
-To use another plugin's service only when it's there, use `whenAvailable`. Your plugin keeps working without it:
+To use another plugin's or a module's service only when it's there, use `whenAvailable`. Your plugin keeps working without it:
 
 ```php
-$this->cms()->whenAvailable(\Cms\Mail\Transports::class, function ($transports) {
+$this->cms()->whenAvailable(\Cms\Modules\Email\Transports::class, function ($transports) {
     $transports->register('postmark', 'Postmark', $fields, fn (array $settings) => new PostmarkTransport($settings));
 });
 ```

@@ -5,7 +5,7 @@ position: 2
 template: reference-blocks
 description: Every block on this site, with its settings and the style groups it supports, generated from the running CMS.
 ---
-Every block you can add to a page, template or component is listed below, with its settings. Core blocks come from the blocks plugin; other plugins, such as forms, add their own.
+Every block you can add to a page, template or component is listed below, with its settings. Core blocks come with Lettern; plugins, such as Forms, add their own.
 
 A few primitives compose anything: **Box** (any HTML tag: a stack, a grid, a link, a button), **Text** and **Heading**, **Link**, **Button**, **Image**, **Icon** (1,500+ Phosphor icons), **Input**, **Repeat** and **Page Content**. The rest, like sections, columns, cards, quotes, code, tables and accordions, are in the same block catalog, in every collection.
 

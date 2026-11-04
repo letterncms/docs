@@ -5,15 +5,21 @@
     "version": "1.0.0",
     "license": "MIT",
     "require": {
-        "letterncms/cms": "*",
-        "letterncms/blocks": "*"
+        "letterncms/cms": "*"
     },
-    "autoload": { "psr-4": { "Acme\\ReadingTime\\": "src/" } },
+    "autoload": {
+        "psr-4": {
+            "Acme\\ReadingTime\\": "src/"
+        }
+    },
     "extra": {
         "cms": {
             "label": "Reading time",
             "icon": "clock",
-            "provider": "Acme\\ReadingTime\\ReadingTimePlugin"
+            "provider": "Acme\\ReadingTime\\ReadingTimePlugin",
+            "modules": [
+                "letterncms/blocks"
+            ]
         }
     }
 }

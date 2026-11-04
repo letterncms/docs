@@ -88,7 +88,7 @@ Roles are stored in `config/roles.yaml`, a settings namespace like any other, so
 | `blocks.html` | Adding raw HTML blocks. Only for trusted people. |
 | `site.code` | Editing the site's custom CSS and JavaScript. Only for trusted people. |
 
-Each permission belongs to the module or plugin that registers it, so switching one off removes its permissions from **Roles** too. Plugins register their own (`forms.view`, `navigation.manage`, `comments.moderate`, `assistant.use`, `analytics.view`…). API tokens can only narrow a person's permissions, never widen them.
+Each permission belongs to the module or plugin that registers it, so switching one off removes its permissions from **Roles** too. Modules and plugins register their own (`navigation.manage`, `comments.moderate`, `forms.view`, `assistant.use`, `analytics.view`…). API tokens can only narrow a person's permissions, never widen them.
 
 The default roles in full: Editor has `admin.access`, `entries.*`, `globals.*`, `media.*`, `navigation.*`, `forms.*`, `site.build`, `comments.*`, `assistant.use` and `analytics.view`. Author has `admin.access`, `entries.*.view`, `.create` and `.edit`, `media.view`, `media.upload`, `comments.view`, `comments.create` and `assistant.use`. Visitor (handle `member`) has none.
 

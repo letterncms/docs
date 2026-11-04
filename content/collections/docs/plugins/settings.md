@@ -51,7 +51,7 @@ Register the component with `registry.fields` in your [admin module](/plugins/ad
 
 ### A settings tab on your own screen
 
-A plugin with a screen of its own keeps its settings there, as the screen's last tab, **Settings**, drawn by the same form and save bar as every settings page. Media, Forms, Analytics and Commerce work this way. Register the settings with `home` set to the screen's sidebar item:
+A plugin with a screen of its own keeps its settings there, as the screen's last tab, **Settings**, drawn by the same form and save bar as every settings page. Forms, Analytics and Commerce work this way, and so does the Media module. Register the settings with `home` set to the screen's sidebar item:
 
 ```php
 $this->cms()->admin()->nav('reviews', ['path' => '/reviews', 'icon' => 'star']);
@@ -111,7 +111,7 @@ Values are read in that order: defaults, then `config/<namespace>.yaml`, then se
 
 ## Add to other settings
 
-A plugin can add fields to any namespace, or take over one it manages better elsewhere, with the `settings.fields` filter. The languages plugin removes the site's *Language* field, because languages, the default among them, live under **Languages**:
+A plugin can add fields to any namespace, or take over one it manages better elsewhere, with the `settings.fields` filter. The Languages module removes the site's *Language* field, because languages, the default among them, live under **Languages**:
 
 ```php
 $this->cms()->hooks()->addFilter('settings.fields', fn (array $fields, string $namespace) => $namespace === 'site'
@@ -119,7 +119,7 @@ $this->cms()->hooks()->addFilter('settings.fields', fn (array $fields, string $n
     : $fields);
 ```
 
-Core's own settings are namespaces like yours: **General** (`config/site.yaml`: name, URL, description, timezone, language and **Admin Language**, `admin_language`) and **Roles** (`config/roles.yaml`, drawn by a permissions editor). The default sidebar and Dashboard are values of the `admin` namespace (`config/admin.yaml`) with no page of their own: **Save as Default** writes them where they are arranged. Register a namespace with `page: false` for values like these.
+Core's own settings are namespaces like yours: **General** (`config/site.yaml`: name, URL, description, timezone, language and **Admin Language**, `admin_language`), **Email** (`config/email.yaml`), **Media** (`config/media.yaml`) and **Roles** (`config/roles.yaml`, drawn by a permissions editor). The default sidebar and Dashboard are values of the `admin` namespace (`config/admin.yaml`) with no page of their own: **Save as Default** writes them where they are arranged. Register a namespace with `page: false` for values like these.
 
 ## Check values together
 

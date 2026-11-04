@@ -35,20 +35,36 @@ The **Email** card on the dashboard shows how mail is sent, how many emails went
 
 ### Passwords and keys
 
-Passwords and API keys entered in the settings are stored encrypted in `storage/`, not in `config/mail.yaml`. On servers you can set them as environment variables instead: `CMS_MAIL_SMTP_PASSWORD`, `CMS_MAIL_BREVO_API_KEY`.
+Passwords and API keys entered in the settings are stored encrypted in `storage/`, not in `config/email.yaml`. On servers you can set them as environment variables instead: `CMS_EMAIL_SMTP_PASSWORD`, `CMS_EMAIL_BREVO_API_KEY`.
 
-The `mail/test`, `mail/status` and `mail/log` abilities send a test, report the transport and counts, and list recent emails. They need `settings.manage`.
+The `email/test`, `email/status` and `email/log` abilities send a test, report the transport and counts, and list recent emails. They need `settings.manage`.
 
 ### Colors
 
-Mail takes its background, text and button colors from the design system through the `mail.colors` filter. A plugin can change them there.
+Mail takes its background, text and button colors from the design system through the `email.colors` filter. A plugin can change them there.
+
+### Send email from a plugin
+
+Email is part of Lettern, so every plugin can send. `Body::render()` writes paragraphs and an optional button in the site's colors; the mailer adds the layout, sends it with the chosen transport and logs it:
+
+```php
+use Cms\Modules\Email\Body;
+use Cms\Modules\Email\Mailer;
+use Cms\Modules\Email\Message;
+
+$body = Body::render(['Your review is live.'], ['View it', $url]);
+
+app(Mailer::class)->send(new Message($user->email, 'Your review is live', $body['html'], $body['text']));
+```
+
+`send()` never throws: a failure is logged, so a form or an invitation never breaks on mail problems.
 
 ### Add another provider
 
-Sending is a plugin contract. A provider plugin registers a transport with its settings fields. The Brevo plugin is a few lines and a good template:
+A provider plugin registers a transport with its settings fields. The Brevo plugin is a few lines and a good template:
 
 ```php
-$this->cms()->whenAvailable(\Cms\Mail\Transports::class, function ($transports) {
+$this->cms()->whenAvailable(\Cms\Modules\Email\Transports::class, function ($transports) {
     $transports->register('postmark', 'Postmark', [
         ['handle' => 'postmark_token', 'type' => 'text', 'label' => 'Server token', 'secret' => true],
     ], fn (array $settings) => new PostmarkTransport($settings['postmark_token'] ?? ''));

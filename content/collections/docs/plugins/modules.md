@@ -18,11 +18,19 @@ A module registers its abilities, permissions, settings, sidebar items and scree
 | `letterncms/settings` | The settings pages (one per namespace in the settings sidebar, or a Settings tab on a plugin's own screen) and the `settings/*` abilities | No |
 | `letterncms/packages` | The **Plugins** screen (Installed, Store, Updates), updates and the `packages/*` abilities | No |
 | `letterncms/license` | Checks the keys of paid plugins, and adds the **Licenses** tab of **Plugins** and the `license/*` abilities once one is on. It never touches the public site. `letterncms/packages` needs it | No |
+| `letterncms/workspace` | The [workspace](/getting-started/workspace): threads at the right edge of the admin, for commands, search and an agent when there is one | No |
+| `letterncms/media` | The [media library](/content/media): uploads, folders, alt text, focal points and responsive images | No |
+| `letterncms/navigation` | [Menus](/content/navigation), edited with drag and drop and kept in sync when pages move | No |
+| `letterncms/email` | [Email](/operations/email) for Lettern and its plugins: SMTP, sendmail or log, provider plugins, branded templates and a delivery log | No |
 | `letterncms/dashboard` | The **Dashboard**: a greeting and the widgets each person arranges | Yes: the admin opens on the first pinned sidebar item |
 | `letterncms/collections` | The **Collections** screen: creating collections and editing their fields | Yes: collections stay as `content/collections/*.yaml` |
 | `letterncms/globals` | Global sets, their fields and `/api/v1/globals/<handle>` | Yes |
 | `letterncms/users` | **Users** (Team, Visitors, Sign-Up, Profile Fields), invitations and **Roles** | Yes: accounts and `config/roles.yaml` keep working |
 | `letterncms/audit` | The **Audit Log**: who changed what, when, from where | Yes: nothing is written |
+| `letterncms/blocks` | The block editor, components, templates, styles, data bindings and Block Markdown | Yes, while no plugin that builds on it is on (Site, Forms and Commerce do) |
+| `letterncms/languages` | [Languages](/content/languages): translations linked to their original, localized URLs, hreflang and the language switcher | Yes |
+| `letterncms/collaboration` | [Collaboration](/editing/collaboration): who else is on a page, comments with @mentions, and the inbox | Yes |
+| `letterncms/mcp` | The [MCP server](/agents/mcp): every ability as a tool for AI clients, signed in with OAuth | Yes |
 
 The required modules are what Lettern needs to keep working: without them there is no admin, and nobody could edit content, secure their account, change a setting or switch a module back on. Everything else is yours to remove. A site with only the required modules and no plugins is a complete, very small CMS.
 
@@ -32,16 +40,16 @@ Modules are part of Lettern, not plugins, so **Plugins** doesn't list them. Swit
 
 ```yaml
 enabled:          # plugins that run
-  - letterncms/blocks
   - letterncms/site
+  - letterncms/seo
 disabled:         # modules that don't
   - letterncms/audit
-  - letterncms/dashboard
+  - letterncms/collaboration
 ```
 
 Modules are on unless they're listed under `disabled`; plugins are on when they're listed under `enabled`.
 
-A module others need can't be switched off before them: `letterncms/collections` needs `letterncms/content`. Data is kept, so when you switch a module back on, its items return to the places admins gave them.
+A module others need can't be switched off before them: `letterncms/collections` needs `letterncms/content`, and `letterncms/blocks` stays on while a plugin that builds on it is on. Data is kept, so when you switch a module back on, its items return to the places admins gave them.
 
 ## Configure a module
 
@@ -53,6 +61,9 @@ A module's options are a [settings](/plugins/settings) namespace like any plugin
 | `letterncms/users` | **Roles** and their permissions, under **People** |
 | `letterncms/account` | Visitor accounts, on the **Sign-Up** tab of **Users** |
 | `letterncms/dashboard` | None of its own: the default Dashboard for everyone is saved with **Customize → Save as Default** on the Dashboard |
+| `letterncms/email` | How email is sent, under **Email** (`config/email.yaml`) |
+| `letterncms/media` | Upload size, image quality, AVIF and photo metadata, on the **Settings** tab of **Media** |
+| `letterncms/languages` | The site's languages and their URLs, under **Languages** (`config/languages.yaml`) |
 
 The content module has no settings. Entries per page (50), the autosave delay (1.2 seconds) and the revisions kept per entry (100) are fixed; a plugin can change the revisions kept with the `revisions.keep` [filter](/plugins/hooks).
 
