@@ -39,7 +39,7 @@ $this->cms()->views()->register('reviews', '/reviews', fn (User $user) => [
 $this->cms()->admin()->nav('reviews', ['path' => '/reviews', 'icon' => 'star']);
 ```
 
-The closure gets the user and the route's params (`/reviews/:id` gives `$params['id']`). Pass `private: true` for a place whose contents stay out of what the assistant is told about the screen on view.
+The closure gets the user and the route's params (`/reviews/:id` gives `$params['id']`). Pass `private: true` for a place whose contents stay out of what an agent is told about the screen on view.
 
 Or ship the same tree as a file, `views/reviews.json`, with `{"path": "/reviews", "permission": "reviews.view", "view": {…}}`, and call `$this->views()` in `boot()`.
 
@@ -77,6 +77,7 @@ A string in a view can hold `{params.x}` (the route), `{query.x}` (the address),
 | `ui/diff` | Before and after, key by key. |
 | `ui/preview` | A page of the site, at `url`. |
 | `ui/actions` | A row of buttons. |
+| `ui/links` | A short list of places, each a line with its `icon`, `label` and `detail`, that opens at `to`. |
 | `ui/text`, `ui/empty` | Words, or nothing there yet, with one `action`. |
 | `ui/redirect` | Sends whoever opens the place to where it is now. |
 | `widget/<id>` | A Dashboard widget. |
@@ -108,6 +109,7 @@ Your own components are in the catalog too (see [Generative UI](/plugins/generat
 - **Pages:** `paged` sends `page` and `perPage`, and reads `pages` or `total` from the response.
 - **Bulk actions:** they make the rows selectable, and each one gets the selected rows' `{ids}`.
 - **Empty:** `empty` with an `icon`, a `title`, a `text` and an `action`, or `size: "sm"` for one quiet line inside a section.
+- **Literal rows:** `rows` in place of `source` lists records as they are, such as what a command found when the [workspace](/getting-started/workspace) answers with it.
 
 A column's `format` writes its value: `text`, `strong`, `muted`, `code`, `badge` and `badges`, `status` (a dot and a word), `date`, `datetime`, `ago`, `number`, `money` (in cents, with `currency`), `bytes`, `share` (a bar for a part of the whole, 0 to 1), `compact` (1.2K), `yesno`, `person`, `count`, `image` and `link`. `tones` and `labels` give a value its color and its words.
 
@@ -163,3 +165,7 @@ $this->cms()->hooks()->addFilter('view.settings', fn (array $view, User $user, a
 ```
 
 The `views/get` ability returns a view as the admin draws it, for the person signed in.
+
+## Answers in the workspace
+
+The [workspace](/getting-started/workspace) answers a command with a view too: the ability's own `answer`, or one drawn from what it returned. It's checked like any view, kept with the thread, and its buttons run as commands of the thread. See [Answers](/getting-started/workspace#answers).

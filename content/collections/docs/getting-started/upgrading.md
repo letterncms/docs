@@ -1,7 +1,7 @@
 ---
 id: 01m5wmrf5x1dk7bnf2yz3j4zbc
 title: Upgrading
-position: 3
+position: 4
 description: Update Lettern with one click, and if anything goes wrong, it goes back by itself.
 ---
 Keeping Lettern up to date takes one click in the admin. Each update checks itself once it's live, and if anything fails, your site goes straight back to the version it had.

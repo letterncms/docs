@@ -43,7 +43,7 @@ Your admin code is an ES module, built with Vite to `dist/admin.js` and loaded w
 | Package | Holds |
 |---|---|
 | `react` | React 19: one copy for everyone. |
-| `@letterncms/sdk` | Talking to Lettern: `t` and `plural` (translations), `brand` (the product's name, links and images: never write the name, and in a translated string use the `{brand}` placeholder, as in `t('Ask {brand}')`), `run`, `request`, `eventStream`, `useAbility`, `useAction`, `invalidate`, the router (`navigate`, `Link`, `useLocation`, `useTab`: tabs kept in the URL as `?tab=`, so a refresh opens the same one, and `confirmLeaving()` for admin themes that ask about unsaved changes their own way), `can`, `useManifest`, `useScreenContext`, `registry` (with `registry.composer` for `@` and `/` in a chat) and `events`. |
+| `@letterncms/sdk` | Talking to Lettern: `t` and `plural` (translations), `brand` (the product's name, links and images: never write the name, and in a translated string use the `{brand}` placeholder, as in `t('Ask {brand}')`), `run`, `request`, `eventStream`, `useAbility`, `useAction`, `invalidate`, the router (`navigate`, `Link`, `useLocation`, `useTab`: tabs kept in the URL as `?tab=`, so a refresh opens the same one, and `confirmLeaving()` for admin themes that ask about unsaved changes their own way), `can`, `useManifest`, `useScreenContext`, `registry` (with `registry.composer` for `@` and `/` in a thread) and `events`. |
 | `@letterncms/ui` | The admin's primitives: `Button`, `IconButton`, `Input`, `Textarea`, `Select`, `Switch`, `Checkbox`, `Segmented` and `Tabs` (both take `fit`: one line that shrinks to the room there is; a tab can have an `icon`), `Field`, `Fields`, `Page`, `Section`, `ScreenTabs`, `ScreenSidebar`, `SaveBar`, `List`, `Dialog`, `confirm`, `Popover`, `Menu`, `SidebarRow`, `Tooltip`, `Badge`, `Avatar`, `PersonPicker`, `Spinner`, `EmptyState`, `SortableTree`, `BlueprintEditor`, `FieldsEditor`, `Icon` and `toast`, plus `useShortcut`, `slugify` and the color scheme. |
 | `@dnd-kit/*` | Drag and drop (`core`, `sortable`, `utilities`), shared so no module bundles its own. |
 
@@ -100,9 +100,9 @@ registry.commands.set('reviews-ask', { id: 'reviews-ask', label: 'Summarize revi
 | `panels` | Components in named [slots](#slots). |
 | `widgets` | Dashboard widgets (declared in PHP, rendered from here). |
 | `components` | Components the assistant can compose: see [Generative UI](/plugins/generative-ui). |
-| `commands` | Command palette entries. `acceptsQuery: true` offers the command for any typed text. |
+| `commands` | Command palette entries, also offered under `/` in a thread. `acceptsQuery: true` offers the command for any typed text. |
 | `entryActions` | Lines in the entry editor's **More Actions** menu (`⋯`). |
-| `composer` | What `@` and `/` offer in a chat: see [Working with the assistant](#working-with-the-assistant). |
+| `composer` | What `@` and `/` offer in a thread: see [In the workspace](#in-the-workspace). |
 | `icons` | Extra icons by name. |
 
 A later registration under the same key wins, and when its module goes away, what it replaced comes back.
@@ -185,7 +185,7 @@ $admin->widget('reviews-latest', ['label' => 'Latest reviews', 'description' => 
 | `enabled` | On everyone's Dashboard until they rearrange it. Leave it off: only *Recently Edited*, *Site* and *Analytics* start on, so nobody is overwhelmed. People add the rest from the gallery. |
 | `permission` | Who may see and add it. |
 | `order` | Its place among the others in a column. |
-| `assistant` | `false` keeps it out of the assistant's chat: see [Generative UI](/plugins/generative-ui). |
+| `assistant` | `false` keeps it out of what an agent answers with: see [Generative UI](/plugins/generative-ui). |
 
 ### Draw it
 
@@ -231,7 +231,9 @@ registry.panels.set('reviews-summary', { id: 'reviews-summary', slot: 'entry.sid
 | `entry.body` | Extra content after the main body, supplied through the workspace footer | Same |
 | `entry.editor` | The shared body workspace for the explicitly configured blocks field | `EntryEditorProps` |
 | `shell.aside` | Workspace panels available on every screen, over the screen | `full` |
-| `shell.dock` | A column at the right edge, on every screen. Draw it with `Dock` from `@letterncms/ui` (`open`, `full`, `floating`, `label`): the page stays usable next to it, people can drag it wider, `floating` makes it a card over the page that moves by an element with `data-dock-drag`, `full` grows it over the workspace, and small windows get it over the page. The assistant's chat is one | `full` |
+| `shell.dock` | A column at the right edge, on every screen. Draw it with `Dock` from `@letterncms/ui` (`open`, `full`, `floating`, `label`): the page stays usable next to it, people can drag it wider, `floating` makes it a card over the page that moves by an element with `data-dock-drag`, `full` grows it over the screen, and small windows get it over the page. The [workspace](/getting-started/workspace)'s thread is one | `full` |
+| `sidebar.start` | Rows at the top of the main sidebar, above what's pinned: the workspace's **New Chat**. Draw them with `SidebarRow` | `onNavigate` |
+| `workspace.composer` | In the thread's composer, beside **Send**: an [agent](/plugins/agents)'s own controls, such as the assistant's model picker | `thread`, `state`, `options`, `setOption`, `busy`, `loading` |
 | `shell.banner` | A strip above the screen, beside the sidebar, for a notice that concerns the whole admin (the license and update notices) | `full` |
 | `topbar.end` | In every screen's top bar, before the screen's own actions: the way back to what's docked | |
 | `account.api` | Part of **API & Agents** on **Account**, before the tokens: the MCP plugin shows its server URL and the Claude Code command here | |
@@ -393,13 +395,13 @@ PHP reads the same files. Use `__('…')` for messages you write. Labels you reg
 
 Each person picks their **Language** in **Account**. **Admin Language** in **Settings → General** sets a default for everyone else, and without one the browser's language is used (English when Lettern doesn't speak it), the sign-in screen included. Dates and numbers follow it (`locale()` from `@letterncms/sdk`).
 
-## Working with the assistant
+## In the workspace
 
-Widgets are available to the assistant automatically. For components it can fill in and layouts it composes, see [Generative UI](/plugins/generative-ui). `Surface` and `WidgetSlot` from `@letterncms/ui` give shared rendering across the Dashboard, the chat and other admin hosts.
+The [workspace](/getting-started/workspace)'s thread offers your abilities as commands, and draws what they answer with as [views](/plugins/views). Widgets are available to an agent automatically; for components it can fill in and layouts it composes, see [Generative UI](/plugins/generative-ui). `View`, `Surface` and `WidgetSlot` from `@letterncms/ui` give shared rendering across the Dashboard, the thread and other admin hosts: `<View root={tree} embedded />` draws a view inside something else, and `run` lets that host run its buttons' abilities itself.
 
 ### What's on the screen
 
-Something working alongside a screen, like the assistant's chat, can read what that screen is about. Any screen is known by its title and its text. A screen can say more, for as long as a component is mounted:
+Something working alongside a screen, like an agent in the thread, can read what that screen is about. Any screen is known by its title and its text. A screen can say more, for as long as a component is mounted:
 
 ```typescript
 import { useScreenContext } from '@letterncms/sdk'
@@ -414,11 +416,11 @@ useScreenContext({
 
 The entry editor gives the entry and saves first; the block workspace offers the selected blocks. To read it, use `useScreen()`, or `screenContext.get()` and `screenText(limit)`. A screen with something to keep to itself sets `private: true` on its route. After changing content from outside a screen, `events.emit('content.changed')` makes an open entry editor show the new version, unless it has unsaved edits.
 
-### @ and / in a chat
+### @ and / in a thread
 
-Everything a chat message carries is a `ContextItem`: an `id`, a `label`, optionally an `icon`, a `kind`, a `to` (an admin path to open it at) and `read` (what it says, called when a message goes out). The page on view, what a screen offers and what's picked with `@` are all the same thing, shown as the same chip.
+`/` offers commands: making things, places to go, settings pages, the commands of `⌘K` and every ability the person may run. `@` attaches context to a message, and is there only while an agent answers: a command or a search carries nothing. Everything a message carries is a `ContextItem`: an `id`, a `label`, optionally an `icon`, a `kind`, a `to` (an admin path to open it at) and `read` (what it says, called when a message goes out). The page on view, what a screen offers and what's picked with `@` are all the same thing, shown as the same chip.
 
-To offer your own under `@` or `/`, register a source. It searches by what's typed after the trigger, and it's harmless without the assistant installed:
+To offer your own under `@` or `/`, register a source. It searches by what's typed after the trigger:
 
 ```typescript
 import { registry, run, t } from '@letterncms/sdk'
@@ -433,11 +435,18 @@ registry.composer.set('orders', {
 })
 ```
 
-Reading through `run` keeps your ability's permission check. What picking a line does follows from what it has: `perform` runs it, `insert` writes text in the message, `skill` asks for that skill, and without any of those it's attached.
+Reading through `run` keeps your ability's permission check. What picking a line does follows from what it has: `perform` runs it, `insert` writes text in the message, `skill` asks for that skill, `command` runs an ability in the thread, and without any of those it's attached. `group` gives a line a heading of its own.
+
+A `command` names the `ability`, the `input` already chosen and the ability's input `schema`: what it requires and isn't chosen is asked for in the composer, generated from the schema (a choice is a select, yes or no a switch, a list of words tags), with `required: true` asking only for that. `load` asks with fields of your own and what they hold now instead (only what changed is sent), `into` puts the answers under one key, and `confirm` names the button. Field choices take their words from the schema's `x-labels` (see [Asking for input](/getting-started/workspace#asking-for-input)):
+
+```typescript
+{ id: 'new-review', label: t('New Review'), icon: 'plus', command: { ability: 'reviews/create', input: { status: 'draft' }, schema, required: true } }
+{ id: 'review-settings', label: t('Review Settings'), command: { ability: 'settings/update', input: { namespace: 'reviews' }, into: 'values', load: () => run('settings/get', { namespace: 'reviews' }) } }
+```
 
 ### Skills
 
-Skills are registered on the server, and every agent gets them: `/` in the chat, prompts over MCP.
+Skills are registered on the server, and every agent gets them: `/` in a thread while the assistant answers there, prompts over MCP.
 
 ```php
 cms()->skills()->register('order-summary', [
@@ -450,7 +459,7 @@ cms()->skills()->register('order-summary', [
 ]);
 ```
 
-In a chat, the person's message gives the arguments.
+In a thread, the person's message gives the arguments.
 
 ## Block workspace
 

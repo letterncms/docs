@@ -33,7 +33,7 @@ Give clients a [role](/operations/users-and-roles) that covers their content and
 - **API tokens** are shown once. Give each one only the access it needs and an expiry date, and you can see when it was last used.
 - **AI agents** work through the same permissions as the person who connected them, and you approve each one first.
 - An agent or the assistant can never create tokens, change passwords or two-factor settings, create, invite, change or remove people, grant or take away roles, or change what a role may do. People do that themselves, in **Settings**.
-- The **assistant** asks before deleting anything or making admin-level changes, and never takes instructions from your site's content or from what visitors wrote. Once a chat has read such content, it asks before anything but saving a draft.
+- The **assistant** asks before deleting anything or making admin-level changes, such as turning a plugin on or off, and never takes instructions from your site's content or from what visitors wrote. Once a thread holds such content, it asks before anything but saving a draft.
 
 ## What Lettern does for you
 
@@ -57,7 +57,7 @@ Give clients a [role](/operations/users-and-roles) that covers their content and
 - Personal access tokens (`cms_…`) are shown once and stored only as a hash, with scopes, an expiry and when they were last used.
 - OAuth for agents uses PKCE (S256 only), short-lived access tokens and rotating refresh tokens. You approve every client on a consent screen.
 - Abilities that could take over an account or hand out access (creating tokens, changing passwords or two-factor settings, creating, inviting, changing or removing users, granting roles, changing a role's permissions) are never available to agents or the assistant, even when an admin asks.
-- The assistant treats site content and visitor-written text as data, never as instructions. Once a chat has read such content, it asks before anything but saving a draft. Chats are private to their owner and encrypted at rest.
+- The assistant treats site content and visitor-written text as data, never as instructions. Once a thread holds such content, it asks before anything but saving a draft. Threads in the workspace are private to their owner and encrypted at rest.
 
 ### Every action
 

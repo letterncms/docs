@@ -20,7 +20,7 @@ A few shortcuts save a lot of clicking:
 |---|---|
 | `⌘K` | Find any page, setting or command |
 | `⌘\` | Hide or show the sidebar |
-| `⌘J` | Open the assistant |
+| `⌘J` | Open the workspace, at the right edge |
 
 ## 2. Edit a page
 
@@ -63,11 +63,11 @@ When you're happy, press **Publish**. The page goes live straight away: there's 
 
 ![Publishing the site from the Dashboard.](/media/screens/publish.webp)
 
-## 6. Get help from AI
+## 6. Work from the workspace
 
-Press `⌘J` and ask the assistant, for example: *"Add a pricing section with three plans to the home page."* It works in the admin just as you do, and asks before anything that goes live or is hard to undo, like publishing or deleting.
+Press `⌘J`, or **New Chat** at the top of the sidebar, and the [workspace](/getting-started/workspace) opens beside the page. Type `/` for a command, such as **New Page** or **Add to Menu**, or type a few words to search the whole admin. Every answer is something to act on: open it, publish it, undo it.
 
-Lettern works fully without AI. If you don't use it, **Hide Chat** takes it out of the bar. See [Assistant](/agents/assistant), or [connect your own AI tools](/agents/mcp).
+With the [assistant](/agents/assistant) set up, ask in plain words in the same place, for example: *"Add a pricing section with three plans to the home page."* It works in the admin just as you do, and asks before anything that goes live or is hard to undo. Lettern works fully without it.
 
 ## Where next
 
