@@ -37,7 +37,7 @@ A **Repeat** block shows its contents once for every item of a list: every dish,
 ![The Repeat block on the home page, listing dishes, with its Content settings on the right.](/media/screens/design-repeat.webp)
 
 1. Add a **Repeat** block where the list should go.
-2. In its **Content** tab, choose a **List**, like **Collection Entries**, and set it up: which **Collection**, in what **Order**, and **How Many**. **Only Entries Where** narrows it down with conditions: pick a field, how it compares (*is*, *is not*, *contains*…) and a value.
+2. In its **Content** tab, choose a **List**, like **Collection Entries**, and set it up: which **Collection**, in what **Sort Order**, and **How Many**. **Only Entries Where** narrows it down with conditions: pick a field, how it compares (*is*, *is not*, *contains*…) and a value.
 3. Inside the Repeat, design one item: a card with a heading, an image and a price.
 4. Connect each block in it to the item: the heading to the item's **Title**, the image to a photo field, the card's link to the item's **Link**.
 
