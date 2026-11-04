@@ -19,7 +19,7 @@ A token is a password for one app or script. It acts as you, so keep it secret.
 
 ![The New Token dialog: a name, what the token may do, and when it expires.](/media/screens/agents-token.webp)
 
-**Access** limits what the token can do: **Full Access**, **Read Only**, or **Content Only**. Give each token no more than it needs. To stop a token working, press **Revoke** next to it. Anything using it stops at once.
+**Access** limits what the token can do: **Full Access**, **Read Only**, or **Content Only**. Give each token no more than it needs. To stop a token working, choose **Revoke** in its menu. Anything using it stops at once.
 
 ## Make a request
 

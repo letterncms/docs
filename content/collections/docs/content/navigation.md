@@ -39,9 +39,9 @@ The link to the page a visitor is on is marked for screen readers, and you can s
 
 On a site with several [languages](/content/languages), page items lead to the visitor's language once that version is live. Each item's **Link Options** have a label for every other language, and a link has its address per language too. Leave one empty and the item uses its own.
 
-## Delete a menu
+## Rename or delete a menu
 
-Open the menu and press **Delete Menu** at the end of its page. Repeat blocks that list it will show nothing, so take it out of your templates too.
+**Rename** and **Delete** are in the menu's top bar, and in the menu of each row of **Navigation**. Renaming keeps its handle, so the Repeat blocks that list it keep showing it. After deleting, they show nothing, so take it out of your templates too.
 
 ## For developers
 

@@ -10,7 +10,7 @@ Lettern is safe out of the box: published pages are plain files, every change is
 
 Two-factor sign-in asks for a code from an app on your phone as well as your password, so a stolen password alone isn't enough.
 
-1. Open **Account**. Under **Security**, press **Set Up** beside **Two-Factor Authentication**.
+1. Open **Account**. Under **Security**, press **Set Up Two-Factor**.
 2. Scan the code with an authenticator app, or copy the **Setup Key** into it, type the code it shows and press **Turn On**.
 3. Save the recovery codes somewhere safe. Each works once if you lose your phone.
 

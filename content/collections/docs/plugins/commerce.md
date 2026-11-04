@@ -1,7 +1,7 @@
 ---
 id: 01m6rrkkgj90wstepzbeam9h72
 title: Commerce gateways and hooks
-position: 8
+position: 9
 description: React to what was sold, sell at a price you worked out, or add a payment gateway, a tax service or an e-invoicing channel.
 ---
 [Commerce](/operations/commerce) takes payments, issues invoices and handles VAT, but it knows nothing about what you sell. Your plugin fills that in: it can give buyers what they paid for, sell at a price it works out itself, or add a new way to pay. None of it needs a change to Commerce.

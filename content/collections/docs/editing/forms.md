@@ -13,7 +13,7 @@ Forms let visitors get in touch, ask for a quote or sign up. You build one the w
 3. In the **Fields** tab, change them, or type `/` to add more. Use a **Columns** block to put fields side by side.
 4. Press **Save**.
 
-Select a field to change its label, help text and whether it's required, just like any other block.
+Select a field to change its label, help text and whether it's required, just like any other block. **Rename** and **Delete** are in the form's top bar, on every tab. Deleting a form keeps its submissions.
 
 | Field | For |
 |---|---|
@@ -52,7 +52,7 @@ Emails go out through your [email settings](/operations/email).
 
 ## Add it to a page
 
-Open the page, add a **Form** block where you want it, and pick your form under **Choose a Form** in its settings. With no forms yet, the list offers **New Form**.
+Open the page, add a **Form** block where you want it, and pick your form under **Choose a Form** in its settings. With no forms yet, the list offers **New Form**, which leads to **Forms** to make one.
 
 ## Read submissions
 
@@ -61,7 +61,7 @@ The **Forms** item in the sidebar shows how many submissions are unread. Open a 
 - Switch between **Inbox**, **Unread**, **Archived** and **Spam**, or search.
 - Click one to read it, with the page it came from. **Reply** opens an email to the sender, when the form asks for one. **Spam** and **Archive** file it away.
 - Select several to **Mark Read**, **Archive**, mark as **Spam** or **Delete** them at once.
-- **Export CSV** downloads them for a spreadsheet.
+- **Export CSV**, in the top bar, downloads them for a spreadsheet.
 
 The **Form Submissions** widget puts new ones on your Dashboard too.
 
@@ -119,4 +119,4 @@ A webhook receives each submission as JSON, at an `https://` URL. The `form.subm
 | `forms.view`, **View Form Submissions** | Reading submissions and downloading their files |
 | `forms.manage`, **Manage Forms** | Building forms and changing their settings |
 
-Forms are also abilities, for the assistant, MCP and the API: `forms/list`, `forms/get`, `forms/save`, `forms/delete`, `forms/submissions`, `forms/submission-update`, `forms/submission-delete`, `forms/export` and `forms/activity`.
+Forms are also abilities, for the assistant, MCP and the API: `forms/list`, `forms/get`, `forms/create`, `forms/save`, `forms/configure`, `forms/delete`, `forms/submissions`, `forms/submission`, `forms/submission-update`, `forms/submission-delete`, `forms/export` and `forms/activity`.

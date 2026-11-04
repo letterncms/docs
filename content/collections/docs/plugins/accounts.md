@@ -1,7 +1,7 @@
 ---
 id: 01m645d476k2kt5a124vaqka71
 title: Using accounts
-position: 7
+position: 8
 description: Know who's visiting, give people access to things, gate content and add pages to their account, from any plugin.
 ---
 [Visitor accounts](/operations/public-accounts) let visitors sign up and sign in to your site. Your plugin can use them to find out who's there, give someone access to a course or a download, and add pages to their account.
