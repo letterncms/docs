@@ -1,7 +1,7 @@
 ---
 id: 01m6zm05rnzjmm2wt1gqrqksfw
 title: Sync for plugins
-position: 9
+position: 10
 description: Tell Sync which of your plugin's tables are content, which are what visitors leave behind, and which never leave a site.
 ---
 [Sync](/operations/sync) copies one site into another, such as the live site onto your laptop. If your plugin keeps its own database tables, you can tell Sync how to treat them. Usually you don't have to do anything at all.

@@ -1,7 +1,7 @@
 ---
 id: 01m6e4wsfd46f027c3w9j613sfj5
 title: License tokens
-position: 10
+position: 11
 description: A paid plugin's license key is a signed token that a site checks by itself. The format is public, so you can issue and verify your own.
 ---
 Lettern itself needs no license. A paid plugin does, and its license key is a signed token: the site checks the signature by itself, so there's no activation server and nothing to phone home. If you sell a plugin, this page shows the format, how to verify a token, and how to issue your own.

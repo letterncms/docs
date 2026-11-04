@@ -12,9 +12,9 @@ Register the fields in your provider's `boot()`:
 
 ```php
 $this->cms()->settingsRegistry()->register('reviews', fields: [
-    ['handle' => 'moderation', 'type' => 'toggle', 'label' => 'Hold new reviews for approval', 'default' => true],
-    ['handle' => 'min_rating', 'type' => 'number', 'label' => 'Hide reviews below', 'default' => 1, 'min' => 1, 'max' => 5],
-    ['handle' => 'api_key', 'type' => 'text', 'label' => 'Trustpilot API key', 'secret' => true],
+    ['handle' => 'moderation', 'type' => 'toggle', 'label' => __('Hold new reviews for approval'), 'default' => true],
+    ['handle' => 'min_rating', 'type' => 'number', 'label' => __('Hide reviews below'), 'default' => 1, 'min' => 1, 'max' => 5],
+    ['handle' => 'api_key', 'type' => 'text', 'label' => __('Trustpilot API key'), 'secret' => true],
 ], icon: 'star', description: 'How reviews are collected and shown.', permission: 'reviews.manage');
 ```
 
@@ -72,14 +72,21 @@ const [tab, setTab] = useScreenTabs(['list'])
 
 ### Tabs and actions
 
-A settings page can have more tabs: the form is the first, **Settings**, and each other tab brings its own content. SEO's **Redirects** is one. Add a tab in the `settings.tabs` slot, and a button in the page's top bar in the `settings.actions` slot, whose `when` and component get `{ namespace, tab, dirty }` (`tab` is `settings` for the form):
+A settings page is a [view](/plugins/views), `settings`, with its form as the first tab, **Settings**. Add a tab or a button in its bar as data, with the `view.settings` filter and `SettingsModule::withTab()` or `withAction()`. SEO's **Redirects** is a tab like this:
 
-```typescript
-registry.panels.set('reviews-flagged', { id: 'flagged', slot: 'settings.tabs', label: t('Flagged'), component: Flagged, when: (p) => p.namespace === 'reviews' })
-registry.panels.set('reviews-import', { id: 'reviews-import', slot: 'settings.actions', component: ImportButton, when: (p) => p.namespace === 'reviews' && p.tab === 'flagged' })
+```php
+use Cms\Modules\Settings\SettingsModule;
+use Cms\Users\User;
+
+$this->cms()->hooks()->addFilter('view.settings', fn (array $view, User $user, array $params) => $params['namespace'] !== 'reviews' ? $view
+    : SettingsModule::withTab(SettingsModule::withAction($view, ['label' => __('Import'), 'icon' => 'upload', 'ability' => 'reviews/import'], tab: 'flagged'), [
+        'type' => 'ui/tab', 'props' => ['id' => 'flagged', 'label' => __('Flagged')], 'children' => [
+            ['type' => 'ui/records', 'props' => ['label' => __('Flagged'), 'source' => ['ability' => 'reviews/flagged'], 'columns' => [['key' => 'title', 'label' => __('Title')]]]],
+        ],
+    ]));
 ```
 
-A page with only its form shows no tabs. With changes on more than one tab, one save bar saves or discards them all.
+A button shows while its tab is on view: the form's, `settings`, unless you name another. A page with only its form shows no tabs. A tab with unsaved changes is marked, and each form has its own save bar.
 
 ### Link to one field
 

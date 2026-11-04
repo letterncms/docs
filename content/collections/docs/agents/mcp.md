@@ -81,7 +81,7 @@ Lettern tells it to read your collections and design system first, so what it bu
 
 ## See and revoke connections
 
-Every connected tool is listed under **Tokens**, in **API & Agents** on your Account screen, named after the tool, such as *MCP: Claude*, with when it was last used. Press **Revoke** to disconnect it at once.
+Every connected tool is listed under **Tokens**, in **API & Agents** on your Account screen, named after the tool, such as *MCP: Claude*, with when it was last used. Choose **Revoke** in its menu to disconnect it at once.
 
 A connection stays signed in while you use it. One that goes unused for 180 days has to connect again.
 

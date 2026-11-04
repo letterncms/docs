@@ -121,7 +121,7 @@ The assistant runs [abilities](/agents/abilities) through the `assistant` transp
 
 ### Interfaces in replies
 
-Installed widgets are available in replies automatically. Plugins can add components described by a schema through the shared [generative UI SDK](/plugins/generative-ui), built on json-render.
+Installed widgets are available in replies automatically. Plugins can add components described by a schema through the shared [generative UI SDK](/plugins/generative-ui), drawn by the same renderer as the admin's own places.
 
 ### Skills
 

@@ -35,7 +35,7 @@ The starter site's footer shows the **Tagline** of its **Footer** set this way.
 
 ## In other languages
 
-On a site with several [languages](/content/languages), a global set holds a value for each one. Switch language at the top of the set to fill in a translation. Anything you don't translate shows the default language's value.
+On a site with several [languages](/content/languages), a global set holds a value for each one. Each language has a tab at the top of the set: open one to fill in its translation. Anything you don't translate shows the default language's value.
 
 This is also how the words in your templates and components get translated: put them in a global set, and bind the blocks to it.
 

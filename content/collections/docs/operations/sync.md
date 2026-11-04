@@ -16,7 +16,7 @@ Sync is a paid plugin from the store. It's free between local and staging sites;
 2. On the second site, open **Sync** and press **Connect a Site**.
 3. Paste the key, give the site a name like *Production*, and press **Connect**.
 
-That's all: no SSH, no database password, nothing to open in a firewall. Only the site you connect from has to be able to reach the other one. **Disconnect**, in a connected site's row, removes it again.
+That's all: no SSH, no database password, nothing to open in a firewall. Only the site you connect from has to be able to reach the other one. **Disconnect**, beside a connected site's name, removes it again.
 
 ::: callout {"props":{"tone":"warning","text":"Anyone with a site's key can read and replace its content. Keep it like a password. <strong>Make a New Key</strong> replaces it, and sites connected with the old one then need the new one."}}
 :::
@@ -55,7 +55,7 @@ Whatever moves, the receiving site keeps:
 
 ## Undo a sync
 
-Before Sync replaces anything, it makes a backup. **History** lists what came into this site, such as *Pulled from Staging* or *Staging pushed to this site*, and **Undo** puts back what was there before. To undo a push, press **Undo Last Push** in the other site's row on the site you pushed from.
+Before Sync replaces anything, it makes a backup. **History** lists what came into this site, such as *Pulled from Staging* or *Staging pushed to this site*, and **Undo** puts back what was there before. To undo a push, press **Undo Last Push** under the other site, on the site you pushed from.
 
 Undo also replaces whatever changed since the sync. The last three backups are kept.
 

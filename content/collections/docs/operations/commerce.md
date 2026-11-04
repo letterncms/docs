@@ -104,7 +104,7 @@ Past the EUR 10,000 limit without OSS (the EU's One Stop Shop), sales to consume
 
 If VIES, the EU's VAT number check, is down at checkout, the buyer pays VAT. It's refunded by itself once the number checks out, with a credit note and a new invoice.
 
-**Commerce → VAT** gives you each quarter's figures: OSS per country and rate, domestic sales, the reverse-charge listing, sales outside scope and, under **Tax Abroad**, what Stripe Tax priced, per country, with a CSV download. Credit notes count in the quarter they're issued and name the quarter they correct.
+**Commerce → VAT** lists the last eight quarters. Open one for its figures: OSS per country and rate, domestic sales, the reverse-charge listing, sales outside scope and, under **Tax Abroad**, what Stripe Tax priced, per country. **Download CSV** gives that quarter's spreadsheet. Credit notes count in the quarter they're issued and name the quarter they correct.
 
 This is software, not tax advice. Your accountant decides what applies to you.
 

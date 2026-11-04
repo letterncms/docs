@@ -1,14 +1,14 @@
 ---
 id: 01m5wnc9ysp593167qe550r20c
 title: Admin extensions
-position: 5
+position: 6
 description: Add screens, sidebar items, editor panels, field types, Dashboard widgets and commands to the admin, with the same tools Lettern uses.
 ---
-Your plugin can add to the admin: a screen of its own, a tab in the entry editor, a field type, a widget on the Dashboard, a command in `⌘K`. You write it in React, with the same SDK and components Lettern's own screens are made of, so it looks and behaves like the rest of the admin, in light and dark.
+Your plugin can add to the admin: a screen of its own, a tab in the entry editor, a field type, a widget on the Dashboard, a command in `⌘K`. Screens are data first: a list, a form, tabs and buttons bound to your abilities are a [view](/plugins/views), drawn by Lettern with no React of yours. What a view can't draw, such as an editor, a panel or a field type, you write in React with the same SDK and components Lettern's own screens are made of, so it looks and behaves like the rest of the admin, in light and dark.
 
 ## Add a screen
 
-Two parts: PHP declares the sidebar item, and your admin module draws the screen.
+Start with a [view](/plugins/views). For a screen that is itself an editor, there are two parts: PHP declares the sidebar item, and your admin module draws the screen.
 
 ```php
 // In your provider's boot()
@@ -234,11 +234,9 @@ registry.panels.set('reviews-summary', { id: 'reviews-summary', slot: 'entry.sid
 | `shell.dock` | A column at the right edge, on every screen. Draw it with `Dock` from `@letterncms/ui` (`open`, `full`, `floating`, `label`): the page stays usable next to it, people can drag it wider, `floating` makes it a card over the page that moves by an element with `data-dock-drag`, `full` grows it over the workspace, and small windows get it over the page. The assistant's chat is one | `full` |
 | `shell.banner` | A strip above the screen, beside the sidebar, for a notice that concerns the whole admin (the license and update notices) | `full` |
 | `topbar.end` | In every screen's top bar, before the screen's own actions: the way back to what's docked | |
-| `account.sections` | A section of **Account**. Core's **Profile** (10), **Security** (30) and **API & Agents** (60) are panels here too | |
-| `account.api` | Part of **API & Agents**, before the tokens: the MCP plugin shows its server URL and the Claude Code command here | |
-| `settings.tabs` | A tab of a settings page, after its form: see [Settings](/plugins/settings#tabs-and-actions) | `namespace`, `active` |
-| `settings.actions` | A button in a settings page's top bar | `namespace`, `tab`, `dirty` |
-| `plugins.tabs` | A tab of **Plugins**, after Installed, Store and Updates (the license module's **Licenses**) | |
+| `account.api` | Part of **API & Agents** on **Account**, before the tokens: the MCP plugin shows its server URL and the Claude Code command here | |
+
+**Account** and **Plugins** are [views](/plugins/views): add a section to Account, or a tab to Plugins after Installed, Store and Updates (as the license module adds **Licenses**), with the `view.account` and `view.plugins` filters.
 
 ### Entry panels
 
@@ -323,7 +321,7 @@ Custom field controls use `fieldControlId(field)` from `@letterncms/ui` for thei
 
 ## Lists of records
 
-Use `DataView` from `@letterncms/ui` for any overview of records. It gives you the same Table, Grid and Calendar views as content collections (Grid only with `image`, Calendar only with `calendar`), with search, sortable headers, a **Display** menu, saved column and view preferences, loading and error states, and keyboard navigation (`j`/`k`, `x`, Enter and Escape).
+In a view, a list is `ui/records` (see [Views](/plugins/views)), drawn with `DataView`. In your own React, use `DataView` from `@letterncms/ui` for any overview of records. It gives you the same Table, Grid and Calendar views as content collections (Grid only with `image`, Calendar only with `calendar`), with search, sortable headers, a **Display** menu, saved column and view preferences, loading and error states, and keyboard navigation (`j`/`k`, `x`, Enter and Escape).
 
 ```typescript
 <DataView
