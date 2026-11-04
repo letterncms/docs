@@ -36,7 +36,7 @@ Abilities run from the command line act with full rights, and show as `cli` in t
 | `cms install` | Installs a site: see [Installation](/getting-started/installation). |
 | `cms sync` | Runs migrations and plugin install and upgrade steps, and imports `content/media`. |
 | `cms packages:update` | Checks the signed update list and [updates the core](/getting-started/upgrading). `--check` only says what's on offer. `--security-only` does what an admin's visit would, for cron. |
-| `cms starter:refresh --force` | Puts the Site plugin's starter kit back on this site, after a snapshot in `storage/backups/`. Accounts and settings stay. For working on the kit. |
+| `cms starter:refresh --force` | Puts the starter kit back on this site, after a snapshot in `storage/backups/`. Accounts and settings stay. For working on the kit. |
 
 ## Users, tokens and plugins
 

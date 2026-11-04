@@ -27,7 +27,8 @@ A module registers its abilities, permissions, settings, sidebar items and scree
 | `letterncms/globals` | Global sets, their fields and `/api/v1/globals/<handle>` | Yes |
 | `letterncms/users` | **Users** (Team, Visitors, Sign-Up, Profile Fields), invitations and **Roles** | Yes: accounts and `config/roles.yaml` keep working |
 | `letterncms/audit` | The **Audit Log**: who changed what, when, from where | Yes: nothing is written |
-| `letterncms/blocks` | The block editor, components, templates, styles, data bindings and Block Markdown | Yes, while no plugin that builds on it is on (Site, Forms and Commerce do) |
+| `letterncms/blocks` | The block editor, components, templates, styles, data bindings and Block Markdown | Yes, while nothing that builds on it is on (Site, Forms and Commerce do) |
+| `letterncms/site` | The [design system](/design/design-system), [templates](/design/templates), rendering, previews, [publishing](/operations/publishing) the static site, search and the starter kit | Yes, for a headless site, while no plugin that builds on it is on (Commerce does) |
 | `letterncms/languages` | [Languages](/content/languages): translations linked to their original, localized URLs, hreflang and the language switcher | Yes |
 | `letterncms/collaboration` | [Collaboration](/editing/collaboration): who else is on a page, comments with @mentions, and the inbox | Yes |
 | `letterncms/mcp` | The [MCP server](/agents/mcp): every ability as a tool for AI clients, signed in with OAuth | Yes |
@@ -36,11 +37,11 @@ The required modules are what Lettern needs to keep working: without them there 
 
 ## Switch a module off
 
-Modules are part of Lettern, not plugins, so **Plugins** doesn't list them. Switch one off with `php cms plugin disable letterncms/audit`, the `packages/disable` ability (and back on with `packages/enable`), or in `config/plugins.yaml`:
+Modules are part of Lettern, not plugins: the ones that can be off are under **Plugins → Built In**, each with its switch. Or switch one off with `php cms plugin disable letterncms/audit`, the `packages/disable` ability (and back on with `packages/enable`), or in `config/plugins.yaml`:
 
 ```yaml
 enabled:          # plugins that run
-  - letterncms/site
+  - letterncms/forms
   - letterncms/seo
 disabled:         # modules that don't
   - letterncms/audit
@@ -49,7 +50,7 @@ disabled:         # modules that don't
 
 Modules are on unless they're listed under `disabled`; plugins are on when they're listed under `enabled`.
 
-A module others need can't be switched off before them: `letterncms/collections` needs `letterncms/content`, and `letterncms/blocks` stays on while a plugin that builds on it is on. Data is kept, so when you switch a module back on, its items return to the places admins gave them.
+A module others need can't be switched off before them: `letterncms/collections` needs `letterncms/content`, and `letterncms/blocks` stays on while Site, or a plugin that builds on it, is on. Data is kept, so when you switch a module back on, its items return to the places admins gave them.
 
 ## Configure a module
 
@@ -64,6 +65,7 @@ A module's options are a [settings](/plugins/settings) namespace like any plugin
 | `letterncms/email` | How email is sent, under **Email** (`config/email.yaml`) |
 | `letterncms/media` | Upload size, image quality, AVIF and photo metadata, on the **Settings** tab of **Media** |
 | `letterncms/languages` | The site's languages and their URLs, under **Languages** (`config/languages.yaml`) |
+| `letterncms/site` | The favicon and **Publishing** (static site, rebuilding on publish, search index), under **General** (`config/site.yaml`); the look itself in the **Design System** |
 
 The content module has no settings. Entries per page (50), the autosave delay (1.2 seconds) and the revisions kept per entry (100) are fixed; a plugin can change the revisions kept with the `revisions.keep` [filter](/plugins/hooks).
 

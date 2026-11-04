@@ -49,7 +49,7 @@ Most PHP hosting already has all of this. Setup checks every item and tells you 
 
 ## Choosing plugins
 
-Media, menus, email, the block editor, languages, collaboration and MCP come with Lettern. During setup you pick your plugins. The recommended ones are already ticked: Site (design system, templates and publishing), SEO, Forms and the AI assistant. Leave them as they are if you're not sure — you can add or remove any plugin later, from **Plugins → Store** in the admin.
+The design system, templates and publishing, media, menus, email, the block editor, languages, collaboration and MCP come with Lettern. During setup you pick your plugins. The recommended ones are already ticked: SEO, Forms and the AI assistant. Leave them as they are if you're not sure — you can add or remove any plugin later, from **Plugins → Store** in the admin.
 
 ## Keeping it up to date
 

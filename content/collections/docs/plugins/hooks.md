@@ -112,7 +112,7 @@ The first argument is the value you return; the rest are there to help you decid
 | `entry.uri` | `$uri, $entry, $collection` | An entry's URL (Languages adds prefixes here). |
 | `collections` | `$collections` | The list of collections (add code-defined ones). |
 | `collections.defaults` | `$definition` | The initial definition returned by `collections/options`. The Blocks module contributes an explicit blocks body; without it, a collection starts with no body. Creators apply explicit values afterward. |
-| `collections.settings` | `$fields, $collection` | The settings a collection offers in **Collections** (the site plugin adds its template picker). |
+| `collections.settings` | `$fields, $collection` | The settings a collection offers in **Collections** (Site adds its template picker). |
 | `revisions.keep` | `$count` | How many revisions each entry keeps (100). |
 | `gate.allows` | `$allowed, $user, $entry, $rule` | Whether someone may read a [gated](/content/gated-content) entry. |
 | `fields.options.<name>` | `$options` | Options of select fields with `dynamic: <name>` (`templates`, `collections`, `timezones`). |
@@ -146,7 +146,6 @@ The first argument is the value you return; the rest are there to help you decid
 | `site.foot` | `$tags, $context` | Scripts at the end of a page's `<body>`. |
 | `site.scope` | `$scope, $context` | The data templates and blocks can bind to (`site`, `entry`, `globals`, `page`, `pagination`…). `$context->mode` says who the page is for: only add a signed-in person's data in `request`, as a `build` goes to a public file. |
 | `site.html` | `$html, $context` | A rendered page. |
-| `render.page` | `null` | The page being rendered, as `{entry, uri, locale}` (the site plugin answers it; `cms_menu()` and `cms_translations()` read it). |
 | `site.build.extras` | `$extras` | Extra files the static build writes (sitemap, feeds…). |
 | `site.search.record` | `$record, $entry` | A page's search index record (`null` leaves it out). |
 | `site.links.answered` | `$answered, $path` | Whether an address your plugin answers itself is real, so `cms links:check` accepts it. |

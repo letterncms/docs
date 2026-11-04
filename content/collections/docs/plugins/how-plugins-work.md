@@ -82,7 +82,7 @@ Put the folder in `plugins/`, turn it on with its switch in **Plugins** or with 
 | `provider` | The class Lettern starts. A package without one can still bring migrations, views and translations. |
 | `namespace` | The name for its settings, views and translations. Defaults to the part after the slash (`reviews`). |
 | `provides` | Capabilities it offers, such as `forms`, so others can ask who provides one. |
-| `modules` | The optional [modules](/plugins/modules) it builds on, such as `letterncms/blocks`. They come with Lettern, so they aren't in `require`. |
+| `modules` | The optional [modules](/plugins/modules) it builds on, such as `letterncms/blocks` or `letterncms/site`. They come with Lettern, so they aren't in `require`. |
 | `sync` | How [Sync](/plugins/sync) treats its tables. |
 | `license` | For paid plugins: see [License tokens](/plugins/license-tokens#sell-your-own-plugin). |
 
@@ -268,7 +268,7 @@ $this->cms()->hooks()->addFilter('blocks.data-sources', fn (array $sources) => [
 
 Prefer this to a block with fixed markup: the design stays in the designer's hands.
 
-A built page is written again when what it read changes. Record your own dependency with `PageContext::depend('reviews')` in `resolve`, and call `SiteBuilder::queueForDependency('reviews')` when your data changes.
+`Cms\Modules\Site\Rendering\PageContext::current()` is the page being rendered (its `entry`, `uri` and `locale()`), or null outside one. A built page is written again when what it read changes. Record your own dependency with `PageContext::depend('reviews')` in `resolve`, and call `SiteBuilder::queueForDependency('reviews')` when your data changes.
 
 To give templates a value of their own, add it to the render scope with the `site.scope` filter (`fn (array $scope, $context) => [...$scope, 'shop' => […]]`) and bind to `shop.*`.
 
@@ -293,7 +293,7 @@ To change the definition offered when someone creates a collection, filter `coll
 
 ### A setting per collection
 
-A plugin that stores something per collection offers it as a field in the collection's settings, the same way the site plugin offers the template:
+A plugin that stores something per collection offers it as a field in the collection's settings, the same way Site offers the template:
 
 ```php
 $this->cms()->hooks()->addFilter('collections.settings', fn (array $fields, ?Collection $collection) => [
@@ -306,7 +306,7 @@ The value is saved in the collection's YAML; read it with `$collection->get('rev
 
 ## Replace a built-in
 
-Some features are contracts with a default, so a plugin can swap the implementation: `Cms\Contracts\SiteBuilder` (static publishing; the Site plugin binds it) and `Cms\Contracts\Agent` (see [Agents](/plugins/agents)). Bind your own in `register()`:
+Some features are contracts with a default, so a plugin can swap the implementation: `Cms\Contracts\SiteBuilder` (static publishing; Site binds it) and `Cms\Contracts\Agent` (see [Agents](/plugins/agents)). Bind your own in `register()`:
 
 ```php
 $this->app->singleton(\Cms\Contracts\SiteBuilder::class, NetlifyBuilder::class);
