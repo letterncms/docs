@@ -64,7 +64,7 @@ The track at the top of the **Design** tab chooses which state you're styling: *
 | **Current Page** | A link to the page the visitor is on |
 | **Hover on Hover Group** | Reacting when a whole card is hovered, not only this block |
 | **Dark Mode** | Values for visitors who use dark mode |
-| **Open** | An open accordion or dialog |
+| **When Open** | An open accordion or dialog |
 | **Custom State…** | A state set by an interaction, a behavior or data, see below |
 
 Add a **Transition** in the default state, and the change between states animates.
