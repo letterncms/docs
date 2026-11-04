@@ -136,7 +136,7 @@ The admin starts loading code and data on link hover or focus. While an uncached
 The sidebar has two states, both drawn from registered sections and items. The screen on view decides which one shows:
 
 - **The main sidebar**, where people work: every item, section by section, in the order each person put them. The kernel registers the sections `main` (no heading: Dashboard, Analytics, Plugins), `content` (*Content*) and `design` (*Design*). Each collection is an item too (`collection.<handle>`, in the section its definition names), so Templates and Components sit under Design. Everything is there from the start; **More** appears only for what someone unpins.
-- **The settings sidebar**, opened with the gear beside your name or `⇧⌘,`: a way back, then what is set up once. The kernel registers `account`, `site` and `system`, shown together without a heading (**Account**, **General**, **Audit Log**), then `people` (*People*: Users, Roles) and `plugins` (*Plugins*). Each settings page is an item (`settings.<namespace>`). Whatever a plugin puts in a settings section is listed under **Plugins**, by the plugin's name, so no plugin makes a group of its own; that includes settings kept as a **Settings** tab on the plugin's own screen (see [Settings](/plugins/settings#a-settings-tab-on-your-own-screen)). Settings are a place to visit, not something to arrange: these items are never pinned.
+- **The settings sidebar**, opened with the gear beside your name or `⇧⌘,`: a way back, then what is set up once. The kernel registers `account`, `site` and `system`, shown together without a heading (**Account**, **General**, **Languages**, **Media**, **Email**, **Audit Log**), then `people` (*People*: Users, Roles) and `plugins` (*Plugins*). Each settings page is an item (`settings.<namespace>`). Whatever a plugin puts in a settings section is listed under **Plugins**, by the plugin's name, so no plugin makes a group of its own; that includes settings kept as a **Settings** tab on the plugin's own screen (see [Settings](/plugins/settings#a-settings-tab-on-your-own-screen)). Settings are a place to visit, not something to arrange: these items are never pinned.
 
 ```php
 $admin->section('shop', 'Shop', order: 30);                       // a section of the main sidebar
@@ -236,7 +236,7 @@ registry.panels.set('reviews-summary', { id: 'reviews-summary', slot: 'entry.sid
 | `workspace.composer` | In the thread's composer, beside **Send**: an [agent](/plugins/agents)'s own controls, such as the assistant's model picker | `thread`, `state`, `options`, `setOption`, `busy`, `loading` |
 | `shell.banner` | A strip above the screen, beside the sidebar, for a notice that concerns the whole admin (the license and update notices) | `full` |
 | `topbar.end` | In every screen's top bar, before the screen's own actions: the way back to what's docked | |
-| `account.api` | Part of **API & Agents** on **Account**, before the tokens: the MCP plugin shows its server URL and the Claude Code command here | |
+| `account.api` | Part of **API & Agents** on **Account**, before the tokens: the MCP module shows its server URL and the Claude Code command here | |
 
 **Account** and **Plugins** are [views](/plugins/views): add a section to Account, or a tab to Plugins after Installed, Store and Updates (as the license module adds **Licenses**), with the `view.account` and `view.plugins` filters.
 

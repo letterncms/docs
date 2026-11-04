@@ -71,7 +71,7 @@ $a->register('reviews/approve', [
 ]);
 ```
 
-Its buttons leave out what the person may not run, as in any view. Without an `answer`, a list is drawn as records with its first useful values as columns, a record as its values, and a result that names a place (`to`, or an entry's `collection` and `id`) gets **Open**. The `workspace.answer` filter (`$view`, `$ability`, `$result`, `$input`, `$user`) adds to any answer: the navigation plugin adds **Add to Menu** to a new page's this way. Values written into an answer go through `Answers::literal()`, so a title with braces never reads as a template.
+Its buttons leave out what the person may not run, as in any view. Without an `answer`, a list is drawn as records with its first useful values as columns, a record as its values, and a result that names a place (`to`, or an entry's `collection` and `id`) gets **Open**. The `workspace.answer` filter (`$view`, `$ability`, `$result`, `$input`, `$user`) adds to any answer: Navigation adds **Add to Menu** to a new page's this way. Values written into an answer go through `Answers::literal()`, so a title with braces never reads as a template.
 
 ### Asking for input
 

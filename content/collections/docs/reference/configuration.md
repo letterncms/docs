@@ -24,7 +24,7 @@ Values for this server, and secrets. Never commit this file.
 | `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PREFIX` | The database. |
 | `CMS_INSTALL_TOKEN` | Required by the web installer when set. |
 | `CMS_ALLOW_FILE_MODS` | `false` stops installing, updating or deleting plugin files from the admin. |
-| `CMS_<NAMESPACE>_<KEY>` | Overrides any setting, e.g. `CMS_SITE_URL`, `CMS_MAIL_SMTP_PASSWORD` or `CMS_ASSISTANT_API_KEY`. |
+| `CMS_<NAMESPACE>_<KEY>` | Overrides any setting, e.g. `CMS_SITE_URL`, `CMS_EMAIL_SMTP_PASSWORD` or `CMS_ASSISTANT_API_KEY`. |
 
 ## YAML in `config/`
 
@@ -43,7 +43,6 @@ locales: [en, de]
 # config/plugins.yaml — which plugins run (every plugin in plugins/ when the file is missing)
 # and which of the admin's optional modules don't (see /plugins/modules)
 enabled:
-  - letterncms/blocks
   - letterncms/site
   - letterncms/seo
 disabled:
@@ -62,8 +61,8 @@ Everything people change in **Settings** belongs to a settings namespace:
 
 - the site itself, under **General**: name, URL, timezone, language, **Admin Language** and favicon, in `config/site.yaml`
 - the default sidebar and Dashboard, in `config/admin.yaml`, with no page of their own: saved with **Save as Default** where they are arranged
-- each module: how long the Audit Log keeps entries, the roles, visitor accounts
-- each plugin, under **Plugins** in the settings sidebar or on its screen's **Settings** tab: email transport, SEO defaults, the assistant's model
+- each module: how email is sent (`config/email.yaml`), media, languages (`config/languages.yaml`), how long the Audit Log keeps entries, the roles, visitor accounts
+- each plugin, under **Plugins** in the settings sidebar or on its screen's **Settings** tab: SEO defaults, the assistant's model
 
 Each is saved to `config/<namespace>.yaml`, except fields marked secret (passwords, API keys). Those are encrypted into `storage/secrets.json`, never written to YAML, and never shown again in the admin.
 

@@ -47,21 +47,21 @@ Every plugin is a Composer package. `composer.json` gives it a name, says what i
     "version": "1.0.0",
     "license": "MIT",
     "require": {
-        "letterncms/cms": "*",
-        "letterncms/blocks": "*"
+        "letterncms/cms": "*"
     },
     "autoload": { "psr-4": { "Acme\\ReadingTime\\": "src/" } },
     "extra": {
         "cms": {
             "label": "Reading time",
             "icon": "clock",
-            "provider": "Acme\\ReadingTime\\ReadingTimePlugin"
+            "provider": "Acme\\ReadingTime\\ReadingTimePlugin",
+            "modules": ["letterncms/blocks"]
         }
     }
 }
 ```
 
-`require` names the Lettern version (`letterncms/cms`) and the other plugins this one needs. They are real Composer packages, so `composer require` brings them along. Without Composer, Lettern checks the same list and keeps the plugin off until it's met.
+`require` names the Lettern version (`letterncms/cms`) and the other plugins this one needs. They are real Composer packages, so `composer require` brings them along. Without Composer, Lettern checks the same list and keeps the plugin off until it's met. `modules` names the parts of Lettern it builds on that a site can switch off: the plugin only runs while they're on.
 
 ## 3. Write the estimate
 
@@ -72,7 +72,7 @@ This is plain PHP with nothing Lettern-specific about it, apart from reading the
 
 namespace Acme\ReadingTime;
 
-use Cms\Blocks\Document;
+use Cms\Modules\Blocks\Document;
 use Cms\Content\Entries\Entry;
 
 final class ReadingTime
@@ -95,7 +95,7 @@ final class ReadingTime
 }
 ```
 
-`Document::text()` turns a page's blocks into plain text. It comes from the blocks plugin, which is why `composer.json` requires `letterncms/blocks`.
+`Document::text()` turns a page's blocks into plain text. It comes from the Blocks module, which is why `composer.json` lists `letterncms/blocks` under `modules`.
 
 ## 4. Add a setting and an ability
 

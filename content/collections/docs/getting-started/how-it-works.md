@@ -51,9 +51,9 @@ Everything you can do in Lettern, like creating a page, uploading an image or pu
 
 That's why AI is safe to use here: an agent can only do what the person behind it is allowed to, and everything it does is logged. See [AI and automation](/agents).
 
-## Everything else is a plugin
+## Built in, or a plugin
 
-The page builder, forms, SEO, email and the assistant are all **plugins**. Turn off what you don't need, add what you do from the store. Developers can write their own, with the same tools Lettern's own features use. See [Plugins](/plugins).
+Media, menus, email, the block editor, languages, comments and MCP come with Lettern. Your site's design and publishing, forms, SEO and the assistant are **plugins**. Turn off what you don't need, add what you do from the store. Developers can write their own, with the same tools Lettern's own features use. See [Plugins](/plugins).
 
 ## Your site is a folder of files
 

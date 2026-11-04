@@ -108,7 +108,7 @@ fields:
 | `route` | The URL pattern (see below). Leave it out for content without pages of its own. |
 | `home` | For trees: the slug of the entry that becomes `/`. |
 | `template` | The slug of the [template](/design/templates) that frames entries. Omit or leave empty to inherit: Lettern uses `default`, or renders the content alone when there is no default template. A missing template stays visible with a warning until you choose another. Entries can override it with a `template` field (`type: select`, `dynamic: templates`); clearing that field restores the collection's template. |
-| `section` | The sidebar section it is listed in: `content` unless set. Every collection is in the sidebar from the start; people unpin and reorder it in their own sidebar, and what they unpin waits under **More**. The blocks plugin's templates and components use `design`. |
+| `section` | The sidebar section it is listed in: `content` unless set. Every collection is in the sidebar from the start; people unpin and reorder it in their own sidebar, and what they unpin waits under **More**. The Blocks module's templates and components use `design`. |
 | `nav_order` | Default place in its section (integer, lower first; `10` when omitted). A sidebar someone arranged, or the default an admin saved for everyone, overrides it. |
 | `body` | The main-content field's handle. A `blocks` body uses the block editor. Without a body, entries use a field form; Lettern never guesses one from field order. |
 | `sort` | Field to sort lists by; prefix with `-` for descending. |
@@ -162,13 +162,13 @@ default_columns:
 
 ### Creating and deleting through the API
 
-`collections/options` returns `defaults` (the starting definition from active plugins) and `settings` (the settings fields and choices). Creators apply `defaults` first, then pass the definition to `collections/save` with `createOnly: true`. Saving an existing collection never injects new defaults. Plugins contribute defaults through the `collections.defaults` filter; the blocks plugin adds a `content` field of type `blocks` as the body.
+`collections/options` returns `defaults` (the starting definition from active plugins) and `settings` (the settings fields and choices). Creators apply `defaults` first, then pass the definition to `collections/save` with `createOnly: true`. Saving an existing collection never injects new defaults. Plugins contribute defaults through the `collections.defaults` filter; the Blocks module adds a `content` field of type `blocks` as the body.
 
 `collections/delete` needs `deleteEntries: true` for a collection with entries. Deleting runs through the content lifecycle, so drafts, revisions and plugin data are cleaned up, and published pages are removed or rebuilt.
 
 ### System collections
 
-The blocks plugin brings **Templates** (`templates`) and **Components** (`components`), both stored as files and edited in the block editor. They are `system` collections: they aren't listed under **Collections** and can't be deleted, but a site can redefine them in `content/collections/templates.yaml` or `components.yaml`, for example to add a field. See [Templates](/design/templates) and [Components](/design/components).
+The Blocks module brings **Templates** (`templates`) and **Components** (`components`), both stored as files and edited in the block editor. They are `system` collections: they aren't listed under **Collections** and can't be deleted, but a site can redefine them in `content/collections/templates.yaml` or `components.yaml`, for example to add a field. See [Templates](/design/templates) and [Components](/design/components).
 
 The pages plugins bring, like checkout and sign-in, are `system` collections too. They have no sidebar item of their own: **Pages** lists them under **Built-in Pages**, grouped by plugin.
 

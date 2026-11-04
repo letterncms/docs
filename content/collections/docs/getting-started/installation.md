@@ -49,7 +49,7 @@ Most PHP hosting already has all of this. Setup checks every item and tells you 
 
 ## Choosing plugins
 
-During setup you pick your plugins. The recommended ones are already ticked: the page builder, media, menus, SEO, forms, email, the AI assistant and MCP. Leave them as they are if you're not sure — you can add or remove any plugin later, from **Plugins → Store** in the admin.
+Media, menus, email, the block editor, languages, collaboration and MCP come with Lettern. During setup you pick your plugins. The recommended ones are already ticked: Site (design system, templates and publishing), SEO, Forms and the AI assistant. Leave them as they are if you're not sure — you can add or remove any plugin later, from **Plugins → Store** in the admin.
 
 ## Keeping it up to date
 
@@ -71,7 +71,7 @@ php cms install --site-name="Acme" --site-url="https://acme.test" \
   --name="Ada Lovelace" --email=ada@acme.test --password="a-strong-password"
 ```
 
-Choose plugins with `--plugins=site,blocks,forms`, or none at all with `--plugins=none`: a site without plugins is a working headless CMS. From the command line, plugins are added with `composer require letterncms/<name>`, and land in `plugins/<name>` (a third party's in `plugins/<vendor>-<name>`).
+Choose plugins with `--plugins=site,seo,forms`, or none at all with `--plugins=none`: a site without plugins is a working headless CMS. From the command line, plugins are added with `composer require letterncms/<name>`, and land in `plugins/<name>` (a third party's in `plugins/<vendor>-<name>`).
 
 ### Protect the installer
 

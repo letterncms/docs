@@ -74,7 +74,7 @@ Moving doesn't publish anything: unpublished changes stay unpublished.
 
 When two people edit the same entry, Lettern never lets one save silently overwrite the other. If the entry changed since you opened it, Lettern asks whether to **Load Their Version** or **Keep Mine**.
 
-With the [collaboration plugin](/editing/collaboration), you also see who else has the entry open, and can leave comments for each other.
+With [collaboration](/editing/collaboration), you also see who else has the entry open, and can leave comments for each other.
 
 ## For developers
 

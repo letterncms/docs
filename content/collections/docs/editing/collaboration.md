@@ -50,7 +50,7 @@ Until you choose, Lettern warns you before you leave the page, so your edits are
 
 ### Abilities
 
-Comments are abilities, for the assistant, MCP and the API: `comments/list`, `comments/create`, `comments/update`, `comments/resolve`, `comments/delete`, `comments/people` and `comments/inbox`. Presence uses `collab/presence`.
+Comments are abilities, for the assistant, MCP and the API: `comments/list`, `comments/create`, `comments/update`, `comments/resolve`, `comments/delete`, `comments/people` and `comments/inbox`. Presence uses `collaboration/presence`.
 
 ### How presence works
 

@@ -107,7 +107,7 @@ The assistant names a thread after its first reply, and a thread is saved only o
 
 ## Translate pages
 
-With the assistant set up, the [languages plugin](/content/languages) can translate pages too. Only the text is sent, and the translation opens as a draft.
+With the assistant set up, [Languages](/content/languages) can translate pages too. Only the text is sent, and the translation opens as a draft.
 
 ## What it costs
 
