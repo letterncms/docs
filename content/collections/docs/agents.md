@@ -11,7 +11,7 @@ Lettern is made to work with AI. Ask the assistant in the admin to build a page,
 
 Behind every button in the admin is a named action, called an [ability](/agents/abilities): create a page, upload an image, publish. The assistant, your AI tools, the API and the command line use exactly the same abilities. So whichever way a change comes in, it gets the same checks, the same permissions and the same entry in the audit log.
 
-Start with the [assistant](/agents/assistant): it's already in your admin, one press of `⌘J` away.
+Start with the [assistant](/agents/assistant): it answers in the [workspace](/getting-started/workspace), one press of `⌘J` away.
 
 ## For developers
 
