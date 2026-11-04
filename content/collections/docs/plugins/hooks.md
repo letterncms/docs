@@ -96,7 +96,7 @@ Name them after your plugin, so they never clash with Lettern's own.
 | `ability.executing` | `$ability, $input, $context` | Before any ability runs. |
 | `ability.executed` | `$ability, $input, $result, $context` | After it ran (letterncms/audit records changes here). |
 | `user.login` | `$user` | Someone signed in to the admin. |
-| `account.*` | | Public accounts: signed up, verified, signed in, deleted and more. See [Using accounts](/plugins/accounts#hooks). |
+| `account.*` | | Visitor accounts: signed up, verified, signed in, deleted and more. See [Using accounts](/plugins/accounts#hooks). |
 | `oauth.authorized` | `$user, $client` | An agent was granted access. |
 
 ## Filters
@@ -113,7 +113,7 @@ The first argument is the value you return; the rest are there to help you decid
 | `collections` | `$collections` | The list of collections (add code-defined ones). |
 | `collections.defaults` | `$definition` | The initial definition returned by `collections/options`. The blocks plugin contributes an explicit blocks body; without it, the core starts with no body. Creators apply explicit values afterward. |
 | `collections.settings` | `$fields, $collection` | The settings a collection offers in **Collections** (the site plugin adds its template picker). |
-| `revisions.keep` | `$count` | How many revisions each entry keeps (letterncms/content makes it a setting). |
+| `revisions.keep` | `$count` | How many revisions each entry keeps (100). |
 | `gate.allows` | `$allowed, $user, $entry, $rule` | Whether someone may read a [gated](/content/gated-content) entry. |
 | `fields.options.<name>` | `$options` | Options of select fields with `dynamic: <name>` (`templates`, `collections`, `timezones`). |
 | `fields.definition.<name>` | `$field, $context` | Resolved definition of a `dynamic: <name>` field. The collection host supplies `$context['collection']`; use it for presentation such as the inherited template name. Raw collection YAML stays unchanged. |
@@ -132,7 +132,7 @@ The first argument is the value you return; the rest are there to help you decid
 
 | Filter | Value, then arguments | Lets you change |
 |---|---|---|
-| `admin.manifest` | `$manifest, $user` | What the admin receives at start-up (modules add `collections`, `globals`, the home screen and `config.<namespace>` here). |
+| `admin.manifest` | `$manifest, $user` | What the admin receives at start-up (modules add `collections`, `globals`, the Dashboard and `config.<namespace>` here). |
 | `admin.nav` | `$items` | Sidebar items that come and go (letterncms/content adds one per collection, letterncms/settings one per settings page). |
 | `agent.guide` | `$guide` | The instructions every AI agent gets. |
 | `mcp.prompts` | `$prompts` | Prompts offered to MCP clients: the site's skills (`cms()->skills()`). |

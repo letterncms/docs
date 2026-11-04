@@ -2,9 +2,9 @@
 id: 01m5wnc9ysp593167qe550r20c
 title: Admin extensions
 position: 5
-description: Add screens, sidebar items, editor panels, field types, home-screen widgets and commands to the admin, with the same tools Lettern uses.
+description: Add screens, sidebar items, editor panels, field types, Dashboard widgets and commands to the admin, with the same tools Lettern uses.
 ---
-Your plugin can add to the admin: a screen of its own, a tab in the entry editor, a field type, a widget on the home screen, a command in `⌘K`. You write it in React, with the same SDK and components Lettern's own screens are made of, so it looks and behaves like the rest of the admin, in light and dark.
+Your plugin can add to the admin: a screen of its own, a tab in the entry editor, a field type, a widget on the Dashboard, a command in `⌘K`. You write it in React, with the same SDK and components Lettern's own screens are made of, so it looks and behaves like the rest of the admin, in light and dark.
 
 ## Add a screen
 
@@ -12,7 +12,7 @@ Two parts: PHP declares the sidebar item, and your admin module draws the screen
 
 ```php
 // In your provider's boot()
-$this->cms()->admin()->nav('reviews', ['label' => 'Reviews', 'path' => '/reviews', 'icon' => 'star', 'section' => 'content']);
+$this->cms()->admin()->nav('reviews', ['path' => '/reviews', 'icon' => 'star', 'section' => 'content']);
 $this->adminModule();
 ```
 
@@ -34,7 +34,7 @@ function ReviewsScreen() {
 registry.routes.set('/reviews', { path: '/reviews', component: ReviewsScreen })
 ```
 
-Build it to `dist/admin.js` (see [Build setup](#build-setup)), and **Reviews** appears under **More** in the sidebar. `useAbility` runs one of your [abilities](/agents/abilities) with the signed-in person's permissions, so the screen never sees more than they may.
+Build it to `dist/admin.js` (see [Build setup](#build-setup)), and **Reviews** appears under **Content** in the sidebar. Without a `label`, a plugin's main screen takes the plugin's name, `extra.cms.label` in its `composer.json`, so the screen, its settings and its row in **Plugins** are all called the same. `useAbility` runs one of your [abilities](/agents/abilities) with the signed-in person's permissions, so the screen never sees more than they may.
 
 ## What you can import
 
@@ -43,8 +43,8 @@ Your admin code is an ES module, built with Vite to `dist/admin.js` and loaded w
 | Package | Holds |
 |---|---|
 | `react` | React 19: one copy for everyone. |
-| `@letterncms/sdk` | Talking to Lettern: `t` and `plural` (translations), `brand` (the product's name, links and images: never write the name, and in a translated string use the `{brand}` placeholder, as in `t('Ask {brand}')`), `run`, `request`, `eventStream`, `useAbility`, `useAction`, `invalidate`, the router (`navigate`, `Link`, `useLocation`, `useTab`: tabs kept in the URL as `?tab=`, so a refresh opens the same one), `can`, `useManifest`, `useScreenContext`, `registry` (with `registry.composer` for `@` and `/` in a chat) and `events`. |
-| `@letterncms/ui` | The admin's primitives: `Button`, `IconButton`, `Input`, `Textarea`, `Select`, `Switch`, `Checkbox`, `Segmented`, `Tabs`, `Field`, `Fields`, `Page`, `Section`, `List`, `Dialog`, `confirm`, `Popover`, `Menu`, `SidebarRow`, `Tooltip`, `Badge`, `Avatar`, `Spinner`, `EmptyState`, `SortableTree`, `BlueprintEditor`, `FieldsEditor`, `Icon` and `toast`, plus `useShortcut`, `slugify` and the color scheme. |
+| `@letterncms/sdk` | Talking to Lettern: `t` and `plural` (translations), `brand` (the product's name, links and images: never write the name, and in a translated string use the `{brand}` placeholder, as in `t('Ask {brand}')`), `run`, `request`, `eventStream`, `useAbility`, `useAction`, `invalidate`, the router (`navigate`, `Link`, `useLocation`, `useTab`: tabs kept in the URL as `?tab=`, so a refresh opens the same one, and `confirmLeaving()` for admin themes that ask about unsaved changes their own way), `can`, `useManifest`, `useScreenContext`, `registry` (with `registry.composer` for `@` and `/` in a chat) and `events`. |
+| `@letterncms/ui` | The admin's primitives: `Button`, `IconButton`, `Input`, `Textarea`, `Select`, `Switch`, `Checkbox`, `Segmented` and `Tabs` (both take `fit`: one line that shrinks to the room there is; a tab can have an `icon`), `Field`, `Fields`, `Page`, `Section`, `ScreenTabs`, `ScreenSidebar`, `SaveBar`, `List`, `Dialog`, `confirm`, `Popover`, `Menu`, `SidebarRow`, `Tooltip`, `Badge`, `Avatar`, `PersonPicker`, `Spinner`, `EmptyState`, `SortableTree`, `BlueprintEditor`, `FieldsEditor`, `Icon` and `toast`, plus `useShortcut`, `slugify` and the color scheme. |
 | `@dnd-kit/*` | Drag and drop (`core`, `sortable`, `utilities`), shared so no module bundles its own. |
 
 The admin's own [modules](/plugins/modules) are built with exactly these, nothing more.
@@ -73,12 +73,12 @@ For CSS, import Tailwind's utilities into the `plugins` layer. The shared setup 
 
 ## Register things
 
-The PHP side declares what the admin lists: sections and sidebar items, home-screen widgets and commands. The JS side registers the components behind them.
+The PHP side declares what the admin lists: sections and sidebar items, Dashboard widgets and commands. The JS side registers the components behind them.
 
 ```php
 $admin = $this->cms()->admin();
 $admin->section('shop', 'Shop', order: 30);
-$admin->nav('reviews', ['label' => 'Reviews', 'path' => '/reviews', 'icon' => 'star', 'section' => 'shop', 'pinned' => true, 'permission' => 'reviews.manage']);
+$admin->nav('reviews', ['label' => 'Reviews', 'path' => '/reviews', 'icon' => 'star', 'section' => 'shop', 'permission' => 'reviews.manage']);
 $admin->widget('reviews-latest', ['label' => 'Latest reviews', 'description' => 'New reviews waiting for a reply.', 'icon' => 'star', 'column' => 'main', 'permission' => 'reviews.manage']);
 $admin->command('reviews-new', ['label' => 'Moderate reviews', 'path' => '/reviews', 'keywords' => ['ratings']]);
 ```
@@ -98,10 +98,10 @@ registry.commands.set('reviews-ask', { id: 'reviews-ask', label: 'Summarize revi
 | `routes` | Screens. `layout: 'full'` hides the sidebar (editors). `overlay: true` draws one over the screen it was opened from, which stays open underneath: go there and back with `navigate(path, { overlay: true })`, which doesn't ask about unsaved changes. `private: true` keeps a screen's title and text out of `useScreenContext` readers. |
 | `fields` | The editing component for a field type. |
 | `panels` | Components in named [slots](#slots). |
-| `widgets` | Home-screen widgets (declared in PHP, rendered from here). |
+| `widgets` | Dashboard widgets (declared in PHP, rendered from here). |
 | `components` | Components the assistant can compose: see [Generative UI](/plugins/generative-ui). |
 | `commands` | Command palette entries. `acceptsQuery: true` offers the command for any typed text. |
-| `entryActions` | Lines in the entry editor's **More** menu. |
+| `entryActions` | Lines in the entry editor's **More Actions** menu (`⋯`). |
 | `composer` | What `@` and `/` offer in a chat: see [Working with the assistant](#working-with-the-assistant). |
 | `icons` | Extra icons by name. |
 
@@ -135,8 +135,8 @@ The admin starts loading code and data on link hover or focus. While an uncached
 
 The sidebar has two states, both drawn from registered sections and items. The screen on view decides which one shows:
 
-- **The main sidebar**: the items each person *pinned*, section by section, then **More** for every other item. The kernel registers the sections `main` (no heading) and `content`, so the main sidebar is about content. Each collection is an item too (`collection.<handle>`, in the section its definition names, pinned unless it's a system collection like templates and components).
-- **The settings sidebar**, on any settings page: a way back, then the settings pages in `settings` sections. The kernel registers `account` (no heading), `site`, `tools` and `system` (*Administration*), and the blocks and site plugins add `design`. Each settings namespace is an item (`settings.<namespace>`, in the section it was registered with). Settings are a place to visit, not something to arrange: these items are never pinned and keep their registered order.
+- **The main sidebar**, where people work: every item, section by section, in the order each person put them. The kernel registers the sections `main` (no heading: Dashboard, Analytics, Plugins), `content` (*Content*) and `design` (*Design*). Each collection is an item too (`collection.<handle>`, in the section its definition names), so Templates and Components sit under Design. Everything is there from the start; **More** appears only for what someone unpins.
+- **The settings sidebar**, opened with the gear beside your name or `⇧⌘,`: a way back, then what is set up once. The kernel registers `account`, `site` and `system`, shown together without a heading (**Account**, **General**, **Audit Log**), then `people` (*People*: Users, Roles) and `plugins` (*Plugins*). Each settings page is an item (`settings.<namespace>`). Whatever a plugin puts in a settings section is listed under **Plugins**, by the plugin's name, so no plugin makes a group of its own; that includes settings kept as a **Settings** tab on the plugin's own screen (see [Settings](/plugins/settings#a-settings-tab-on-your-own-screen)). Settings are a place to visit, not something to arrange: these items are never pinned.
 
 ```php
 $admin->section('shop', 'Shop', order: 30);                       // a section of the main sidebar
@@ -145,10 +145,10 @@ $admin->section('billing', 'Billing', order: 15, settings: true); // a section o
 
 | Item key | Meaning |
 |---|---|
-| `label`, `path`, `icon` | What the row shows and where it goes. |
+| `label`, `path`, `icon` | What the row shows and where it goes. Leave out `label` on a plugin's main screen to use the plugin's name. |
 | `section` | The section it's listed in: of the main sidebar, or of the settings sidebar when the section is registered with `settings: true`. |
 | `order` | Its default place in the section. |
-| `pinned` | In everyone's sidebar until they pin their own; otherwise it waits under **More**. Keep it for screens people open every week. |
+| `pinned` | `true` by default: in everyone's sidebar until they arrange their own. `false` puts it under **More**, for a screen nearly nobody opens. |
 | `shortcut` | A key that opens it, shown with the label (e.g. `mod+j`). |
 | `permission` | Who may open it. `visible` (a `fn (User $user): bool`) decides per person beyond that. |
 | `badge` | A callable returning a count (new form submissions), shown with the label. |
@@ -158,20 +158,20 @@ $admin->section('billing', 'Billing', order: 15, settings: true); // a section o
 Every row in the sidebar (pinned, under More, settings) and every `SidebarRow` a plugin draws behaves the same:
 
 - A label too long for the row slides to show its end on hover.
-- The row's main action (**Unpin**, **Pin to Sidebar**, **Delete Chat**) shows as a button on hover.
+- The row's main action (**Unpin**, **Pin to Sidebar**, **Delete Chat**) shows as a button on hover. `Tab` moves from row to row without stopping on it.
 - Right-click (long-press on touch) lists everything the row can do, starting with **Open in New Tab**.
 
-Everyone pins their own sidebar: **Pin to Sidebar** in **More**, **Unpin**, **Move Up** and **Move Down** on a row, drag to reorder, or **Customize Sidebar…** (in More, the site menu and `⌘K`) for every item at once. Their arrangement is the `sidebar` preference. Until they make one, they see the site's default: **Save as Default** in Customize Sidebar writes it to the `sidebar` value of the `admin` settings, and **Settings → Admin** resets it.
+Everyone arranges their own sidebar: **Unpin**, **Move Up** and **Move Down** on a row, **Pin to Sidebar** under **More**, drag to reorder, or **Customize Sidebar…** (in every row's menu, at the end of **More** and in `⌘K`) for every item at once. Their arrangement is the `sidebar` preference, and **Reset to Default** in Customize Sidebar gives it up. Until they make one, they see the site's default: **Save as Default** writes it to the `sidebar` value of the `admin` settings, and **Reset Everyone's Default** puts back what modules and plugins registered.
 
-A new item lands in its section after what's there, pinned or not as registered. An item that disappears (a plugin turned off) keeps its place for when it returns. Items under More stay in `⌘K`: pinning is about focus, and the item's `permission` decides access.
+A new item lands in its section after what's there, pinned unless registered `pinned: false`. An item that disappears (a plugin turned off) keeps its place for when it returns. Items under More stay in `⌘K`: pinning is about focus, and the item's `permission` decides access.
 
 A module puts its own item away or back with `events.emit('sidebar.pin', { id, pinned })` (unpinning offers **Undo**); `events.emit('sidebar.customize')` opens Customize Sidebar.
 
-## Home-screen widgets
+## Dashboard widgets
 
-**Every plugin registers at least one widget.** The home screen is what people see first, so each plugin brings something worth a glance there: new submissions, the health of a connection, what changed.
+**Every plugin registers at least one widget.** The Dashboard is what people see first, so each plugin brings something worth a glance there: new submissions, the health of a connection, what changed.
 
-A plugin without a widget keeps working but is reported as invalid: **Modules** shows the problem, `cms plugins` lists it (and exits with an error, so CI catches it) and, in debug mode, the home screen names it. The admin's own modules are exempt: they are the admin itself.
+A plugin without a widget keeps working but is reported as invalid: **Plugins** shows the problem, `cms plugins` lists it (and exits with an error, so CI catches it) and, in debug mode, the Dashboard names it. The admin's own modules are exempt: they are the admin itself.
 
 ```php
 $admin->widget('reviews-latest', ['label' => 'Latest reviews', 'description' => 'New reviews waiting for a reply.', 'icon' => 'star', 'column' => 'main']);
@@ -179,17 +179,17 @@ $admin->widget('reviews-latest', ['label' => 'Latest reviews', 'description' => 
 
 | Key | Meaning |
 |---|---|
-| `label`, `icon` | The widget's header and its card in the gallery. |
+| `label`, `icon` | The widget's title, and its card in the gallery. |
 | `description` | One short sentence for the gallery: what it shows. |
 | `column` | Where it lands when added: `main` (wide) or `side` (narrow, the default). |
-| `enabled` | On everyone's home screen until they rearrange it. Leave it off: only *Recently edited*, *Site* and *Analytics* start on, so nobody is overwhelmed. People add the rest from the gallery. |
+| `enabled` | On everyone's Dashboard until they rearrange it. Leave it off: only *Recently Edited*, *Site* and *Analytics* start on, so nobody is overwhelmed. People add the rest from the gallery. |
 | `permission` | Who may see and add it. |
 | `order` | Its place among the others in a column. |
 | `assistant` | `false` keeps it out of the assistant's chat: see [Generative UI](/plugins/generative-ui). |
 
 ### Draw it
 
-Draw the widget with `Widget` from `@letterncms/ui`. It takes the registered label and icon for its header and handles loading, errors and the empty state, so every widget looks and behaves the same:
+Draw the widget with `Widget` from `@letterncms/ui`. It takes the registered label for its title and handles loading, errors and the empty state, so every widget looks and behaves the same:
 
 ```typescript
 import { t, timeAgo, useAbility } from '@letterncms/sdk'
@@ -210,9 +210,9 @@ export default function WidgetLatest() {
 
 ### How people arrange it
 
-People customize their home screen on the home screen itself. **Customize** lets them drag widgets within and between the columns, remove them, and add more from the gallery, which shows every widget with its description and the plugin it comes from.
+People customize their Dashboard on the Dashboard itself. **Customize** rings each widget where it is: drag widgets within and between the columns, remove them, and add more with each column's **Add Widget**, from the gallery that shows every widget with its description and the plugin it comes from.
 
-The result is their own (the `dashboard` value of their preferences). Until they make one, they see the site's default, which admins set with **Save as Default**: it's the `dashboard` value of the `admin` settings, and the `admin/arrangement` ability returns it for agents.
+The result is their own (the `dashboard` value of their preferences), and **Reset to Default** gives it up. Until they make one, they see the site's default, which admins set with **Save as Default** while customizing: it's the `dashboard` value of the `admin` settings, and the `admin/arrangement` ability returns it for agents. **Reset Everyone's Default** puts back what modules and plugins registered.
 
 ## Slots
 
@@ -232,8 +232,13 @@ registry.panels.set('reviews-summary', { id: 'reviews-summary', slot: 'entry.sid
 | `entry.editor` | The shared body workspace for the explicitly configured blocks field | `EntryEditorProps` |
 | `shell.aside` | Workspace panels available on every screen, over the screen | `full` |
 | `shell.dock` | A column at the right edge, on every screen. Draw it with `Dock` from `@letterncms/ui` (`open`, `full`, `floating`, `label`): the page stays usable next to it, people can drag it wider, `floating` makes it a card over the page that moves by an element with `data-dock-drag`, `full` grows it over the workspace, and small windows get it over the page. The assistant's chat is one | `full` |
+| `shell.banner` | A strip above the screen, beside the sidebar, for a notice that concerns the whole admin (the license and update notices) | `full` |
 | `topbar.end` | In every screen's top bar, before the screen's own actions: the way back to what's docked | |
-| `account.sections` | A section of **Account**. Core's profile, password, two-factor, appearance and tokens are panels here too (order 10–60); the MCP plugin adds *Connect an AI agent* at 50 | |
+| `account.sections` | A section of **Account**. Core's **Profile** (10), **Security** (30) and **API & Agents** (60) are panels here too | |
+| `account.api` | Part of **API & Agents**, before the tokens: the MCP plugin shows its server URL and the Claude Code command here | |
+| `settings.tabs` | A tab of a settings page, after its form: see [Settings](/plugins/settings#tabs-and-actions) | `namespace`, `active` |
+| `settings.actions` | A button in a settings page's top bar | `namespace`, `tab`, `dirty` |
+| `plugins.tabs` | A tab of **Plugins**, after Installed, Store and Updates (the license module's **Licenses**) | |
 
 ### Entry panels
 
@@ -258,18 +263,24 @@ The entry host routes claimed fields to active panels. Unclaimed fields stay in 
 
 ### Entry actions and preview
 
-`registry.entryActions.set(id, { id, label, icon, order, when, perform })` adds a line to the entry editor's **More** menu.
+`registry.entryActions.set(id, { id, label, icon, order, when, perform })` adds a line to the entry editor's **More Actions** menu (`⋯`).
 
-The site plugin owns the single **Preview** dialog, opened from that menu. It previews the complete unsaved snapshot, including before the first save, with `play: true` through the site renderer. To open it from your code, use `events.emit('entry.preview')` from `@letterncms/sdk` instead of adding another preview control or rendering store.
+The site plugin owns the single **Preview** dialog, opened from that menu. It previews the complete unsaved snapshot, including before the first save, with `play: true` through the site renderer. A live entry with nothing unpublished offers **View on Site** there instead. To open it from your code, use `events.emit('entry.preview')` from `@letterncms/sdk` instead of adding another preview control or rendering store.
 
 ### Screen layout
 
 A screen has two side panels at most, one on each side:
 
-- **On the left**, `ScreenSidebar` from `@letterncms/ui` (`title`, `backTo`, `backLabel`) brings a state of the screen's own to the sidebar, in the same frame as the settings one. It's folded away to start with and brought out by the same button and `⌘\`, with its way back beside that button, in or out. `useScreenSidebar()` gives its state. The block workspace's outline does this.
+- **On the left**, `ScreenSidebar` from `@letterncms/ui` (`title`, `backTo`, `backLabel`) brings a state of the screen's own to the sidebar, in the same frame as the settings one. It's out or folded away as each person last left it (folded the first time), brought out by the same button and `⌘\`, with its way back beside that button, in or out. It takes the sidebar over at once, without sliding, and a screen can claim it while what fills it still loads. The block workspace's **Outline** does this. With `nested`, the list is a screen's sections instead, set in under the screen's row while the sidebar stays as it is, as the Design System's are; only when that row is under **More** do they take the sidebar over. `useScreenSidebar()` gives its state, `nested` included.
 - **On the right** is `InspectorPanel`. A screen that uses it says so with `useScreenContext({ rightEdge: true })`, and a dock floats there instead.
 
-An editor's own tools go in the screen's top bar, through the `toolbar` element in `EntryEditorProps`, and keep to a few. A screen about one thing gives `Topbar` a `back` and a `title` instead of `crumbs`, and ends its `actions` with its main action. With a `ScreenSidebar`, the sidebar's way back stands in for `back`.
+Every screen has one compact top bar: its name after the places that lead to it (`crumbs`) on the left, what it can do on the right, ending with its main action. An editor's own tools go there through the `toolbar` element in `EntryEditorProps`, and keep to a few. A screen about one thing gives `Topbar` a `back` and a `title` instead of `crumbs`. With a `ScreenSidebar`, the sidebar's way back stands in for `back`.
+
+### Tabs and saving
+
+A screen with tabs of its own uses `ScreenTabs` and `useScreenTabs()` from `@letterncms/ui`. When the plugin keeps its settings with the screen, they follow as its last tab, **Settings**: see [Settings](/plugins/settings#a-settings-tab-on-your-own-screen).
+
+A form is saved with `SaveBar` (`dirty`, `saving`, `error`, `onSave`, `onDiscard`): a bar over the bottom of the screen, there only while something changed, with **Discard** and **Save** (`⌘S`), that says what went wrong when saving fails. Leaving with changes asks first, and with changes in more than one form on view, one bar saves or discards them all. A screen shows no Save button of its own.
 
 ## Forms are fields
 
@@ -298,11 +309,11 @@ Presentation options the core components understand:
 |---|---|
 | Any | `icon`, `size` (`xs` for inspectors, `sm`, `md`, `lg`), `placeholder`, `autofocus`, `autocomplete`, `inputmode`, `mono`, `className` (the field's wrapper) |
 | Text | `commit: 'blur'` |
-| Select | `display: 'segmented'` (with `block`), option objects with `icon` and `title`, `numeric` |
+| Select | `display: 'segmented'` (with `block`), option objects with `icon` and `title`, `numeric`; `placeholder` names the option that applies while nothing is chosen (**Browser Language**, **None**) and leads the list, `empty` and `action` say what to do when there are no options |
 | Toggle | `display: 'checkbox'` |
 | Number | `suffix` and `step` |
 | Date | `time: true` and an IANA `timezone`, such as `Europe/Brussels`. The control shows that zone, converts wall times to UTC instants, and rejects missing or ambiguous daylight-saving times with a visible error. |
-| In inline rows | `status` (`own` or `inherited`) colors the label, and `reset` makes it clear the value |
+| In inline rows | `status` (`own` or `inherited`) marks the label: a value set here reads in ink, an inherited one stays muted with a small dot. `reset` makes clicking the label clear the value |
 
 When core can't express a control (a CSS length with tokens, a color with alpha), register a field component and point a field at it with `component`.
 
@@ -312,7 +323,7 @@ Custom field controls use `fieldControlId(field)` from `@letterncms/ui` for thei
 
 ## Lists of records
 
-Use `DataView` from `@letterncms/ui` for any overview of records. It gives you the same Table, Grid and Calendar views as content collections, with search, sortable headers, a **Display** menu, saved column and view preferences, loading and error states, and keyboard navigation (`j`/`k`, `x`, Enter and Escape).
+Use `DataView` from `@letterncms/ui` for any overview of records. It gives you the same Table, Grid and Calendar views as content collections (Grid only with `image`, Calendar only with `calendar`), with search, sortable headers, a **Display** menu, saved column and view preferences, loading and error states, and keyboard navigation (`j`/`k`, `x`, Enter and Escape).
 
 ```typescript
 <DataView
@@ -348,18 +359,19 @@ Give each overview a stable `id`: preferences are saved per account under `overv
 | `selection={{ ids, onSelect }}` | Bulk actions, with `SelectionBar`. |
 | `pagination={{ page, pages, total, perPage, onPage }}` | Page controls (hidden in Calendar). |
 | `actions` | The same record controls in all three views. |
-| `image` | A card preview. |
+| `image` | A card preview. Without it there is no Grid. |
+| `calendar` | Offer a Calendar, for records that happen on a day (orders, events), not for settings-like lists. |
 | `defaultView="grid"` | Start with cards. |
 
 ### Dates and the calendar
 
-**Published** and **Updated** are standard columns: hidden at first outside content entry lists, and always available through **Display**. Don't declare them in each screen.
+**Published** and **Updated** are standard columns, added only when the records have those dates: hidden at first outside content entry lists, and available through **Display**. Don't declare them in each screen.
 
 Records implement the SDK's `RecordTimestamps` contract: `publishedAt` and `updatedAt`, as ISO 8601 strings or `null`. Unknown history and dates that don't apply show as `—`. Entries use their publication lifecycle; menus, redirects, collections, globals and forms are published when first saved; media when uploaded. Users, private submissions, audit events and package state have no publication date. Existing records keep unknown publication history as `null`. Saves track update dates on the server; bulk redirect saves keep unchanged rows as they were. Language metadata follows changes to each language's effective settings.
 
 For wrapped rows, pass `dates={(row) => row.record}`. For server-paginated sorting, declare the supported fields with `dateSort={{ published: 'published_at', updated: 'updated_at' }}` alongside `onSort`. Otherwise the shared view sorts dates locally, newest first, with missing dates last. Content entry tables, trees and cards use the same date definitions and formatting.
 
-Every overview uses `OverviewControls` for the same view choices, **Display** menu and **Reset display** action. Calendar groups records by Published or Updated, chosen in **Display** and saved per overview. Records without the chosen date appear under **No date**. Month navigation and expandable busy days come from `DataCalendar`.
+Every overview uses `OverviewControls` for the same view choices, **Display** menu and **Reset Display** action. Calendar groups records by Published or Updated, chosen in **Display** and saved per overview. Records without the chosen date appear under **No date**. Month navigation and expandable busy days come from `DataCalendar`.
 
 For a paginated source, pass `source={{ ability: 'reviews/list', input: filters, perPage: 100 }}`: the shared loader reads all matching pages through the ability cache, with at most four requests in flight, and handles loading, retries and invalidation. Don't build a screen-specific calendar, or silently render only the current page. Content collections only adapt their date-range filters; they use the same renderer and page loader.
 
@@ -372,20 +384,20 @@ The admin speaks English, Dutch and French, and every string you show should too
 ```typescript
 import { plural, t } from '@letterncms/sdk'
 
-<Button>{t('Send test email')}</Button>
+<Button>{t('Send Test Email')}</Button>
 toast.success(t('Sent to {email}', { email }))
 plural(count, '{count} submission', '{count} submissions')
 ```
 
-Ship the translations in your package as `lang/<code>.json`: `{ "Send test email": "Testmail versturen" }`. The admin merges the core's and every active package's dictionaries for the user's language; a missing string shows in English.
+Ship the translations in your package as `lang/<code>.json`: `{ "Send Test Email": "Testmail versturen" }`. The admin merges the core's and every active package's dictionaries for the user's language; a missing string shows in English.
 
 PHP reads the same files. Use `__('…')` for messages you write. Labels you register (nav items, widgets, settings fields, permissions) are translated for you when they reach the admin.
 
-Each person picks their language in **Account → Appearance**. **Settings → Admin** sets a default for everyone else, and without one the browser's language is used (English when Lettern doesn't speak it), the sign-in screen included. Dates and numbers follow it (`locale()` from `@letterncms/sdk`).
+Each person picks their **Language** in **Account**. **Admin Language** in **Settings → General** sets a default for everyone else, and without one the browser's language is used (English when Lettern doesn't speak it), the sign-in screen included. Dates and numbers follow it (`locale()` from `@letterncms/sdk`).
 
 ## Working with the assistant
 
-Widgets are available to the assistant automatically. For components it can fill in and layouts it composes, see [Generative UI](/plugins/generative-ui). `Surface` and `WidgetSlot` from `@letterncms/ui` give shared rendering across the home screen, the chat and other admin hosts.
+Widgets are available to the assistant automatically. For components it can fill in and layouts it composes, see [Generative UI](/plugins/generative-ui). `Surface` and `WidgetSlot` from `@letterncms/ui` give shared rendering across the Dashboard, the chat and other admin hosts.
 
 ### What's on the screen
 

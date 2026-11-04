@@ -12,10 +12,10 @@ Collections and global sets use fields in exactly the same way, so once you've a
 
 ## Add a field
 
-1. Open **Settings → Collections** and pick a collection. For a global set, open it and press **Edit Fields**.
+1. Open **Collections**, under **Design** in the sidebar, and pick a collection. For a global set, open it and press **Edit Fields**.
 2. On the **Fields** tab, press **Add Field** and pick a type. Type to search the list.
 3. Give the field a **Label** (what people see) and a **Handle** (the name it's stored under, like `price`).
-4. Press **Save**.
+4. Press **Save** in the bar at the bottom, or `⌘S`.
 
 Drag fields to change their order in the form. Use **Duplicate** to copy a field with its settings, or **Remove Field** to take it out.
 
@@ -26,7 +26,7 @@ A few types cover most sites:
 | Type | For |
 |---|---|
 | **Text**, **Textarea** | A name, a short line, a paragraph |
-| **Rich text** | Formatted text with bold, links and lists |
+| **Rich Text** | Formatted text with bold, links and lists |
 | **Number**, **Date**, **Toggle** | A price, an event date, a yes or no |
 | **Select** | One choice from a list, like *Starter*, *Main* or *Dessert* |
 | **Media** | Images, documents or videos from the [media library](/content/media) |
@@ -65,7 +65,7 @@ When an entry is saved, Lettern checks each value against its field, whether it 
 Connect any block to a field, and it shows that entry's value. For example, to show a subtitle in a template:
 
 1. Select the heading in the template and open **Content**.
-2. Click the database icon next to its text.
+2. Point at its **Text** and press the database icon beside the label, **Connect to Data**.
 3. Choose **Page Fields → Subtitle**.
 
 Each entry now shows its own subtitle there. See [Showing content](/design/data) for lists, images and more.

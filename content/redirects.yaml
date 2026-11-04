@@ -24,7 +24,7 @@ redirects:
   - { from: /getting-started/requirements, to: /getting-started/installation }
   - { from: /getting-started/project-structure, to: /reference/project-structure }
   - { from: /getting-started/configuration, to: /reference/configuration }
-  - { from: /getting-started/licence, to: /reference/licence }
+  - { from: /getting-started/licence, to: /reference/license }
   - { from: /editing/blocks, to: /reference/blocks }
   - { from: /editing/block-markdown, to: /reference/block-markdown }
   - { from: /content/field-types, to: /reference/field-types }
@@ -33,3 +33,6 @@ redirects:
   # Publishing and SEO are about running a site, not designing it.
   - { from: /design/static-builds, to: /operations/publishing }
   - { from: /design/seo-and-geo, to: /operations/seo-and-geo }
+  # American English: licence became license.
+  - { from: /reference/licence, to: /reference/license }
+  - { from: /plugins/licence-tokens, to: /plugins/license-tokens }

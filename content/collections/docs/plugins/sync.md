@@ -48,4 +48,4 @@ Add `sync` to `extra.cms` in your plugin's `composer.json`. No code, and nothing
 
 Two sites talk over `POST /api/sync/v1/<op>` with a gzipped body. Each request carries `X-Sync-Time`, `X-Sync-Nonce` and `X-Sync-Signature`: an HMAC-SHA256 with the key's secret over `cms-sync-1`, the operation, the time, the nonce and the SHA-256 of the body, joined by newlines.
 
-Requests older than five minutes, or seen before, are refused. Reads need pulls allowed on that site, writes need pushes allowed, and a public site answers only `hello` without a licence.
+Requests older than five minutes, or seen before, are refused. Reads need pulls allowed on that site, writes need pushes allowed, and a public site answers only `hello` without a license.

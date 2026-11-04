@@ -17,7 +17,7 @@ When an editor adds a dish, it appears on the page in your design. Nobody has to
 2. Point at the setting you want to fill, like its text, and press the database icon that appears: **Connect to Data**.
 3. Pick what it shows from the list: the page's **Title**, a **Published Date**, the **Site Name**, one of the page's own fields, and more.
 
-The setting turns blue and shows where its value comes from. The page shows the real value right away. Press the database icon again to **Disconnect from Data**.
+The label reads darker and the setting shows where its value comes from. The page shows the real value right away. Press the database icon again to **Disconnect from Data**.
 
 The list only offers what makes sense where the block is: inside a template, the fields of the pages it frames; inside a Repeat, the fields of each item; inside a component, its properties.
 
@@ -37,7 +37,7 @@ A **Repeat** block shows its contents once for every item of a list: every dish,
 ![The Repeat block on the home page, listing dishes, with its Content settings on the right.](/media/screens/design-repeat.webp)
 
 1. Add a **Repeat** block where the list should go.
-2. In its **Content** tab, choose a **List**, like **Collection Entries**, and set it up: which **Collection**, in what **Order**, and **How Many**.
+2. In its **Content** tab, choose a **List**, like **Collection Entries**, and set it up: which **Collection**, in what **Order**, and **How Many**. **Only Entries Where** narrows it down with conditions: pick a field, how it compares (*is*, *is not*, *contains*…) and a value.
 3. Inside the Repeat, design one item: a card with a heading, an image and a price.
 4. Connect each block in it to the item: the heading to the item's **Title**, the image to a photo field, the card's link to the item's **Link**.
 
@@ -66,7 +66,7 @@ To show sub-menus, put a Repeat inside a Repeat. Give the outer one an **Item Na
 
 ### Split a long list into pages
 
-Turn on **Paginate** for a Repeat of collection entries. Publishing then writes `/page/2`, `/page/3` and so on. Add links after the Repeat and connect them to **Previous Page of a List** and **Next Page of a List**. To load the next items in place instead, see [Load more without a reload](/design/interactions#load-more-without-a-reload).
+Turn on **Split into Pages** for a Repeat of collection entries. Publishing then writes `/page/2`, `/page/3` and so on. Add links after the Repeat and connect them to **Previous Page of a List** and **Next Page of a List**. To load the next items in place instead, see [Load more without a reload](/design/interactions#load-more-without-a-reload).
 
 ## Show a block only sometimes
 
@@ -78,9 +78,9 @@ Under **Visibility** in the **Content** tab:
 
 ## Highlight the current link
 
-A menu usually marks the page you're on. Select the link inside the Repeat, open **Element** in the **Content** tab and press **Add State from Data**. This adds a state named *active*: pick **Is this page or above it** as its data.
+A menu usually marks the page you're on. Select the link inside the Repeat, open **Advanced** in the **Content** tab and press **Add State from Data**, the **+** beside **States from Data**. This adds a state named *active*: pick **Is this page or above it** as its data.
 
-The link now has the custom state *active* on the current page. Select it in the state row of **Design** and style it, say in bold. See [Custom states](/design/styles#custom-states).
+The link now has the custom state *active* on the current page. Select it on the state track at the top of **Design** and style it, say in bold. See [Custom states](/design/styles#custom-states).
 
 ## Let visitors filter a list
 
@@ -91,11 +91,11 @@ Put a Repeat in a **List Filter** block, and visitors can narrow it down right o
 | **Filter Search** | A search field. All words must match, and accents don't matter |
 | **Filter Choice** | One choice per value of a field, like each category, with how many items have it. **Look** shows them as chips or as a list |
 | **Filter Sort** | A menu of orders, such as by name or by price |
-| **Filter Empty** | Shown when nothing matches |
+| **No Results** | Shown when nothing matches |
 
 Which fields can be filtered, searched and sorted is set on the Repeat itself, as **Filter By**, **Search In** and **Sort By**. These aren't in its settings panel: ask the [assistant](/agents/assistant) to set them, or see [For developers](#filtering-a-repeat).
 
-Choices stay real radio buttons, the filtered list has its own link, like `?category=seo&q=image&sort=name`, and screen readers hear the count. Without JavaScript the controls go and the whole list shows. Don't combine it with **Paginate**: it can only filter the items on the current page.
+Choices stay real radio buttons, the filtered list has its own link, like `?category=seo&q=image&sort=name`, and screen readers hear the count. Without JavaScript the controls go and the whole list shows. Don't combine it with **Split into Pages**: it can only filter the items on the current page.
 
 ## For developers
 
@@ -112,7 +112,7 @@ A block's `bind` maps a setting to a **path**:
 | Key | Does |
 |---|---|
 | A setting (`text`, `url`, `image`, `label`…) | Takes its value from the path |
-| `visible`, `hidden` | Renders the block only when the path has (or lacks) a value. On `account`, a page everyone gets the same copy of leaves it to the browser: see [Public accounts](/operations/public-accounts#sign-in-and-my-account-in-your-header) |
+| `visible`, `hidden` | Renders the block only when the path has (or lacks) a value. On `account`, a page everyone gets the same copy of leaves it to the browser: see [Visitor accounts](/operations/public-accounts#sign-in-and-my-account-in-your-header) |
 | `state:<name>` | Adds the custom state `is-<name>` when the path has a value |
 | `attr:<name>` | Sets an attribute (`attr:aria-label`, `attr:href`, `attr:title`, `attr:open` on a `details`, `aria-*`, `data-*`…) |
 | `style:<property>` | Sets one style inline: `style:backgroundImage` with an image field makes a cover background |

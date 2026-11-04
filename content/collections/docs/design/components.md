@@ -8,17 +8,17 @@ A component is a piece of design you make once and use in many places: a header,
 
 ![The Header component open in the editor, with its settings on the right.](/media/screens/design-component.webp)
 
-There are two kinds, and both live under **Settings → Components**:
+There are two kinds, and both live under **Components**, in the sidebar's **Design** section:
 
 - **Components** stay linked. Edit one and every copy updates. Use them for headers, footers and cards.
 - **Sections** are copied into the page when you insert them, then edited freely. Use them as a library of starting points.
 
-The **Synced Component** switch in a component's settings turns one kind into the other.
+The **Synced** switch in a component's settings, with its **Category**, **Description** and **Properties**, turns one kind into the other.
 
 ## Make a component
 
 1. Select the block you want to reuse, like a card. To take several blocks side by side, click the first and `⇧`-click the last.
-2. Press the diamond at the top of the block's settings, **Make a Component**. It's also in the block's **⋯** menu.
+2. Choose **Make a Component** in the **⋯** menu at the top of the block's settings, or in the block's own **⋯** menu on the page.
 3. Give it a **Name**, and optionally a **Category** and a **Description** that tell others when to use it.
 4. Leave **Keep Every Copy in Sync** on to make a component. Turn it off to save a section instead.
 
@@ -34,19 +34,19 @@ Press the `+` between two blocks, or type `/` in an empty line, and search. Comp
 
 A card component is more useful when each copy can show its own title, image and link. Those are the component's **properties**.
 
-1. Open the component: select a copy and press **Edit Component** (the pencil) in its **Content** tab, or open it from **Settings → Components**.
+1. Open the component: select a copy and press **Edit Component** (the pencil) in its **Content** tab, or open it from **Components** in the sidebar.
 2. In the component's settings, under **Properties**, press **Add Property**. Choose a type, like text, image or link, and give it a label. It works like adding a field to a collection.
-3. Select the block inside the component that should show it, like the card's heading. Press the database icon next to its text, and pick the property under **Component Properties**.
+3. Select the block inside the component that should show it, like the card's heading. Point at its **Text**, press the database icon beside the label (**Connect to Data**), and pick the property under **Component Properties**.
 4. **Publish** the component.
 
 Now select a copy on any page. Its **Content** tab lists the properties: fill in each one for this copy. Text properties can also be edited right on the page, by clicking the text and typing. Your change only affects this copy, never the component or its other copies.
 
-Each property can come from data too. Press the database icon next to it: a card inside a [Repeat](/design/data#show-a-list-with-repeat) can take its title from each blog post.
+Each property can come from data too. Point at it and press the database icon beside its label: a card inside a [Repeat](/design/data#show-a-list-with-repeat) can take its title from each blog post.
 
 ## Change a component
 
 - To change every copy, press **Edit Component** and edit it like a page. **Publish** it, and every page that uses it is rebuilt.
-- To make this copy different from the rest, press **Detach from Component** in its **Content** tab. The copy becomes ordinary blocks you can edit freely, and no longer follows the component.
+- To make this copy different from the rest, press **Detach** (the scissors) in its **Content** tab. The copy becomes ordinary blocks you can edit freely, and no longer follows the component.
 
 Pages always show a component's published version. The editor and preview show your latest changes.
 

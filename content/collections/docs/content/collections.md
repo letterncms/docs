@@ -13,14 +13,14 @@ Pages are a collection too. Your templates then show the entries in your design,
 
 ## Create a collection
 
-1. Open **Settings → Collections** and press **New Collection**.
+1. Open **Collections**, under **Design** in the sidebar, and press **New Collection**.
 2. Give it a name, like *Dishes*.
 3. Choose a **Structure** (see below).
 4. Press **Create Collection**.
 
 ![Creating a collection: a name and a structure are all it takes.](/media/screens/content-new-collection.webp)
 
-The collection opens on its **Fields**, ready for the next step, and it appears in the sidebar for everyone allowed to see it.
+The collection opens on its **Fields**, ready for the next step, and it appears in the sidebar, under **Content**, for everyone allowed to see it.
 
 Under **Advanced** you can also set the **Handle** (the name used in code and file names), the **Entry Name** (*Dish* for *Dishes*), the **URL Pattern**, the **Template** and the **Storage** (the database, or files you can keep in git). The entry name, URL pattern and template can be changed later, in the collection's **Settings**.
 
@@ -34,7 +34,7 @@ Under **Advanced** you can also set the **Handle** (the name used in code and fi
 
 ## Add fields
 
-Fields are the questions the form asks: a price, a photo, a short description. On the collection's **Fields** tab, press **Add Field**, pick a type and give it a label. Drag fields to put them in order, then press **Save**.
+Fields are the questions the form asks: a price, a photo, a short description. On the collection's **Fields** tab, press **Add Field**, pick a type and give it a label. Drag fields to put them in order, then press **Save** in the bar that appears at the bottom (or `⌘S`).
 
 ![The Dishes collection's fields: price, course, description, allergens, photo and whether it's on the menu.](/media/screens/collection.webp)
 
@@ -63,7 +63,7 @@ Every collection can show its entries as a **Table**, a **Grid** of cards or a *
 
 ![The list of dishes in a table.](/media/screens/entries.webp)
 
-To set the starting view for everyone, open the collection's **Settings** tab and use **Default Display**. Anyone can go back to it with **Display → Reset Display**.
+To set the starting view for everyone, open the collection's **Settings** tab and use **Default Display**, then save. Anyone can go back to it with **Display → Reset Display**.
 
 A few details worth knowing:
 
@@ -74,7 +74,7 @@ A few details worth knowing:
 
 ## Delete a collection
 
-Open the collection's **Settings** tab and press **Delete Collection** at the bottom, then confirm. If it still has entries, Lettern tells you how many, and the button to confirm says **Delete Collection and Entries**: the entries, their drafts and their history go too. This can't be undone.
+Open the collection's **Settings** tab and press **Delete Collection** at the end of the page, then confirm. If it still has entries, Lettern tells you how many, and the button to confirm says **Delete Collection and Entries**: the entries, their drafts and their history go too. This can't be undone.
 
 ## For developers
 
@@ -108,7 +108,7 @@ fields:
 | `route` | The URL pattern (see below). Leave it out for content without pages of its own. |
 | `home` | For trees: the slug of the entry that becomes `/`. |
 | `template` | The slug of the [template](/design/templates) that frames entries. Omit or leave empty to inherit: Lettern uses `default`, or renders the content alone when there is no default template. A missing template stays visible with a warning until you choose another. Entries can override it with a `template` field (`type: select`, `dynamic: templates`); clearing that field restores the collection's template. |
-| `section` | The sidebar section it is listed in: `content` unless set. The collection is pinned there unless it is a `system` collection, which waits under **More**. People pin, unpin and reorder it in their own sidebar. |
+| `section` | The sidebar section it is listed in: `content` unless set. Every collection is in the sidebar from the start; people unpin and reorder it in their own sidebar, and what they unpin waits under **More**. The blocks plugin's templates and components use `design`. |
 | `nav_order` | Default place in its section (integer, lower first; `10` when omitted). A sidebar someone arranged, or the default an admin saved for everyone, overrides it. |
 | `body` | The main-content field's handle. A `blocks` body uses the block editor. Without a body, entries use a field form; Lettern never guesses one from field order. |
 | `sort` | Field to sort lists by; prefix with `-` for descending. |
@@ -168,7 +168,9 @@ default_columns:
 
 ### System collections
 
-The blocks plugin brings **Templates** (`templates`) and **Components** (`components`), both stored as files and edited in the block editor. They are `system` collections, so they can't be deleted, but a site can redefine them in `content/collections/templates.yaml` or `components.yaml`, for example to add a field. See [Templates](/design/templates) and [Components](/design/components).
+The blocks plugin brings **Templates** (`templates`) and **Components** (`components`), both stored as files and edited in the block editor. They are `system` collections: they aren't listed under **Collections** and can't be deleted, but a site can redefine them in `content/collections/templates.yaml` or `components.yaml`, for example to add a field. See [Templates](/design/templates) and [Components](/design/components).
+
+The pages plugins bring, like checkout and sign-in, are `system` collections too. They have no sidebar item of their own: **Pages** lists them under **Built-in Pages**, grouped by plugin.
 
 Plugins add collections the same way, with the `collections` filter: see [Plugins](/plugins/how-plugins-work#collections).
 

@@ -16,7 +16,7 @@ One folder, and when it's on:
 - Editors see the estimate in a **Reading time** tab while they write.
 - Designers can show `{readingTime.minutes}` on any page, with no template code.
 - The assistant, the API and the command line can ask for an estimate.
-- The home screen gets a widget with the longest reads.
+- The Dashboard gets a widget with the longest reads.
 
 ## 1. Make the folder
 
@@ -152,7 +152,7 @@ final class ReadingTimePlugin extends Plugin
 
 Two things happen here:
 
-- **A setting.** Declaring one field is enough for a page under **Settings**, with its own screen and API. See [Settings](/plugins/settings).
+- **A setting.** Declaring one field is enough for a page under **Plugins** in the settings sidebar, with its save bar and API. See [Settings](/plugins/settings).
 - **An ability.** An [ability](/agents/abilities) is a named action with a description, an input schema and a permission. Register it once, and the admin, the REST API, AI agents and the command line can all run it. The permission is a closure here because it depends on the entry: you may only estimate entries you can see.
 
 `adminModule()` loads the admin code you write in step 6. `css: null` says this plugin brings no stylesheet of its own.
@@ -279,14 +279,14 @@ Run `npm install && npm run build`, or the same with pnpm or yarn. The output go
 
 `@letterncms/admin` holds the Vite setup. `@letterncms/sdk` and `@letterncms/ui` give you the types; the admin provides their code at runtime. Only you need Node, on your own machine: people who install your plugin get `dist/` with it.
 
-## 7. Add a home-screen widget
+## 7. Add a Dashboard widget
 
-Every plugin brings at least one widget for the home screen: something worth a glance. A plugin without one is reported as invalid. Reading time shows the longest reads.
+Every plugin brings at least one widget for the Dashboard: something worth a glance. A plugin without one is reported as invalid. Reading time shows the longest reads.
 
 In `boot()`, register a second read-only ability for the widget's data, and the widget itself:
 
 ```php
-// A second one for the home-screen widget: the longest of the published entries you can see.
+// A second one for the Dashboard widget: the longest of the published entries you can see.
 $this->cms()->abilities()->register('reading-time/longest', [
     'label' => 'Longest reads',
     'description' => 'The published entries that take longest to read, and the average reading time.',
@@ -320,11 +320,11 @@ $this->cms()->abilities()->register('reading-time/longest', [
     },
 ]);
 
-// A widget people can add to their home screen; its component is in admin/src/index.tsx.
+// A widget people can add to their Dashboard; its component is in admin/src/index.tsx.
 $this->cms()->admin()->widget('reading-time-longest', ['label' => 'Reading time', 'description' => __('The longest reads among published entries.'), 'icon' => 'clock', 'column' => 'side', 'order' => 70]);
 ```
 
-The description is what people see in the widget gallery. Then add the component to `admin/src/index.tsx`. `Widget` from `@letterncms/ui` draws the header (the registered label and icon), loading, errors and the empty state, so it looks like every other widget:
+The description is what people see in the widget gallery. Then add the component to `admin/src/index.tsx`. `Widget` from `@letterncms/ui` draws the title (the registered label), loading, errors and the empty state, so it looks like every other widget:
 
 ```typescript
 import { Widget, WidgetRow } from '@letterncms/ui'
@@ -334,7 +334,7 @@ interface Longest {
   entries: { id: string; collection: string; title: string; minutes: number }[]
 }
 
-// A home-screen widget: <Widget> draws the header, loading, error and empty states.
+// A Dashboard widget: <Widget> draws the title, loading, error and empty states.
 function LongestReads() {
   const longest = useAbility<Longest>('reading-time/longest', { limit: 5 })
   const average = longest.data?.average
@@ -359,7 +359,7 @@ Build again.
 
 ## 8. Turn it on
 
-Turn the plugin on in **Modules**, or from the command line. Then try the ability right away:
+Turn the plugin on with its switch in **Plugins**, or from the command line. Then try the ability right away:
 
 ```bash
 php cms plugin enable acme/reading-time
@@ -369,9 +369,9 @@ php cms run reading-time/estimate id=01jc8w6m3x9k2h4v5t7r0p1q3s
 Now look around:
 
 - Open any entry: the side panel has a **Reading time** tab.
-- On the home screen, **Customize → Add Widget** offers *Reading time*.
+- On the Dashboard, **Customize**, then **Add Widget**, offers *Reading time*.
 - Ask the assistant "how long does this page take to read?" It finds the new ability on its own.
-- **Settings → Reading time** lets editors adjust the speed.
+- **Reading time**, under **Plugins** in the settings sidebar, lets editors adjust the speed. Its row in **Plugins** opens it too.
 
 ## Next
 

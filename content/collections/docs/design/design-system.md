@@ -8,21 +8,20 @@ The design system holds the values your whole site is built from: colors, fonts,
 
 ![The design system: colors in the middle, a live preview of the site on the right.](/media/screens/design-system.webp)
 
-Open it from **Settings → Design System**, or press `⌘K` and type *design*. The preview on the right shows your site as you change things, on desktop, tablet or phone, in light or dark.
+Open **Design System**, under **Design** in the sidebar, or press `⌘K` and type *design*. Its sections are listed under it in the sidebar. The preview on the right shows your site as you change things, on desktop, tablet or phone, in light or dark.
 
 ## What's in it
 
-The list on the left has two groups. **Tokens** are the named values blocks pick from. **Styles** decide how plain elements look before you style anything.
+The sections come in two groups. **Tokens** are the named values blocks pick from. **Styles** decide how plain elements and buttons look before you style anything.
 
 | Section | What you set |
 |---|---|
-| **Color** | Your palette: background, text, your brand colors, borders. Each color can have its own dark-mode value |
-| **Typography** | Font families, the type scale, line heights, letter spacing and weights |
+| **Colors** | Your palette: background, text, your brand colors, borders. Each color can have its own dark-mode value |
+| **Typography** | Font families and their font files, the type scale, line heights, letter spacing and weights |
 | **Spacing** | The spacing scale, content widths and the screen sizes the site adapts at |
 | **Shape** | Corner radius and shadows |
 | **Motion** | How pages change into each other, and durations and easing for transitions |
-| **Fonts** | The font files your site uses |
-| **Elements** | Default styles for headings, paragraphs, links, lists and other plain elements, and for long-form text |
+| **Elements** | Default styles for headings, paragraphs, links, lists and other plain elements, and for long-form text, each set with controls for font, size, weight, color, fill, border, radius and padding |
 | **Buttons** | The looks a **Button** block can take |
 | **Custom Code** | Your own CSS and JavaScript, for the rare thing the editor can't do |
 
@@ -30,10 +29,10 @@ A *token* is just a named value, like *primary* for your brand color or *8* for 
 
 ## Change your colors
 
-1. Open **Color**.
+1. Open **Colors**.
 2. Click a color and pick a new value. The preview updates right away.
 3. Switch the preview to dark to check the dark value too.
-4. Press **Save** (`⌘S`).
+4. Press **Save** in the bar at the bottom, or `⌘S`. **Discard** puts everything back.
 
 Saving restyles every page and rebuilds the site. Use the **+** next to a group to add a token of your own, like an accent color.
 
@@ -41,19 +40,19 @@ Saving restyles every page and rebuilds the site. Use the **+** next to a group 
 
 Fonts are stored on your site, so visitors' browsers never contact another service to load them.
 
-1. Open **Fonts**.
-2. Type a family name under **Add a Google Font**, like *Inter Tight*, or drop a `.woff2` file to upload one.
-3. Open **Typography** and point a font token, like *sans* or *display*, at the new family.
+1. Open **Typography** and find **Font Files**, under the font families.
+2. Type a family name in **Google Font**, like *Inter Tight*, and press **Add**. Or drop a `.woff2` file to upload one.
+3. Under **Font Families**, pick the new font for a family token, like *sans* or *display*, and what it falls back to.
 
 ## Use tokens on a block
 
-In a block's **Design** settings, fields that take a color, a size or a space have a small diamond: **Design Tokens**. Click it and pick a token. The block now follows that token, so it changes when the design system does.
+In a block's **Design** settings, fields that take a color, a size or a space show a small diamond when you point at them: **Design Tokens**. Click it and pick a token. The block now follows that token, so it changes when the design system does.
 
 Choose **Detach Token** to turn it back into a fixed value. See [Styles](/design/styles).
 
 ## Button styles
 
-**Buttons** holds the looks a **Button** block can take, such as *primary*, *secondary*, *ghost* and *link*. Each has a normal, hover, pressed and focus style. Add a look and it appears in every Button's **Variant** menu.
+**Buttons** holds the looks a **Button** block can take, such as *primary*, *secondary*, *ghost* and *link*. Each shows how it looks; open one and click **Default** or **Hover** to set that state with controls for fill, border, radius, padding, text and opacity. Add a look with **+** and it appears in every Button's **Style** menu.
 
 ## Page transitions
 
@@ -63,7 +62,7 @@ Under **Motion**, **Page Transition** animates the change from one page to the n
 
 **Custom Code** holds CSS added after everything else, and JavaScript that runs on every page. You rarely need either: use them for the one thing the editor can't express.
 
-::: callout {"props":{"tone":"warning","text":"JavaScript here runs on every page of your site. Editing it needs the <strong>Edit custom CSS and JavaScript</strong> permission: give it only to people you trust."}}
+::: callout {"props":{"tone":"warning","text":"JavaScript here runs on every page of your site. Editing it needs the <strong>Edit Custom CSS and JavaScript</strong> permission, marked <strong>Trusted Only</strong>: give it only to people you trust."}}
 :::
 
 ## For developers
@@ -133,11 +132,11 @@ Element styles sit in a low CSS layer, so a block's own styles always win.
 
 ### Buttons
 
-Each key of `buttons` is a variant editors pick; each variant has `base`, `hover`, `active` and `focus-visible` styles. The core blocks offer `primary`, `secondary`, `ghost` and `link`.
+Each key of `buttons` is a variant editors pick as a Button's **Style**; each variant has `base`, `hover`, `active` and `focus-visible` styles. The Design System edits `base` and `hover`; the others are set in the file. The core blocks offer `primary`, `secondary`, `ghost` and `link`.
 
 ### Fonts
 
-Font files live in `content/design/fonts/` and are served from `/_cms/fonts/`, with `preload` for the ones the first screen needs. **Add a Google Font** downloads the latin files (variable weights when the family has them) and adds them to `fonts`. Agents use `design/fonts-import` for that, and `design/fonts-upload` to upload one (the file as base64, a family, a weight such as `400` or `100 900`, and a style).
+Font files live in `content/design/fonts/` and are served from `/_cms/fonts/`, with `preload` for the ones the first screen needs. **Google Font** under **Typography → Font Files** downloads the latin files (variable weights when the family has them) and adds them to `fonts`. Agents use `design/fonts-import` for that, and `design/fonts-upload` to upload one (the file as base64, a family, a weight such as `400` or `100 900`, and a style).
 
 ### Page transition
 

@@ -19,7 +19,7 @@ While you type, block outlines and toolbars stay out of the way. Changes save as
 ## Add a block
 
 1. Point between two blocks. A line appears there, with a `+` in the middle.
-2. Press the `+`. A small menu opens with a search field, six suggestions (the blocks you used last come first) and **Browse all** for every block, component and section.
+2. Press the `+`. A small menu opens with a search field, six suggestions (the blocks you used last come first) and **Browse All** for every block, component and section.
 3. Pick one. It lands exactly on the line.
 
 The line also works inside sections and columns: point near their inner edge to add something inside them.
@@ -29,10 +29,10 @@ The line also works inside sections and columns: point near their inner edge to 
 
 A few other ways to add a block:
 
-- **Insert before** or **Insert after** in a selected block's **⋯** menu.
+- **Insert Before** or **Insert After** in a selected block's **⋯** menu.
 - The `+` an empty section or column shows when you point at it.
 - An empty page invites you to start writing, or to press `/` for blocks.
-- **Insert block** in the toolbar at the top.
+- **Insert block**, the `+` in the toolbar at the top. On a phone, the canvas has its own.
 
 Clicking on the page never adds anything by accident: it only places the caret or selects a block.
 
@@ -59,8 +59,8 @@ A selected block gets a small toolbar above it, with:
 - the **drag handle**, to drag the block somewhere else,
 - an arrow to select the block it sits in,
 - the block's name,
-- **Move up** and **Move down**,
-- **⋯** for **Insert before**, **Insert after**, **Duplicate**, **Make a Component** and **Delete**.
+- **Move Up** and **Move Down**,
+- **⋯** for **Insert Before**, **Insert After**, **Duplicate**, **Make a Component** and **Delete**.
 
 While you drag, a line shows where the block will land, and the page scrolls when you near an edge. Press `Esc`, or let go somewhere it can't go, to cancel.
 
@@ -78,7 +78,7 @@ Selecting a block also opens its settings on the right, in three tabs: **Content
 
 ## Page details
 
-The right sidebar starts with the page's own details, in a tab named after its collection (**Page**, **Dish**…). Edit the title, URL, author and other fields there. Next to it are **History** and the tabs plugins add, like **Comments**. Press `⌘.` to show or hide it. See [Entries](/content/entries).
+The right sidebar starts with the page's own details, in a tab named after its collection (**Page**, **Dish**…); the toolbar button that opens it is **Page Details**. Edit the title, URL, author and other fields there. Next to it are **History** and the tabs plugins add, like **Comments**. Press `⌘.` to show or hide it. See [Entries](/content/entries).
 
 ## Keyboard shortcuts
 

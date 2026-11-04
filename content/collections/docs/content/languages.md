@@ -11,11 +11,11 @@ Lettern can publish every page in several languages. Each translation is its own
 
 ## Add a language
 
-Open **Settings → Languages** and pick one from **Add a Language…**.
+Open **Settings → Languages**, press **Add Language** at the top and pick one from the list. Type to search it; any language code works too.
 
-Your default language lives at the root of your site (`/about`), and every other language gets its own prefix (`/de/about`). Prefer `/en/about` too? Turn on **Prefix the Default Language Too**.
+Your default language lives at the root of your site (`/about`), and every other language gets its own prefix (`/de/about`). Prefer `/en/about` too? Click the default language and choose **Add URL Prefix**.
 
-To make another language the default, open its menu and choose **Make Default**. Its pages move to the root, and the old addresses redirect automatically. You can remove a language once it has no entries left.
+To make another language the default, click its row and choose **Make Default**. Its pages move to the root, and the old addresses redirect automatically. **Remove**, in the same place, works once the language has no entries left.
 
 ## Translate a page
 

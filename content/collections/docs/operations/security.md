@@ -10,8 +10,8 @@ Lettern is safe out of the box: published pages are plain files, every change is
 
 Two-factor sign-in asks for a code from an app on your phone as well as your password, so a stolen password alone isn't enough.
 
-1. Open **Account** and press **Set Up Two-Factor**.
-2. Scan the code with an authenticator app, and type the code it shows.
+1. Open **Account**. Under **Security**, press **Set Up** beside **Two-Factor Authentication**.
+2. Scan the code with an authenticator app, or copy the **Setup Key** into it, type the code it shows and press **Turn On**.
 3. Save the recovery codes somewhere safe. Each works once if you lose your phone.
 
 ## See who changed what
@@ -20,18 +20,20 @@ The **Audit Log** lists every change: who made it, when, and how, whether in the
 
 ![The audit log: every change, with who made it and how.](/media/screens/audit.webp)
 
-Entries are kept for a year. Under **Settings → Auditing** you can keep them longer or shorter, and turn on **Also Record Reads** if you must be able to show who looked at what.
+Narrow the log to one person or one action, and open a change to see what was sent.
+
+Entries are kept for a year. On the log's **Settings** tab, **Keep Entries For** keeps them longer or shorter (0 keeps them forever), and **Also Record Reads** records who looked at what, if you must be able to show it.
 
 ## Give each person only what they need
 
-Give clients a [role](/operations/users-and-roles) that covers their content and nothing else. Two permissions are only for people you trust completely: **Add custom HTML blocks** and **Edit Custom CSS and JavaScript**, because both can put scripts on every page.
+Give clients a [role](/operations/users-and-roles) that covers their content and nothing else. Permissions marked **Trusted Only** are for people you trust completely: **Add Custom HTML Blocks** and **Edit Custom CSS and JavaScript**, because both can put scripts on every page, and **Install Unsigned Packages**, because a package can run any code.
 
 ## Keep AI and API access in check
 
 - **API tokens** are shown once. Give each one only the access it needs and an expiry date, and you can see when it was last used.
 - **AI agents** work through the same permissions as the person who connected them, and you approve each one first.
-- An agent or the assistant can never create tokens, change passwords or two-factor settings, or manage users and roles.
-- The **assistant** asks before deleting anything, and never takes instructions from your site's content or from what visitors wrote.
+- An agent or the assistant can never create tokens, change passwords or two-factor settings, create, invite, change or remove people, grant or take away roles, or change what a role may do. People do that themselves, in **Settings**.
+- The **assistant** asks before deleting anything or making admin-level changes, and never takes instructions from your site's content or from what visitors wrote. Once a chat has read such content, it asks before anything but saving a draft.
 
 ## What Lettern does for you
 
@@ -54,7 +56,7 @@ Give clients a [role](/operations/users-and-roles) that covers their content and
 
 - Personal access tokens (`cms_…`) are shown once and stored only as a hash, with scopes, an expiry and when they were last used.
 - OAuth for agents uses PKCE (S256 only), short-lived access tokens and rotating refresh tokens. You approve every client on a consent screen.
-- Abilities that could take over an account (creating tokens, changing passwords or two-factor settings, managing users and roles) are never available to agents or the assistant.
+- Abilities that could take over an account or hand out access (creating tokens, changing passwords or two-factor settings, creating, inviting, changing or removing users, granting roles, changing a role's permissions) are never available to agents or the assistant, even when an admin asks.
 - The assistant treats site content and visitor-written text as data, never as instructions. Once a chat has read such content, it asks before anything but saving a draft. Chats are private to their owner and encrypted at rest.
 
 ### Every action

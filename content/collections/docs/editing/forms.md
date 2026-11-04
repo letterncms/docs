@@ -17,14 +17,14 @@ Select a field to change its label, help text and whether it's required, just li
 
 | Field | For |
 |---|---|
-| **Short text**, **Long text** | Names, messages, anything typed |
+| **Short Text**, **Long Text** | Names, messages, anything typed |
 | **Email**, **Phone**, **Website** | Contact details |
 | **Number**, **Date** | Quantities, a day to book |
 | **Dropdown**, **Choice**, **Checkboxes** | Picking from a list of options |
 | **Checkbox** | A single yes or no |
 | **Consent** | Agreeing to your privacy policy |
-| **File upload** | Documents or images, up to a size you choose |
-| **Hidden value** | Something sent along without being shown |
+| **File Upload** | Documents or images, up to a size you choose |
+| **Hidden Value** | Something sent along without being shown |
 
 ### Show a field only sometimes
 
@@ -52,7 +52,7 @@ Emails go out through your [email settings](/operations/email).
 
 ## Add it to a page
 
-Open the page, add a **Form** block where you want it, and pick your form in its settings.
+Open the page, add a **Form** block where you want it, and pick your form under **Choose a Form** in its settings. With no forms yet, the list offers **New Form**.
 
 ## Read submissions
 
@@ -63,9 +63,9 @@ The **Forms** item in the sidebar shows how many submissions are unread. Open a 
 - Select several to **Mark Read**, **Archive**, mark as **Spam** or **Delete** them at once.
 - **Export CSV** downloads them for a spreadsheet.
 
-The **Form Submissions** widget puts new ones on your dashboard too.
+The **Form Submissions** widget puts new ones on your Dashboard too.
 
-To delete old submissions automatically, set **Delete Submissions After (Days)** under **Settings → Forms**. `0`, the default, keeps them forever.
+To delete old submissions automatically, open the **Settings** tab of **Forms** (also under **Settings → Forms**) and set **Keep Submissions For** to a number of days. `0`, the default, keeps them forever.
 
 ## Spam and privacy
 
@@ -100,7 +100,7 @@ Translations sit under `locales`:
 
 Forms post to `/api/forms/<handle>`, so they work on static pages. Without JavaScript the browser posts normally and is redirected back. With it, the form shows errors inline and the confirmation without reloading.
 
-If the published site is hosted somewhere other than the admin, set **Submission Endpoint** under **Settings → Forms** to the admin's URL, and add the site under **Other Allowed Websites**. Submissions sent from any other website are refused.
+If the published site is hosted somewhere other than the admin, set **Submission Address** on the **Settings** tab of **Forms** to the admin's URL, and add the site under **Other Allowed Websites**. Submissions sent from any other website are refused.
 
 ### Spam limits and stored data
 
@@ -116,7 +116,7 @@ A webhook receives each submission as JSON, at an `https://` URL. The `form.subm
 
 | Permission | Allows |
 |---|---|
-| `forms.view` | Reading submissions and downloading their files |
-| `forms.manage` | Building forms and changing their settings |
+| `forms.view`, **View Form Submissions** | Reading submissions and downloading their files |
+| `forms.manage`, **Manage Forms** | Building forms and changing their settings |
 
 Forms are also abilities, for the assistant, MCP and the API: `forms/list`, `forms/get`, `forms/save`, `forms/delete`, `forms/submissions`, `forms/submission-update`, `forms/submission-delete`, `forms/export` and `forms/activity`.

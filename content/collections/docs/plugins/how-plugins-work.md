@@ -46,7 +46,7 @@ final class ReviewsPlugin extends Plugin
 }
 ```
 
-Put the folder in `plugins/`, turn it on in **Modules** or with `php cms plugin enable acme/reviews`, and it runs. Every plugin registers a home-screen widget like this one; what the widget shows comes from your admin code, in [Admin extensions](/plugins/admin-extensions#home-screen-widgets).
+Put the folder in `plugins/`, turn it on with its switch in **Plugins** or with `php cms plugin enable acme/reviews`, and it runs. Every plugin registers a Dashboard widget like this one; what the widget shows comes from your admin code, in [Admin extensions](/plugins/admin-extensions#dashboard-widgets).
 
 ## The package
 
@@ -77,13 +77,13 @@ Put the folder in `plugins/`, turn it on in **Modules** or with `php cms plugin 
 
 | Key in `extra.cms` | Meaning |
 |---|---|
-| `label` | The plugin's name in the admin. Defaults to the package name, in words. |
-| `icon` | Its icon in **Modules**. |
+| `label` | The plugin's name in the admin: its row in **Plugins**, and the name its screen and settings page take unless they give their own. Defaults to the package name, in words. |
+| `icon` | Its icon in **Plugins**. |
 | `provider` | The class Lettern starts. A package without one can still bring migrations, views and translations. |
 | `namespace` | The name for its settings, views and translations. Defaults to the part after the slash (`reviews`). |
 | `provides` | Capabilities it offers, such as `mail`, so others can ask who provides one. |
 | `sync` | How [Sync](/plugins/sync) treats its tables. |
-| `license` | For paid plugins: see [Licence tokens](/plugins/licence-tokens#sell-your-own-plugin). |
+| `license` | For paid plugins: see [License tokens](/plugins/license-tokens#sell-your-own-plugin). |
 
 ### Where plugins live
 
@@ -91,7 +91,7 @@ Lettern finds plugins in the site's `plugins/` folder, wherever they came from. 
 
 ### Requirements
 
-`require` decides when a plugin may run: the Lettern version (`letterncms/cms`), other plugins and PHP libraries, with version constraints. If something is missing, the plugin stays off and **Modules** says why. A plugin can only be turned on after the plugins it needs, and those can't be turned off while it's on.
+`require` decides when a plugin may run: the Lettern version (`letterncms/cms`), other plugins and PHP libraries, with version constraints. If something is missing, the plugin stays off and **Plugins** says why. A plugin can only be turned on after the plugins it needs, and those can't be turned off while it's on: their switch is grayed out, with the reason.
 
 ::: callout {"props":{"tone":"warning","text":"Be careful with <code>^</code> before 1.0: <code>^0.1</code> stops matching at 0.2, so your plugin would turn off at the next Lettern release. <code>&gt;=0.1 &lt;1</code> doesn't."}}
 :::
@@ -117,7 +117,7 @@ final class ReviewsPlugin extends Plugin
         $this->cms()->permissions()->register('reviews.manage', 'Moderate reviews', 'Reviews');
         $this->cms()->abilities()->register('reviews/list', [/* … */]);
         $this->cms()->hooks()->on('entry.published', fn ($entry) => /* … */ null);
-        $this->cms()->admin()->nav('reviews', ['label' => 'Reviews', 'path' => '/reviews', 'icon' => 'star', 'section' => 'content']);
+        $this->cms()->admin()->nav('reviews', ['path' => '/reviews', 'icon' => 'star', 'section' => 'content']);
         $this->cms()->admin()->widget('reviews-latest', ['label' => 'Latest reviews', 'description' => 'New reviews waiting for a reply.', 'icon' => 'star']);
         $this->adminModule();
     }
@@ -137,7 +137,7 @@ final class ReviewsPlugin extends Plugin
 
 ### Every plugin has a widget
 
-Every plugin registers at least one **home-screen widget**: see [Admin extensions](/plugins/admin-extensions#home-screen-widgets). Without one, the plugin keeps running, but **Modules** and `cms plugins` report it as invalid.
+Every plugin registers at least one **Dashboard widget**: see [Admin extensions](/plugins/admin-extensions#dashboard-widgets). Without one, the plugin keeps running, but **Plugins** and `cms plugins` report it as invalid.
 
 ## What a package can bring
 
@@ -162,7 +162,7 @@ Three optional methods on the provider run at the moments that matter:
 | `upgrade($from)` | When the package version is newer than the installed one. |
 | `uninstall()` | Before migrations are rolled back on uninstall. Clean up files and settings. |
 
-Enable, disable and uninstall from **Modules**, with `php cms plugin enable|disable|uninstall <name>`, or with the `packages/*` abilities. Disabling keeps the data; uninstalling removes it.
+Turn a plugin on or off with its switch in **Plugins**, uninstall it from its row's menu, or use `php cms plugin enable|disable|uninstall <name>` or the `packages/*` abilities. Disabling keeps the data; uninstalling removes it.
 
 ## When a plugin is off
 
@@ -176,9 +176,9 @@ Every default plugin is tested this way, off alone and two at a time, with `Plug
 
 ## When a plugin fails
 
-A broken plugin stops itself, not the site. If it throws while it loads, registers, boots or migrates, it stays off, plugins that require it stay off, and **Modules** shows the error with its file and line. The error goes to the log as well. The state is kept in `storage/framework/failed-packages.json`.
+A broken plugin stops itself, not the site. If it throws while it loads, registers, boots or migrates, it stays off, plugins that require it stay off, and **Plugins** shows the error with its file and line. The error goes to the log as well. The state is kept in `storage/framework/failed-packages.json`.
 
-It starts again when its PHP files or version change, or when you turn it on again in **Modules**. A failure PHP could catch is also retried after five minutes, in case the cause has passed. A fatal error PHP can't catch stops the request it happened in; every later request runs without the plugin. Required [modules](/plugins/modules) are part of the admin, so their failures are real errors.
+It starts again when its PHP files or version change, or when you turn it on again in **Plugins**. A failure PHP could catch is also retried after five minutes, in case the cause has passed. A fatal error PHP can't catch stops the request it happened in; every later request runs without the plugin. Required [modules](/plugins/modules) are part of the admin, so their failures are real errors.
 
 ## PHP libraries
 
@@ -284,7 +284,7 @@ $this->cms()->hooks()->addFilter('collections', fn (array $collections) => $coll
 ]);
 ```
 
-`system: true` stops people deleting it; a site can still redefine it with its own `content/collections/<handle>.yaml`. The blocks plugin adds `templates` and `components` exactly this way, with `section: design`, so they are listed under **Design** until an admin moves them.
+`system: true` keeps it out of **Collections** and stops people deleting it; a site can still redefine it with its own `content/collections/<handle>.yaml`. The blocks plugin adds `templates` and `components` exactly this way, with `section: design`, so they are listed under **Design** in the sidebar.
 
 ### The starting definition
 
@@ -305,7 +305,7 @@ The value is saved in the collection's YAML; read it with `$collection->get('rev
 
 ## Replace a built-in
 
-Some features are contracts with a default, so a plugin can swap the implementation: `Cms\Contracts\Mailer` (sending email; the mail plugin binds SMTP and API transports) and `Cms\Contracts\SiteBuilder` (static publishing). Bind your own in `register()`:
+Some features are contracts with a default, so a plugin can swap the implementation: `Cms\Contracts\Mailer` (sending email; the Email plugin binds SMTP and API transports) and `Cms\Contracts\SiteBuilder` (static publishing). Bind your own in `register()`:
 
 ```php
 $this->app->singleton(\Cms\Contracts\Mailer::class, PostmarkMailer::class);

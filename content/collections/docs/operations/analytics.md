@@ -6,13 +6,13 @@ description: See which pages people read, counted on your own server. Page views
 ---
 The Analytics plugin counts visits to your published site on your own server. Nothing goes to another company, and by default nothing is read from the visitor's browser at all.
 
-Open **Analytics** in the sidebar for the numbers. The **Analytics** card on the dashboard shows the last 30 days at a glance.
+Open **Analytics** in the sidebar for the numbers, on its **Overview** tab. The **Analytics** card on the dashboard shows the last 30 days at a glance.
 
 ## Choose what to count
 
-Under **Settings → Analytics**, **What to Count** has two options:
+On the **Settings** tab of **Analytics**, **What to Count** has two options:
 
-| | **Page views only** (the default) | **Visitors, sources and devices** |
+| | **Page Views Only** (the default) | **Visitors, Sources and Devices** |
 |---|---|---|
 | You see | Page views, top pages, languages | Everything, including visitors, where they came from and what they use |
 | On the page | One invisible image, no script | A tiny script |
@@ -25,7 +25,7 @@ Going back to page views only deletes the visitor data. Views per page stay.
 
 ## Who isn't counted
 
-In both modes, Lettern skips bots, people who ask not to be tracked (**Do Not Track** or **Global Privacy Control**), previews, the editor, and people signed in to the admin. So you and your client don't inflate the numbers. Members of the site are counted like any visitor.
+In both modes, Lettern skips bots, people who ask not to be tracked (**Do Not Track** or **Global Privacy Control**), previews, the editor, and people signed in to the admin. So you and your client don't inflate the numbers. Visitors with an account on the site are counted like anyone else.
 
 ## What the numbers mean
 
@@ -42,7 +42,7 @@ Visitors mode adds the **Entry Pages** where visits start, **Sources** (the site
 
 ## Settings
 
-All under **Settings → Analytics**:
+All on the **Settings** tab of **Analytics**, which is also under **Settings → Analytics**. Save from the bar at the bottom. The rest show while **Count Visits** is on:
 
 | Setting | |
 |---|---|
@@ -50,8 +50,8 @@ All under **Settings → Analytics**:
 | **What to Count** | See above. |
 | **Wait for Consent** | Visitors mode only. |
 | **Paths Not to Count** | Paths, or patterns with `*`, like `/drafts/*`. |
-| **Days to Keep Data** | 730 by default. 0 keeps everything. |
-| **Lettern URL** | Only for a site published to another domain: the address of this Lettern, which pages report to. |
+| **Keep Visits For** | In days, 730 by default. 0 keeps them forever. |
+| **Reporting Address** | Only for a site hosted somewhere other than the admin: the address of this Lettern, which pages report to. |
 
 ## For developers
 
@@ -71,7 +71,7 @@ When someone with admin access signs in, Lettern sets an HTTP-only `cms_staff` c
 
 ### Abilities and hooks
 
-Agents and the API read the same numbers through `analytics/summary` and `analytics/breakdown`, with `analytics.view` (Editors have it by default). In page-views mode, numbers it can't know are `null`, and breakdowns other than `pages` and `languages` answer `{"unavailable": "mode"}`. A plugin with pages of its own that aren't entries lets them be counted through the `analytics.known-path` filter.
+Agents and the API read the same numbers through `analytics/summary` and `analytics/breakdown`, with `analytics.view`, **View Site Analytics** in **Roles** (Editors have it by default). In page-views mode, numbers it can't know are `null`, and breakdowns other than `pages` and `languages` answer `{"unavailable": "mode"}`. A plugin with pages of its own that aren't entries lets them be counted through the `analytics.known-path` filter.
 
 ### Demo data
 

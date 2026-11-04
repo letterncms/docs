@@ -18,8 +18,8 @@ However the site was installed, from the zip or with Composer, the folder is a C
 | `vendor/` | Lettern and the libraries it runs on, on a site managed with Composer. | No |
 | `runtime/` | The same `vendor/`, one folder per release, on a site that updates itself. | No |
 | `plugins/` | The plugins of this site: `plugins/<name>`, and a third party's in `plugins/<vendor>-<name>`. Your own go here too. | Only what you wrote |
-| `config/` | `site.yaml` (name, URL, languages), `plugins.yaml` (enabled plugins, disabled modules), `roles.yaml`, `admin.yaml` (the default sidebar and home arrangement) and one YAML file per settings namespace. | Yes |
-| `config/license.key` | The [key of a paid plugin](/reference/licence#paid-plugins), when this site has one. | Yes |
+| `config/` | `site.yaml` (name, URL, languages, the admin's language), `plugins.yaml` (enabled plugins, disabled modules), `roles.yaml`, `admin.yaml` (the default sidebar and Dashboard) and one YAML file per settings namespace. | Yes |
+| `config/license.key` | The [key of a paid plugin](/reference/license#paid-plugins), when this site has one. | Yes |
 | `content/design/` | The design system (`tokens.json`), fonts, `custom.css` and `custom.js`. | Yes |
 | `content/collections/` | Collection definitions, and entries of file-based collections, including `templates/` and `components/`. | Yes |
 | `content/` (the rest) | Fieldsets, globals, forms, menus, redirects. | Yes |
@@ -34,7 +34,7 @@ Lettern itself is the Composer package `letterncms/cms`, at `vendor/letterncms/c
 | Folder | What it holds |
 |---|---|
 | `src/` | The kernel: content, users, abilities, the package system, HTTP and CLI. |
-| `modules/` | The admin's [modules](/plugins/modules): the admin itself, content, collections, globals, users, account, audit, home, settings and the Modules screen. |
+| `modules/` | The admin's [modules](/plugins/modules): the admin itself, content, collections, globals, users, account, audit, the Dashboard, settings, the Plugins screen and paid plugins' licenses. |
 | `brand/` | `brand.json` (the product's name and links), `wordmark.svg` and `mark.svg`; see [Configuration](/reference/configuration). |
 
 A site that updates itself keeps that `vendor/` in `runtime/<version>/vendor/`, and the one-line file `runtime/current` names the release in use. That is how [an update](/getting-started/upgrading) goes live and goes back. On a site managed with Composer there is no `runtime/`, and `vendor/` sits in the site folder.

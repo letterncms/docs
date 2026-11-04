@@ -16,7 +16,7 @@ Lettern sends email for invitations, password resets, form notifications and, wi
 | Send With | For |
 |---|---|
 | **SMTP** | Any mail server or provider that gives you SMTP details: a host, a port, a username and a password. |
-| **Brevo** | Brevo's email service, with an API key. Install the free Brevo plugin first, from **Modules → Store**. |
+| **Brevo** | Brevo's email service, with an API key. Install the free Brevo plugin first, from **Plugins → Store**. |
 | **Server mail (sendmail)** | The hosting server's own mail, with nothing to fill in. Only offered where the host lets PHP run it: many shared hosts don't, and then SMTP is the way. |
 | **Log only (development)** | Nothing is sent: messages are written to the log. The default. |
 
@@ -24,7 +24,7 @@ Emails wear your site's colors: the background, text and buttons come from your 
 
 ## Check that it works
 
-Press `⌘K` and choose **Send a Test Email to Me**. It goes to the address you sign in with.
+Press **Send Test Email** at the top of **Settings → Email** or on the **Email** card on the dashboard, or press `⌘K` and choose it there. It goes to the address you sign in with, with the settings as saved.
 
 The **Email** card on the dashboard shows how mail is sent, how many emails went out or failed in the last 7 days, and the latest ones. It says **Not delivering** while you're still on **Log only**.
 

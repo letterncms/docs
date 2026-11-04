@@ -10,9 +10,9 @@ Under the hood, Lettern uses [json-render](https://json-render.dev/): the model 
 
 ## Your widgets already work
 
-A widget registered with `$admin->widget('reviews', ...)` and `registry.widgets.set('reviews', ReviewsWidget)` is available to the assistant as `widget/reviews`. There's nothing assistant-specific to write. Its permission, label, queries, loading states and controls stay with the existing component, and the home screen and the chat both render it through the same `WidgetSlot`.
+A widget registered with `$admin->widget('reviews', ...)` and `registry.widgets.set('reviews', ReviewsWidget)` is available to the assistant as `widget/reviews`. There's nothing assistant-specific to write. Its permission, label, queries, loading states and controls stay with the existing component, and the Dashboard and the chat both render it through the same `WidgetSlot`.
 
-Set `'assistant' => false` in the PHP widget registration if the widget should only appear on the home screen, for example an assistant launcher.
+Set `'assistant' => false` in the PHP widget registration if the widget should only appear on the Dashboard, for example an assistant launcher.
 
 ## Add a component the assistant can fill in
 

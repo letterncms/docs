@@ -13,13 +13,13 @@ There are two parts. The **ability API** can do anything you can, with a token. 
 A token is a password for one app or script. It acts as you, so keep it secret.
 
 1. Click your name at the bottom of the sidebar and choose **Account**.
-2. Under **API Tokens**, press **New Token**.
+2. Under **API & Agents**, press **New Token**.
 3. Name it after what will use it, choose its **Access** and when it **Expires**, then press **Create Token**.
 4. Copy the token. It's shown only once.
 
-![The New API Token dialog: a name, what the token may do, and when it expires.](/media/screens/agents-token.webp)
+![The New Token dialog: a name, what the token may do, and when it expires.](/media/screens/agents-token.webp)
 
-**Access** limits what the token can do: **Everything you can do**, **Read Only**, or **Content Only**. Give each token no more than it needs. To stop a token working, press **Revoke** next to it. Anything using it stops at once.
+**Access** limits what the token can do: **Full Access**, **Read Only**, or **Content Only**. Give each token no more than it needs. To stop a token working, press **Revoke** next to it. Anything using it stops at once.
 
 ## Make a request
 
@@ -60,7 +60,7 @@ Collections with a route are available unless they set `api: false`. Collections
 php cms token:create you@example.com --scope='entries/*' --days=90
 ```
 
-Tokens are shown once and stored hashed. **Scopes** are ability patterns (`entries/*`, `media/import`), `read` for every read-only ability, or `*` for everything you can do. In the admin, **Read Only** is `read`, **Content Only** is `entries/*` and **Everything you can do** is `*`.
+Tokens are shown once and stored hashed. **Scopes** are ability patterns (`entries/*`, `media/import`), `read` for every read-only ability, or `*` for everything you can do. In the admin, **Read Only** is `read`, **Content Only** is `entries/*` and **Full Access** is `*`.
 
 ### Endpoints
 

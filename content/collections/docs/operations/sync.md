@@ -4,11 +4,11 @@ title: Moving a site with Sync
 position: 9
 description: Copy content between your machine, staging and production in one click, with a preview first and an undo after.
 ---
-Sync copies one site into another: its content, its media, and if you like its templates and settings. Pull the live site onto your laptop to work with real content, push a finished section from staging to production, or refresh staging before showing the client. You see what will change first, and can undo it afterwards.
+Sync copies one site into another: its content, its media, and if you like its templates and settings. Pull the live site onto your laptop to work with real content, push a finished section from staging to production, or refresh staging before showing the client. You see what will change first, and can undo it afterward.
 
 ![Sync, with production and staging connected.](/media/screens/operations-sync.webp)
 
-Sync is a paid plugin from the store. It's free between local and staging sites; a public site needs a Sync licence to take part.
+Sync is a paid plugin from the store. It's free between local and staging sites; a public site needs a Sync license to take part.
 
 ## Connect two sites
 
@@ -16,12 +16,12 @@ Sync is a paid plugin from the store. It's free between local and staging sites;
 2. On the second site, open **Sync** and press **Connect a Site**.
 3. Paste the key, give the site a name like *Production*, and press **Connect**.
 
-That's all: no SSH, no database password, nothing to open in a firewall. Only the site you connect from has to be able to reach the other one.
+That's all: no SSH, no database password, nothing to open in a firewall. Only the site you connect from has to be able to reach the other one. **Disconnect**, in a connected site's row, removes it again.
 
 ::: callout {"props":{"tone":"warning","text":"Anyone with a site's key can read and replace its content. Keep it like a password. <strong>Make a New Key</strong> replaces it, and sites connected with the old one then need the new one."}}
 :::
 
-Each site can also switch off **Other sites can pull from this one** or **Other sites can push to this one**.
+Each site can also switch off **Allow Pull From Other Sites** or **Allow Push From Other Sites**, and save from the bar at the bottom.
 
 ## Pull or push
 
@@ -37,7 +37,7 @@ Press **Pull** or **Push** next to a connected site. Sync compares the two and s
 | People | Accounts, roles and access | No | Yes |
 | Each plugin's data | Form submissions, Commerce's orders and invoices, comments, analytics, assistant chats, logs | No | Yes |
 | Site Files | Templates, components, collections kept in files, globals, forms, menus | No | No |
-| Settings | Settings, except which plugins are on and the licence key | No | No |
+| Settings | Settings, except which plugins are on and the license key | No | No |
 | Other tables | Tables in the same database that no plugin claims | No | No |
 
 Pushing is for what your team makes, so what visitors leave behind on a live site, like orders and form submissions, stays there unless you tick it. Pulling brings everything, the way you want production on your machine. Site files and settings usually travel by git; tick them when they don't.
@@ -48,14 +48,14 @@ Addresses are rewritten on the way: a page that links to `https://www.example.co
 
 Whatever moves, the receiving site keeps:
 
-- its passwords and API keys, its licence key and which plugins are on;
+- its passwords and API keys, its license key and which plugins are on;
 - its Sync key and connections;
 - Commerce's mode and keys: a pulled shop stays in test mode on your machine, and a pushed one keeps selling live;
 - everyone who is signed in.
 
 ## Undo a sync
 
-Before Sync replaces anything, it makes a backup. **Came In Lately** lists what came into this site, and **Undo** puts back what was there before. To undo a push, open the other site's menu on the site you pushed from and choose **Undo Last Push**.
+Before Sync replaces anything, it makes a backup. **History** lists what came into this site, such as *Pulled from Staging* or *Staging pushed to this site*, and **Undo** puts back what was there before. To undo a push, press **Undo Last Push** in the other site's row on the site you pushed from.
 
 Undo also replaces whatever changed since the sync. The last three backups are kept.
 
@@ -72,7 +72,7 @@ Sync checks before it starts, and tells you what to do:
 - **The same site twice.** A site can't sync with its own key, with a copy of its own folder, or with a site sharing its database.
 - **Busy.** One sync at a time per site. A second waits until the first ends.
 - **Permissions and disk space.** The receiving site needs to write to the folders that change, and room for the incoming copy and the backup.
-- **No licence.** A public site without a Sync licence takes no part. Add the key under **Licence** on that site.
+- **No license.** A public site without a Sync license takes no part. Add the key under **Plugins → Licenses** on that site.
 
 Different databases (MySQL and SQLite) or table prefixes are fine: rows are converted on the way.
 
@@ -93,7 +93,7 @@ php cms pull production --yes --replace='cdn.example.com=>localhost:8000/cdn'
 php cms sync:undo --remote=staging         # undo the last push to staging
 ```
 
-When a site's own address doesn't work from where you connect, such as two containers on one Docker network, tick **This server reaches it at another address**, or add `--url=http://web:8000` to `remote add`. For a copy of a site's folder, run `php cms remote key --new` on the copy to give it a key of its own.
+When a site's own address doesn't work from where you connect, such as two containers on one Docker network, turn on **This Server Reaches It at Another Address**, or add `--url=http://web:8000` to `remote add`. For a copy of a site's folder, run `php cms remote key --new` on the copy to give it a key of its own.
 
 ### What moves, exactly
 
@@ -111,7 +111,7 @@ Tables go in chunks in key order, and big files in pieces of 2 MB or half the ho
 
 ### Security
 
-Every request between two sites is signed with the key's secret, with its time and a one-time value, so a captured request can't be sent again and nobody without the key gets an answer. Paths that leave their folder, hidden files and links are refused on both sides. Syncing is kept away from the assistant and MCP: replacing a site is a person's decision. The permission **Push and pull this site’s content to and from other sites** decides who sees **Sync**.
+Every request between two sites is signed with the key's secret, with its time and a one-time value, so a captured request can't be sent again and nobody without the key gets an answer. Paths that leave their folder, hidden files and links are refused on both sides. Syncing is kept away from the assistant and MCP: replacing a site is a person's decision. The permission **Push and Pull Content Between Sites** decides who sees **Sync**.
 
 ### Plugins with their own tables
 
