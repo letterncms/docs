@@ -12,7 +12,7 @@ They're light, too. Many run as plain CSS with no script at all, and visitors wh
 
 1. Select a block and open **Interact**.
 2. Press **+** next to **Animations** and pick a preset, like **Fade Up** or **Words Rise**. Or choose **Custom Animation** to start from scratch.
-3. Press the play button, **Preview animation**, to watch it on the page.
+3. Press the play button, **Preview Animation**, to watch it on the page.
 
 Everything a preset sets stays editable: change its trigger, its timing or what it moves.
 

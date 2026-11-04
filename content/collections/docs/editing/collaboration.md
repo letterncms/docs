@@ -17,14 +17,14 @@ If someone saves while you have the page open, a button appears: **Marta saved �
 ## Comment on a page
 
 1. Open the page, then the **Comments** tab in the sidebar on the right. Press `⌘.` if the sidebar is closed.
-2. Write your comment and press **Comment**, or `⌘↵`.
+2. Write your comment in **Add a comment…** and press the arrow beside it, or `⌘↵`.
 3. To bring someone in, type `@` and pick their name. They get an email with a link to the page.
 
 Everyone can **Reply** under a thread, and everyone already in it gets an email. When it's settled, press the check mark to **Resolve** it. Resolved threads fold away at the bottom, and a new reply reopens them.
 
 To edit or delete your own comment, use the **⋯** next to it. Deleting a comment deletes its replies too.
 
-::: callout {"props":{"tone":"tip","text":"Keep an eye on everything waiting for you: on the dashboard, press <strong>Customize → Add Widget</strong> and add <strong>Comments</strong>. It lists open threads that mention you or sit on pages you created."}}
+::: callout {"props":{"tone":"tip","text":"Keep an eye on everything waiting for you: on the Dashboard, press <strong>Customize</strong>, then <strong>Add Widget</strong> and add <strong>Comments</strong>. It lists open threads that mention you or sit on pages you created."}}
 :::
 
 The assistant can take part too. Ask it to *"go through the open comments on this page"*.
@@ -44,9 +44,9 @@ Until you choose, Lettern warns you before you leave the page, so your edits are
 
 | Permission | Allows |
 |---|---|
-| `comments.view` | Reading comments |
-| `comments.create` | Commenting, replying, resolving, editing and deleting your own comments |
-| `comments.moderate` | Editing and deleting anyone's comments |
+| `comments.view`, **View Comments** | Reading comments |
+| `comments.create`, **Write and Resolve Comments** | Commenting, replying, resolving, editing and deleting your own comments |
+| `comments.moderate`, **Edit and Delete Anyone’s Comments** | Editing and deleting anyone's comments |
 
 ### Abilities
 

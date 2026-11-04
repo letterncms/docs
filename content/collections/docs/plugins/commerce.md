@@ -24,7 +24,7 @@ Events arrive after the sale has committed, at least once. A listener that throw
 
 `Cms\Commerce\Orders\EntitlementEvent` carries `id`, `type`, `entitlementId`, `sku`, `orderId`, `lineId`, `userId`, `email`, `mode`, `reason`, `periodEnd` and `context` (what the checkout carried, for example from a [signed cart](#sell-at-your-own-price)).
 
-::: callout {"props":{"tone":"tip","text":"For a product that only opens gated content, you need no code: name the access on the product. A product with licence terms issues its <a href=\"/operations/commerce#licences\">licence</a> the same way."}}
+::: callout {"props":{"tone":"tip","text":"For a product that only opens gated content, you need no code: name the access on the product. A product with license terms issues its <a href=\"/operations/commerce#licenses\">license</a> the same way."}}
 :::
 
 ### Every Commerce hook
@@ -61,7 +61,7 @@ The link goes to the normal checkout, so VAT and the invoice work as usual.
 
 ## Add a payment gateway
 
-Implement `Cms\Commerce\Gateways\PaymentGateway` and register it. It's then a choice under **Settings → Commerce**.
+Implement `Cms\Commerce\Gateways\PaymentGateway` and register it. It's then a choice of **Payment Gateway** on Commerce's **Settings** tab.
 
 ```php
 cms()->whenAvailable(Gateways::class, fn (Gateways $g) => $g->register('acme', fn () => new AcmeGateway));
@@ -110,7 +110,7 @@ A gateway that also offers a tax service implements `Cms\Commerce\Tax\TaxService
 
 - **`calculate()`** gets a `TaxRequest`: the buyer's country, postal code, city and address line, whether they're a business and their tax number, and the lines in minor units. Lines are before tax, or include it when `inclusive` is set, as for a renewal already charged. It answers with a `TaxCalculation`: the exact tax, the rate in basis points, the service's own rate and the tax's type when there's one, and whether it's a reverse charge. Throw `GatewayRejected` for an address or number it can't place, and the buyer is asked to check it. Throw `GatewayUnavailable` or `GatewayUnknownOutcome` when it can't be asked. The same request is asked once per 30 minutes.
 - **`record()`** is called once the sale is paid, with the calculation and the order number. **`reverse()`** is called for each refund, with the amount refunded, tax included. Both run in the background and are tried again, so they must be safe to repeat under the same reference.
-- **`taxProblems()`** lists what stops it working with real money. **Go Live** shows it.
+- **`taxProblems()`** lists what stops it working with real money. The **Go Live** page shows it.
 
 Stripe's driver does this with Stripe Tax's calculations and transactions.
 

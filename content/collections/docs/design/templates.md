@@ -12,7 +12,7 @@ Templates are made of blocks, just like pages, so you design them the same way.
 
 ## Edit a template
 
-1. Open **Settings → Templates** and choose one, like *Page*.
+1. Open **Templates**, under **Design** in the sidebar, and choose one, like *Page*.
 2. Edit it like any page: select blocks, style them, add new ones.
 3. Press **Publish**. Every page that uses the template is rebuilt.
 
@@ -31,10 +31,10 @@ The header and footer are usually [components](/design/components), so every tem
 A page uses the first template it finds here:
 
 1. The page's own **Template** setting, when its collection has one.
-2. Its collection's **Template**, under **Settings → Collections**.
+2. Its collection's **Template**, on the collection's **Settings** tab under **Collections**.
 3. The template called *default*.
 
-The **Template** picker shows which template a page gets when you haven't chosen one, marked **Inherited**. Choose a template to override it; clear your choice to inherit again. If a chosen template has been deleted, the picker says so and shows the one used instead.
+The **Template** picker's first option, **Default**, names the template a page gets when you haven't chosen one, like *Default (Page)*. Choose another template to override it; choose **Default** again to inherit. If a chosen template has been deleted, the picker says so and shows the one used instead.
 
 A template's **Offered For** setting limits which collections can pick it. Leave it empty to offer it everywhere.
 
@@ -46,7 +46,7 @@ A template's **Offered For** setting limits which collections can pick it. Leave
 
 A site without any templates still works: pages show their content and nothing else until you add *default*.
 
-::: callout {"props":{"tone":"tip","text":"Give the block around your content the anchor <code>main</code>, under <strong>Content → Element</strong>. Every page then gets a <strong>Skip to content</strong> link for keyboard users."}}
+::: callout {"props":{"tone":"tip","text":"Give the block around your content the anchor <code>main</code>, under <strong>Content → Advanced</strong>. Every page then gets a <strong>Skip to content</strong> link for keyboard users."}}
 :::
 
 ## For developers

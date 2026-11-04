@@ -23,13 +23,13 @@ Here's the whole thing, start to finish. You need a header that holds a menu but
 
 1. **Remember whether it's open.** Select the header, open **Interact**, and under **State** press **Add Variable**. Name it `open`, with the value `false`.
 2. **Open and close it.** Select the menu button. Under **Events**, press **Add Event** and keep **Click**. Press **Add Action** and choose **Toggle State**, then the variable `open`.
-3. **Show the menu while it's open.** Select the menu. Under **Show and States**, set **Show When** to `open`, and pick the **Collapse** transition.
+3. **Show the menu while it's open.** Select the menu. Under **Bindings**, set **Show When** to `open`, and pick the **Collapse** transition.
 4. **Close it with Escape.** Select the header again and add an event: **Key Pressed**, with the key `escape`. In its options, choose **Anywhere on the Page**. Add the action **Set State**: `open` to `false`.
-5. **Tell screen readers.** On the menu button, under **Show and States → Attributes**, press **Bind Attribute** and set `aria-expanded` to `open`.
+5. **Tell screen readers.** On the menu button, under **Bindings → Attributes**, press **Bind Attribute** and set `aria-expanded` to `open`.
 
-Choose **Preview** in the **⋯** menu at the top of the editor to try it.
+Choose **Preview** in **More Actions**, the **⋯** at the top of the editor, to try it.
 
-::: callout {"props":{"tone":"tip","text":"To restyle the header while the menu is open, add a state under <strong>Show and States → States</strong>: <code>open</code> when <code>open</code>. Then style it in <strong>Design</strong>. See <a href=\"/design/styles#custom-states\">Custom states</a>."}}
+::: callout {"props":{"tone":"tip","text":"To restyle the header while the menu is open, add a state under <strong>Bindings → States</strong>: <code>open</code> when <code>open</code>. Then style it in <strong>Design</strong>. See <a href=\"/design/styles#custom-states\">Custom states</a>."}}
 :::
 
 ## State
@@ -76,9 +76,9 @@ The options of an event (the sliders icon) fine-tune it: **Prevent Default**, **
 
 Conditions and values are short expressions: `open`, `!open`, `tab === 'a'`, `count > 3 && ready`, `query.length`.
 
-## Show and states
+## Bindings
 
-Under **Show and States**, a block reacts to its variables:
+Under **Bindings**, a block reacts to its variables:
 
 - **Show When** shows the block only while a condition is true, with an optional **Fade**, **Scale** or **Collapse** transition. To select a block it hides, use the **Outline** in the sidebar.
 - **States** add a custom state while a condition is true, like `open`. Style it in **Design**, and style children with **in open**: see [Custom states](/design/styles#custom-states).

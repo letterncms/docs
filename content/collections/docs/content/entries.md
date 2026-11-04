@@ -23,7 +23,7 @@ After that, your edits are kept apart from the live version. Visitors keep seein
 | **Changes** | Live, with edits that aren't published yet. |
 | **Scheduled** | Goes live by itself at the time you chose. |
 
-Changed your mind? Open **More Actions** (the `…` button) and choose **Discard Unpublished Changes** to go back to the live version, or **Unpublish** to take the entry off the site.
+Changed your mind? Open **More Actions** (the `…` button) and choose **Discard Unpublished Changes** to go back to the live version, or **Unpublish** to take the entry off the site. In the collection's list, each row's **⋯** menu has **Publish** and **Unpublish** too.
 
 | Press | To |
 |---|---|
@@ -34,23 +34,25 @@ Changed your mind? Open **More Actions** (the `…` button) and choose **Discard
 ::: callout {"props":{"tone":"tip","text":"Drafts can be incomplete. Required fields only need to be filled in before you publish."}}
 :::
 
-If a save fails, your changes stay on screen with an error and a way to retry, and Lettern warns you before you leave the page.
+Saving happens as you go. A small dot beside the title means a change is still on its way. If a save doesn't go through, a line over the page says why, like *Couldn't save. Check your connection.*, with **Retry**. Your changes stay on screen, and Lettern asks before you leave the page.
 
 ## Preview it
 
 Choose **More Actions → Preview** to see the entry as visitors will, at desktop, tablet or phone size, with the site's interactions working. It includes changes you haven't saved yet, and works even before the first save. Previewing never saves or publishes anything.
 
+Once everything is published, the site shows exactly this version: the same place in the menu offers **View on Site** instead.
+
 ## Schedule it for later
 
-Choose **More Actions → Schedule…**, pick a date and time, and press **Schedule**. The entry shows **Scheduled** and goes live by itself. Saving more edits doesn't change that time; use **Change schedule** to move it.
+Choose **More Actions → Schedule…**, pick a date and time, and press **Schedule**. The entry shows **Scheduled** and goes live by itself. Saving more edits doesn't change that time; use **Change Schedule** to move it. On a live entry, **Publication Date…** changes the date it was published.
 
 An entry that's already live can't be scheduled for the future. Unpublish it first if you want to take it offline and bring it back later.
 
 ## Entry details
 
-Press the panel button in the toolbar, or `⌘.`, to open the details on the right. The first tab is named after the kind of entry (**Page**, **Post**, **Dish**). **History** follows it, then any tabs plugins add, like **SEO**.
+Press the panel button in the toolbar, named after the kind of entry (**Page Details**), or `⌘.`, to open the details on the right. The first tab is named after the kind of entry (**Page**, **Post**, **Dish**). **History** follows it, then any tabs plugins add, like **SEO**.
 
-On the first tab you change the title, the URL slug and the **Author**, and see when it was published, created and updated. Fields set to **Show as Property** appear here too.
+On the first tab you change the title, the URL slug and the **Author**. Fields set to **Show as Property** appear here too. Under **Info** you see its status and when it was published; people who can manage collections also see when it was created and updated, and its ID.
 
 The **Author** is the person credited for the entry, not necessarily the last person who edited it. It starts as whoever created the entry. You can change it or clear it; an entry nobody is credited for shows **Unassigned**. On a live entry, a new author waits for your next publish, like any other change.
 
@@ -58,13 +60,13 @@ The **Author** is the person credited for the entry, not necessarily the last pe
 
 Every save is kept as a version. Several saves by the same person in a short time count as one.
 
-Open the details, choose **History**, and press **Restore** on the version you want. Its content comes back as unpublished changes, so you can check it before publishing. What you had before stays in the history.
+Open the details and choose **History**: a timeline of what happened, who did it and when. Point at the version you want and press **Restore**. Its content comes back as unpublished changes, so you can check it before publishing. What you had before stays in the history.
 
 ## Order and nest pages
 
 In a collection with nested entries, like **Pages**, drag entries in the list to reorder them.
 
-To put a page under another one, open its details and press **Move** under **Record**. Choose the new parent, or **Root** for the top level. Moving a page changes its address and those of the pages under it. Deleting a page moves its children up a level.
+To put a page under another one, choose **More Actions → Move…**. Choose the new parent, or **Root** for the top level. Moving a page changes its address and those of the pages under it. Deleting a page moves its children up a level.
 
 Moving doesn't publish anything: unpublished changes stay unpublished.
 

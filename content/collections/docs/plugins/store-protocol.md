@@ -4,9 +4,9 @@ title: Store protocol
 position: 11
 description: A plugin store is a few signed files. Anyone can run one, and a site trusts the signatures, not the server.
 ---
-The **Store** tab in **Modules** reads a plugin store: a handful of JSON files and zips. Anyone can run one, and every site can use it, with no commerce plugin. A site trusts what's signed, not the server it came from, so a store can't slip in a package it didn't sign.
+The **Store** tab in **Plugins** reads a plugin store: a handful of JSON files and zips. Anyone can run one, and every site can use it, with no commerce plugin. A site trusts what's signed, not the server it came from, so a store can't slip in a package it didn't sign.
 
-A store that sells things also needs something to take the money and issue [licences](/plugins/licence-tokens). The paid Commerce plugin [does all of this](/operations/commerce#run-a-store), but the client neither knows nor cares.
+A store that sells things also needs something to take the money and issue [licenses](/plugins/license-tokens). The paid Commerce plugin [does all of this](/operations/commerce#run-a-store), but the client neither knows nor cares.
 
 ## The files
 
@@ -60,7 +60,7 @@ So a store can't serve one signed zip as another, relabel it as a security fix, 
 
 ## Paid downloads
 
-A site only offers **Install** for a paid package when its licence names the package and covers this host. Otherwise it offers the listing, and a place to paste the key once it's bought (the `packages/add-key` ability).
+A site only offers **Install** for a paid package when its license names the package and covers this host. Otherwise it offers the listing, and a place to paste the key once it's bought (the `packages/add-key` ability).
 
 The download then carries the token, and the store has the last word:
 
@@ -90,8 +90,8 @@ A store also answers as a Composer repository at `/composer`, so a site managed 
 
 ```bash
 composer config repositories.store composer https://store.example/composer
-composer config http-basic.store.example example.com "<licence key>"
+composer config http-basic.store.example example.com "<license key>"
 composer require acme/forms
 ```
 
-Free packages need no login. For a paid one, the username is the site's domain and the password is its licence key, and the store applies the same rules as for a paid download.
+Free packages need no login. For a paid one, the username is the site's domain and the password is its license key, and the store applies the same rules as for a paid download.

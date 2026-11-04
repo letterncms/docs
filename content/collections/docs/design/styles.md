@@ -20,7 +20,7 @@ Every block can be styled on its own: its layout, size, spacing, type, colors, b
 | **Position** | Sticky, fixed or placed on top of other blocks |
 | **Size** | Width and height: fill the space, fit the content or a fixed size, with limits, aspect ratio and overflow |
 | **Spacing** | Margin outside and padding inside, drawn as a box you can drag |
-| **Typography** | Font, size, weight, line height, letter spacing, case and decoration |
+| **Typography** | Font, size, weight, line height, letter spacing, style (upright or italic), case and decoration |
 | **Fill** | A color, a gradient or an image behind the block, or gradient text |
 | **Border** | Borders, outline and corner radius |
 | **Effects** | Opacity, shadows, blur, frosted glass, blend modes and the mouse cursor |
@@ -35,7 +35,7 @@ Every block can be styled on its own: its layout, size, spacing, type, colors, b
 
 ## Use your design system
 
-Fields for colors, sizes and spacing have a small diamond, **Design Tokens**. Click it and pick a value from your [design system](/design/design-system), like *primary* or *space 8*.
+Fields for colors, sizes and spacing show a small diamond when you point at them, **Design Tokens**. Click it and pick a value from your [design system](/design/design-system), like *primary* or *space 8*.
 
 A block that uses a token keeps matching the rest of your site: change the token, and the block follows. Prefer tokens over typed-in values whenever one fits.
 
@@ -43,28 +43,28 @@ A block that uses a token keeps matching the rest of your site: change the token
 
 Styles work desktop first. You design for a large screen, then adjust what needs to change on smaller ones.
 
-1. Click the screen-size button to the right of the **Content**, **Design** and **Interact** tabs, and choose **Tablet** or **Phone**.
+1. Choose **Tablet** or **Phone** in the editor's top bar. The page switches to that layout, and a line at the top of the **Design** tab says which screens your changes reach, with **Back to Desktop**.
 2. Change what should be different, like three columns becoming one.
 
 A change for **Tablet** applies to tablets and phones; one for **Phone** only to phones.
 
-Field labels tell you where a value comes from. A **blue** label is set here, on this screen size and state: click it to reset it. An **amber** label is inherited from a larger screen or from the default state.
+Field labels tell you where a value comes from. A darker label is set here, on this screen size and state: click it to reset it. A label with a small dot is inherited from a larger screen or from the default state.
 
 ## Style hover, focus and other states
 
-The row at the top of the **Design** tab chooses which state you're styling: **Default**, **Hover**, **Pressed** or **Focus**. Pick **Hover**, change the color, and the block changes color when visitors point at it.
+The track at the top of the **Design** tab chooses which state you're styling: **Default**, **Hover**, **Pressed** or **Focus**. Pick **Hover**, change the color, and the block changes color when visitors point at it.
 
-The **+** at the end of the row has more:
+**More States**, the **+** at the end of the track, has more:
 
 | State | Use it for |
 |---|---|
-| **Before (::before)**, **After (::after)** | Decorations added before or after the block's content |
+| **Before**, **After** | Decorations added before or after the block's content |
 | **Placeholder** | The hint text in an empty input |
 | **First Item**, **Last Item**, **Odd Items**, **Even Items** | Items in a list, like striped rows inside a Repeat |
-| **Current Page (aria-current)** | A link to the page the visitor is on |
+| **Current Page** | A link to the page the visitor is on |
 | **Hover on Hover Group** | Reacting when a whole card is hovered, not only this block |
 | **Dark Mode** | Values for visitors who use dark mode |
-| **Open (Details, Dialog)** | An open accordion or dialog |
+| **Open** | An open accordion or dialog |
 | **Custom State…** | A state set by an interaction, a behavior or data, see below |
 
 Add a **Transition** in the default state, and the change between states animates.
@@ -77,7 +77,7 @@ A custom state is a name, like *open* or *active*, that something else switches 
 - A [behavior](/design/interactions#behaviors) sets it: **Scroll States** marks a header *scrolled* once the page scrolls.
 - [Data](/design/data) sets it: a link is *active* when it points to the page the visitor is on.
 
-States the block or its parents set appear in the row by themselves. Choose a parent's state, like **in open**, to style this block while its parent is open. No script is needed.
+States the block or its parents set appear on the track by themselves, and a state with styles of its own carries a small dot. Choose a parent's state, like **in open**, to style this block while its parent is open. No script is needed.
 
 ## For developers
 

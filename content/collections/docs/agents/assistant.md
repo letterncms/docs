@@ -4,7 +4,7 @@ title: Assistant
 position: 0
 description: Claude, built into the admin. Ask in plain words and watch it build, write and fix things on the page beside you.
 ---
-The assistant is Claude, built into the admin. Ask it in plain words to build a page, rewrite a section or fix your SEO, and watch the change happen on the page beside the chat. It works as you, with your permissions, and asks before it deletes anything.
+The assistant is Claude, built into the admin. Ask it in plain words to build a page, rewrite a section or fix your SEO, and watch the change happen on the page beside the chat. It works as you, with your permissions, and asks before it deletes anything or does something hard to undo.
 
 ::: html {"props":{"html":"<figure class=\"docs-fig\" role=\"img\" aria-label=\"You ask in plain words. The assistant makes the change on the page, as you. Deleting waits for your go-ahead.\"><div class=\"docs-fig__flow\"><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>You</b><span class=\"docs-card__field\">Add a wine list under the menu</span></div><b>Ask</b><small>In plain words</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-mock docs-mock--live\"><i class=\"docs-mock__h\"></i><i class=\"docs-mock__l\"></i><i class=\"docs-mock__l docs-mock__l--short\"></i><i class=\"docs-mock__img\"></i></div><b>It works</b><small>On the page, as you</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Allow this action?</b><span class=\"docs-card__field\">Delete “Lemon tart”</span></div><b>You decide</b><small>Before anything is deleted</small></div></div></figure>"}}
 :::
@@ -14,7 +14,7 @@ The assistant is Claude, built into the admin. Ask it in plain words to build a 
 The assistant runs on your own Anthropic API key, so you pay Anthropic directly for what you use.
 
 1. Create an API key at [console.anthropic.com](https://console.anthropic.com), under **API keys**.
-2. In the admin, open **Settings → Assistant** and paste it into **Anthropic API Key**. It's stored encrypted.
+2. In the admin, open **Settings**, then **Assistant** under **Plugins**, and paste it into **Anthropic API Key**. It's stored encrypted. Save.
 3. Press `⌘J` and ask away.
 
 ![The assistant's settings: the API key, the models, and when it asks for approval.](/media/screens/agents-assistant-settings.webp)
@@ -61,7 +61,7 @@ Each chip comes off with its ×. To add something else, type `@` or click the **
 
 Something that hasn't changed since your last message isn't sent again. Each message you send shows what it carried; click it to go there.
 
-**Account**, **Users**, **Licence** and **Audit Log** stay private: they show no chip, and the assistant gets only the address of the screen.
+**Account**, **Users** and the **Audit Log** stay private: they show no chip, and the assistant gets only the address of the screen.
 
 ## Use a skill
 
@@ -86,16 +86,16 @@ For overviews, comparisons and choices about what to do next, a reply can includ
 ## Safety
 
 - **It acts as you.** It has your permissions, and its changes go in the audit log as yours, marked *assistant*.
-- **It never touches security.** Tokens, passwords, users and roles are out of its reach.
-- **You approve what matters.** Deleting anything, and admin-level changes, wait for you in the chat: **Allow**, **Decline**, or **Allow All**. Each one says in a sentence what it changes; the action's name under it shows exactly what it sends. To approve every change instead, set **Ask Before** to **Every change** in **Settings → Assistant**.
+- **It never touches security or access.** Tokens, passwords and two-factor settings are out of its reach, and so are people: it can't create, invite, change or remove users, grant or take away roles, or change what a role may do, even when an administrator asks. People do that themselves, in **Settings**.
+- **You approve what matters.** With **Ask Before** set to **Deletes and Admin Changes**, the default, deleting anything and admin-level changes wait for you in the chat: **Allow**, **Decline**, or **Allow All**. Each one says in a sentence what it changes; the action's name under it shows exactly what it sends. Other changes, such as writing a draft, go ahead and show as they happen. To approve every change instead, set **Ask Before** to **Every Change** in the assistant's settings.
 - **Content is never an instruction.** Site content, form submissions, comments and anything else it reads are treated as data, the page on view too. Once a chat has read such content, it can still save drafts on its own: nothing there is live until it's published, and the history keeps what was there. Anything else waits for your approval, publishing included, so text planted by someone else can't reach your visitors or do anything you can't undo.
 - **Chats are private.** Nobody else can list, open, continue or delete yours, and they're deleted with your account. Titles and histories are encrypted in the database.
 
-To use the assistant, a person's role needs the **Use the AI assistant** permission. See [Users and roles](/operations/users-and-roles).
+To use the assistant, a person's role needs the **Use the AI Assistant** permission. See [Users and roles](/operations/users-and-roles).
 
 ## Your chats
 
-- **Start a new chat** with the **+** at the top of the chat. What you have on view is attached, ready for your first message.
+- **Start a new chat** with **New Chat**, the **+** at the top of the chat. What you have on view is attached, ready for your first message.
 - **Find an old chat** with the history button at the top of a chat. A new chat lists all of them by age, and at full size they have a column of their own.
 - **Delete a chat** with **Delete Chat**, from the trash button on its row, its right-click menu or the three-dot menu at the top of the chat, then confirm. It's gone for good. **Discard Draft** does the same for an unsent new chat. Stop a running reply first.
 

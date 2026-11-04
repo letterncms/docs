@@ -4,21 +4,21 @@ title: Settings
 position: 3
 description: List a few fields, and your plugin gets a settings screen, an API, environment overrides and encrypted secrets.
 ---
-Most plugins need a few options: an API key, a limit, a switch. In Lettern you list the fields, and the rest comes for free: a page under **Settings**, saving and validation, abilities for scripts and agents, and safe storage for secrets.
+Most plugins need a few options: an API key, a limit, a switch. In Lettern you list the fields, and the rest comes for free: a page under **Settings**, the save bar, validation, abilities for scripts and agents, and safe storage for secrets.
 
 ## Add a settings page
 
 Register the fields in your provider's `boot()`:
 
 ```php
-$this->cms()->settingsRegistry()->register('reviews', 'Reviews', [
+$this->cms()->settingsRegistry()->register('reviews', fields: [
     ['handle' => 'moderation', 'type' => 'toggle', 'label' => 'Hold new reviews for approval', 'default' => true],
     ['handle' => 'min_rating', 'type' => 'number', 'label' => 'Hide reviews below', 'default' => 1, 'min' => 1, 'max' => 5],
     ['handle' => 'api_key', 'type' => 'text', 'label' => 'Trustpilot API key', 'secret' => true],
-], icon: 'star', description: 'How reviews are collected and shown.', package: $this->manifest->name, permission: 'reviews.manage');
+], icon: 'star', description: 'How reviews are collected and shown.', permission: 'reviews.manage');
 ```
 
-That's all it takes for **Settings → Reviews** to appear, under **Site** in the settings sidebar.
+That's all it takes for **Reviews** to appear under **Plugins** in the settings sidebar. The page is called what the plugin is, `extra.cms.label` in its `composer.json`, unless you pass a label. People change the fields and save from the save bar that rises while something changed, with **Discard** and **Save** (`⌘S`).
 
 ![The SEO plugin's settings page: a form drawn from the fields the plugin registered.](/media/screens/plugins-settings.webp "The SEO plugin's settings are a list of fields like this one.")
 
@@ -29,23 +29,61 @@ Fields use the same format as everywhere else in Lettern, including `if` conditi
 | Argument | Meaning |
 |---|---|
 | `$namespace` | The settings' name: `reviews` is saved to `config/reviews.yaml`. |
-| `$label` | The page's title in the settings sidebar. |
+| `$label` | The page's title in the settings sidebar. Leave it out: it defaults to the plugin's name. |
 | `$fields` | The fields. |
 | `icon`, `description` | How the page is shown. |
-| `package` | The plugin it belongs to, so the settings button on its row in **Modules** opens it. Defaults to the plugin that registers it. |
+| `package` | The plugin it belongs to, so its row in **Plugins** opens it. Defaults to the plugin that registers it. |
 | `permission` | Who may see and change it. Defaults to `settings.manage`. |
-| `section` | `site` (the default), or `system` for settings about running the installation rather than the site. Those are listed under **Administration**, with users, roles and modules. |
-| `order` | Its place in its section. Defaults to 50. |
+| `section` | `plugins` (the default). A plugin's page is always listed under **Plugins**, by the plugin's name, whatever section it names; `site`, `people` and `system` are for the core's own modules. |
+| `home` | The sidebar item of a screen of the plugin's own, to show the settings as that screen's **Settings** tab instead: see [below](#a-settings-tab-on-your-own-screen). |
+| `page` | `false` for values that are set where they're used, with no page of their own. |
+| `order` | Its place in its section, for the core's sections. Plugins are listed by name. Defaults to 50. |
 
 ### A field with its own control
 
-A field can name another admin `component` than its type's. Core stores the default sidebar in a `json` field drawn by its own component, which opens **Customize Sidebar**:
+A field can name another admin `component` than its type's. The **Roles** page is one `json` field drawn by the permissions editor:
 
 ```php
-['handle' => 'sidebar', 'type' => 'json', 'label' => 'Sidebar', 'component' => 'sidebar-default']
+['handle' => 'roles', 'type' => 'json', 'label' => '', 'component' => 'roles']
 ```
 
 Register the component with `registry.fields` in your [admin module](/plugins/admin-extensions).
+
+### A settings tab on your own screen
+
+A plugin with a screen of its own keeps its settings there, as the screen's last tab, **Settings**, drawn by the same form and save bar as every settings page. Media, Forms, Analytics and Commerce work this way. Register the settings with `home` set to the screen's sidebar item:
+
+```php
+$this->cms()->admin()->nav('reviews', ['path' => '/reviews', 'icon' => 'star']);
+$this->cms()->settingsRegistry()->register('reviews', fields: [/* … */], home: 'reviews');
+```
+
+Then draw the screen's tabs with `ScreenTabs` from `@letterncms/ui`. It adds **Settings** after the screen's own tabs:
+
+```typescript
+const [tab, setTab] = useScreenTabs(['list'])
+
+<ScreenTabs value={tab} onChange={setTab} tabs={[{ value: 'list', label: t('Reviews') }]}>
+  {/* what the Reviews tab shows */}
+</ScreenTabs>
+```
+
+`/settings/reviews` leads to the tab, and the settings are listed under **Plugins** in the settings sidebar too, where they open with only the form.
+
+### Tabs and actions
+
+A settings page can have more tabs: the form is the first, **Settings**, and each other tab brings its own content. SEO's **Redirects** is one. Add a tab in the `settings.tabs` slot, and a button in the page's top bar in the `settings.actions` slot, whose `when` and component get `{ namespace, tab, dirty }` (`tab` is `settings` for the form):
+
+```typescript
+registry.panels.set('reviews-flagged', { id: 'flagged', slot: 'settings.tabs', label: t('Flagged'), component: Flagged, when: (p) => p.namespace === 'reviews' })
+registry.panels.set('reviews-import', { id: 'reviews-import', slot: 'settings.actions', component: ImportButton, when: (p) => p.namespace === 'reviews' && p.tab === 'flagged' })
+```
+
+A page with only its form shows no tabs. With changes on more than one tab, one save bar saves or discards them all.
+
+### Link to one field
+
+`?field=<handle>` opens a settings page, or a screen's Settings tab, at one field, with the cursor in it: `/settings/reviews?field=api_key`. Commerce's **Go Live** checks lead to what they need this way.
 
 ## Read a value
 
@@ -74,7 +112,7 @@ $this->cms()->hooks()->addFilter('settings.fields', fn (array $fields, string $n
     : $fields);
 ```
 
-Core's own settings are namespaces like yours: **Site** (`config/site.yaml`: name, URL, description, timezone, language), **Admin** (`config/admin.yaml`: the language, and the default sidebar and home screen) and **Roles** (`config/roles.yaml`, drawn by a permissions editor).
+Core's own settings are namespaces like yours: **General** (`config/site.yaml`: name, URL, description, timezone, language and **Admin Language**, `admin_language`) and **Roles** (`config/roles.yaml`, drawn by a permissions editor). The default sidebar and Dashboard are values of the `admin` namespace (`config/admin.yaml`) with no page of their own: **Save as Default** writes them where they are arranged. Register a namespace with `page: false` for values like these.
 
 ## Check values together
 

@@ -13,22 +13,22 @@ Globals come in **global sets**: a group of fields that belong together, like *C
 
 ## Create a global set
 
-1. Open **Globals**. You'll find it under **More** in the sidebar, unless you've pinned it.
+1. Open **Globals**, under **Content** in the sidebar.
 2. Press **New Global Set**, give it a name like *Contact*, and press **Create**.
-3. The set opens on its fields, with one text field to start. Add the fields you need, like an email address and a phone number, and press **Save**.
+3. The set opens on its fields, with one text field to start. Add the fields you need, like an email address and a phone number, and press **Save** in the bar at the bottom.
 
 Fields work just like they do in collections. See [Fields](/content/fields).
 
 ## Fill in the values
 
-Open the set, fill in its fields and press **Save**. Pages that show these values are updated for you.
+Open the set, fill in its fields and press **Save**, or `⌘S`. Pages that show these values are updated for you.
 
-To change the set's fields later, press **Edit Fields** at the top.
+To change the set's fields later, press **Edit Fields** at the top. **Delete Global Set** is at the end of that page.
 
 ## Show a value on your pages
 
 1. Select a block, like a paragraph in your footer, and open **Content**.
-2. Click the database icon next to its text.
+2. Point at its **Text** and press the database icon beside the label, **Connect to Data**.
 3. Under **Globals**, choose the set, then add the field's handle, so it reads like `globals.contact.phone`.
 
 The starter site's footer shows the **Tagline** of its **Footer** set this way.
@@ -77,4 +77,4 @@ In PHP, read one with `cms_global('contact.phone')`.
 
 ### Rebuilds
 
-Pages that use globals are rebuilt when a set changes, as long as **Rebuild Automatically on Publish** is on under **Settings → Site & Publishing** (it is by default).
+Pages that use globals are rebuilt when a set changes, as long as **Rebuild Automatically on Publish** is on under **Settings → General** (it is by default).

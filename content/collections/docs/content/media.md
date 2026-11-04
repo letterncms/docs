@@ -44,16 +44,16 @@ Select several files to delete them at once. Lettern won't delete a file that's 
 
 ## Show images on your pages
 
-Add an **Image** block and pick an image. Lettern writes the whole responsive image for you, with its width and height set, so the page never jumps while it loads. Two settings help it load fast:
+Add an **Image** block and pick an image. Lettern writes the whole responsive image for you, with its width and height set, so the page never jumps while it loads. Two settings under **Advanced**, in the **Content** tab, help it load fast:
 
 - **Load First**: turn it on for the main image at the top of a page.
-- **Sizes**: how wide the image is shown, so the browser picks the right version, e.g. `(min-width: 64rem) 50vw, 100vw`.
+- **Shown Width**: how wide the image is shown, so the browser picks the right version, e.g. `(min-width: 64rem) 50vw, 100vw`. Empty means the full width.
 
 An image can also be a background: select a block and pick one under **Design → Fill → Image**.
 
 ## Settings
 
-**Settings → Media** sets the **Maximum Upload Size (MB)**, the **Image Quality**, whether to **Serve AVIF Images** (smaller than WebP, slower to make) and whether to **Remove Photo Metadata (Location, Camera)**. The last two are on unless you turn them off.
+The **Settings** tab of **Media** (also under **Settings → Media**) sets the **Max Upload Size** in MB, with your server's own limit under it, the **Image Quality** (40 to 95), whether to **Serve AVIF Images** (smaller than WebP, slower to make) and whether to **Remove Photo Metadata** (location and camera details). The last two are on unless you turn them off.
 
 ## For developers
 

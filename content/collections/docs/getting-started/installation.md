@@ -30,7 +30,7 @@ php cms install
 ::::
 :::
 
-![The dashboard you see after signing in for the first time.](/media/screens/dashboard.webp "Once setup is done, sign in at /admin and you land on the dashboard.")
+![The Dashboard you see after signing in for the first time.](/media/screens/dashboard.webp "Once setup is done, sign in at /admin and you land on the Dashboard.")
 
 ## What you need
 
@@ -49,11 +49,11 @@ Most PHP hosting already has all of this. Setup checks every item and tells you 
 
 ## Choosing plugins
 
-During setup you pick your plugins. The recommended ones are already ticked: the page builder, media, menus, SEO, forms, email, the AI assistant and MCP. Leave them as they are if you're not sure — you can add or remove any plugin later, from **Modules → Store** in the admin.
+During setup you pick your plugins. The recommended ones are already ticked: the page builder, media, menus, SEO, forms, email, the AI assistant and MCP. Leave them as they are if you're not sure — you can add or remove any plugin later, from **Plugins → Store** in the admin.
 
 ## Keeping it up to date
 
-A site installed from the zip updates itself: one click under **Modules → Updates**. With Composer, run `composer update`. See [Upgrading](/getting-started/upgrading).
+A site installed from the zip updates itself: one click under **Plugins → Updates**. With Composer, run `composer update`. See [Upgrading](/getting-started/upgrading).
 
 ## Next
 

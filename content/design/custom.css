@@ -4,7 +4,7 @@
 :root { --cms-scroll-offset: 5.25rem; }
 html { scroll-padding-top: var(--cms-scroll-offset); }
 
-/* Reading: lists sit close, headings pull what follows towards them. */
+/* Reading: lists sit close, headings pull what follows toward them. */
 .cms-prose > * + * { margin-top: 1rem; }
 .cms-prose > h2 { margin-top: 2.75rem; }
 .cms-prose > h3 { margin-top: 2rem; }

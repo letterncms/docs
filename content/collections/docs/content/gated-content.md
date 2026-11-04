@@ -6,7 +6,7 @@ description: Keep pages for people with an account, a role or a purchase, and sh
 ---
 Some pages are for members only: a magazine's articles, the lessons of a course, a client area. Lettern can keep them for the people who have access, and show everyone else the start of the page with a way to read on.
 
-This needs [public accounts](/operations/public-accounts), so visitors can sign up and sign in. Once they're on, every page, and every other entry with its own address, has a **Who Can Read This** setting.
+This needs [visitor accounts](/operations/public-accounts), turned on under **Settings → Users → Sign-Up**, so visitors can sign up and sign in. Once they're on, every page, and every other entry with its own address, has a **Who Can Read This** setting.
 
 ## Choose who can read a page
 
@@ -23,7 +23,7 @@ Your team can always read every entry in a collection they're allowed to see.
 
 ## Lock a whole collection
 
-Open the collection's **Settings** tab under **Settings → Collections** and set **Who Can Read This** there. It applies to every entry that doesn't say otherwise.
+Open the collection under **Collections** (in the sidebar's **Design** section), choose its **Settings** tab and set **Who Can Read This** there. It applies to every entry that doesn't say otherwise.
 
 That's what **Same as Above** means: an entry follows the version it was translated from, then its parent page, then its collection. So a course locks all its lessons in one place, and one free lesson simply says **Everyone**.
 
@@ -31,7 +31,7 @@ That's what **Same as Above** means: an entry follows the version it was transla
 
 Under **Who Has Access**, list the words that open the page: role names, or access names you make up, like `magazine` or `course-php`. Leave it empty to let in anyone with an account.
 
-To give someone an access name, open them under **Settings → Users** and add it under **Access**. Plugins can give them too, for example after a purchase, and optionally until a date. See [Using accounts](/plugins/accounts).
+To give someone an access name, click them in **Settings → Users**, add it under **Access** and press **Save**. Plugins can give them too, for example after a purchase, and optionally until a date. See [Using accounts](/plugins/accounts).
 
 ## Show a teaser
 
@@ -59,7 +59,7 @@ gate:
   teaser_fields: [excerpt]
 ```
 
-An entry stores the same object in its `gate` field; `mode: inherit` (or no rule) is **Same as Above**. The setting is added to every collection with its own URLs while public accounts are on.
+An entry stores the same object in its `gate` field; `mode: inherit` (or no rule) is **Same as Above**. The setting is added to every collection with its own URLs while visitor accounts are on.
 
 ### Where it's enforced
 

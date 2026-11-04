@@ -6,7 +6,7 @@ description: Work on your site from Claude, ChatGPT, Cursor or any other AI tool
 ---
 Connect Claude, ChatGPT, Cursor or another AI tool to your site, and ask it to build pages, write posts or fix your SEO from the app you already use. It signs in as you, can do only what you can, and every change it makes is in the audit log.
 
-These tools connect through **MCP**, the Model Context Protocol: an open standard for letting AI tools use other software. Every Lettern site with the MCP plugin is an MCP server. The plugin is among the recommended ones at setup, and you can add it from **Modules → Store**.
+These tools connect through **MCP**, the Model Context Protocol: an open standard for letting AI tools use other software. Every Lettern site with the MCP plugin is an MCP server. The plugin is among the recommended ones at setup, and you can add it from **Plugins → Store**.
 
 ![The Account screen, with your site's server URL ready to copy.](/media/screens/agents-connect.webp)
 
@@ -14,7 +14,7 @@ These tools connect through **MCP**, the Model Context Protocol: an open standar
 
 ### 1. Copy your server URL
 
-Click your name at the bottom of the sidebar and choose **Account**. Under **Connect an AI Agent**, press **Copy** next to the server URL. It's your site's address followed by `/mcp`:
+Click your name at the bottom of the sidebar and choose **Account**. Under **API & Agents**, press **Copy** next to the **MCP Server URL**. It's your site's address followed by `/mcp`:
 
 ```text
 https://your-site.com/mcp
@@ -48,7 +48,7 @@ Then open Cursor's MCP settings and sign in to the server when it asks.
 ::::
 
 :::: tab-panel {"props":{"label":"Claude Code"}}
-Run this in your terminal. It's on the Account screen too, ready to copy:
+Run this in your terminal. It's under **API & Agents** on the Account screen too, ready to copy:
 
 ```bash
 claude mcp add --transport http cms https://your-site.com/mcp
@@ -66,7 +66,7 @@ Add a remote MCP server (sometimes called HTTP or streamable HTTP) with the serv
 
 Your tool opens a page on your site. Sign in if you aren't already (with your two-factor code, if you use one). The page asks whether to connect the tool and shows what it will be able to do:
 
-- **Full access**: everything you can do in the admin.
+- **Full Access**: everything you can do in the admin.
 - **Read Only**: it can look, but never change anything.
 
 Press **Connect**, and you're back in your tool, connected. Your account needs access to the admin to connect a tool.
@@ -81,7 +81,7 @@ Lettern tells it to read your collections and design system first, so what it bu
 
 ## See and revoke connections
 
-Every connected tool is listed under **API Tokens** on your Account screen, named after the tool, such as *MCP: Claude*, with when it was last used. Press **Revoke** to disconnect it at once.
+Every connected tool is listed under **Tokens**, in **API & Agents** on your Account screen, named after the tool, such as *MCP: Claude*, with when it was last used. Press **Revoke** to disconnect it at once.
 
 A connection stays signed in while you use it. One that goes unused for 180 days has to connect again.
 
@@ -89,8 +89,8 @@ A connection stays signed in while you use it. One that goes unused for 180 days
 
 For a tool that can't sign in with OAuth, create a token and send it with every request.
 
-1. On your Account screen, under **API Tokens**, press **New Token**.
-2. Give it a name, choose its **Access** (**Everything you can do**, **Read Only** or **Content Only**) and when it **Expires**, then press **Create Token**.
+1. On your Account screen, under **API & Agents**, press **New Token**.
+2. Give it a name, choose its **Access** (**Full Access**, **Read Only** or **Content Only**) and when it **Expires**, such as **30 Days** or **1 Year**, then press **Create Token**.
 3. Copy the token: it's shown only once. Your tool sends it as a header:
 
 ```text
@@ -101,7 +101,7 @@ A token acts as you. See [REST API](/agents/rest-api) for scopes.
 
 ## What agents get
 
-**Tools**: every ability you may run that is exposed to MCP, named with a dot (`entries.create`, `design.update`). Security-sensitive abilities, like creating tokens, changing passwords, or managing users and roles, are never offered to agents.
+**Tools**: every ability you may run that is exposed to MCP, named with a dot (`entries.create`, `design.update`). Security-sensitive abilities, like creating tokens, changing passwords, managing users and roles, or changing what a role may do, are never offered to agents.
 
 **Resources**: context to plan with. `cms://collections` (content types and their fields), `cms://site/design` (the design system: tokens, fonts, element styles), `cms://blocks` (how to compose pages, templates and components: the block model, styles, bindings, interactions and animations, with worked examples), `cms://forms`, `cms://navigation`, `cms://languages`, and more from plugins.
 

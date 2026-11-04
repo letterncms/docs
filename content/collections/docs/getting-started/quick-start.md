@@ -8,11 +8,11 @@ You've installed Lettern and signed in. This tour walks you through the five thi
 
 ## 1. Find your way around
 
-After signing in you land on the **dashboard**: what changed recently, and whether your live site is up to date.
+After signing in you land on the **Dashboard**: what changed recently, and whether your live site is up to date.
 
-![The dashboard, with the sidebar on the left.](/media/screens/dashboard.webp)
+![The Dashboard, with the sidebar on the left.](/media/screens/dashboard.webp)
 
-The sidebar on the left holds what you use every day: your pages, your other content, media and forms. **Settings**, the gear next to your name, holds the rest: menus, templates, components, the design system, users and the site's settings.
+The sidebar on the left is where you work. Under **Content** are your pages, your other content, media, menus, forms and globals; under **Design**, the design system, templates, components and collections. **Settings**, the gear next to your name (`⌘⇧,`), holds what you set up once: your account, the site's general settings, users and roles, and the settings of each plugin.
 
 A few shortcuts save a lot of clicking:
 
@@ -34,14 +34,14 @@ Open **Pages** and click **Home**. The page opens exactly as visitors see it, an
 
 Changes save as you go. Nobody sees them until you publish.
 
-::: callout {"props":{"tone":"tip","text":"To start a new page, press <strong>New page</strong> in Pages, or just press <code>C</code>."}}
+::: callout {"props":{"tone":"tip","text":"To start a new page, press <strong>New Page</strong> in Pages, or just press <code>C</code>."}}
 :::
 
 Learn more in [Writing](/editing/writing) and [Block settings](/editing/canvas).
 
 ## 3. Set your style
 
-Open **Settings → Design System**. This is where your site's colors, fonts and spacing live, with a live preview on the right.
+Open **Design System**, under **Design** in the sidebar. This is where your site's colors, fonts and spacing live, with a live preview on the right.
 
 ![The design system: colors in the middle, a preview of the site on the right.](/media/screens/design-system.webp)
 
@@ -51,7 +51,7 @@ Every block on every page uses these values. Change your main color once, and th
 
 Pages aren't the only content a site has. A restaurant has dishes, an agency has projects, a blog has posts. Each kind of content is a **collection**, with its own fields.
 
-Open **Settings → Collections** to make one, say *Dishes* with a price, a description and a photo. Then everyone fills in a simple form, and your pages show the dishes in your design.
+Open **Collections**, under **Design**, to make one, say *Dishes* with a price, a description and a photo. Then everyone fills in a simple form, and your pages show the dishes in your design.
 
 ![Filling in a dish: one simple form, with the fields the collection asks for.](/media/screens/entry.webp)
 
@@ -59,13 +59,13 @@ See [Collections](/content/collections) to set one up.
 
 ## 5. Publish
 
-When you're happy, press **Publish**. The page goes live straight away: there's no deploy step and no cache to clear.
+When you're happy, press **Publish**. The page goes live straight away: there's no deploy step and no cache to clear. **Publish Site** on the Dashboard publishes everything at once.
 
-![Publishing the site from the dashboard.](/media/screens/publish.webp)
+![Publishing the site from the Dashboard.](/media/screens/publish.webp)
 
 ## 6. Get help from AI
 
-Press `⌘J` and ask the assistant, for example: *"Add a pricing section with three plans to the home page."* It works in the admin just as you do, and asks before deleting anything.
+Press `⌘J` and ask the assistant, for example: *"Add a pricing section with three plans to the home page."* It works in the admin just as you do, and asks before anything that goes live or is hard to undo, like publishing or deleting.
 
 Lettern works fully without AI. If you don't use it, **Hide Chat** takes it out of the bar. See [Assistant](/agents/assistant), or [connect your own AI tools](/agents/mcp).
 

@@ -15,19 +15,22 @@ Everything you change in the admin stays private until you publish it. Press **P
 
 That's it: the page is live a moment later. Once a page is live, new edits wait as unpublished changes. Visitors keep seeing the published version until you press **Publish Changes**.
 
-The **More Actions** menu next to the button has the rest:
+The **More Actions** menu (the `…` button) next to it has the rest:
 
 | Choose | To |
 |---|---|
-| **Schedule…** | Pick a date and time for a page that isn't live yet. |
+| **Preview** or **View on Site** | See the page as visitors will. **View on Site** shows while the site has exactly this version. |
+| **Schedule…** | Pick a date and time for a page that isn't live yet. On a live page, **Publication Date…** changes the date it was published. |
 | **Discard Unpublished Changes** | Go back to what's live. |
 | **Unpublish** | Take the page off the site. It stays in the admin as a draft. |
+
+**Publish** and **Unpublish** are also in the `…` menu of each row in a list of pages or entries.
 
 People whose role can't publish see **Save Draft** instead, and someone who can publish puts it live. See [Users and roles](/operations/users-and-roles), and [Entries](/content/entries) for drafts, scheduling and history.
 
 ## Publish the whole site
 
-The **Site** card on the dashboard tells you whether the live site is up to date: **Up to date**, **Unpublished Changes**, or how far along it is while publishing. **Publish Site** rebuilds every page. You can also press `⌘K` and choose **Publish the Whole Site**.
+The **Site** card on the dashboard tells you whether the live site is up to date: **Up to date**, **Unpublished Changes**, or how far along it is while publishing. **Publish Site** rebuilds every page. You can also press `⌘K` and choose **Publish Site**.
 
 You rarely need it: publishing a page already updates every page it affects. It's there for when you've turned automatic rebuilds off, or want a fresh copy of everything.
 
@@ -50,7 +53,7 @@ A published page is HTML and CSS. It only loads JavaScript for what it actually 
 
 ## Turn it off
 
-Under **Settings → Site & Publishing**:
+Under **Publish** in **Settings → General**:
 
 | Setting | When it's off |
 |---|---|

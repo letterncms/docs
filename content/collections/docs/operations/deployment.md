@@ -22,7 +22,7 @@ Most agencies build on their own machine, show the client a staging site, and ru
 - **Design and structure** (templates, components, collections, settings) are plain files in `content/` and `config/`, so they go through git like code.
 - **Content** written in the admin (pages, posts, media) lives in the database. Move it between your machine, staging and production with [Sync](/operations/sync), in either direction.
 
-::: callout {"props":{"tone":"tip","text":"Keep search engines off your staging site: turn on <strong>Discourage All Indexing (Staging Sites)</strong> under <strong>Settings → SEO &amp; AI visibility</strong>."}}
+::: callout {"props":{"tone":"tip","text":"Keep search engines off your staging site: turn on <strong>Discourage All Indexing</strong> under <strong>Settings → SEO</strong>."}}
 :::
 
 ## For developers

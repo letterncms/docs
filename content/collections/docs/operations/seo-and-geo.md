@@ -18,43 +18,43 @@ The SEO plugin gets your site found in two places: search engines like Google (t
 
 ## Check a page
 
-Open a page and choose the **SEO** tab on the right. You see how the page will look in search results, and a score from a list of checks: title length, meta description, one main heading, clear structure, alt text on every image, enough substance, an opening paragraph that answers first, question-style headings, internal links, whether the page can be indexed, and a social image.
+Open a page and choose the **SEO** tab on the right. It starts with the fields below, then shows how the page will look in search results and a **Score** from a list of checks: title length, meta description, one main heading, clear structure, alt text on every image, enough substance, an opening paragraph that answers first, question-style headings, internal links, whether the page can be indexed, and a social image. Open the score to see the checks still to improve; it reflects the last save.
 
 You can also change what search engines see:
 
 | Field | What it does |
 |---|---|
-| **SEO Title** | The title in search results, if it should differ from the page title. |
-| **Meta Description** | The text under the title. Without one, the first paragraph is used. |
+| **SEO Title** | The title in search results, if it should differ from the page title, which it shows while empty. |
+| **Meta Description** | The text under the title. Without one, the first paragraph is used, as its placeholder shows. |
 | **Social Image** | The picture on the preview card. |
 | **Canonical URL** | Point to another page when this one is a copy of it. |
-| **Page Type** | Tell search engines what kind of page it is: an article, an about page, a contact page… |
+| **Page Type** | Tell search engines what kind of page it is: an **Article**, an **About Page**, a **Contact Page**… While empty it's **Article** for posts and **Web Page** otherwise. |
 | **Hide from Search Engines** | Keep this page out of search results. |
 
 The **SEO Health** card on the dashboard shows how all your published pages score, and which to fix first.
 
 ## Set the site-wide defaults
 
-Under **Settings → SEO & AI visibility**, set these once:
+Under **Settings → SEO**, set these once, and save from the bar at the bottom:
 
-- **Title Format**: how page titles are built, like `{title} · {site}`.
+- **Title Format**: how page titles are built, like `{title} · {site}`. **Home Page Title** replaces it on the home page.
 - **Default Social Image**: used on pages without their own.
-- **You Are**, **Name**, **Logo** and **Profiles**: who is behind the site (an organization, a local business or a person), for search engines.
-- **Summary for AI (llms.txt)**: one or two sentences on who you are and what the site offers.
+- Under **Who You Are**, **Type** (**Organization**, **Local Business** or **Person**), **Name**, **Logo** and **Profiles** (addresses, like your LinkedIn or GitHub): who is behind the site, for search engines.
+- Under **AI Crawlers**, **Summary for AI (llms.txt)**: one or two sentences on who you are and what the site offers.
 
 ## Choose which AI crawlers may visit
 
 AI companies send two kinds of crawlers. **Training** crawlers (GPTBot, ClaudeBot, Google-Extended, Applebot-Extended, CCBot…) collect text to train models. **Search** and **browsing** crawlers (OAI-SearchBot, ChatGPT-User, Claude-SearchBot, Claude-User, PerplexityBot…) fetch your pages to answer someone's question, and link back to you.
 
-Pick the ones to keep out in **Block These AI Crawlers**. Blocking training crawlers while allowing search ones keeps you quotable in answers without feeding models.
+Pick the ones to keep out in **Block These AI Crawlers**, under **AI Crawlers** in **Settings → SEO**. Blocking training crawlers while allowing search ones keeps you quotable in answers without feeding models.
 
 ## Redirect old addresses
 
-When you change a page's address, Lettern adds a permanent redirect from the old one by itself, so links and search results keep working. To add or change redirects yourself, open **Redirects** and press **New Redirect**.
+When you change a page's address, Lettern adds a permanent redirect from the old one by itself, so links and search results keep working. To add or change redirects yourself, open **Settings → SEO**, then the **Redirects** tab, press **New Redirect** in the top bar, and save from the bar at the bottom.
 
 ## Keep a staging site out of search
 
-On a staging or test copy of a site, turn on **Discourage All Indexing (Staging Sites)** under **Settings → SEO & AI visibility**.
+On a staging or test copy of a site, turn on **Discourage All Indexing** under **Settings → SEO**.
 
 ## For developers
 
@@ -71,7 +71,7 @@ A `<title>` from the title format, a meta description, a canonical URL and `robo
 | `/robots.txt` | Points to the sitemap and blocks the AI crawlers you chose. |
 | `/llms.txt` | A summary of the site and links to its pages' Markdown, for AI tools. |
 | `/.well-known/security.txt` | Where to report a vulnerability, once you set **Security Contact** to an email address or a page. |
-| `/<page>.md` | A clean Markdown version of every page, its **Markdown twin**. Pages announce it with `<link rel="alternate" type="text/markdown">`. Turn it off with **Publish Markdown versions of pages (/page.md)**. |
+| `/<page>.md` | A clean Markdown version of every page, its **Markdown twin**. Pages announce it with `<link rel="alternate" type="text/markdown">`. Turn it off with **Publish Markdown Versions of Pages**. |
 
 On a static site these files are written with every build. See [Publishing](/operations/publishing).
 

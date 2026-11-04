@@ -4,9 +4,9 @@ title: Using accounts
 position: 7
 description: Know who's visiting, give people access to things, gate content and add pages to their account, from any plugin.
 ---
-[Public accounts](/operations/public-accounts) let visitors sign up and sign in to your site. Your plugin can use them to find out who's there, give someone access to a course or a download, and add pages to their account.
+[Visitor accounts](/operations/public-accounts) let visitors sign up and sign in to your site. Your plugin can use them to find out who's there, give someone access to a course or a download, and add pages to their account.
 
-Accounts are built in, so your plugin needs nothing extra in `require`. `cms()->accounts()` also answers sensibly when a site has public accounts off: nobody signs up, and access you grant waits until someone can sign in.
+Accounts are built in, so your plugin needs nothing extra in `require`. `cms()->accounts()` also answers sensibly when a site has visitor accounts off: nobody signs up, and access you grant waits until someone can sign in.
 
 ## Give someone access
 
@@ -42,7 +42,7 @@ An access name means whatever you decide. Nothing here knows about shops, course
 ```php
 $accounts = cms()->accounts();
 
-$accounts->enabled();                 // the site has public accounts
+$accounts->enabled();                 // the site has visitor accounts
 $accounts->signUpOpen();              // a stranger can sign up right now (it needs working email)
 $user = $accounts->current();         // ?Cms\Users\User: this request's person. A suspended or stale session gets null
 $accounts->find('bea@example.com');   // ?User, by email
@@ -104,9 +104,9 @@ $hooks->addFilter('account.screens', fn (array $screens) => [...$screens, 'order
 ]]);
 ```
 
-The page gets the sign-in redirect, every language prefix and a line in **Design → Account Pages**, and a designer can customize it. `seed` is its starting content: register your block as usual, and post its forms to a route of your own in the `web` middleware group, which gives you the session and CSRF protection.
+The page gets the sign-in redirect, every language prefix and a row in **Pages**, under **Built-in Pages** › **Account**, where a designer can **Customize** it. `seed` is its starting content: register your block as usual, and post its forms to a route of your own in the `web` middleware group, which gives you the session and CSRF protection.
 
-To show something per person in a block, bind to `account.*` on pages rendered per person; see [Public accounts](/operations/public-accounts#show-blocks-to-signed-in-visitors).
+To show something per person in a block, bind to `account.*` on pages rendered per person; see [Visitor accounts](/operations/public-accounts#show-blocks-to-signed-in-visitors).
 
 ## Hooks
 
@@ -119,7 +119,7 @@ To show something per person in a block, bind to `account.*` on pages rendered p
 | `account.email-changed` | action | `$user, $old` | |
 | `account.granted`, `account.revoked` | action | `$user, $access, $source` | |
 | `account.deleting` | action | `$user` | Inside the deletion's transaction. Delete or anonymize your data; throwing keeps the account. |
-| `account.deleted` | action | `$id` | Afterwards. |
+| `account.deleted` | action | `$id` | Afterward. |
 | `account.delete.blockers` | filter | `$reasons, $user` | Reasons the account can't be deleted now, shown to the person. |
 | `account.export` | filter | `$sections, $user` | Add your section to their data download. |
 | `account.screens` | filter | `$screens` | Add or change account pages. |

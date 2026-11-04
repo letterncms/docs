@@ -41,7 +41,7 @@ locales: [en, de]
 
 ```yaml
 # config/plugins.yaml — which plugins run (every plugin in plugins/ when the file is missing)
-# and which of the admin's optional modules don't (see Plugins → Modules)
+# and which of the admin's optional modules don't (see /plugins/modules)
 enabled:
   - letterncms/blocks
   - letterncms/site
@@ -51,18 +51,19 @@ disabled:
 ```
 
 ```yaml
-# config/admin.yaml — the language, and the sidebar and home screen everyone starts with
-language: en
+# config/site.yaml — the admin's language for everyone without their own (Admin Language
+# under Settings → General; empty: each person's browser language)
+admin_language: en
 ```
 
 ## Settings
 
 Everything people change in **Settings** belongs to a settings namespace:
 
-- the site itself: name, URL, timezone, language and favicon, in `config/site.yaml`
-- the admin: its language and the default sidebar and home screen, in `config/admin.yaml`
-- each module: entries per page, audit retention
-- each plugin: email transport, SEO defaults, the assistant's model
+- the site itself, under **General**: name, URL, timezone, language, **Admin Language** and favicon, in `config/site.yaml`
+- the default sidebar and Dashboard, in `config/admin.yaml`, with no page of their own: saved with **Save as Default** where they are arranged
+- each module: how long the Audit Log keeps entries, the roles, visitor accounts
+- each plugin, under **Plugins** in the settings sidebar or on its screen's **Settings** tab: email transport, SEO defaults, the assistant's model
 
 Each is saved to `config/<namespace>.yaml`, except fields marked secret (passwords, API keys). Those are encrypted into `storage/secrets.json`, never written to YAML, and never shown again in the admin.
 

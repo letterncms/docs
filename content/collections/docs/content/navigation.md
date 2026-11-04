@@ -10,10 +10,10 @@ Menus are the lists of links in your header, your footer or anywhere else. Build
 
 ## Make a menu
 
-1. Open **Settings → Navigation** and press **New Menu**.
+1. Open **Navigation**, under **Content** in the sidebar, and press **New Menu**.
 2. Give it a name, like *Main*, *Footer* or *Legal*, and press **Create**.
 3. Press **Add Page** to pick one of your pages, or **Add Link** for any other address.
-4. Press **Save**.
+4. Press **Save** in the bar at the bottom, or `⌘S`. The bar shows while the menu has changes, with **Discard** beside it.
 
 ## Pages and links
 
@@ -27,11 +27,11 @@ A **link** can go anywhere: a full address like `https://…`, a path on your si
 
 Drag items up and down to reorder them, and sideways to nest one under another, for a dropdown. The buttons on each item do the same: **Nest Under the Item Above** and **Move Out a Level**.
 
-**Levels** at the bottom sets how deep the menu may go, from 1 to 5.
+**Submenus** at the bottom sets how deep the menu may go: **No Submenus**, **One Level**, **2 Levels** and so on.
 
 ## Show a menu on your site
 
-A menu appears wherever a **Repeat** block lists it, usually in your header and footer. The starter site's header already shows the menu called *Main*, and its footer the one called *Footer*, so a new item appears there as soon as you save. See [Showing content](/design/data) to show a menu somewhere else.
+A menu appears wherever a **Repeat** block lists it, usually in your header and footer. The starter site comes with two: its header shows the menu called *Main*, and its footer the one called *Footer*, so a new item appears there as soon as you save. See [Showing content](/design/data) to show a menu somewhere else.
 
 The link to the page a visitor is on is marked for screen readers, and you can style it with the **Active** state.
 
@@ -41,7 +41,7 @@ On a site with several [languages](/content/languages), page items lead to the v
 
 ## Delete a menu
 
-Open the menu and press **Delete**. Repeat blocks that list it will show nothing, so take it out of your templates too.
+Open the menu and press **Delete Menu** at the end of its page. Repeat blocks that list it will show nothing, so take it out of your templates too.
 
 ## For developers
 

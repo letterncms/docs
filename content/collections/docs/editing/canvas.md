@@ -18,16 +18,16 @@ The page you edit is the real site, drawn by the same engine that builds it for 
 
 If the sidebar is closed, press `⌘.` to open it. To get back to the page's own details, press the back button at the top of the sidebar, named after the collection (**Page**, **Dish**…).
 
-The header also lets you rename the block (double-click its name), **Make a Component** from it, **Duplicate** it or **Delete** it.
+To rename the block, double-click its name, or choose **Rename** in its **⋯** menu, beside the name. The same menu has **Duplicate**, **Make a Component** and **Delete**.
 
 ## Content
 
 Change what the block says or shows, like a heading's level or a button's link. Then, further down:
 
 - **Visibility** hides a block on the site, or shows it only when some data says so.
-- **Element** sets a layer name, an anchor to link to (`#menu`), extra CSS classes and HTML attributes.
+- **Advanced** holds the technical settings: the HTML tag, a button's type, how an image loads (**Load First**, **Shown Width**), and a **Layer Name**, an **Anchor** to link to (`#menu`), extra CSS **Classes** and HTML **Attributes**.
 
-Any setting with a database icon can be connected to your content instead of typed in, like a dish's price or the latest posts. See [Showing content](/design/data).
+Point at a setting and a database icon appears beside its label, **Connect to Data**: the setting then comes from your content instead of being typed in, like a dish's price or the latest posts. See [Showing content](/design/data).
 
 ## Design
 
@@ -37,9 +37,9 @@ Pick colors, fonts and sizes from your [design system](/design/design-system), a
 
 ### Different screens and states
 
-Use the screen menu at the top of the settings to switch between **Desktop**, **Tablet** and **Phone**. A change made for **Tablet** applies to tablets and phones, one for **Phone** only to phones.
+Switch between **Desktop**, **Tablet** and **Phone** in the editor's top bar, with or without a block selected. **Desktop** always shows the desktop layout, scaled down when the window has less room. A change made for **Tablet** applies to tablets and phones, one for **Phone** only to phones; a line at the top of the **Design** tab says so, with **Back to Desktop**.
 
-The state bar picks what you're styling: **Default**, **Hover**, **Pressed** or **Focus**, and more under its own menu, like **Dark Mode**. See [Styles](/design/styles).
+The states at the top of the **Design** tab pick what you're styling: **Default**, **Hover**, **Pressed** or **Focus**, and more under **More States** (the `+`), like **Dark Mode**. See [Styles](/design/styles).
 
 ## Interact
 
@@ -47,7 +47,7 @@ Add [animations](/design/animations), like fading in as the block scrolls into v
 
 ## Check it before you publish
 
-The editor already shows the real page, so most of the time you just look. To try links, menus and animations without the editing controls, choose **Preview** in the **⋯** menu at the top. It shows your latest changes, even ones not saved yet.
+The editor already shows the real page, so most of the time you just look. To try links, menus and animations without the editing controls, choose **Preview** in **More Actions**, the **⋯** at the top. It shows your latest changes, even ones not saved yet. While a live page has nothing unpublished, the menu offers **View on Site** instead.
 
 ## Save and publish
 
