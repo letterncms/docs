@@ -201,15 +201,6 @@
       "sidebar": "collapsed",
       "tab": "SEO"
     },
-    "operations-commerce": {
-      "site": "examples",
-      "path": "/admin/commerce",
-      "size": [
-        1100,
-        680
-      ],
-      "sidebar": "collapsed"
-    },
     "operations-sync": {
       "site": "examples",
       "path": "/admin/sync",

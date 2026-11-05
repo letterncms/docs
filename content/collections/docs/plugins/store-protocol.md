@@ -4,9 +4,9 @@ title: Store protocol
 position: 12
 description: A plugin store is a few signed files. Anyone can run one, and a site trusts the signatures, not the server.
 ---
-The **Store** tab in **Plugins** reads a plugin store: a handful of JSON files and zips. Anyone can run one, and every site can use it, with no commerce plugin. A site trusts what's signed, not the server it came from, so a store can't slip in a package it didn't sign.
+The **Store** tab in **Plugins** reads a plugin store: a handful of JSON files and zips. Anyone can run one, and every site can use it. A site trusts what's signed, not the server it came from, so a store can't slip in a package it didn't sign.
 
-A store that sells things also needs something to take the money and issue [licenses](/plugins/license-tokens). The paid Commerce plugin [does all of this](/operations/commerce#run-a-store), but the client neither knows nor cares.
+A store that sells things also needs something to take the money and issue [licenses](/plugins/license-tokens). The client neither knows nor cares how it does that: this page is all a site relies on.
 
 ## The files
 

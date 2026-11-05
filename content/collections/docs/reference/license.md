@@ -18,14 +18,14 @@ Your content, templates and plugins are yours. Third-party components keep their
 
 ## Paid plugins
 
-A paid plugin from the [store](/plugins/store-protocol) carries its own license: paid once, per site. Commerce is one, with its terms in `LICENSE.md` in its own folder. A plugin's license covers that plugin only: it says nothing about Lettern, and Lettern doesn't need one.
+A paid plugin from the [store](/plugins/store-protocol) carries its own license: paid once, per site, with its terms in `LICENSE.md` in its own folder. A plugin's license covers that plugin only: it says nothing about Lettern, and Lettern doesn't need one.
 
 With Composer, a paid plugin comes from the store's own repository, with your site's domain and license key as the login:
 
 ```bash
 composer config repositories.store composer https://lettern.org/composer
 composer config http-basic.lettern.org example.com "<license key>"
-composer require letterncms/commerce
+composer require <vendor>/<plugin>
 ```
 
 A site with no paid plugin has no **Licenses** tab, no notice and nothing to check.

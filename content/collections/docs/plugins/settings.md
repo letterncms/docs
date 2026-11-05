@@ -51,7 +51,7 @@ Register the component with `registry.fields` in your [admin module](/plugins/ad
 
 ### A settings tab on your own screen
 
-A plugin with a screen of its own keeps its settings there, as the screen's last tab, **Settings**, drawn by the same form and save bar as every settings page. Forms, Analytics and Commerce work this way, and so does the Media module. Register the settings with `home` set to the screen's sidebar item:
+A plugin with a screen of its own keeps its settings there, as the screen's last tab, **Settings**, drawn by the same form and save bar as every settings page. Forms and Analytics work this way, and so does the Media module. Register the settings with `home` set to the screen's sidebar item:
 
 ```php
 $this->cms()->admin()->nav('reviews', ['path' => '/reviews', 'icon' => 'star']);
@@ -90,7 +90,7 @@ A button shows while its tab is on view: the form's, `settings`, unless you name
 
 ### Link to one field
 
-`?field=<handle>` opens a settings page, or a screen's Settings tab, at one field, with the cursor in it: `/settings/reviews?field=api_key`. Commerce's **Go Live** checks lead to what they need this way.
+`?field=<handle>` opens a settings page, or a screen's Settings tab, at one field, with the cursor in it: `/settings/reviews?field=api_key`. A check that something is missing can lead straight to it this way.
 
 ## Read a value
 
