@@ -438,7 +438,7 @@ registry.composer.set('orders', {
   trigger: '@', label: t('Orders'), order: 30,
   search: async (query) => (await run('orders/search', { query, limit: 5 })).map((order) => ({
     id: `order:${order.id}`, kind: 'order', label: order.number, detail: order.customer, icon: 'cart',
-    to: `/commerce/orders/${order.id}`,
+    to: `/shop/orders/${order.id}`,
     read: () => run('orders/get', { id: order.id }),
   })),
 })
@@ -464,7 +464,7 @@ cms()->skills()->register('order-summary', [
     'icon' => 'cart',
     'prompt' => 'Summarize the orders of {period}. Lead with what stands out.',
     'arguments' => [['name' => 'period', 'description' => 'Which days', 'required' => true]],
-    'permission' => 'commerce.view',
+    'permission' => 'shop.view',
 ]);
 ```
 

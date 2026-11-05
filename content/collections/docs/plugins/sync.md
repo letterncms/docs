@@ -14,7 +14,7 @@ Sync knows nothing else about a plugin. A table that no group claims shows under
 
 ## Say more
 
-Add `sync` to `extra.cms` in your plugin's `composer.json`. No code, and nothing to depend on. It's the only place Sync learns about a plugin's tables, and Lettern's own plugins use it too: Forms declares its **Form Submissions** group this way, Analytics and Commerce theirs, and Commerce the tables that keep its mode and keys on each site.
+Add `sync` to `extra.cms` in your plugin's `composer.json`. No code, and nothing to depend on. It's the only place Sync learns about a plugin's tables, and Lettern's own plugins use it too: Forms declares its **Form Submissions** group this way, and Analytics its own.
 
 ```json
 "extra": { "cms": { "sync": {

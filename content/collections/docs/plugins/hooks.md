@@ -171,4 +171,4 @@ The first argument is the value you return; the rest are there to help you decid
 | `form.data` | `$data, $form, $request` | A submission before it is stored. |
 | `navigation.entry`, `navigation.item` | | How menu items resolve. |
 
-Plugins add hooks of their own: see [Using accounts](/plugins/accounts#hooks) and [Commerce](/plugins/commerce).
+Plugins add hooks of their own: see [Using accounts](/plugins/accounts#hooks).

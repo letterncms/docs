@@ -4,7 +4,7 @@ title: Visitor accounts
 position: 7
 description: Let visitors sign up, sign in and manage their own account on your site, in your own design.
 ---
-Visitor accounts let visitors have an account on your site, separate from the admin. They sign up, sign in and look after their own details, on pages that use your design. You need them for members-only pages and for [Commerce](/operations/commerce) customers. They're off until you turn them on.
+Visitor accounts let visitors have an account on your site, separate from the admin. They sign up, sign in and look after their own details, on pages that use your design. You need them for members-only pages. They're off until you turn them on.
 
 ## Turn them on
 

@@ -38,7 +38,7 @@ Press **Pull** or **Push** next to a connected site. Sync compares the two and s
 | Comments | Comments and mentions in the admin | No | Yes |
 | Chats | Each person's threads in the workspace, with the assistant's answers | No | Yes |
 | Logs | Sent email and the audit log | No | Yes |
-| Each plugin's data | One group per plugin, such as Form Submissions, Analytics, and Commerce's products, orders, invoices and licenses | No | Yes |
+| Each plugin's data | One group per plugin, such as Form Submissions and Analytics | No | Yes |
 | Site Files | Templates, components, collections kept in files, globals, forms, menus | No | No |
 | Settings | Settings, except which plugins are on and the license key | No | No |
 | Other tables | Tables in the same database that no plugin claims | No | No |
@@ -53,7 +53,7 @@ Whatever moves, the receiving site keeps:
 
 - its passwords and API keys, its license key and which plugins are on;
 - its Sync key and connections;
-- Commerce's mode and keys: a pulled shop stays in test mode on your machine, and a pushed one keeps selling live;
+- what a plugin keeps on each site, such as whether a store is live;
 - everyone who is signed in.
 
 ## Undo a sync
@@ -102,7 +102,7 @@ When a site's own address doesn't work from where you connect, such as two conta
 
 Media is `public/media` and its details in `content/media`, compared by size and time. Site Files is `content/`. Settings is `config/`. Folder paths are rewritten along with addresses.
 
-The receiving site also keeps its `.env`, its secrets (from **Settings**, kept in `storage/`), its sessions, API and sign-in tokens, its queue and caches, and Commerce's outbox. When people are replaced, each session follows its person to their account with the same email, and someone who has no account on the other site keeps theirs.
+The receiving site also keeps its `.env`, its secrets (from **Settings**, kept in `storage/`), its sessions, API and sign-in tokens, and its queue and caches. When people are replaced, each session follows its person to their account with the same email, and someone who has no account on the other site keeps theirs.
 
 For a group with different tables, run `php cms sync` on each site after updating, so both have the same columns.
 

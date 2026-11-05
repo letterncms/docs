@@ -4,7 +4,7 @@ title: Email
 position: 5
 description: Connect a mail service so invitations, password resets and form notifications reach people's inboxes.
 ---
-Lettern sends email for invitations, password resets, form notifications and, with Commerce, invoices. A new site only writes emails to a log, so nothing goes out by accident while you build. Connect a real mail service before launch.
+Lettern sends email for invitations, password resets, and form notifications. A new site only writes emails to a log, so nothing goes out by accident while you build. Connect a real mail service before launch.
 
 ## Set up email
 
