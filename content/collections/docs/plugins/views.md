@@ -68,7 +68,7 @@ A string in a view can hold `{params.x}` (the route), `{query.x}` (the address),
 | `ui/tabs`, `ui/tab` | A page's tabs, each with an `id`, a `label`, a `count` and `actions` of its own. A plugin that keeps its settings with this place gets its Settings tab after them. |
 | `ui/section` | A titled group, with `actions`. |
 | `ui/stack`, `ui/grid` | One after another, or side by side in `columns`. |
-| `ui/records` | Records from an ability: a table with search, filters, pages, a row that opens, row actions and bulk actions. |
+| `ui/records` | Records from an ability: a table, cards or a calendar, with search, filters, sorting, pages, a tree, a row that opens, row actions and bulk actions. Every list in the admin is one, a collection's entries too. |
 | `ui/form` | Fields loaded from one ability and saved with another, with the save bar. |
 | `ui/settings` | A settings page's form, by `namespace`. |
 | `ui/detail` | Labelled values (`items`), or every value of a `record`, with its `raw` data to unfold. |
@@ -98,6 +98,7 @@ Your own components are in the catalog too (see [Generative UI](/plugins/generat
     'address' => true,          // search, filters and page in the address: linkable, and kept on Back
     'paged' => ['perPage' => 50],
     'open' => ['label' => __('Open'), 'to' => '/orders/{row.id}'],
+    'sort' => ['param' => 'sort', 'default' => '-created_at'],
     'actions' => [],
     'bulk' => [['label' => __('Archive'), 'ability' => 'orders/archive', 'input' => ['ids' => '{ids}']]],
     'empty' => ['icon' => 'receipt', 'title' => __('No orders yet')],
@@ -105,18 +106,23 @@ Your own components are in the catalog too (see [Generative UI](/plugins/generat
 ```
 
 - **Search:** with a `param`, the ability searches. Without one, a list loaded whole is searched in the browser. `search: false` offers none, and `display: false` makes it a list read as it is (a ranked top 8): no Display menu or sorting.
-- **Filters:** a filter's options are listed, or come from the response: `at` is where they are, `value` and `text` name their keys.
+- **Filters:** a filter's options are listed, or come from the response: `at` is where they are, `value` and `text` name their keys. `display: "segmented"` shows every choice at once, one always on, with `default` standing for none (`All`).
 - **Pages:** `paged` sends `page` and `perPage`, and reads `pages` or `total` from the response.
-- **Bulk actions:** they make the rows selectable, and each one gets the selected rows' `{ids}`.
+- **Sorting:** with `sort`, the ability sorts: its `param` gets a column's `sort` name, `-` first for descending, and `default` is the order while nobody picked one. Without it, a column with `sort: true` sorts what is loaded. Each person's sort, columns and view are kept with their account.
+- **Tree:** `tree` draws records that hold others nested, while nothing narrows or sorts the list: its `source` loads them (each with its `children`), and `reorder` is an action that puts siblings in the order they were dragged into, with `{ids}`, `{parent}` and `{versions}` (from each row's `version`).
+- **Cards and calendar:** a column with `image: true` offers cards, and one with `excerpt: true` is a few lines on them; `card: true` shows a column on cards from the start. `calendar` offers a calendar; as `{"dated": …, "undated": …}` it loads a month at a time, with the ability's input filled in with `{field}`, `{start}` and `{end}`. `dates` names what the ability sorts the published and updated dates by. `defaultView` is the view a person sees until they pick one.
+- **Bulk actions:** they make the rows selectable, and each one gets the selected rows' `{ids}`. With `each: true` it runs once per row, with `{row}`, and what failed stays selected with the reason; `some` shows it only while it holds for one of them. Its `success` and its `confirm` title can say how many: `{"one": "Deleted {count} entry", "other": "Deleted {count} entries"}`.
+- **Appendix:** `appendix` draws other rows under the list, in its columns and lined up with it, while nothing narrows it: its `source`, `groups` (each with its `label` and `rows`), `open`, `actions` always in view, and `columns` saying what each column shows for them (`blank: true` for nothing). The site's built-in pages sit under its pages this way.
 - **Empty:** `empty` with an `icon`, a `title`, a `text` and an `action`, or `size: "sm"` for one quiet line inside a section.
 - **Literal rows:** `rows` in place of `source` lists records as they are, such as what a command found when the [workspace](/getting-started/workspace) answers with it.
 
-A column's `format` writes its value: `text`, `strong`, `muted`, `code`, `badge` and `badges`, `status` (a dot and a word), `date`, `datetime`, `ago`, `number`, `money` (in cents, with `currency`), `bytes`, `share` (a bar for a part of the whole, 0 to 1), `compact` (1.2K), `yesno`, `person`, `count`, `image` and `link`. `tones` and `labels` give a value its color and its words.
+A column's `format` writes its value: `text`, `strong`, `muted`, `code`, `address` (a path of the site), `badge` and `badges`, `status` (a dot and a word), `date`, `datetime`, `ago`, `number`, `money` (in cents, with `currency`), `bytes`, `share` (a bar for a part of the whole, 0 to 1), `compact` (1.2K), `yesno`, `person`, `count`, `image`, `media` (thumbnails of files, looked up), `languages` (which of the `locales` a record has), `field` (as a blueprint `field` of that `type` reads) and `link`. `tones` and `labels` give a value its color and its words.
 
 More of a column:
 
 - `muted` names a second value drawn quieter after the first, and `warning` a problem drawn in its place.
 - `icon` names the row's own icon, and `empty` what an empty value reads as.
+- `hidden: true` keeps a column in Display until someone shows it, and `fit: true` makes it as wide as its longest value.
 - `image: true` gives the list a grid of cards.
 - `format: switch` with an `action` draws a switch that runs the action with `{row}` and the new `{value}`. `ariaLabel` names it for each row, and `disabled` names a key of the row that locks it.
 
@@ -147,7 +153,9 @@ Buttons, row actions, a row that opens, and a notice's action all take the same 
 | `to`, `href` | Goes to a place of the admin, or opens a link in a new tab. |
 | `dialog` | Opens a dialog of nodes (`title`, `text`, `body`, `actions`), drawn with the row it was opened for. |
 | `component` | Opens one of your catalog components with `props`. It gets `close` and `scope`. |
-| `when`, `unless`, `can` | Shows the action only when a template holds or doesn't, or for a permission. |
+| `when`, `unless`, `can` | Shows the action only when a template holds or doesn't, or for a permission. A template can compare too: `{row.status} is draft, changed`, `{row.status} is not published`. |
+| `inline` | A row's action with an `icon` as a button beside its menu. |
+| `key` | A page's action on a key as well: `c`. |
 | `disabled` | Shows it, but not possible while a template holds. In a page's bar, `{dirty}` holds while the tab on view has unsaved changes. |
 | `name` | Opens it from the address too: `/reviews?do=new-review`. |
 
