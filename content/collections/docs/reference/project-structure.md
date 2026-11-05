@@ -34,7 +34,7 @@ Lettern itself is the Composer package `letterncms/cms`, at `vendor/letterncms/c
 | Folder | What it holds |
 |---|---|
 | `src/` | The kernel: content, users, abilities, the package system, HTTP and CLI. |
-| `modules/` | The admin's [modules](/plugins/modules): the admin itself, content, collections, globals, users, account, audit, the Dashboard, settings, the Plugins screen and paid plugins' licenses. |
+| `modules/` | The admin's [modules](/plugins/modules): the admin itself, content, collections, globals, users, account, audit, the Dashboard, settings, the Plugins screen, paid plugins' licenses, the assistant and Sync. |
 | `brand/` | `brand.json` (the product's name and links), `wordmark.svg` and `mark.svg`; see [Configuration](/reference/configuration). |
 
 A site that updates itself keeps that `vendor/` in `runtime/<version>/vendor/`, and the one-line file `runtime/current` names the release in use. That is how [an update](/getting-started/upgrading) goes live and goes back. On a site managed with Composer there is no `runtime/`, and `vendor/` sits in the site folder.

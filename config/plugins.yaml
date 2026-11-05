@@ -1,7 +1,6 @@
 enabled:
   - acme/reading-time
   - letterncms/analytics
-  - letterncms/assistant
   - letterncms/brevo
   - letterncms/forms
   - letterncms/seo

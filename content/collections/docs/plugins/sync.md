@@ -4,15 +4,17 @@ title: Sync for plugins
 position: 10
 description: Tell Sync which of your plugin's tables are content, which are what visitors leave behind, and which never leave a site.
 ---
-[Sync](/operations/sync) copies one site into another, such as the live site onto your laptop. If your plugin keeps its own database tables, you can tell Sync how to treat them. Usually you don't have to do anything at all.
+[Sync](/operations/sync) comes with Lettern and copies one site into another, such as the live site onto your laptop. If your plugin keeps its own database tables, you can tell Sync how to treat them. Usually you don't have to do anything at all.
 
 ## What happens by default
 
-Sync moves tables by name, without the prefix, and groups them the way people choose. Your plugin's tables named after it, like `bookings_*` for `acme/bookings`, form one group under the plugin's label: ticked when pulling, and not when pushing.
+Sync moves tables by name, without the prefix, and groups them the way people choose. Lettern's own tables have groups of their own: Content, Media, People, Comments, Chats and Logs. Your plugin's tables named after it, like `bookings_*` for `acme/bookings`, form one group under the plugin's label: ticked when pulling, and not when pushing.
+
+Sync knows nothing else about a plugin. A table that no group claims shows under **Other Tables**, as if another application had left it in the same database, and moves only when someone ticks it.
 
 ## Say more
 
-Add `sync` to `extra.cms` in your plugin's `composer.json`. No code, and nothing to depend on:
+Add `sync` to `extra.cms` in your plugin's `composer.json`. No code, and nothing to depend on. It's the only place Sync learns about a plugin's tables, and Lettern's own plugins use it too: Forms declares its **Form Submissions** group this way, Analytics and Commerce theirs, and Commerce the tables that keep its mode and keys on each site.
 
 ```json
 "extra": { "cms": { "sync": {
@@ -32,9 +34,10 @@ Add `sync` to `extra.cms` in your plugin's `composer.json`. No code, and nothing
 | Key | Meaning |
 |---|---|
 | `keep` | Tables that never leave a site: tokens, queues, keys, anything that only makes sense where it was made. A name, or a prefix ending in `*`. |
-| `groups.<id>.label`, `description` | How the group is shown when someone pushes or pulls. |
+| `groups.<id>` | Lowercase letters, digits and dashes. Once you name a group, the default one under your plugin's label is gone, so list every table you want grouped. Lettern's own ids (`content`, `media`, `people`, `comments`, `chats`, `logs`, `files`, `settings`) are taken. |
+| `groups.<id>.label`, `description` | How the group is shown when someone pushes or pulls. The label defaults to your plugin's. |
 | `groups.<id>.tables` | The tables that make up a group. A table belongs to the first group that names it. |
-| `groups.<id>.push`, `pull` | Whether the group is ticked by default when pushing and when pulling. Push what a team makes; leave what visitors leave behind unticked. |
+| `groups.<id>.push`, `pull` | Whether the group is ticked by default when pushing (`false` unless you say) and when pulling (`true` unless you say). Push what a team makes; leave what visitors leave behind unticked. |
 
 ## What your plugin can count on
 
@@ -48,4 +51,4 @@ Add `sync` to `extra.cms` in your plugin's `composer.json`. No code, and nothing
 
 Two sites talk over `POST /api/sync/v1/<op>` with a gzipped body. Each request carries `X-Sync-Time`, `X-Sync-Nonce` and `X-Sync-Signature`: an HMAC-SHA256 with the key's secret over `cms-sync-1`, the operation, the time, the nonce and the SHA-256 of the body, joined by newlines.
 
-Requests older than five minutes, or seen before, are refused. Reads need pulls allowed on that site, writes need pushes allowed, and a public site answers only `hello` without a license.
+Requests older than five minutes, or seen before, are refused. Reads need pulls allowed on that site, and writes need pushes allowed. There is no license to check: any site with Sync on takes part, public ones included.
