@@ -66,7 +66,7 @@ collections:
 ::: pattern {"props":{"ref":"header"}}
 :::
 
-::: outlet {"props":{"wrap":true},"class":"cms-prose"}
+::: outlet {"props":{"wrap":true},"style":{"base":{"flow":"prose"}}}
 :::
 ```
 
@@ -79,7 +79,7 @@ collections:
   { "type": "pattern", "props": { "ref": "header" } },
   { "type": "box", "props": { "tag": "main" }, "anchor": "main", "children": [
     { "type": "heading", "props": { "level": "1" }, "bind": { "text": "entry.title" } },
-    { "type": "outlet", "props": { "wrap": true }, "class": "cms-prose" }
+    { "type": "outlet", "props": { "wrap": true }, "style": { "base": { "flow": "prose", "maxWidth": "text" } } }
   ] },
   { "type": "pattern", "props": { "ref": "footer" } }
 ]

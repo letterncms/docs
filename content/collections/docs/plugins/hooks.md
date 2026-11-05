@@ -74,7 +74,7 @@ Name them after your plugin, so they never clash with Lettern's own.
 |---|---|---|
 | `users.fields.saved` | | The user profile fields changed. |
 | `settings.saved` | `$namespace, $values` | A settings namespace was saved (`site` is `config/site.yaml`). |
-| `design.saved` | | The design system or custom code changed. |
+| `design.saved` | | The theme, its fonts or the custom JavaScript changed. |
 
 ### Publishing and rendering
 
@@ -160,7 +160,8 @@ The first argument is the value you return; the rest are there to help you decid
 | `blocks.scope` | `$scope` | Data for blocks rendered outside a page (Markdown twins, search). |
 | `blocks.variants` | `$variants` | Block variants offered to editors. |
 | `blocks.folders`, `blocks.pattern-sources` | `$sources` | Folders with blocks (`block.json`) or read-only patterns (`<handle>.json`). |
-| `blocks.breakpoints` | `$breakpoints` | Breakpoints for block styles. |
+| `blocks.vocabulary` | `$vocabulary` | The palettes, font families and text styles styles may use beyond the reserved ones (the Site module fills it from the theme). |
+| `blocks.durations` | `$durations` | What each duration name of an animation is, in milliseconds (the Site module fills it from the theme). |
 
 ### Media, email, forms and menus
 

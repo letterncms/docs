@@ -1,0 +1,147 @@
+{
+  "$schema": "https://design.lettern.org/v1/theme.schema.json",
+  "name": "Lettern",
+  "color": {
+    "primary": "#ffe100",
+    "neutral": "#6b6760",
+    "light": {
+      "background": "neutral-50",
+      "foreground": "neutral-900"
+    },
+    "dark": {
+      "background": "neutral-950",
+      "foreground": "neutral-100"
+    }
+  },
+  "font": {
+    "sans": "Inter",
+    "mono": "Geist Mono",
+    "faces": [
+      {
+        "family": "Inter",
+        "src": "fonts/inter.woff2",
+        "weight": "400 600",
+        "preload": true
+      },
+      {
+        "family": "Geist Mono",
+        "src": "fonts/GeistMono-Variable.woff2",
+        "weight": "100 900"
+      }
+    ]
+  },
+  "type": {
+    "base": [
+      16,
+      17
+    ],
+    "ratio": [
+      1.18,
+      1.25
+    ],
+    "leading": {
+      "body": 1.55,
+      "display": 1.02
+    },
+    "tracking": {
+      "display": -0.032
+    },
+    "weight": "medium",
+    "weights": {
+      "medium": 480
+    },
+    "styles": {
+      "display": {
+        "size": "8xl"
+      },
+      "heading-1": {
+        "size": "3xl"
+      },
+      "heading-2": {
+        "size": "xl"
+      },
+      "heading-3": {
+        "size": "lg"
+      },
+      "heading-4": {
+        "size": "base"
+      },
+      "heading-5": {
+        "size": "base"
+      },
+      "eyebrow": {
+        "font": "mono",
+        "size": "xs",
+        "weight": "regular",
+        "tracking": "wide",
+        "case": "uppercase",
+        "leading": "tight"
+      },
+      "lead": {
+        "size": "lg"
+      },
+      "code": {
+        "font": "mono",
+        "size": "sm",
+        "weight": "regular",
+        "leading": "normal",
+        "tracking": "normal"
+      }
+    }
+  },
+  "space": {
+    "base": [
+      16,
+      18
+    ]
+  },
+  "layout": {
+    "containers": {
+      "text": 42,
+      "content": 76,
+      "wide": 90
+    },
+    "gutter": "xl",
+    "section": "4xl",
+    "section-sm": "3xl",
+    "section-lg": "5xl"
+  },
+  "radius": 8,
+  "motion": {
+    "page": "fade"
+  },
+  "flow": {
+    "prose": {
+      "gap": "sm",
+      "before": "2xl",
+      "after": "xs",
+      "media": "xl"
+    }
+  },
+  "elements": {
+    "h1 em": {
+      "fontStyle": "normal"
+    },
+    "h2 em": {
+      "fontStyle": "normal"
+    },
+    "a": {
+      "textUnderlineOffset": "3xs"
+    }
+  },
+  "recipes": {
+    "button": {
+      "radius": "md",
+      "text": "label",
+      "weight": "medium"
+    },
+    "card": {
+      "radius": "xl",
+      "padding": "lg",
+      "border": true
+    },
+    "field": {
+      "radius": "md"
+    }
+  }
+}

@@ -8,7 +8,7 @@ A plugin is a Composer package with one PHP class, its **provider**. Lettern fin
 
 Lettern's own features, like the page builder, forms and SEO, are plugins built exactly this way. Anything they do, yours can do too.
 
-::: html {"props":{"html":"<figure class=\"docs-fig\" role=\"img\" aria-label=\"A plugin is a folder in plugins/ with composer.json, a provider and its built admin code. When it is turned on, its migrations run and install() is called once. On every request, Lettern checks what it needs and calls register() and boot().\"><div class=\"docs-fig__flow\"><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>acme-reviews/</b><span class=\"docs-card__field\">composer.json</span><span class=\"docs-card__field\">src/ReviewsPlugin.php</span><span class=\"docs-card__field\">dist/admin.js</span><span class=\"docs-card__field\">lang/</span></div><b>The package</b><small>A folder in plugins/</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Turned on</b><span class=\"docs-card__field\">Migrations run</span><span class=\"docs-card__field\">install()</span></div><b>Once</b><small>Or upgrade() for a new version</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Running</b><span class=\"docs-card__field\">Requirements checked</span><span class=\"docs-card__field\">register()</span><span class=\"docs-card__field\">boot()</span></div><b>Every request</b><small>Adds abilities, blocks, screens</small></div></div></figure>"}}
+::: html {"props":{"html":"<figure class=\"card\" data-variant=\"flat\" role=\"img\" aria-label=\"A plugin is a folder in plugins/ with composer.json, a provider and its built admin code. When it is turned on, its migrations run and install() is called once. On every request, Lettern checks what it needs and calls register() and boot().\"><div class=\"cluster\" data-gap=\"xs\"><figure class=\"stack\" data-gap=\"2xs\"><div class=\"card\" data-variant=\"raised\"><b class=\"text-label\">acme-reviews/</b><span class=\"badge\">composer.json</span><span class=\"badge\">src/ReviewsPlugin.php</span><span class=\"badge\">dist/admin.js</span><span class=\"badge\">lang/</span></div><b class=\"text-label\">The package</b><figcaption>A folder in plugins/</figcaption></figure><div class=\"cluster\" data-gap=\"xs\"><span class=\"text-lead\">→</span><figure class=\"stack\" data-gap=\"2xs\"><div class=\"card\" data-variant=\"raised\"><b class=\"text-label\">Turned on</b><span class=\"badge\">Migrations run</span><span class=\"badge\">install()</span></div><b class=\"text-label\">Once</b><figcaption>Or upgrade() for<br>a new version</figcaption></figure></div><div class=\"cluster\" data-gap=\"xs\"><span class=\"text-lead\">→</span><figure class=\"stack\" data-gap=\"2xs\"><div class=\"card\" data-variant=\"raised\"><b class=\"text-label\">Running</b><span class=\"badge\">Requirements<br>checked</span><span class=\"badge\">register()</span><span class=\"badge\">boot()</span></div><b class=\"text-label\">Every request</b><figcaption>Adds abilities,<br>blocks, screens</figcaption></figure></div></div></figure>"}}
 :::
 
 New to plugins? [Your first plugin](/plugins/your-first-plugin) builds a complete one, step by step.
@@ -231,6 +231,23 @@ Everything else works for your block without code: styles on every screen and st
 | `editor` | `true` when rendering for the editor. |
 | `scope` | The [data](/design/data) in reach. |
 | `renderer` | The renderer. |
+
+### Styling what you render
+
+Your block's markup wears the site's theme, so don't bring colors, sizes or fonts of your own. Render the theme's components and use its names, and your block looks like the site it's in, in light and dark mode and in any scheme, and keeps looking like it when the site's design changes:
+
+- **Components**: `.button` with `data-variant` (`solid`, `soft`, `outline`, `ghost`, `link`), `data-color` (any palette, like `primary` or `neutral`) and `data-size` (`sm`, `md`, `lg`); `.badge`, `.card` and `.field`. Inputs, selects and text areas inside a `<form>` look like fields without a class.
+- **Roles and steps** as custom properties, when you need CSS of your own: `var(--color-foreground-muted)`, `var(--color-border)`, `var(--space-sm)`, `var(--radius-md)`.
+- **Text styles** as classes: `.text-label`, `.text-heading-3`, `.text-small`.
+- **Layout primitives**: `.stack`, `.cluster`, `.grid` and the rest, with `data-gap` set to a space step.
+
+```php
+'render' => fn (array $d) => '<div '.$d['attrs'].'><form class="stack" data-gap="sm">'
+    .'<label for="r-note" class="text-label">Your review</label><textarea id="r-note" name="note"></textarea>'
+    .'<button class="button" data-variant="solid" data-color="primary" type="submit">Send</button></form></div>',
+```
+
+Everything else a designer sets in the block's **Design** tab, on top. [design.lettern.org](https://design.lettern.org/spec/components/) lists the components, roles and text styles.
 
 ### The rest of the definition
 

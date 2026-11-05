@@ -86,7 +86,7 @@ Roles are stored in `config/roles.yaml`, a settings namespace like any other, so
 | `settings.manage`, `packages.manage` | Settings, the design system and plugins. |
 | `site.build` | Publishing the whole site. |
 | `blocks.html` | Adding raw HTML blocks. Only for trusted people. |
-| `site.code` | Editing the site's custom CSS and JavaScript. Only for trusted people. |
+| `site.code` | Editing the site's custom JavaScript. Only for trusted people. |
 
 Each permission belongs to the module or plugin that registers it, so switching one off removes its permissions from **Roles** too. Modules and plugins register their own (`navigation.manage`, `comments.moderate`, `forms.view`, `assistant.use`, `analytics.view`…). API tokens can only narrow a person's permissions, never widen them.
 
