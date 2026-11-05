@@ -31,9 +31,9 @@ Point at a setting and a database icon appears beside its label, **Connect to Da
 
 ## Design
 
-Change how the block looks, section by section: **Layout**, **Position**, **Size**, **Spacing**, **Typography**, **Fill**, **Border**, **Effects**, **Transform** and **Transition**, plus **CSS** for any other property.
+Change how the block looks, section by section: **Layout**, **Position**, **Size**, **Spacing**, **Typography**, **Color**, **Border**, **Effects**, **Transform** and **Transition**.
 
-Pick colors, fonts and sizes from your [design system](/design/design-system), and the block keeps matching the rest of the site when those change.
+Every value is a name from your [design system](/design/design-system), like a text style, a color of your scheme or a spacing step, so the block keeps matching the rest of the site when those change.
 
 ### Different screens and states
 

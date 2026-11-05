@@ -77,7 +77,7 @@ Ask your tool for something real, for example:
 
 > Build a pricing page with three plans using our card component, animate the cards in one by one, and make the yearly/monthly switch work.
 
-Lettern tells it to read your collections and design system first, so what it builds uses your fonts, colors and components. Most tools also list your site's skills as ready-made prompts: **Build a Page**, **Write a Blog Post**, **Audit the Site**, **Proofread** and **Adjust the Design**.
+Lettern tells it to read your collections and design system first, so what it builds uses your fonts, colors and components. It can only style with your design system's names, never with values of its own, so whatever it builds looks like the rest of your site. Most tools also list your site's skills as ready-made prompts: **Build a Page**, **Write a Blog Post**, **Audit the Site**, **Proofread** and **Adjust the Design**.
 
 ## See and revoke connections
 
@@ -103,11 +103,11 @@ A token acts as you. See [REST API](/agents/rest-api) for scopes.
 
 **Tools**: every ability you may run that is exposed to MCP, named with a dot (`entries.create`, `design.update`). Security-sensitive abilities, like creating tokens, changing passwords, managing users and roles, or changing what a role may do, are never offered to agents.
 
-**Resources**: context to plan with. `cms://collections` (content types and their fields), `cms://site/design` (the design system: tokens, fonts, element styles), `cms://blocks` (how to compose pages, templates and components: the block model, styles, bindings, interactions and animations, with worked examples), `cms://forms`, `cms://navigation`, `cms://languages`, and more from plugins.
+**Resources**: context to plan with. `cms://collections` (content types and their fields), `cms://site/design` (the design system: its DESIGN.md, every name and what it is on this site, with the theme), `cms://blocks` (how to compose pages, templates and components: the block model, styles, bindings, interactions and animations, with worked examples), `cms://forms`, `cms://navigation`, `cms://languages`, and more from plugins.
 
 **Prompts**: the site's [skills](/agents/assistant#use-a-skill), ready-made workflows like *Build a page* from a brief, *Write a blog post* and *Audit the site* for SEO and GEO problems, plus whatever plugins add.
 
-**Instructions**: how to build the Lettern way. Read the collections and the design system first, reuse components and templates (`patterns/list`, `templates/list`), style with tokens, give images alt text, and publish when done.
+**Instructions**: how to build the Lettern way. Read the collections and the design system first, reuse components and templates (`patterns/list`, `templates/list`), style with the design system's names only and add to the theme what's missing, give images alt text, and publish when done.
 
 ## For developers
 
@@ -117,7 +117,8 @@ The editor works with structured data, so an agent edits the same block document
 
 - **Pages**: `entries/create` and `entries/update` with a blocks field, as JSON or as [Block Markdown](/reference/block-markdown).
 - **Templates and components**: the same abilities, in the `templates` and `components` collections. `entries/publish` makes them live.
-- **The design system**: `design/get`, `design/update`, `design/fonts-import`, and custom code with `design/code`.
+- **The design system**: `design/get` (the theme, its resolved values, the catalog of every style property and the names it takes, DESIGN.md and contrast findings), `design/update` (merges a change into the theme, or replaces it, and refuses names outside the vocabulary), `design/preview`, `design/fonts-import`, `design/fonts-upload`, and custom JavaScript with `design/code`. See [Design system](/design/design-system#abilities).
+- **Styles**: names of [Lettern Design](https://design.lettern.org) only, like `{"text": "heading-2", "paddingBlock": "section"}`. Anything else is left out. See [Styles](/design/styles#for-developers).
 - **What's possible**: `blocks/types` lists every block, style property, state, data source, animation property and script action. `blocks/icons` searches icons.
 
 ### Protocol

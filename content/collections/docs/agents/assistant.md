@@ -6,7 +6,7 @@ description: Claude, in the workspace. Ask in plain words and watch it build, wr
 ---
 The assistant is Claude, answering in the [workspace](/getting-started/workspace). Ask it in plain words to build a page, rewrite a section or fix your SEO, and watch the change happen on the page beside the thread. It works as you, with your permissions, and asks before it deletes anything, turns a plugin on or off, or does something hard to undo.
 
-::: html {"props":{"html":"<figure class=\"docs-fig\" role=\"img\" aria-label=\"You ask in plain words. The assistant makes the change on the page, as you. Deleting waits for your go-ahead.\"><div class=\"docs-fig__flow\"><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>You</b><span class=\"docs-card__field\">Add a wine list under the menu</span></div><b>Ask</b><small>In plain words</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-mock docs-mock--live\"><i class=\"docs-mock__h\"></i><i class=\"docs-mock__l\"></i><i class=\"docs-mock__l docs-mock__l--short\"></i><i class=\"docs-mock__img\"></i></div><b>It works</b><small>On the page, as you</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Allow this action?</b><span class=\"docs-card__field\">Delete “Lemon tart”</span></div><b>You decide</b><small>Before anything is deleted</small></div></div></figure>"}}
+::: html {"props":{"html":"<figure class=\"card\" data-variant=\"flat\" role=\"img\" aria-label=\"You ask in plain words. The assistant makes the change on the page, as you. Deleting waits for your go-ahead.\"><div class=\"cluster\" data-gap=\"sm\"><figure class=\"stack\" data-gap=\"2xs\"><div class=\"card\" data-variant=\"raised\"><b class=\"text-label\">You</b><span class=\"badge\">Add a wine list<br>under the menu</span></div><b class=\"text-label\">Ask</b><figcaption>In plain words</figcaption></figure><div class=\"cluster\" data-gap=\"sm\"><span class=\"text-lead\">→</span><figure class=\"stack\" data-gap=\"2xs\"><div class=\"card\" data-variant=\"raised\"><span class=\"badge\" data-variant=\"solid\" data-color=\"neutral\"></span><span class=\"badge\"></span><span class=\"badge\"></span><span class=\"card\" data-variant=\"flat\"></span></div><b class=\"text-label\">It works</b><figcaption>On the page, as you</figcaption></figure></div><div class=\"cluster\" data-gap=\"sm\"><span class=\"text-lead\">→</span><figure class=\"stack\" data-gap=\"2xs\"><div class=\"card\" data-variant=\"raised\"><b class=\"text-label\">Allow this action?</b><span class=\"badge\">Delete “Lemon tart”</span></div><b class=\"text-label\">You decide</b><figcaption>Before anything is deleted</figcaption></figure></div></div></figure>"}}
 :::
 
 ## Set it up
@@ -77,7 +77,7 @@ A skill is a ready-made way of working. Type `/` at the start of a line and pick
 | `/build-page` | Designs a complete page from a brief, with your design system and components |
 | `/write-post` | Drafts a blog post for you to review |
 | `/audit-site` | Checks every published page for SEO, GEO and accessibility problems, and proposes fixes |
-| `/adjust-design` | Changes the design system so the site feels a certain way |
+| `/adjust-design` | Changes the theme so the site feels a certain way (its colors, fonts, type scale, radius and motion), rather than restyling single blocks, and keeps the contrast check clean |
 
 You see only the skills you have permission to use, and plugins can add their own.
 
@@ -89,6 +89,7 @@ For overviews, comparisons and choices about what to do next, a reply can includ
 
 ## Safety
 
+- **It stays inside your design.** It styles only with your [design system](/design/design-system)'s names, never with colors or sizes of its own, so what it builds looks like your site.
 - **It acts as you.** It has your permissions, and its changes go in the audit log as yours, marked *assistant*.
 - **It never touches security or access.** Tokens, passwords and two-factor settings are out of its reach, and so are people: it can't create, invite, change or remove users, grant or take away roles, or change what a role may do, even when an administrator asks. People do that themselves, in **Settings**.
 - **You approve what matters.** With **Ask Before** set to **Deletes and Admin Changes**, the default, deleting anything and admin-level changes wait for you in the thread: **Allow**, **Decline**, or **Allow All**. Each one says in a sentence what it changes; the action's name under it shows exactly what it sends. Other changes, such as writing a draft, go ahead and show as they happen. To approve every change instead, set **Ask Before** to **Every Change** in the assistant's settings.

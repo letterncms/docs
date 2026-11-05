@@ -324,7 +324,7 @@ Presentation options the core components understand:
 | Date | `time: true` and an IANA `timezone`, such as `Europe/Brussels`. The control shows that zone, converts wall times to UTC instants, and rejects missing or ambiguous daylight-saving times with a visible error. |
 | In inline rows | `status` (`own` or `inherited`) marks the label: a value set here reads in ink, an inherited one stays muted with a small dot. `reset` makes clicking the label clear the value |
 
-When core can't express a control (a CSS length with tokens, a color with alpha), register a field component and point a field at it with `component`. Core has one of its own, `ease`: an easing curve, picked from `options` (each drawn as its curve; `curve` draws a value that isn't one, such as a design token) or drawn by hand as a cubic-bezier.
+When core can't express a control (a map, a star rating, a picker of your own records), register a field component and point a field at it with `component`. Core has one of its own, `ease`: an easing curve, picked from `options` (each drawn as its curve; `curve` draws a value that isn't one) or drawn by hand as a cubic-bezier.
 
 ### Your own field controls
 
