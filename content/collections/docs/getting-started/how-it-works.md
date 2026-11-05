@@ -53,7 +53,7 @@ That's why AI is safe to use here: an agent can only do what the person behind i
 
 ## Built in, or a plugin
 
-Your site's design and publishing, media, menus, email, the block editor, languages, comments and MCP come with Lettern. Forms, SEO and the assistant are **plugins**. Turn off what you don't need, add what you do from the store. Developers can write their own, with the same tools Lettern's own features use. See [Plugins](/plugins).
+Your site's design and publishing, media, menus, email, the block editor, languages, comments, MCP, the assistant and Sync come with Lettern. Forms and SEO are **plugins**. Turn off what you don't need, add what you do from the store. Developers can write their own, with the same tools Lettern's own features use. See [Plugins](/plugins).
 
 ## Your site is a folder of files
 

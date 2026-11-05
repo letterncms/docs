@@ -8,7 +8,7 @@ Sync copies one site into another: its content, its media, and if you like its t
 
 ![Sync, with production and staging connected.](/media/screens/operations-sync.webp)
 
-Sync is a paid plugin from the store. It's free between local and staging sites; a public site needs a Sync license to take part.
+Sync comes with Lettern and is free on every site, public ones included: there's nothing to install or buy. It's on unless you switch it off under **Plugins → Built In**.
 
 ## Connect two sites
 
@@ -35,7 +35,10 @@ Press **Pull** or **Push** next to a connected site. Sync compares the two and s
 | Content | Entries and their history. You can choose collections. | Yes | Yes |
 | Media | Uploaded files and their details | Yes | Yes |
 | People | Accounts, roles and access | No | Yes |
-| Each plugin's data | Form submissions, Commerce's orders and invoices, comments, analytics, assistant chats, logs | No | Yes |
+| Comments | Comments and mentions in the admin | No | Yes |
+| Chats | Each person's threads in the workspace, with the assistant's answers | No | Yes |
+| Logs | Sent email and the audit log | No | Yes |
+| Each plugin's data | One group per plugin, such as Form Submissions, Analytics, and Commerce's products, orders, invoices and licenses | No | Yes |
 | Site Files | Templates, components, collections kept in files, globals, forms, menus | No | No |
 | Settings | Settings, except which plugins are on and the license key | No | No |
 | Other tables | Tables in the same database that no plugin claims | No | No |
@@ -67,12 +70,12 @@ Sync works a few seconds at a time, so no request comes near a host's time limit
 
 Sync checks before it starts, and tells you what to do:
 
-- **Different versions.** If a group's tables differ between the two sites, that group can't move until both run the same versions of Lettern and the plugin. Other groups still can.
+- **Different versions.** If a group's tables differ between the two sites, that group can't move until both run the same versions of Lettern and of the plugin the tables belong to. Other groups still can.
 - **A plugin on one side only.** Its data stays where it is, and the preview says so.
 - **The same site twice.** A site can't sync with its own key, with a copy of its own folder, or with a site sharing its database.
 - **Busy.** One sync at a time per site. A second waits until the first ends.
 - **Permissions and disk space.** The receiving site needs to write to the folders that change, and room for the incoming copy and the backup.
-- **No license.** A public site without a Sync license takes no part. Add the key under **Plugins → Licenses** on that site.
+- **No answer.** If the other site doesn't answer as a site with Sync, check its address, and that Sync is on there under **Plugins → Built In**.
 
 Different databases (MySQL and SQLite) or table prefixes are fine: rows are converted on the way.
 
@@ -113,6 +116,10 @@ Tables go in chunks in key order, and big files in pieces of 2 MB or half the ho
 
 Every request between two sites is signed with the key's secret, with its time and a one-time value, so a captured request can't be sent again and nobody without the key gets an answer. Paths that leave their folder, hidden files and links are refused on both sides. Syncing is kept away from the assistant and MCP: replacing a site is a person's decision. The permission **Push and Pull Content Between Sites** decides who sees **Sync**.
 
+### Where it lives
+
+Sync is the `letterncms/sync` module, in `modules/sync` of Lettern, with its classes under `Cms\Modules\Sync\`. Switched off, a site has no **Sync** screen and none of the commands above, and doesn't answer other sites. Its key, connections and history are in `storage/sync`.
+
 ### Plugins with their own tables
 
-See [Sync for plugins](/plugins/sync).
+A plugin's tables are grouped as its `composer.json` says: see [Sync for plugins](/plugins/sync).

@@ -59,7 +59,7 @@ Put the folder in `plugins/`, turn it on with its switch in **Plugins** or with 
     "type": "cms-plugin",
     "version": "1.0.0",
     "require": {
-        "letterncms/cms": ">=0.7 <1",
+        "letterncms/cms": ">=0.9 <1",
         "guzzlehttp/guzzle": "^7.8"
     },
     "autoload": { "psr-4": { "Acme\\Reviews\\": "src/" } },
@@ -68,7 +68,6 @@ Put the folder in `plugins/`, turn it on with its switch in **Plugins** or with 
             "label": "Reviews",
             "icon": "star",
             "provider": "Acme\\Reviews\\ReviewsPlugin",
-            "provides": ["reviews"],
             "modules": ["letterncms/blocks"]
         }
     }
@@ -81,7 +80,6 @@ Put the folder in `plugins/`, turn it on with its switch in **Plugins** or with 
 | `icon` | Its icon in **Plugins**. |
 | `provider` | The class Lettern starts. A package without one can still bring migrations, views and translations. |
 | `namespace` | The name for its settings, views and translations. Defaults to the part after the slash (`reviews`). |
-| `provides` | Capabilities it offers, such as `forms`, so others can ask who provides one. |
 | `modules` | The optional [modules](/plugins/modules) it builds on, such as `letterncms/blocks` or `letterncms/site`. They come with Lettern, so they aren't in `require`. |
 | `sync` | How [Sync](/plugins/sync) treats its tables. |
 | `license` | For paid plugins: see [License tokens](/plugins/license-tokens#sell-your-own-plugin). |

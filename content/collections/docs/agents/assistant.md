@@ -11,10 +11,10 @@ The assistant is Claude, answering in the [workspace](/getting-started/workspace
 
 ## Set it up
 
-The assistant runs on your own Anthropic API key, so you pay Anthropic directly for what you use.
+The assistant comes with Lettern, so there's nothing to install. It runs on your own Anthropic API key, so you pay Anthropic directly for what you use.
 
 1. Create an API key at [console.anthropic.com](https://console.anthropic.com), under **API keys**.
-2. In the admin, open **Settings**, then **Assistant** under **Plugins**, and paste it into **Anthropic API Key**. It's stored encrypted. Save.
+2. In the admin, open **Settings**, then **Assistant**, and paste it into **Anthropic API Key**. It's stored encrypted. Save.
 3. Press `⌘J` and ask away. Plain words now go to Claude; `/` still runs commands, and **Search for** in `/` still searches without it.
 
 ![The assistant's settings: the API key, the models, and when it asks for approval.](/media/screens/agents-assistant-settings.webp)
@@ -134,3 +134,7 @@ Skills are registered with `cms()->skills()->register()`. The same skills are pr
 ### An agent like any other
 
 The assistant is the workspace's [agent](/plugins/agents): it binds `Cms\Contracts\Agent`, keeps Claude's history with each thread, and streams its answers into the same turns commands and searches use. Another plugin can answer instead, with another model.
+
+### Where it lives
+
+The assistant is the `letterncms/assistant` module, in `modules/assistant` of Lettern, with its classes under `Cms\Modules\Assistant\`. It's on unless you switch it off under **Plugins → Built In**; switched off, nothing in the admin mentions AI, and its settings in `config/assistant.yaml` stay for when it's back.

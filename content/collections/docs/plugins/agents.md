@@ -4,7 +4,7 @@ title: Agents
 position: 13
 description: Answer plain language in the workspace. One contract, so the thread stays the same whichever model answers, or none.
 ---
-The [workspace](/getting-started/workspace) answers commands and searches by itself. Plain language goes to an agent: a plugin that binds `Cms\Contracts\Agent`. The [assistant](/agents/assistant) is one, with Claude. Without one bound, the default `NoAgent` answers nobody, a message is a search, and nothing in the admin mentions AI.
+The [workspace](/getting-started/workspace) answers commands and searches by itself. Plain language goes to an agent: whatever binds `Cms\Contracts\Agent`. The [assistant](/agents/assistant) that comes with Lettern is one, with Claude, and your plugin can bind another. Without one bound, the default `NoAgent` answers nobody, a message is a search, and nothing in the admin mentions AI.
 
 Bind yours in your provider's `register()`, as Site binds `SiteBuilder`:
 

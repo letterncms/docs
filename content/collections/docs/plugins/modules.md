@@ -32,6 +32,8 @@ A module registers its abilities, permissions, settings, sidebar items and scree
 | `letterncms/languages` | [Languages](/content/languages): translations linked to their original, localized URLs, hreflang and the language switcher | Yes |
 | `letterncms/collaboration` | [Collaboration](/editing/collaboration): who else is on a page, comments with @mentions, and the inbox | Yes |
 | `letterncms/mcp` | The [MCP server](/agents/mcp): every ability as a tool for AI clients, signed in with OAuth | Yes |
+| `letterncms/assistant` | The [assistant](/agents/assistant): Claude in the workspace, once an Anthropic API key is set, and machine translation for Languages | Yes: the workspace runs commands and searches, and nothing mentions AI |
+| `letterncms/sync` | [Sync](/operations/sync): pull and push content, media and files between your machine, staging and production | Yes |
 
 The required modules are what Lettern needs to keep working: without them there is no admin, and nobody could edit content, secure their account, change a setting or switch a module back on. Everything else is yours to remove. A site with only the required modules and no plugins is a complete, very small CMS.
 
@@ -66,6 +68,8 @@ A module's options are a [settings](/plugins/settings) namespace like any plugin
 | `letterncms/media` | Upload size, image quality, AVIF and photo metadata, on the **Settings** tab of **Media** |
 | `letterncms/languages` | The site's languages and their URLs, under **Languages** (`config/languages.yaml`) |
 | `letterncms/site` | The favicon and **Publishing** (static site, rebuilding on publish, search index), under **General** (`config/site.yaml`); the look itself in the **Design System** |
+| `letterncms/assistant` | The Anthropic API key, models and **Ask Before**, under **Assistant** (`config/assistant.yaml`) |
+| `letterncms/sync` | This site's key, its connections and whether others may pull or push, on the **Sync** screen (kept in `storage/sync`, never moved) |
 
 The content module has no settings. Entries per page (50), the autosave delay (1.2 seconds) and the revisions kept per entry (100) are fixed; a plugin can change the revisions kept with the `revisions.keep` [filter](/plugins/hooks).
 
