@@ -149,7 +149,7 @@ Files make content reviewable in pull requests; these docs are written that way.
 
 ### Default display
 
-`default_columns` replaces the automatic columns. Without it, fields listed under `listing` are still added to the standard columns. Unknown or removed columns are ignored, so they never stop a collection from loading. Only fields with a compact display (text, numbers, dates, media, relationships and the like) can be shown.
+`default_columns` replaces the automatic columns. Unknown or removed columns are ignored, so they never stop a collection from loading. Only fields with a compact display (text, numbers, dates, media, relationships and the like) can be shown.
 
 ```yaml
 default_view: grid

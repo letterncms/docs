@@ -132,7 +132,15 @@ final class ReviewsPlugin extends Plugin
 | `$this->asset('file')` | The public URL of a file in its `dist/`. |
 | `$this->adminModule()` | Loads its built admin code, `dist/admin.js` (and `dist/admin.css` when there is one). See [Admin extensions](/plugins/admin-extensions). |
 
-`$this->cms()` is where everything is registered: `abilities()`, `hooks()`, `permissions()`, `settingsRegistry()` and `settings()`, `admin()`, `skills()`, `fields()`, `collections()`, `entries()`, `globals()`, `navigation()`, `accounts()`, `roles()`, `packages()` and `whenAvailable()`.
+`$this->cms()` is where everything is registered: `abilities()`, `hooks()`, `permissions()`, `settingsRegistry()` and `settings()`, `admin()`, `skills()`, `fields()`, `collections()`, `entries()`, `globals()`, `navigation()`, `accounts()`, `roles()`, `packages()` and `whenAvailable()`. `url('/pricing')` is an absolute address on the public site, from **Public URL** under **Settings → General**.
+
+A permission can belong to the roles a site starts with: `roles: ['editor']` (or `['editor', 'author']`) gives it to those default roles until the site edits its roles. Administrators hold every permission anyway.
+
+```php
+$this->cms()->permissions()->register('reviews.manage', 'Moderate reviews', 'Reviews', roles: ['editor']);
+```
+
+Write labels and groups in English, as plain strings: the admin shows them in each person's language.
 
 ### Every plugin has a widget
 
@@ -168,7 +176,7 @@ Turn a plugin on or off with its switch in **Plugins**, uninstall it from its ro
 Entries that use a plugin's blocks or fields still open and save while it's off, and everything is there when it comes back:
 
 - A block whose plugin is off is kept as it is.
-- A field type whose plugin is off is shown as its `fallback` (`['type' => 'media', 'fallback' => 'url']`), and what it stored stays until it's replaced. Without a fallback, the value is kept as JSON.
+- A field whose type's plugin is off keeps its value, as JSON.
 - A `dynamic` select accepts a name it can't list right now, such as a form while the Forms plugin is off. So a wrong name there isn't refused on save; it renders nothing.
 
 Every default plugin is tested this way, off alone and two at a time, with `PluginIsolationTest`.
@@ -304,7 +312,7 @@ The value is saved in the collection's YAML; read it with `$collection->get('rev
 
 ## Replace a built-in
 
-Some features are contracts with a default, so a plugin can swap the implementation: `Cms\Contracts\SiteBuilder` (static publishing; Site binds it) and `Cms\Contracts\Agent` (see [Agents](/plugins/agents)). Bind your own in `register()`:
+Some features are contracts with a default, so a plugin can swap the implementation: `Cms\Contracts\SiteBuilder` (static publishing; Site binds it), `Cms\Contracts\Agent` (see [Agents](/plugins/agents)) and `Cms\Contracts\Translator` (the machine translation Languages offers: `available()` and `translate(array $strings, string $from, string $to): array`, which returns as many strings in the same order; the assistant binds Claude). Bind your own in `register()`:
 
 ```php
 $this->app->singleton(\Cms\Contracts\SiteBuilder::class, NetlifyBuilder::class);

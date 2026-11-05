@@ -8,7 +8,7 @@ Visitor accounts let visitors have an account on your site, separate from the ad
 
 ## Turn them on
 
-1. Open **Settings → Users**, then the **Sign-Up** tab.
+1. Open **Settings → Visitor Accounts**, the **Settings** tab of **Users**.
 2. Turn on **Allow Visitor Accounts**. The settings below show once it's on.
 3. Press **Save** in the bar at the bottom, or `⌘S`. Your site now has sign-up, sign-in and account pages.
 

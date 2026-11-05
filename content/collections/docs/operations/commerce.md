@@ -48,7 +48,7 @@ Press **Go Live** in the test-mode line at the top of Commerce. The **Go Live** 
 - [working email](/operations/email), because invoices go out by email;
 - when you [run a store](#run-a-store): live signing keys, an `https://` address and [visitor accounts](/operations/public-accounts) turned on.
 
-Fill in your company details on Commerce's **Settings** tab, under **Seller**, or under **Company Details From a Global** name a global whose fields have the same names. Nothing fills them in for you. If a required detail later goes empty, the site stops taking new orders and raises an alert until it's filled in again. Payments already made still settle.
+Fill in your company details under **Globals → Company**, which Commerce adds when it's turned on: legal name, address, country, VAT and enterprise numbers, email, phone and the IBAN that invoices paid by bank transfer show. Nothing fills them in for you. If a required detail later goes empty, the site stops taking new orders and raises an alert until it's filled in again. Payments already made still settle.
 
 Once you're live, **Live** in Commerce's top bar opens the same page, with **Back to Test Mode** and the webhook addresses.
 

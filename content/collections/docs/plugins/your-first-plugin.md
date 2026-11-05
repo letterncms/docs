@@ -122,7 +122,7 @@ final class ReadingTimePlugin extends Plugin
         // A settings screen, for free: Settings → Reading time.
         $this->cms()->settingsRegistry()->register('reading-time', __('Reading time'), [
             ['handle' => 'words_per_minute', 'type' => 'number', 'label' => 'Words per minute', 'default' => 230, 'min' => 50],
-        ], icon: 'clock', package: $this->manifest->name);
+        ], icon: 'clock');
 
         // One ability: the admin, the API, agents and the CLI can all use it.
         $this->cms()->abilities()->register('reading-time/estimate', [
@@ -195,7 +195,7 @@ function ReadingTimePanel({ entry }: { entry: Entry | null }) {
   )
 }
 
-registry.panels.set('reading-time', { id: 'reading-time', slot: 'entry.sidebar', label: t('Reading time'), icon: 'clock', component: ReadingTimePanel })
+registry.panels.set('reading-time', { slot: 'entry.sidebar', label: t('Reading time'), icon: 'clock', component: ReadingTimePanel })
 ```
 
 `useAbility` runs the ability you registered in step 4, with the signed-in person's permissions. `registry.panels` puts the component in a named place: `entry.sidebar` is a tab in the entry editor's side panel. See [Admin extensions](/plugins/admin-extensions) for every slot.
