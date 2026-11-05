@@ -14,7 +14,7 @@ Pages without interactions load no JavaScript at all.
 
 An interaction has three parts. **State** remembers something, like whether the menu is open. **Events** change it, like a click on the menu button. And blocks react to it: the menu shows while it's open.
 
-::: html {"props":{"html":"<figure class=\"card\" data-variant=\"flat\" role=\"img\" aria-label=\"A click on the menu button toggles the open state, and the menu shows while open is true.\"><div class=\"cluster\" data-gap=\"sm\"><figure class=\"stack\" data-gap=\"2xs\"><div class=\"card\" data-variant=\"raised\"><b class=\"text-label\">Event</b><span class=\"badge\">Click</span></div><b class=\"text-label\">Something happens</b><figcaption>On the menu button</figcaption></figure><div class=\"cluster\" data-gap=\"sm\"><span class=\"text-lead\">→</span><figure class=\"stack\" data-gap=\"2xs\"><div class=\"card\" data-variant=\"raised\"><b class=\"text-label\">State</b><span class=\"badge\">open = true</span></div><b class=\"text-label\">Something changes</b><figcaption>Remembered by the header</figcaption></figure></div><div class=\"cluster\" data-gap=\"sm\"><span class=\"text-lead\">→</span><figure class=\"stack\" data-gap=\"2xs\"><div class=\"card\" data-variant=\"raised\"><b class=\"text-label\">Show when</b><span class=\"badge\">open</span></div><b class=\"text-label\">Blocks react</b><figcaption>The menu appears</figcaption></figure></div></div></figure>"}}
+::: html {"props":{"html":"<figure class=\"docs-fig\" role=\"img\" aria-label=\"A click on the menu button toggles the open state, and the menu shows while open is true.\"><div class=\"docs-fig__flow\"><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Event</b><span class=\"docs-card__field\">Click</span></div><b>Something happens</b><small>On the menu button</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>State</b><span class=\"docs-card__field\">open = true</span></div><b>Something changes</b><small>Remembered by the header</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Show when</b><span class=\"docs-card__field\">open</span></div><b>Blocks react</b><small>The menu appears</small></div></div></figure>"}}
 :::
 
 ## Build a mobile menu
@@ -118,7 +118,7 @@ Tabs follow the [ARIA tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tab
 
 ## Code components
 
-When something can't be built from state, events and actions, like a calculator, a chart or a third-party widget, a developer can write it as a small component in the site's custom JavaScript. Name it under **Interact → Code Component**. The block then uses that component instead of its own **State**; everything inside can read its values and call its functions, and the other interaction settings keep working. See [Custom JavaScript](/design/design-system#custom-javascript).
+When something can't be built from state, events and actions, like a calculator, a chart or a third-party widget, a developer can write it as a small component in the site's custom JavaScript. Name it under **Interact → Code Component**. The block then uses that component instead of its own **State**; everything inside can read its values and call its functions, and the other interaction settings keep working. See [Custom CSS and JavaScript](/design/design-system#custom-css-and-javascript).
 
 ## For developers
 

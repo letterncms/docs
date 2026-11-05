@@ -20,7 +20,7 @@ However the site was installed, from the zip or with Composer, the folder is a C
 | `plugins/` | The plugins of this site: `plugins/<name>`, and a third party's in `plugins/<vendor>-<name>`. Your own go here too. | Only what you wrote |
 | `config/` | `site.yaml` (name, URL, languages, the admin's language), `plugins.yaml` (enabled plugins, disabled modules), `roles.yaml`, `admin.yaml` (the default sidebar and Dashboard) and one YAML file per settings namespace. | Yes |
 | `config/license.key` | The [key of a paid plugin](/reference/license#paid-plugins), when this site has one. | Yes |
-| `content/design/` | The [design system](/design/design-system) (`theme.json`), fonts and `custom.js`. | Yes |
+| `content/design/` | The design system (`tokens.json`), fonts, `custom.css` and `custom.js`. | Yes |
 | `content/collections/` | Collection definitions, and entries of file-based collections, including `templates/` and `components/`. | Yes |
 | `content/` (the rest) | Fieldsets, globals, forms, menus, redirects. | Yes |
 | `public/` | What visitors get: built pages, uploaded media in `media/`, and in `_cms/` generated images, compiled CSS, fonts and plugin assets. | Media only |

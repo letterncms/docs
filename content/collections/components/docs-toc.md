@@ -12,9 +12,9 @@ updated_at: '2026-10-30T12:00:00+00:00'
 ---
 
 ::: box {"id":"dt","props":{"tag":"aside"},"label":"On this page","style":{"base":{"display":"none"},"xl":{"display":"block"}},"attrs":{"aria-label":"On this page"}}
-:::: box {"id":"dt-in","style":{"base":{"position":"sticky","top":"2xl","maxHeight":"vh-100","overflowY":"auto","paddingTop":"xl","paddingBottom":"xl"}},"logic":{"behaviors":{"spy":{"offset":96}}}}
-::::: repeat {"id":"dt-list","props":{"source":"headings","tag":"nav","depth":"3"},"style":{"base":{"display":"flex","flexDirection":"column"},"before":{"display":"block","marginBottom":"2xs","fontSize":"sm","fontWeight":"medium","color":"foreground"}}}
-:::::: link {"id":"dt-link","style":{"base":{"display":"block","paddingBlock":"2xs","fontSize":"sm","color":"foreground-muted","transitionProperty":"colors","transitionDuration":"faster","transitionTimingFunction":"out"},"hover":{"color":"foreground"},"is-sub":{"paddingLeft":"sm"},"is-current":{"color":"foreground"}},"bind":{"label":"item.text","url":"item.url","state:sub":"item.level|is:3"}}
+:::: box {"id":"dt-in","style":{"base":{"position":"sticky","top":"3.5rem","maxHeight":"calc(100dvh - 3.5rem)","overflowY":"auto","scrollbarWidth":"thin","paddingTop":"2.8125rem","paddingBottom":"2.5rem"}},"logic":{"behaviors":{"spy":{"offset":96}}}}
+::::: repeat {"id":"dt-list","props":{"source":"headings","tag":"nav","depth":"3"},"style":{"base":{"display":"flex","flexDirection":"column"},"before":{"content":"\"On this page\"","display":"block","marginBottom":"0.375rem","fontSize":"token:text.sm","lineHeight":"1.25rem","fontWeight":500,"color":"token:color.ink"}}}
+:::::: link {"id":"dt-link","style":{"base":{"display":"block","paddingBlock":"0.25rem","fontSize":"token:text.sm","lineHeight":"1.25rem","color":"token:color.muted","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease"},"hover":{"color":"token:color.ink"},"is-sub":{"paddingLeft":"0.75rem"},"is-current":{"color":"token:color.ink"}},"bind":{"label":"item.text","url":"item.url","state:sub":"item.level|is:3"}}
 ::::::
 :::::
 ::::

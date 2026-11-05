@@ -26,7 +26,7 @@ Entries are kept for a year. On the log's **Settings** tab, **Keep Entries For**
 
 ## Give each person only what they need
 
-Give clients a [role](/operations/users-and-roles) that covers their content and nothing else. Permissions marked **Trusted Only** are for people you trust completely: **Add Custom HTML Blocks** and **Edit Custom JavaScript**, because both can put scripts on every page, and **Install Unsigned Packages**, because a package can run any code.
+Give clients a [role](/operations/users-and-roles) that covers their content and nothing else. Permissions marked **Trusted Only** are for people you trust completely: **Add Custom HTML Blocks** and **Edit Custom CSS and JavaScript**, because both can put scripts on every page, and **Install Unsigned Packages**, because a package can run any code.
 
 ## Keep AI and API access in check
 

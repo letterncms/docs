@@ -2,142 +2,150 @@
 id: 01m5wn8rahj942kpc5xx6pns6s
 title: Design system
 position: 0
-description: "Your site's theme in one place: a few decisions about color, type, space, shape and motion. Change one and every page follows, with contrast checked."
+description: Your site's colors, fonts, spacing and button styles, in one place. Change them once and every page follows.
 ---
-The design system is your site's theme: a handful of decisions, like your brand colors, your fonts, a body size and how roomy things are. Everything else follows from them: color palettes, a type scale, spacing, corners, shadows and motion, for light and dark mode, on every screen size.
+The design system holds the values your whole site is built from: colors, fonts, text sizes, spacing, corners, shadows and motion. Blocks use these values instead of fixed ones, so when you change your main color, every button, link and heading that uses it changes too.
 
-Blocks never hold a fixed color or size. They use names from the theme, like *heading-2*, *foreground-muted* or *section*, so when you change your main color or your heading font, every page follows. And because every value is a name, nobody can type in one that doesn't belong: not an editor, not the assistant, not a plugin.
-
-Lettern's design system is **Lettern Design**, an open standard for styling websites with names instead of CSS values. [design.lettern.org](https://design.lettern.org) has every name and what it means.
-
-![The design system: the theme's settings in the middle, a live preview of the site on the right.](/media/screens/design-system.webp)
+![The design system: colors in the middle, a live preview of the site on the right.](/media/screens/design-system.webp)
 
 Open **Design System**, under **Design** in the sidebar, or press `⌘K` and type *design*. Its sections are listed under it in the sidebar. The preview on the right shows your site as you change things, on desktop, tablet or phone, in light or dark.
 
 ## What's in it
 
-| Section | What you decide |
-|---|---|
-| **Color** | Your brand colors (primary, accent, secondary, neutral and any more you add), the status colors, and the background and text of light and dark mode. Below them, every palette made from your colors |
-| **Typography** | Your fonts and their files, which font body text, headings and code use, the type scale, and the text styles blocks pick from |
-| **Space and Layout** | The spacing scale, the space around sections and page edges, the rhythm between a container's children, and content widths |
-| **Shape and Components** | Corner radius and shadow depth, and how buttons, cards and form fields look |
-| **Motion** | How fast everything moves, and the transition between pages |
-| **Elements** | How plain headings, paragraphs, links, lists and other elements look before a block styles them |
-| **Contrast and Agents** | The contrast check of every color pair, and the theme as the assistant and AI agents read it |
-| **Custom Code** | Your own JavaScript, for the rare behavior the editor can't build |
+The sections come in two groups. **Tokens** are the named values blocks pick from. **Styles** decide how plain elements and buttons look before you style anything.
 
-Press **Save** in the bar at the bottom, or `⌘S`, to keep your changes. **Discard** puts everything back. Saving restyles every page and rebuilds the site.
+| Section | What you set |
+|---|---|
+| **Colors** | Your palette: background, text, your brand colors, borders. Each color can have its own dark-mode value |
+| **Typography** | Font families and their font files, the type scale, line heights, letter spacing and weights |
+| **Spacing** | The spacing scale, content widths and the screen sizes the site adapts at |
+| **Shape** | Corner radius and shadows |
+| **Motion** | How pages change into each other, and durations and easing for transitions |
+| **Elements** | Default styles for headings, paragraphs, links, lists and other plain elements, and for long-form text, each set with controls for font, size, weight, color, fill, border, radius and padding |
+| **Buttons** | The looks a **Button** block can take |
+| **Custom Code** | Your own CSS and JavaScript, for the rare thing the editor can't do |
+
+A *token* is just a named value, like *primary* for your brand color or *8* for a step of spacing. You give it a value once, and use the name everywhere.
 
 ## Change your colors
 
-1. Open **Color**.
-2. Under **Brand**, click a color and pick a new one, or type its hex value. The preview updates right away.
-3. Check **Palettes**: each of your colors becomes a palette of eleven shades, and the label on it shows the text color that stays readable on it.
-4. Switch the preview to dark to see dark mode too.
+1. Open **Colors**.
+2. Click a color and pick a new value. The preview updates right away.
+3. Switch the preview to dark to check the dark value too.
+4. Press **Save** in the bar at the bottom, or `⌘S`. **Discard** puts everything back.
 
-You only pick the colors themselves. Everything blocks use is worked out from them: a fill and the text on it, a soft tint, the color as readable text, muted text, borders and surfaces. When text can't be read on your exact color, like white on a bright yellow, Lettern uses dark text instead, or moves the fill the smallest step it must and tells you so under the palette.
-
-**Add a Brand Color** adds a palette of your own, like *lime*: blocks can then use *lime*, *on-lime*, *lime-soft* and *lime-text* like any other. Under **Modes**, choose which shades are the page's background and text in light and dark mode, or turn dark mode off.
+Saving restyles every page and rebuilds the site. Use the **+** next to a group to add a token of your own, like an accent color.
 
 ## Add a font
 
 Fonts are stored on your site, so visitors' browsers never contact another service to load them.
 
-1. Open **Typography** and find **Font Files**.
+1. Open **Typography** and find **Font Files**, under the font families.
 2. Type a family name in **Google Font**, like *Inter Tight*, and press **Add**. Or drop a `.woff2` file to upload one.
-3. Under **Families**, put the new font in a slot: *sans*, *serif*, *mono*, *display* or *condensed*.
-4. **Body**, **Headings** and **Code** say which slot each kind of text uses. Headings use *display* unless you change it.
+3. Under **Font Families**, pick the new font for a family token, like *sans* or *display*, and what it falls back to.
 
-## Set the type scale
+## Use tokens on a block
 
-Under **Scale**, **Body Size** and **Ratio** each take two values: one for a narrow screen and one for a wide one. Every size is a step of the ratio above the body size, and type grows smoothly between the two screens, so headings are large on a desktop and sensible on a phone, without any extra settings. **Body Leading**, **Display Leading**, **Display Tracking** and **Heading Weight** tune the rest.
+In a block's **Design** settings, fields that take a color, a size or a space show a small diamond when you point at them: **Design Tokens**. Click it and pick a token. The block now follows that token, so it changes when the design system does.
 
-**Text Styles** are what blocks pick first: *display*, *heading-1* to *heading-6*, *lead*, *body*, *label*, *eyebrow*, *code* and more. Each puts a font, size, weight, line height, letter spacing and case under one name. Click one to change it, or press **Add a Text Style** for one of your own, like *price*.
+Choose **Detach Token** to turn it back into a fixed value. See [Styles](/design/styles).
 
-## Space, shape and motion
+## Button styles
 
-- **Space and Layout**: **md** is the middle step of the spacing scale, again for a narrow and a wide screen; every other step is a multiple of it, and large steps shrink more on phones. **Roles** say which step is the space at the page's edges (*gutter*) and around sections. **Flow** sets the space between a container's children once, for the whole site, including *prose*, the rhythm of long text. **Containers** are the content widths, in rem.
-- **Shape and Components**: **Radius** makes the whole site sharper or softer, and **Shadow Depth** flatter or deeper. **Buttons**, **Cards** and **Fields** choose their corners, text style, padding, shadow and border.
-- **Motion**: **Speed** makes every transition and animation snappier (below 1) or calmer (above 1). **Between Pages** animates the change from one page to the next: **Fade**, **Slide**, **Scale** or **None**. It needs no script, and visitors who prefer reduced motion don't get it.
+**Buttons** holds the looks a **Button** block can take, such as *primary*, *secondary*, *ghost* and *link*. Each shows how it looks; open one and click **Default** or **Hover** to set that state with controls for fill, border, radius, padding, text and opacity. Add a look with **+** and it appears in every Button's **Style** menu.
 
-## Contrast is checked for you
+## Page transitions
 
-Every text and border color is measured against every background it can land on, in light and dark mode and in every scheme, to the WCAG AA level. A miss shows as a red count in the top bar and in **Contrast and Agents**, with the pair and the ratio it needs. Fix it by choosing other colors or other background and text shades.
+Under **Motion**, **Page Transition** animates the change from one page to the next: **Fade**, **Slide**, **Scale** or **None**, with a duration. It needs no script, and visitors who prefer reduced motion don't get it.
 
-**Contrast and Agents** also shows the theme as the assistant and AI agents read it: a DESIGN.md with every name and what it is on your site.
+## Custom CSS and JavaScript
 
-## Use it on a block
+**Custom Code** holds CSS added after everything else, and JavaScript that runs on every page. You rarely need either: use them for the one thing the editor can't express.
 
-A block's **Design** tab only offers names from the theme. Its color fields list your scheme's roles and palettes, its size fields the steps of the type scale, its spacing fields the spacing scale, each with what it is on your site, like *24–30px*. See [Styles](/design/styles).
-
-When a block needs something the theme doesn't have, add it to the theme, like a brand color or a text style, rather than working around it. Then every page can use it.
-
-## Custom JavaScript
-
-**Custom Code** holds JavaScript that runs on every page, for scripts and small components the editor can't build. Anything visual belongs in the theme instead: there is no custom CSS.
-
-::: callout {"props":{"tone":"warning","text":"JavaScript here runs on every page of your site. Editing it needs the <strong>Edit Custom JavaScript</strong> permission, marked <strong>Trusted Only</strong>: give it only to people you trust."}}
+::: callout {"props":{"tone":"warning","text":"JavaScript here runs on every page of your site. Editing it needs the <strong>Edit Custom CSS and JavaScript</strong> permission, marked <strong>Trusted Only</strong>: give it only to people you trust."}}
 :::
 
 ## For developers
 
 ### The file
 
-The theme is one file, `content/design/theme.json`, next to your content, so it is versioned with the site. It is a [Lettern Design theme](https://design.lettern.org/spec/theme/): only `color.primary` is required, everything else has a default. A site without one uses Lettern's default theme until you save.
+The design system is one file, `content/design/tokens.json`, next to your content, so it is versioned with the site. A site without one uses Lettern's defaults until you save.
 
 ```json
 {
-  "$schema": "https://design.lettern.org/v1/theme.schema.json",
   "name": "Acme",
-  "color": {
-    "primary": "#1d4ed8",
-    "accent": "#ff5a1f",
-    "neutral": "#6b6760",
-    "palettes": { "lime": "#c6ff3d" },
-    "light": { "background": "neutral-50", "foreground": "neutral-950" }
+  "tokens": {
+    "color": {
+      "$type": "color",
+      "background": { "$value": "#ffffff", "$extensions": { "cms": { "dark": "#0c0c0b" } } },
+      "foreground": { "$value": "#161614", "$extensions": { "cms": { "dark": "#f2f2ee" } } },
+      "primary": { "$value": "#1d4ed8" }
+    },
+    "font": { "sans": { "$value": ["Inter", "ui-sans-serif", "system-ui", "sans-serif"] } },
+    "text": { "base": { "$value": { "min": "1rem", "max": "1.0625rem" } }, "5xl": { "$value": { "min": "2.75rem", "max": "5rem" } } },
+    "space": { "4": { "$value": "1rem" }, "section": { "$value": { "min": "4rem", "max": "8rem" } } },
+    "radius": { "md": { "$value": "0.625rem" } }
   },
-  "font": {
-    "sans": "Inter",
-    "display": "Instrument Serif",
-    "faces": [{ "family": "Inter", "src": "fonts/inter.woff2", "weight": "100 900", "preload": true }]
+  "fonts": [
+    { "family": "Inter", "src": "fonts/InterVariable.woff2", "weight": "100 900", "style": "normal", "preload": true }
+  ],
+  "styles": {
+    "body": { "fontFamily": "token:font.sans", "fontSize": "token:text.base", "color": "token:color.foreground", "backgroundColor": "token:color.background" },
+    "h1": { "fontSize": "token:text.5xl", "lineHeight": "token:leading.tight", "textWrap": "balance" },
+    "h1 em": { "fontFamily": "token:font.display", "fontStyle": "italic" }
   },
-  "type": {
-    "base": [16, 18],
-    "ratio": [1.2, 1.26],
-    "weight": "medium",
-    "styles": { "price": { "font": "mono", "size": "5xl", "weight": "medium" } }
+  "prose": { "h2": { "fontSize": "token:text.2xl" } },
+  "buttons": {
+    "primary": { "base": { "backgroundColor": "token:color.primary", "color": "token:color.primary-foreground" }, "hover": { "opacity": 0.9 } }
   },
-  "space": { "base": [16, 20] },
-  "layout": { "section": "4xl" },
-  "radius": 10,
-  "shadow": { "strength": 0.8 },
-  "motion": { "speed": 1, "page": "fade" },
-  "flow": { "prose": { "before": "2xl", "after": "xs" } },
-  "elements": { "a": { "color": "primary-text", "hover": { "textDecorationLine": "underline" } } },
-  "recipes": { "button": { "radius": "full" }, "card": { "radius": "xl", "padding": "lg" } }
+  "transition": { "type": "fade", "duration": 0.25 }
 }
 ```
 
-Seeds are the only raw values: colors as `#rrggbb` or `oklch()`, and the numbers behind sizes, steps, the radius and speeds. Everything else names something in the vocabulary. The [theme reference](https://design.lettern.org/spec/theme/) lists every key and its default, and the [JSON Schema](https://design.lettern.org/v1/theme.schema.json) checks the file in your editor.
+### Tokens
 
-### Scales and collections
+Tokens use the [Design Tokens](https://www.designtokens.org/) format: groups of tokens with a `$value` and an optional `$type`.
 
-The vocabulary has two kinds of names. **Scales** are closed: sizes (`2xs` to `12xl`), space steps (`3xs` to `7xl`), radii, shadows and durations have fixed names, and a theme only changes what they are. **Collections** are open: palettes, font families and text styles have names every theme provides, and a theme can add its own (`color.palettes`, `font.families`, `type.styles`). Whatever a theme adds, blocks, agents and plugins can use like the rest.
+| Group | CSS property prefix | Used for |
+|---|---|---|
+| `color` | `--color-` | Text, fills, borders, shadows |
+| `font` | `--font-` | Font stacks |
+| `text` | `--text-` | Font sizes |
+| `leading`, `tracking`, `weight` | `--leading-`, `--tracking-`, `--font-weight-` | Line height, letter spacing, font weight |
+| `space` | `--space-` | Padding, margins, gaps, offsets |
+| `radius`, `shadow` | `--radius-`, `--shadow-` | Corners and shadows |
+| `container` | `--container-` | Content widths |
+| `breakpoint` | — | Screen sizes for responsive styles |
+| `duration`, `ease` | `--duration-`, `--ease-` | Transitions |
 
-### Elements and recipes
+- **Fluid values**, like `{ "min": "1rem", "max": "1.25rem" }`, scale smoothly between a 360px and a 1280px screen.
+- **Dark mode**: a token's `$extensions.cms.dark` value applies when the visitor prefers dark, or when the page is switched with the **Light or Dark Mode** action.
+- Refer to a token anywhere a style takes a value: `token:color.primary`, with opacity `token:color.primary/20`, or inside a longer value: `0 8px 24px token:color.foreground/15`.
 
-`elements` sets the defaults of HTML elements (`h1`–`h6`, `p`, `a`, `small`, `strong`, `em`, `blockquote`, `code`, `ul`, `ol`, `li`, `hr`, `figcaption`, `table`, `th`, `td`, `label`, and `h1 em`, `h2 em` for mixed-style headings) as [styles](/design/styles), with names only. They sit in a low layer, so a block's own styles always win.
+### Element styles and prose
 
-`recipes` tunes the components every block and plugin renders: `button` (`radius`, `text`, `weight`, `case`), `card` (`radius`, `padding`, `shadow`, `border`) and `field` (`radius`). See [components](https://design.lettern.org/spec/components/).
+`styles` sets defaults for HTML elements: `html`, `body`, `h1`–`h6`, `p`, `a`, `a:hover`, `small`, `strong`, `em`, `mark`, `code`, `kbd`, `pre`, `blockquote`, `hr`, `ul`, `ol`, `li`, `img`, `figcaption`, `table`, `th`, `td`, `button`, `input`, `textarea`, `select`, `label`, `::selection`, `:focus-visible`, and `h1 em`, `h2 em`, `h3 em`, `h1 strong`, `h2 strong` for mixed-style headings. Keys are CSS properties in camelCase, like everywhere else in Lettern.
+
+`prose` styles the same elements inside long-form text: a **Page Content** block with the class `cms-prose` (the starter's article template uses it). Lettern ships sensible spacing for prose; override what you want.
+
+Element styles sit in a low CSS layer, so a block's own styles always win.
+
+### Buttons
+
+Each key of `buttons` is a variant editors pick as a Button's **Style**; each variant has `base`, `hover`, `active` and `focus-visible` styles. The Design System edits `base` and `hover`; the others are set in the file. The core blocks offer `primary`, `secondary`, `ghost` and `link`.
 
 ### Fonts
 
-Font files live in `content/design/fonts/` and are served from `/_cms/fonts/`; `font.faces` lists them, with `preload` for the ones the first screen needs. **Google Font** under **Typography → Font Files** downloads the latin files (variable weights when the family has them) and adds their faces to the theme. Agents use `design/fonts-import` for that, and `design/fonts-upload` to upload one (the file as base64, a family, a weight such as `400` or `100 900`, and a style). Then put the family in a slot with `design/update`.
+Font files live in `content/design/fonts/` and are served from `/_cms/fonts/`, with `preload` for the ones the first screen needs. **Google Font** under **Typography → Font Files** downloads the latin files (variable weights when the family has them) and adds them to `fonts`. Agents use `design/fonts-import` for that, and `design/fonts-upload` to upload one (the file as base64, a family, a weight such as `400` or `100 900`, and a style).
 
-### Custom JavaScript
+### Page transition
 
-`content/design/custom.js` loads as an ES module on every page. Use it to register Alpine components for behavior the builder can't express: listen for `cms:alpine` on `document` (its `detail` is Alpine), then give an element that component under **Interact → Code Component** (`logic.component`).
+`transition` uses the browser's View Transitions: `type` is `fade`, `slide`, `scale` or `none`, with a `duration` in seconds. It works on the static site with no JavaScript, and is skipped for visitors who prefer reduced motion.
+
+### Custom code files
+
+- `content/design/custom.css` is appended after everything else.
+- `content/design/custom.js` loads as an ES module on every page. Use it to register Alpine components for behavior the builder can't express: listen for `cms:alpine` on `document` (its `detail` is Alpine), then give an element that component under **Interact → Code Component** (`logic.component`).
 
 ```javascript
 document.addEventListener('cms:alpine', (e) => {
@@ -148,21 +156,8 @@ document.addEventListener('cms:alpine', (e) => {
 })
 ```
 
-It is edited under **Custom Code** or with the `design/code` ability, and needs the `site.code` permission.
-
-### How it reaches the page
-
-The theme compiles to one stylesheet, `/_cms/site/design-<hash>.css`, with the theme's custom properties (`--color-foreground-muted`, `--space-lg`), text-style classes (`.text-heading-2`), schemes, flows, the components and the layout primitives, in the cascade layers `design.reset`, `design.tokens`, `design.base`, `design.layout`, `design.recipes` and `design.styles`. Block styles come last, in `design.styles`. Light and dark mode follow the visitor's system, or `data-mode` on the root, which the **Light or Dark Mode** action sets.
-
-The engine is open source: `@letterncms/design` on npm and `letterncms/design` on Composer build the same stylesheet, check contrast and write DESIGN.md outside Lettern too.
+Both are edited under **Custom Code** or with the `design/code` ability, and both need the `site.code` permission.
 
 ### Abilities
 
-- `design/get` returns the `theme`, what it resolves to (`resolved`: palettes, schemes, sizes, steps), the `catalog` of every style property and the names it takes, `design` (the DESIGN.md), the contrast `findings`, font files, the templates entries can use and the custom JavaScript. The `cms://site/design` context resource is the DESIGN.md with the theme.
-- `design/update` takes `{ "theme": {…} }` and merges it into the saved theme: objects merge, anything else replaces, `null` removes a key. With `"replace": true` it replaces the whole theme. A theme with a name outside the vocabulary is refused with the reason, and nothing is saved. It returns the contrast findings.
-- `design/preview` takes the same input and returns the `css`, `resolved` values and `findings` it would give, without saving.
-- `design/code` takes `{ "js": "…" }`. `design/fonts-import` and `design/fonts-upload` add font faces to the theme.
-
-```json
-{ "theme": { "color": { "primary": "#0f766e" }, "radius": 4, "type": { "styles": { "heading-1": { "size": "7xl" } } } } }
-```
+`design/get` returns the tokens, fonts, element styles, buttons, transition, breakpoints, custom code and the templates entries can use; the `cms://site/design` context resource holds the same design system. `design/update` changes tokens (`{"tokens": {"color.primary": "#0f766e"}}`, `dark`, `remove`) and replaces whole sections (`styles`, `prose`, `buttons`, `fonts`, `transition`).

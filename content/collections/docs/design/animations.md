@@ -56,13 +56,13 @@ An animation is made of one or more steps. Each step moves a **Target** from one
 | **Each Word** | The text, word by word. It stays real text for readers and search engines. **Rise from Behind a Line** makes each word slide up from behind an edge |
 | **Another Element** | Any other block on the page |
 
-**From** is how the step starts, **To** is how it ends. Leave a side empty to use the block's own design: from *opacity 0, move Y lg* fades the block in and slides it up into place.
+**From** is how the step starts, **To** is how it ends. Leave a side empty to use the block's own design: from *opacity 0, move Y 32* fades the block in and slides it up into place.
 
-You can animate opacity, movement (also in depth), scale, rotation (also in 3D), skew, blur, brightness, grayscale, clip reveals, colors, corner radius, shadow and letter spacing, plus the origin and perspective. Like styles, every value is a name from your [design system](/design/design-system): distances are spacing steps (*lg*, *-2xl*) or *full*, opacity and scale are steps like *0*, *90* and *100*, colors are your scheme's roles and palettes, and clip reveals are shapes like *hidden-down*, *hidden-left* or *circle-hidden* that open to *visible*.
+You can animate opacity, movement, scale, rotation (also in 3D), skew, blur, brightness, grayscale, clip path, colors, corner radius, shadow, width, height and letter spacing, plus the origin and perspective. Colors can use your design tokens.
 
-Under **Timing**, pick a **Duration** and a **Delay** from the theme's durations, from *fastest* to *glacial*, and, for children or words, the time between items. The theme's **Speed** makes them all snappier or calmer at once. **Easing** sets the feel: *out* for things arriving, *in* for things leaving, *in-out*, *expo* and *emphasized* for confident reveals, *swift* for interface, and *overshoot*, *anticipate*, *spring*, *bounce* or *linear*.
+Under **Timing**, set the duration and a delay in seconds, and, for children or words, the time between items. **Ease** sets the feel: **Smooth Out**, **Expo Out**, **Overshoot**, **Elastic**, **Bounce**, **Linear** and more, or a curve of your own.
 
-Press **Add Step** to animate more in the same animation. Each step starts when the one before ends, unless you give it its own start, in seconds into the timeline.
+Press **Add Step** to animate more in the same animation. Each step starts when the one before ends, unless you give it its own start time.
 
 ## Play it on some screens only
 
@@ -98,26 +98,24 @@ A block's `motion` is a list of animations:
 ```json
 [
   { "id": "m1", "name": "Words rise", "trigger": { "type": "appear", "start": "top 85%", "once": true },
-    "steps": [{ "target": "words", "from": { "opacity": "0", "y": "md" }, "duration": "slow", "ease": "out", "stagger": "fastest" }] },
+    "steps": [{ "target": "words", "from": { "opacity": 0, "y": 20 }, "duration": 0.7, "ease": "power3.out", "stagger": 0.04 }] },
   { "id": "m2", "trigger": { "type": "scroll", "start": "top bottom", "end": "bottom top" },
-    "steps": [{ "target": "self", "from": { "y": "-3xl" }, "to": { "y": "3xl" }, "ease": "linear" }] },
+    "steps": [{ "target": "self", "from": { "yPercent": -12 }, "to": { "yPercent": 12 }, "ease": "none" }] },
   { "id": "open", "trigger": { "type": "event" },
     "steps": [
-      { "target": "self", "from": { "x": "full" }, "duration": "base", "ease": "swift" },
-      { "target": "children", "from": { "opacity": "0", "x": "lg" }, "duration": "base", "stagger": "fastest" }
+      { "target": "self", "from": { "xPercent": 100 }, "duration": 0.5, "ease": "expo.out" },
+      { "target": "children", "from": { "opacity": 0, "x": 24 }, "duration": 0.4, "stagger": 0.05 }
     ] }
 ]
 ```
 
 - `trigger.type`: `appear`, `scroll`, `hover`, `press`, `load`, `loop`, `event`. `start` and `end` read `<element edge> <viewport position>`, with `top`, `center` or `bottom` for the edge and those or a percentage for the position (`top 80%`, `center center`). `node` (`#<block id>`) watches another element.
 - `on`: `desktop`, `tablet`, `mobile`; absent means every screen.
-- `steps[].target`: `self`, `children`, `words` or `#<block id>`; `steps[].mask` clips each word.
-- `steps[].from` and `to` take the names their style property takes: `opacity` (`0`…`100`), `x`, `y` (space steps, negative steps, fractions, `full`), `z`, `scale`, `scaleX`, `scaleY` (`90`, `100`, `105`…), `rotate`, `rotateX`, `rotateY` (`0`, `1`, `2`, `3`, `6`, `12`, `45`, `90`, `180`, negative too), `skewX`, `skewY`, `perspective`, `blur`, `brightness`, `grayscale`, `clipPath` (`visible`, `hidden-up`, `hidden-down`, `hidden-left`, `hidden-right`, `hidden-center`, `circle-hidden`, `circle-visible`), `backgroundColor`, `color`, `borderColor` (color names), `borderRadius`, `boxShadow`, `letterSpacing` and `transformOrigin`.
-- `steps[].duration`, `delay` and `stagger` are durations: `instant`, `fastest`, `faster`, `fast`, `base`, `slow`, `slower`, `slowest`, `glacial`. `steps[].ease` is an easing: `linear`, `in`, `out`, `in-out`, `expo`, `emphasized`, `swift`, `overshoot`, `anticipate`, `spring`, `bounce`. The theme sets what each one is ([motion](https://design.lettern.org/spec/motion/)).
-- `steps[].at` is where a step starts on its timeline, in seconds: with `hold`, the only times that aren't names. Without it a step starts when the previous one ends.
-- `repeat` (`-1` forever) and `yoyo` repeat each step; with `hold` (seconds of rest) on an appear animation they repeat the whole timeline.
+- `steps[].target`: `self`, `children`, `words` or `#<block id>`; `steps[].mask` clips each word. `steps[].at` is a start time in seconds; without it a step starts when the previous one ends.
+- `steps[].ease`: a name (`expo.out`, `power3.inOut`, `sine.inOut`, `back.out`, `elastic.out`, `bounce.out`, `linear`…), or `cubic-bezier()`, `linear()` or `steps()` as written.
+- `repeat` (`-1` forever) and `yoyo` repeat each step; with `hold` (seconds) on an appear animation they repeat the whole timeline.
 
-Anything outside the vocabulary is dropped when the block is saved. Page Load, Scroll and Loop compile to CSS (scroll-driven animations for Scroll); the other triggers use the Web Animations API.
+Page Load, Scroll and Loop compile to CSS (scroll-driven animations for Scroll); the other triggers use the Web Animations API.
 
 A play action names the block and the animation id: `{ "do": "play", "node": "b9x2k4", "motion": "open", "mode": "toggle" }`.
 
@@ -129,7 +127,7 @@ The element's own styles are the finished state, so they should show the story's
 
 ```json
 { "id": "demo", "trigger": { "type": "appear" }, "repeat": -1, "hold": 3, "steps": [
-  { "target": "#prompt", "from": { "clipPath": "hidden-left" }, "to": { "clipPath": "visible" }, "at": 0.5, "duration": "slowest", "ease": "linear" },
-  { "target": "#answer", "from": { "opacity": "0" }, "at": 2.5, "duration": "base" }
+  { "target": "#prompt", "from": { "clipPath": "inset(0 100% 0 0)" }, "to": { "clipPath": "inset(0 0 0 0)" }, "at": 0.5, "duration": 1.5, "ease": "steps(30)" },
+  { "target": "#answer", "from": { "opacity": 0 }, "at": 2.5, "duration": 0.4 }
 ] }
 ```
