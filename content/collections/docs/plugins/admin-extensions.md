@@ -153,6 +153,22 @@ $admin->section('billing', 'Billing', order: 15, settings: true); // a section o
 | `permission` | Who may open it. `visible` (a `fn (User $user): bool`) decides per person beyond that. |
 | `badge` | A callable returning a count (new form submissions), shown with the label. |
 
+### Or draw it from a view
+
+A widget that shows numbers or a short list needs no React. Give it a `view`: a tree of the same components a [view](/plugins/views) is made of, built in PHP for whoever looks, and Lettern draws it in the widget's frame with its title, loading and errors:
+
+```php
+$admin->widget('reviews-score', ['label' => 'Reviews', 'description' => 'How reviews score this month.', 'icon' => 'star', 'permission' => 'reviews.view',
+    'action' => ['label' => 'All Reviews', 'to' => '/reviews'],
+    'view' => fn (User $user) => ['type' => 'ui/grid', 'props' => ['columns' => 2], 'children' => [
+        ['type' => 'ui/stat', 'props' => ['label' => __('Average'), 'value' => Review::thisMonth()->avg('stars')]],
+        ['type' => 'ui/stat', 'props' => ['label' => __('Reviews'), 'value' => Review::thisMonth()->count()]],
+    ]],
+]);
+```
+
+The view is the widget's alone: it has no address of its own, and only those who may see the widget may load it.
+
 ### How people arrange it
 
 Every row in the sidebar (pinned, under More, settings) and every `SidebarRow` a plugin draws behaves the same:
@@ -186,6 +202,8 @@ $admin->widget('reviews-latest', ['label' => 'Latest reviews', 'description' => 
 | `permission` | Who may see and add it. |
 | `order` | Its place among the others in a column. |
 | `assistant` | `false` keeps it out of what an agent answers with: see [Generative UI](/plugins/generative-ui). |
+| `view` | Draws it from a [view](/plugins/views) instead of a component: see below. |
+| `action` | The link in its header, a `label` in English and where it goes (`to`), for a widget drawn from a view. |
 
 ### Draw it
 
