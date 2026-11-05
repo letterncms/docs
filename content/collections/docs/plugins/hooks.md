@@ -63,7 +63,7 @@ Name them after your plugin, so they never clash with Lettern's own.
 
 | Action | Arguments | Fired when |
 |---|---|---|
-| `media.uploaded` | `$item, $user` | A file was added. |
+| `media.uploaded` | `$item, $user` | A file was added, in the admin, by an ability or from a URL (`$user` is null when no one did). |
 | `media.updated`, `media.deleted` | `$item` | A file changed or was removed. |
 | `form.submitted` | `$form, $data, $submission` | A valid submission arrived. |
 | `comment.created` | `$comment, $entry, $author` | Someone commented. |
@@ -115,7 +115,7 @@ The first argument is the value you return; the rest are there to help you decid
 | `collections.settings` | `$fields, $collection` | The settings a collection offers in **Collections** (Site adds its template picker). |
 | `revisions.keep` | `$count` | How many revisions each entry keeps (100). |
 | `gate.allows` | `$allowed, $user, $entry, $rule` | Whether someone may read a [gated](/content/gated-content) entry. |
-| `fields.options.<name>` | `$options` | Options of select fields with `dynamic: <name>` (`templates`, `collections`, `timezones`). |
+| `fields.options.<name>` | `$options` | Options of select fields with `dynamic: <name>`, in collections, settings and blocks alike: `templates`, `collections` (every collection but the system ones), `timezones`, `admin-languages`, `visitor-roles`, `patterns` (synced components), `sources` (what a Repeat block can list) and `button-variants` (the design system adds its own). A plugin adds a name of its own (`forms`). |
 | `fields.definition.<name>` | `$field, $context` | Resolved definition of a `dynamic: <name>` field. The collection host supplies `$context['collection']`; use it for presentation such as the inherited template name. Raw collection YAML stays unchanged. |
 
 ### Abilities, settings and people
@@ -136,7 +136,6 @@ The first argument is the value you return; the rest are there to help you decid
 | `admin.nav` | `$items` | Sidebar items that come and go (letterncms/content adds one per collection, letterncms/settings one per settings page). |
 | `agent.guide` | `$guide` | The instructions every AI agent gets. |
 | `mcp.prompts` | `$prompts` | Prompts offered to MCP clients: the site's skills (`cms()->skills()`). |
-| `languages.translator` | `null` | The machine translator (the assistant registers Claude). |
 
 ### Pages
 

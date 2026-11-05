@@ -17,7 +17,6 @@ function u({ entry: n }) {
 	});
 }
 n.panels.set("reading-time", {
-	id: "reading-time",
 	slot: "entry.sidebar",
 	label: r("Reading time"),
 	icon: "clock",

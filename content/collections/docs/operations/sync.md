@@ -114,7 +114,7 @@ Tables go in chunks in key order, and big files in pieces of 2 MB or half the ho
 
 ### Security
 
-Every request between two sites is signed with the key's secret, with its time and a one-time value, so a captured request can't be sent again and nobody without the key gets an answer. Paths that leave their folder, hidden files and links are refused on both sides. Syncing is kept away from the assistant and MCP: replacing a site is a person's decision. The permission **Push and Pull Content Between Sites** decides who sees **Sync**.
+Every request between two sites is signed with the key's secret, with its time and a one-time value, so a captured request can't be sent again and nobody without the key gets an answer. Paths that leave their folder, hidden files and links are refused on both sides. Syncing is kept to the admin and the `cms pull` and `cms push` commands, away from the assistant, MCP and API tokens: replacing a site is a person's decision. The permission **Push and Pull Content Between Sites** decides who sees **Sync**.
 
 ### Where it lives
 

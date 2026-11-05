@@ -20,7 +20,7 @@ Values for this server, and secrets. Never commit this file.
 |---|---|
 | `APP_KEY` | Encryption key, created by the installer. Losing it makes stored secrets unreadable. |
 | `APP_ENV`, `APP_DEBUG` | `production` and `false` on live sites. |
-| `APP_URL` | The public URL. When a `site.yaml` with another URL came with the site (from git, say), the installer leaves that file alone and sets `CMS_SITE_URL` here too. |
+| `APP_URL` | The public URL while the site's own settings name none: **Public URL** under **Settings → General** (`url` in `config/site.yaml`, or `CMS_SITE_URL`) wins. When a `site.yaml` with another URL came with the site (from git, say), the installer leaves that file alone and sets `CMS_SITE_URL` here too. |
 | `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PREFIX` | The database. |
 | `CMS_INSTALL_TOKEN` | Required by the web installer when set. |
 | `CMS_ALLOW_FILE_MODS` | `false` stops installing, updating or deleting plugin files from the admin. |

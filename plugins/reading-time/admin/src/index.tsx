@@ -19,7 +19,7 @@ function ReadingTimePanel({ entry }: { entry: Entry | null }) {
   )
 }
 
-registry.panels.set('reading-time', { id: 'reading-time', slot: 'entry.sidebar', label: t('Reading time'), icon: 'clock', component: ReadingTimePanel })
+registry.panels.set('reading-time', { slot: 'entry.sidebar', label: t('Reading time'), icon: 'clock', component: ReadingTimePanel })
 
 interface Longest {
   average: number | null

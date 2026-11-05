@@ -25,7 +25,7 @@ A module registers its abilities, permissions, settings, sidebar items and scree
 | `letterncms/dashboard` | The **Dashboard**: a greeting and the widgets each person arranges | Yes: the admin opens on the first pinned sidebar item |
 | `letterncms/collections` | The **Collections** screen: creating collections and editing their fields | Yes: collections stay as `content/collections/*.yaml` |
 | `letterncms/globals` | Global sets, their fields and `/api/v1/globals/<handle>` | Yes |
-| `letterncms/users` | **Users** (Team, Visitors, Sign-Up, Profile Fields), invitations and **Roles** | Yes: accounts and `config/roles.yaml` keep working |
+| `letterncms/users` | **Users** (Team, Visitors, Profile Fields, and the visitor accounts settings as its **Settings** tab), invitations and **Roles** | Yes: accounts and `config/roles.yaml` keep working |
 | `letterncms/audit` | The **Audit Log**: who changed what, when, from where | Yes: nothing is written |
 | `letterncms/blocks` | The block editor, components, templates, styles, data bindings and Block Markdown | Yes, while nothing that builds on it is on (Site, Forms and Commerce do) |
 | `letterncms/site` | The [design system](/design/design-system), [templates](/design/templates), rendering, previews, [publishing](/operations/publishing) the static site, search and the starter kit | Yes, for a headless site, while no plugin that builds on it is on (Commerce does) |
@@ -62,7 +62,7 @@ A module's options are a [settings](/plugins/settings) namespace like any plugin
 |---|---|
 | `letterncms/audit` | **Keep Entries For** (days; 0 keeps them forever) and **Also Record Reads**, on the Audit Log's **Settings** tab |
 | `letterncms/users` | **Roles** and their permissions, under **People** |
-| `letterncms/account` | Visitor accounts, on the **Sign-Up** tab of **Users** |
+| `letterncms/account` | Visitor accounts, on the **Settings** tab of **Users** |
 | `letterncms/dashboard` | None of its own: the default Dashboard for everyone is saved with **Customize → Save as Default** on the Dashboard |
 | `letterncms/email` | How email is sent, under **Email** (`config/email.yaml`) |
 | `letterncms/media` | Upload size, image quality, AVIF and photo metadata, on the **Settings** tab of **Media** |

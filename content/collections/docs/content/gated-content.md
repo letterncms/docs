@@ -6,7 +6,7 @@ description: Keep pages for people with an account, a role or a purchase, and sh
 ---
 Some pages are for members only: a magazine's articles, the lessons of a course, a client area. Lettern can keep them for the people who have access, and show everyone else the start of the page with a way to read on.
 
-This needs [visitor accounts](/operations/public-accounts), turned on under **Settings → Users → Sign-Up**, so visitors can sign up and sign in. Once they're on, every page, and every other entry with its own address, has a **Who Can Read This** setting.
+This needs [visitor accounts](/operations/public-accounts), turned on under **Settings → Visitor Accounts**, so visitors can sign up and sign in. Once they're on, every page, and every other entry with its own address, has a **Who Can Read This** setting.
 
 ## Choose who can read a page
 

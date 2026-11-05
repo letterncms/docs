@@ -43,8 +43,8 @@ Your admin code is an ES module, built with Vite to `dist/admin.js` and loaded w
 | Package | Holds |
 |---|---|
 | `react` | React 19: one copy for everyone. |
-| `@letterncms/sdk` | Talking to Lettern: `t` and `plural` (translations), `brand` (the product's name, links and images: never write the name, and in a translated string use the `{brand}` placeholder, as in `t('Ask {brand}')`), `run`, `request`, `eventStream`, `useAbility`, `useAction`, `invalidate`, the router (`navigate`, `Link`, `useLocation`, `useTab`: tabs kept in the URL as `?tab=`, so a refresh opens the same one, and `confirmLeaving()` for admin themes that ask about unsaved changes their own way), `can`, `useManifest`, `useScreenContext`, `registry` (with `registry.composer` for `@` and `/` in a thread) and `events`. |
-| `@letterncms/ui` | The admin's primitives: `Button`, `IconButton`, `Input`, `Textarea`, `Select`, `Switch`, `Checkbox`, `Segmented` and `Tabs` (both take `fit`: one line that shrinks to the room there is; a tab can have an `icon`), `Field`, `Fields`, `Page`, `Section`, `ScreenTabs`, `ScreenSidebar`, `SaveBar`, `List`, `Dialog`, `confirm`, `Popover`, `Menu`, `SidebarRow`, `Tooltip`, `Badge`, `Avatar`, `PersonPicker`, `Spinner`, `EmptyState`, `SortableTree`, `BlueprintEditor`, `FieldsEditor`, `Icon` and `toast`, plus `useShortcut`, `slugify` and the color scheme. |
+| `@letterncms/sdk` | Talking to Lettern: `t` and `plural` (translations), `brand` (the product's name, links and images: never write the name, and in a translated string use the `{brand}` placeholder, as in `t('Ask {brand}')`), `run`, `request` (and `requestText`, for an answer that is text, such as the site's rendering of a page), `eventStream`, `useAbility`, `useAction`, `invalidate`, the router (`navigate`, `Link`, `useLocation`, `useTab`: tabs kept in the URL as `?tab=`, so a refresh opens the same one, and `confirmLeaving()`, which the admin uses to ask about unsaved changes in its own dialog), `can`, `useManifest`, `setPreference` (one of the signed-in person's preferences: this session's copy changes at once, their account follows), `useScreenContext`, `registry` (with `registry.composer` for `@` and `/` in a thread) and `events`. |
+| `@letterncms/ui` | The admin's primitives: `Button`, `IconButton`, `Input`, `Textarea`, `Select`, `Switch`, `Checkbox`, `Segmented` and `Tabs` (both take `fit`: one line that shrinks to the room there is; a tab can have an `icon`), `Field`, `Fields`, `Page`, `Section`, `ScreenTabs`, `ScreenSidebar`, `SaveBar`, `List`, `Dialog`, `confirm`, `prompt`, `Popover`, `Menu`, `SidebarRow`, `Tooltip`, `Badge`, `Notice`, `QueryError`, `Avatar`, `PersonPicker`, `Spinner`, `EmptyState`, `SortableTree`, `BlueprintEditor`, `FieldsEditor`, `Icon` and `toast`, plus `copyText` (the clipboard, saying how it went), `formatBytes` (a file size in the admin's language), `deviceWidths` (the tablet and phone widths previews use), `useShortcut`, `slugify` and the color scheme. |
 | `@dnd-kit/*` | Drag and drop (`core`, `sortable`, `utilities`), shared so no module bundles its own. |
 
 The admin's own [modules](/plugins/modules) are built with exactly these, nothing more.
@@ -90,12 +90,12 @@ import { lazy } from 'react'
 registry.routes.set('/reviews', { path: '/reviews', component: lazy(() => import('./ReviewsScreen')) })
 registry.widgets.set('reviews-latest', lazy(() => import('./WidgetLatest')))
 registry.fields.set('rating', RatingField)
-registry.commands.set('reviews-ask', { id: 'reviews-ask', label: 'Summarize reviews', perform: () => { /* … */ } })
+registry.commands.set('reviews-ask', { label: 'Summarize reviews', perform: () => { /* … */ } })
 ```
 
 | Registry | For |
 |---|---|
-| `routes` | Screens. `layout: 'full'` hides the sidebar (editors). `overlay: true` draws one over the screen it was opened from, which stays open underneath: go there and back with `navigate(path, { overlay: true })`, which doesn't ask about unsaved changes. `private: true` keeps a screen's title and text out of `useScreenContext` readers. |
+| `routes` | Screens. `overlay: true` draws one over the screen it was opened from, which stays open underneath: go there and back with `navigate(path, { overlay: true })`, which doesn't ask about unsaved changes. `private: true` keeps a screen's title and text out of `useScreenContext` readers. |
 | `fields` | The editing component for a field type. |
 | `panels` | Components in named [slots](#slots). |
 | `widgets` | Dashboard widgets (declared in PHP, rendered from here). |
@@ -105,7 +105,7 @@ registry.commands.set('reviews-ask', { id: 'reviews-ask', label: 'Summarize revi
 | `composer` | What `@` and `/` offer in a thread: see [In the workspace](#in-the-workspace). |
 | `icons` | Extra icons by name. |
 
-A later registration under the same key wins, and when its module goes away, what it replaced comes back.
+A later registration under the same key wins, and when its module goes away, what it replaced comes back. A panel, command, entry action or composer source is known by its key: read back from the registry, it has that key as its `id`.
 
 A command declared in PHP takes `label`, `icon`, `group`, `path` or `ability` (with `input`), `keywords` and `permission`.
 
@@ -219,10 +219,10 @@ The result is their own (the `dashboard` value of their preferences), and **Rese
 A slot is a named place in an existing screen where your component appears, like a tab in the entry editor's side panel:
 
 ```typescript
-registry.panels.set('reviews-summary', { id: 'reviews-summary', slot: 'entry.sidebar', label: 'Reviews', icon: 'star', component: ReviewsPanel, when: (p) => p.collection.handle === 'products' })
+registry.panels.set('reviews-summary', { slot: 'entry.sidebar', label: 'Reviews', icon: 'star', component: ReviewsPanel, when: (p) => p.collection.handle === 'products' })
 ```
 
-`when` decides where it applies, and `order` its place among others.
+`when` decides where it applies, and `order` its place among others. The slot decides the props: `PanelSlots` from `@letterncms/sdk` maps each slot to them, so `when` and the component are typed by the slot you name.
 
 | Slot | Where | Props |
 |---|---|---|
@@ -230,11 +230,10 @@ registry.panels.set('reviews-summary', { id: 'reviews-summary', slot: 'entry.sid
 | `entry.sidebar` | Tabs in the entry side panel (give `label` and `icon`) | Same |
 | `entry.body` | Extra content after the main body, supplied through the workspace footer | Same |
 | `entry.editor` | The shared body workspace for the explicitly configured blocks field | `EntryEditorProps` |
-| `shell.aside` | Workspace panels available on every screen, over the screen | `full` |
-| `shell.dock` | A column at the right edge, on every screen. Draw it with `Dock` from `@letterncms/ui` (`open`, `full`, `floating`, `label`): the page stays usable next to it, people can drag it wider, `floating` makes it a card over the page that moves by an element with `data-dock-drag`, `full` grows it over the screen, and small windows get it over the page. The [workspace](/getting-started/workspace)'s thread is one | `full` |
+| `shell.dock` | A column at the right edge, on every screen. Draw it with `Dock` from `@letterncms/ui` (`open`, `full`, `floating`, `label`): the page stays usable next to it, people can drag it wider, `floating` makes it a card over the page that moves by an element with `data-dock-drag`, `full` grows it over the screen, and small windows get it over the page. The [workspace](/getting-started/workspace)'s thread is one | |
 | `sidebar.start` | Rows at the top of the main sidebar, above what's pinned: the workspace's **New Chat**. Draw them with `SidebarRow` | `onNavigate` |
-| `workspace.composer` | In the thread's composer, beside **Send**: an [agent](/plugins/agents)'s own controls, such as the assistant's model picker | `thread`, `state`, `options`, `setOption`, `busy`, `loading` |
-| `shell.banner` | A strip above the screen, beside the sidebar, for a notice that concerns the whole admin (the license and update notices) | `full` |
+| `workspace.composer` | In the thread's composer, beside **Send**: an [agent](/plugins/agents)'s own controls, such as the assistant's model picker | `ComposerPanelProps`: `thread`, `agent` (the one answering there, its `name` and `label`, or `null`), `state`, `options`, `setOption`, `busy`, `loading` |
+| `shell.banner` | A strip above the screen, beside the sidebar, for a notice that concerns the whole admin (the license and update notices) | |
 | `topbar.end` | In every screen's top bar, before the screen's own actions: the way back to what's docked | |
 | `account.api` | Part of **API & Agents** on **Account**, before the tokens: the MCP module shows its server URL and the Claude Code command here | |
 
@@ -253,7 +252,7 @@ A sidebar panel that edits blueprint fields declares their handles with `fieldHa
 
 ```typescript
 registry.panels.set('product-reviews', {
-  id: 'product-reviews', slot: 'entry.sidebar', label: t('Reviews'),
+  slot: 'entry.sidebar', label: t('Reviews'),
   component: ReviewsPanel, fieldHandles: ['reviews'],
   when: (p) => p.collection.handle === 'products',
 })
@@ -263,7 +262,7 @@ The entry host routes claimed fields to active panels. Unclaimed fields stay in 
 
 ### Entry actions and preview
 
-`registry.entryActions.set(id, { id, label, icon, order, when, perform })` adds a line to the entry editor's **More Actions** menu (`⋯`).
+`registry.entryActions.set(id, { label, icon, order, when, perform })` adds a line to the entry editor's **More Actions** menu (`⋯`).
 
 Site owns the single **Preview** dialog, opened from that menu. It previews the complete unsaved snapshot, including before the first save, with `play: true` through the site renderer. A live entry with nothing unpublished offers **View on Site** there instead. To open it from your code, use `events.emit('entry.preview')` from `@letterncms/sdk` instead of adding another preview control or rendering store.
 
@@ -281,6 +280,8 @@ Every screen has one compact top bar: its name after the places that lead to it 
 A screen with tabs of its own uses `ScreenTabs` and `useScreenTabs()` from `@letterncms/ui`. When the plugin keeps its settings with the screen, they follow as its last tab, **Settings**: see [Settings](/plugins/settings#a-settings-tab-on-your-own-screen).
 
 A form is saved with `SaveBar` (`dirty`, `saving`, `error`, `onSave`, `onDiscard`): a bar over the bottom of the screen, there only while something changed, with **Discard** and **Save** (`⌘S`), that says what went wrong when saving fails. Leaving with changes asks first, and with changes in more than one form on view, one bar saves or discards them all. A screen shows no Save button of its own.
+
+Something on a screen that someone should see before going on, a problem or a step still to take, is a `Notice` from `@letterncms/ui` (`tone`, `icon`, `title`, its text, an `action` and `onDismiss`): the same one a view's `ui/notice` draws. A failed request is a `QueryError`, with **Retry**.
 
 ## Forms are fields
 
@@ -303,6 +304,14 @@ import { Fields, prompt } from '@letterncms/ui'
 const answer = await prompt({ title: 'New list', fields: [{ handle: 'name', type: 'text', label: 'Name' }] })
 ```
 
+A dialog of your own that asks for something is a form too: give `Dialog` an `onSubmit` and it wraps its body in the form, with **Cancel** and a button that says `submitLabel` (Enter submits too). `submitDisabled` keeps the button off until the form can go, `danger` makes it red, and `busy` spins it while the request runs, closing nothing meanwhile.
+
+```typescript
+<Dialog open onOpenChange={setOpen} title={t('New Review')} onSubmit={create} submitLabel={t('Create Review')} submitDisabled={!title.trim()} busy={saving}>
+  <Fields fields={[{ handle: 'title', type: 'text', label: t('Title'), autofocus: true }]} values={{ title }} onChange={(_, v) => setTitle(v ?? '')} />
+</Dialog>
+```
+
 Presentation options the core components understand:
 
 | Field | Options |
@@ -315,7 +324,7 @@ Presentation options the core components understand:
 | Date | `time: true` and an IANA `timezone`, such as `Europe/Brussels`. The control shows that zone, converts wall times to UTC instants, and rejects missing or ambiguous daylight-saving times with a visible error. |
 | In inline rows | `status` (`own` or `inherited`) marks the label: a value set here reads in ink, an inherited one stays muted with a small dot. `reset` makes clicking the label clear the value |
 
-When core can't express a control (a CSS length with tokens, a color with alpha), register a field component and point a field at it with `component`.
+When core can't express a control (a CSS length with tokens, a color with alpha), register a field component and point a field at it with `component`. Core has one of its own, `ease`: an easing curve, picked from `options` (each drawn as its curve; `curve` draws a value that isn't one, such as a design token) or drawn by hand as a cubic-bezier.
 
 ### Your own field controls
 
@@ -426,7 +435,7 @@ To offer your own under `@` or `/`, register a source. It searches by what's typ
 import { registry, run, t } from '@letterncms/sdk'
 
 registry.composer.set('orders', {
-  id: 'orders', trigger: '@', label: t('Orders'), order: 30,
+  trigger: '@', label: t('Orders'), order: 30,
   search: async (query) => (await run('orders/search', { query, limit: 5 })).map((order) => ({
     id: `order:${order.id}`, kind: 'order', label: order.number, detail: order.customer, icon: 'cart',
     to: `/commerce/orders/${order.id}`,
@@ -466,15 +475,12 @@ In a thread, the person's message gives the arguments.
 The `entry.editor` slot supplies the shared block workspace. The content host mounts it only when the collection explicitly names a `body` field whose type is `blocks`. It doesn't infer a body from field order or choose an editor based on a collection flag. Collections without a blocks body use the normal field form. A `markdown` field stays a raw text and code field, not another content workspace.
 
 ```typescript
-import type { EntryEditorProps } from '@letterncms/sdk'
-
 registry.panels.set('blocks-editor', {
-  id: 'blocks',
   slot: 'entry.editor',
   label: 'Blocks',
   icon: 'blocks',
   component: lazy(() => import('./BlocksWorkspace').then((m) => ({ default: m.BlocksWorkspace }))),
-  when: (p: EntryEditorProps) => p.bodyField.type === 'blocks',
+  when: (p) => p.bodyField.type === 'blocks',
 })
 ```
 
