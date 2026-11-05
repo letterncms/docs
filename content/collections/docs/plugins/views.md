@@ -124,7 +124,7 @@ More of a column:
 - `icon` names the row's own icon, and `empty` what an empty value reads as.
 - `hidden: true` keeps a column in Display until someone shows it, and `fit: true` makes it as wide as its longest value.
 - `image: true` gives the list a grid of cards.
-- `format: switch` with an `action` draws a switch that runs the action with `{row}` and the new `{value}`. `ariaLabel` names it for each row, and `disabled` names a key of the row that locks it.
+- `format: switch` with an `action` draws a switch that runs the action with `{row}` and the new `{value}`. `ariaLabel` names it for each row, `disabled` names a key of the row that locks it, and `reason` one that says why, on hover or a press of a lock before the switch.
 
 ### `ui/form`
 
