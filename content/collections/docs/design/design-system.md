@@ -17,8 +17,9 @@ The sections come in two groups. **Tokens** are the named values blocks pick fro
 | Section | What you set |
 |---|---|
 | **Colors** | Your palette: background, text, your brand colors, borders. Each color can have its own dark-mode value |
-| **Typography** | Font families and their font files, the type scale, line heights, letter spacing and weights |
-| **Spacing** | The spacing scale, the sizes of buttons and fields, content widths and the screen sizes the site adapts at |
+| **Typography** | The fonts your site uses, the type scale, line heights, letter spacing and weights |
+| **Spacing** | The spacing scale, content widths and the screen sizes the site adapts at |
+| **Sizes** | Small, medium and large, for buttons and form fields alike |
 | **Shape** | Corner radius and shadows |
 | **Motion** | How pages change into each other, and durations and easing for transitions |
 | **Elements** | Default styles for headings, paragraphs, links, lists and other plain elements, and for long-form text, each set with controls for font, size, weight, color, fill, border, radius and padding |
@@ -41,9 +42,9 @@ Saving restyles every page and rebuilds the site. Use the **+** next to a group 
 
 Fonts are stored on your site, so visitors' browsers never contact another service to load them.
 
-1. Open **Typography** and find **Font Files**, under the font families.
-2. Type a family name in **Google Font**, like *Inter Tight*, and press **Add**. Or drop a `.woff2` file to upload one.
-3. Under **Font Families**, pick the new font for a family token, like *sans* or *display*, and what it falls back to.
+1. Open **Typography**. **Fonts** lists the roles your site uses, like *sans* and *display*.
+2. Click a role's font. Pick one already on your site, or choose **Add a Google Font…** and type a name, like *Inter Tight*, or **Upload a .woff2 File…**. The new font is used right away.
+3. Press **Save**. What a font falls back to while loading is in the row's **⋯** menu.
 
 ## Use tokens on a block
 
@@ -53,13 +54,13 @@ Choose **Detach Token** to turn it back into a fixed value. See [Styles](/design
 
 ## Sizes of buttons and fields
 
-Buttons, form fields, tag fields and chips share one size scale: **Small**, **Medium** and **Large**. Under **Spacing**, **Control Sizes** sets each size's height, padding and text size, and a button and a field of the same size line up, side by side or in a form. Empty, each takes Lettern's default from your type scale.
+Buttons, form fields, tag fields and chips share one size scale: **Small**, **Medium** and **Large**. **Sizes** sets each size's height, padding and text size, and a button and a field of the same size line up, side by side or in a form; the preview shows them together. Empty, each takes Lettern's default from your type scale.
 
 A **Button** block's **Size** picks S, M or L. Forms take the size set under **Form Fields → Size and Spacing**, and their send button with them.
 
 ## Button styles
 
-**Buttons** holds the looks a **Button** block can take, such as *primary*, *secondary*, *ghost* and *link*: fill, border, radius, weight, letter spacing, text color, shadow and opacity, for **Default**, **Hover**, **Pressed** and **Focus**. A look has no size of its own, so every look comes in every size. The preview shows each in every state and size. Add a look with **+** and it appears in every Button's **Style** menu.
+**Buttons** holds the looks a **Button** block can take, such as *primary*, *secondary*, *ghost* and *link*: fill, border, radius, weight, letter spacing, text color, shadow and opacity, for **Default**, **Hover**, **Pressed** and **Focus**. A look has no size of its own, so every look comes in every size. The preview shows each in every state and size. Add a look with **+** and it appears in every Button's **Style** menu. **Shown On** names the background a look is made for, like a dark band, and the preview shows it there.
 
 A Button with an icon and no label is square, as wide as it is tall. **Shape** **Round** makes it a circle, or a labelled button a pill. Give an icon-only button a **Name for Screen Readers**, like *Search*.
 
@@ -170,7 +171,7 @@ Element styles sit in a low CSS layer, so a block's own styles always win.
 
 ### Buttons
 
-Each key of `buttons` is a variant editors pick as a Button's **Style**; each variant has `base`, `hover`, `active` and `focus-visible` styles, all edited in the Design System. The core blocks offer `primary`, `secondary`, `ghost` and `link`.
+Each key of `buttons` is a variant editors pick as a Button's **Style**; each variant has `base`, `hover`, `active` and `focus-visible` styles, all edited in the Design System, and an optional `surface`, the background it's made for (`"token:color.band"`), where the preview shows it. The core blocks offer `primary`, `secondary`, `ghost` and `link`.
 
 A variant is a look. Its height, padding and text size are the control size's, so properties that would size a button (`height`, `padding…`, `fontSize`, `lineHeight`, `width`) are left out when it compiles. Variants sit in a cascade layer between the base and the shapes, so a variant can't undo a shape or a state:
 
@@ -226,7 +227,7 @@ A field is invalid with `aria-invalid="true"` or inside `.is-invalid`, and takes
 
 ### Fonts
 
-Font files live in `content/design/fonts/` and are served from `/_cms/fonts/`, with `preload` for the ones the first screen needs. **Google Font** under **Typography → Font Files** downloads the latin files (variable weights when the family has them) and adds them to `fonts`. Agents use `design/fonts-import` for that, and `design/fonts-upload` to upload one (the file as base64, a family, a weight such as `400` or `100 900`, and a style).
+Font files live in `content/design/fonts/` and are served from `/_cms/fonts/`, with `preload` for the ones the first screen needs. **Add a Google Font…** in a font's picker under **Typography → Fonts** downloads the latin files (variable weights when the family has them) and adds them to `fonts`. Agents use `design/fonts-import` for that, and `design/fonts-upload` to upload one (the file as base64, a family, a weight such as `400` or `100 900`, and a style).
 
 ### Page transition
 
