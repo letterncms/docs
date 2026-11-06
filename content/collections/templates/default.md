@@ -37,7 +37,7 @@ updated_at: '2026-10-30T12:00:00+00:00'
 ::::::::
 :::::::
 
-::::::: box {"id":"d-body","label":"Body","class":"cms-prose"}
+::::::: box {"id":"d-body","props":{"prose":true},"label":"Body"}
 :::::::: outlet {"id":"d-outlet","props":{}}
 ::::::::
 :::::::

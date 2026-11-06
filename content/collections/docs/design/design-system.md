@@ -22,7 +22,8 @@ The sections come in two groups. **Tokens** are the named values blocks pick fro
 | **Sizes** | Small, medium and large, for buttons and form fields alike |
 | **Shape** | Corner radius and shadows |
 | **Motion** | How pages change into each other, and durations and easing for transitions |
-| **Elements** | Default styles for headings, paragraphs, links, lists and other plain elements, and for long-form text, each set with controls for font, size, weight, color, fill, border, radius and padding |
+| **Elements** | Default styles for headings, paragraphs, links, lists and other plain elements, each set with controls for font, size, weight, color, fill, border, radius and padding |
+| **Prose** | Long-form text: the space between its blocks, before and after headings and between list items, and how its elements look there |
 | **Buttons** | The looks a **Button** block can take: colors, border, corners, weight, shadow |
 | **Form Fields** | How every text field, dropdown, checkbox and their labels look, on every form of the site |
 | **Custom Code** | Your own CSS and JavaScript, for the rare thing the editor can't do |
@@ -91,6 +92,10 @@ Every control shows what applies while it's empty: a token, like *raised* or *pr
 
 Under **Motion**, **Page Transition** animates the change from one page to the next: **Fade**, **Slide**, **Scale** or **None**, with a duration. It needs no script, and visitors who prefer reduced motion don't get it.
 
+## Long-form text
+
+**Prose** is how long-form text looks: an article, a doc, a post's body. Turn on **Prose**, under **Typography** in the **Design** tab, on a template's **Page Content** block or on any **Box**. Its blocks are then spaced as one flow, whatever kind they are: set the space between blocks, before and after headings and between list items once, and an image or a block of your own keeps the same rhythm as the paragraphs around it. Below that, style how its headings, links, lists and code look.
+
 ## Custom CSS and JavaScript
 
 **Custom Code** holds CSS added after everything else, and JavaScript that runs on every page. You rarely need either: use them for the one thing the editor can't express.
@@ -127,7 +132,7 @@ The design system is one file, `content/design/tokens.json`, next to your conten
     "h1": { "fontSize": "token:text.5xl", "lineHeight": "token:leading.tight", "textWrap": "balance" },
     "h1 em": { "fontFamily": "token:font.display", "fontStyle": "italic" }
   },
-  "prose": { "h2": { "fontSize": "token:text.2xl" } },
+  "prose": { "spacing": { "blocks": "1.1em" }, "h2": { "fontSize": "token:text.2xl" } },
   "buttons": {
     "primary": { "base": { "backgroundColor": "token:color.primary", "color": "token:color.primary-foreground" }, "hover": { "opacity": 0.9 } }
   },
@@ -161,13 +166,24 @@ Tokens use the [Design Tokens](https://www.designtokens.org/) format: groups of 
 - **Dark mode**: a token's `$extensions.cms.dark` value applies when the visitor prefers dark, or when the page is switched with the **Light or Dark Mode** action.
 - Refer to a token anywhere a style takes a value: `token:color.primary`, with opacity `token:color.primary/20`, or inside a longer value: `0 8px 24px token:color.foreground/15`.
 
-### Element styles and prose
+### Element styles
 
 `styles` sets defaults for HTML elements: `html`, `body`, `h1`–`h6`, `p`, `a`, `a:hover`, `small`, `strong`, `em`, `mark`, `code`, `kbd`, `pre`, `blockquote`, `hr`, `ul`, `ol`, `li`, `img`, `figcaption`, `table`, `th`, `td`, `::selection`, `:focus-visible`, and `h1 em`, `h2 em`, `h3 em`, `h1 strong`, `h2 strong` for mixed-style headings. Keys are CSS properties in camelCase, like everywhere else in Lettern.
 
-`prose` styles the same elements inside long-form text: a **Page Content** block with the class `cms-prose` (the starter's article template uses it). Lettern ships sensible spacing for prose; override what you want.
-
 Element styles sit in a low CSS layer, so a block's own styles always win.
+
+### Prose
+
+`prose` is long-form text: any **Page Content** or **Box** with **Prose** on (`"props": { "prose": true }`; the starter's article template has it). Its blocks are spaced as one flow, whatever they are, a paragraph, an image or a block of your own:
+
+| `spacing` | Default | Space |
+|---|---|---|
+| `blocks` | `1.1em` | Between one block and the next |
+| `headings` | `1.8em` | Before a heading |
+| `afterHeadings` | `0.6em` | After a heading |
+| `items` | `0.35em` | Between list items |
+
+The other keys style the same elements as `styles`, inside prose. An element's top margin (`marginTop`) replaces the space before it: `"h2": { "marginTop": "2.5rem" }`. A **Page Content** without a container is part of the flow around it.
 
 ### Buttons
 

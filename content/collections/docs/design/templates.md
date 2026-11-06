@@ -20,7 +20,10 @@ Your changes save as a draft while you work, and visitors only see them once you
 
 ## The Page Content block
 
-Every template has one **Page Content** block. It marks where each page's own blocks go. Style it like any other block, for example with a narrow width for articles.
+Every template has one **Page Content** block. It marks where each page's own blocks go.
+
+- **Wrap in a Container** gives the content a box of its own, to style like any other block, for example with a narrow width and space above for articles. Without it, the page's blocks join the layout around them, and only text styles reach them.
+- **Prose**, under **Typography** in its **Design** tab, spaces the blocks as long-form text and styles their headings, links and lists, with the design system's [prose styles](/design/design-system#long-form-text). A **Box** has it too, for long-form text anywhere.
 
 Around it you can add anything: a heading, a cover image, a date. Connect those blocks to the page's own fields, and each page shows its own title or image there. See [Showing content](/design/data).
 
@@ -66,7 +69,7 @@ collections:
 ::: pattern {"props":{"ref":"header"}}
 :::
 
-::: outlet {"props":{"wrap":true},"class":"cms-prose"}
+::: outlet {"props":{"wrap":true,"prose":true}}
 :::
 ```
 
@@ -79,7 +82,7 @@ collections:
   { "type": "pattern", "props": { "ref": "header" } },
   { "type": "box", "props": { "tag": "main" }, "anchor": "main", "children": [
     { "type": "heading", "props": { "level": "1" }, "bind": { "text": "entry.title" } },
-    { "type": "outlet", "props": { "wrap": true }, "class": "cms-prose" }
+    { "type": "outlet", "props": { "wrap": true, "prose": true } }
   ] },
   { "type": "pattern", "props": { "ref": "footer" } }
 ]

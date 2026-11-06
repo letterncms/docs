@@ -39,7 +39,7 @@ updated_at: '2026-10-30T12:00:00+00:00'
 ::::::::
 :::::::
 
-::::::: box {"id":"t-body","label":"Body","class":"cms-prose"}
+::::::: box {"id":"t-body","props":{"prose":true},"label":"Body"}
 :::::::: outlet {"id":"t-outlet","props":{"permalinks":true}}
 ::::::::
 :::::::
