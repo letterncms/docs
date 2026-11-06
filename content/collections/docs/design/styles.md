@@ -26,9 +26,8 @@ Every block can be styled on its own: its layout, size, spacing, type, colors, b
 | **Effects** | Opacity, shadows, blur, frosted glass, blend modes and the mouse cursor |
 | **Transform** | Move, scale, rotate and skew |
 | **Transition** | Animate changes between states, like a smooth hover |
-| **CSS** | Everything set for the current screen size and state, and any other CSS property you want to add |
 
-**Layout** only shows on blocks that hold other blocks.
+**Layout** only shows on blocks that hold other blocks. A section's **+** adds a property it has no row for yet, such as **Scroll Snap Align** in **Size** or **Text Underline Offset** in **Typography**, each with its own control.
 
 ::: callout {"props":{"tone":"tip","text":"Drag a number field's label sideways to change its value, or press <code>↑</code> and <code>↓</code>. Hold <code>⇧</code> for steps of 10."}}
 :::
