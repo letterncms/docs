@@ -17,7 +17,7 @@ Everything lives under `/api/store/v1`:
 | `index.json` | `{name, api: 1, trust_url, catalog_url}` |
 | `trust.json` | The store's trust file |
 | `catalog.json` | The signed catalog |
-| `items/{vendor}/{name}.json` | Optional detail: `{description_html, screenshots, operator}`. Unsigned, so a site cleans its HTML and drops images from other origins |
+| `items/{vendor}/{name}.json` | Optional detail: `{description_html, gallery, requirements, docs_url, repository_url, releases, operator}`. Unsigned, so a site cleans its HTML and drops images from other origins |
 | `download/{vendor}/{name}/{version}` | The zip |
 
 ## The catalog
@@ -32,6 +32,7 @@ The payload:
   "store": "https://store.example",
   "items": [{
     "package": "acme/forms", "type": "plugin", "title": "Acme Forms", "summary": "...",
+    "categories": ["Forms"], "glyph": "textbox", "featured": false,
     "pricing": "paid", "first_party": false, "author": { "name": "Acme", "url": "https://..." },
     "listing_url": "https://store.example/store/acme-forms", "dev_download": false,
     "versions": [{
@@ -46,6 +47,25 @@ The payload:
   "yanked": [{ "package": "acme/forms", "version": "2.0.1", "reason": "Breaks saving" }]
 }
 ```
+
+Items come in the store's own order, and a site keeps it for **Most Popular**. `glyph` names an icon from the set the admin draws, so a listing needs no picture to fetch; `featured` puts it in the Store tab's first row. Neither changes the order.
+
+### The detail
+
+The detail fills the plugin's page in the Store tab:
+
+```json
+{
+  "description_html": "<h2>Build it where you build pages</h2><p>...</p>",
+  "gallery": [{ "url": "https://store.example/media/forms-builder.webp", "alt": "A booking form in the builder." }],
+  "requirements": ["A Brevo account with a verified sender domain"],
+  "docs_url": "https://...", "repository_url": "https://github.com/...",
+  "releases": [{ "version": "2.1.0", "released_at": "2027-01-08T09:00:00Z", "notes": "Added\n• Maps for every page.", "security": false }],
+  "operator": "Acme BV"
+}
+```
+
+A site shows only pictures from the store's own origin and only `http` and `https` links. `screenshots`, a list of addresses alone, is still read from stores that send no `gallery`.
 
 ### Each version is signed too
 
