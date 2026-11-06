@@ -88,9 +88,9 @@ Put a Repeat in a **List Filter** block, and visitors can narrow it down right o
 
 | Block | Does |
 |---|---|
-| **Filter Search** | A search field. All words must match, and accents don't matter |
+| **Filter Search** | A search field. All words must match, and accents don't matter. **Show Label** off hides its label from sight, not from screen readers |
 | **Filter Choice** | One choice per value of a field, like each category, with how many items have it. **Look** shows them as chips or as a list |
-| **Filter Sort** | A menu of orders, such as by name or by price |
+| **Filter Sort** | A menu of orders, such as by name or by price. **Show Label** works as on Filter Search |
 | **No Results** | Shown when nothing matches |
 
 Which fields can be filtered, searched and sorted is set on the Repeat itself, as **Filter By**, **Search In** and **Sort By**. These aren't in its settings panel: ask the [assistant](/agents/assistant) to set them, or see [For developers](#filtering-a-repeat).
