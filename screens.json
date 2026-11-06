@@ -99,6 +99,20 @@
       ],
       "sidebar": "collapsed"
     },
+    "design-form-fields": {
+      "site": "examples",
+      "path": "/admin/design?tab=fields",
+      "size": [
+        1100,
+        700
+      ],
+      "sidebar": "collapsed",
+      "steps": [
+        {
+          "clickText": "Checkboxes"
+        }
+      ]
+    },
     "template": {
       "site": "examples",
       "path": "/admin/content/templates/{entry:templates/page}",

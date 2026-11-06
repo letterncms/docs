@@ -20,8 +20,10 @@ Select a field to change its label, help text and whether it's required, just li
 | **Short Text**, **Long Text** | Names, messages, anything typed |
 | **Email**, **Phone**, **Website** | Contact details |
 | **Number**, **Date** | Quantities, a day to book |
-| **Dropdown**, **Choice**, **Checkboxes** | Picking from a list of options |
-| **Checkbox** | A single yes or no |
+| **Slider** | A number on a scale, like a budget, with what comes before or after it (*€*, *%*) |
+| **Dropdown**, **Choice**, **Checkboxes** | Picking from a list of options. **Show As** **Chips** shows the options as pills |
+| **Tags** | Several words or names, each added with Enter, with suggestions if you give some |
+| **Checkbox** | A single yes or no. **Show As** **Switch** makes it a switch |
 | **Consent** | Agreeing to your privacy policy |
 | **File Upload** | Documents or images, up to a size you choose |
 | **Hidden Value** | Something sent along without being shown |
@@ -53,6 +55,8 @@ Emails go out through your [email settings](/operations/email).
 ## Add it to a page
 
 Open the page, add a **Form** block where you want it, and pick your form under **Choose a Form** in its settings. With no forms yet, the list offers **New Form**, which leads to **Forms** to make one.
+
+Fields look as **Design System → [Form Fields](/design/design-system#form-fields)** sets them, the same on every form of the site.
 
 ## Read submissions
 
