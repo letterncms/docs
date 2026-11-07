@@ -94,7 +94,9 @@ Under **Motion**, **Page Transition** animates the change from one page to the n
 
 ## Long-form text
 
-**Prose** is how long-form text looks: an article, a doc, a post's body. Turn on **Prose**, under **Typography** in the **Design** tab, on a template's **Page Content** block or on any **Box**. Its blocks are then spaced as one flow, whatever kind they are: set the space between blocks, before and after headings and between list items once, and an image or a block of your own keeps the same rhythm as the paragraphs around it. Below that, style how its headings, links, lists and code look.
+**Prose** is how long-form text looks: an article, a doc, a post's body. Turn on **Prose**, under **Typography** in the **Design** tab, on a template's **Page Content** block or on any **Box**. Its blocks are then spaced as one flow, whatever kind they are: set the space between blocks, before and after headings and between list items once, and an image or a block of your own keeps the same rhythm as the paragraphs around it. Below that, style how its headings, links, lists and code look. Opening one in the list shows it in the preview's sample article, which has every element prose can style.
+
+A block of your own inside prose keeps its own layout: prose spaces the blocks directly in it, and styles text, not a **Box** or **Repeat** drawn as a list or a link. A callout with paragraphs of its own turns on **Prose** too, and its text is spaced the same way.
 
 ## Custom CSS and JavaScript
 
