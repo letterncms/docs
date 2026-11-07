@@ -27,7 +27,7 @@ Every block can be styled on its own: its layout, size, spacing, type, colors, b
 | **Transform** | Move, scale, rotate and skew |
 | **Transition** | Animate changes between states, like a smooth hover |
 
-**Layout** only shows on blocks that hold other blocks. A section's **+** adds a property it has no row for yet, such as **Scroll Snap Align** in **Size** or **Text Underline Offset** in **Typography**, each with its own control.
+**Layout** only shows on blocks that hold other blocks. A section's **+** adds a property it has no row for yet, such as **Snap Align** in **Size** or **Underline Offset** in **Typography**, each with its own control.
 
 ::: callout {"props":{"tone":"tip","text":"Drag a number field's label sideways to change its value, or press <code>↑</code> and <code>↓</code>. Hold <code>⇧</code> for steps of 10."}}
 :::

@@ -22,8 +22,8 @@ The sections come in two groups. **Tokens** are the named values blocks pick fro
 | **Sizes** | Small, medium and large, for buttons and form fields alike |
 | **Shape** | Corner radius and shadows |
 | **Motion** | How pages change into each other, and durations and easing for transitions |
-| **Elements** | Default styles for headings, paragraphs, links, lists and other plain elements, each set with controls for font, size, weight, color, fill, border, radius and padding |
-| **Prose** | Long-form text: the space between its blocks, before and after headings and between list items, and how its elements look there |
+| **Elements** | Default styles for headings, paragraphs, links, lists and other plain elements, everywhere on the site. Each starts empty: **Add a Property** adds what it sets, its ⋯ removes it |
+| **Prose** | Long-form text: the space between its blocks, before and after headings and between list items, and **Elements in Prose**, how its elements look there only |
 | **Buttons** | The looks a **Button** block can take: colors, border, corners, weight, shadow |
 | **Form Fields** | How every text field, dropdown, checkbox and their labels look, on every form of the site |
 | **Custom Code** | Your own CSS and JavaScript, for the rare thing the editor can't do |
