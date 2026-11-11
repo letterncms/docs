@@ -46,7 +46,7 @@ final class ReviewsPlugin extends Plugin
 }
 ```
 
-Put the folder in `plugins/`, turn it on with its switch in **Plugins** or with `php cms plugin enable acme/reviews`, and it runs. Every plugin registers a Dashboard widget like this one; what the widget shows comes from your admin code, in [Admin extensions](/plugins/admin-extensions#dashboard-widgets).
+Put the folder in `plugins/`, turn it on with its switch in **Plugins** or with `php cms plugin enable acme/reviews`, and it runs. This one registers a Dashboard widget, which a plugin does when it has something worth a glance; what the widget shows comes from your admin code, in [Admin extensions](/plugins/admin-extensions#dashboard-widgets).
 
 ## The package
 

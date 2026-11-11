@@ -91,7 +91,19 @@ Version 0.22 renamed the abilities that didn't follow this, without aliases. A s
 | `design/code` | `design-code/set-custom` |
 | `site/get` | `settings/get` with `namespace: site` |
 
-A token scoped by pattern follows the names: `entries/*` doesn't reach `revisions/*`, `users/*` doesn't reach `user-fields/*` or `people/list`, `packages/*` doesn't reach `package-stores/*`, and `design/*` doesn't reach `design-code/*` or `design-vendor/*`.
+Version 0.23 brought the plugins under the same rule, and gave every plugin ability an `output` schema. Again the old names are gone:
+
+| Plugin | Was | Is |
+|---|---|---|
+| Forms 0.13 | `forms/activity` | `forms/overview` |
+| | `forms/configure` | `form-settings/update` |
+| | `forms/words`, `forms/translate` | `form-words/get`, `form-words/update` |
+| | `forms/submissions`, `forms/submission`, `forms/submission-update`, `forms/submission-delete`, `forms/export` | `form-submissions/list`, `get`, `update`, `delete` and `csv`. `form-submissions/get` only reads: it no longer marks a new submission read |
+| SEO 0.9 | `redirects/save` | `redirects/set`, which puts the whole list in place. `redirects/create` adds one redirect |
+
+Analytics 0.8 and Brevo 0.6 keep their names (`analytics/summary`, `analytics/breakdown`, `brevo/stats`, `brevo/lists`, `brevo/subscribe`) and now say what they answer with.
+
+A token scoped by pattern follows the names: a token for `forms/*` no longer reaches submissions, which are `form-submissions/*`. In the core, `entries/*` doesn't reach `revisions/*`, `users/*` doesn't reach `user-fields/*` or `people/list`, `packages/*` doesn't reach `package-stores/*`, and `design/*` doesn't reach `design-code/*` or `design-vendor/*`.
 
 ### Run an ability
 
@@ -113,7 +125,7 @@ const entry = await run('entries/get', { id })
 
 - **Validation** against the input schema.
 - **A dry run**: with `dryRun: true` in the input of an ability that changes something, everything up to the handler happens and nothing more. Nothing is written or logged, and the answer is `{dryRun, ability, checked, input, changes}`. See [Dry runs](#dry-runs).
-- **An answer in a known shape**: every ability has an `output` schema beside its `input`, in `abilities/list`, `GET /api/v1/abilities`, `cms run --list --json` and as each MCP tool's `outputSchema`. A map is a JSON object on every transport, also when empty: an entry without field values has `"data": {}`.
+- **An answer in a known shape**: every ability has an `output` schema beside its `input`, in `abilities/list`, `GET /api/v1/abilities`, `cms run --list --json` and as each MCP tool's `outputSchema`. A map is a JSON object on every transport, also when empty: an entry without field values has `"data": {}`, and a block without settings has `"props": {}`, at any depth. A typed client never gets `[]` where it expects an object.
 - **Authorization**: the user's permissions and, for tokens, the token's scopes.
 - **Audit**: every change (anything not read-only) is logged with who, how and when.
 - **Hooks**: `ability.input` can adjust the input, `ability.executing` and `ability.executed` fire around the call, and `ability.result` can adjust the result.
