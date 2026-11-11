@@ -120,6 +120,8 @@ Tabs follow the [ARIA tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tab
 
 When something can't be built from state, events and actions, like a calculator, a chart or a third-party widget, a developer can write it as a small component in the site's custom JavaScript. Name it under **Interact → Code Component**. The block then uses that component instead of its own **State**; everything inside can read its values and call its functions, and the other interaction settings keep working. See [Custom CSS and JavaScript](/design/design-system#custom-css-and-javascript).
 
+A script that works on the element itself, with a library like GSAP or Three.js, is a [block behavior](/design/behaviors) instead.
+
 ## For developers
 
 ### What runs on the site

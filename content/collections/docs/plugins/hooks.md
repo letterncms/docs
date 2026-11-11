@@ -143,6 +143,7 @@ The first argument is the value you return; the rest are there to help you decid
 |---|---|---|
 | `site.head` | `$tags, $context` | Tags in a page's `<head>`. |
 | `site.foot` | `$tags, $context` | Scripts at the end of a page's `<body>`. |
+| `site.navigate.skip` | `$paths, $context` | The paths that always load in full when the site [navigates without page loads](/design/page-navigation): add a cart or a sign-out. |
 | `site.scope` | `$scope, $context` | The data templates and blocks can bind to (`site`, `entry`, `globals`, `page`, `pagination`…). `$context->mode` says who the page is for: only add a signed-in person's data in `request`, as a `build` goes to a public file. |
 | `site.html` | `$html, $context` | A rendered page. |
 | `site.build.extras` | `$extras` | Extra files the static build writes (sitemap, feeds…). |

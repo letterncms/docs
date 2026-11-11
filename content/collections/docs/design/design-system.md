@@ -26,7 +26,7 @@ The sections come in two groups. **Tokens** are the named values blocks pick fro
 | **Prose** | Long-form text: the space between its blocks, before and after headings and between list items, and **Elements in Prose**, how its elements look there only |
 | **Buttons** | The looks a **Button** block can take: colors, border, corners, weight, shadow |
 | **Form Fields** | How every text field, dropdown, checkbox and their labels look, on every form of the site |
-| **Custom Code** | Your own CSS and JavaScript, for the rare thing the editor can't do |
+| **Code** | Your own CSS and JavaScript, for what the editor can't do, and the libraries they import |
 
 A *token* is just a named value, like *primary* for your brand color or *8* for a step of spacing. You give it a value once, and use the name everywhere.
 
@@ -92,6 +92,8 @@ Every control shows what applies while it's empty: a token, like *raised* or *pr
 
 Under **Motion**, **Page Transition** animates the change from one page to the next: **Fade**, **Slide**, **Scale** or **None**, with a duration. It needs no script, and visitors who prefer reduced motion don't get it.
 
+**Page Loads** says how a link gets to the next page: **Full Page**, or **Instant**, which swaps the page in place so chosen elements live on. See [Navigation without page loads](/design/page-navigation).
+
 ## Long-form text
 
 **Prose** is how long-form text looks: an article, a doc, a post's body. Turn on **Prose**, under **Typography** in the **Design** tab, on a template's **Page Content** block or on any **Box**. Its blocks are then spaced as one flow, whatever kind they are: set the space between blocks, before and after headings and between list items once, and an image or a block of your own keeps the same rhythm as the paragraphs around it. Below that, style how its headings, links, lists and code look. Opening one in the list shows it in the preview's sample article, which has every element prose can style.
@@ -100,7 +102,9 @@ A block of your own inside prose keeps its own layout: prose spaces the blocks d
 
 ## Custom CSS and JavaScript
 
-**Custom Code** holds CSS added after everything else, and JavaScript that runs on every page. You rarely need either: use them for the one thing the editor can't express.
+**Code** holds the site's own CSS and JavaScript. **Site CSS** is added after everything else, and **Site JavaScript** runs on every page. You rarely need either: use them for the one thing the editor can't express.
+
+Under them, **Styles** and **Scripts** list the design's other files, which load only where you say, and **Libraries** lists what scripts import. See [Scripts and styles](/design/code).
 
 ::: callout {"props":{"tone":"warning","text":"JavaScript here runs on every page of your site. Editing it needs the <strong>Edit Custom CSS and JavaScript</strong> permission, marked <strong>Trusted Only</strong>: give it only to people you trust."}}
 :::
@@ -249,7 +253,7 @@ Font files live in `content/design/fonts/` and are served from `/_cms/fonts/`, w
 
 ### Page transition
 
-`transition` uses the browser's View Transitions: `type` is `fade`, `slide`, `scale` or `none`, with a `duration` in seconds. It works on the static site with no JavaScript, and is skipped for visitors who prefer reduced motion.
+`transition` uses the browser's View Transitions: `type` is `fade`, `slide`, `scale` or `none`, with a `duration` in seconds. It works on the static site with no JavaScript, and is skipped for visitors who prefer reduced motion. `navigation` is `document` (the default) or `client`: see [Navigation without page loads](/design/page-navigation).
 
 ### Custom code files
 
@@ -265,7 +269,7 @@ document.addEventListener('cms:alpine', (e) => {
 })
 ```
 
-Both are edited under **Custom Code** or with the `design-code/set-custom` ability, and both need the `site.code` permission.
+Both are edited under **Code** or with the `design-code/set-custom` ability, and both need the `site.code` permission. Scripts and stylesheets that load only on some pages, and the libraries they import, are on [Scripts and styles](/design/code).
 
 ### Abilities
 
