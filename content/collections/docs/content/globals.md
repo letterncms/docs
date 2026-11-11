@@ -14,7 +14,7 @@ Globals come in **global sets**: a group of fields that belong together, like *C
 ## Create a global set
 
 1. Open **Globals**, under **Content** in the sidebar.
-2. Press **New Global Set**, give it a name like *Contact*, and press **Create**.
+2. Press **New Global Set**, give it a name like *Contact*, and press **Create Global Set**.
 3. The set opens on its fields, with one text field to start. Add the fields you need, like an email address and a phone number, and press **Save** in the bar at the bottom.
 
 Fields work just like they do in collections. See [Fields](/content/fields).
@@ -23,7 +23,7 @@ Fields work just like they do in collections. See [Fields](/content/fields).
 
 Open the set, fill in its fields and press **Save**, or `⌘S`. Pages that show these values are updated for you.
 
-To change the set's fields later, press **Edit Fields** at the top. **Delete Global Set** is at the end of that page.
+To change the set's fields later, press **Edit Fields** at the top. Its name and icon are on the **Settings** tab there, with **Delete Global Set** at the end.
 
 ## Show a value on your pages
 

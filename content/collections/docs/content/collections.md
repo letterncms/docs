@@ -63,6 +63,8 @@ Every collection can show its entries as a **Table**, a **Grid** of cards or a *
 
 ![The list of dishes in a table.](/media/screens/entries.webp)
 
+To keep more than one arrangement, press **Views**, beside **Display**, choose **Save View** and give it a name. It keeps what the list is narrowed to (status, language, search), its order, its columns and whether it is a table, a grid or a calendar. Choose a view in that menu to put the list back that way: the button then shows its name, and the menu has **Rename View** and **Delete View** for it. Views are yours alone and come with your account to every browser.
+
 To set the starting view for everyone, open the collection's **Settings** tab and use **Default Display**, then save. Anyone can go back to it with **Display → Reset Display**.
 
 A few details worth knowing:
@@ -112,7 +114,7 @@ fields:
 | `nav_order` | Default place in its section (integer, lower first; `10` when omitted). A sidebar someone arranged, or the default an admin saved for everyone, overrides it. |
 | `body` | The main-content field's handle. A `blocks` body uses the block editor. Without a body, entries use a field form; Lettern never guesses one from field order. |
 | `sort` | Field to sort lists by; prefix with `-` for descending. |
-| `default_view` | `table` (default), `grid` or `calendar`. A person's saved view wins. |
+| `default_view` | `table` (default), `grid` or `calendar`. What a person chose in **Display** wins. |
 | `default_columns` | Fields shown in tables and cards. Omit or `null` for automatic, `[]` for the title only. Use `uri`, `status`, `translations`, `author`, `published`, `updated`, and `field:<handle>` for your own fields. Personal choices win. |
 | `driver` | `database` (default) or `files` (see below). |
 | `revisions` | `false` turns off revision history. |
@@ -160,11 +162,17 @@ default_columns:
   - published
 ```
 
+### Saved views
+
+A person's saved views are kept with their account and reached through `saved-views/list`, `saved-views/create`, `saved-views/update` and `saved-views/delete`. A view names its list (`entries.<collection>`) and holds its `state`: `query` (the list's search and filters, as they are in the address), `sort`, `columns` (by their key in the list: `uri`, `displayStatus`, `values.<field>`), `view` and `calendarDate`. A filter or a column the list doesn't have is refused; one that is removed later is left out of the view.
+
 ### Creating and deleting through the API
 
 `collections/options` returns `defaults` (the starting definition from active plugins) and `settings` (the settings fields and choices). Creators apply `defaults` first, then pass the definition to `collections/save` with `createOnly: true`. Saving an existing collection never injects new defaults. Plugins contribute defaults through the `collections.defaults` filter; the Blocks module adds a `content` field of type `blocks` as the body.
 
 `collections/delete` needs `deleteEntries: true` for a collection with entries. Deleting runs through the content lifecycle, so drafts, revisions and plugin data are cleaned up, and published pages are removed or rebuilt.
+
+When `collections/save` refuses a field (a type that isn't installed, a handle used twice), its `details` say which one, by path: `fields.2.handle`, `fields.0.fields.1.type`. `globals/save` and `fieldsets/save` do the same.
 
 ### System collections
 

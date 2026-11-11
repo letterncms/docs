@@ -12,6 +12,12 @@ When you build a site with a client or a team, Lettern shows who else has a page
 
 Open a page and the toolbar at the top shows everyone else who has it open. A ring marks the people who are typing. Point at the faces to see who is editing and who is just viewing.
 
+You can tell before you open a page, too: in the list, a page someone else is editing says so beside its title, like *Marta is editing*.
+
+## One person edits at a time
+
+The first person to change a page holds it. Open it meanwhile and you can read it, with a line above the page that says who is editing and one button, **Take Over**. Press it to edit the page yourself: the other person then sees the same line with your name, and can no longer save. A hold ends when its holder leaves the page or hasn't changed anything for two minutes.
+
 If someone saves while you have the page open, a button appears: **Marta saved · Reload**. Press it to load their version. Any edits you haven't saved yet are replaced.
 
 ## Comment on a page
@@ -50,7 +56,7 @@ Until you choose, Lettern warns you before you leave the page, so your edits are
 
 ### Abilities
 
-Comments are abilities, for the assistant, MCP and the API: `comments/list`, `comments/create`, `comments/update`, `comments/resolve`, `comments/delete`, `comments/people` and `comments/inbox`. Presence uses `collaboration/presence`.
+Comments are abilities, for the assistant, MCP and the API: `comments/list`, `comments/create`, `comments/update`, `comments/resolve`, `comments/delete`, `comments/people` and `comments/inbox`. Presence and holding an entry are for the admin only: `collaboration/presence` and `collaboration/take-over` are not offered over MCP or the API. `entries/list` and `entries/tree` do carry `editingBy` for an entry someone else is editing right now.
 
 ### How presence works
 

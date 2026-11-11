@@ -11,7 +11,7 @@ Menus are the lists of links in your header, your footer or anywhere else. Build
 ## Make a menu
 
 1. Open **Navigation**, under **Content** in the sidebar, and press **New Menu**.
-2. Give it a name, like *Main*, *Footer* or *Legal*, and press **Create**.
+2. Give it a name, like *Main*, *Footer* or *Legal*, and press **Create Menu**.
 3. Press **Add Page** to pick one of your pages, or **Add Link** for any other address.
 4. Press **Save** in the bar at the bottom, or `⌘S`. The bar shows while the menu has changes, with **Discard** beside it.
 
@@ -21,13 +21,13 @@ A **page** in a menu follows that page. Rename it or move it, and the menu keeps
 
 A page item shows the page's title unless you type a label of your own.
 
-A **link** can go anywhere: a full address like `https://…`, a path on your site like `/contact`, a section of a page like `#menu`, an email address with `mailto:`, or a phone number with `tel:`. Click a link's settings button to open its **Link Options**, where you set the **Link** and can choose **Open in a New Tab**.
+A **link** can go anywhere: a full address like `https://…`, a path on your site like `/contact`, a section of a page like `#menu`, an email address with `mailto:`, or a phone number with `tel:`. Press the arrow at the end of a link's row to open its **Link Options**, where you set the **Link** and can choose **Open in a New Tab**. For a page, **Open in a New Tab** is in the **…** menu of its row.
 
 ## Order and nest
 
-Drag items up and down to reorder them, and sideways to nest one under another, for a dropdown. The buttons on each item do the same: **Nest Under the Item Above** and **Move Out a Level**.
+Drag items up and down to reorder them, and sideways to nest one under another, for a dropdown. The **…** menu on each item does the same, with **Nest Under the Item Above** and **Move Out a Level**. It also has **Edit Page**, for an item that is a page, and **Remove**; the message that follows has **Undo**, which puts the item back where it was.
 
-**Submenus** at the bottom sets how deep the menu may go: **No Submenus**, **One Level**, **2 Levels** and so on.
+**Menu Settings**, in the menu's top bar, has **Submenus**: how deep the menu may go, from **No Submenus** and **One Level** to **2 Levels** and so on. If the menu already goes deeper, it names the items to move out first.
 
 ## Show a menu on your site
 
@@ -41,7 +41,7 @@ On a site with several [languages](/content/languages), page items lead to the v
 
 ## Rename or delete a menu
 
-**Rename** and **Delete** are in the menu's top bar, and in the menu of each row of **Navigation**. Renaming keeps its handle, so the Repeat blocks that list it keep showing it. After deleting, they show nothing, so take it out of your templates too.
+**Menu Settings** in the menu's top bar holds its name, and **Delete Menu** is at the end of its page. **Rename** and **Delete** are also in the menu of each row of **Navigation**. Renaming keeps its handle, so the Repeat blocks that list it keep showing it. After deleting, they show nothing, so take it out of your templates too.
 
 ## For developers
 
