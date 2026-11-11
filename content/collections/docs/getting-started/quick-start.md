@@ -21,6 +21,7 @@ A few shortcuts save a lot of clicking:
 | `⌘K` | Find any page, setting or command |
 | `⌘\` | Hide or show the sidebar |
 | `⌘J` | Open the workspace, at the right edge |
+| `?` | Show every key that works on the screen you are on |
 
 ## 2. Edit a page
 
