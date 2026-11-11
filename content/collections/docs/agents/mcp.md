@@ -103,11 +103,11 @@ A token acts as you. See [REST API](/agents/rest-api) for scopes.
 
 **Tools**: every ability you may run that is exposed to MCP, named with a dot (`entries.create`, `design.update`). Security-sensitive abilities, like creating tokens, changing passwords, managing users and roles, or changing what a role may do, are never offered to agents.
 
-**Resources**: context to plan with. `cms://collections` (content types and their fields), `cms://site/design` (the design system: tokens, fonts, element styles), `cms://blocks` (how to compose pages, templates and components: the block model, styles, bindings, interactions and animations, with worked examples), `cms://forms`, `cms://navigation`, `cms://languages`, and more from plugins.
+**Resources**: context to plan with. `cms://collections` (content types and their fields), `cms://collections/{handle}/schema` (the JSON Schema an entry of one collection must follow, listed by `resources/templates/list`), `cms://site/design` (the design system: tokens, fonts, element styles), `cms://blocks` (how to compose pages, templates and components: the block model, styles, bindings, interactions and animations, with worked examples), `cms://forms`, `cms://navigation`, `cms://languages`, and more from plugins.
 
 **Prompts**: the site's [skills](/agents/assistant#use-a-skill), ready-made workflows like *Build a page* from a brief, *Write a blog post* and *Audit the site* for SEO and GEO problems, plus whatever plugins add.
 
-**Instructions**: how to build the Lettern way. Read the collections and the design system first, reuse components and templates (`patterns/list`, `templates/list`), style with tokens, give images alt text, and publish when done.
+**Instructions**: how to build the Lettern way. Read the collections and the design system first, reuse components and templates (`components/list`, `templates/list`), style with tokens, give images alt text, and publish when done.
 
 ## For developers
 
@@ -117,11 +117,11 @@ The editor works with structured data, so an agent edits the same block document
 
 - **Pages**: `entries/create` and `entries/update` with a blocks field, as JSON or as [Block Markdown](/reference/block-markdown).
 - **Templates and components**: the same abilities, in the `templates` and `components` collections. `entries/publish` makes them live.
-- **The design system**: `design/get`, `design/update`, `design/fonts-import`, and custom code with `design/code`.
+- **The design system**: `design/get`, `design/update`, `design/fonts-import`, and custom code with `design/set-code`.
 - **What's possible**: `blocks/types` lists every block, style property, state, data source, animation property and script action. `blocks/icons` searches icons.
 
 ### Protocol
 
-The server is at `POST /mcp`. It speaks the current stateless revision of MCP (`2026-07-28`: a version per request, `server/discover`) and answers older clients that send `initialize` (`2025-11-25`, `2025-06-18`, `2025-03-26`). Tool names are ability names with a dot instead of the slash.
+The server is at `POST /mcp`. It speaks the current stateless revision of MCP (`2026-07-28`: a version per request, `server/discover`) and answers clients that open with `initialize` (`2025-11-25`). Tool names are ability names with a dot instead of the slash. Every tool has an `outputSchema`, and its `structuredContent` is always an object: a list is under `items`, and a string, a number or nothing under `result`. A tool that changes something takes `dryRun: true` and then answers with what it would change instead.
 
 OAuth follows the MCP authorization spec: protected resource metadata at `/.well-known/oauth-protected-resource`, authorization server metadata, dynamic client registration and client ID metadata documents, PKCE (S256) only, and access tokens that last 30 days with rotating refresh tokens that last 180. Requests are rate limited per token.

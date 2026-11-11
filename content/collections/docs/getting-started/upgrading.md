@@ -24,11 +24,11 @@ For sites managed with Composer, in your site's folder:
 
 ```bash
 composer update
-php cms sync
+php cms migrate
 php cms build
 ```
 
-`php cms sync` runs the database migrations of Lettern and every plugin, and `php cms build` builds the pages again.
+`php cms migrate` runs the database migrations of Lettern and every plugin, and `php cms build` builds the pages again.
 ::::
 :::
 
@@ -82,7 +82,7 @@ Each release lives in its own folder, `runtime/<version>/`, and the one-line fil
 
 ### Security updates from cron
 
-Automatic security updates advance on any signed-in person's visit to the admin, or from cron with `php cms packages:update --security-only`. A public request never starts or advances an update, so a site nobody signs in to for weeks stays where it is: add the cron line.
+Automatic security updates advance on any signed-in person's visit to the admin, or from cron with `php cms update --security-only`. A public request never starts or advances an update, so a site nobody signs in to for weeks stays where it is: add the cron line.
 
 They don't go by themselves when a plugin wouldn't suit the new version, when the release needs something the host lacks, while postponed (up to 14 days), or after failing twice. `CMS_UPDATE_AUTO=false` turns them off.
 
@@ -90,8 +90,8 @@ Checking for updates sends nothing but a User-Agent with the version, at most ev
 
 ### When the host can't update itself
 
-If `runtime/` isn't writable, or the host lacks `ZipArchive` or `curl`, **Updates** says so. Download the release, upload it to `runtime/<version>/` by FTP, then switch to it with the `packages/update-switch` ability, over the [REST API](/agents/rest-api) or with `php cms run packages/update-switch version=<version>`. Or edit `runtime/current` by FTP and run `php cms sync`.
+If `runtime/` isn't writable, or the host lacks `ZipArchive` or `curl`, **Updates** says so. Download the release, upload it to `runtime/<version>/` by FTP, then switch to it with the `packages/update-switch` ability, over the [REST API](/agents/rest-api) or with `php cms run packages/update-switch version=<version>`. Or edit `runtime/current` by FTP and run `php cms migrate`.
 
 ### Sites updated by your deploy
 
-A site without `runtime/current`, a folder with `.git`, or `CMS_ALLOW_FILE_MODS=false` all count as deployed: **Updates** only tells you a version is out, and you update through your deploy. Run `php cms sync` after the code changes, then `php cms build`.
+A site without `runtime/current`, a folder with `.git`, or `CMS_ALLOW_FILE_MODS=false` all count as deployed: **Updates** only tells you a version is out, and you update through your deploy. Run `php cms migrate` after the code changes, then `php cms build`.

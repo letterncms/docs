@@ -90,12 +90,12 @@ Roles are stored in `config/roles.yaml`, a settings namespace like any other, so
 
 Each permission belongs to the module or plugin that registers it, so switching one off removes its permissions from **Roles** too. Modules and plugins register their own (`navigation.manage`, `comments.moderate`, `forms.view`, `assistant.use`, `analytics.view`…). API tokens can only narrow a person's permissions, never widen them.
 
-The default roles in full: Editor has `admin.access`, `entries.*`, `globals.*`, `media.*` and `navigation.*`, plus `site.build`, `comments.view`, `comments.create`, `comments.moderate` and `assistant.use` from the modules that bring them, and what plugins give it, such as `forms.*` and `analytics.view`. Author has `admin.access`, `entries.*.view`, `.create` and `.edit`, `media.view` and `media.upload`, plus `comments.view`, `comments.create` and `assistant.use`. Visitor (handle `member`) has none. A permission of a module that's off isn't in them.
+The default roles in full: Editor has `admin.access`, `entries.*`, `globals.*`, `media.*` and `navigation.*`, plus `site.build`, `comments.view`, `comments.create`, `comments.moderate` and `assistant.use` from the modules that bring them, and what plugins give it, such as `forms.*` and `analytics.view`. Author has `admin.access`, `entries.*.view`, `.create` and `.edit`, `media.view` and `media.upload`, plus `comments.view`, `comments.create` and `assistant.use`. Visitor (handle `visitor`) has none. A permission of a module that's off isn't in them.
 
 ### Profile fields
 
-Profile fields are stored in `content/users.yaml`. Required ones may stay empty until someone completes their profile. Agents read and change them through `users/fields`, and `data` on `users/update` and `account/update`. To let visitors edit a field on the site, see [Visitor accounts](/operations/public-accounts).
+Profile fields are stored in `content/users.yaml`. Required ones may stay empty until someone completes their profile. Agents read and change them through `user-fields/get` and `user-fields/save`, and `data` on `users/update` and `account/update`. To let visitors edit a field on the site, see [Visitor accounts](/operations/public-accounts).
 
 ### Looking people up
 
-Entry authorship is separate from roles and edit history: see [Entries](/content/entries#entry-details). Admin user pickers use `users/lookup`, available with `admin.access`. It returns paginated `PersonSummary` records with only `id`, `name`, `initials` and `avatar`, so editors can find an author without seeing email addresses or roles. Use the user-management abilities to administer accounts.
+Entry authorship is separate from roles and edit history: see [Entries](/content/entries#entry-details). Admin user pickers use `people/list`, available with `admin.access`. It returns paginated `PersonSummary` records with only `id`, `name`, `initials` and `avatar`, so editors can find an author without seeing email addresses or roles. Use the user-management abilities to administer accounts.

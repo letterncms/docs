@@ -95,11 +95,11 @@ A button shows while its tab is on view: the form's, `settings`, unless you name
 ## Read a value
 
 ```php
-$this->cms()->settings('reviews', 'min_rating', 1);
-$this->settings('min_rating'); // inside the plugin's provider, for its own settings
+$this->cms()->setting('reviews', 'min_rating', 1);
+$this->setting('min_rating'); // inside the plugin's provider, for its own settings
 ```
 
-`$this->settings()` reads the namespace named after your plugin (its `extra.cms.namespace`, or the part of its package name after the slash).
+`$this->setting()` reads the namespace named after your plugin (its `extra.cms.namespace`, or the part of its package name after the slash).
 
 ## Where values live
 

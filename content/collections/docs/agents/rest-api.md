@@ -60,18 +60,19 @@ Collections with a route are available unless they set `api: false`. Collections
 php cms token:create you@example.com --scope='entries/*' --days=90
 ```
 
-Tokens are shown once and stored hashed. **Scopes** are ability patterns (`entries/*`, `media/import`), `read` for every read-only ability, or `*` for everything you can do. In the admin, **Read Only** is `read`, **Content Only** is `entries/*` and **Full Access** is `*`.
+Tokens are shown once and stored hashed. **Scopes** are ability patterns (`entries/*`, `media/import`), `read` for every read-only ability, or `*` for everything you can do. In the admin, **Read Only** is `read`, **Content Only** is `entries/*` and **Full Access** is `*`. A pattern reaches only the abilities named that way: `entries/*` doesn't reach an entry's history, which is `revisions/*`.
 
 ### Endpoints
 
 | Method and path | Does |
 |---|---|
 | `GET /api/v1` | Describes the API. |
-| `GET /api/v1/abilities` | The abilities this token may run, with their input schemas. |
+| `GET /api/v1/abilities` | The abilities this token may run, with their input and output schemas. |
+| `GET /api/v1/openapi.json` | The API as an OpenAPI 3.1 document, for tools that generate a client. With a token it has a path for every ability that token may run. |
 | `GET /api/v1/abilities/{name}` | Runs a read-only ability with query parameters. |
 | `POST /api/v1/abilities/{name}` | Runs any ability with a JSON body. |
 | `POST /api/v1/batch` | Runs up to 25 abilities: `{ "calls": [{ "ability": "…", "input": {} }], "stopOnError": true }`. |
 
 ### Responses and limits
 
-Successful calls return `{ "data": … }`. Errors return `{ "error": { "type", "message", "details" } }` with status 422, 403, 401, 404, 409 or 500. Each token can make 240 requests a minute.
+Successful calls return `{ "data": … }`. An ability that changes something takes `"dryRun": true`: nothing is written, and `data` is `{ dryRun, ability, checked, input, changes }`, where `checked` is `"full"` when the call was refused exactly where the real one would be and `changes` lists what would change or be removed, and `"input"` when only the input and your permission were checked. Errors return `{ "error": { "type", "message", "details" } }` with status 422, 403, 401, 404, 409 or 500. Each token can make 240 requests a minute.

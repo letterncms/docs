@@ -42,12 +42,14 @@ $this->cms()->abilities()->register('shop/price-update', [
 
 | Key | Meaning |
 |---|---|
-| name | `namespace/action`, lowercase. |
+| name | `thing/verb`, lowercase. A verb means the same on every thing: `list`, `get`, `get-many`, `create`, `update`, `delete`, and `save` for a definition kept by its handle. |
 | `label`, `description` | Shown to people and to models, so write them for both. |
 | `input` | A JSON schema. Input is validated, and defaults applied, before the handler runs. Errors come back per field. |
+| `output` | A JSON schema of what the handler returns, or its short form with `Cms\Support\Schema\Shape`: `Shape::of(['id' => Shape::STRING, 'cents' => Shape::INTEGER])`. Agents and the REST API are told it. |
 | `permission` | A permission string, or a closure `fn (?User $user, array $input, AbilityContext $context): bool` for checks that depend on the input. |
 | `annotations` | `readOnly`, `destructive`, `confirm`, `idempotent`: used for the audit log, REST verbs, MCP hints and the assistant's approval rules. `trustedOutput` marks a read whose result holds no text people could have written (catalogs, static data); any other result makes the assistant ask before every later change in that chat. `draft` marks a change that stays a draft unless the call publishes or schedules it, which the assistant may still make on its own after reading such text. `openWorld` marks a read that reaches outside the site, which the assistant asks about after reading such text. `confirm` marks a change agents always ask a person about, like a destructive one, such as turning a plugin on or off. |
 | `expose` | Turn a transport off: `['mcp' => false]`, `['rest' => false]`, `['assistant' => false]`, `['cli' => false]`. `Ability::ADMIN_ONLY` turns off all four: only the admin runs it, as the person signed in. |
+| `dryRun` | A closure `fn (array $input, AbilityContext $context): array` that refuses what the handler would refuse, writes nothing, and returns what running it would change: a list of `['action' => 'delete', 'type' => 'product', …]`. Give one to every `destructive` or `confirm` ability. Without it, a call with `dryRun: true` checks the input and the permission only. |
 | `handler` | A closure, an invokable class or `Class@method`. Return anything JSON-serializable. |
 
 ### Run an ability
@@ -69,6 +71,7 @@ const entry = await run('entries/get', { id })
 ### What every call gets
 
 - **Validation** against the input schema.
+- **A dry run**: with `dryRun: true` in the input of an ability that changes something, everything up to the handler happens and nothing more. Nothing is written or logged, and the answer is `{dryRun, ability, checked, input, changes}`.
 - **Authorization**: the user's permissions and, for tokens, the token's scopes.
 - **Audit**: every change (anything not read-only) is logged with who, how and when.
 - **Hooks**: `ability.input` can adjust the input, `ability.executing` and `ability.executed` fire around the call, and `ability.result` can adjust the result.

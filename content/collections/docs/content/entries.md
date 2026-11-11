@@ -90,7 +90,7 @@ Lettern publishes scheduled entries after web requests, at most once a minute. O
 
 ### Authors
 
-`entries/create` and `entries/update` accept a nullable `authorId`. User pickers can look up safe person summaries with `users/lookup`. Imported or system-created entries can be unassigned, and an author reference that can't be resolved shows as **Unavailable person**. Lettern never invents authors or dates for imported content. History records separately who performed each action.
+`entries/create` and `entries/update` accept a nullable `authorId`. User pickers can look up safe person summaries with `people/list`. Imported or system-created entries can be unassigned, and an author reference that can't be resolved shows as **Unavailable person**. Lettern never invents authors or dates for imported content. History records separately who performed each action.
 
 ### Moving and ordering
 
@@ -110,4 +110,4 @@ When a template shows the entry title through an exact `entry.title` text bindin
 
 ### Abilities
 
-Everything on this page is available to the API, the command line and agents: `entries/create`, `entries/update`, `entries/publish`, `entries/unpublish`, `entries/discard-draft`, `entries/duplicate`, `entries/delete`, `entries/move`, `entries/reorder`, `entries/revisions`, `entries/restore` and more. See the [abilities reference](/reference/abilities#ns-entries).
+Everything on this page is available to the API, the command line and agents: `entries/create`, `entries/update`, `entries/publish`, `entries/unpublish`, `entries/discard-draft`, `entries/duplicate`, `entries/delete`, `entries/move`, `entries/reorder` and more, and an entry's history with `revisions/list`, `revisions/get` and `revisions/restore`. `collections/schema` gives the JSON Schema an entry's `data` must follow, and a field that fails is named by its path in the input, such as `data.summary`. See the [abilities reference](/reference/abilities#ns-entries).

@@ -88,12 +88,12 @@ focal: { x: 50, y: 50 }
 
 Only `id` and `path` are required: type, size, hash and dimensions are read from the file. A record is held to the same bar as an upload, so one pointing outside `public/media`, at a file of the wrong type or at an SVG with scripts is refused. If a record won't parse, nothing is deleted until it's fixed.
 
-Lettern picks up changes on `php cms sync`, at install, before a full build, after any admin request, and when a page asks for an id it doesn't know. Remove a record and the item goes on the next import; the file stays until you delete it.
+Lettern picks up changes on `php cms migrate`, at install, before a full build, after any admin request, and when a page asks for an id it doesn't know. Remove a record and the item goes on the next import; the file stays until you delete it.
 
 A `/media/…` URL in an image field gets the same responsive `<picture>` as an id once the file has a record, so a tool that writes files to a fixed path only has to add one.
 
 ### Checking for problems
 
-`php cms media:check` imports the records and lists ids and `/media/` URLs that point at nothing, records without a file, files without a record, and items nothing uses. `--strict` exits with an error when something is broken, `--json` prints the report (the `media/report` ability gives the same), and `--adopt` turns files without a record into media items.
+`php cms media:check` imports the records and lists ids and `/media/` URLs that point at nothing, records without a file, files without a record, and items nothing uses. `--strict` exits with an error when something is broken, `--json` prints the report as JSON, under `data` (the `media/report` ability gives the same), and `--adopt` turns files without a record into media items.
 
 `php cms build` warns about every image a page asks for that isn't there, and `--strict` makes those fatal. `media/delete` refuses a file that's still in use and says where; pass `force` to delete it anyway.

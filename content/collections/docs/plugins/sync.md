@@ -45,7 +45,7 @@ Add `sync` to `extra.cms` in your plugin's `composer.json`. No code, and nothing
 - **Your schema.** Rows arrive with your schema on the receiving side. Columns it doesn't have are refused before anything moves; columns it has and the rows don't get their defaults.
 - **Addresses.** Addresses and folder paths in every text column are rewritten, inside JSON and PHP-serialized values too. Keep absolute URLs out of your data where you can; when you can't, they still come out right.
 - **Files.** Files your plugin keeps under `content/` move with **Site Files**, and settings in `config/` with **Settings**. `storage/` never moves: keep there what belongs to one site.
-- **A fresh start.** After a switch, the `cms.sync` hook runs, as after `php cms sync`, the cache is flushed and the site queues a full build. Rebuild any index of your own there.
+- **A fresh start.** After a switch, the `cms.migrated` hook runs, as after `php cms migrate`, the cache is flushed and the site queues a full build. Rebuild any index of your own there.
 
 ## The protocol
 

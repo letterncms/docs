@@ -37,7 +37,7 @@ final class ReadingTimePlugin extends Plugin
             ],
             'handler' => fn (array $input) => $this->app->make(ReadingTime::class)->estimate(
                 $this->cms()->entries()->findOrFail($input['id']),
-                (int) $this->cms()->settings('reading-time', 'words_per_minute', 230),
+                (int) $this->cms()->setting('reading-time', 'words_per_minute', 230),
             ),
         ]);
 
@@ -58,7 +58,7 @@ final class ReadingTimePlugin extends Plugin
                 ));
                 // The 200 published last are plenty for an overview.
                 $entries = $collections ? $this->cms()->entries()->query()->collection(...$collections)->live()->orderBy('-published_at')->limit(200)->get() : [];
-                $wordsPerMinute = (int) $this->cms()->settings('reading-time', 'words_per_minute', 230);
+                $wordsPerMinute = (int) $this->cms()->setting('reading-time', 'words_per_minute', 230);
 
                 $reads = array_map(fn ($entry) => [
                     'id' => $entry->id,
@@ -77,7 +77,7 @@ final class ReadingTimePlugin extends Plugin
 
         // Templates can show {readingTime.minutes} for the page being rendered.
         $this->cms()->hooks()->addFilter('site.scope', fn (array $scope, $page) => $page->entry
-            ? [...$scope, 'readingTime' => $this->app->make(ReadingTime::class)->estimate($page->entry, (int) $this->cms()->settings('reading-time', 'words_per_minute', 230))]
+            ? [...$scope, 'readingTime' => $this->app->make(ReadingTime::class)->estimate($page->entry, (int) $this->cms()->setting('reading-time', 'words_per_minute', 230))]
             : $scope);
 
         // A widget people can add to their home screen; its component is in admin/src/index.tsx.
