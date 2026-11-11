@@ -12,7 +12,7 @@ After signing in you land on the **Dashboard**: what changed recently, and wheth
 
 ![The Dashboard, with the sidebar on the left.](/media/screens/dashboard.webp)
 
-The sidebar on the left is where you work. Under **Content** are your pages, your other content, media, menus, forms and globals; under **Design**, the design system, templates, components and collections. **Settings**, the gear next to your name (`⌘⇧,`), holds what you set up once: your account, the site's general settings, email, users and roles, and the settings of each plugin.
+The sidebar on the left is where you work. Under **Content** are your pages, your other content, media, menus, forms and global sets; under **Design**, the design system, templates, components and collections. **Settings**, the gear next to your name (`⌘⇧,`), holds what you set up once: your account, the site's general settings, email, users and roles, and the settings of each plugin.
 
 A few shortcuts save a lot of clicking:
 

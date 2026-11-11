@@ -1,19 +1,19 @@
 ---
 id: 01m5wmrf5hn71fkqbrdzf3ah04
-title: Globals
+title: Global Sets
 position: 5
 description: Things that appear all over your site, like your phone number or a footer note, kept in one place.
 ---
-Some details appear on many pages: your phone number, opening hours, social links, a line in the footer. Globals keep each of them in one place. Change it once, and every page that shows it follows.
+Some details appear on many pages: your phone number, opening hours, social links, a line in the footer. Global sets keep each of them in one place. Change it once, and every page that shows it follows.
 
 ::: html {"props":{"html":"<figure class=\"docs-fig\" role=\"img\" aria-label=\"A global set called Contact holds an email address and a phone number. The header, the footer and the contact page all show the same phone number.\"><div class=\"docs-fig__flow\"><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Contact</b><span class=\"docs-card__field\">Email</span><span class=\"docs-card__field\">Phone</span></div><b>Global set</b><small>Edited in one place</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-stack\"><div class=\"docs-card docs-card--row\"><span>Header</span><em>+31 20 123 4567</em></div><div class=\"docs-card docs-card--row\"><span>Footer</span><em>+31 20 123 4567</em></div><div class=\"docs-card docs-card--row\"><span>Contact page</span><em>+31 20 123 4567</em></div></div><b>Your pages</b><small>Always the same, always current</small></div></div></figure>"}}
 :::
 
-Globals come in **global sets**: a group of fields that belong together, like *Contact* or *Footer*, with one set of values for the whole site.
+A **global set** is a group of fields that belong together, like *Contact* or *Footer*, with one set of values for the whole site.
 
 ## Create a global set
 
-1. Open **Globals**, under **Content** in the sidebar.
+1. Open **Global Sets**, under **Content** in the sidebar.
 2. Press **New Global Set**, give it a name like *Contact*, and press **Create Global Set**.
 3. The set opens on its fields, with one text field to start. Add the fields you need, like an email address and a phone number, and press **Save** in the bar at the bottom.
 
@@ -29,7 +29,7 @@ To change the set's fields later, press **Edit Fields** at the top. Its name and
 
 1. Select a block, like a paragraph in your footer, and open **Content**.
 2. Point at its **Text** and press the database icon beside the label, **Connect to Data**.
-3. Under **Globals**, choose the set, then add the field's handle, so it reads like `globals.contact.phone`.
+3. Under **Global Sets**, choose the set, then add the field's handle, so it reads like `globals.contact.phone`.
 
 The starter site's footer shows the **Tagline** of its **Footer** set this way.
 
