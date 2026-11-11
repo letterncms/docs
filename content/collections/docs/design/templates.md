@@ -66,7 +66,7 @@ collections:
   - posts
 ---
 
-::: pattern {"props":{"ref":"header"}}
+::: component {"props":{"ref":"header"}}
 :::
 
 ::: outlet {"props":{"wrap":true,"prose":true}}
@@ -79,12 +79,12 @@ collections:
 
 ```json
 [
-  { "type": "pattern", "props": { "ref": "header" } },
+  { "type": "component", "props": { "ref": "header" } },
   { "type": "box", "props": { "tag": "main" }, "anchor": "main", "children": [
     { "type": "heading", "props": { "level": "1" }, "bind": { "text": "entry.title" } },
     { "type": "outlet", "props": { "wrap": true, "prose": true } }
   ] },
-  { "type": "pattern", "props": { "ref": "footer" } }
+  { "type": "component", "props": { "ref": "footer" } }
 ]
 ```
 

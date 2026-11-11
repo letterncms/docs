@@ -59,7 +59,7 @@ Pages always show a component's published version. The editor and preview show y
 
 Components and sections are entries of the `components` collection, stored as Markdown files in `content/collections/components/`. The settings are in the frontmatter (`synced`, `category`, `description`, `props`) and the blocks are [Block Markdown](/reference/block-markdown). `synced: true` makes a component; `false` a section.
 
-Plugins can ship read-only components and sections too, with the `blocks.pattern-sources` filter and folders of `<handle>.json`.
+Plugins can ship read-only components and sections too, with the `blocks.component-sources` filter and folders of `<handle>.json`.
 
 ### Properties
 
@@ -89,10 +89,10 @@ props:
 
 ### Instances
 
-A copy on a page is a `pattern` block. Its `props.values` holds the values set for this copy, and `bind` with `values.<handle>` takes a value from data:
+A copy on a page is a `component` block. Its `props.values` holds the values set for this copy, and `bind` with `values.<handle>` takes a value from data:
 
 ```json
-{ "type": "pattern", "props": { "ref": "card", "values": { "link": "/pricing" } }, "bind": { "values.title": "item.title", "values.image": "item.cover" } }
+{ "type": "component", "props": { "ref": "card", "values": { "link": "/pricing" } }, "bind": { "values.title": "item.title", "values.image": "item.cover" } }
 ```
 
 Text edited on the page is stored in the instance's `props.values`. Inline editing works for an exact `props.<handle>` text binding to a declared `text`, `textarea` or `richtext` property; editing an inherited default creates an override. A nested component can forward such a property with an exact binding like `"values.heading": "props.title"`, as long as each property it passes through has one of those types; the edit still belongs to the outer instance. Data-bound properties, bindings with filters, placeholders or `|raw`, repeats, nested constants and sample content keep their source controls instead.

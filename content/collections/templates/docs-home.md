@@ -12,11 +12,11 @@ updated_at: '2026-11-02T12:00:00+00:00'
 ---
 
 ::: box {"id":"h-root","label":"Docs","style":{"base":{"display":"flex","flexDirection":"column","minHeight":"100dvh"}}}
-:::: pattern {"id":"h-header","props":{"ref":"docs-header"}}
+:::: component {"id":"h-header","props":{"ref":"docs-header"}}
 ::::
 
 :::: box {"id":"h-shell","label":"Columns","style":{"base":{"width":"calc(100% - 2 * token:space.gutter)","maxWidth":"81.25rem","marginInline":"auto","flexGrow":1},"lg":{"display":"grid","gridTemplateColumns":"14rem minmax(0, 1fr)","columnGap":"clamp(2rem, 4vw, 4.5rem)"}}}
-::::: pattern {"id":"h-sidebar","props":{"ref":"docs-sidebar"}}
+::::: component {"id":"h-sidebar","props":{"ref":"docs-sidebar"}}
 :::::
 
 ::::: box {"id":"h-main","props":{"tag":"main"},"anchor":"main","style":{"base":{"minWidth":"0","maxWidth":"56rem","paddingTop":"clamp(2rem,4vw,3.5rem)","paddingBottom":"clamp(4rem,7vw,6rem)"}}}
@@ -130,6 +130,6 @@ updated_at: '2026-11-02T12:00:00+00:00'
 :::::
 ::::
 
-:::: pattern {"id":"h-footer","props":{"ref":"docs-footer"}}
+:::: component {"id":"h-footer","props":{"ref":"docs-footer"}}
 ::::
 :::
