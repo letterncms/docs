@@ -35,10 +35,10 @@ Most clients need less than an Editor. Give them a role that fits.
 
 1. Open **Settings → Roles** and press **New Role**.
 2. Name it, like *Restaurant team*, and describe it in a few words.
-3. Tick what it may do. The collections are one table, with **View**, **Create**, **Edit**, **Publish** and **Delete** for each, so a role can be limited to just the dishes.
+3. Tick what it may do. The collections are one table, with **View**, **Create**, **Edit**, **Publish** and **Delete** for each, so a role can be limited to just the dishes. A group's **All** ticks or clears all of it, a collection's name its row, and **All Collections** a column.
 4. Press **Save** in the bar at the bottom, or `⌘S`, and give the role to your client under **Users**.
 
-Permissions are grouped by what they're about, **General** first. The number beside a role is how many people hold it. The **Administrator** role always keeps every permission, so nobody can lock the site out.
+Permissions are grouped by what they're about, **Admin** first. To start from a role you have, choose **Duplicate Role** in its menu; **Delete Role** is there too. The number beside a role is how many people hold it. The **Administrator** role always keeps every permission, so nobody can lock the site out.
 
 ::: callout {"props":{"tone":"tip","text":"To keep the design as it is, give a client only the collections they write in, like Dishes, and leave out Templates, Components and the settings."}}
 :::

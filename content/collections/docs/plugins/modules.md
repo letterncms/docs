@@ -63,7 +63,7 @@ A module's options are a [settings](/plugins/settings) namespace like any plugin
 | `letterncms/audit` | **Keep Entries For** (days; 0 keeps them forever) and **Also Record Reads**, on the Audit Log's **Settings** tab |
 | `letterncms/users` | **Roles** and their permissions, under **People** |
 | `letterncms/account` | Visitor accounts, on the **Settings** tab of **Users** |
-| `letterncms/dashboard` | None of its own: the default Dashboard for everyone is saved with **Customize → Save as Default** on the Dashboard |
+| `letterncms/dashboard` | None of its own: the default Dashboard for everyone is saved with **Customize → More → Save for Everyone** on the Dashboard |
 | `letterncms/email` | How email is sent, under **Email** (`config/email.yaml`) |
 | `letterncms/media` | Upload size, image quality, AVIF and photo metadata, on the **Settings** tab of **Media** |
 | `letterncms/languages` | The site's languages and their URLs, under **Languages** (`config/languages.yaml`) |

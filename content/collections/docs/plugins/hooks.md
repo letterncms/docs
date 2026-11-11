@@ -135,6 +135,7 @@ The first argument is the value you return; the rest are there to help you decid
 | `admin.manifest` | `$manifest, $user` | What the admin receives at start-up (modules add `collections`, `globals`, the Dashboard and `config.<namespace>` here). |
 | `admin.nav` | `$items` | Sidebar items that come and go (letterncms/content adds one per collection, letterncms/settings one per settings page). |
 | `agent.guide` | `$guide` | The instructions every AI agent gets. |
+| `audit.past` | `$past` | What the Audit Log calls each change once it happened, by ability name: `$past + ['forms/delete' => __('Deleted Form')]`. Give every ability of yours that changes something its words; without them the log falls back to the ability's label. |
 | `mcp.prompts` | `$prompts` | Prompts offered to MCP clients: the site's skills (`cms()->skills()`). |
 
 ### Pages
