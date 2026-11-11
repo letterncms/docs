@@ -11,7 +11,7 @@ The media library holds every image, video and document on your site. Upload a p
 
 ## Upload files
 
-Open **Media** in the sidebar and press **Upload**. You can also upload right from an image field or an Image block, while you pick a file.
+Open **Media** in the sidebar and press **Upload**, or drag files from your desktop onto the library: they land in the folder on view, and the library says where while you hold them over it. You can also upload right from an image field or an Image block, while you pick a file.
 
 Every upload is checked before it's kept:
 
@@ -24,23 +24,45 @@ Every upload is checked before it's kept:
 
 Click a file to open it. Fill in its **Alt Text**: a short description of what the image shows, for people using screen readers and for search engines. The SEO checks tell you when a page has images without it.
 
-You can also give the file a clearer **Name**, a **Caption** and a **Folder**, then press **Save**.
+You can also give the file a clearer **Name** and a **Caption**, then press **Save**. Under **Used In**, the file's details list every page, global set and design file that uses it, each linked to where it opens.
 
 ## Keep the important part in view
 
-When you open an image, click the spot that matters most, like a face or a plate. That's the **focal point**: whenever the image is cropped, for a square card or a wide banner, that spot stays in frame.
+When you open an image, click or tap the spot that matters most, like a face or a plate. That's the **focal point**: whenever the image is cropped, for a square card or a wide banner, that spot stays in frame. You can also drag its marker, or move it with the arrow keys: `Shift` for bigger steps, `Home` for the middle.
+
+## Crop, rotate and replace
+
+Under the picture in a file's details:
+
+- **Crop** takes over the sheet. Pick a **Shape** (**Freeform**, **Original**, **1:1**, **4:3** or **16:9**), then drag the corners or the rectangle, or move a corner with the arrow keys. The focal point stays on what it marked.
+- **Rotate** turns the image a quarter turn.
+- **Replace File** puts another file of the same kind in its place: a sharper photo, a corrected PDF. The file stays what it was to every page that uses it, with its name, alt text, caption, focal point and folder, and its image sizes are made again.
+
+Crop and rotate work on JPEG, PNG and WebP images.
+
+::: callout {"props":{"tone":"tip","text":"When a file's contents change, its address changes with them, because browsers keep a file for a year by its address. Your pages follow by themselves. Only a link you pasted somewhere outside the site, like a newsletter, still points at the old address."}}
+:::
 
 ## Find and organize
 
-Put files in folders by typing a folder name when you open them, like `team/2026`. Then narrow the library down:
+Folders are a tree beside the files, and a select above them on a phone.
+
+- **New Folder**, under the tree, makes one in the folder on view. A folder can be empty.
+- A folder's menu has **Rename** and **Delete Folder**. Deleting a folder deletes no file: its files move to the folder above.
+- **Move to Folder** is in a file's menu, in its details, and in the bar when you select several. It shows the tree to choose from, marks the folder the files are in as **Current**, and has **New Folder** right there.
+
+Moving a file doesn't change its address, so nothing on your site notices.
+
+Then narrow the library down:
 
 - **Search** by name or alt text.
-- Filter by **Kind**: images, videos, audio, PDFs or other files.
-- Pick a **Folder**.
+- Filter by **Kind**: images, videos, audio, PDFs, 3D models, textures, animations or other files.
 
 Switch between a grid and a table, and choose what to show and how to sort under **Display**. To find images without a description, show the **Alt Text** column: it marks each image **Added** or **No alt text**. Your view follows you on every device, and the media pickers work the same way.
 
-Select several files to delete them at once. Lettern won't delete a file that's still used on your site, and tells you where it's used.
+Select several files to move or delete them at once. Lettern won't delete a file that's still used on your site, and names the pages that use it.
+
+A file says what it is in words, like **Image · JPG**. 3D models, textures and animations show an icon and their kind (GLB, HDR, Lottie) where a picture would be, and their details leave out the image tools.
 
 ## Show images on your pages
 
@@ -53,7 +75,7 @@ An image can also be a background: select a block and pick one under **Design �
 
 ## Settings
 
-The **Settings** tab of **Media** (also under **Settings → Media**) sets the **Max Upload Size** in MB, with your server's own limit under it, the **Image Quality** (40 to 95), whether to **Serve AVIF Images** (smaller than WebP, slower to make) and whether to **Remove Photo Metadata** (location and camera details). The last two are on unless you turn them off.
+The **Settings** tab of **Media** sets the **Max Upload Size** in MB, with your server's own limit under it, the **Image Quality** (40 to 95), whether to **Serve AVIF Images** (smaller than WebP, slower to make) and whether to **Remove Photo Metadata** (location and camera details). The last two are on unless you turn them off.
 
 ## For developers
 
@@ -88,7 +110,52 @@ Some are refused, with the reason, also when the file arrives by git or FTP:
 - A Lottie animation with expressions, with fonts to load, or with images that aren't embedded.
 - A `.json` file that is not a Lottie animation.
 
-None of them is resized or converted. They are served with their own type and cached for a year: a media file's name never gets new contents. A [block behavior](/design/behaviors) loads one by its address under `/media/`, with a library added through [`cms vendor`](/design/code#add-a-library), such as Three.js, lottie-web or Rive.
+In the library they are kinds of their own: `model`, `texture` and `animation`. None of them is resized or converted. They are served with their own type and cached for a year: a media file's name never gets new contents. A [block behavior](/design/behaviors) loads one by its address under `/media/`, with a library added through [`cms vendor`](/design/code#add-a-library), such as Three.js, lottie-web or Rive.
+
+### Folders, replacing and cropping through abilities
+
+| Ability | Does |
+|---|---|
+| `media/list` | Takes `folder` (one folder's own files, `''` for files in none) and `kind` (`image`, `video`, `audio`, `pdf`, `model`, `texture`, `animation`, `file`), and answers with the whole tree of folder paths in `folders`, empty ones included |
+| `media/get` | One file with `usedBy`: every entry, global set and design file that uses it |
+| `media/move` | Puts files in a folder by its path: `{"ids": ["…"], "folder": "press/2026"}`. `''` takes them out of every folder, and a folder that isn't there is made |
+| `media-folders/create`, `media-folders/rename`, `media-folders/delete` | Makes an empty folder by its path, gives one a new name or place, or deletes one (its files move up) |
+| `media/replace` | Puts another file in an item's place, from a URL or base64 data. It must be of the same kind |
+| `media/transform` | `rotate` by 90, 180 or 270 degrees, `crop` to a rectangle in pixels of the rotated image, or both |
+
+Folders someone made are kept in `content/media/folders.json`, beside the records, so empty ones survive too.
+
+`media/replace` and `media/transform` change a file's bytes, so its address changes: `/media/team/harbour.jpg` becomes `/media/team/harbour-tr3z.jpg`. What uses the file by its id needs nothing, and content that names the old address is rewritten to the new one. Both ask first, and a dry run checks the file itself and lists what would be rewritten:
+
+```bash
+php cms run media/transform --dry-run --input='{"id":"01m75v6ghkdx5w8njb30bn5xja","rotate":90,"crop":{"x":0,"y":0,"width":400,"height":400}}'
+```
+
+```json
+{
+    "data": {
+        "dryRun": true,
+        "ability": "media/transform",
+        "checked": "full",
+        "input": { "id": "01m75v6ghkdx5w8njb30bn5xja", "rotate": 90, "crop": { "x": 0, "y": 0, "width": 400, "height": 400 } },
+        "changes": [
+            {
+                "action": "transform",
+                "type": "media",
+                "id": "01m75v6ghkdx5w8njb30bn5xja",
+                "path": "media/team/harbour.jpg",
+                "rotate": 90,
+                "crop": { "x": 0, "y": 0, "width": 400, "height": 400 },
+                "from": { "width": 800, "height": 600 },
+                "to": { "width": 400, "height": 400 }
+            },
+            { "action": "update", "type": "entry", "id": "01m75v6w9taawe8mjhhzyxvfe0", "path": "content.0.props.image.0" }
+        ]
+    }
+}
+```
+
+`POST /api/v1/media/upload` takes `replace` with an item's id and runs `media/replace`, so a replaced file is in the audit log like every change. Deleting a file that is used is refused with `conflict`: `This file is still used by Dusk.`
 
 ### Importing from a URL
 
