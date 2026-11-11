@@ -128,11 +128,11 @@ final class ReviewsPlugin extends Plugin
 | `$this->cms()` | The Lettern API, below. `cms()` is the same thing anywhere else. |
 | `$this->manifest` | The package, as read from `composer.json`. |
 | `$this->path('…')` | A path inside the package. |
-| `$this->settings('key', $default)` | A value of the plugin's own [settings](/plugins/settings). |
+| `$this->setting('key', $default)` | A value of the plugin's own [settings](/plugins/settings). |
 | `$this->asset('file')` | The public URL of a file in its `dist/`. |
 | `$this->adminModule()` | Loads its built admin code, `dist/admin.js` (and `dist/admin.css` when there is one). See [Admin extensions](/plugins/admin-extensions). |
 
-`$this->cms()` is where everything is registered: `abilities()`, `hooks()`, `permissions()`, `settingsRegistry()` and `settings()`, `admin()`, `skills()`, `fields()`, `collections()`, `entries()`, `globals()`, `navigation()`, `accounts()`, `roles()`, `packages()` and `whenAvailable()`. `url('/pricing')` is an absolute address on the public site, from **Public URL** under **Settings → General**.
+`$this->cms()` is where everything is registered: `abilities()`, `hooks()`, `permissions()`, `settingsRegistry()` and `setting()`, `admin()`, `adminNav()`, `skills()`, `fields()`, `collections()`, `entries()` and `entryService()`, `globals()`, `accounts()`, `roles()`, `packages()` and `whenAvailable()`. `url('/pricing')` is an absolute address on the public site, from **Public URL** under **Settings → General**.
 
 A permission can belong to the roles a site starts with: `roles: ['editor']` (or `['editor', 'author']`) gives it to those default roles until the site edits its roles. Administrators hold every permission anyway.
 
@@ -152,7 +152,7 @@ Besides the provider, a few folders are picked up by name:
 
 | Folder | Becomes |
 |---|---|
-| `database/migrations/` | Migrations, run when the plugin is turned on and by `cms sync`. |
+| `database/migrations/` | Migrations, run when the plugin is turned on and by `cms migrate`. |
 | `resources/views/` | Blade views, namespaced by the plugin: `reviews::card`. For emails and your own screens, or a block's markup if you prefer Blade. |
 | `resources/lang/` | Laravel translation files, in the same namespace. |
 | `lang/` | `<code>.json` translations for the admin and `__()`. See [Translations](/plugins/admin-extensions#translations). |

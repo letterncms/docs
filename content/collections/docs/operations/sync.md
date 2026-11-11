@@ -104,7 +104,7 @@ Media is `public/media` and its details in `content/media`, compared by size and
 
 The receiving site also keeps its `.env`, its secrets (from **Settings**, kept in `storage/`), its sessions, API and sign-in tokens, and its queue and caches. When people are replaced, each session follows its person to their account with the same email, and someone who has no account on the other site keeps theirs.
 
-For a group with different tables, run `php cms sync` on each site after updating, so both have the same columns.
+For a group with different tables, run `php cms migrate` on each site after updating, so both have the same columns.
 
 ### How it switches over
 

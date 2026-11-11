@@ -99,4 +99,4 @@ Text edited on the page is stored in the instance's `props.values`. Inline editi
 
 ### Abilities
 
-`patterns/list` returns every component and section with its properties and blocks (`working: true` includes drafts). `patterns/save` creates or replaces one by handle; for anything else use the `entries/*` abilities in the `components` collection.
+`components/list` returns every component and section with its properties and blocks (`working: true` includes drafts). `components/save` creates or replaces one by handle; for anything else use the `entries/*` abilities in the `components` collection.

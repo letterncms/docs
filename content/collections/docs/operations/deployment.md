@@ -34,7 +34,7 @@ Most agencies build on their own machine, show the client a staging site, and ru
 
 ```bash
 composer install --no-dev --optimize-autoloader
-php cms sync
+php cms migrate
 php cms build
 ```
 
