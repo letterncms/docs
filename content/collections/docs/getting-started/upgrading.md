@@ -68,6 +68,26 @@ Each release on the **Updates** tab links to **What Changed**. The [changelog](h
 
 ## For developers
 
+### Names that changed in 0.22
+
+Version 0.22 renamed commands and abilities, without aliases. After updating to it, change what still calls the old names:
+
+| Was | Is |
+|---|---|
+| `php cms sync` | `php cms migrate`. "Sync" now only means [Sync](/operations/sync): `pull`, `push`, `sync:undo`, `sync:history` |
+| `php cms packages:update` | `php cms update` |
+| `php cms run … --json='{…}'` | `php cms run … --input='{…}'`. `--json` now means "answer as JSON" on every command |
+| The `cms.sync` action | `cms.migrated` |
+| The role `member` | `visitor`. `php cms migrate` renames it in what the site has stored; plugins and templates that name the role need the new id |
+| Abilities | Named `thing/verb`: see the [table of renamed abilities](/agents/abilities#names) |
+| `cms()->navigation()`, `cms()->content()`, `cms()->settings(…)` in a plugin | `cms()->adminNav()`, `cms()->entryService()`, `cms()->setting(…)` |
+
+Also check:
+
+- **Plugins.** Update them together with the CMS. Composer does not install 0.22 beside Analytics before 0.7, Brevo before 0.5, Forms before 0.12 or SEO before 0.8, which still call the old names.
+- **Proxies.** Lettern no longer uses a proxy from the server's environment for what it fetches. See [Servers behind a proxy](/operations/deployment#servers-behind-a-proxy).
+- **MCP clients.** The server speaks the revisions `2026-07-28` and `2025-11-25`. A client that only knows an older one is told which are spoken.
+
 ### How a self-update works
 
 Each release lives in its own folder, `runtime/<version>/`, and the one-line file `runtime/current` names the one in use.

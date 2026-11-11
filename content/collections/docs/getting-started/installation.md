@@ -106,7 +106,25 @@ Lettern makes WebP and AVIF versions of every uploaded image. AVIF needs GD buil
 
 **Apache** works out of the box with the included `.htaccess`: built pages in `public/` are served directly, everything else goes through `index.php`, and `config/`, `content/`, `plugins/`, `storage/`, `runtime/` and `vendor/` are never served. Lettern needs to write to its own folder, or at least to `storage/`, `config/`, `content/`, `plugins/`, `public/` and `runtime/`.
 
-**Nginx**: point the root at your site folder and mirror the same rules.
+The media library has rules of its own in `public/media/.htaccess`, which Lettern writes and writes again whenever it differs, on existing sites too: the right type for 3D models, textures and Rive files, `nosniff` on every file, and a long cache for the files a script loads. Change `public/.htaccess` for rules of your own, not this file. In git, commit it or ignore it.
+
+```apacheconf
+<IfModule mod_mime.c>
+    AddType model/gltf-binary .glb
+    AddType model/gltf+json .gltf
+    AddType image/vnd.radiance .hdr
+    AddType image/ktx2 .ktx2
+    AddType application/vnd.rive .riv
+</IfModule>
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    <FilesMatch "\.(glb|gltf|hdr|ktx2|riv|json)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+</IfModule>
+```
+
+**Nginx**: point the root at your site folder and mirror the same rules, these included.
 
 ```bash
 location / {
