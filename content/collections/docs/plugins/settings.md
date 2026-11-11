@@ -24,6 +24,16 @@ That's all it takes for **Reviews** to appear under **Plugins** in the settings 
 
 Fields use the same format as everywhere else in Lettern, including `if` conditions, `width` and `dynamic` options. See [Field types](/reference/field-types).
 
+### A value per language
+
+A field with `localizable: true` holds one value for each language of the site, as a map by language code (`pt-BR` is `pt_br`). The page shows it once per language, under the language's own name, and a language added to the site gets its field at once:
+
+```php
+['handle' => 'greeting', 'type' => 'text', 'label' => __('Greeting'), 'localizable' => true, 'placeholder' => ['en' => 'Hello', 'de' => 'Hallo']],
+```
+
+`placeholder` and `default` may be such a map too. A save changes the languages it is given and keeps the others. Read one language with `$this->cms()->settingsRegistry()->localized('reviews', 'greeting', $locale)`: it is empty in a language that has no value, so your own fallback decides what to say there.
+
 ### Options
 
 | Argument | Meaning |
@@ -104,7 +114,7 @@ $this->setting('min_rating'); // inside the plugin's provider, for its own setti
 ## Where values live
 
 - Normal fields are saved to `config/reviews.yaml`. Commit it to share settings between environments.
-- Fields with `secret: true` are encrypted with the app key into `storage/secrets.json`. The admin shows them masked; saving the mask keeps the value.
+- Fields with `secret: true` are encrypted with the app key into `storage/secrets.json`. The admin, `settings/get` and `settings/update` show them masked; saving the mask keeps the value. A secret stays one when a `settings.fields` filter takes its field away: it is still masked and never written to the YAML file. Two saves at the same moment keep what both saved.
 - Any value can be overridden by the environment: `CMS_REVIEWS_API_KEY=…`. Handy for production secrets. Overrides are never written back when someone saves.
 
 Values are read in that order: defaults, then `config/<namespace>.yaml`, then secrets, then the environment.

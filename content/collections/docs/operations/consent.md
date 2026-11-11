@@ -75,6 +75,6 @@ A link to `#cms-consent`, or any element with the attribute `data-cms-consent-op
 
 ### What is stored
 
-The answer is in the first-party cookie `cms_consent`, for six months. Settings are in `config/consent.yaml`: `enabled`, `analytics`, `marketing`, `reopen`, and `title_<language>`, `text_<language>` and `policy_<language>` for each language (`title_en`, `title_pt_br`).
+The answer is in the first-party cookie `cms_consent`, for six months. Settings are in `config/consent.yaml`: `enabled`, `analytics`, `marketing`, `reopen`, and `title`, `text` and `policy`, each with a value per language (`title: {en: …, pt_br: …}`).
 
 The plugin has no abilities. It adds the banner through the `site.foot` filter, never in the builder or a preview.
