@@ -54,7 +54,7 @@ An animation is made of one or more steps. Each step moves a **Target** from one
 | **This Element** | The block itself |
 | **Each Child in Turn** | The blocks inside it, one after another |
 | **Each Word** | The text, word by word. It stays real text for readers and search engines. **Rise from Behind a Line** makes each word slide up from behind an edge |
-| **Each Line** | The text, line by line, as it wraps on the visitor's screen. For **Appear**, **Hover**, **Press** and **On Event** |
+| **Each Line** | The text, line by line, as it wraps on the visitor's screen, with every trigger. The lines are counted once the page is laid out and again when its width changes; without JavaScript, the words go one by one |
 | **Each Letter** | The text, letter by letter. Letters stay inside their words, so a word never breaks across lines, and screen readers read the block as its text. Text with a link in it, and text in a script that joins its letters, such as Arabic, animates by word instead |
 | **Another Element** | Any other block on the page |
 
@@ -113,7 +113,7 @@ A block's `motion` is a list of animations:
 
 - `trigger.type`: `appear`, `scroll`, `hover`, `press`, `load`, `loop`, `event`. `start` and `end` read `<element edge> <viewport position>`, with `top`, `center` or `bottom` for the edge and those or a percentage for the position (`top 80%`, `center center`). `node` (`#<block id>`) watches another element. A `scroll` trigger takes `pin`, a distance in `px`, `rem`, `vh`, `svh`, `lvh` or `dvh` (`"150vh"`; `true` is `100vh`), and `scrub`, between 0.05 and 3 seconds.
 - `on`: `desktop`, `tablet`, `mobile`; absent means every screen.
-- `steps[].target`: `self`, `children`, `words`, `lines`, `chars` or `#<block id>`; `steps[].mask` clips each word. `lines` are real lines with `appear`, `hover`, `press` and `event`, and masked words with the triggers that are CSS. `chars` falls back to words past 600 letters, and nothing is split past 200 words. `steps[].at` is a start time in seconds; without it a step starts when the previous one ends.
+- `steps[].target`: `self`, `children`, `words`, `lines`, `chars` or `#<block id>`; `steps[].mask` clips each word. `lines` are the lines the text is laid out in, with every trigger: with `load`, `scroll` and `loop` the block carries `data-cms-lines` and the runtime gives each word its line's turn. `chars` falls back to words past 600 letters, and nothing is split past 200 words. `steps[].at` is a start time in seconds; without it a step starts when the previous one ends.
 - `steps[].ease`: a name (`expo.out`, `power3.inOut`, `sine.inOut`, `back.out`, `elastic.out`, `bounce.out`, `linear`…), `cubic-bezier()`, `linear()` or `steps()` as written, or a curve of the design: `token:ease.<name>`.
 - `repeat` (`-1` forever) and `yoyo` repeat each step; with `hold` (seconds) on an appear animation they repeat the whole timeline.
 

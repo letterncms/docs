@@ -176,7 +176,9 @@ Tokens use the [Design Tokens](https://www.designtokens.org/) format: groups of 
 
 `styles` sets defaults for HTML elements: `html`, `body`, `h1`–`h6`, `p`, `a`, `a:hover`, `small`, `strong`, `em`, `mark`, `code`, `kbd`, `pre`, `blockquote`, `hr`, `ul`, `ol`, `li`, `img`, `figcaption`, `table`, `th`, `td`, `::selection`, `:focus-visible`, and `h1 em`, `h2 em`, `h3 em`, `h1 strong`, `h2 strong` for mixed-style headings. Keys are CSS properties in camelCase, like everywhere else in Lettern.
 
-Beside those, `styles` and `prose` take any tag, alone or up to three deep, with a space (inside) or ` > ` (directly inside) between them, and one state or part at the end: `"h1 em"`, `"li > a"`, `"nav a:hover"`, `"li::marker"`. Classes, ids and attributes stay with `custom.css`.
+Beside those, `styles` and `prose` take any tag, alone or up to three deep, with a space (inside) or ` > ` (directly inside) between them, and one state or part at the end: `"h1 em"`, `"li > a"`, `"nav a:hover"`, `"li::marker"`.
+
+`styles` also takes a class a block carries, alone or on a tag, with at most two classes in a part: `".note"`, `"span.note em"`, `".card.is-open > a:hover"`. Give the block the class under **Advanced → Classes** in its **Content** panel and style it here, with tokens and states like a tag; no `custom.css` needed. Classes the CMS uses itself (`cms-…`) are not yours to style, and a key that can't be styled, such as an id or an attribute, is refused by name when the design is saved: those stay with `custom.css`. Inside prose a class still wins over the prose rule for the same tag.
 
 Element styles sit in a low CSS layer, so a block's own styles always win.
 
@@ -253,7 +255,7 @@ A field is invalid with `aria-invalid="true"` or inside `.is-invalid`, and takes
 
 Font files live in `content/design/fonts/` and are served from `/_cms/fonts/`, with `preload` for the ones the first screen needs. **Add a Google Font…** in a font's picker under **Typography → Fonts** downloads the latin files and adds them to `fonts`. It takes what the family really has: a variable family is one file for the weights its axis spans (EB Garamond is 400 to 800, not 100 to 900), a static family the weights it has, and no file is saved twice. Agents use `design/fonts-import` for that, with `style` (`normal`, `italic` or `both`) and, for a static family, `weights`, and `design/fonts-upload` to upload one (the file as base64, a family, a weight such as `400` or `100 900`, and a style).
 
-A font face can name what is drawn until it arrives, so text doesn't move when the font loads: `fallback`, a local font such as Arial, with `sizeAdjust`, `ascentOverride`, `descentOverride` and `lineGapOverride`.
+A font face names what is drawn until it arrives, so text doesn't move when the font loads: `fallback`, a local font such as Arial, with `sizeAdjust`, `ascentOverride`, `descentOverride` and `lineGapOverride`. **Add a Google Font…** and `design/fonts-import` fill these in from the font's own tables: Arial, Times New Roman or Courier New, at the size and line height that match. Change one only to correct it; what you set stays when the family is imported again.
 
 ```json
 { "family": "Inter Tight", "fallback": "Arial", "sizeAdjust": "102%", "ascentOverride": "98%", "descentOverride": "26%", "lineGapOverride": "0%" }
