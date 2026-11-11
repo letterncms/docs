@@ -14,7 +14,7 @@ These tools connect through **MCP**, the Model Context Protocol: an open standar
 
 ### 1. Copy your server URL
 
-Click your name at the bottom of the sidebar and choose **Account**. Under **API & Agents**, press **Copy** next to the **MCP Server URL**. It's your site's address followed by `/mcp`:
+Click your name at the bottom of the sidebar and choose **Account**. Under **Agents**, press **Copy** next to the **MCP Server URL**. It's your site's address followed by `/mcp`:
 
 ```text
 https://your-site.com/mcp
@@ -48,7 +48,7 @@ Then open Cursor's MCP settings and sign in to the server when it asks.
 ::::
 
 :::: tab-panel {"props":{"label":"Claude Code"}}
-Run this in your terminal. It's under **API & Agents** on the Account screen too, ready to copy:
+Run this in your terminal. It's under **Agents** on the Account screen too, ready to copy:
 
 ```bash
 claude mcp add --transport http cms https://your-site.com/mcp
@@ -81,7 +81,7 @@ Lettern tells it to read your collections and design system first, so what it bu
 
 ## See and revoke connections
 
-Every connected tool is listed under **Tokens**, in **API & Agents** on your Account screen, named after the tool, such as *MCP: Claude*, with when it was last used. Choose **Revoke** in its menu to disconnect it at once.
+Every connected tool is listed under **Agents** on your Account screen with when it was last active, and under **API Tokens** below it, named after the tool, such as *MCP: Claude*. Choose **Revoke** in its menu there to disconnect it at once.
 
 A connection stays signed in while you use it. One that goes unused for 180 days has to connect again.
 
@@ -89,7 +89,7 @@ A connection stays signed in while you use it. One that goes unused for 180 days
 
 For a tool that can't sign in with OAuth, create a token and send it with every request.
 
-1. On your Account screen, under **API & Agents**, press **New Token**.
+1. On your Account screen, under **API Tokens**, press **New Token**.
 2. Give it a name, choose its **Access** (**Full Access**, **Read Only** or **Content Only**) and when it **Expires**, such as **30 Days** or **1 Year**, then press **Create Token**.
 3. Copy the token: it's shown only once. Your tool sends it as a header:
 

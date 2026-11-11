@@ -187,9 +187,7 @@ A module puts its own item away or back with `events.emit('sidebar.pin', { id, p
 
 ## Dashboard widgets
 
-**Every plugin registers at least one widget.** The Dashboard is what people see first, so each plugin brings something worth a glance there: new submissions, the health of a connection, what changed.
-
-A plugin without a widget keeps working but is reported as invalid: **Plugins** shows the problem, `cms plugins` lists it (and exits with an error, so CI catches it) and, in debug mode, the Dashboard names it. The admin's own modules are exempt: they are the admin itself.
+The Dashboard is what people see first. A plugin registers a widget when it has something worth a glance there: new submissions, the health of a connection, what changed. A plugin with nothing to show registers none, and a widget with nothing to say draws nothing: return `null` from its component (or an empty `ui/stack` from its view) rather than an empty state or a line that repeats a setting.
 
 ```php
 $admin->widget('reviews-latest', ['label' => 'Latest reviews', 'description' => 'New reviews waiting for a reply.', 'icon' => 'star', 'column' => 'main']);
@@ -255,7 +253,6 @@ registry.panels.set('reviews-summary', { slot: 'entry.sidebar', label: 'Reviews'
 | `workspace.composer` | In the thread's composer, beside **Send**: an [agent](/plugins/agents)'s own controls, such as the assistant's model picker | `ComposerPanelProps`: `thread`, `agent` (the one answering there, its `name` and `label`, or `null`), `state`, `options`, `setOption`, `busy`, `loading` |
 | `shell.banner` | A strip above the screen, beside the sidebar, for a notice that concerns the whole admin (the license and update notices) | |
 | `topbar.end` | In every screen's top bar, before the screen's own actions: the way back to what's docked | |
-| `account.api` | Part of **API & Agents** on **Account**, before the tokens: the MCP module shows its server URL and the Claude Code command here | |
 
 **Account** and **Plugins** are [views](/plugins/views): add a section to Account, or a tab to Plugins after Installed, Store and Updates (as the license module adds **Licenses**), with the `view.account` and `view.plugins` filters.
 

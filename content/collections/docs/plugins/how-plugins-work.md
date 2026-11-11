@@ -142,9 +142,9 @@ $this->cms()->permissions()->register('reviews.manage', 'Moderate reviews', 'Rev
 
 Write labels and groups in English, as plain strings: the admin shows them in each person's language.
 
-### Every plugin has a widget
+### A widget, when there is something to show
 
-Every plugin registers at least one **Dashboard widget**: see [Admin extensions](/plugins/admin-extensions#dashboard-widgets). Without one, the plugin keeps running, but **Plugins** and `cms plugins` report it as invalid.
+A plugin registers a **Dashboard widget** when it has something worth a glance: see [Admin extensions](/plugins/admin-extensions#dashboard-widgets). A plugin without one is as good as any, and a widget with nothing to say draws nothing.
 
 ## What a package can bring
 

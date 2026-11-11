@@ -13,7 +13,7 @@ There are two parts. The **ability API** can do anything you can, with a token. 
 A token is a password for one app or script. It acts as you, so keep it secret.
 
 1. Click your name at the bottom of the sidebar and choose **Account**.
-2. Under **API & Agents**, press **New Token**.
+2. Under **API Tokens**, press **New Token**.
 3. Name it after what will use it, choose its **Access** and when it **Expires**, then press **Create Token**.
 4. Copy the token. It's shown only once.
 

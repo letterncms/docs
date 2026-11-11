@@ -281,7 +281,7 @@ Run `npm install && npm run build`, or the same with pnpm or yarn. The output go
 
 ## 7. Add a Dashboard widget
 
-Every plugin brings at least one widget for the Dashboard: something worth a glance. A plugin without one is reported as invalid. Reading time shows the longest reads.
+A plugin brings a widget for the Dashboard when it has something worth a glance. Reading time shows the longest reads.
 
 In `boot()`, register a second read-only ability for the widget's data, and the widget itself:
 

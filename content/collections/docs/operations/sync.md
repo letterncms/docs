@@ -18,7 +18,7 @@ Sync comes with Lettern and is free on every site, public ones included: there's
 
 That's all: no SSH, no database password, nothing to open in a firewall. Only the site you connect from has to be able to reach the other one. **Disconnect**, beside a connected site's name, removes it again.
 
-::: callout {"props":{"tone":"warning","text":"Anyone with a site's key can read and replace its content. Keep it like a password. <strong>Make a New Key</strong> replaces it, and sites connected with the old one then need the new one."}}
+::: callout {"props":{"tone":"warning","text":"Anyone with a site's key can read and replace its content. Keep it like a password. <strong>Replace Key</strong> replaces it, and sites connected with the old one then need the new one."}}
 :::
 
 Each site can also switch off **Allow Pull From Other Sites** or **Allow Push From Other Sites**, and save from the bar at the bottom.

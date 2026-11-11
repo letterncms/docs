@@ -8,7 +8,7 @@ You've installed Lettern and signed in. This tour walks you through the five thi
 
 ## 1. Find your way around
 
-After signing in you land on the **Dashboard**: what changed recently, and whether your live site is up to date.
+After signing in you land on the **Dashboard**: what changed recently, and whether your live site is up to date. On a new site it starts with **Get Started**, four steps that each lead to the screen where they are done: name the site, choose its colors and fonts, create the first page and connect an AI agent. The list goes away when all four are done, or when you choose **Hide**.
 
 ![The Dashboard, with the sidebar on the left.](/media/screens/dashboard.webp)
 
