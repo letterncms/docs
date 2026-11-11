@@ -45,10 +45,10 @@ On a site in several languages, each page is also at its language's prefix (`/de
 
 The account pages use your default template and your design system, so they already look like the rest of the site. To change one:
 
-1. Open **Pages**, then the **Account** tab. It lists the sign-in and account pages, each marked **Standard**.
+1. Open **Pages**, then the **Accounts** tab. It lists the sign-in and account pages, each with the **Version** **Standard**.
 2. Click the page. It opens in the editor as your own version, made from the standard one.
 3. Edit it like any page: move the forms, restyle them, or add your own text around them. The forms are blocks in the **Account** category.
-4. Publish. Your version takes over. Until then the standard one stays live, and the page is marked **Changes**. To go back, choose **Use Standard Version** in the page's ⋯ menu.
+4. Publish. Your version takes over, and the page's **Version** says **Customized**. Until then the standard one stays live, and the page stays **Standard**. To go back, choose **Use Standard Version** in the page's ⋯ menu.
 
 The **Account Navigation** block links to all account pages, in a row or in a column for a sidebar. The standard pages come in every language the plugins are translated into, and your versions are translated like any page.
 
