@@ -90,8 +90,8 @@ Your own components are in the catalog too (see [Generative UI](/plugins/generat
 ['type' => 'ui/records', 'props' => [
     'label' => __('Orders'),
     'source' => ['ability' => 'orders/list', 'input' => ['status' => '{query.status}']],
-    'at' => 'items',            // where the rows are in the response; a list is the rows itself
-    'key' => 'id',
+    'at' => 'items',            // where the rows are in the response (`0.pages` in a list); without it, a list is the rows itself
+    'key' => 'id',              // what tells the rows apart
     'columns' => [['key' => 'customer.name', 'label' => __('Customer'), 'muted' => 'customer.email']],
     'search' => ['param' => 'search', 'placeholder' => __('Search orders…')],
     'filters' => [['param' => 'status', 'label' => __('Status'), 'all' => __('All Orders'), 'options' => [['value' => 'paid', 'label' => __('Paid')]]]],
@@ -112,7 +112,6 @@ Your own components are in the catalog too (see [Generative UI](/plugins/generat
 - **Tree:** `tree` draws records that hold others nested, while nothing narrows or sorts the list: its `source` loads them (each with its `children`), and `reorder` is an action that puts siblings in the order they were dragged into, with `{ids}`, `{parent}` and `{versions}` (from each row's `version`).
 - **Cards and calendar:** a column with `image: true` offers cards, and one with `excerpt: true` is a few lines on them; `card: true` shows a column on cards from the start. `calendar` offers a calendar; as `{"dated": …, "undated": …}` it loads a month at a time, with the ability's input filled in with `{field}`, `{start}` and `{end}`. `dates` names what the ability sorts the published and updated dates by. `defaultView` is the view a person sees until they pick one.
 - **Bulk actions:** they make the rows selectable, and each one gets the selected rows' `{ids}`. With `each: true` it runs once per row, with `{row}`, and what failed stays selected with the reason; `some` shows it only while it holds for one of them. Its `success` and its `confirm` title can say how many: `{"one": "Deleted {count} entry", "other": "Deleted {count} entries"}`.
-- **Appendix:** `appendix` draws other rows under the list, in its columns and lined up with it, while nothing narrows it: its `source`, `groups` (each with its `label` and `rows`), `open`, `actions` always in view, and `columns` saying what each column shows for them (`blank: true` for nothing). The site's built-in pages sit under its pages this way.
 - **Empty:** `empty` with an `icon`, a `title`, a `text` and an `action`, or `size: "sm"` for one quiet line inside a section.
 - **Literal rows:** `rows` in place of `source` lists records as they are, such as what a command found when the [workspace](/getting-started/workspace) answers with it.
 
