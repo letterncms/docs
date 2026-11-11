@@ -39,7 +39,7 @@ Under **Settings → SEO**, set these once, and save from the bar at the bottom:
 
 - **Title Format**: how page titles are built, like `{title} · {site}`. **Home Page Title** replaces it on the home page.
 - **Default Social Image**: used on pages without their own.
-- Under **Who You Are**, **Type** (**Organization**, **Local Business** or **Person**), **Name**, **Logo** and **Profiles** (addresses, like your LinkedIn or GitHub): who is behind the site, for search engines.
+- Under **Organization**, **Type** (**Organization**, **Local Business** or **Person**), **Name**, **Logo** and **Profiles** (addresses, like your LinkedIn or GitHub): who is behind the site, for search engines.
 - Under **AI Crawlers**, **Summary for AI (llms.txt)**: one or two sentences on who you are and what the site offers.
 
 ## Choose which AI crawlers may visit
@@ -50,7 +50,7 @@ Pick the ones to keep out in **Block These AI Crawlers**, under **AI Crawlers** 
 
 ## Redirect old addresses
 
-When you change a page's address, Lettern adds a permanent redirect from the old one by itself, so links and search results keep working. To add or change redirects yourself, open **Settings → SEO**, then the **Redirects** tab, press **New Redirect** in the top bar, and save from the bar at the bottom.
+When you change a page's address, Lettern adds a permanent redirect from the old one by itself, so links and search results keep working. To add or change redirects yourself, open **Settings → SEO**, then the **Redirects** tab, and press **New Redirect** in the top bar. Redirects that are there are changed in the table and saved from the bar at the bottom.
 
 ## Keep a staging site out of search
 
@@ -77,4 +77,4 @@ On a static site these files are written with every build. See [Publishing](/ope
 
 ### Checks and redirects for agents
 
-The page checks are the `seo/analyze` ability, and the site-wide picture is `seo/health`, so an agent can audit every page and fix what it finds. Redirects are stored in `content/redirects.yaml` and changed with `redirects/list` and `redirects/save`. They can be 301, 302, 307 or 308. On static sites they are written as small redirect pages, so they work without PHP.
+The page checks are the `seo/analyze` ability, and the site-wide picture is `seo/health`, so an agent can audit every page and fix what it finds. Redirects are stored in `content/redirects.yaml` and read with `redirects/list`, added to with `redirects/create` and put in place as a whole with `redirects/set`. They can be 301, 302, 307 or 308. On static sites they are written as small redirect pages, so they work without PHP.

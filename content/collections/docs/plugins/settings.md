@@ -68,7 +68,7 @@ const [tab, setTab] = useScreenTabs(['list'])
 </ScreenTabs>
 ```
 
-`/settings/reviews` leads to the tab, and the settings are listed under **Plugins** in the settings sidebar too, where they open with only the form.
+`/settings/reviews` leads to the tab. Settings have one home: a plugin with a screen of its own keeps them there, and the settings sidebar lists only what has no screen.
 
 ### Tabs and actions
 

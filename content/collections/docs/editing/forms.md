@@ -123,4 +123,4 @@ A webhook receives each submission as JSON, at an `https://` URL. The `form.subm
 | `forms.view`, **View Form Submissions** | Reading submissions and downloading their files |
 | `forms.manage`, **Manage Forms** | Building forms and changing their settings |
 
-Forms are also abilities, for the assistant, MCP and the API: `forms/list`, `forms/get`, `forms/create`, `forms/save`, `forms/configure`, `forms/delete`, `forms/submissions`, `forms/submission`, `forms/submission-update`, `forms/submission-delete`, `forms/export` and `forms/activity`.
+Forms are also abilities, for the assistant, MCP and the API: `forms/list`, `forms/get`, `forms/create`, `forms/save`, `forms/delete` and `forms/overview` for forms, `form-settings/update` for a form's settings, `form-words/get` and `form-words/update` for its words in other languages, and `form-submissions/list`, `form-submissions/get`, `form-submissions/update`, `form-submissions/delete` and `form-submissions/csv` for what was sent.

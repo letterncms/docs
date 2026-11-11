@@ -52,7 +52,7 @@ Permissions are grouped by what they're about, **General** first. The number bes
 Click a person's row to open them. Besides their name, email and roles, the dialog has:
 
 - **Suspend**, which stops them signing in straight away. **Reactivate** lets them back in.
-- **Remove User**, which takes away their access for good. The content they wrote stays.
+- **Delete User**, which takes away their access for good. The content they wrote stays.
 - **Resend Invitation**, for someone who hasn't signed in yet.
 
 Nobody can take away their own roles or super admin status here and lock themselves out. Another administrator can.
@@ -67,7 +67,7 @@ Every person has a name, an email and roles. To add more, like a job title, a bi
 
 ## Your own account
 
-Under **Account**, at the top of **Settings**, everyone manages their own name, email and language, their password and [two-factor authentication](/operations/security) under **Security**, and their tokens under **API & Agents**. The theme is in the menu under your name.
+Under **Account**, at the top of **Settings**, everyone manages their own name, email and language, their password and [two-factor authentication](/operations/security) under **Security**, the AI agents connected as them under **Agents**, and their tokens under **API Tokens**. The theme is in the menu under your name.
 
 ## For developers
 
