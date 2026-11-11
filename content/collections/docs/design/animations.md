@@ -119,7 +119,27 @@ A block's `motion` is a list of animations:
 
 Page Load, Scroll and Loop compile to CSS (scroll-driven animations for Scroll); the other triggers use the Web Animations API. Where the browser has no scroll-driven animations, or the animation has `scrub`, a script moves the same keyframes over the same range. A pin is `position: sticky` in a wrapper as tall as the block plus the distance.
 
-For motion these settings can't say, such as a GSAP timeline, attach a script to the block: see [Block behaviors](/design/behaviors).
+### Scroll progress for styles and scripts
+
+A scroll animation with `trigger.progress: true`, or with `scrub`, tells its element how far along it is. It sets the custom property `--cms-progress`, from 0 to 1, on the element, and dispatches `cms:progress` on it, with `event.detail.progress`. The event bubbles.
+
+```css
+.bar { transform: scaleX(var(--cms-progress, 1)); transform-origin: left; }
+```
+
+```javascript
+el.addEventListener('cms:progress', (event) => {
+  if (event.detail.progress !== null) el.textContent = Math.round(event.detail.progress * 120)
+})
+```
+
+So a progress bar is one line of CSS, and a number that counts with the scroll is a few lines in a [behavior](/design/behaviors), with no animation library. For visitors who ask for less motion there is no progress to follow: the property is removed and one last event carries `null`.
+
+### The Motion Toggle, for scripts
+
+Pausing with the **Motion Toggle** block sets `<html data-cms-motion="paused">` and dispatches `cms:motion` on `document` (`event.detail.paused`). A block behavior's `reducedMotion` is true while motion is paused, and the behavior is mounted again when that changes. So a canvas or a script's own loop can stop with everything else.
+
+For motion these settings can't say, attach a script to the block: see [Block behaviors](/design/behaviors).
 
 A play action names the block and the animation id: `{ "do": "play", "node": "b9x2k4", "motion": "open", "mode": "toggle" }`.
 

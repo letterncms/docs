@@ -147,6 +147,16 @@ Interactions run on [Alpine.js](https://alpinejs.dev), in its CSP build, which n
 }
 ```
 
+### Naming another block in an attribute
+
+An attribute that points at another element takes that block's id with a `#`:
+
+```json
+{ "type": "box", "props": { "tag": "section" }, "attrs": { "aria-labelledby": "#hero-title" } }
+```
+
+On the page it becomes the id that block has: its anchor, a heading's own, or one made for it. It works in `aria-labelledby`, `aria-describedby`, `aria-controls`, `aria-owns`, `aria-details`, `aria-flowto`, `aria-activedescendant`, `aria-errormessage` and `for`. The build warns when the block named is not on the page. A plain word, without `#`, is an id you wrote yourself and stays as it is.
+
 ### All logic settings
 
 ```json
