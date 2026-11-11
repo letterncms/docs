@@ -80,7 +80,7 @@ Name them after your plugin, so they never clash with Lettern's own.
 
 | Action | Arguments | Fired when |
 |---|---|---|
-| `site.page.built` | `$uri, $entry, $file, $page` | The static build wrote a page. |
+| `site.page.built` | `$uri, $entry, $file, $page` | The static build wrote a page. On a term's archive `$entry` is the term, with the archive's address as its `uri`. |
 | `site.page.removed` | `$uri, $file` | The static build removed a page. |
 | `site.built` | `$manifest` | A build finished. |
 | `render.begin` | `$context` | A page starts rendering. |
@@ -148,9 +148,10 @@ The first argument is the value you return; the rest are there to help you decid
 | `site.html` | `$html, $context` | A rendered page. |
 | `site.build.extras` | `$extras` | Extra files the static build writes (sitemap, feeds…). |
 | `site.search.record` | `$record, $entry` | A page's search index record (`null` leaves it out). |
+| `site.search.records` | `$records` | Every record of the search index, to add pages that are no entry: `['id', 'title', 'url', 'section', 'collection', 'locale', 'description', 'headings', 'text']`. |
 | `site.links.answered` | `$answered, $path` | Whether an address your plugin answers itself is real, so `cms links:check` accepts it. |
 | `seo.alternates` | `$alternates, $entry` | `hreflang` alternates. |
-| `seo.sitemap` | `$urls` | Addresses your plugin answers itself, for the sitemap: `['uri' => …, 'updated' => …]`. |
+| `seo.sitemap` | `$urls, $locale` | Addresses your plugin answers itself, for the sitemap: `['uri' => …, 'updated' => …]`. With `'locale' => 'de'` an address is in that language's sitemap; without, in the default language's. `$locale` is the language whose sitemap is written, or `null` on a site with one. |
 
 ### Blocks
 

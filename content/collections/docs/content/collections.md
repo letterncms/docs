@@ -129,6 +129,7 @@ fields:
 | `fields` | The blueprint: see [Fields](/content/fields). |
 | `blueprints` | More sets of fields, for entries that come in kinds: see [Several blueprints](#several-blueprints). |
 | `taxonomy` | `true` makes the collection a [taxonomy](/content/taxonomies): its entries are terms that `terms` fields pick from. The **Taxonomy** switch in its settings. |
+| `archives` | A page per term of a taxonomy that lists this collection's entries filed under it: `{topics: '/blog/topics/{slug}'}`. See [Give a collection a page per term](/content/taxonomies#give-a-collection-a-page-per-term). **Term Archives** in its settings. |
 
 ### Several blueprints
 

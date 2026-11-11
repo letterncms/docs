@@ -36,6 +36,27 @@ A term's page is its entry's page, at the taxonomy's route: `/topics/news`. To l
 
 Each term's page now lists its own posts.
 
+## Give a collection a page per term
+
+A term's own page lists everything filed under it. A collection can have a page per term of its own too: the posts about *News* at `/blog/topics/news`, beside the jobs about it at `/jobs/topics/news`. That page is the term's archive in the collection.
+
+1. Open the collection whose entries are filed, such as *Posts*, and its **Settings** tab.
+2. Under **Term Archives**, press **Add Archive**, choose the **Taxonomy** and write the **URL Pattern**, such as `/blog/topics/{slug}`. `{slug}` is the term's.
+
+Every published term now has that page. It shows the term's title and the collection's published entries filed under it, ten to a page, with **Previous** and **Next**. Entries behind a [gate](/content/gated-content) are left out for those who may not read them.
+
+To design it, make a [template](/design/templates) with the handle `posts_archive`, the collection's handle and `_archive`, or `archive` for every collection without one of its own. In it:
+
+- The page is the term: bind text to **Title** and to the term's fields, and place its body with **Page Content**.
+- A **Repeat** with the source **Entries of This Term** lists the entries. Turn on **Paginate** for pages.
+- `archive.title` is the collection's name, `archive.url` the archive's address and `archive.term_url` the term's own page.
+
+The same Repeat source on the term's own page lists the entries of every collection.
+
+Archives are built with the site and kept in step: publishing, unpublishing or re-filing an entry, an entry whose time is over, and renaming or deleting a term all rebuild or remove the pages they touch. They are in the site's search and, with the SEO plugin, in the sitemap of their language, each with a Markdown version. In a second language an archive has that language's prefix and names its other versions (`hreflang`).
+
+An archive and a page cannot have the same address: saving a page where an archive is, or a term whose archive would be where a page is, is refused with the address.
+
 To list the terms themselves, with how many published entries each has, use the Repeat source **Taxonomy Terms**. Its **Of** is **All Terms**, for a topic index, or **This Page**, for the topics of the post on view.
 
 ## For developers
@@ -62,13 +83,27 @@ taxonomy: true
   max: 3
 ```
 
+A collection's archives name the taxonomy and the address. A language can have its own:
+
+```yaml
+# in content/collections/posts.yaml
+archives:
+  topics: '/blog/topics/{slug}'
+  authors:
+    route: '/blog/by/{slug}'
+    routes:
+      de: '/blog/von/{slug}'
+```
+
+The pattern starts with `/` and has `{slug}` or `{id}` in it. `collections/save` refuses a taxonomy that is none, a pattern without the term, and an address an entry or another archive already has.
+
 A terms field stores term ids. It also takes a term's slug or title, looked up in the entry's language: `"topics": ["news", "Design"]` is stored as the two ids. A name that no term has is refused (`There is no term “nope” in this language.`), and one that several nested terms share is refused with the id asked for.
 
 ### Abilities
 
 | Ability | Does |
 |---|---|
-| `terms/list` | The terms of a taxonomy, each with `count`: the entries of any collection that name it in a relation field, drafts included. Takes `taxonomy`, `locale`, `search`, `page`, `perPage` |
+| `terms/list` | The terms of a taxonomy, each with `count`: the entries of any collection that name it in a relation field, drafts included, and `archives`: its archive pages, as `{collection, uri}`. Takes `taxonomy`, `locale`, `search`, `page`, `perPage` |
 | `terms/import` | Turns a collection's free tags into terms: every tag of the tags field `from` becomes a published term of the taxonomy the terms field `into` picks from. Terms are found by title, so running it again changes nothing. A tag whose slug is taken gets one of its own and is reported under `collisions`. `clear: true` empties the tags afterwards |
 
 Terms are created, renamed, translated, nested and deleted with the `entries/*` abilities, in the taxonomy's collection.
@@ -95,3 +130,5 @@ The [content API](/agents/rest-api#read-published-content) filters by term, by s
 ```bash
 curl "https://your-site.com/api/v1/content/posts?filter[topics]=news&expand=topics"
 ```
+
+That is what the archive of *News* in *Posts* lists. `references=<term id>` gives what a term's own page lists when asked of each collection.
