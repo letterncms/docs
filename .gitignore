@@ -13,6 +13,7 @@
 /plugins/reading-time/node_modules/
 /public/_cms/
 /public/.htaccess
+/public/media/.htaccess
 /public/*.html
 /public/**/index.html
 /public/*.md
