@@ -302,6 +302,60 @@
         560
       ],
       "sidebar": "collapsed"
+    },
+    "content-media": {
+      "site": "examples",
+      "path": "/admin/media",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "collapsed"
+    },
+    "content-globals": {
+      "site": "examples",
+      "path": "/admin/globals/footer",
+      "size": [
+        960,
+        560
+      ],
+      "sidebar": "collapsed"
+    },
+    "content-languages": {
+      "site": "examples",
+      "path": "/admin/languages",
+      "size": [
+        960,
+        560
+      ],
+      "sidebar": "collapsed"
+    },
+    "operations-users": {
+      "site": "examples",
+      "path": "/admin/users",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "collapsed"
+    },
+    "plugins-store": {
+      "site": "examples",
+      "path": "/admin/plugins?tab=store",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "collapsed"
+    },
+    "sign-in": {
+      "site": "examples",
+      "public": true,
+      "path": "/admin/login",
+      "size": [
+        960,
+        640
+      ]
     }
   }
 }
