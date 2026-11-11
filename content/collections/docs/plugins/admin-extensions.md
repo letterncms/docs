@@ -405,7 +405,7 @@ For specialized collections such as trees, compose the same `DataTable`, `TableF
 
 ## Translations
 
-The admin speaks English, Dutch and French, and every string you show should too. Write it in English and wrap it in `t()`: the English text is its own key.
+The admin speaks English, Dutch, French and German, and every string you show should too. Write it in English and wrap it in `t()`: the English text is its own key.
 
 ```typescript
 import { plural, t } from '@letterncms/sdk'
@@ -416,6 +416,15 @@ plural(count, '{count} submission', '{count} submissions')
 ```
 
 Ship the translations in your package as `lang/<code>.json`: `{ "Send Test Email": "Testmail versturen" }`. The admin merges the core's and every active package's dictionaries for the user's language; a missing string shows in English.
+
+One English word can need two words in another language: the views of a page and the saved views of a list, a phone number and a phone's screen. Because the English text is the key, and one dictionary is read for the core and every package, give the rarer meaning a context after `||`:
+
+```typescript
+t('Views')               // a list's saved views: "Ansichten"
+t('Views||page views')   // how often a page was opened: "Aufrufe"
+```
+
+The context is part of the key, `"Views||page views": "Aufrufe"` in `lang/de.json`, and is never shown: a language without a translation for it, English included, shows `Views`. It works the same in `__('Expired||order')`. Write it in the `t()` or `__()` call, and only where a language needs it. Contexts need Lettern 0.24 or newer.
 
 PHP reads the same files. Use `__('…')` for messages you write. Labels you register (nav items, widgets, settings fields, permissions) are translated for you when they reach the admin.
 
