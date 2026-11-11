@@ -33,5 +33,5 @@ echo "Deploying $(git log -1 --format='%h %s')"
 
 # The newest releases the site allows: it runs what everyone else installs.
 composer update --no-dev --no-interaction --no-progress --optimize-autoloader
-php cms sync --no-interaction
+php cms migrate --no-interaction
 php cms build
