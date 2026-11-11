@@ -69,6 +69,8 @@ For CSS, import Tailwind's utilities into the `plugins` layer. The shared setup 
 @import "@letterncms/admin/theme.css";
 ```
 
+The theme gives a module the admin's own names, for use instead of raw values: the type scale (`text-2xs` to `text-3xl`, `text-display`), the radii (`rounded-xs` to `rounded-xl`), the colours and shadows, the durations `duration-fast`, `duration-base`, `duration-move` and `duration-slow`, and the layers `z-raised`, `z-drag`, `z-sticky`, `z-bar`, `z-drawer`, `z-overlay` and `z-tooltip`.
+
 `adminModule()` loads `dist/admin.css` too when it's there. A plugin with no stylesheet of its own passes `css: null`.
 
 ## Register things
@@ -299,7 +301,7 @@ A screen with tabs of its own uses `ScreenTabs` and `useScreenTabs()` from `@let
 
 A form is saved with `SaveBar` (`dirty`, `saving`, `error`, `onSave`, `onDiscard`): a bar over the bottom of the screen, there only while something changed, with **Discard** and **Save** (`⌘S`), that says what went wrong when saving fails. Leaving with changes asks first, and with changes in more than one form on view, one bar saves or discards them all. A screen shows no Save button of its own.
 
-Something on a screen that someone should see before going on, a problem or a step still to take, is a `Notice` from `@letterncms/ui` (`tone`, `icon`, `title`, its text, an `action` and `onDismiss`): the same one a view's `ui/notice` draws. A failed request is a `QueryError`, with **Retry**.
+Something on a screen that someone should see before going on, a problem or a step still to take, is a `Notice` from `@letterncms/ui` (`tone`, `icon`, `title`, its text, an `action` and `onDismiss`): the same one a view's `ui/notice` draws. Anything that failed is a `QueryError` (`title`, `message`, `onRetry`, and `compact` in a panel or a widget), with **Try Again**; never an `EmptyState`, which is for nothing being there yet (`compact` in a widget) beside `NoMatches` for a search that finds nothing. The way into deleting something is `<Button variant="destructive">`, followed by `confirm({ title, confirm, danger: true })`, where `confirm` is the verb on its button.
 
 ## Forms are fields
 
