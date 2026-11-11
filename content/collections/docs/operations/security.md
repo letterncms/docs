@@ -79,6 +79,12 @@ All changes go through [abilities](/agents/abilities): input is validated agains
 
 Every response sets `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `Cross-Origin-Opener-Policy` and `X-Frame-Options`, plus HSTS over HTTPS. The admin has a strict content security policy with a per-request nonce, and API responses are never cached.
 
+### Content security policy
+
+The public pages get a content security policy of their own when **Content Security Policy** is on under **Settings → General → Security**. A new site starts with it on; a site installed before keeps it off until you turn it on. **Report Only** sends it as `Content-Security-Policy-Report-Only`, so a browser reports what it would refuse and refuses nothing, while you try it. A page then runs only the scripts the site and its plugins put in its head and foot, each inline one named by its hash, and loads from the site itself, the hosts those scripts and stylesheets come from, the providers the Embed and Video blocks know, and the hosts you add under **Allowed Hosts** (`player.example.com`, `*.example.com` or `https://api.example.com`). Scripts waiting for [consent](/operations/consent) are named too, so they run once it is given, and images and video files from another address or a CDN have their hosts named. A script that gets into a page's content some other way runs nothing. Interactions run on Alpine's CSP build, so the policy never needs `unsafe-eval`.
+
+Built pages get the policy from the block Lettern keeps in `public/.htaccess`, one for the whole site, and pages PHP answers carry it as a header. It goes out once a full build has seen every page (**Publish Site**, or `php cms build`). The admin has its own; the builder's canvas and previews get none. Plugins add what they load from with the `site.policy` filter: Forms its CAPTCHA and a form's **Redirect To** on another site, Analytics a reporting address elsewhere. Turn it off and the policy goes; `nosniff` stays.
+
 ### Hardening switches
 
 | Setting | Effect |

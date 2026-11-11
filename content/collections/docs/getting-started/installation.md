@@ -108,6 +108,8 @@ Lettern makes WebP and AVIF versions of every uploaded image. AVIF needs GD buil
 
 The media library has rules of its own in `public/media/.htaccess`, which Lettern writes and writes again whenever it differs, on existing sites too: the right type for 3D models, textures and Rive files, `nosniff` on every file, and a long cache for the files a script loads. Change `public/.htaccess` for rules of your own, not this file. In git, commit it or ignore it.
 
+`public/.htaccess` itself has a block Lettern keeps current, between `# BEGIN cms` and `# END cms`: built pages are sent with `nosniff`, and with the site's [content security policy](/operations/security#content-security-policy) when it is on. What you write outside the block stays as it is; a site installed before gets the block on `cms migrate`.
+
 ```apacheconf
 <IfModule mod_mime.c>
     AddType model/gltf-binary .glb

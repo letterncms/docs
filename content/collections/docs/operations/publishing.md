@@ -53,7 +53,7 @@ A published page is HTML and CSS. It only loads JavaScript for what it actually 
 
 ## Turn it off
 
-Under **Publish** in **Settings → General**:
+Under **Publishing** in **Settings → General**:
 
 | Setting | When it's off |
 |---|---|
