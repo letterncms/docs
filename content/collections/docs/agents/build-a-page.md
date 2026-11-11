@@ -138,10 +138,10 @@ The same call without `--dry-run` makes the entry, as a draft. The answer is the
         "status": "draft",
         "data": {
             "content": [
-                { "id": "mc05ec6ffb2", "type": "section", "props": [], "children": [
+                { "id": "mc05ec6ffb2", "type": "section", "props": {}, "children": [
                     { "id": "m70141b0f04", "type": "heading", "props": { "text": "Pricing", "level": "2" } },
                     { "id": "m50281be3eb", "type": "paragraph", "props": { "text": "One plan, everything in it." } },
-                    { "id": "m926798545c", "type": "buttons", "props": [], "children": [
+                    { "id": "m926798545c", "type": "buttons", "props": {}, "children": [
                         { "id": "mba18c49926", "type": "button", "props": { "label": "Start", "url": "/about", "variant": "primary" } }
                     ] }
                 ] }

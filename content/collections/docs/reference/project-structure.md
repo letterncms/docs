@@ -12,6 +12,7 @@ However the site was installed, from the zip or with Composer, the folder is a C
 
 | Path | What it holds | Commit to git? |
 |---|---|---|
+| `AGENTS.md` | How to work on this site, for coding agents: written once at install, then yours. See [AI and automation](/agents#a-new-site-tells-agents-how-to-work-on-it). | Yes |
 | `index.php`, `cms`, `.htaccess` | Front controller, command line and Apache rules. Lettern keeps them current. | With Composer: no. They come back on `composer install` |
 | `setup.php`, `bundle.json` | What a fresh upload uses to fetch the release. Unused once it has run. | No |
 | `composer.json`, `composer.lock` | What this site uses: `letterncms/cms` and its plugins. | Yes |

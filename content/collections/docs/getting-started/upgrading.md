@@ -88,6 +88,20 @@ Also check:
 - **Proxies.** Lettern no longer uses a proxy from the server's environment for what it fetches. See [Servers behind a proxy](/operations/deployment#servers-behind-a-proxy).
 - **MCP clients.** The server speaks the revisions `2026-07-28` and `2025-11-25`. A client that only knows an older one is told which are spoken.
 
+### Names that changed in 0.23
+
+| Was | Is |
+|---|---|
+| Abilities of Forms and SEO | Named `thing/verb` like the core's: see the [table](/agents/abilities#names). Update those plugins with the CMS |
+| A plugin must register a Dashboard widget | It needn't. `PackageManager::problems()`, the "invalid" status of `php cms plugins` and `AdminRegistry::widgetsByPackage()` are gone; a plugin test that asserted `problems()` is empty drops that line |
+| The `account.api` slot of the admin | A section added to Account with the `view.account` filter |
+| The **Site Setup** widget | **Get Started** on the Dashboard; what it listed is under **Settings → General** and **Email** |
+| Media, Analytics and Forms in the settings sidebar | The **Settings** tab of their own screen. `/settings/<namespace>` still leads there |
+| An empty map as `[]` in an answer | `{}`, also for a block's `props` and an entry's `data` in the content API |
+| `localizable: false` on a field, ignored | Honored: a translation takes the original's value. See [Languages](/content/languages#fields-shared-across-languages) |
+
+A file's address now changes whenever its bytes do, as after **Replace File** or **Crop**: content that names the old address is rewritten, and what uses the file by its id needs nothing.
+
 ### How a self-update works
 
 Each release lives in its own folder, `runtime/<version>/`, and the one-line file `runtime/current` names the one in use.

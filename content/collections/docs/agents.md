@@ -13,6 +13,19 @@ Behind every button in the admin is a named action, called an [ability](/agents/
 
 Start with the [assistant](/agents/assistant): it answers in the [workspace](/getting-started/workspace), one press of `⌘J` away. To see what an agent of your own does, step by step, read [Build a page with an agent](/agents/build-a-page).
 
+## A new site tells agents how to work on it
+
+Installing a site, with `cms install` or through the setup in the browser, writes an `AGENTS.md` in its folder: the file coding agents such as Claude Code and Cursor read before they touch a project. It is written from the site as installed, so it names only what that site has:
+
+- What the site is, and where content, design and settings live.
+- How to find the abilities and try one without writing: `php cms run abilities/list --json`, `collections/schema`, `--dry-run`.
+- How to build and check the pages: `php cms build --strict --json` and `php cms links:check`.
+- Where the MCP server is.
+- The rules that matter: abilities instead of the database, Block Markdown in content files, design tokens instead of fixed values, secrets left alone.
+- The collections, modules and plugins that were on when it was written.
+
+From then on the file is yours. It is never written again, and a site that already has one keeps it.
+
 ## For developers
 
 Every way in validates input against the ability's schema, checks the same permissions and writes to the same audit log. They differ in how they sign in:

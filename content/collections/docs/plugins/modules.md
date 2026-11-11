@@ -85,7 +85,6 @@ A module is a plugin that ships with Lettern: the same `composer.json` (`type: c
 
 - It lives in `modules/` of `letterncms/cms`.
 - `"required": true` in `extra.cms` marks the ones that may not be switched off.
-- It doesn't have to bring a Dashboard widget, as every plugin must. Most do anyway.
 
 If you know how to write a plugin, you know how to write a module. Read `modules/audit` (a provider, one ability, one screen, one setting) next to [Your first plugin](/plugins/your-first-plugin).
 
