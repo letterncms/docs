@@ -73,6 +73,25 @@ Tokens are shown once and stored hashed. **Scopes** are ability patterns (`entri
 | `POST /api/v1/abilities/{name}` | Runs any ability with a JSON body. |
 | `POST /api/v1/batch` | Runs up to 25 abilities: `{ "calls": [{ "ability": "…", "input": {} }], "stopOnError": true }`. |
 
+### OpenAPI
+
+`GET /api/v1/openapi.json` is the API as an OpenAPI 3.1 document, for tools that generate a client or want to know every call before making one. What it holds depends on who asks:
+
+| Asked | It has |
+|---|---|
+| Without a token | How the API works: `/abilities`, `/abilities/{name}` and `/batch`, the error shape, bearer authentication, and the public content API (`/content/{collection}`, `/content/{collection}/{slug}`) with its query parameters and answers. It names no ability, so it doesn't say which plugins a site runs |
+| With a token | A path for every ability that token may run, plugins' included: `/abilities/entries/list` with `get` and `post`, each with its input and output schema |
+
+```bash
+curl https://your-site.com/api/v1/openapi.json -H "Authorization: Bearer cms_…"
+```
+
+`GET /api/v1` links to it, under `endpoints.openapi`.
+
+### Query parameters
+
+A read ability called with `GET` reads its query string as its schema asks: `?perPage=5` is a number, `?force=true` a boolean and `?ids[]=a&ids[]=b` a list. A map, or a list of maps, is one value, as JSON. A number too large to be one is refused as invalid input.
+
 ### Responses and limits
 
-Successful calls return `{ "data": … }`. An ability that changes something takes `"dryRun": true`: nothing is written, and `data` is `{ dryRun, ability, checked, input, changes }`, where `checked` is `"full"` when the call was refused exactly where the real one would be and `changes` lists what would change or be removed, and `"input"` when only the input and your permission were checked. Errors return `{ "error": { "type", "message", "details" } }` with status 422, 403, 401, 404, 409 or 500. Each token can make 240 requests a minute.
+Successful calls return `{ "data": … }`. An ability that changes something takes `"dryRun": true`: nothing is written, and `data` is `{ dryRun, ability, checked, input, changes }`, where `checked` is `"full"` when the call was refused exactly where the real one would be and `changes` lists what would change or be removed, and `"input"` when only the input and your permission were checked. Errors return `{ "error": { "type", "message", "details" } }` with status 422, 403, 401, 404, 409 or 500. A token asked for something outside its scopes gets `403`: `{"error": {"type": "forbidden", "message": "This token is not scoped for entries/delete."}}`. Each token can make 240 requests a minute.

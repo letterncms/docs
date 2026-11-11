@@ -34,6 +34,36 @@ php cms run entries/delete id=01jx… --dry-run
 
 Every command takes `--json`. It then prints one JSON document and nothing else, `{"data": …}` or `{"error": {…}}` with a non-zero exit, and never asks a question: `pull`, `push` and `sync:undo` need `--yes` with it. An unknown command, or a site that can't start, answers the same way.
 
+```bash
+php cms build --json
+```
+
+```json
+{
+    "data": {
+        "pages": 7,
+        "seconds": 0.2,
+        "errors": [],
+        "warnings": []
+    }
+}
+```
+
+```bash
+php cms vendor remove nothing --json
+```
+
+```json
+{
+    "error": {
+        "type": "invalid_input",
+        "message": "Nothing is imported as “nothing”."
+    }
+}
+```
+
+`type` is one of `invalid_input`, `forbidden`, `unauthenticated`, `not_found`, `conflict` and `failed`. `details`, when it is there, names what was wrong by its path in the input. Something unexpected is logged and said as "The command failed.", not as its internals.
+
 ## Build and check the site
 
 | Command | Does |
