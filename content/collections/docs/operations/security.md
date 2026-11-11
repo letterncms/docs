@@ -69,7 +69,9 @@ All changes go through [abilities](/agents/abilities): input is validated agains
 - Interactions run on Alpine's CSP build: expressions can read and change the element's own state but can't reach `window`, `document`, other globals or arbitrary functions, and every script setting is checked when it's saved. Style values that could escape CSS are refused.
 - Links and sources that come from data or from an interaction (a bound `href` or `src`) only take `http(s)`, relative, `#`, `?`, `mailto:` and `tel:` addresses. A `javascript:` URL in a field never reaches the page.
 - Uploads are identified by their contents, not their names. SVGs are stripped of scripts and event handlers, and photo metadata is removed. `public/` never executes PHP.
-- Fetching remote files (media import) refuses private and internal network addresses, re-checks every redirect and limits size.
+- Everything Lettern fetches (updates, the store, remote media, fonts, libraries, Sync, webhooks) goes only to public addresses. Private, shared, multicast and site-local ranges are refused, as are the IPv6 forms that carry an IPv4 address; an IPv4-mapped or NAT64 address is judged as the IPv4 address it carries. The address the connection really reached is checked against the one that was vetted before anything is sent, every redirect is checked again, and size is limited.
+- It never fetches through a proxy from the server's environment (`http_proxy`, `https_proxy`, `ALL_PROXY`): a proxy would connect to an address nobody checked.
+- Media is served with `X-Content-Type-Options: nosniff`, so a browser never treats an uploaded file as something its type doesn't say. The rule is in `public/media/.htaccess`, which Lettern writes and keeps current on every site.
 - Paths are resolved safely everywhere: no `../` escapes.
 - Form submissions pass a honeypot, a time trap, rate limits and an origin check. CSV exports neutralize spreadsheet formulas.
 
