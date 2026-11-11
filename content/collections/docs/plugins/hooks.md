@@ -55,7 +55,9 @@ Name them after your plugin, so they never clash with Lettern's own.
 | `entry.structure-changed` | `$entry, $user` | An entry moves or its position changes. Its editorial draft stays unpublished; use this hook to invalidate structural output. |
 | `entries.reordered` | `$collection, $ids, $user` | Siblings were reordered. |
 | `collection.saved`, `collection.deleted` | `$collection` / `$handle` | A collection definition changed. |
-| `globals.saved` | `$set` | A global set's fields or values changed. |
+| `globals.saved` | `$set` | A global set's values changed. |
+| `global-set.saved`, `global-set.deleted` | `$set` / `$handle` | A global set was saved, its fields or its values, or deleted. |
+| `fieldset.saved` | `$handle` | A fieldset was saved. |
 | `navigation.saved`, `form.saved` | `$handle` | A menu or form changed. (Templates and components are entries: use `entry.saved` and `entry.published`.) |
 | `redirects.saved` | | The redirect list changed. |
 
@@ -147,6 +149,8 @@ The first argument is the value you return; the rest are there to help you decid
 | `site.scope` | `$scope, $context` | The data templates and blocks can bind to (`site`, `entry`, `globals`, `page`, `pagination`…). `$context->mode` says who the page is for: only add a signed-in person's data in `request`, as a `build` goes to a public file. |
 | `site.html` | `$html, $context` | A rendered page. |
 | `site.build.extras` | `$extras` | Extra files the static build writes (sitemap, feeds…). |
+| `site.llms` | `$document` | The site's `llms.txt` before it is written: `title`, `summary` and `sections` (a list of pages per heading, each with `title`, `url`, `description` and its `entry`). Change it instead of writing a second file. |
+| `schemas.documents` | `$documents` | The JSON Schema files of `content/schemas/`, by path: add your own (`'reviews.json' => $schema`). |
 | `site.search.record` | `$record, $entry` | A page's search index record (`null` leaves it out). |
 | `site.search.records` | `$records` | Every record of the search index, to add pages that are no entry: `['id', 'title', 'url', 'section', 'collection', 'locale', 'description', 'headings', 'text']`. |
 | `site.links.answered` | `$answered, $path` | Whether an address your plugin answers itself is real, so `cms links:check` accepts it. |

@@ -69,7 +69,7 @@ A `<title>` from the title format, a meta description, a canonical URL and `robo
 | `/sitemap.xml` | Every live, indexable page, with alternates per language. With more than one language it is an index of `/sitemap-en.xml`, `/sitemap-de.xml` and so on. |
 | `/blog/feed.xml` | RSS for each collection of dated entries, per language (`/de/blog/feed.xml`), linked from its pages. Set `feed: false` on the collection to turn it off, or `feed: {path, limit, title}` to change it. |
 | `/robots.txt` | Points to the sitemap and blocks the AI crawlers you chose. |
-| `/llms.txt` | A summary of the site and links to its pages' Markdown, for AI tools. |
+| `/llms.txt` | A summary of the site and links to its pages' Markdown, for AI tools. Every site has an `llms.txt`; SEO adds your summary, the descriptions and the Markdown links, and leaves out pages hidden from search. |
 | `/.well-known/security.txt` | Where to report a vulnerability, once you set **Security Contact** to an email address or a page. |
 | `/<page>.md` | A clean Markdown version of every page, its **Markdown twin**. Pages announce it with `<link rel="alternate" type="text/markdown">`. Turn it off with **Publish Markdown Versions of Pages**. |
 

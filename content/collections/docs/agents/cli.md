@@ -71,6 +71,7 @@ php cms vendor remove nothing --json
 | `cms serve --port=8000` | Starts a development server. |
 | `cms build` | Builds the whole static site. `--strict` fails on warnings, such as a missing image. |
 | `cms links:check` | Fails on links, images and anchors in the built site that lead nowhere. External links are left alone. |
+| `cms schemas` | Writes the [JSON Schema files](/agents#the-content-model-as-json-schema-files) of the content model to `content/schemas/`. The site keeps them current itself; `--check` writes nothing and fails when they are not. |
 | `cms media:check` | Imports `content/media` and reports what's broken: see [Media](/content/media). `--strict`, `--adopt`. |
 | `cms publish:scheduled` | Lets scheduled entries go live. Run it from cron every minute. |
 
