@@ -48,6 +48,7 @@ Style the Repeat itself in **Design** to lay the items out, for example as a gri
 | **Collection Entries** | Entries of a collection: the latest posts, all dishes, the projects in a category |
 | **Child Pages** | The pages under this page, under its parent, or in its whole section |
 | **Breadcrumbs** | The pages above this one, for a breadcrumb trail |
+| **Previous and Next Entry** | The entries before and after this one in its collection's order, for the foot of an article or a project. **Show** takes either side alone, and **Go Round at the Ends** leads from the last back to the first |
 | **Headings on This Page** | The page's headings, for a table of contents |
 | **Menu** | The links of a [menu](/content/navigation) |
 | **Languages** | Your site's languages, for a [language switcher](/content/languages) |
@@ -181,6 +182,7 @@ The Repeat's own props: `tag` (`div`, `ul`, `ol`, `section`, `nav`), `as` (the i
 
 - **Where**: `where` narrows `entries` by any field, as a list of `{"field": "category", "op": "=", "value": "{entry.category}"}`. `op` is one of `=`, `!=`, `<`, `>`, `<=`, `>=`, `like`, `in`, `not in`, `contains`, `null` and `not null`, and the value may use data as in text.
 - **Groups**: `group_by` names a field of the items. The Repeat then runs once per group, in the order groups first appear, with `item.label` and `item.items`; nest a Repeat with `source: "list", path: "item.items"` for the items. Items without a value share a group with an empty label.
+- **Previous and next**: `source: "neighbors"` lists the entry before and the entry after the current one: newest last in a dated collection, the tree's reading order, else the collection's own order. `show` is `both`, `previous` or `next`, and `wrap: true` goes round at the ends.
 - **Sections**: in a tree, `source: "children", of: "root"` lists the section the page is in from any depth, and `state:active` bound to `item.active` marks the section or link the reader is in. This documentation's navigation is built that way.
 - **Pagination**: with `paginate` on, the static build writes `/page/2`, `/page/3`…; bind links after the Repeat to `pagination.prev` and `pagination.next`.
 - **Rebuilds**: a page records the collections, entries, menus and globals it reads, so publishing a post rebuilds the pages that list it and nothing else.

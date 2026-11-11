@@ -15,6 +15,7 @@ Open **Design System → Motion → Page Transition** and set **Page Loads** to 
 From then on:
 
 - A link to a page of the site swaps the page without a page load.
+- A link to the page you are on, like the logo or the current menu item, scrolls to the top and loads nothing, so what is kept across pages isn't restarted.
 - A link is fetched ahead when the pointer rests on it, a finger touches it or the keyboard focus lands on it, so the page is there when it is asked for.
 - **Back** and **Forward** bring each page back where it was scrolled to.
 - Keyboard focus moves to the new page's main content, and its title is announced to screen readers.
@@ -51,10 +52,10 @@ In `content/design/tokens.json`:
 "transition": { "type": "fade", "duration": 0.25, "navigation": "client" }
 ```
 
-`navigation` is `client` or `document` (the default). `design/update` replaces the whole `transition`, so send its `type` and `duration` with it:
+`navigation` is `client` or `document` (the default). `design/update` with only part of the transition keeps the rest:
 
 ```bash
-php cms run design/update --input='{"transition":{"type":"fade","duration":0.25,"navigation":"client"}}'
+php cms run design/update --input='{"transition":{"navigation":"client"}}'
 ```
 
 A block's name is its `persist`:
