@@ -419,7 +419,7 @@ Ship the translations in your package as `lang/<code>.json`: `{ "Send Test Email
 
 PHP reads the same files. Use `__('…')` for messages you write. Labels you register (nav items, widgets, settings fields, permissions) are translated for you when they reach the admin.
 
-Each person picks their **Language** in **Account**. **Admin Language** in **Settings → General** sets a default for everyone else, and without one the browser's language is used (English when Lettern doesn't speak it), the sign-in screen included. Dates and numbers follow it (`locale()` from `@letterncms/sdk`).
+Each person picks their **Language** in **Account**. **Admin Language** in **Settings → General** sets a default for everyone else, and without one the browser's language is used (English when Lettern doesn't speak it), the sign-in screen included. The core and its plugins come in German as well as English. Dates and numbers follow it (`locale()` from `@letterncms/sdk`).
 
 ## In the workspace
 

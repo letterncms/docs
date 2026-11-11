@@ -53,8 +53,19 @@ The editor already shows the real page, so most of the time you just look. To tr
 
 Your work saves by itself as you go. Nobody sees it until you press **Publish** at the top. Templates and components work the same way: publishing one updates every page that uses it. See [Entries](/content/entries).
 
+## Edit on a phone
+
+The editor works on a phone, with the same page and the same blocks, arranged for a small screen:
+
+- The top bar keeps **Insert Block**, **Undo** and **Redo**. A line under it says which page is open and whether it is saved.
+- Select a block and press the details button: the block's settings open in a sheet that rises from the bottom, while the block scrolls into view above it. The page's own details are in the block's menu there.
+- **Insert Block** opens as a sheet too.
+- The chat is in **More Actions**.
+- Rows in the outline are tall enough to tap.
+
 ## Keyboard tips
 
 - In a row of options, press `Tab` to reach it and the arrow keys to choose.
 - `⌘D` duplicates the selected block, `⌫` deletes it.
+- Press `?` for every key that works on the screen you are on. In the editor that includes **Save**, **Publish** and the details panel.
 - More in [Writing](/editing/writing#keyboard-shortcuts).
