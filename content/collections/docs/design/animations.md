@@ -34,7 +34,7 @@ The **Trigger** decides when an animation runs.
 | Trigger | Plays |
 |---|---|
 | **Appear** | Once, when the block scrolls into view. **Starts** says how far in: **A little into view** by default. Turn on **Reverse When Scrolled Back** to replay it |
-| **Scroll** | Along with the scroll, between a **From** and a **To** point, like from when the block enters the screen to when it leaves |
+| **Scroll** | Along with the scroll, from where it **Begins** to where it **Ends**, like from when the block enters the screen to when it leaves. **Pin Distance** holds the block at the top of the screen for that much scrolling while its steps play, and **Smoothing** lets the steps trail the scroll by that many seconds |
 | **Hover** | When pointed at or focused with the keyboard, and reverses after |
 | **Press** | While pressed |
 | **Page Load** | As the page first appears |
@@ -43,7 +43,7 @@ The **Trigger** decides when an animation runs.
 
 **Appear** and **Scroll** can **Watch** another block: the animation plays when that one comes into view.
 
-To keep something in place while a scroll animation plays, make it sticky in **Design** (**Position**), inside a taller parent, and let the animation watch that parent.
+To keep something in place while a scroll animation plays, give the animation a **Pin Distance**, like `150vh`: the block holds at the top of the screen for one and a half screens of scrolling, its steps play over that distance, and the page moves on. The space is made for you, and it needs no script.
 
 ## Change how it moves
 
@@ -54,13 +54,15 @@ An animation is made of one or more steps. Each step moves a **Target** from one
 | **This Element** | The block itself |
 | **Each Child in Turn** | The blocks inside it, one after another |
 | **Each Word** | The text, word by word. It stays real text for readers and search engines. **Rise from Behind a Line** makes each word slide up from behind an edge |
+| **Each Line** | The text, line by line, as it wraps on the visitor's screen. For **Appear**, **Hover**, **Press** and **On Event** |
+| **Each Letter** | The text, letter by letter. Letters stay inside their words, so a word never breaks across lines, and screen readers read the block as its text. Text with a link in it, and text in a script that joins its letters, such as Arabic, animates by word instead |
 | **Another Element** | Any other block on the page |
 
 **From** is how the step starts, **To** is how it ends. Leave a side empty to use the block's own design: from *opacity 0, move Y 32* fades the block in and slides it up into place.
 
 You can animate opacity, movement, scale, rotation (also in 3D), skew, blur, brightness, grayscale, clip path, colors, corner radius, shadow, width, height and letter spacing, plus the origin and perspective. Colors can use your design tokens.
 
-Under **Timing**, set the duration and a delay in seconds, and, for children or words, the time between items. **Ease** sets the feel: **Smooth Out**, **Expo Out**, **Overshoot**, **Elastic**, **Bounce**, **Linear** and more, or a curve of your own.
+Under **Timing**, set the duration and a delay in seconds, and, for children or words, the time between items. **Ease** sets the feel: **Smooth Out**, **Expo Out**, **Overshoot**, **Elastic**, **Bounce**, **Linear** and more, or a curve of your own. The curves of your [design system](/design/design-system), under **Motion**, come first in the list.
 
 Press **Add Step** to animate more in the same animation. Each step starts when the one before ends, unless you give it its own start time.
 
@@ -80,11 +82,11 @@ Longer stories that repeat, like a product demo built from several steps, are po
 
 ## Fast and accessible
 
-- **Page Load**, **Scroll** and **Loop** are plain CSS, with no script, so they never hold back the page. **Appear**, **Hover**, **Press** and **On Event** use a small script that only loads on pages that need it. If it never runs, everything shows as designed.
+- **Page Load**, **Scroll** and **Loop** are plain CSS, with no script, so they never hold back the page. A scroll animation with **Smoothing** is moved by a small script, as is any scroll animation in a browser without scroll-driven animations. **Appear**, **Hover**, **Press** and **On Event** use a small script that only loads on pages that need it. If it never runs, everything shows as designed.
 - A **Page Load** animation decides when the page looks done, so it stays short: its delay stops at 0.2 seconds and its last item starts by 0.3 seconds, however long a stagger you set.
 - **Appear** skips anything already on screen when the page opens.
-- Visitors who ask for reduced motion get the finished design: appear, load, scroll and loop animations don't run, and hover, press and event animations jump to their end.
-- Content is never hidden waiting for a script, and printing shows everything. A browser without scroll-driven animations shows the design in its final state.
+- Visitors who ask for reduced motion get the finished design: appear, load, scroll and loop animations don't run, nothing is pinned, and hover, press and event animations jump to their end.
+- Content is never hidden waiting for a script, and printing shows everything.
 
 ::: callout {"props":{"tone":"tip","text":"A block with <code>overflow: hidden</code> becomes the scroller for a scroll animation inside it. Use <code>overflow: clip</code> instead."}}
 :::
@@ -109,13 +111,15 @@ A block's `motion` is a list of animations:
 ]
 ```
 
-- `trigger.type`: `appear`, `scroll`, `hover`, `press`, `load`, `loop`, `event`. `start` and `end` read `<element edge> <viewport position>`, with `top`, `center` or `bottom` for the edge and those or a percentage for the position (`top 80%`, `center center`). `node` (`#<block id>`) watches another element.
+- `trigger.type`: `appear`, `scroll`, `hover`, `press`, `load`, `loop`, `event`. `start` and `end` read `<element edge> <viewport position>`, with `top`, `center` or `bottom` for the edge and those or a percentage for the position (`top 80%`, `center center`). `node` (`#<block id>`) watches another element. A `scroll` trigger takes `pin`, a distance in `px`, `rem`, `vh`, `svh`, `lvh` or `dvh` (`"150vh"`; `true` is `100vh`), and `scrub`, between 0.05 and 3 seconds.
 - `on`: `desktop`, `tablet`, `mobile`; absent means every screen.
-- `steps[].target`: `self`, `children`, `words` or `#<block id>`; `steps[].mask` clips each word. `steps[].at` is a start time in seconds; without it a step starts when the previous one ends.
-- `steps[].ease`: a name (`expo.out`, `power3.inOut`, `sine.inOut`, `back.out`, `elastic.out`, `bounce.out`, `linear`…), or `cubic-bezier()`, `linear()` or `steps()` as written.
+- `steps[].target`: `self`, `children`, `words`, `lines`, `chars` or `#<block id>`; `steps[].mask` clips each word. `lines` are real lines with `appear`, `hover`, `press` and `event`, and masked words with the triggers that are CSS. `chars` falls back to words past 600 letters, and nothing is split past 200 words. `steps[].at` is a start time in seconds; without it a step starts when the previous one ends.
+- `steps[].ease`: a name (`expo.out`, `power3.inOut`, `sine.inOut`, `back.out`, `elastic.out`, `bounce.out`, `linear`…), `cubic-bezier()`, `linear()` or `steps()` as written, or a curve of the design: `token:ease.<name>`.
 - `repeat` (`-1` forever) and `yoyo` repeat each step; with `hold` (seconds) on an appear animation they repeat the whole timeline.
 
-Page Load, Scroll and Loop compile to CSS (scroll-driven animations for Scroll); the other triggers use the Web Animations API.
+Page Load, Scroll and Loop compile to CSS (scroll-driven animations for Scroll); the other triggers use the Web Animations API. Where the browser has no scroll-driven animations, or the animation has `scrub`, a script moves the same keyframes over the same range. A pin is `position: sticky` in a wrapper as tall as the block plus the distance.
+
+For motion these settings can't say, such as a GSAP timeline, attach a script to the block: see [Block behaviors](/design/behaviors).
 
 A play action names the block and the animation id: `{ "do": "play", "node": "b9x2k4", "motion": "open", "mode": "toggle" }`.
 

@@ -69,6 +69,27 @@ The **Image** block renders a complete `<picture>` element. A background image i
 
 In PHP, a media field's value renders itself (`(string) $entry->hero`), and offers `img(['sizes' => …, 'priority' => true])` and `src(1200, 'jpg')`.
 
+### Files for scenes and animation players
+
+The library also keeps what a script loads by address, for a 3D scene or an animation player. Each kind is recognized by its contents, not its name, and has a size limit of its own; the site's **Max Upload Size** still applies when it is lower.
+
+| File | Kind | Limit |
+|---|---|---|
+| `.glb` | 3D model (binary glTF) | 64 MB |
+| `.gltf` | 3D model, with its data embedded | 8 MB |
+| `.hdr` | Environment map (Radiance HDR) | 32 MB |
+| `.ktx2` | GPU texture | 32 MB |
+| `.json` | Lottie animation | 4 MB |
+| `.riv` | Rive file | 16 MB |
+
+Some are refused, with the reason, also when the file arrives by git or FTP:
+
+- A model that points at other files, which it wouldn't find: export it as one `.glb` with everything inside.
+- A Lottie animation with expressions, with fonts to load, or with images that aren't embedded.
+- A `.json` file that is not a Lottie animation.
+
+None of them is resized or converted. They are served with their own type and cached for a year: a media file's name never gets new contents. A [block behavior](/design/behaviors) loads one by its address under `/media/`, with a library added through [`cms vendor`](/design/code#add-a-library), such as Three.js, lottie-web or Rive.
+
 ### Importing from a URL
 
 `media/import` accepts a public URL or base64 data. Downloads can't reach private network addresses, are size-limited and are checked like any upload.

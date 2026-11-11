@@ -80,7 +80,7 @@ The `site/build` and `site/build-status` abilities let agents and scripts start 
 
 ### What a page loads
 
-JavaScript comes only with what a page uses: the scripts runtime for [interactions](/design/interactions), a small player for [animations](/design/animations) that wait for scrolling or hover (the rest are plain CSS), syntax highlighting for code blocks, and instant search for the Search block. Each is a separate file, loaded on demand, plus `custom.js` if the site has one.
+JavaScript comes only with what a page uses: the scripts runtime for [interactions](/design/interactions), a small player for [animations](/design/animations) that wait for scrolling or hover (the rest are plain CSS), syntax highlighting for code blocks, and instant search for the Search block. Each is a separate file, loaded on demand, plus `custom.js` if the site has one and the design's [scripts](/design/code) where a page loads them.
 
 ### Nothing personal reaches a built page
 
