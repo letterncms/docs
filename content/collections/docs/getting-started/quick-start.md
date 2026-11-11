@@ -23,6 +23,10 @@ A few shortcuts save a lot of clicking:
 | `⌘J` | Open the workspace, at the right edge |
 | `?` | Show every key that works on the screen you are on |
 
+The admin is light or dark. Click your name at the bottom of the sidebar and choose **System**, **Light** or **Dark**; `⌘K` offers the same. The choice is kept on your account, so it is the same in every browser you sign in to.
+
+The admin also speaks other languages, German (Deutsch) among them. Choose yours under **Account → Profile → Language**. **Admin Language** under **Settings → General** sets it for everyone who hasn't chosen, and without either the admin follows your browser.
+
 ## 2. Edit a page
 
 Open **Pages** and click **Home**. The page opens exactly as visitors see it, and you edit it right there.

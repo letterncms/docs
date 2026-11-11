@@ -24,6 +24,8 @@ After that, your edits are kept apart from the live version. Visitors keep seein
 | **Scheduled** | Goes live by itself at the time you chose. |
 | **Expired** | Was live until its end date. It is off the site, and can be published again. |
 
+On a live entry, **Published** in the top bar opens what publishing offers next: **Publication Date…** and **Unpublish**.
+
 Changed your mind? Open **More Actions** (the `…` button) and choose **Discard Unpublished Changes** to go back to the live version, or **Unpublish** to take the entry off the site. In the collection's list, each row's **⋯** menu has **Publish** and **Unpublish** too.
 
 | Press | To |
@@ -35,7 +37,7 @@ Changed your mind? Open **More Actions** (the `…` button) and choose **Discard
 ::: callout {"props":{"tone":"tip","text":"Drafts can be incomplete. Required fields only need to be filled in before you publish."}}
 :::
 
-Saving happens as you go. A small dot beside the title means a change is still on its way. If a save doesn't go through, a line over the page says why, like *Couldn't save. Check your connection.*, with **Retry**. Your changes stay on screen, and Lettern asks before you leave the page.
+Saving happens as you go. A small dot beside the title means a change is still on its way. If a save doesn't go through, a line over the page says why, like *Couldn't save. Check your connection.*, with **Try Again**. Your changes stay on screen, and Lettern asks before you leave the page.
 
 ## Preview it
 
@@ -59,7 +61,7 @@ An entry that's already live can't be scheduled for the future. Unpublish it fir
 
 Press the panel button in the toolbar, named after the kind of entry (**Page Details**), or `⌘.`, to open the details on the right. The first tab is named after the kind of entry (**Page**, **Post**, **Dish**). **History** follows it, then any tabs plugins add, like **SEO**.
 
-On the first tab you change the title, the URL slug and the **Author**. Fields set to **Show as Property** appear here too. Under **Info** you see its status and when it was published; people who can manage collections also see when it was created and updated, and its ID.
+On the first tab you change the title, the URL slug and the **Author**. Fields set to **Show as Property** appear here too. Under **Info** you see its status and when it was published; people who can manage collections also see when it was created and updated. An entry's ID is **Copy ID** in **More Actions**.
 
 The **Author** is the person credited for the entry, not necessarily the last person who edited it. It starts as whoever created the entry. You can change it or clear it; an entry nobody is credited for shows **Unassigned**. On a live entry, a new author waits for your next publish, like any other change.
 
@@ -67,7 +69,11 @@ The **Author** is the person credited for the entry, not necessarily the last pe
 
 Every save is kept as a version. Several saves by the same person in a short time count as one.
 
-Open the details and choose **History**: a timeline of what happened, who did it and when. Point at the version you want and press **Restore**. Its content comes back as unpublished changes, so you can check it before publishing. What you had before stays in the history.
+Open the details and choose **History**: a timeline of what happened, who did it and when.
+
+Click a version, tap it, or reach it with the keyboard, and it opens on exactly what restoring it would change. What is there now stands under **Current**, what the version brings back under **This Version**, field by field, and for a page block by block. A version that holds nothing different says *Same as now*.
+
+Press **Restore Version** under it to bring it back. Its content comes back as unpublished changes, so you can check it before publishing. What you had before stays in the history.
 
 ## Order and nest pages
 
