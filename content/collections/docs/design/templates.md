@@ -39,7 +39,7 @@ A page uses the first template it finds here:
 
 The **Template** picker's first option, **Default**, names the template a page gets when you haven't chosen one, like *Default (Page)*. Choose another template to override it; choose **Default** again to inherit. If a chosen template has been deleted, the picker says so and shows the one used instead.
 
-A template's **Offered For** setting limits which collections can pick it. Leave it empty to offer it everywhere.
+A template's **Offered For** setting limits which collections can pick it, the sign-in and account pages among them. Leave it empty to offer it everywhere.
 
 ## Special templates
 
