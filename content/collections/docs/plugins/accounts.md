@@ -104,7 +104,7 @@ $hooks->addFilter('account.screens', fn (array $screens) => [...$screens, 'order
 ]]);
 ```
 
-The page gets the sign-in redirect, every language prefix and a row in **Pages**, under **Built-in Pages** › **Account**, where a designer can **Customize** it. `seed` is its starting content: register your block as usual, and post its forms to a route of your own in the `web` middleware group, which gives you the session and CSRF protection.
+The page gets the sign-in redirect, every language prefix and a row in **Pages** › **Account**, where a designer opens it to make it the site's own. `seed` is its starting content: register your block as usual, and post its forms to a route of your own in the `web` middleware group, which gives you the session and CSRF protection.
 
 To show something per person in a block, bind to `account.*` on pages rendered per person; see [Visitor accounts](/operations/public-accounts#show-blocks-to-signed-in-visitors).
 

@@ -170,7 +170,7 @@ default_columns:
 
 The Blocks module brings **Templates** (`templates`) and **Components** (`components`), both stored as files and edited in the block editor. They are `system` collections: they aren't listed under **Collections** and can't be deleted, but a site can redefine them in `content/collections/templates.yaml` or `components.yaml`, for example to add a field. See [Templates](/design/templates) and [Components](/design/components).
 
-The pages plugins bring, like checkout and sign-in, are `system` collections too. They have no sidebar item of their own: **Pages** lists them under **Built-in Pages**, grouped by plugin.
+The pages plugins bring, like checkout and sign-in, are `system` collections too. They have no sidebar item of their own: **Pages** has a tab for each plugin that brings pages, named after it, beside **Site**, your own pages.
 
 Plugins add collections the same way, with the `collections` filter: see [Plugins](/plugins/how-plugins-work#collections).
 
