@@ -52,6 +52,47 @@ $this->cms()->abilities()->register('shop/price-update', [
 | `dryRun` | A closure `fn (array $input, AbilityContext $context): array` that refuses what the handler would refuse, writes nothing, and returns what running it would change: a list of `['action' => 'delete', 'type' => 'product', …]`. Give one to every `destructive` or `confirm` ability. Without it, a call with `dryRun: true` checks the input and the permission only. |
 | `handler` | A closure, an invokable class or `Class@method`. Return anything JSON-serializable. |
 
+### Names
+
+An ability is named `thing/verb`, and a verb means the same on every thing:
+
+| Verb | Does |
+|---|---|
+| `list` | Several of the thing, filtered and paged |
+| `get` | One, by its id or handle |
+| `get-many` | Several by id, in the order asked |
+| `create` | Makes a new one |
+| `update` | Changes one that exists, and answers `not_found` for one that doesn't |
+| `delete` | Removes one |
+| `save` | Creates or replaces a definition by its handle (`collections/save`, `fieldsets/save`, `globals/save`, `components/save`, `user-fields/save`), or a script or stylesheet of the design by its path (`design-code/save`). Nothing else |
+
+Every other verb is an act of its own, such as `entries/publish`, `media/import` or `languages/set-default`.
+
+Version 0.22 renamed the abilities that didn't follow this, without aliases. A script, a token scope or a plugin that names an old one needs the new name:
+
+| Was | Is |
+|---|---|
+| `navigation/save` | `navigation/update` for a menu that exists, `navigation/create` to make one |
+| `navigation/add` | `navigation/add-item` |
+| `languages/save`, `languages/add`, `languages/remove` | `languages/update`, `languages/create`, `languages/delete` |
+| `languages/default`, `languages/prefix` | `languages/set-default`, `languages/set-prefix` |
+| `entries/lookup`, `media/lookup` | `entries/get-many`, `media/get-many` |
+| `users/lookup` | `people/list` |
+| `entries/revisions`, `entries/revision`, `entries/restore` | `revisions/list` (the entry is `entryId`), `revisions/get`, `revisions/restore` |
+| `globals/update` | `globals/set` |
+| `users/fields`, `users/fields-save` | `user-fields/get`, `user-fields/save` |
+| `patterns/list`, `patterns/save` | `components/list`, `components/save` |
+| `pages/customise` | `pages/customize` |
+| `packages/sync` | `packages/migrate` |
+| `packages/stores`, `packages/store-add`, `packages/store-remove` | `package-stores/list`, `package-stores/create`, `package-stores/delete` |
+| `assistant/resources`, `assistant/resource` | `assistant-resources/list`, `assistant-resources/get` |
+| `tokens/revoke` | `tokens/delete` |
+| `license/clear` | `license/delete` |
+| `design/code` | `design-code/set-custom` |
+| `site/get` | `settings/get` with `namespace: site` |
+
+A token scoped by pattern follows the names: `entries/*` doesn't reach `revisions/*`, `users/*` doesn't reach `user-fields/*` or `people/list`, `packages/*` doesn't reach `package-stores/*`, and `design/*` doesn't reach `design-code/*` or `design-vendor/*`.
+
 ### Run an ability
 
 From PHP:
@@ -71,8 +112,83 @@ const entry = await run('entries/get', { id })
 ### What every call gets
 
 - **Validation** against the input schema.
-- **A dry run**: with `dryRun: true` in the input of an ability that changes something, everything up to the handler happens and nothing more. Nothing is written or logged, and the answer is `{dryRun, ability, checked, input, changes}`.
+- **A dry run**: with `dryRun: true` in the input of an ability that changes something, everything up to the handler happens and nothing more. Nothing is written or logged, and the answer is `{dryRun, ability, checked, input, changes}`. See [Dry runs](#dry-runs).
+- **An answer in a known shape**: every ability has an `output` schema beside its `input`, in `abilities/list`, `GET /api/v1/abilities`, `cms run --list --json` and as each MCP tool's `outputSchema`. A map is a JSON object on every transport, also when empty: an entry without field values has `"data": {}`.
 - **Authorization**: the user's permissions and, for tokens, the token's scopes.
 - **Audit**: every change (anything not read-only) is logged with who, how and when.
 - **Hooks**: `ability.input` can adjust the input, `ability.executing` and `ability.executed` fire around the call, and `ability.result` can adjust the result.
 - **Errors** in one shape, `{ "type": "invalid_input", "message": "…", "details": { "field": "…" } }`, with the types `invalid_input`, `forbidden`, `unauthenticated`, `not_found`, `conflict` and `failed`.
+
+### Dry runs
+
+A dry run answers one question before anything changes: would this call go through, and what would it do?
+
+```bash
+php cms run entries/delete id=01m75ewmnmrmh0d80z43axs3k5 --dry-run
+```
+
+```json
+{
+    "data": {
+        "dryRun": true,
+        "ability": "entries/delete",
+        "checked": "full",
+        "input": { "id": "01m75ewmnmrmh0d80z43axs3k5" },
+        "changes": [
+            {
+                "action": "delete",
+                "type": "entry",
+                "id": "01m75ewmnmrmh0d80z43axs3k5",
+                "collection": "pages",
+                "title": "About",
+                "uri": "/about",
+                "live": true,
+                "revisions": 1,
+                "childrenMovedUp": 0
+            }
+        ]
+    }
+}
+```
+
+`checked` says how far the check went:
+
+| `checked` | Means |
+|---|---|
+| `"full"` | The dry run is refused exactly where the real run would be, by the same code, and `changes` lists what would change or be removed |
+| `"input"` | Only the input and your permission were checked. `changes` is `null`, and the real run may still refuse |
+
+Checked in full: entries (create, update, publish, unpublish, discard, delete, duplicate, move, reorder, restore, and `pages/customize`), `settings/update`, and every ability marked destructive or that asks first: deleting a collection, a file, a user, a global set, a menu, a comment, a chat or a token, removing a language, switching or uninstalling a plugin, starting or undoing a sync. Anything else is checked as input, like this import, which would have to fetch the file to know more:
+
+```bash
+php cms run media/import url=https://example.com/a.png --dry-run
+```
+
+```json
+{
+    "data": {
+        "dryRun": true,
+        "ability": "media/import",
+        "checked": "input",
+        "input": { "url": "https://example.com/a.png", "folder": "" },
+        "changes": null
+    }
+}
+```
+
+`input` is the input as the ability would get it, with its defaults filled in. A refused dry run is the same error the real run would give, with a field named by its path in the input:
+
+```json
+{
+    "error": {
+        "type": "invalid_input",
+        "message": "Invalid input: data.template: Must be one of: \"default\", \"page\", \"post\", null.",
+        "details": {
+            "data.template": "Must be one of: \"default\", \"page\", \"post\", null."
+        }
+    }
+}
+```
+
+In the workspace and for the assistant, a dry run shows as a check, not as a change. [Build a page with an agent](/agents/build-a-page) uses them from start to finish.
+
