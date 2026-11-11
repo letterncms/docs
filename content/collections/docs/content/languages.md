@@ -61,6 +61,29 @@ Sometimes a page should stay in its original language, like a changelog. Publish
 
 ## For developers
 
+### Fields shared across languages
+
+Some values are the same in every language: a price, a date, a product code. Give such a field `localizable: false` in the collection's fields:
+
+```yaml
+- handle: capacity
+  type: number
+  label: Capacity
+  localizable: false
+```
+
+The field then holds one value for every language. It is set on the original entry, and its translations take that value when they are made and whenever the original's content changes:
+
+- What waits in the original's draft arrives in the translations when the original is published.
+- An original that is not published only reaches a published translation's draft, never what it serves.
+- A translation keeps the original's value whatever it is sent. In the editor, such a field is closed on a translation, wherever it is drawn, with a lock and the code of the language it is set in beside its label; pointing at it names the language. `entries/get` on a translation names those fields as `sharedFields`.
+- Live translations are rebuilt when a shared value changes, and a dry run of a change to the original lists the translations it would rewrite.
+
+It applies to the fields of a collection, not to fields nested in a group, a repeater or a matrix.
+
+::: callout {"props":{"tone":"warning","text":"Earlier versions ignored <code>localizable: false</code>. A translation that held a value of its own in such a field takes the original's the next time either is saved."}}
+:::
+
 ### Addresses per language
 
 Tree pages take their URL from their parents, so `/de/vergleich/wordpress` is a page `wordpress` under a German page `vergleich`. A collection with a fixed pattern can have another one per language, with `routes` in its YAML:

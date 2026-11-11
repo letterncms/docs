@@ -31,9 +31,16 @@ A few types cover most sites:
 | **Select** | One choice from a list, like *Starter*, *Main* or *Dessert* |
 | **Media** | Images, documents or videos from the [media library](/content/media) |
 | **Entries** | A link to other entries, like a post's author or related products |
-| **Group**, **Repeater** | A set of fields together, once or as a list (see below) |
+| **Terms** | Topics or categories from a [taxonomy](/content/taxonomies) |
+| **File** | Documents, audio or video from the media library: anything but images |
+| **Link** | A link to a page, an address, an email, a phone number or a file, with its label |
+| **Date Range**, **Time** | When an event starts and ends, when the doors open |
+| **Range** | A number on a slider, like a difficulty from 1 to 5 |
+| **Table** | Rows and columns of text, like a schedule or a price list |
+| **Location** | A place: latitude, longitude and an address |
+| **Group**, **Repeater**, **Matrix** | A set of fields together: once, as a list, or as a list of rows of several kinds (see below) |
 
-There are more, like **Color**, **Link**, **Tags** and **Blocks**. See [Field types](/reference/field-types) for every one and its options.
+There are more, like **Color**, **URL**, **Tags** and **Blocks**. See [Field types](/reference/field-types) for every one and its options.
 
 ## Set it up
 
@@ -50,15 +57,27 @@ Open a field to change its settings. These work for every type:
 
 Below these are the options of the type itself, such as **Minimum** and **Maximum** for a number, or the **Options** of a select.
 
+## Show a field only sometimes
+
+A field can depend on the fields beside it: a *Stream address* that only shows for online events, a *Seats* number that is only required for workshops.
+
+Open the field and, under **Conditions**, press **Add Condition**. A condition reads as a sentence: **Show** when *Kind* is *Workshop*, or **Require** when *Featured* is **On**. **Show** hides the field until the condition holds; **Require** leaves it on view and makes it required then. A required field that only shows under a condition is required only while it shows.
+
+Rename a field and the conditions that name it follow. Remove it and they go with it.
+
 ## Fields inside fields
 
 A **Group** holds a few fields that belong together, like an address. A **Repeater** holds a list of them, like the members of a team, each with a name and a photo.
 
 Open a group or repeater and press **Add Sub-Field** to build its fields, with the same editor. Sub-fields can hold fields of their own, up to five levels deep.
 
+A **Matrix** is a list whose rows come in kinds, each kind with fields of its own: a page made of quotes, fact lists and galleries, in any order. Open the matrix field and press **Add Row Type** for each kind: it has a name, a handle and fields of its own, built with the same editor. In an entry, **Add Row** offers the kinds, each row opens on the fields of its kind, and rows are dragged to reorder.
+
 ## Every value is checked
 
 When an entry is saved, Lettern checks each value against its field, whether it comes from the admin, an import, the API or an AI agent. Errors name the field and say what's wrong. Drafts may leave required fields empty; publishing checks the whole entry.
+
+Fields that point at something are checked too. An **Entries**, **Users**, **Media** or **File** field only takes what exists, an Entries field only entries of the collections it allows, and a Media or File field only the kinds of file it allows. What an entry already pointed at stays, so content that names something since deleted can still be saved.
 
 ## Show a field on the page
 
@@ -96,8 +115,9 @@ A field is a small YAML object, with the same format in a collection's `fields`,
 | `default` | Value for new entries. |
 | `width` | `full`, `half`, `third` or `two-thirds` of the form. |
 | `section` | `main` (the content form), `sidebar` (entry details, what **Show as Property** sets) or a custom section. An active plugin panel can claim the fields it edits; otherwise they stay in the normal entry form. |
-| `if` | Show the field only when other fields match: `if: { type: video }` or `if: { type: [video, audio] }`. |
-| `localizable` | `false` keeps one value for all languages. |
+| `if` | Show the field only while the fields beside it hold these values: `if: { kind: video }`, or `if: { kind: [video, audio], featured: true }`. A `required` field with a condition is required only then. |
+| `required_if` | Leaves the field on view and requires it under a condition: `required_if: { kind: workshop }`. |
+| `localizable` | `false` keeps one value for all languages: see [Languages](/content/languages#fields-shared-across-languages). |
 
 Everything else is an option of the field type, like `min` above or `options` for a select.
 
@@ -120,9 +140,139 @@ Everything else is an option of the field type, like `min` above or `options` fo
 
 When a collection or global set is saved, Lettern checks every level: handles must be valid and unique among their siblings, and every type must exist.
 
+### Conditions
+
+`if` and `required_if` are what **Conditions** in the fields editor writes. They work in collections, global sets and every other blueprint, as they do in a block's fields. A condition names fields beside the field it is on, each with a value or a list of values, and holds when every one matches. One that names a field that isn't there, or conditions that come back to their own field, are refused when the definition is saved, in the editor and by `collections/save`:
+
+```json
+{ "error": { "type": "invalid_input", "message": "The condition of a must name fields beside it, each with a value or a list of values." } }
+```
+
+Publishing checks conditions, and the collection's JSON Schema says them, as `allOf` with `if` and `then`, in `collections/schema`.
+
+### Matrix
+
+A `matrix` field lists its kinds under `types`, each with a `handle`, a `label` and `fields`. `max` limits the rows.
+
+```yaml
+- handle: sections
+  type: matrix
+  label: Sections
+  types:
+    - handle: quote
+      label: Quote
+      fields:
+        - { handle: text, type: textarea, required: true }
+        - { handle: by, type: text }
+    - handle: facts
+      label: Facts
+      fields:
+        - { handle: items, type: tags }
+```
+
+A row is its fields' values and `type`, the handle of its kind:
+
+```json
+[
+  { "type": "quote", "text": "Type is a voice.", "by": "Ada" },
+  { "type": "facts", "items": ["serif", "grotesk"] }
+]
+```
+
+Each row is checked against the fields of its kind, with errors that name them: `data.sections.0.text`, `data.sections.1.type`.
+
+### What each type stores
+
+The [field types reference](/reference/field-types) lists every type with its options. These are the values of the types that hold more than a text or a number, as `entries/create`, `entries/update` and the content API take and give them:
+
+| Type | Value | Options |
+|---|---|---|
+| `link` | `{"type": "entry", "value": "<entry id>", "label": "Read more", "new_tab": true}`. `type` is `entry`, `url`, `email`, `phone` or `media` (a file's id); `label` and `new_tab` are optional. A string is read as a link: `https://…`, `/path`, `entry:<id>`, `mailto:…`, `tel:…` | `types` limits the kinds, `collections` the entries |
+| `date-range` | `{"start": "2026-12-01", "end": "2026-12-03"}`. The end is not before the start. A draft may hold one of the two | `time: true` for moments: `"2026-12-01T18:00:00+01:00"` |
+| `time` | `"17:30"`, on a 24-hour clock | `seconds: true` for `"17:30:00"` |
+| `range` | A number between `min` and `max`. A value between two steps moves to the nearest | `min` (0), `max` (100), `step` (1) |
+| `table` | `[["Time", "What"], ["18:00", "Welcome"]]`: rows of text cells. Every row is made as wide as the widest | `header` (on by default): the first row is the header. `max` rows |
+| `geo` | `{"lat": 51.0543, "lng": 3.7174, "address": "Korenmarkt, Gent"}` in decimal degrees. The address is text and optional; no map service is called | |
+| `file` | `["<file id>"]`: ids of files that are not images | `max`, and `accept`, such as `application/pdf, video/*` |
+| `terms` | `["<term id>"]`. A term's slug or title is taken too, and stored as its id | `taxonomy` (required), `max` |
+| `matrix` | A list of rows, each with its `type` | `types`, `max` |
+
+Stored exactly as sent, this entry:
+
+```json
+{
+  "signup": "mailto:Hello@Example.com",
+  "when": { "start": "2026-12-01T18:00:00+01:00", "end": "2026-12-01T21:00:00+01:00" },
+  "doors": "17:30",
+  "level": 2.4,
+  "schedule": [["Time", "What"], ["18:00", "Welcome"], ["18:15", "Letters", "extra"]],
+  "place": { "lat": 51.0543, "lng": 3.7174, "address": "Korenmarkt, Gent" },
+  "topics": ["news", "Design"]
+}
+```
+
+comes back as:
+
+```json
+{
+  "signup": { "type": "email", "value": "hello@example.com" },
+  "when": { "start": "2026-12-01T18:00:00+01:00", "end": "2026-12-01T21:00:00+01:00" },
+  "doors": "17:30",
+  "level": 2,
+  "schedule": [["Time", "What", ""], ["18:00", "Welcome", ""], ["18:15", "Letters", "extra"]],
+  "place": { "lat": 51.0543, "lng": 3.7174, "address": "Korenmarkt, Gent" },
+  "topics": ["01m75fkz8xmta2n3djr5xn4fee", "01m75fkzmtc82pz2cgqwx1pnp4"]
+}
+```
+
+In templates and bindings the values come out ready to use:
+
+| Type | A template gets |
+|---|---|
+| `link` | `url` (the page's address, `mailto:`, `tel:` or the file) and a `label` that falls back to the page's title or the file's name, with `type`, `value` and `new_tab`. `url` is empty when the page is not published |
+| `date-range` | `start` and `end` as dates: `entry.when.start\|date:j F` |
+| `table` | `header` (the first row) and `rows` (the others) |
+| `file` | `{id, url, name, filename, extension, mime, kind, size}` for each file; one object, not a list, with `max: 1` |
+
+### Relations
+
+An `entries`, `users`, `media`, `file` or `terms` field, and a `link` to an entry or a file, only take ids that exist. A write that names something else is refused with the path of the id, in a dry run too:
+
+```json
+{
+  "error": {
+    "type": "invalid_input",
+    "message": "Invalid input: data.signup.value: This entry does not exist.; data.when.end: Must not be before the start.; data.topics.0: There is no term “nope” in this language.; data.host.0: This entry does not exist.",
+    "details": {
+      "data.signup.value": "This entry does not exist.",
+      "data.when.end": "Must not be before the start.",
+      "data.topics.0": "There is no term “nope” in this language.",
+      "data.host.0": "This entry does not exist."
+    }
+  }
+}
+```
+
+Entry ids are stored in lower case. To find what points at an entry, see [Reverse relations](/content/entries#reverse-relations).
+
 ### Validation
 
-Each type turns its value into a JSON schema, and Lettern validates every supplied value on save. Error messages name the field and say what is wrong, so agents can correct themselves.
+Each type turns its value into a JSON schema, and Lettern validates every supplied value on save. Error messages name the field by its path in the input and say what is wrong, so agents can correct themselves:
+
+```json
+{
+  "details": {
+    "data.doors": "Has an invalid format.",
+    "data.level": "Must be at most 5.",
+    "data.place.lat": "Must be at most 90.",
+    "data.sections.0.text": "Is required.",
+    "data.sections.1.type": "Must be one of: \"quote\", \"facts\".",
+    "data.seats": "Expected integer, got null."
+  }
+}
+```
+
+A field type of a plugin can also check its own definition when a blueprint is saved, with `FieldType::validateDefinition()`.
 
 ### Bindings
 

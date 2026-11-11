@@ -40,6 +40,14 @@ Fields are the questions the form asks: a price, a photo, a short description. O
 
 If the page builder is on, a new collection starts with a **Content** field. That's where an entry is built from blocks, just like a page. Remove it if your entries only need simple fields. See [Fields](/content/fields) for every option.
 
+## Entries of several kinds
+
+Sometimes one collection holds entries that need different fields: an event that is on site or online, a post that is an article or a video. Give the collection a **blueprint** for each kind.
+
+On the collection's **Fields** tab, **Blueprints** is a switch above the fields. Press **+** (**Add Blueprint**), name it, and build its fields in the same editor, with every option. Switch between blueprints to edit each one; **Remove Blueprint** takes one away, and says first how many entries were made with it.
+
+From then on, **New** asks which kind of entry to make, wherever you press it: the list, the command palette, the home screen. An entry keeps the blueprint it was made with, and the editor shows that blueprint's fields. A collection with one set of fields works as before.
+
 ## Give entries their own pages
 
 A blog post needs its own address; a team member usually doesn't. Open the collection's **Settings** tab and set the **URL Pattern** under **Publishing**:
@@ -115,10 +123,34 @@ fields:
 | `body` | The main-content field's handle. A `blocks` body uses the block editor. Without a body, entries use a field form; Lettern never guesses one from field order. |
 | `sort` | Field to sort lists by; prefix with `-` for descending. |
 | `default_view` | `table` (default), `grid` or `calendar`. What a person chose in **Display** wins. |
-| `default_columns` | Fields shown in tables and cards. Omit or `null` for automatic, `[]` for the title only. Use `uri`, `status`, `translations`, `author`, `published`, `updated`, and `field:<handle>` for your own fields. Personal choices win. |
+| `default_columns` | Fields shown in tables and cards. Omit or `null` for automatic, `[]` for the title only. Use `uri`, `status`, `translations`, `author`, `published`, `ends`, `updated`, and `field:<handle>` for your own fields. Personal choices win. |
 | `driver` | `database` (default) or `files` (see below). |
 | `revisions` | `false` turns off revision history. |
 | `fields` | The blueprint: see [Fields](/content/fields). |
+| `blueprints` | More sets of fields, for entries that come in kinds: see [Several blueprints](#several-blueprints). |
+| `taxonomy` | `true` makes the collection a [taxonomy](/content/taxonomies): its entries are terms that `terms` fields pick from. The **Taxonomy** switch in its settings. |
+
+### Several blueprints
+
+Beside `fields`, a collection can name more sets of fields, for entries that come in kinds: an event that is on site or online, a post that is an article or a video.
+
+```yaml
+fields:
+  - { handle: place, type: geo, label: Place }
+blueprints:
+  online:
+    title: Online event
+    fields:
+      - { handle: stream, type: url, label: Stream, required: true }
+```
+
+The **Blueprints** switch in the fields editor writes this. An entry is made with one, `blueprint` on `entries/create`, and keeps it. Its defaults, its validation, its shared fields and what templates get all follow that blueprint. A translation or a copy has the blueprint of its source, and an entry made without one has the collection's own `fields`.
+
+```bash
+php cms run entries/create --input='{"collection":"events","blueprint":"online","title":"Stream night","data":{"stream":"https://example.com/live"}}'
+```
+
+An entry says which it has, in `blueprint` (`null` for the collection's own fields), and in a file collection `blueprint` is in the front matter. `collections/schema` gives the schemas of each blueprint under `blueprints`, `collections/get` their fields under `resolvedBlueprints`, and `entries/list` filters by `blueprint`. If a blueprint is removed, its entries fall back to the collection's `fields`, so their content survives.
 
 ### Routes
 

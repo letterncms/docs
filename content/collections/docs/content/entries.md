@@ -22,6 +22,7 @@ After that, your edits are kept apart from the live version. Visitors keep seein
 | **Published** | Live, and what visitors see. |
 | **Changes** | Live, with edits that aren't published yet. |
 | **Scheduled** | Goes live by itself at the time you chose. |
+| **Expired** | Was live until its end date. It is off the site, and can be published again. |
 
 Changed your mind? Open **More Actions** (the `…` button) and choose **Discard Unpublished Changes** to go back to the live version, or **Unpublish** to take the entry off the site. In the collection's list, each row's **⋯** menu has **Publish** and **Unpublish** too.
 
@@ -45,6 +46,12 @@ Once everything is published, the site shows exactly this version: the same plac
 ## Schedule it for later
 
 Choose **More Actions → Schedule…**, pick a date and time, and press **Schedule**. The entry shows **Scheduled** and goes live by itself. Saving more edits doesn't change that time; use **Change Schedule** to move it. On a live entry, **Publication Date…** changes the date it was published.
+
+## Give it an end date
+
+Some pages should go offline by themselves: an offer, an event, a vacancy. The same dialog (**Schedule…** or **Publication Date…**) has **Starts** and **Ends**. Set **Ends** and the entry leaves the site at that moment: it is gone from its page, from lists, from search and from the content API. **Remove End Date** takes the end away.
+
+The entry's details say when it ends, or when it ended. An entry whose time is up reads **Expired**, in lists and in the editor, and can be published again from the editor, from its row or from a selection. In a list, the **Published** filter leaves expired entries out and **Expired** shows only those, and **Display** can add an **Ends** column.
 
 An entry that's already live can't be scheduled for the future. Unpublish it first if you want to take it offline and bring it back later.
 
@@ -88,6 +95,44 @@ Lettern publishes scheduled entries after web requests, at most once a minute. O
 * * * * * php /path/to/site/cms publish:scheduled
 ```
 
+### An end date
+
+An entry can carry `expiresAt`: the moment it stops being published. Set it when publishing, with `expiresAt` on `entries/publish`, on `entries/create` with `status: "published"`, or on `entries/update` with `publish: true`. Publish a live entry again to move the date, and send `null` to remove it.
+
+```bash
+php cms run entries/publish id=01m75fmerrprznv7tkcgs8v0xk expiresAt=2026-12-31T23:00:00+01:00
+```
+
+From that moment the entry is no longer on the site, in lists, in the content API or in search, and its status reads `expired`. The scheduler (`cms publish:scheduled`, or the check after requests without cron) then unpublishes it: it is a draft again and its static page is removed. An entry that ran out can be published again at once; its past end date is dropped.
+
+A date given with a time zone is kept as the moment it is: the one above comes back as `2026-12-31T22:00:00+00:00`. In a file collection it is `expires_at` in the front matter. `expires_at` filters and sorts like `published_at`. On `entries/list`, `status` takes `live` (published, its time has come and its end date has not), `expired` (published, and its end date has passed) and `active` (published and not expired: live or scheduled), beside `published`, `draft` and `any`.
+
+### Reverse relations
+
+`references/list` answers "what links to this entry?", across the collections you can view. An entry names another when its data has the other's id anywhere: in a relation or terms field at any depth (a group, the rows of a repeater or a matrix), in a link field, or in a link or relation inside a block. Each result carries `fields`, the fields that name it. Read it before deleting an entry others point at.
+
+```bash
+php cms run references/list id=01m75ewmnmrmh0d80z43axs3k5
+```
+
+```json
+{
+    "data": {
+        "items": [
+            { "id": "01m75fmerrprznv7tkcgs8v0xk", "collection": "events", "title": "Type night", "uri": "/events/type-night", "status": "published", "fields": ["host"], "…": "…" }
+        ],
+        "total": 1, "page": 1, "perPage": 25, "pages": 1
+    }
+}
+```
+
+The same question can be asked in other places:
+
+- `entries/list` takes `references`, to narrow one collection's list to the entries that name an entry.
+- The content API takes `?references=<id>`, and `references_field=` to look in one field only.
+- The Repeat block's **Collection Entries** source has **Only Entries Linking To**, with **This Page** or **The Outer Item**: the posts of an author, the projects of a client. See [Showing content](/design/data).
+- In PHP, `EntryQuery::references($id, $field = null)`, on database and file collections alike.
+
 ### Authors
 
 `entries/create` and `entries/update` accept a nullable `authorId`. User pickers can look up safe person summaries with `people/list`. Imported or system-created entries can be unassigned, and an author reference that can't be resolved shows as **Unavailable person**. Lettern never invents authors or dates for imported content. History records separately who performed each action.
@@ -110,4 +155,4 @@ When a template shows the entry title through an exact `entry.title` text bindin
 
 ### Abilities
 
-Everything on this page is available to the API, the command line and agents: `entries/create`, `entries/update`, `entries/publish`, `entries/unpublish`, `entries/discard-draft`, `entries/duplicate`, `entries/delete`, `entries/move`, `entries/reorder` and more, and an entry's history with `revisions/list`, `revisions/get` and `revisions/restore`. `collections/schema` gives the JSON Schema an entry's `data` must follow, and a field that fails is named by its path in the input, such as `data.summary`. See the [abilities reference](/reference/abilities#ns-entries).
+Everything on this page is available to the API, the command line and agents: `entries/create`, `entries/update`, `entries/publish`, `entries/unpublish`, `entries/discard-draft`, `entries/duplicate`, `entries/delete`, `entries/move`, `entries/reorder` and more, and an entry's history with `revisions/list`, `revisions/get` and `revisions/restore`. `references/list` finds what links to an entry. `collections/schema` gives the JSON Schema an entry's `data` must follow, and a field that fails is named by its path in the input, such as `data.summary`. See the [abilities reference](/reference/abilities#ns-entries).
