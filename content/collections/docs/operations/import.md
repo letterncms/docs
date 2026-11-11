@@ -6,9 +6,19 @@ description: 'Bring a site over from WordPress, a CSV file or a folder of Markdo
 ---
 The Import plugin brings content from somewhere else into your site: a WordPress export, a CSV file, or a folder of Markdown files. Every import is previewed first. And it can be run again: what it made before is updated when its source changed, left alone when it did not, and never made twice.
 
-It is free: install it from **Plugins → Store**, or with `composer require letterncms/import`. Importing is done from the command line or by an agent; it needs the **Import Content** permission, which administrators have.
+It is free: install it from **Plugins → Store**, or with `composer require letterncms/import`. Importing is done in the admin, from the command line or by an agent; it needs the **Import Content** permission, which administrators have.
 
-## How it goes
+## In the admin
+
+Open **Settings → Import**.
+
+1. **Upload File** takes a WordPress export (`.xml`, up to 20 MB), a CSV file (up to 50 MB) or a zip of Markdown files, which is unpacked into a folder. Files already in `storage/app/import/` are listed too.
+2. The file opens on its **Preview**: how many entries would be created, updated or left unchanged, and each one as the entry it becomes. An entry marked as replacing one is a record with the same slug as an entry that is already on the site and that no import made: importing it changes that entry. **Media** lists the files it would fetch and **Redirects** the old addresses it would redirect. Nothing has been written yet.
+3. **Options** says where the entries go. For a CSV it also says what each column is: the title, the slug, the status, the publish date, the body, an old address to redirect, one of the collection's fields, or left out. Save, and the preview follows.
+4. **Start Import** runs it and shows how far it is; it is there only when the preview has something to change. It works a few seconds at a time, so you can reload or close the page without losing anything: on PHP-FPM and LiteSpeed it carries on by itself, elsewhere it carries on when you open it again. A file that cannot be fetched is tried once per import and reported. **Cancel Import** stops it; what it made stays, and starting the file again picks up from there.
+5. **History** keeps the report of every import: what was created, updated, left unchanged or failed, with the way to each entry.
+
+## On the command line
 
 1. Put the file or folder in `storage/app/import/` on your site.
 2. Look at what it would do, with `--dry-run`.
@@ -75,9 +85,19 @@ php cms import markdown notes --collection=notes
 |---|---|
 | `import/sources` | Lists what is in `storage/app/import/`, with the type each looks like |
 | `import/preview` | Says what an import would do, per record, file and redirect, without doing it |
-| `import/run` | Runs the import and answers with the same report. With `dryRun: true` it writes nothing and lists the entries, files and redirects it would make |
+| `import/run` | Runs the import in one go and answers with the same report. With `dryRun: true` it writes nothing and lists the entries, files and redirects it would make |
+| `import-sources/get` | One source with what was chosen for it (`options`), and the columns of a CSV |
+| `import-sources/update` | Chooses where a source's entries go and what each CSV column is |
+| `import-sources/preview` | What importing a source would do with what was chosen for it, a page at a time: `of` is `entries`, `media` or `redirects` |
+| `import-sources/delete` | Removes a file or folder from the import folder, not while it is being imported. A dry run says how many files go |
+| `import-runs/start` | Starts importing a source a few seconds at a time. A dry run lists what it would make |
+| `import-runs/step` | Imports for a few seconds more and says how the import stands: call it until `status` is no longer `running`. What failed in an earlier turn is not tried again, and the Audit Log keeps only the turn that finishes |
+| `import-runs/cancel` | Stops an import that is running |
+| `import-runs/list` | The imports that were started, newest first, a page at a time |
+| `import-runs/get` | One import: how far it is, and a page of what it did |
+| `import-runs/delete` | Forgets a finished import's report |
 
-All three need `import.run`. Through an ability a WordPress export may be 20 MB; the command line reads up to 256 MB.
+All of them need `import.run`. Through an ability or the admin a WordPress export may be 20 MB; the command line reads up to 256 MB. The admin uploads a file with `POST /api/admin/import/upload` (multipart, field `file`).
 
 ```bash
 php cms run import/sources
@@ -88,7 +108,7 @@ php cms run import/sources
     "data": {
         "folder": "storage/app/import",
         "sources": [
-            { "path": "notes", "type": "markdown", "size": null }
+            { "id": "bm90ZXM", "path": "notes", "type": "markdown", "size": null }
         ]
     }
 }
