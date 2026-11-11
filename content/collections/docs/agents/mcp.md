@@ -117,7 +117,7 @@ The editor works with structured data, so an agent edits the same block document
 
 - **Pages**: `entries/create` and `entries/update` with a blocks field, as JSON or as [Block Markdown](/reference/block-markdown).
 - **Templates and components**: the same abilities, in the `templates` and `components` collections. `entries/publish` makes them live.
-- **The design system**: `design/get`, `design/update`, `design/fonts-import`, and custom code with `design/set-code`.
+- **The design system**: `design/get`, `design/update`, `design/fonts-import`, and custom code with `design-code/set-custom`.
 - **What's possible**: `blocks/types` lists every block, style property, state, data source, animation property and script action. `blocks/icons` searches icons.
 
 ### Protocol

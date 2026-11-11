@@ -68,7 +68,7 @@ Tokens are shown once and stored hashed. **Scopes** are ability patterns (`entri
 |---|---|
 | `GET /api/v1` | Describes the API. |
 | `GET /api/v1/abilities` | The abilities this token may run, with their input and output schemas. |
-| `GET /api/v1/openapi.json` | The API as an OpenAPI 3.1 document, for tools that generate a client. With a token it has a path for every ability that token may run. |
+| `GET /api/v1/openapi.json` | The API as an OpenAPI 3.1 document, for tools that generate a client. Without a token it says how the API works (the paths in this table, the error shape, bearer authentication and the public content API) and names no ability. With a token it has a path for every ability that token may run, each with its input and output schema. |
 | `GET /api/v1/abilities/{name}` | Runs a read-only ability with query parameters. |
 | `POST /api/v1/abilities/{name}` | Runs any ability with a JSON body. |
 | `POST /api/v1/batch` | Runs up to 25 abilities: `{ "calls": [{ "ability": "…", "input": {} }], "stopOnError": true }`. |
