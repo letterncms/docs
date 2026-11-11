@@ -60,7 +60,7 @@ admin_language: en
 Everything people change in **Settings** belongs to a settings namespace:
 
 - the site itself, under **General**: name, URL, timezone, language, **Admin Language** and favicon, in `config/site.yaml`
-- the default sidebar and Dashboard, in `config/admin.yaml`, with no page of their own: saved with **Save as Default** where they are arranged
+- the default sidebar and Dashboard, in `config/admin.yaml`, with no page of their own: saved with **Save for Everyone** where they are arranged
 - each module: how email is sent (`config/email.yaml`), media, languages (`config/languages.yaml`), how long the Audit Log keeps entries, the roles, visitor accounts, the assistant's models and approvals (`config/assistant.yaml`)
 - each plugin, under **Plugins** in the settings sidebar or on its screen's **Settings** tab: SEO defaults
 

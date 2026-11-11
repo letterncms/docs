@@ -50,6 +50,7 @@ Give clients a [role](/operations/users-and-roles) that covers their content and
 
 - Passwords are hashed with Argon2id. Sign-in is rate limited per account and per address.
 - Two-factor authentication works with any authenticator app, with one-time recovery codes. When it's on, it's also required on the agent consent screen.
+- **Account → Signed In** lists where you are signed in, with the browser, the address and when it was last used. **Sign Out** ends one session and **Sign Out Everywhere Else** all the others; either also ends every "keep me signed in" but this browser's. It shows where sessions are kept in files (the default) or the database.
 - Session cookies are HTTP-only and SameSite, and every admin request carries a CSRF token. A site on its own port (`localhost:8003`) uses cookie names of its own, as browsers share cookies across ports.
 
 ### API tokens and agents

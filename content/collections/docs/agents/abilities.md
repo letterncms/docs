@@ -14,7 +14,7 @@ That's what makes Lettern safe to automate. Because there is one set of actions,
 
 ![The audit log: changes made in the admin, by the assistant and over MCP, side by side.](/media/screens/audit.webp)
 
-See it under **Settings → Audit Log**, where you can narrow it to one person or one action. Its **Settings** tab sets what is recorded and for how long.
+See it under **Settings → Audit Log**: each change is said as what happened (**Published Entry**), and you can narrow it to one person, one action or a time with **When** (today, the last 7, 30 or 90 days). **Export CSV** downloads what you narrowed, up to 10,000 changes at a time; the export is recorded too. Its **Settings** tab sets what is recorded and for how long.
 
 Every ability on your site is listed in the [abilities reference](/reference/abilities), with what it takes and who may run it. Plugins add their own.
 
