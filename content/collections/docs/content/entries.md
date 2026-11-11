@@ -51,7 +51,7 @@ Choose **More Actions → Schedule…**, pick a date and time, and press **Sched
 
 ## Give it an end date
 
-Some pages should go offline by themselves: an offer, an event, a vacancy. The same dialog (**Schedule…** or **Publication Date…**) has **Starts** and **Ends**. Set **Ends** and the entry leaves the site at that moment: it is gone from its page, from lists, from search and from the content API. **Remove End Date** takes the end away.
+Some pages should go offline by themselves: an offer, an event, a vacancy. The same dialog (**Schedule…** or **Publication Date…**) has **Starts** and **Ends**, both on the site's clock: its time zone is named under them. Set **Ends** and the entry leaves the site at that moment: it is gone from its page, from lists, from search and from the content API. **Remove End Date** takes the end away.
 
 The entry's details say when it ends, or when it ended. An entry whose time is up reads **Expired**, in lists and in the editor, and can be published again from the editor, from its row or from a selection. In a list, the **Published** filter leaves expired entries out and **Expired** shows only those, and **Display** can add an **Ends** column.
 

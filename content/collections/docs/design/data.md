@@ -49,6 +49,7 @@ Style the Repeat itself in **Design** to lay the items out, for example as a gri
 | **Child Pages** | The pages under this page, under its parent, or in its whole section |
 | **Breadcrumbs** | The pages above this one, for a breadcrumb trail |
 | **Previous and Next Entry** | The entries before and after this one in its collection's order, for the foot of an article or a project. **Show** takes either side alone, and **Go Round at the Ends** leads from the last back to the first |
+| **Entries of This Term** | On a term's [archive](/content/taxonomies#give-a-collection-a-page-per-term): the entries of its collection filed under the term. On the term's own page: those of every collection. **Sort**, **Limit** and **Paginate** as for Collection Entries |
 | **Headings on This Page** | The page's headings, for a table of contents |
 | **Menu** | The links of a [menu](/content/navigation) |
 | **Languages** | Your site's languages, for a [language switcher](/content/languages) |

@@ -71,7 +71,7 @@ A **Group** holds a few fields that belong together, like an address. A **Repeat
 
 Open a group or repeater and press **Add Sub-Field** to build its fields, with the same editor. Sub-fields can hold fields of their own, up to five levels deep.
 
-A **Matrix** is a list whose rows come in kinds, each kind with fields of its own: a page made of quotes, fact lists and galleries, in any order. Open the matrix field and press **Add Row Type** for each kind: it has a name, a handle and fields of its own, built with the same editor. In an entry, **Add Row** offers the kinds, each row opens on the fields of its kind, and rows are dragged to reorder.
+A **Matrix** is a list whose rows come in kinds, each kind with fields of its own: a page made of quotes, fact lists and galleries, in any order. Open the matrix field and press **Add Row Type** for each kind: it has a name, a handle and fields of its own, built with the same editor. In an entry, **Add Row** offers the kinds, each row opens on the fields of its kind, and rows are dragged to reorder. **Remove Row Type** asks first and says how many rows were made with it: they keep their values, without those fields.
 
 ## Every value is checked
 
