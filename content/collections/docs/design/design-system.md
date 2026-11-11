@@ -265,7 +265,7 @@ document.addEventListener('cms:alpine', (e) => {
 })
 ```
 
-Both are edited under **Custom Code** or with the `design/set-code` ability, and both need the `site.code` permission.
+Both are edited under **Custom Code** or with the `design-code/set-custom` ability, and both need the `site.code` permission.
 
 ### Abilities
 
