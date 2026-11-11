@@ -16,7 +16,7 @@ Lettern sends email for invitations, password resets, and form notifications. A 
 | Send With | For |
 |---|---|
 | **SMTP** | Any mail server or provider that gives you SMTP details: a host, a port, a username and a password. |
-| **Brevo** | Brevo's email service, with an API key. Install the free Brevo plugin first, from **Plugins → Store**. |
+| **Brevo** | Brevo's email service, with an API key. Install the free Brevo plugin first, from **Plugins → Store**. It also takes [newsletter signups](/operations/newsletter). |
 | **Server mail (sendmail)** | The hosting server's own mail, with nothing to fill in. Only offered where the host lets PHP run it: many shared hosts don't, and then SMTP is the way. |
 | **Log only (development)** | Nothing is sent: messages are written to the log. The default. |
 

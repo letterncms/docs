@@ -69,11 +69,13 @@ The **Forms** item in the sidebar shows how many submissions are unread. Open a 
 
 The **Form Submissions** widget puts new ones on your Dashboard too.
 
-To delete old submissions automatically, open the **Settings** tab of **Forms** (also under **Settings → Forms**) and set **Keep Submissions For** to a number of days. `0`, the default, keeps them forever.
+To delete old submissions automatically, open the **Settings** tab of **Forms** and set **Keep Submissions For** to a number of days. Left empty, it reads **Forever**.
 
 ## Spam and privacy
 
 Every form is protected without a captcha: a hidden field only bots fill in, a minimum time to fill the form in, a limit on how often one address can send, and a check that the submission came from your site. Every answer is checked against the form's fields too.
+
+If spam still gets through, add a CAPTCHA. On the **Settings** tab of **Forms**, set **CAPTCHA** to **Cloudflare Turnstile** or **hCaptcha** and enter the **Site Key** and **Secret Key** that provider gave you. Every form then shows the provider's check, and a submission is accepted only when the provider vouches for it. A visitor who fails is told and can try again. While the provider can't be reached nothing gets through: the visitor reads that it isn't them and to try again in a few minutes, and the site's log says what happened.
 
 Lettern keeps only what you need to handle a submission: the answers, the page it came from, the browser's language and type. Visitors' IP addresses are never stored. Uploaded files are private, and only people allowed to see submissions can download them.
 
@@ -105,6 +107,10 @@ Translations sit under `locales`:
 Forms post to `/api/forms/<handle>`, so they work on static pages. Without JavaScript the browser posts normally and is redirected back. With it, the form shows errors inline and the confirmation without reloading.
 
 If the published site is hosted somewhere other than the admin, set **Submission Address** on the **Settings** tab of **Forms** to the admin's URL, and add the site under **Other Allowed Websites**. Submissions sent from any other website are refused.
+
+### CAPTCHA
+
+In `config/forms.yaml`, `captcha` is `none`, `turnstile` or `hcaptcha`, and `captcha_site_key` is the provider's site key, which the page carries. The secret key is stored encrypted in `storage/`, never in `config/`. The provider's script loads only on pages that show a form.
 
 ### Spam limits and stored data
 

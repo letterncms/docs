@@ -19,7 +19,7 @@ On the **Settings** tab of **Analytics**, **What to Count** has two options:
 | Read from the browser | Nothing | Where they came from, window width, Do Not Track |
 | Kept about visitors | Nothing | A daily code per visitor that can't be traced back, replaced every day |
 
-Visitors mode reads data from the browser and keeps that daily code. Whether that needs your visitors' consent depends on their countries, so check the rules for them. By default it waits for your consent tool to say yes; turn off **Wait for Consent** if you've decided you don't need it.
+Visitors mode reads data from the browser and keeps that daily code. Whether that needs your visitors' consent depends on their countries, so check the rules for them. By default it waits for your consent tool to say yes; turn off **Wait for Consent** if you've decided you don't need it. The free [Consent](/operations/consent) plugin is such a tool: with it, counting starts once a visitor accepts analytics.
 
 Going back to page views only deletes the visitor data. Views per page stay.
 
@@ -42,7 +42,7 @@ Visitors mode adds the **Entry Pages** where visits start, **Sources** (the site
 
 ## Settings
 
-All on the **Settings** tab of **Analytics**, which is also under **Settings → Analytics**. Save from the bar at the bottom. The rest show while **Count Visits** is on:
+All on the **Settings** tab of **Analytics**. Save from the bar at the bottom. The rest show while **Count Visits** is on:
 
 | Setting | |
 |---|---|
@@ -63,7 +63,7 @@ A page ends with `<img src="/api/analytics/view?p=/pricing">`, with the path wri
 
 A few hundred bytes of script post the path, referrer, campaign and window width to `/api/analytics/hit` after the page loads. The endpoint is rate-limited per address and accepts views from the site's own pages only. The IP address and browser string are hashed with a salt that is replaced daily and thrown away. Lettern keeps one row per visitor and day, daily totals per page, and the source, device, browser and operating system. Switching to this mode starts collecting from that day; switching back deletes the visitor data and its salt.
 
-The consent signal is `window.cmsConsent = { analytics: true }` set before the page's script runs, or a `cms:consent` event on `document` with `detail: { analytics: true }`. Web server logs are separate from all of this, and are your host's matter.
+The consent signal is `window.cmsConsent = { analytics: true }` set before the page's script runs, or a `cms:consent` event on `document` with `detail: { analytics: true }`. The [Consent](/operations/consent#the-consent-signal) plugin gives both. Web server logs are separate from all of this, and are your host's matter.
 
 ### Staff aren't counted
 
