@@ -4466,6 +4466,7 @@
                                     "integer",
                                     "null"
                                 ],
+                                "minimum": 1,
                                 "description": "Highlight Column"
                             },
                             "look": {
