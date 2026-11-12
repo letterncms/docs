@@ -27,7 +27,7 @@ However the site was installed, from the zip or with Composer, the folder is a C
 | `content/schemas/` | The content model as JSON Schema files, written by the site: see [AI and automation](/agents#the-content-model-as-json-schema-files). | Yes |
 | `content/` (the rest) | Fieldsets, globals, forms, menus, redirects. | Yes |
 | `public/` | What visitors get: built pages, uploaded media in `media/`, and in `_cms/` generated images, compiled CSS, fonts and plugin assets. | Media only |
-| `storage/` | Logs, caches, drafts of file-based entries (unpublished template and component changes too), encrypted secrets, the SQLite database. | No |
+| `storage/` | Logs, caches, drafts of file-based entries (unpublished template and component changes too), the site kits you switched away from (`storage/kits/`), encrypted secrets, the SQLite database. | No |
 | `.env` | Database credentials, app key, environment flags. | No |
 
 ## Where the code is
