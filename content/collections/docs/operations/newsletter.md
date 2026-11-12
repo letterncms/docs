@@ -6,7 +6,7 @@ description: 'Let visitors join your Brevo newsletter lists from a signup block,
 ---
 With the free Brevo plugin, visitors join your [Brevo](https://www.brevo.com) newsletter lists from a block on your site. The same plugin [sends the site's email](/operations/email) through Brevo.
 
-Install it from **Plugins → Store**, or with `composer require letterncms/brevo`.
+Install it from **Plugins**, or with `composer require letterncms/brevo`.
 
 ## Set it up
 

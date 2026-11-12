@@ -137,4 +137,4 @@ The assistant is the workspace's [agent](/plugins/agents): it binds `Cms\Contrac
 
 ### Where it lives
 
-The assistant is the `letterncms/assistant` module, in `modules/assistant` of Lettern, with its classes under `Cms\Modules\Assistant\`. It's on unless you switch it off under **Plugins → Built In**; switched off, nothing in the admin mentions AI, and its settings in `config/assistant.yaml` stay for when it's back.
+The assistant is the `letterncms/assistant` module, in `modules/assistant` of Lettern, with its classes under `Cms\Modules\Assistant\`. It's on unless you switch it off under **Settings → Built In**; switched off, nothing in the admin mentions AI, and its settings in `config/assistant.yaml` stay for when it's back.

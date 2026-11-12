@@ -34,7 +34,7 @@ Your listing has a title, a one-sentence summary, an icon, up to three categorie
 
 ## Installing it
 
-People install your plugin from **Plugins → Store** in their admin, with one click. A site run with Composer adds the store as a repository and installs it like any package:
+People install your plugin from **Plugins** in their admin, with one click. A site run with Composer adds the store as a repository and installs it like any package:
 
 ```bash
 composer config repositories.store composer https://lettern.org/composer

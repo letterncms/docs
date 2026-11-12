@@ -8,7 +8,7 @@ Sync copies one site into another: its content, its media, and if you like its t
 
 ![Sync, with production and staging connected.](/media/screens/operations-sync.webp)
 
-Sync comes with Lettern and is free on every site, public ones included: there's nothing to install or buy. It's on unless you switch it off under **Plugins → Built In**.
+Sync comes with Lettern and is free on every site, public ones included: there's nothing to install or buy. It's on unless you switch it off under **Settings → Built In**.
 
 ## Connect two sites
 
@@ -75,7 +75,7 @@ Sync checks before it starts, and tells you what to do:
 - **The same site twice.** A site can't sync with its own key, with a copy of its own folder, or with a site sharing its database.
 - **Busy.** One sync at a time per site. A second waits until the first ends.
 - **Permissions and disk space.** The receiving site needs to write to the folders that change, and room for the incoming copy and the backup.
-- **No answer.** If the other site doesn't answer as a site with Sync, check its address, and that Sync is on there under **Plugins → Built In**.
+- **No answer.** If the other site doesn't answer as a site with Sync, check its address, and that Sync is on there under **Settings → Built In**.
 
 Different databases (MySQL and SQLite) or table prefixes are fine: rows are converted on the way.
 

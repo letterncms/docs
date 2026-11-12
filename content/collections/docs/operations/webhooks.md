@@ -6,7 +6,7 @@ description: 'Tell other services what happens on your site: a signed request wh
 ---
 A webhook tells another service that something happened on your site. When an entry is published, a file is uploaded, an account changes or the site is published, each address that asked for that event gets a signed JSON request. Use it to refresh a search index, rebuild a front end, or post to a chat.
 
-Webhooks is a free plugin: install it from **Plugins → Store**, or with `composer require letterncms/webhooks`.
+Webhooks is a free plugin: install it from **Plugins**, or with `composer require letterncms/webhooks`.
 
 ## Add a webhook
 

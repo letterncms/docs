@@ -4,7 +4,7 @@ title: Cookie consent
 position: 10
 description: 'Ask visitors before analytics or marketing scripts run, with a banner in your own design.'
 ---
-The Consent plugin puts a cookie banner on your published site. Visitors accept everything, only what is necessary, or choose between analytics and marketing, and scripts wait for their answer. It is free: install it from **Plugins → Store**, or with `composer require letterncms/consent`.
+The Consent plugin puts a cookie banner on your published site. Visitors accept everything, only what is necessary, or choose between analytics and marketing, and scripts wait for their answer. It is free: install it from **Plugins**, or with `composer require letterncms/consent`.
 
 The banner uses your site's own colors, buttons and switches. It sits over the page, so nothing moves when it appears, and the answer is kept in the visitor's browser, so it works on built pages too.
 

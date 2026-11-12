@@ -6,7 +6,7 @@ description: 'Bring a site over from WordPress, a CSV file or a folder of Markdo
 ---
 The Import plugin brings content from somewhere else into your site: a WordPress export, a CSV file, or a folder of Markdown files. Every import is previewed first. And it can be run again: what it made before is updated when its source changed, left alone when it did not, and never made twice.
 
-It is free: install it from **Plugins → Store**, or with `composer require letterncms/import`. Importing is done in the admin, from the command line or by an agent; it needs the **Import Content** permission, which administrators have.
+It is free: install it from **Plugins**, or with `composer require letterncms/import`. Importing is done in the admin, from the command line or by an agent; it needs the **Import Content** permission, which administrators have.
 
 ## In the admin
 

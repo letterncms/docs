@@ -39,7 +39,7 @@ The required modules are what Lettern needs to keep working: without them there 
 
 ## Switch a module off
 
-Modules are part of Lettern, not plugins: the ones that can be off are under **Plugins → Built In**, each with its switch. Or switch one off with `php cms plugin disable letterncms/audit`, the `packages/disable` ability (and back on with `packages/enable`), or in `config/plugins.yaml`:
+Modules are part of Lettern, not plugins: the ones that can be off are under **Settings → Built In**, each with its switch. Or switch one off with `php cms plugin disable letterncms/audit`, the `packages/disable` ability (and back on with `packages/enable`), or in `config/plugins.yaml`:
 
 ```yaml
 enabled:          # plugins that run

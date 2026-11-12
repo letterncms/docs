@@ -4,7 +4,7 @@ title: Store protocol
 position: 12
 description: A plugin store is a few signed files. Anyone can run one, and a site trusts the signatures, not the server.
 ---
-The **Store** tab in **Plugins** reads a plugin store: a handful of JSON files and zips. Anyone can run one, and every site can use it. A site trusts what's signed, not the server it came from, so a store can't slip in a package it didn't sign.
+**Plugins** reads a plugin store: a handful of JSON files and zips. Anyone can run one, and every site can use it. A site trusts what's signed, not the server it came from, so a store can't slip in a package it didn't sign.
 
 A store that sells things also needs something to take the money and issue [licenses](/plugins/license-tokens). The client neither knows nor cares how it does that: this page is all a site relies on.
 
@@ -48,11 +48,11 @@ The payload:
 }
 ```
 
-Items come in the store's own order, and a site keeps it for **Most Popular**. `glyph` names an icon from the set the admin draws, so a listing needs no picture to fetch; `featured` puts it in the Store tab's first row. Neither changes the order.
+Items come in the store's own order, and a site keeps it for **Most Popular**. `glyph` names an icon from the set the admin draws, so a listing needs no picture to fetch; `featured` puts it first in the list of plugins. Neither changes the order.
 
 ### The detail
 
-The detail fills the plugin's page in the Store tab:
+The detail fills the plugin's own page in **Plugins**:
 
 ```json
 {
