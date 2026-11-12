@@ -1,0 +1,130 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Docs: the data of an entry",
+    "description": "What `data` of an entry of the collection `docs` must follow to be published. A draft may leave required fields empty.",
+    "type": "object",
+    "properties": {
+        "body": {
+            "title": "Content",
+            "type": "array",
+            "description": "Content. A list of blocks: {type, props, style?, children?}. See blocks/types for the catalog and cms://blocks for examples.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "props": {
+                        "type": "object"
+                    },
+                    "style": {
+                        "type": "object"
+                    },
+                    "children": {
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "type"
+                ]
+            }
+        },
+        "description": {
+            "title": "Description",
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 20000,
+            "description": "Shown under the page title."
+        },
+        "template": {
+            "title": "Template",
+            "type": [
+                "string",
+                "null"
+            ],
+            "enum": [
+                "default",
+                "doc",
+                "docs-home",
+                "reference-abilities",
+                "reference-blocks",
+                "reference-fields",
+                null
+            ],
+            "description": "Template"
+        },
+        "seo": {
+            "title": "SEO",
+            "type": "object",
+            "properties": {
+                "title": {
+                    "title": "SEO Title",
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 120,
+                    "description": "SEO Title"
+                },
+                "description": {
+                    "title": "Meta Description",
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 320,
+                    "description": "Meta Description"
+                },
+                "image": {
+                    "title": "Social Image",
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "description": "Media id (see media/list), or an https:// or /path URL"
+                    },
+                    "maxItems": 1,
+                    "description": "Social Image — media ids from media/list or media/import"
+                },
+                "canonical": {
+                    "title": "Canonical URL",
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "uri-reference",
+                    "maxLength": 2048,
+                    "description": "Canonical URL"
+                },
+                "schema": {
+                    "title": "Page Type",
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "enum": [
+                        "WebPage",
+                        "Article",
+                        "AboutPage",
+                        "ContactPage",
+                        "CollectionPage",
+                        "FAQPage",
+                        "ProfilePage",
+                        null
+                    ],
+                    "description": "Page Type"
+                },
+                "noindex": {
+                    "title": "Hide from Search Engines",
+                    "type": "boolean",
+                    "description": "Hide from Search Engines"
+                }
+            },
+            "description": "SEO"
+        }
+    }
+}

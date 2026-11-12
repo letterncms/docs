@@ -1,0 +1,57 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Templates: the data of an entry",
+    "description": "What `data` of an entry of the collection `templates` must follow to be published. A draft may leave required fields empty.",
+    "type": "object",
+    "properties": {
+        "blocks": {
+            "title": "Template",
+            "type": "array",
+            "description": "Template. A list of blocks: {type, props, style?, children?}. See blocks/types for the catalog and cms://blocks for examples.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "props": {
+                        "type": "object"
+                    },
+                    "style": {
+                        "type": "object"
+                    },
+                    "children": {
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "type"
+                ]
+            }
+        },
+        "description": {
+            "title": "Description",
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 20000,
+            "description": "Description"
+        },
+        "collections": {
+            "title": "Offered For",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "docs"
+                ]
+            },
+            "uniqueItems": true,
+            "description": "Leave empty to offer it everywhere."
+        }
+    }
+}

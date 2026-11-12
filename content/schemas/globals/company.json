@@ -1,0 +1,26 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Company: the values of a global set",
+    "description": "The values of the global set `company`, by field handle.",
+    "type": "object",
+    "properties": {
+        "display_name": {
+            "title": "Name shown on the site",
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 500,
+            "description": "Name shown on the site"
+        },
+        "vat_number": {
+            "title": "VAT number",
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 500,
+            "description": "VAT number"
+        }
+    }
+}
