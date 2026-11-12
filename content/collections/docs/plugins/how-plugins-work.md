@@ -295,7 +295,7 @@ $this->cms()->hooks()->addFilter('collections', fn (array $collections) => $coll
 
 ### The starting definition
 
-To change the definition offered when someone creates a collection, filter `collections.defaults`. `collections/options` returns this definition separately from the settings schema. The Blocks module contributes a `content` blocks field and its explicit `body` handle; when it's off, the browser receives no blocks default and can create a field-only collection. This hook doesn't change existing collections.
+To change the definition offered when someone creates a collection, filter `collections.defaults`. `collections/options` returns this definition separately from the settings schema. The Blocks module contributes a `content` blocks field marked `body: true`; when it's off, the browser receives no blocks default and can create a field-only collection. This hook doesn't change existing collections.
 
 ### A setting per collection
 
