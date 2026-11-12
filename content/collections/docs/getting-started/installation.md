@@ -71,7 +71,7 @@ php cms install --site-name="Acme" --site-url="https://acme.test" \
   --name="Ada Lovelace" --email=ada@acme.test --password="a-strong-password"
 ```
 
-Choose plugins with `--plugins=seo,forms`, or none at all with `--plugins=none`: a site without plugins is a complete site. `--kit=<name>` starts it from a [site kit](/design/site-kits) other than Minimal, and `--kit=none` from nothing. From the command line, plugins are added with `composer require letterncms/<name>`, and land in `plugins/<name>` (a third party's in `plugins/<vendor>-<name>`).
+Choose plugins with `--plugins=seo,forms`, or none at all with `--plugins=none`: a site without plugins is a complete site. `--kit=<name>` starts it from a [site kit](/design/site-kits) other than Minimal, and `--kit=none` from nothing. From the command line, plugins are added with `composer require letterncms/<name>`, and land in `plugins/<name>` (a third party's in `plugins/<vendor>-<name>`). **Plugins → Store** puts them in the same place on a Composer site too, and adds them to `composer.json`; the next `composer update` writes them into `composer.lock`.
 
 ### Protect the installer
 
