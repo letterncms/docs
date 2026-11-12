@@ -184,7 +184,7 @@ Element styles sit in a low CSS layer, so a block's own styles always win.
 
 ### Prose
 
-`prose` is long-form text: any **Page Content** or **Box** with **Prose** on (`"props": { "prose": true }`; the starter's article template has it). Its blocks are spaced as one flow, whatever they are, a paragraph, an image or a block of your own:
+`prose` is long-form text: any **Page Content** or **Box** with **Prose** on (`"props": { "prose": true }`; Minimal's article template has it). Its blocks are spaced as one flow, whatever they are, a paragraph, an image or a block of your own:
 
 | `spacing` | Default | Space |
 |---|---|---|

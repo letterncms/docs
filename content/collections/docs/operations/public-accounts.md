@@ -54,7 +54,7 @@ The **Account Navigation** block links to all account pages, in a row or in a co
 
 ## Sign in and My account in your header
 
-The starter header already has **Sign in** and **My account** links. Each block shows only to the right people: **Sign in** to people who are signed out, **My account** to people who are signed in. When you turn visitor accounts off, both disappear. To build your own, see [For developers](#show-blocks-to-signed-in-visitors).
+The header of the kit Minimal already has **Sign in** and **My account** links. Each block shows only to the right people: **Sign in** to people who are signed out, **My account** to people who are signed in. When you turn visitor accounts off, both disappear. To build your own, see [For developers](#show-blocks-to-signed-in-visitors).
 
 ## Team and visitors
 
