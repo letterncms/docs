@@ -138,6 +138,7 @@ The first argument is the value you return; the rest are there to help you decid
 | `admin.nav` | `$items` | Sidebar items that come and go (letterncms/content adds one per collection, letterncms/settings one per settings page). |
 | `agent.guide` | `$guide` | The instructions every AI agent gets. |
 | `audit.past` | `$past` | What the Audit Log calls each change once it happened, by ability name: `$past + ['forms/delete' => __('Deleted Form')]`. Give every ability of yours that changes something its words; without them the log falls back to the ability's label. |
+| `audit.subject` | `$subject, $ability, $input` | What a change made by one of your abilities is named by in the Audit Log, when its input holds only an id: return a name for `$ability` (`webhooks/test` gives the webhook's), or `$subject` as it came. It is asked as the change is recorded, with what a dry run said it would remove, and again as the log is read, for what is still there. |
 | `mcp.prompts` | `$prompts` | Prompts offered to MCP clients: the site's skills (`cms()->skills()`). |
 
 ### Pages

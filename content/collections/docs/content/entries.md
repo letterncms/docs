@@ -26,7 +26,7 @@ After that, your edits are kept apart from the live version. Visitors keep seein
 
 On a live entry, **Published** in the top bar opens what publishing offers next: **Publication Date…** and **Unpublish**.
 
-Changed your mind? Open **More Actions** (the `…` button) and choose **Discard Unpublished Changes** to go back to the live version, or **Unpublish** to take the entry off the site. In the collection's list, each row's **⋯** menu has **Publish** and **Unpublish** too.
+Changed your mind? Open **More Actions** (the `…` button) and choose **Discard Unpublished Changes** to go back to the live version, or **Unpublish** to take the entry off the site. Both ask first and say what you lose. In the collection's list, each row's **⋯** menu has **Publish** and **Unpublish** too.
 
 | Press | To |
 |---|---|
