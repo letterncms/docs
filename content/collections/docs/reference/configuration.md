@@ -53,13 +53,16 @@ disabled:
 # config/site.yaml — the admin's language for everyone without their own (Admin Language
 # under Settings → General; empty: each person's browser language)
 admin_language: en
+# …and its accent, as #rrggbb (Admin Accent; empty: the brand's yellow). A person's own
+# is the `accent` preference on their account.
+admin_accent: '#2f6bff'
 ```
 
 ## Settings
 
 Everything people change in **Settings** belongs to a settings namespace:
 
-- the site itself, under **General**: name, URL, timezone, language, **Admin Language** and favicon, in `config/site.yaml`
+- the site itself, under **General**: name, URL, timezone, language, **Admin Language**, **Admin Accent** and favicon, in `config/site.yaml`
 - the default sidebar and Dashboard, in `config/admin.yaml`, with no page of their own: saved with **Save for Everyone** where they are arranged
 - each module: how email is sent (`config/email.yaml`), media, languages (`config/languages.yaml`), how long the Audit Log keeps entries, the roles, visitor accounts, the assistant's models and approvals (`config/assistant.yaml`)
 - each plugin, under **Plugins** in the settings sidebar or on its screen's **Settings** tab: SEO defaults
