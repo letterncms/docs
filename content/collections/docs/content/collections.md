@@ -34,7 +34,7 @@ Under **Advanced** you can also set the **Handle** (the name used in code and fi
 
 ## Add fields
 
-Fields are the questions the form asks: a place, a plate, a short summary. On the collection's **Fields** tab, press **Add Field**, pick a type and give it a label. Drag fields to put them in order, then press **Save** in the bar that appears at the bottom (or `⌘S`).
+Fields are the questions the form asks: a place, a plate, a short summary. On the collection's **Fields** tab, the menu at the start of the **Add Field** row is named for the blueprint on view. Choose **Add Blueprint** there, name it, and build its fields in the same editor, with every option. The same menu switches between blueprints, and for the one on view **Rename Blueprint** changes its name and handle and **Remove Blueprint** takes it away, saying first how many entries were made with it.
 
 ![The Surveys collection's fields: report, summary, sheet number, discipline, client, place and more.](/media/screens/collection.webp)
 
