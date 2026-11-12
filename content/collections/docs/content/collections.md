@@ -71,7 +71,7 @@ Every collection can show its entries as a **Table**, a **Grid** of cards or a *
 
 ![The list of surveys in a table.](/media/screens/entries.webp)
 
-To keep more than one arrangement, press **Views**, beside **Display**, choose **Save View** and give it a name. It keeps what the list is narrowed to (status, language, search), its order, its columns and whether it is a table, a grid or a calendar. Choose a view in that menu to put the list back that way: the button then shows its name. **Rename View** and **Delete View** in the same menu work on any of your views: with more than one, they ask which. Views are yours alone and come with your account to every browser.
+To keep more than one arrangement, change the list and press **Save View** beside **Display**, then give it a name. It keeps what the list is narrowed to (status, language, search), its order, its columns and whether it is a table, a grid or a calendar. Your views show as tabs above the list, after **All**: choose one to put the list back that way. When you change the list on a view, its tab shows a dot and **Save View** offers to update it or save a new one; **Reset** puts it back. Choose the tab you are on to rename or delete that view. Views are yours alone and come with your account to every browser.
 
 To set the starting view for everyone, open the collection's **Settings** tab and use **Default Display**, then save. Anyone can go back to it with **Display → Reset Display**.
 
