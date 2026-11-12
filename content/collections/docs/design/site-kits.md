@@ -62,12 +62,16 @@ Entries come in under ids of their own, and whatever named them follows: relatio
 | The design system, fonts, scripts, styles and vendored libraries | `content/design/` |
 | The images and files something in it names, with their records | `content/media/`, `public/media/` |
 | The few settings a kit carries: the site's description, favicon and search index | `config/site.yaml` |
-| What a plugin keeps beside the content and says is part of a site (Forms' forms) | `content/forms/` |
+| What a plugin keeps beside the content and says is part of a site (Forms' forms, SEO's redirects) | `content/forms/`, `content/redirects.yaml` |
 | What it is | `kit.json` |
 
 The kits you leave are kept in `storage/kits/<name>`, in this same layout. What plugins collect while the site runs (form submissions, analytics) is data of the server, not of a kit.
 
 A kit never holds accounts, tokens, secrets, form submissions, analytics, the audit log, licences, the site's name, address or mail settings, or any collection a plugin keeps for itself.
+
+## Importing a kit
+
+**Import Site** on the same screen takes the zip that **Export Site** downloaded (or any kit's folder, zipped) and keeps it in `kits/`, ready to switch to. Nothing about your site changes until you choose it. A zip is read without trust: a path outside the kit, a link or a file a server would run refuses it, and a kit whose handle you already have is refused too. Agents use `kits/import`.
 
 ## Kits as packages
 
@@ -86,4 +90,4 @@ A kit is shared as a Composer package of type `cms-kit`: the kit's folder with a
 
 ## For agents
 
-The same through abilities: `kits/list` (`active` says which kit the site is, `edited` which have a saved copy), `kits/switch` (`fresh` for the kit as it came; `saved` says what was kept), `kits/get` (with `mode`, the plan step by step), `kits/apply` (run it with `dryRun` first: `changes` lists every step, and it refuses while there is a clash) and `kits/export`.
+The same through abilities: `kits/list` (`active` says which kit the site is, `edited` which have a saved copy), `kits/switch` (`fresh` for the kit as it came; `saved` says what was kept), `kits/get` (with `mode`, the plan step by step), `kits/import` (a kit's zip, base64), `kits/apply` (run it with `dryRun` first: `changes` lists every step, and it refuses while there is a clash) and `kits/export`.
