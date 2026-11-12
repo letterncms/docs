@@ -71,7 +71,7 @@ For CSS, import Tailwind's utilities into the `plugins` layer. The shared setup 
 
 The theme gives a module the admin's own names, for use instead of raw values: the type scale (`text-2xs` to `text-3xl`, `text-display`), the radii (`rounded-xs` to `rounded-xl`), the colours and shadows, the durations `duration-fast`, `duration-base`, `duration-move` and `duration-slow`, and the layers `z-raised`, `z-drag`, `z-sticky`, `z-bar`, `z-drawer`, `z-overlay` and `z-tooltip`.
 
-The `signal` colours (`bg-signal`, `text-signal-ink`, `bg-signal-soft`) are the admin's accent, which the site and each person can change: use them for going live and for highlights, and the right colour follows. `AccentPicker` in `@letterncms/ui` is the control that picks one.
+The `signal` colours (`bg-signal`, `text-signal-ink`, `bg-signal-soft`) and the `focus` colours (`focus`, `bg-focus-soft`) are the admin's theme colour, which the site and each person can change: use `signal` for going live, things that are on and highlights, `focus` for focus and selection, and `info` for information, which stays blue. `AccentPicker` in `@letterncms/ui` is the control that picks one.
 
 `adminModule()` loads `dist/admin.css` too when it's there. A plugin with no stylesheet of its own passes `css: null`.
 
