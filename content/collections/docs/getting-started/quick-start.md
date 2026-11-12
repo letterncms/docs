@@ -25,7 +25,7 @@ A few shortcuts save a lot of clicking:
 
 The admin is light or dark. Click your name at the bottom of the sidebar and choose **System**, **Light** or **Dark**; `⌘K` offers the same. The choice is kept on your account, so it is the same in every browser you sign in to.
 
-Its accent, the colour of **Publish** and of the chat's bubble, is yellow unless you change it. **Admin Accent** under **Settings → General** sets it for everyone: pick a swatch or type any colour, and the words on it are made readable for you. **Account → Profile → Accent** picks your own, and **Use Admin Default** goes back to everyone's.
+Its theme colour, the colour of **Publish**, switches that are on, focus and selection and the chat's bubble, is amber unless you change it. **Theme Color** under **Settings → General** sets it for everyone: amber, orange, pink, violet, blue, green or monochrome, each made to be read in light and dark. **Account → Profile → Theme Color** picks your own, and **Use Admin Default** goes back to everyone's.
 
 The admin also speaks other languages, German (Deutsch) among them. Choose yours under **Account → Profile → Language**. **Admin Language** under **Settings → General** sets it for everyone who hasn't chosen, and without either the admin follows your browser.
 

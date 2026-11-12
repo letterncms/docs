@@ -129,7 +129,7 @@ $this->cms()->hooks()->addFilter('settings.fields', fn (array $fields, string $n
     : $fields);
 ```
 
-Core's own settings are namespaces like yours: **General** (`config/site.yaml`: name, URL, description, timezone, language, **Admin Language**, `admin_language`, and **Admin Accent**, `admin_accent`), **Email** (`config/email.yaml`), **Media** (`config/media.yaml`) and **Roles** (`config/roles.yaml`, drawn by a permissions editor). The default sidebar and Dashboard are values of the `admin` namespace (`config/admin.yaml`) with no page of their own: **Save as Default** writes them where they are arranged. Register a namespace with `page: false` for values like these.
+Core's own settings are namespaces like yours: **General** (`config/site.yaml`: name, URL, description, timezone, language, **Admin Language**, `admin_language`, and **Theme Color**, `admin_accent`), **Email** (`config/email.yaml`), **Media** (`config/media.yaml`) and **Roles** (`config/roles.yaml`, drawn by a permissions editor). The default sidebar and Dashboard are values of the `admin` namespace (`config/admin.yaml`) with no page of their own: **Save as Default** writes them where they are arranged. Register a namespace with `page: false` for values like these.
 
 ## Check values together
 
