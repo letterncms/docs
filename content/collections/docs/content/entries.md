@@ -4,13 +4,13 @@ title: Entries
 position: 2
 description: Write, save as you go, publish now or later, and go back to an earlier version whenever you need to.
 ---
-An entry is one item in a collection: a page, a blog post, a dish. You fill it in, Lettern saves as you type, and nothing goes live until you publish.
+An entry is one item in a collection: a page, a blog post, a survey. You fill it in, Lettern saves as you type, and nothing goes live until you publish.
 
-![Filling in a dish: one simple form, with the fields the collection asks for.](/media/screens/entry.webp)
+![Filling in a survey: one simple form, with the fields the collection asks for.](/media/screens/entry.webp)
 
 ## Write and publish
 
-1. Open a collection from the sidebar and press the **New** button, such as **New Dish**.
+1. Open a collection from the sidebar and press the **New** button, such as **New Survey**.
 2. Give it a title and fill in the fields. Your work saves as you type.
 3. Press **Publish** when it's ready. It's live straight away.
 
@@ -59,7 +59,7 @@ An entry that's already live can't be scheduled for the future. Unpublish it fir
 
 ## Entry details
 
-Press the panel button in the toolbar, named after the kind of entry (**Page Details**), or `⌘.`, to open the details on the right. The first tab is named after the kind of entry (**Page**, **Post**, **Dish**). **History** follows it, then any tabs plugins add, like **SEO**.
+Press the panel button in the toolbar, named after the kind of entry (**Page Details**), or `⌘.`, to open the details on the right. The first tab is named after the kind of entry (**Page**, **Post**, **Survey**). **History** follows it, then any tabs plugins add, like **SEO**.
 
 On the first tab you change the title, the URL slug and the **Author**. Fields set to **Show as Property** appear here too. Under **Info** you see its status and when it was published; people who can manage collections also see when it was created and updated. An entry's ID is **Copy ID** in **More Actions**.
 

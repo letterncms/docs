@@ -57,7 +57,7 @@ The detail fills the plugin's page in the Store tab:
 ```json
 {
   "description_html": "<h2>Build it where you build pages</h2><p>...</p>",
-  "gallery": [{ "url": "https://store.example/media/forms-builder.webp", "alt": "A booking form in the builder." }],
+  "gallery": [{ "url": "https://store.example/media/forms-builder.webp", "alt": "A commission form in the builder." }],
   "requirements": ["A Brevo account with a verified sender domain"],
   "docs_url": "https://...", "repository_url": "https://github.com/...",
   "releases": [{ "version": "2.1.0", "released_at": "2027-01-08T09:00:00Z", "notes": "Added\n• Maps for every page.", "security": false }],
