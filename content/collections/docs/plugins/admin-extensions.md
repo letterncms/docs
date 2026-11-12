@@ -104,14 +104,14 @@ registry.commands.set('reviews-ask', { label: 'Summarize reviews', perform: () =
 | `panels` | Components in named [slots](#slots). |
 | `widgets` | Dashboard widgets (declared in PHP, rendered from here). |
 | `components` | Components the assistant can compose: see [Generative UI](/plugins/generative-ui). |
-| `commands` | Commands offered under `/` in a thread, which `⌘K` opens. `when` says when one is offered (the theme not in use), and its `shortcut` shows beside it. `acceptsQuery` is deprecated: anything typed after `/` can be asked or searched. |
+| `commands` | Commands offered under `/` in a thread, which `⌘K` opens. `when` says when one is offered (the theme not in use), and its `shortcut` shows beside it. |
 | `entryActions` | Lines in the entry editor's **More Actions** menu (`⋯`). |
 | `composer` | What `@` and `/` offer in a thread: see [In the workspace](#in-the-workspace). |
 | `icons` | Extra icons by name. |
 
 A later registration under the same key wins, and when its module goes away, what it replaced comes back. A panel, command, entry action or composer source is known by its key: read back from the registry, it has that key as its `id`.
 
-A command declared in PHP takes `label`, `icon`, `group`, `path` or `ability` (with `input`), `keywords` and `permission`.
+A command declared in PHP takes `label`, `icon`, `path` or `ability` (with `input`), `keywords` and `permission`.
 
 ### Load data before a screen opens
 
