@@ -23,7 +23,9 @@ It is for what [animations](/design/animations) and [interactions](/design/inter
 
 The same panel lists the scripts and styles the block loads. Putting a script, a style, a behavior or a persist name on a block needs the **Edit Custom CSS and JavaScript** permission, in the admin and through every ability. Without it, a block keeps what it has.
 
-Scripts never run in the editor: there the block is only its design. A block that a behavior draws, such as a canvas or a chart, would be a blank there, so while it is empty it says which behavior draws it and that the preview shows it. Give such a block a size in **Design**, so the editor shows its place.
+Scripts don't run in the editor on their own: there the block is only its design. A block that a behavior draws, such as a canvas or a chart, would be a blank there, so while it is empty it says which behavior draws it and that the preview shows it. Give such a block a size in **Design**, so the editor shows its place.
+
+A behavior that can draw in the editor too says so, and then the editor shows it there as on the site: see [Draw in the editor](#draw-in-the-editor).
 
 ## Write the script
 
@@ -62,6 +64,33 @@ What `mount` returns is called when the element leaves the page. A module can al
 The element can arrive and leave in three ways, and the contract is the same for each: the page loads, a script adds or removes markup, or [navigation without page loads](/design/page-navigation) swaps the page. An element that is [persisted](/design/page-navigation#keep-an-element-across-pages) across pages stays mounted.
 
 An error in a behavior is logged to the console and stops only that behavior.
+
+## Draw in the editor
+
+A script that exports `canvas` as `true` is mounted in the editor's canvas as well, so the page being edited shows what it draws: a WebGL scene, a chart, a pattern. It gets the same `mount(el, props, context)`, cleanup and `unmount(el)` as on the site. Every edit renders the canvas again: the behavior is undone first and mounted afresh after, and undone when the editor closes.
+
+```javascript
+// content/design/scripts/plate.js
+export const canvas = true
+
+export function mount(el, props, { token, signal, window: win = window, document: doc = document }) {
+  const plate = doc.createElement('canvas')
+  el.append(plate)
+  // … draw, reading win.devicePixelRatio and win.matchMedia() for the page it is on
+  return () => plate.remove()
+}
+```
+
+In the editor the script runs in the admin while its element is in the canvas, so the context carries two more values. Read the size, the scroll and media queries from them, not from the globals: there a script's own `window` and `document` are the admin's page, never the canvas. The script works in both places when it reads them from the context:
+
+| Argument | Is |
+|---|---|
+| `canvas` | `true` in the editor, absent on the site |
+| `window`, `document` | The window and document the element is in: the canvas's in the editor |
+
+Only scripts the site publishes itself are run there, and the admin borrows just the names in the page's import map that the script imports. Because such a script runs in the admin as whoever opens the editor, writing it needs **Edit Custom CSS and JavaScript**, an administrator's permission: see [Security](/operations/security#give-each-person-only-what-they-need).
+
+A behavior that moves by itself is best still in the editor, as for `reducedMotion`: the page is what moves there. The canvas runs no scripts of its own, and a page like that never shows what a `<canvas>` draws, so the editor shows a picture of each canvas the behavior draws in its place, taken after it mounts, as it settles and when the block changes size. Without the export a behavior keeps its name in the editor, and so does one in a browser that cannot load it there.
 
 A script that is not a behavior hears the Motion Toggle too: pausing sets `<html data-cms-motion="paused">` and dispatches `cms:motion` on `document`, with `event.detail.paused`.
 
