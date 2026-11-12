@@ -56,11 +56,11 @@ Every block on every page uses these values. Change your main color once, and th
 
 ## 4. Add your own kind of content
 
-Pages aren't the only content a site has. A survey office has surveys, an agency has projects, a blog has posts. Each kind of content is a **collection**, with its own fields.
+Pages aren't the only content a site has. A restaurant has dishes, an agency has projects, a blog has posts. Each kind of content is a **collection**, with its own fields.
 
-Open **Collections**, under **Design**, to make one, say *Surveys* with a place, a summary and a plate. Then everyone fills in a simple form, and your pages show the surveys in your design.
+Open **Collections**, under **Design**, to make one, say *Dishes* with a price, a description and a photo. Then everyone fills in a simple form, and your pages show the dishes in your design.
 
-![Filling in a survey: one simple form, with the fields the collection asks for.](/media/screens/entry.webp)
+![Filling in a dish: one simple form, with the fields the collection asks for.](/media/screens/entry.webp)
 
 See [Collections](/content/collections) to set one up.
 

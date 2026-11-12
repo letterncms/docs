@@ -8,7 +8,7 @@ Fields are the parts an entry is made of: a price, a description, a photo. Each 
 
 Collections and global sets use fields in exactly the same way, so once you've added one, you know how to add them all.
 
-![The Surveys collection's fields: report, summary, sheet number, discipline, client, place and more.](/media/screens/collection.webp)
+![The Dishes collection's fields: price, course, description, allergens, photo and whether it's on the menu.](/media/screens/collection.webp)
 
 ## Add a field
 
