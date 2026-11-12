@@ -104,7 +104,7 @@ registry.commands.set('reviews-ask', { label: 'Summarize reviews', perform: () =
 | `panels` | Components in named [slots](#slots). |
 | `widgets` | Dashboard widgets (declared in PHP, rendered from here). |
 | `components` | Components the assistant can compose: see [Generative UI](/plugins/generative-ui). |
-| `commands` | Command palette entries, also offered under `/` in a thread. `acceptsQuery: true` offers the command for any typed text. |
+| `commands` | Commands offered under `/` in a thread, which `⌘K` opens. `when` says when one is offered (the theme not in use), and its `shortcut` shows beside it. `acceptsQuery` is deprecated: anything typed after `/` can be asked or searched. |
 | `entryActions` | Lines in the entry editor's **More Actions** menu (`⋯`). |
 | `composer` | What `@` and `/` offer in a thread: see [In the workspace](#in-the-workspace). |
 | `icons` | Extra icons by name. |
@@ -455,7 +455,7 @@ The entry editor gives the entry and saves first; the block workspace offers the
 
 ### @ and / in a thread
 
-`/` offers commands: making things, places to go, settings pages, the commands of `⌘K` and every ability the person may run. `@` attaches context to a message, and is there only while an agent answers: a command or a search carries nothing. Everything a message carries is a `ContextItem`: an `id`, a `label`, optionally an `icon`, a `kind`, a `to` (an admin path to open it at) and `read` (what it says, called when a message goes out). The page on view, what a screen offers and what's picked with `@` are all the same thing, shown as the same chip.
+`/` offers commands: making things, places to go, settings pages, entries by their title, the registered `commands` and every ability the person may run. `⌘K` and the sidebar's **Search** open it, with `/` typed. `@` attaches context to a message, and is there only while an agent answers: a command or a search carries nothing. Everything a message carries is a `ContextItem`: an `id`, a `label`, optionally an `icon`, a `kind`, a `to` (an admin path to open it at) and `read` (what it says, called when a message goes out). The page on view, what a screen offers and what's picked with `@` are all the same thing, shown as the same chip.
 
 To offer your own under `@` or `/`, register a source. It searches by what's typed after the trigger:
 
@@ -472,7 +472,7 @@ registry.composer.set('orders', {
 })
 ```
 
-Reading through `run` keeps your ability's permission check. What picking a line does follows from what it has: `perform` runs it, `insert` writes text in the message, `skill` asks for that skill, `command` runs an ability in the thread, and without any of those it's attached. `group` gives a line a heading of its own.
+Reading through `run` keeps your ability's permission check. What picking a line does follows from what it has: `perform` runs it, `insert` writes text in the message, `skill` asks for that skill, `command` runs an ability in the thread, and without any of those it's attached. `group` gives a line a heading of its own, and `shortcut` shows the key that does the same anywhere.
 
 A `command` names the `ability`, the `input` already chosen and the ability's input `schema`: what it requires and isn't chosen is asked for in the composer, generated from the schema (a choice is a select, yes or no a switch, a list of words tags), with `required: true` asking only for that. `load` asks with fields of your own and what they hold now instead (only what changed is sent), `into` puts the answers under one key, and `confirm` names the button. Field choices take their words from the schema's `x-labels` (see [Asking for input](/getting-started/workspace#asking-for-input)):
 

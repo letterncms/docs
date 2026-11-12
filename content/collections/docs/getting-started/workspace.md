@@ -14,6 +14,7 @@ The workspace sits at the right edge of every screen. Run a command, find anythi
 | Press | To |
 |---|---|
 | `⌘J` | Open or close the workspace |
+| `⌘K`, or **Search** in the sidebar | Open it with `/` typed: find and do anything |
 | **New Chat** | Start a fresh thread: at the top of the sidebar, or **+** at the top of the workspace |
 | `/` at the start of a line | Pick a command |
 | `Enter` | Search for what you typed, or with the assistant, ask it |
@@ -23,7 +24,9 @@ Each thread keeps what you did, in order, so you can come back to it. The histor
 
 ## Commands
 
-Type `/` and pick from what you may do here: make something (**New Page**, **New Post**, **Invite User**), go somewhere, or change a settings page. Keep typing to narrow it down, and every other action the site has appears too, grouped by what it belongs to.
+Type `/`, or press `⌘K` anywhere, and pick from what you may do here: make something (**New Page**, **New Post**, **Invite User**), go somewhere, change a settings page, or switch the admin to light or dark. Keep typing to narrow it down: pages and posts by their title, and every other action the site has appear too, grouped by what they belong to. Words that match nothing are asked of the assistant, or searched without it, with `Enter`.
+
+`⌘K` keeps what you had written and puts the `/` on a line after it. A place or a setting you pick there opens, and a workspace that came out only for it goes away again; `Esc`, `⌘K` again or a click elsewhere takes the `/` back out.
 
 A command that needs nothing more runs at once. One that does asks for it right in the composer: the fields it requires, marked, and **Run**. **New Page** asks for a title; **General Settings** shows that page's settings as they are now and saves what you change. A page or a person is picked by name. If something isn't right, it says so on the field, and nothing runs until it is.
 
@@ -42,7 +45,7 @@ Those buttons run as commands in the same thread, so it keeps a record of everyt
 
 ## Search
 
-Type a few words and press `Enter`, or with the assistant set up, `/` and your words, then **Search for**. The answer lists what matches, line by line, grouped: places in the admin and settings pages, pages and posts, people, files, and what plugins add. Only what you may see is listed, and each line opens where it is. Search costs nothing and is instant.
+Type a few words and press `Enter`, or with the assistant set up, `/` (or `⌘K`) and your words, then **Search for**. The answer lists what matches, line by line, grouped: places in the admin and settings pages, pages and posts, people, files, and what plugins add. Only what you may see is listed, and each line opens where it is. Search costs nothing and is instant.
 
 ## With the assistant
 

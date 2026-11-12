@@ -28,12 +28,12 @@ You can also switch models from the picker under the message box. Your choice ap
 
 ## Ask
 
-Click **Chat** in the top bar or **New Chat** in the sidebar, on any screen, or press `⌘J`. You can also type a request in the command palette (`⌘K`) and press `Enter`. The workspace opens ready to type in.
+Click **Chat** in the top bar or **New Chat** in the sidebar, on any screen, or press `⌘J`. You can also press `⌘K`, type your request after the `/` and press `Enter`: words that match no command are asked. The workspace opens ready to type in.
 
 | Press | To |
 |---|---|
 | `⌘J` | Open or close the workspace |
-| `⌘K`, then type and press `Enter` | Ask from the command palette |
+| `⌘K`, then type and press `Enter` | Ask, when no command matches what you typed |
 | `Esc` | Put the workspace away |
 | `@` | Attach a page, a file or other context |
 | `/` at the start of a line | Use a skill or run a command |

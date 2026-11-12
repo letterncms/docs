@@ -46,7 +46,7 @@ Sometimes one collection holds entries that need different fields: an event that
 
 On the collection's **Fields** tab, the menu at the start of the **Add Field** row is named for the blueprint on view. Choose **Add Blueprint** there, name it, and build its fields in the same editor, with every option. The same menu switches between blueprints, and for the one on view **Rename Blueprint** changes its name and handle and **Remove Blueprint** takes it away, saying first how many entries were made with it.
 
-From then on, **New** asks which kind of entry to make, wherever you press it: the list, the command palette, the home screen. An entry keeps the blueprint it was made with, and the editor shows that blueprint's fields. A collection with one set of fields works as before.
+From then on, **New** asks which kind of entry to make, wherever you press it: the list, `⌘K`, the home screen. An entry keeps the blueprint it was made with, and the editor shows that blueprint's fields. A collection with one set of fields works as before.
 
 ## Give entries their own pages
 
