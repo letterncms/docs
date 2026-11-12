@@ -62,6 +62,8 @@ Switch between a grid and a table, and choose what to show and how to sort under
 
 Select several files to move or delete them at once. Lettern won't delete a file that's still used on your site, and names the pages that use it.
 
+A PDF shows its first page on its tile, and a text, CSV or Markdown file shows its first lines. Open the file to read more: a PDF scrolls through its first five pages. Other documents, like Word files, show an icon.
+
 A file says what it is in words, like **Image · JPG**. 3D models, textures and animations show an icon and their kind (GLB, HDR, Lottie) where a picture would be, and their details leave out the image tools.
 
 ## Show images on your pages
