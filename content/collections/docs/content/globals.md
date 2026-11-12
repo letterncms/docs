@@ -31,7 +31,7 @@ To change the set's fields later, press **Edit Fields** at the top. Its name and
 2. Point at its **Text** and press the database icon beside the label, **Connect to Data**.
 3. Under **Global Sets**, choose the set, then add the field's handle, so it reads like `globals.contact.phone`.
 
-The starter site's footer shows the **Tagline** of its **Footer** set this way.
+The footer of a new site, from the kit Minimal, shows the **Tagline** of its **Footer** set this way.
 
 ## In other languages
 

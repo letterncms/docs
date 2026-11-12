@@ -19,6 +19,7 @@ However the site was installed, from the zip or with Composer, the folder is a C
 | `vendor/` | Lettern and the libraries it runs on, on a site managed with Composer. | No |
 | `runtime/` | The same `vendor/`, one folder per release, on a site that updates itself. | No |
 | `plugins/` | The plugins of this site: `plugins/<name>`, and a third party's in `plugins/<vendor>-<name>`. Your own go here too. | Only what you wrote |
+| `kits/` | The [site kits](/design/site-kits) this site can apply: `kits/<name>`, and a third party's in `kits/<vendor>-<name>`. Composer or the store puts them here; a kit you exported too. | Only what you made |
 | `config/` | `site.yaml` (name, URL, languages, the admin's language), `plugins.yaml` (enabled plugins, disabled modules), `roles.yaml`, `admin.yaml` (the default sidebar and Dashboard) and one YAML file per settings namespace. | Yes |
 | `config/license.key` | The [key of a paid plugin](/reference/license#paid-plugins), when this site has one. | Yes |
 | `content/design/` | The design system (`tokens.json`), fonts, `custom.css` and `custom.js`, and the site's own [scripts, styles and libraries](/design/code) (`scripts/`, `styles/`, `code.json`, `vendor/`). | Yes |
