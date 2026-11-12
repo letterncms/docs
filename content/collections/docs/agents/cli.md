@@ -83,6 +83,7 @@ php cms vendor remove nothing --json
 | `cms migrate` | Runs migrations and plugin install and upgrade steps, and imports `content/media`. It never asks before it runs. `migrate:status`, `migrate:rollback` and the other `migrate:` commands cover the core's tables and the plugins'. |
 | `cms update` | Checks the signed update list and [updates the core](/getting-started/upgrading). `--check` only says what's on offer. `--security-only` does what an admin's visit would, for cron. |
 | `cms kit:list` | Lists the site kits this site can apply: `minimal`, which comes with the CMS, and the folders in `kits/`. |
+| `cms kit:switch <handle>` | Makes this site another site kit, saving what it is now: switching back brings it as you left it. `--fresh` brings the kit as it came. |
 | `cms kit:apply <handle>` | Copies a site kit into this site. `--mode=design` brings its design only, `full` (the default) its content too. `--dry-run` lists every step; while the site has something of a name the kit brings, it refuses until `--clash=skip`, `replace` (after a snapshot in `storage/backups/`) or `rename`. `kit:apply minimal --clash=replace` puts the kit a new site starts from back. |
 | `cms kit:export <folder>` | Writes this site as a site kit: content, design and the media they name, never accounts, secrets or settings of this server. |
 
