@@ -73,6 +73,10 @@ A kit never holds accounts, tokens, secrets, form submissions, analytics, the au
 
 A kit's name, description and thumbnail come from its `kit.json` and `previews/`. **Export Site** asks for them (left empty, the description is your site's own), and **Edit Details** on a kit's menu changes them later. A kit that comes with Lettern can't be changed. Agents use `kits/update`.
 
+## Deleting a kit
+
+**Delete** on a kit's menu removes the kit and the copy kept of it, with what you changed in it; your site stays as it is. The kit your site is now can't be deleted (switch first), nor can the kits that come with Lettern. Agents use `kits/delete`.
+
 ## Importing a kit
 
 **Import Site** on the same screen takes the zip that **Export Site** downloaded (or any kit's folder, zipped) and keeps it in `kits/`, ready to switch to. Nothing about your site changes until you choose it. A zip is read without trust: a path outside the kit, a link or a file a server would run refuses it, and a kit whose handle you already have is refused too. Agents use `kits/import`.
