@@ -44,7 +44,7 @@ If the page builder is on, a new collection starts with a **Content** field. Tha
 
 Sometimes one collection holds entries that need different fields: an event that is on site or online, a post that is an article or a video. Give the collection a **blueprint** for each kind.
 
-On the collection's **Fields** tab, **Blueprints** is a switch above the fields. Press **+** (**Add Blueprint**), name it, and build its fields in the same editor, with every option. Switch between blueprints to edit each one; **Remove Blueprint** takes one away, and says first how many entries were made with it.
+On the collection's **Fields** tab, press **Add Blueprint** beside **Add Field**, name it, and build its fields in the same editor, with every option. From then on a switch above the fields moves between the blueprints, with **+** to add another; **Remove Blueprint** takes one away, and says first how many entries were made with it.
 
 From then on, **New** asks which kind of entry to make, wherever you press it: the list, the command palette, the home screen. An entry keeps the blueprint it was made with, and the editor shows that blueprint's fields. A collection with one set of fields works as before.
 
