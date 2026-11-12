@@ -16,7 +16,7 @@ The page you edit is the real site, drawn by the same engine that builds it for 
 2. Its settings open on the right, under its name.
 3. Pick **Content**, **Design** or **Interact**.
 
-If the sidebar is closed, press `⌘.` to open it. To get back to the page's own details, press the back button at the top of the sidebar, named after the collection (**Page**, **Survey**…).
+If the sidebar is closed, press `⌘.` to open it. To get back to the page's own details, press the back button at the top of the sidebar, named after the collection (**Page**, **Dish**…).
 
 To rename the block, double-click its name, or choose **Rename** in its **⋯** menu, beside the name. The same menu has **Duplicate**, **Make a Component** and **Delete**.
 
@@ -27,7 +27,7 @@ Change what the block says or shows, like a heading's level or a button's link. 
 - **Visibility** hides a block on the site, or shows it only when some data says so.
 - **Advanced** holds the technical settings: the HTML tag, a button's type, how an image loads (**Load First**, **Shown Width**), and a **Layer Name**, an **Anchor** to link to (`#menu`), extra CSS **Classes** and HTML **Attributes**.
 
-Point at a setting and a database icon appears beside its label, **Connect to Data**: the setting then comes from your content instead of being typed in, like a survey's place or the latest posts. See [Showing content](/design/data).
+Point at a setting and a database icon appears beside its label, **Connect to Data**: the setting then comes from your content instead of being typed in, like a dish's price or the latest posts. See [Showing content](/design/data).
 
 ## Design
 

@@ -6,18 +6,18 @@ description: 'A whole site you can switch to and back: choosing one, trying othe
 ---
 A site kit is a complete site: its pages and posts, its collections, menus and global sets, its design system, templates and components, its scripts, styles and fonts, and the images they show. Your site is one kit at a time, and you can switch between kits and back. Once a kit is on your site every file is yours: nothing links back to it, and a newer version of the kit never changes a site that started from an older one.
 
-A new site starts from **Minimal**, which comes with Lettern: a home page, an about page and a blog with three posts.
+A new site starts from **Minimal**: a home page, an about page and a blog with three posts. It is a kit of the store like any other (`letterncms/minimal`), not part of Lettern: setup fetches it, and it can be deleted when your site is another kit.
 
 A kit is the portable form of a site. It is a folder of Markdown, YAML and JSON (plus the images), whatever your collections store their entries in, so you can keep it in a repository of its own, hand it to someone, or run several sites from kits you made.
 
 ## Choosing one when you install
 
-Setup shows the kits it can start from under **Start From**, each with its picture and its name. **Minimal** is chosen; pick another, or none for an empty site. Kits from the store appear there too, and setup fetches the one you choose as it fetches a plugin. If it can't, setup says so: try again, or start from Minimal.
+Setup shows the kits it can start from under **Start From**, each with its picture and its name. **Minimal** is chosen; pick another, or none for an empty site. Kits from the store appear there too, and setup fetches the one you choose as it fetches a plugin, Minimal included. If it can't, setup says so: try again, or start without a kit.
 
 From the command line, `--kit` chooses it:
 
 ```bash
-php cms install --kit=fathomline        # a kit in kits/, or one to fetch: letterncms/fathomline
+php cms install --kit=studio            # a kit in kits/, or one to fetch: letterncms/studio
 php cms install --kit=none              # an empty site
 ```
 
@@ -27,14 +27,14 @@ A site that already has collections (one you cloned with its content) is never g
 
 Choose a kit from the site's name at the top of the sidebar, or under **Design → Site Kits**. The site is that kit at once: no settings, nothing to decide.
 
-What your site was is saved first, drafts included, with the kit it was. Switch back and you get it as you left it, not as the kit came. The toast after a switch has **Undo**, which does the same. A kit's menu on **Site Kits** has **Start Over**, which brings the kit as it came and lets go of what you changed (it asks first), and **Use Only the Design**, which replaces the templates, components, fonts and styles and leaves your pages, posts and menus.
+What your site was is saved first, drafts included, with the kit it was. Switch back and you get it as you left it, not as the kit came. The toast after a switch has **Undo**, which does the same. A kit's menu on **Site Kits** has **Start Over**, which brings the kit as it came and lets go of what you changed (it asks first).
 
 A switch replaces what a kit carries (see below) and nothing else. Accounts, the media library, form submissions, analytics, the audit log and every setting a kit doesn't carry stay. If the kit needs plugins your site doesn't run, **Site Kits** says which, with a way to the store. A kit with scripts or styles needs **Edit Custom CSS and JavaScript**, and a switch needs the permission to edit the settings. A switch that fails leaves the site as it was; a snapshot of the site is also in `storage/backups/`.
 
 ```bash
 php cms kit:list
-php cms kit:switch fathomline              # the site you leave is saved
-php cms kit:switch minimal --fresh         # the kit as it came
+php cms kit:switch studio                 # the site you leave is saved
+php cms kit:switch studio --fresh          # the kit as it came
 ```
 
 ## Putting a kit on top
@@ -42,8 +42,8 @@ php cms kit:switch minimal --fresh         # the kit as it came
 To bring a kit's parts in beside what your site has, instead of replacing it, apply it:
 
 ```bash
-php cms kit:apply fathomline --mode=design --dry-run     # every step, nothing written
-php cms kit:apply fathomline --clash=rename              # refuse (the default), skip, replace or rename
+php cms kit:apply studio --mode=design --dry-run     # every step, nothing written
+php cms kit:apply studio --clash=rename                # refuse (the default), skip, replace or rename
 ```
 
 `--mode=design` brings the tokens, fonts, templates, components, scripts, styles and libraries; `full` (the default) its content too. While your site has something of a name the kit brings, the apply refuses and names each one, until `--clash` says what happens to it: `skip` (yours stays), `replace` (the kit's takes its place, after a snapshot in `storage/backups/`) or `rename` (an entry comes in beside yours under a new address, like `home-2`). Everything a kit would write is checked before the first file is, and a kit that fails on the way leaves your site as it was.
@@ -71,11 +71,11 @@ A kit never holds accounts, tokens, secrets, form submissions, analytics, the au
 
 ## Naming a kit
 
-A kit's name, description and thumbnail come from its `kit.json` and `previews/`. **Export Site** asks for them (left empty, the description is your site's own), and **Edit Details** on a kit's menu changes them later. A kit that comes with Lettern can't be changed. Agents use `kits/update`.
+A kit's name, description and thumbnail come from its `kit.json` and `previews/`. **Export Site** asks for them (left empty, the description is your site's own), and **Edit Details** on a kit's menu changes them later. Agents use `kits/update`.
 
 ## Deleting a kit
 
-**Delete** on a kit's menu removes the kit and the copy kept of it, with what you changed in it; your site stays as it is. The kit your site is now can't be deleted (switch first), nor can the kits that come with Lettern. Agents use `kits/delete`.
+**Delete** on a kit's menu removes the kit and the copy kept of it, with what you changed in it; your site stays as it is. The kit your site is now can't be deleted (switch first): a site is always one kit that is there, or none. Minimal can be deleted like any other kit, and fetched again from the store when you want it. Agents use `kits/delete`.
 
 ## Importing a kit
 

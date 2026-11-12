@@ -7,6 +7,15 @@
   "scale": 2,
   "quality": 88,
   "sidebar": "open",
+  "sites": {
+    "examples": {
+      "url": "http://php:8013",
+      "dir": "website/example-site",
+      "users": {
+        "client": "marta@example.com"
+      }
+    }
+  },
   "mask": [
     [
       "dev-admin@example\\.com",
@@ -26,7 +35,7 @@
     ],
     [
       "php:8013",
-      "fathomline.example"
+      "ondine.example"
     ]
   ],
   "shots": {
@@ -57,7 +66,7 @@
     "entry": {
       "site": "examples",
       "as": "client",
-      "path": "/admin/content/surveys/{entry:surveys/the-slack-hour}",
+      "path": "/admin/content/dishes/{entry:dishes/turbot}",
       "sidebar": "collapsed",
       "size": [
         1100,
@@ -66,7 +75,7 @@
     },
     "entries": {
       "site": "examples",
-      "path": "/admin/content/surveys",
+      "path": "/admin/content/dishes",
       "size": [
         1100,
         600
@@ -74,7 +83,7 @@
     },
     "collection": {
       "site": "examples",
-      "path": "/admin/collections/surveys",
+      "path": "/admin/collections/dishes",
       "sidebar": "collapsed",
       "size": [
         960,
@@ -107,15 +116,6 @@
     "template": {
       "site": "examples",
       "path": "/admin/content/templates/{entry:templates/page}",
-      "sidebar": "collapsed"
-    },
-    "audit": {
-      "site": "examples",
-      "path": "/admin/audit",
-      "size": [
-        1100,
-        680
-      ],
       "sidebar": "collapsed"
     },
     "publish": {
@@ -182,6 +182,15 @@
       ],
       "sidebar": "open"
     },
+    "audit": {
+      "site": "examples",
+      "path": "/admin/audit",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "collapsed"
+    },
     "operations-roles": {
       "site": "examples",
       "path": "/admin/settings/roles",
@@ -192,7 +201,7 @@
       "sidebar": "collapsed",
       "steps": [
         {
-          "clickText": "Survey team"
+          "clickText": "Restaurant team"
         }
       ]
     },
@@ -243,10 +252,10 @@
       ],
       "steps": [
         {
-          "scrollPage": "[data-cms-node=\"picks-head\"]"
+          "scrollPage": "[data-cms-node=\"menu-l\"]"
         },
         {
-          "select": "[data-cms-node=\"picks-list\"]"
+          "select": "[data-cms-node=\"menu-l\"]"
         },
         {
           "blur": true
@@ -347,15 +356,6 @@
         960,
         640
       ]
-    }
-  },
-  "sites": {
-    "examples": {
-      "url": "http://php:8013",
-      "dir": "website/example-site",
-      "users": {
-        "client": "marta@example.com"
-      }
     }
   }
 }
