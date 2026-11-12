@@ -78,7 +78,7 @@ Selecting a block also opens its settings on the right, in three tabs: **Content
 
 ## Page details
 
-The right sidebar starts with the page's own details, in a tab named after its collection (**Page**, **Dish**…); the toolbar button that opens it is **Page Details**. Edit the title, URL, author and other fields there. Next to it are **History** and the tabs plugins add, like **Comments**. Press `⌘.` to show or hide it. See [Entries](/content/entries).
+The right sidebar starts with the page's own details, in a tab named after its collection (**Page**, **Survey**…); the toolbar button that opens it is **Page Details**. Edit the title, URL, author and other fields there. Next to it are **History** and the tabs plugins add, like **Comments**. Press `⌘.` to show or hide it. See [Entries](/content/entries).
 
 ## Keyboard shortcuts
 

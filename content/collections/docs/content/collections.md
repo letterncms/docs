@@ -2,11 +2,11 @@
 id: 01m5wmrf4tpyhxb0sn1y43468e
 title: Collections
 position: 0
-description: Make your own kinds of content, like dishes, blog posts or team members, each with the fields it needs.
+description: Make your own kinds of content, like surveys, blog posts or team members, each with the fields it needs.
 ---
-A collection is one kind of content on your site: blog posts, team members, projects, dishes. You decide which fields it has, and everyone then fills in a simple form. Every item in it, each post or each dish, is an **entry**.
+A collection is one kind of content on your site: blog posts, team members, projects, surveys. You decide which fields it has, and everyone then fills in a simple form. Every item in it, each post or each survey, is an **entry**.
 
-::: html {"props":{"html":"<figure class=\"docs-fig\" role=\"img\" aria-label=\"A collection called Dishes defines the fields. Each dish is an entry that fills them in.\"><div class=\"docs-fig__flow\"><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Dishes</b><span class=\"docs-card__field\">Price</span><span class=\"docs-card__field\">Description</span><span class=\"docs-card__field\">Photo</span></div><b>Collection</b><small>The fields every dish has</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-stack\"><div class=\"docs-card docs-card--row\"><span>Grilled turbot</span><em>€34</em></div><div class=\"docs-card docs-card--row\"><span>Six oysters</span><em>€21</em></div><div class=\"docs-card docs-card--row\"><span>Lemon tart</span><em>€9</em></div></div><b>Entries</b><small>One for each dish</small></div></div></figure>"}}
+::: html {"props":{"html":"<figure class=\"docs-fig\" role=\"img\" aria-label=\"A collection called Surveys defines the fields. Each survey is an entry that fills them in.\"><div class=\"docs-fig__flow\"><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Surveys</b><span class=\"docs-card__field\">Place</span><span class=\"docs-card__field\">Summary</span><span class=\"docs-card__field\">Plate</span></div><b>Collection</b><small>The fields every survey has</small></div><span class=\"docs-fig__op docs-fig__op--to\">→</span><div class=\"docs-fig__step\"><div class=\"docs-stack\"><div class=\"docs-card docs-card--row\"><span>The Slack Hour</span><em>Zeebrugge</em></div><div class=\"docs-card docs-card--row\"><span>Forty Knots of Nothing</span><em>De Panne</em></div><div class=\"docs-card docs-card--row\"><span>Ground Truth</span><em>Kortrijk</em></div></div><b>Entries</b><small>One for each survey</small></div></div></figure>"}}
 :::
 
 Pages are a collection too. Your templates then show the entries in your design, so the people filling them in never have to think about layout.
@@ -14,7 +14,7 @@ Pages are a collection too. Your templates then show the entries in your design,
 ## Create a collection
 
 1. Open **Collections**, under **Design** in the sidebar, and press **New Collection**.
-2. Give it a name, like *Dishes*.
+2. Give it a name, like *Surveys*.
 3. Choose a **Structure** (see below).
 4. Press **Create Collection**.
 
@@ -22,21 +22,21 @@ Pages are a collection too. Your templates then show the entries in your design,
 
 The collection opens on its **Fields**, ready for the next step, and it appears in the sidebar, under **Content**, for everyone allowed to see it.
 
-Under **Advanced** you can also set the **Handle** (the name used in code and file names), the **Entry Name** (*Dish* for *Dishes*), the **URL Pattern**, the **Template** and the **Storage** (the database, or files you can keep in git). The entry name, URL pattern and template can be changed later, in the collection's **Settings**.
+Under **Advanced** you can also set the **Handle** (the name used in code and file names), the **Entry Name** (*Survey* for *Surveys*), the **URL Pattern**, the **Template** and the **Storage** (the database, or files you can keep in git). The entry name, URL pattern and template can be changed later, in the collection's **Settings**.
 
 ### Pick a structure
 
 | Structure | Best for | Order |
 |---|---|---|
-| **List** | Dishes, team members, products | Alphabetical, or a field you choose |
+| **List** | Surveys, team members, products | Alphabetical, or a field you choose |
 | **Dated** | Blog posts, news, events | Newest first |
 | **Tree** | Pages that nest, like *About → Team* | By hand, drag to reorder |
 
 ## Add fields
 
-Fields are the questions the form asks: a price, a photo, a short description. On the collection's **Fields** tab, press **Add Field**, pick a type and give it a label. Drag fields to put them in order, then press **Save** in the bar that appears at the bottom (or `⌘S`).
+Fields are the questions the form asks: a place, a plate, a short summary. On the collection's **Fields** tab, press **Add Field**, pick a type and give it a label. Drag fields to put them in order, then press **Save** in the bar that appears at the bottom (or `⌘S`).
 
-![The Dishes collection's fields: price, course, description, allergens, photo and whether it's on the menu.](/media/screens/collection.webp)
+![The Surveys collection's fields: report, summary, sheet number, discipline, client, place and more.](/media/screens/collection.webp)
 
 If the page builder is on, a new collection starts with a **Content** field. That's where an entry is built from blocks, just like a page. Remove it if your entries only need simple fields. See [Fields](/content/fields) for every option.
 
@@ -59,9 +59,9 @@ Next to it, choose the **Template** that frames each entry. Leave it empty to us
 
 ## Fill it in
 
-Open the collection from the sidebar and press the button named after its entries, like **New Dish**. You, your team and your clients fill in the form, and the design takes care of itself.
+Open the collection from the sidebar and press the button named after its entries, like **New Survey**. You, your team and your clients fill in the form, and the design takes care of itself.
 
-![Filling in a dish: one simple form, with the fields the collection asks for.](/media/screens/entry.webp)
+![Filling in a survey: one simple form, with the fields the collection asks for.](/media/screens/entry.webp)
 
 See [Entries](/content/entries) for saving, publishing and scheduling.
 
@@ -69,7 +69,7 @@ See [Entries](/content/entries) for saving, publishing and scheduling.
 
 Every collection can show its entries as a **Table**, a **Grid** of cards or a **Calendar**. Use **Display** above the list to switch, pick the columns or fields to show, and sort. Your choices are saved for you, per collection.
 
-![The list of dishes in a table.](/media/screens/entries.webp)
+![The list of surveys in a table.](/media/screens/entries.webp)
 
 To keep more than one arrangement, press **Views**, beside **Display**, choose **Save View** and give it a name. It keeps what the list is narrowed to (status, language, search), its order, its columns and whether it is a table, a grid or a calendar. Choose a view in that menu to put the list back that way: the button then shows its name. **Rename View** and **Delete View** in the same menu work on any of your views: with more than one, they ask which. Views are yours alone and come with your account to every browser.
 

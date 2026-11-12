@@ -4,9 +4,9 @@ title: Users and roles
 position: 3
 description: Let your clients and team in, each with exactly the access they need, down to a single collection.
 ---
-Everyone who works on the site gets their own sign-in. A **role** decides what they can do: your team may change everything, while a client only updates their menu and photos, and never touches the design.
+Everyone who works on the site gets their own sign-in. A **role** decides what they can do: your team may change everything, while a client only updates their surveys and plates, and never touches the design.
 
-![A role made for a client: the restaurant team can change dishes and upload photos, nothing else.](/media/screens/operations-roles.webp)
+![A role made for a client: the survey team can change surveys and field reports and upload plates, nothing else.](/media/screens/operations-roles.webp)
 
 ## Invite someone
 
@@ -34,13 +34,13 @@ Someone with more than one role can do everything any of them allows.
 Most clients need less than an Editor. Give them a role that fits.
 
 1. Open **Settings → Roles** and press **New Role**.
-2. Name it, like *Restaurant team*, and describe it in a few words.
-3. Tick what it may do. The collections are one table, with **View**, **Create**, **Edit**, **Publish** and **Delete** for each, so a role can be limited to just the dishes. A group's **All** ticks or clears all of it, a collection's name its row, and **All Collections** a column.
+2. Name it, like *Survey team*, and describe it in a few words.
+3. Tick what it may do. The collections are one table, with **View**, **Create**, **Edit**, **Publish** and **Delete** for each, so a role can be limited to just the surveys. A group's **All** ticks or clears all of it, a collection's name its row, and **All Collections** a column.
 4. Press **Save** in the bar at the bottom, or `⌘S`, and give the role to your client under **Users**.
 
 Permissions are grouped by what they're about, **Admin** first. To start from a role you have, choose **Duplicate Role** in its menu; **Delete Role** is there too. The number beside a role is how many people hold it. The **Administrator** role always keeps every permission, so nobody can lock the site out.
 
-::: callout {"props":{"tone":"tip","text":"To keep the design as it is, give a client only the collections they write in, like Dishes, and leave out Templates, Components and the settings."}}
+::: callout {"props":{"tone":"tip","text":"To keep the design as it is, give a client only the collections they write in, like Surveys, and leave out Templates, Components and the settings."}}
 :::
 
 ## Team and visitors

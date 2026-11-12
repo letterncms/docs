@@ -4,12 +4,12 @@ title: Showing content
 position: 4
 description: Connect blocks to your content, so pages show their own title, the latest posts or your menu, in your design.
 ---
-Much of what a page shows isn't typed into the page. A template shows each page's own title. A menu lists your links. A home page lists the latest dishes. In Lettern, you design a block once and connect it to that content, and the content fills it in.
+Much of what a page shows isn't typed into the page. A template shows each page's own title. A menu lists your links. A home page lists the latest surveys. In Lettern, you design a block once and connect it to that content, and the content fills it in.
 
-::: html {"props":{"html":"<figure class=\"docs-fig\" role=\"img\" aria-label=\"One card designed inside a Repeat, times every dish in the collection, makes a page with one card per dish.\"><div class=\"docs-fig__flow\"><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Dish card</b><span class=\"docs-card__field\">Name</span><span class=\"docs-card__field\">Price</span></div><b>Your design</b><small>One card, inside a Repeat</small></div><span class=\"docs-fig__op\">×</span><div class=\"docs-fig__step\"><div class=\"docs-stack\"><div class=\"docs-card docs-card--row\"><span>Grilled turbot</span><em>€34</em></div><div class=\"docs-card docs-card--row\"><span>Six oysters</span><em>€21</em></div><div class=\"docs-card docs-card--row\"><span>Lemon tart</span><em>€9</em></div></div><b>Your content</b><small>Every dish in the collection</small></div><span class=\"docs-fig__op\">=</span><div class=\"docs-fig__step\"><div class=\"docs-mock docs-mock--live\"><i class=\"docs-mock__h\"></i><i class=\"docs-mock__l\"></i><i class=\"docs-mock__h\"></i><i class=\"docs-mock__l\"></i><i class=\"docs-mock__h\"></i><i class=\"docs-mock__l\"></i></div><b>The page</b><small>One card per dish</small></div></div></figure>"}}
+::: html {"props":{"html":"<figure class=\"docs-fig\" role=\"img\" aria-label=\"One card designed inside a Repeat, times every survey in the collection, makes a page with one card per survey.\"><div class=\"docs-fig__flow\"><div class=\"docs-fig__step\"><div class=\"docs-card\"><b>Survey card</b><span class=\"docs-card__field\">Title</span><span class=\"docs-card__field\">Place</span></div><b>Your design</b><small>One card, inside a Repeat</small></div><span class=\"docs-fig__op\">×</span><div class=\"docs-fig__step\"><div class=\"docs-stack\"><div class=\"docs-card docs-card--row\"><span>The Slack Hour</span><em>Zeebrugge</em></div><div class=\"docs-card docs-card--row\"><span>Forty Knots of Nothing</span><em>De Panne</em></div><div class=\"docs-card docs-card--row\"><span>Ground Truth</span><em>Kortrijk</em></div></div><b>Your content</b><small>Every survey in the collection</small></div><span class=\"docs-fig__op\">=</span><div class=\"docs-fig__step\"><div class=\"docs-mock docs-mock--live\"><i class=\"docs-mock__h\"></i><i class=\"docs-mock__l\"></i><i class=\"docs-mock__h\"></i><i class=\"docs-mock__l\"></i><i class=\"docs-mock__h\"></i><i class=\"docs-mock__l\"></i></div><b>The page</b><small>One card per survey</small></div></div></figure>"}}
 :::
 
-When an editor adds a dish, it appears on the page in your design. Nobody has to touch the layout.
+When an editor adds a survey, it appears on the page in your design. Nobody has to touch the layout.
 
 ## Show a field in a block
 
@@ -25,27 +25,27 @@ The list only offers what makes sense where the block is: inside a template, the
 
 You can also type into a connected setting. Put data in braces, and write words around it:
 
-- `© {site.year} {site.name}` gives *© 2026 Ondine*.
+- `© {site.year} {site.name}` gives *© 2026 Fathomline*.
 - `Posted {entry.date|date:M j, Y}` gives *Posted Oct 4, 2026*.
 
 The part after `|` is a filter that changes how a value looks: a date format, a short excerpt, upper case. The list shows a few examples at the bottom, and the full set is under [For developers](#filters).
 
 ## Show a list with Repeat
 
-A **Repeat** block shows its contents once for every item of a list: every dish, every link of a menu, every page in a section. You design one item, and the Repeat makes the rest.
+A **Repeat** block shows its contents once for every item of a list: every survey, every link of a menu, every page in a section. You design one item, and the Repeat makes the rest.
 
-![The Repeat block on the home page, listing dishes, with its Content settings on the right.](/media/screens/design-repeat.webp)
+![The Repeat block on the home page, listing surveys, with its Content settings on the right.](/media/screens/design-repeat.webp)
 
 1. Add a **Repeat** block where the list should go.
 2. In its **Content** tab, choose a **List**, like **Collection Entries**, and set it up: which **Collection**, in what **Sort Order**, and **How Many**. **Only Entries Where** narrows it down with conditions: pick a field, how it compares (*is*, *is not*, *contains*…) and a value.
-3. Inside the Repeat, design one item: a card with a heading, an image and a price.
+3. Inside the Repeat, design one item: a card with a heading, an image and a place.
 4. Connect each block in it to the item: the heading to the item's **Title**, the image to a photo field, the card's link to the item's **Link**.
 
 Style the Repeat itself in **Design** to lay the items out, for example as a grid of three columns that becomes one column on phones.
 
 | List | Repeats for |
 |---|---|
-| **Collection Entries** | Entries of a collection: the latest posts, all dishes, the projects in a category |
+| **Collection Entries** | Entries of a collection: the latest posts, all surveys, the projects in a category |
 | **Child Pages** | The pages under this page, under its parent, or in its whole section |
 | **Breadcrumbs** | The pages above this one, for a breadcrumb trail |
 | **Previous and Next Entry** | The entries before and after this one in its collection's order, for the foot of an article or a project. **Show** takes either side alone, and **Go Round at the Ends** leads from the last back to the first |
