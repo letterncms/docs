@@ -22,7 +22,7 @@ However the site was installed, from the zip or with Composer, the folder is a C
 | `kits/` | The [site kits](/design/site-kits) this site can apply: `kits/<name>`, and a third party's in `kits/<vendor>-<name>`. Composer or the store puts them here; a kit you exported too. | Only what you made |
 | `config/` | `site.yaml` (name, URL, languages, the admin's language), `plugins.yaml` (enabled plugins, disabled modules), `roles.yaml`, `admin.yaml` (the default sidebar and Dashboard) and one YAML file per settings namespace. | Yes |
 | `config/license.key` | The [key of a paid plugin](/reference/license#paid-plugins), when this site has one. | Yes |
-| `content/design/` | The design system (`tokens.json`), fonts, `custom.css` and `custom.js`, and the site's own [scripts, styles and libraries](/design/code) (`scripts/`, `styles/`, `code.json`, `vendor/`). | Yes |
+| `content/design/` | The design (`tokens.json`), fonts, `custom.css` and `custom.js`, and the site's own [scripts, styles and libraries](/design/code) (`scripts/`, `styles/`, `code.json`, `vendor/`). | Yes |
 | `content/collections/` | Collection definitions, and entries of file-based collections, including `templates/` and `components/`. | Yes |
 | `content/schemas/` | The content model as JSON Schema files, written by the site: see [AI and automation](/agents#the-content-model-as-json-schema-files). | Yes |
 | `content/` (the rest) | Fieldsets, globals, forms, menus, redirects. | Yes |
@@ -44,4 +44,4 @@ A site that updates itself keeps that `vendor/` in `runtime/<version>/vendor/`, 
 
 ## What to put in git
 
-Commit `composer.json`, `composer.lock`, `config/`, `content/` and the plugins you wrote. The design system, templates, components, collections, global sets, menus, forms and file-based entries are plain JSON, YAML and Markdown that diff nicely. Ignore `vendor/`, `runtime/`, `storage/`, `.env`, the plugins Composer installs and the generated parts of `public/`. New projects come with a `.gitignore` that does this.
+Commit `composer.json`, `composer.lock`, `config/`, `content/` and the plugins you wrote. The design, templates, components, collections, globals, menus, forms and file-based entries are plain JSON, YAML and Markdown that diff nicely. Ignore `vendor/`, `runtime/`, `storage/`, `.env`, the plugins Composer installs and the generated parts of `public/`. New projects come with a `.gitignore` that does this.

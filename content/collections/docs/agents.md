@@ -35,10 +35,10 @@ Beside `AGENTS.md`, a site keeps its content model as JSON Schema files in `cont
 |---|---|
 | `collections/<handle>.json` | The data of an entry of that collection. |
 | `collections/<handle>.<blueprint>.json` | The data of an entry made with that blueprint. |
-| `globals/<handle>.json` | The values of that global set. |
+| `globals/<handle>.json` | The values of that global. |
 | `blocks.json` | A block document, the value of every blocks field: each block type of the site, with its props and the children it takes. |
 
-The site writes them when it is installed and whenever a definition changes: a collection, a fieldset or a global set saved or deleted, a template or component added, and `cms migrate`, which picks up a definition you edited by hand. Commit them with the rest of `content/`: a change to the model then shows as a diff. They are not served to the web, and they are not for editing: change the definition.
+The site writes them when it is installed and whenever a definition changes: a collection, a fieldset or a global saved or deleted, a template or component added, and `cms migrate`, which picks up a definition you edited by hand. Commit them with the rest of `content/`: a change to the model then shows as a diff. They are not served to the web, and they are not for editing: change the definition.
 
 `php cms schemas` writes them by hand, and `php cms schemas --check` writes nothing and fails when they are not current, for a deploy or a pull request. Agents use `schemas/status` and `schemas/refresh`. Plugins add files of their own with the `schemas.documents` filter.
 

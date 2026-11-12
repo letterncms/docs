@@ -16,11 +16,11 @@ There is no build step of your own. You write ES modules and plain CSS, say wher
 | `content/design/styles/<name>.css` | A stylesheet |
 | `content/design/code.json` | Which of them load where |
 | `content/design/vendor/` | Libraries the scripts import by name, with `lock.json` |
-| `content/design/custom.css`, `custom.js` | One file each, on every page, as before. See [Custom CSS and JavaScript](/design/design-system#custom-css-and-javascript) |
+| `content/design/custom.css`, `custom.js` | One file each, on every page, as before. See [Custom CSS and JavaScript](/design/site-design#custom-css-and-javascript) |
 
 A name is lowercase letters, digits, `-` and `_`, in up to three folders.
 
-In the admin, all of it is under **Design System → Code**: **Styles** and **Scripts** each start with the site's own file (**Site CSS**, **Site JavaScript**) and list the other files under it, and **Libraries** lists what the scripts import. Changing any of it needs the **Edit Custom CSS and JavaScript** permission, which is **Trusted Only**.
+In the admin, all of it is under **Design → Code**: **Styles** and **Scripts** each start with the site's own file (**Site CSS**, **Site JavaScript**) and list the other files under it, and **Libraries** lists what the scripts import. Changing any of it needs the **Edit Custom CSS and JavaScript** permission, which is **Trusted Only**.
 
 ## Say where a file loads
 
@@ -102,7 +102,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 +--------------------+---------------+------------------+-------+-------------------------------------------------------------------------+
 ```
 
-In the admin, **Libraries** under **Design System → Code** does the same: **Add Library** takes `name@version`, and each row has **Update** and **Remove**.
+In the admin, **Libraries** under **Design → Code** does the same: **Add Library** takes `name@version`, and each row has **Update** and **Remove**.
 
 Commit `content/design/vendor/` with the rest of the design. The files and the lock travel together, so another checkout serves the same libraries without fetching anything.
 

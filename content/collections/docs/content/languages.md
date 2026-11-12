@@ -49,7 +49,7 @@ Lettern takes care of the details that make a multilingual site work:
 
 ## Translate templates and components
 
-Templates and components exist once, so a design change reaches every language at once. Put the words in them in a [global set](/content/globals), which holds a value per language, and bind the blocks to it. Switch language at the top of the set to translate them.
+Templates and components exist once, so a design change reaches every language at once. Put the words in them in a [global](/content/globals), which holds a value per language, and bind the blocks to it. Switch language at the top of the global to translate them.
 
 ## Add a language switcher
 

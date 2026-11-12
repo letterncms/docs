@@ -32,9 +32,9 @@ Every block can be styled on its own: its layout, size, spacing, type, colors, b
 ::: callout {"props":{"tone":"tip","text":"Drag a number field's label sideways to change its value, or press <code>↑</code> and <code>↓</code>. Hold <code>⇧</code> for steps of 10."}}
 :::
 
-## Use your design system
+## Use your design
 
-Fields for colors, sizes and spacing show a small diamond when you point at them, **Design Tokens**. Click it and pick a value from your [design system](/design/design-system), like *primary* or *space 8*.
+Fields for colors, sizes and spacing show a small diamond when you point at them, **Design Tokens**. Click it and pick a value from your [design](/design/site-design), like *primary* or *space 8*.
 
 A block that uses a token keeps matching the rest of your site: change the token, and the block follows. Prefer tokens over typed-in values whenever one fits.
 

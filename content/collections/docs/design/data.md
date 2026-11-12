@@ -142,7 +142,7 @@ Text from data is escaped. End a path with `|raw` to keep its HTML (a rich text 
 |---|---|
 | `entry.*` | The page: `title`, `url`, `slug`, `date`, `updated`, `collection`, `locale`, any field by handle, and `parent`, `children`, `ancestors`, `root`, `prev`, `next` (other entries: `entry.next.url`), `current` (this is the page being rendered) and `active` (it is, or sits above it) |
 | `site.*` | `name`, `url`, `description`, `locale`, `locales`, `year` |
-| `globals.<set>.<field>` | A [global set](/content/globals) value in the page's language |
+| `globals.<global>.<field>` | A [global](/content/globals) value in the page's language |
 | `page.*` | `uri` of the page being rendered, `number` for paginated listings, `markdown`: the URL of its [Markdown version](/operations/seo-and-geo) |
 | `item.*`, `index`, `first`, `last` | Inside a Repeat: the current item, its position, whether it is the first or last |
 | `props.*` | Inside a component: its properties |

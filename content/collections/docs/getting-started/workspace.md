@@ -39,7 +39,7 @@ A command is answered with what it did, and the next steps:
 - A new page: **Open**, **Publish**, **Add to Menu**, or **Delete** to take it back.
 - A published page: **Open**, **View on Site**, **Unpublish**.
 - An invitation: **Open**, **Resend Invitation**, **Delete**.
-- A form, a menu, a global set, a settings page or a discount: where it is, and a way back where there is one.
+- A form, a menu, a global, a settings page or a discount: where it is, and a way back where there is one.
 
 Those buttons run as commands in the same thread, so it keeps a record of everything; one that asks first, like **Add to Menu**, asks in the composer. A button for something that's gone since says so. A list comes back as a table you can open rows from, and anything else as its values.
 

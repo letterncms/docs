@@ -12,7 +12,7 @@ After signing in you land on the **Dashboard**: what changed recently, and wheth
 
 ![The Dashboard, with the sidebar on the left.](/media/screens/dashboard.webp)
 
-The sidebar on the left is where you work. Under **Content** are your pages, your other content, media, menus, forms and global sets; under **Design**, the design system, templates, components and collections. **Settings**, the gear next to your name (`⌘⇧,`), holds what you set up once: your account, the site's general settings, email, users and roles, and the settings of each plugin.
+The sidebar on the left is where you work. Under **Content** are your pages, your other content, media, menus, forms and globals; under **Design**, the design, templates, components and collections. **Settings**, the gear next to your name (`⌘⇧,`), holds what you set up once: your account, the site's general settings, email, users and roles, and the settings of each plugin.
 
 A few shortcuts save a lot of clicking:
 
@@ -48,11 +48,11 @@ Learn more in [Writing](/editing/writing) and [Block settings](/editing/canvas).
 
 ## 3. Set your style
 
-Open **Design System**, under **Design** in the sidebar. This is where your site's colors, fonts and spacing live, with a live preview on the right.
+Open **Design** in the sidebar. This is where your site's colors, fonts and spacing live, with a live preview on the right.
 
-![The design system: colors in the middle, a preview of the site on the right.](/media/screens/design-system.webp)
+![The design: colors in the middle, a preview of the site on the right.](/media/screens/design.webp)
 
-Every block on every page uses these values. Change your main color once, and the whole site follows: there's nothing to update page by page. See [Design system](/design/design-system).
+Every block on every page uses these values. Change your main color once, and the whole site follows: there's nothing to update page by page. See [Design](/design/site-design).
 
 ## 4. Add your own kind of content
 

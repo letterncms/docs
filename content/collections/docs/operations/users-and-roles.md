@@ -80,10 +80,10 @@ Roles are stored in `config/roles.yaml`, a settings namespace like any other, so
 | `admin.access` | Signing in to the admin. A role without it is a visitor's role. |
 | `entries.pages.view`, `.create`, `.edit`, `.publish`, `.delete` | Working with one collection. `entries.*.edit` covers all of them. `entries.templates.*` and `entries.components.*` decide who designs templates and components. |
 | `media.view`, `media.upload`, `media.edit`, `media.delete` | Media. |
-| `globals.view`, `globals.edit`, `globals.manage` | Global sets: reading, changing values, creating sets and changing their fields. |
+| `globals.view`, `globals.edit`, `globals.manage` | Globals: reading, changing values, creating globals and changing their fields. |
 | `collections.manage` | Creating and changing collections and fieldsets. |
 | `users.view`, `users.manage`, `tokens.manage`, `audit.view` | People, tokens and the audit log. |
-| `settings.manage`, `packages.manage` | Settings, the design system and plugins. |
+| `settings.manage`, `packages.manage` | Settings, the design and plugins. |
 | `site.build` | Publishing the whole site. |
 | `blocks.html` | Adding raw HTML blocks. Only for trusted people. |
 | `site.code` | Editing the site's custom CSS and JavaScript, its [scripts, styles and libraries](/design/code), and putting a script or a persist name on a block. Only for trusted people. |

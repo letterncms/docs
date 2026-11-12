@@ -4,13 +4,13 @@ title: Navigation without page loads
 position: 9
 description: 'Swap pages in place, so a canvas keeps drawing and audio keeps playing from one page to the next.'
 ---
-Normally a link loads a new page, and everything on the old one ends. With **Instant** page loads, a link to another page of the site fetches that page and swaps it in, inside the [page transition](/design/design-system#page-transitions). The document stays, so chosen elements can stay too: a WebGL canvas keeps drawing, a player keeps playing.
+Normally a link loads a new page, and everything on the old one ends. With **Instant** page loads, a link to another page of the site fetches that page and swaps it in, inside the [page transition](/design/site-design#page-transitions). The document stays, so chosen elements can stay too: a WebGL canvas keeps drawing, a player keeps playing.
 
 Pages stay the static HTML they were. Without JavaScript, every link loads its page as before.
 
 ## Turn it on
 
-Open **Design System → Motion → Page Transition** and set **Page Loads** to **Instant**. **Full Page** is the default.
+Open **Design → Motion → Page Transition** and set **Page Loads** to **Instant**. **Full Page** is the default.
 
 From then on:
 
