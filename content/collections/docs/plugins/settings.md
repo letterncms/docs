@@ -22,7 +22,7 @@ That's all it takes for **Reviews** to appear under **Plugins** in the settings 
 
 ![The SEO plugin's settings grouped into panels.](/media/screens/plugins-settings.webp)
 
-Fields use the same format as elsewhere in Lettern, including `if` conditions and `dynamic` options. Give consecutive fields the same `section` to put them in one panel under that heading. Each field gets its own row, with larger editors using the full width. A section disappears when all its fields are hidden. See [Field types](/reference/field-types).
+Fields use the same format as elsewhere in Lettern, including `if` conditions and `dynamic` options. Give consecutive fields the same `section` to group them under a heading. Simple fields share a panel, while composite editors such as translated field groups and repeaters get their own space. A section disappears when all its fields are hidden. See [Field types](/reference/field-types).
 
 ### A value per language
 
