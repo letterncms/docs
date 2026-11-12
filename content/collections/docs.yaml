@@ -11,6 +11,7 @@ fields:
   -
     handle: body
     type: blocks
+    body: true
     label: Content
   -
     handle: description

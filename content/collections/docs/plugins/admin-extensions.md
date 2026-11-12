@@ -500,7 +500,7 @@ In a thread, the person's message gives the arguments.
 
 ## Block workspace
 
-The `entry.editor` slot supplies the shared block workspace. The content host mounts it only when the collection explicitly names a `body` field whose type is `blocks`. It doesn't infer a body from field order or choose an editor based on a collection flag. Collections without a blocks body use the normal field form. A `markdown` field stays a raw text and code field, not another content workspace.
+The `entry.editor` slot supplies the shared block workspace. The content host mounts it only when the entry's blueprint marks a `blocks` field `body: true`. It doesn't infer a body from field order or choose an editor based on a collection flag. Collections without a blocks body use the normal field form. A `markdown` field stays a raw text and code field, not another content workspace.
 
 ```typescript
 registry.panels.set('blocks-editor', {
@@ -518,7 +518,7 @@ The host owns working content, saving, publishing, permissions and entry details
 |---|---|
 | `entry`, `collection`, `values`, `title` | The entry and its working values. |
 | `content` | The complete working snapshot inherited from `EntryPanelProps`: `title`, `slug`, `data` and `authorId`. |
-| `bodyField` | The explicitly configured main-content field. |
+| `bodyField` | The field its blueprint marks `body: true`. |
 | `setValue(handle, value)`, `setTitle(title)` | Change the working copy through the host. |
 | `save()`, `reload()` | Save now; reload from the server. Save failures reject, so extensions can handle them. |
 | `editable`, `can`, `errors` | Editing access, action capabilities and field validation errors. |

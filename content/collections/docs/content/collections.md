@@ -100,10 +100,10 @@ icon: article
 structure: dated
 route: '/blog/{slug}'
 template: post
-body: content
 fields:
   - handle: content
     type: blocks
+    body: true
   - handle: tags
     type: tags
     section: sidebar
@@ -120,16 +120,25 @@ fields:
 | `template` | The slug of the [template](/design/templates) that frames entries. Omit or leave empty to inherit: Lettern uses `default`, or renders the content alone when there is no default template. A missing template stays visible with a warning until you choose another. Entries can override it with a `template` field (`type: select`, `dynamic: templates`); clearing that field restores the collection's template. |
 | `section` | The sidebar section it is listed in: `content` unless set. Every collection is in the sidebar from the start; people unpin and reorder it in their own sidebar, and what they unpin waits under **More**. The Blocks module's templates and components use `design`. |
 | `nav_order` | Default place in its section (integer, lower first; `10` when omitted). A sidebar someone arranged, or the default an admin saved for everyone, overrides it. |
-| `body` | The main-content field's handle. A `blocks` body uses the block editor. Without a body, entries use a field form; Lettern never guesses one from field order. With [several blueprints](#several-blueprints), each one's field of that handle is its body, of whatever type it has there, and a blueprint without it has none. |
 | `sort` | Field to sort lists by; prefix with `-` for descending. |
 | `default_view` | `table` (default), `grid` or `calendar`. What a person chose in **Display** wins. |
 | `default_columns` | Fields shown in tables and cards. Omit or `null` for automatic, `[]` for the title only. Use `uri`, `status`, `translations`, `author`, `published`, `ends`, `updated`, and `field:<handle>` for your own fields. Personal choices win. |
 | `driver` | `database` (default) or `files` (see below). |
 | `revisions` | `false` turns off revision history. |
-| `fields` | The blueprint: see [Fields](/content/fields). |
+| `fields` | The blueprint: see [Fields](/content/fields). One `blocks`, `markdown` or `richtext` field in it can have `body: true`: that is the entry's main content (see [The body](#the-body)). |
 | `blueprints` | More sets of fields, for entries that come in kinds: see [Several blueprints](#several-blueprints). |
 | `taxonomy` | `true` makes the collection a [taxonomy](/content/taxonomies): its entries are terms that `terms` fields pick from. The **Taxonomy** switch in its settings. |
 | `archives` | A page per term of a taxonomy that lists this collection's entries filed under it: `{topics: '/blog/topics/{slug}'}`. See [Give a collection a page per term](/content/taxonomies#give-a-collection-a-page-per-term). **Term Archives** in its settings. |
+
+### The body
+
+The body is an entry's main content. In the admin it's **Use as Body** in a field's settings, and the field's row says **Body**. It's offered on `blocks`, `markdown` and `richtext` fields, and one field of a blueprint can be it: choosing another takes it from the first.
+
+- The editor gives it the room: a `blocks` body opens the block editor, a Markdown or rich text body fills the page under the other fields.
+- On the site it's what the template's **Page content** block renders.
+- In a collection with `driver: files`, it's the Markdown below the front matter.
+
+Without a body, entries are a form of fields. Lettern never guesses one from field order or a field's name.
 
 ### Several blueprints
 
@@ -145,7 +154,7 @@ blueprints:
       - { handle: stream, type: url, label: Stream, required: true }
 ```
 
-The **Blueprints** switch in the fields editor writes this. An entry is made with one, `blueprint` on `entries/create`, and keeps it. Its defaults, its validation, its shared fields and what templates get all follow that blueprint. A translation or a copy has the blueprint of its source, and an entry made without one has the collection's own `fields`.
+The blueprint menu in the fields editor writes this. Each blueprint has its own body: a video's can be Markdown while an article's is blocks, and one without a body is a form of fields. An entry is made with one, `blueprint` on `entries/create`, and keeps it. Its defaults, its validation, its shared fields and what templates get all follow that blueprint. A translation or a copy has the blueprint of its source, and an entry made without one has the collection's own `fields`.
 
 ```bash
 php cms run entries/create --input='{"collection":"events","blueprint":"online","title":"Stream night","data":{"stream":"https://example.com/live"}}'
@@ -169,7 +178,7 @@ When an entry's URL changes (renamed, moved in the tree, or the route itself cha
 
 ### Database or files
 
-With `driver: files`, entries are Markdown files with YAML frontmatter in `content/collections/<handle>/`. Tree entries nest in folders (`about/team.md` is a child of `about.md`), and translations live in a folder per language. The body field is the Markdown below the frontmatter; block fields are written as [Block Markdown](/reference/block-markdown).
+With `driver: files`, entries are Markdown files with YAML frontmatter in `content/collections/<handle>/`. Tree entries nest in folders (`about/team.md` is a child of `about.md`), and translations live in a folder per language. The body field of the entry's blueprint is the Markdown below the frontmatter; block fields are written as [Block Markdown](/reference/block-markdown).
 
 ```markdown
 ---

@@ -122,7 +122,7 @@ On Windows and Linux, use `Ctrl` for `⌘` and `Alt` for `⌥`. Press `?` anywhe
 
 ### Which collections use this editor
 
-A collection gets the block editor when its `body` names a field of type `blocks`, like `body: content` for Pages: that field holds the page's blocks. A collection without a body shows its fields as a normal form instead. See [Collections](/content/collections).
+An entry gets the block editor when its body is a `blocks` field, like `content` in Pages (`body: true` on the field, **Use as Body** in the admin): that field holds the page's blocks. An entry without a body shows its fields as a normal form instead. See [Collections](/content/collections).
 
 ### Titles in templates
 

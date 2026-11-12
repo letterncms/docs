@@ -53,6 +53,7 @@ Open a field to change its settings. These work for every type:
 | **Instructions** | A hint shown under the field, like *In euros, without VAT.* |
 | **Required** | It must be filled in before publishing. Drafts can still be saved without it. |
 | **Show as Property** | Moves the field out of the form into the entry's details panel on the right. Good for things like tags. |
+| **Use as Body** | On a blocks, Markdown or rich text field of a collection: makes it the entry's main content. See [The body](/content/collections#the-body). |
 | **Width** | Full, half or a third of the form, so short fields can sit side by side. |
 
 Below these are the options of the type itself, such as **Minimum** and **Maximum** for a number, or the **Options** of a select.
@@ -118,6 +119,7 @@ A field is a small YAML object, with the same format in a collection's `fields`,
 | `section` | `main` (the content form), `sidebar` (entry details, what **Show as Property** sets) or a custom section. An active plugin panel can claim the fields it edits; otherwise they stay in the normal entry form. |
 | `if` | Show the field only while the fields beside it hold these values: `if: { kind: video }`, or `if: { kind: [video, audio], featured: true }`. A `required` field with a condition is required only then. |
 | `required_if` | Leaves the field on view and requires it under a condition: `required_if: { kind: workshop }`. |
+| `body` | `true` on one `blocks`, `markdown` or `richtext` field of a collection's blueprint: the entry's main content. See [The body](/content/collections#the-body). |
 | `localizable` | `false` keeps one value for all languages: see [Languages](/content/languages#fields-shared-across-languages). |
 
 Everything else is an option of the field type, like `min` above or `options` for a select.
