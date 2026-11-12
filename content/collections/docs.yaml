@@ -6,7 +6,6 @@ structure: tree
 route: '/{parent_uri}/{slug}'
 home: introduction
 template: doc
-body: body
 fields:
   -
     handle: body
