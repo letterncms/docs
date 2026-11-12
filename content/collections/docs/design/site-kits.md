@@ -69,6 +69,10 @@ The kits you leave are kept in `storage/kits/<name>`, in this same layout. What 
 
 A kit never holds accounts, tokens, secrets, form submissions, analytics, the audit log, licences, the site's name, address or mail settings, or any collection a plugin keeps for itself.
 
+## Naming a kit
+
+A kit's name, description and thumbnail come from its `kit.json` and `previews/`. **Export Site** asks for them (left empty, the description is your site's own), and **Edit Details** on a kit's menu changes them later. A kit that comes with Lettern can't be changed. Agents use `kits/update`.
+
 ## Importing a kit
 
 **Import Site** on the same screen takes the zip that **Export Site** downloaded (or any kit's folder, zipped) and keeps it in `kits/`, ready to switch to. Nothing about your site changes until you choose it. A zip is read without trust: a path outside the kit, a link or a file a server would run refuses it, and a kit whose handle you already have is refused too. Agents use `kits/import`.
