@@ -4,7 +4,7 @@ title: Site kits
 position: 11
 description: 'A whole site you can switch to and back: choosing one, trying others without losing your work, and making one from your own site.'
 ---
-A site kit is a complete site: its pages and posts, its collections, menus and global sets, its design system, templates and components, its scripts, styles and fonts, and the images they show. Your site is one kit at a time, and you can switch between kits and back. Once a kit is on your site every file is yours: nothing links back to it, and a newer version of the kit never changes a site that started from an older one.
+A site kit is a complete site: its pages and posts, its collections, menus and globals, its design, templates and components, its scripts, styles and fonts, and the images they show. Your site is one kit at a time, and you can switch between kits and back. Once a kit is on your site every file is yours: nothing links back to it, and a newer version of the kit never changes a site that started from an older one.
 
 A new site starts from **Minimal**: a home page, an about page and a blog with three posts. It is a kit of the store like any other (`letterncms/minimal`), not part of Lettern: setup fetches it, and it can be deleted when your site is another kit.
 
@@ -62,8 +62,8 @@ Entries come in under ids of their own, and whatever named them follows: relatio
 |---|---|
 | Collections and their published entries (drafts with `--drafts`), always in the file layout | `content/collections/` |
 | Templates and components | `content/collections/templates/`, `components/` |
-| Global sets and menus | `content/globals/`, `content/navigation/` |
-| The design system, fonts, scripts, styles and vendored libraries | `content/design/` |
+| Globals and menus | `content/globals/`, `content/navigation/` |
+| The design, fonts, scripts, styles and vendored libraries | `content/design/` |
 | The images and files something in it names, with their records | `content/media/`, `public/media/` |
 | The few settings a kit carries: the site's description, favicon and search index | `config/site.yaml` |
 | What a plugin keeps beside the content and says is part of a site (Forms' forms, SEO's redirects) | `content/forms/`, `content/redirects.yaml` |

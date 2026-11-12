@@ -24,11 +24,11 @@ A module registers its abilities, permissions, settings, sidebar items and scree
 | `letterncms/email` | [Email](/operations/email) for Lettern and its plugins: SMTP, sendmail or log, provider plugins, branded templates and a delivery log | No |
 | `letterncms/dashboard` | The **Dashboard**: a greeting and the widgets each person arranges | Yes: the admin opens on the first pinned sidebar item |
 | `letterncms/collections` | The **Collections** screen: creating collections and editing their fields | Yes: collections stay as `content/collections/*.yaml` |
-| `letterncms/globals` | Global sets, their fields and `/api/v1/globals/<handle>` | Yes |
+| `letterncms/globals` | Globals, their fields and `/api/v1/globals/<handle>` | Yes |
 | `letterncms/users` | **Users** (Team, Visitors, Profile Fields, and the visitor accounts settings as its **Settings** tab), invitations and **Roles** | Yes: accounts and `config/roles.yaml` keep working |
 | `letterncms/audit` | The **Audit Log**: who changed what, when, from where | Yes: nothing is written |
 | `letterncms/blocks` | The block editor, components, templates, styles, data bindings and Block Markdown | Yes, while nothing that builds on it is on (Site and Forms do) |
-| `letterncms/site` | The [design system](/design/design-system), [templates](/design/templates), rendering, previews, [publishing](/operations/publishing) the static site, search and [site kits](/design/site-kits) | Yes, for a headless site, while no plugin that builds on it is on |
+| `letterncms/site` | The [design](/design/site-design), [templates](/design/templates), rendering, previews, [publishing](/operations/publishing) the static site, search and [site kits](/design/site-kits) | Yes, for a headless site, while no plugin that builds on it is on |
 | `letterncms/languages` | [Languages](/content/languages): translations linked to their original, localized URLs, hreflang and the language switcher | Yes |
 | `letterncms/collaboration` | [Collaboration](/editing/collaboration): who else is on a page, comments with @mentions, and the inbox | Yes |
 | `letterncms/mcp` | The [MCP server](/agents/mcp): every ability as a tool for AI clients, signed in with OAuth | Yes |
@@ -67,7 +67,7 @@ A module's options are a [settings](/plugins/settings) namespace like any plugin
 | `letterncms/email` | How email is sent, under **Email** (`config/email.yaml`) |
 | `letterncms/media` | Upload size, image quality, AVIF and photo metadata, on the **Settings** tab of **Media** |
 | `letterncms/languages` | The site's languages and their URLs, under **Languages** (`config/languages.yaml`) |
-| `letterncms/site` | The favicon and **Publishing** (static site, rebuilding on publish, search index), under **General** (`config/site.yaml`); the look itself in the **Design System** |
+| `letterncms/site` | The favicon and **Publishing** (static site, rebuilding on publish, search index), under **General** (`config/site.yaml`); the look itself in **Design** |
 | `letterncms/assistant` | The Anthropic API key, models and **Ask Before**, under **Assistant** (`config/assistant.yaml`) |
 | `letterncms/sync` | This site's key, its connections and whether others may pull or push, on the **Sync** screen (kept in `storage/sync`, never moved) |
 

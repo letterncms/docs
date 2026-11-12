@@ -20,7 +20,7 @@ Lettern sends email for invitations, password resets, and form notifications. A 
 | **Server mail (sendmail)** | The hosting server's own mail, with nothing to fill in. Only offered where the host lets PHP run it: many shared hosts don't, and then SMTP is the way. |
 | **Log only (development)** | Nothing is sent: messages are written to the log. The default. |
 
-Emails wear your site's colors: the background, text and buttons come from your [design system](/design/design-system).
+Emails wear your site's colors: the background, text and buttons come from your [design](/design/site-design).
 
 ## Check that it works
 
@@ -41,7 +41,7 @@ The `email/test`, `email/status` and `email/log` abilities send a test, report t
 
 ### Colors
 
-Mail takes its background, text and button colors from the design system through the `email.colors` filter. A plugin can change them there.
+Mail takes its background, text and button colors from the design through the `email.colors` filter. A plugin can change them there.
 
 ### Send email from a plugin
 

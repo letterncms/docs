@@ -68,9 +68,9 @@ updated_at: '2026-11-02T12:00:00+00:00'
 :::::::::
 ::::::::
 
-:::::::: link {"id":"h-c3","props":{"url":"/design/design-system"},"style":{"base":{"display":"flex","flexDirection":"column","backgroundColor":"token:color.panel","borderRadius":"token:radius.xl","overflow":"hidden","transition":"background-color 150ms ease"},"hover":{"backgroundColor":"token:color.panel-hover"}}}
+:::::::: link {"id":"h-c3","props":{"url":"/design/site-design"},"style":{"base":{"display":"flex","flexDirection":"column","backgroundColor":"token:color.panel","borderRadius":"token:radius.xl","overflow":"hidden","transition":"background-color 150ms ease"},"hover":{"backgroundColor":"token:color.panel-hover"}}}
 ::::::::: box {"id":"h-c3-p","style":{"base":{"position":"relative","height":"12.5rem","overflow":"hidden","paddingTop":"1.5rem","paddingLeft":"1.5rem"},"mobile":{"height":"10rem"}}}
-:::::::::: image {"id":"h-c3-i","props":{"image":"/media/screens/design-system.webp","alt":"","sizes":"(min-width: 1024px) 50vw, 100vw"},"style":{"base":{"display":"block","width":"200%","maxWidth":"none","borderRadius":"token:radius.lg","overflow":"hidden","boxShadow":"0 0 0 1px rgb(43 41 38 / 0.08), 0 8px 24px rgb(43 41 38 / 0.06)","backgroundColor":"#ffffff"}}}
+:::::::::: image {"id":"h-c3-i","props":{"image":"/media/screens/design.webp","alt":"","sizes":"(min-width: 1024px) 50vw, 100vw"},"style":{"base":{"display":"block","width":"200%","maxWidth":"none","borderRadius":"token:radius.lg","overflow":"hidden","boxShadow":"0 0 0 1px rgb(43 41 38 / 0.08), 0 8px 24px rgb(43 41 38 / 0.06)","backgroundColor":"#ffffff"}}}
 ::::::::::
 :::::::::
 

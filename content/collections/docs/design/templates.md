@@ -23,7 +23,7 @@ Your changes save as a draft while you work, and visitors only see them once you
 Every template has one **Page Content** block. It marks where each page's own blocks go.
 
 - **Wrap in a Container** gives the content a box of its own, to style like any other block, for example with a narrow width and space above for articles. Without it, the page's blocks join the layout around them, and only text styles reach them.
-- **Prose**, under **Typography** in its **Design** tab, spaces the blocks as long-form text and styles their headings, links and lists, with the design system's [prose styles](/design/design-system#long-form-text). A **Box** has it too, for long-form text anywhere.
+- **Prose**, under **Typography** in its **Design** tab, spaces the blocks as long-form text and styles their headings, links and lists, with the design's [prose styles](/design/site-design#long-form-text). A **Box** has it too, for long-form text anywhere.
 
 Around it you can add anything: a heading, a cover image, a date. Connect those blocks to the page's own fields, and each page shows its own title or image there. See [Showing content](/design/data).
 

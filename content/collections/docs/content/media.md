@@ -24,7 +24,7 @@ Every upload is checked before it's kept:
 
 Click a file to open it. Fill in its **Alt Text**: a short description of what the image shows, for people using screen readers and for search engines. The SEO checks tell you when a page has images without it.
 
-You can also give the file a clearer **Name** and a **Caption**, then press **Save**. Under **Used In**, the file's details list every page, global set and design file that uses it, each linked to where it opens.
+You can also give the file a clearer **Name** and a **Caption**, then press **Save**. Under **Used In**, the file's details list every page, global and design file that uses it, each linked to where it opens.
 
 ## Keep the important part in view
 
@@ -117,7 +117,7 @@ In the library they are kinds of their own: `model`, `texture` and `animation`. 
 | Ability | Does |
 |---|---|
 | `media/list` | Takes `folder` (one folder's own files, `''` for files in none) and `kind` (`image`, `video`, `audio`, `pdf`, `model`, `texture`, `animation`, `file`), and answers with the whole tree of folder paths in `folders`, empty ones included |
-| `media/get` | One file with `usedBy`: every entry, global set and design file that uses it |
+| `media/get` | One file with `usedBy`: every entry, global and design file that uses it |
 | `media/move` | Puts files in a folder by its path: `{"ids": ["…"], "folder": "press/2026"}`. `''` takes them out of every folder, and a folder that isn't there is made |
 | `media-folders/create`, `media-folders/rename`, `media-folders/delete` | Makes an empty folder by its path, gives one a new name or place, or deletes one (its files move up) |
 | `media/replace` | Puts another file in an item's place, from a URL or base64 data. It must be of the same kind |

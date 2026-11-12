@@ -170,7 +170,7 @@ php cms run entries/delete id=01m75ewmnmrmh0d80z43axs3k5 --dry-run
 | `"full"` | The dry run is refused exactly where the real run would be, by the same code, and `changes` lists what would change or be removed |
 | `"input"` | Only the input and your permission were checked. `changes` is `null`, and the real run may still refuse |
 
-Checked in full: entries (create, update, publish, unpublish, discard, delete, duplicate, move, reorder, restore, and `pages/customize`), `settings/update`, and every ability marked destructive or that asks first: deleting a collection, a file, a user, a global set, a menu, a comment, a chat or a token, removing a language, switching or uninstalling a plugin, starting or undoing a sync. Anything else is checked as input, like this import, which would have to fetch the file to know more:
+Checked in full: entries (create, update, publish, unpublish, discard, delete, duplicate, move, reorder, restore, and `pages/customize`), `settings/update`, and every ability marked destructive or that asks first: deleting a collection, a file, a user, a global, a menu, a comment, a chat or a token, removing a language, switching or uninstalling a plugin, starting or undoing a sync. Anything else is checked as input, like this import, which would have to fetch the file to know more:
 
 ```bash
 php cms run media/import url=https://example.com/a.png --dry-run

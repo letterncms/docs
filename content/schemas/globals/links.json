@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "Links: the values of a global set",
-    "description": "The values of the global set `links`, by field handle.",
+    "title": "Links: the values of a global",
+    "description": "The values of the global `links`, by field handle.",
     "type": "object",
     "properties": {
         "website": {

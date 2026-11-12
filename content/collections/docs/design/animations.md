@@ -62,7 +62,7 @@ An animation is made of one or more steps. Each step moves a **Target** from one
 
 You can animate opacity, movement, scale, rotation (also in 3D), skew, blur, brightness, grayscale, clip path, colors, corner radius, shadow, width, height and letter spacing, plus the origin and perspective. Colors can use your design tokens.
 
-Under **Timing**, set the duration and a delay in seconds, and, for children or words, the time between items. **Ease** sets the feel: **Smooth Out**, **Expo Out**, **Overshoot**, **Elastic**, **Bounce**, **Linear** and more, or a curve of your own. The curves of your [design system](/design/design-system), under **Motion**, come first in the list.
+Under **Timing**, set the duration and a delay in seconds, and, for children or words, the time between items. **Ease** sets the feel: **Smooth Out**, **Expo Out**, **Overshoot**, **Elastic**, **Bounce**, **Linear** and more, or a curve of your own. The curves of your [design](/design/site-design), under **Motion**, come first in the list.
 
 Press **Add Step** to animate more in the same animation. Each step starts when the one before ends, unless you give it its own start time.
 

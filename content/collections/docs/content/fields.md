@@ -6,13 +6,13 @@ description: The questions an entry's form asks, like a price, a date or a photo
 ---
 Fields are the parts an entry is made of: a price, a description, a photo. Each field has a **type**, which decides what the form shows, what counts as a valid answer, and how the value appears on your site.
 
-Collections and global sets use fields in exactly the same way, so once you've added one, you know how to add them all.
+Collections and globals use fields in exactly the same way, so once you've added one, you know how to add them all.
 
 ![The Dishes collection's fields: price, course, description, allergens, photo and whether it's on the menu.](/media/screens/collection.webp)
 
 ## Add a field
 
-1. Open **Collections**, under **Design** in the sidebar, and pick a collection. For a global set, open it and press **Edit Fields**.
+1. Open **Collections**, under **Design** in the sidebar, and pick a collection. For a global, open it and press **Edit Fields**.
 2. On the **Fields** tab, press **Add Field** and pick a type. Type to search the list.
 3. Give the field a **Label** (what people see) and a **Handle** (the name it's stored under, like `price`).
 4. Press **Save** in the bar at the bottom, or `⌘S`.
@@ -94,7 +94,7 @@ Each entry now shows its own subtitle there. See [Showing content](/design/data)
 
 ### The field format
 
-A field is a small YAML object, with the same format in a collection's `fields`, a fieldset, a global set, a block or a settings group:
+A field is a small YAML object, with the same format in a collection's `fields`, a fieldset, a global, a block or a settings group:
 
 ```yaml
 - handle: price
@@ -141,11 +141,11 @@ Everything else is an option of the field type, like `min` above or `options` fo
         - { handle: url, type: url, label: Link }
 ```
 
-When a collection or global set is saved, Lettern checks every level: handles must be valid and unique among their siblings, and every type must exist.
+When a collection or global is saved, Lettern checks every level: handles must be valid and unique among their siblings, and every type must exist.
 
 ### Conditions
 
-`if` and `required_if` are what **Conditions** in the fields editor writes. They work in collections, global sets and every other blueprint, as they do in a block's fields. A condition names fields beside the field it is on, each with a value or a list of values, and holds when every one matches. One that names a field that isn't there, or conditions that come back to their own field, are refused when the definition is saved, in the editor and by `collections/save`:
+`if` and `required_if` are what **Conditions** in the fields editor writes. They work in collections, globals and every other blueprint, as they do in a block's fields. A condition names fields beside the field it is on, each with a value or a list of values, and holds when every one matches. One that names a field that isn't there, or conditions that come back to their own field, are refused when the definition is saved, in the editor and by `collections/save`:
 
 ```json
 { "error": { "type": "invalid_input", "message": "The condition of a must name fields beside it, each with a value or a list of values." } }

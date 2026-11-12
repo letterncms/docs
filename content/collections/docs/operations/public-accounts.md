@@ -43,7 +43,7 @@ On a site in several languages, each page is also at its language's prefix (`/de
 
 ## Change how they look
 
-The account pages use your default template and your design system, so they already look like the rest of the site. To change one:
+The account pages use your default template and your design, so they already look like the rest of the site. To change one:
 
 1. Open **Pages**, then the **Accounts** tab. It lists the sign-in and account pages, each with the **Version** **Standard**.
 2. Click the page. It opens in the editor as your own version, made from the standard one.

@@ -55,8 +55,8 @@ Name them after your plugin, so they never clash with Lettern's own.
 | `entry.structure-changed` | `$entry, $user` | An entry moves or its position changes. Its editorial draft stays unpublished; use this hook to invalidate structural output. |
 | `entries.reordered` | `$collection, $ids, $user` | Siblings were reordered. |
 | `collection.saved`, `collection.deleted` | `$collection` / `$handle` | A collection definition changed. |
-| `globals.saved` | `$set` | A global set's values changed. |
-| `global-set.saved`, `global-set.deleted` | `$set` / `$handle` | A global set was saved, its fields or its values, or deleted. |
+| `globals.saved` | `$global` | A global's values changed. |
+| `global.saved`, `global.deleted` | `$global` / `$handle` | A global was saved, its fields or its values, or deleted. |
 | `fieldset.saved` | `$handle` | A fieldset was saved. |
 | `navigation.saved`, `form.saved` | `$handle` | A menu or form changed. (Templates and components are entries: use `entry.saved` and `entry.published`.) |
 | `redirects.saved` | | The redirect list changed. |
@@ -76,7 +76,7 @@ Name them after your plugin, so they never clash with Lettern's own.
 |---|---|---|
 | `users.fields.saved` | | The user profile fields changed. |
 | `settings.saved` | `$namespace, $values` | A settings namespace was saved (`site` is `config/site.yaml`). |
-| `design.saved` | | The design system or custom code changed. |
+| `design.saved` | | The design or custom code changed. |
 
 ### Publishing and rendering
 
@@ -117,7 +117,7 @@ The first argument is the value you return; the rest are there to help you decid
 | `collections.settings` | `$fields, $collection` | The settings a collection offers in **Collections** (Site adds its template picker). |
 | `revisions.keep` | `$count` | How many revisions each entry keeps (100). |
 | `gate.allows` | `$allowed, $user, $entry, $rule` | Whether someone may read a [gated](/content/gated-content) entry. |
-| `fields.options.<name>` | `$options` | Options of select fields with `dynamic: <name>`, in collections, settings and blocks alike: `templates`, `collections` (every collection but the system ones), `timezones`, `admin-languages`, `visitor-roles`, `components` (synced components), `sources` (what a Repeat block can list) and `button-variants` (the design system adds its own). A plugin adds a name of its own (`forms`). |
+| `fields.options.<name>` | `$options` | Options of select fields with `dynamic: <name>`, in collections, settings and blocks alike: `templates`, `collections` (every collection but the system ones), `timezones`, `admin-languages`, `visitor-roles`, `components` (synced components), `sources` (what a Repeat block can list) and `button-variants` (the design adds its own). A plugin adds a name of its own (`forms`). |
 | `fields.definition.<name>` | `$field, $context` | Resolved definition of a `dynamic: <name>` field. The collection host supplies `$context['collection']`; use it for presentation such as the inherited template name. Raw collection YAML stays unchanged. |
 
 ### Abilities, settings and people

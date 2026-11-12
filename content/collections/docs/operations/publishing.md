@@ -43,7 +43,7 @@ Lettern remembers what each page shows. So when you change something, it rebuild
 
 - **Change a dish**, and its page, the menu that lists it and the home page that features it are rebuilt.
 - **Change the header**, and the pages that show the header are rebuilt.
-- **Change something every page uses**, like the [design system](/design/design-system), a template, a menu or the site settings, and the whole site is rebuilt.
+- **Change something every page uses**, like the [design](/design/site-design), a template, a menu or the site settings, and the whole site is rebuilt.
 
 It runs in the background, a little at a time, so you never wait for it, and there's no server to set up. The dashboard shows the progress.
 
@@ -66,7 +66,7 @@ Pages behind a [gate](/content/gated-content) are never written as files, becaus
 
 ### How a build works
 
-Every page records what it read while rendering: the entry itself, the collections it listed, globals, menus, linked pages, media and the components it shows. A change queues only the pages that recorded it. Site-wide changes (the design system, a template, site settings, a collection's definition, globals, menus, reordering entries) queue a full rebuild. So does updating Lettern or a plugin: built pages name scripts and styles by version, so the first request after an update rebuilds them.
+Every page records what it read while rendering: the entry itself, the collections it listed, globals, menus, linked pages, media and the components it shows. A change queues only the pages that recorded it. Site-wide changes (the design, a template, site settings, a collection's definition, globals, menus, reordering entries) queue a full rebuild. So does updating Lettern or a plugin: built pages name scripts and styles by version, so the first request after an update rebuilds them.
 
 Pages are rendered with their [templates](/design/templates) and written to `public/`: `/about` becomes `public/about/index.html`. Paginated pages, the 404 page and the site files are written too: `sitemap.xml`, `robots.txt`, `llms.txt`, `search.json` and each page's Markdown twin. The web server serves these files directly.
 

@@ -330,7 +330,7 @@
                             "prose": {
                                 "title": "Prose",
                                 "type": "boolean",
-                                "description": "Long-form text: the design system’s Prose spacing and styles for every block inside."
+                                "description": "Long-form text: the design’s Prose spacing and styles for every block inside."
                             },
                             "type": {
                                 "title": "Button Type",
@@ -3790,7 +3790,7 @@
                             "prose": {
                                 "title": "Prose",
                                 "type": "boolean",
-                                "description": "Long-form text: the design system’s Prose spacing and styles for every block inside."
+                                "description": "Long-form text: the design’s Prose spacing and styles for every block inside."
                             },
                             "permalinks": {
                                 "title": "Add # Links to Headings",

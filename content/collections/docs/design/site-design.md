@@ -1,14 +1,14 @@
 ---
 id: 01m5wn8rahj942kpc5xx6pns6s
-title: Design system
+title: Design
 position: 0
 description: Your site's colors, fonts, spacing, buttons and form fields, in one place. Change them once and every page follows.
 ---
-The design system holds the values your whole site is built from: colors, fonts, text sizes, spacing, corners, shadows and motion. Blocks use these values instead of fixed ones, so when you change your main color, every button, link and heading that uses it changes too.
+The design holds the values your whole site is built from: colors, fonts, text sizes, spacing, corners, shadows and motion. Blocks use these values instead of fixed ones, so when you change your main color, every button, link and heading that uses it changes too.
 
-![The design system: colors in the middle, a live preview of the site on the right.](/media/screens/design-system.webp)
+![The design: colors in the middle, a live preview of the site on the right.](/media/screens/design.webp)
 
-Open **Design System**, under **Design** in the sidebar, or press `⌘K` and type *design*. Its sections are listed under it in the sidebar. The preview on the right shows your site as you change things, on desktop, tablet or phone, in light or dark.
+Open **Design** in the sidebar, or press `⌘K` and type *design*. Its sections are listed under it in the sidebar. The preview on the right shows your site as you change things, on desktop, tablet or phone, in light or dark.
 
 ## What's in it
 
@@ -49,7 +49,7 @@ Fonts are stored on your site, so visitors' browsers never contact another servi
 
 ## Use tokens on a block
 
-In a block's **Design** settings, fields that take a color, a size or a space show a small diamond when you point at them: **Design Tokens**. Click it and pick a token. The block now follows that token, so it changes when the design system does.
+In a block's **Design** settings, fields that take a color, a size or a space show a small diamond when you point at them: **Design Tokens**. Click it and pick a token. The block now follows that token, so it changes when the design does.
 
 Choose **Detach Token** to turn it back into a fixed value. See [Styles](/design/styles).
 
@@ -113,7 +113,7 @@ Under them, **Styles** and **Scripts** list the design's other files, which load
 
 ### The file
 
-The design system is one file, `content/design/tokens.json`, next to your content, so it is versioned with the site. A site without one uses Lettern's defaults until you save.
+The design settings live in `content/design/tokens.json` next to your content, so it is versioned with the site. A site without one uses Lettern's defaults until you save.
 
 ```json
 {
@@ -197,7 +197,7 @@ The other keys style the same elements as `styles`, inside prose. An element's t
 
 ### Buttons
 
-Each key of `buttons` is a variant editors pick as a Button's **Style**; each variant has `base`, `hover`, `active` and `focus-visible` styles, all edited in the Design System, and an optional `surface`, the background it's made for (`"token:color.band"`), where the preview shows it. The core blocks offer `primary`, `secondary`, `ghost` and `link`.
+Each key of `buttons` is a variant editors pick as a Button's **Style**; each variant has `base`, `hover`, `active` and `focus-visible` styles, all edited in the Design, and an optional `surface`, the background it's made for (`"token:color.band"`), where the preview shows it. The core blocks offer `primary`, `secondary`, `ghost` and `link`.
 
 A variant is a look. Its height, padding and text size are the control size's, so properties that would size a button (`height`, `padding…`, `fontSize`, `lineHeight`, `width`) are left out when it compiles. Variants sit in a cascade layer between the base and the shapes, so a variant can't undo a shape or a state:
 
@@ -285,4 +285,4 @@ Both are edited under **Code** or with the `design-code/set-custom` ability, and
 
 ### Abilities
 
-`design/get` returns the tokens, fonts, element styles, buttons, form fields, transition, breakpoints, custom code and the templates entries can use; the `cms://site/design` context resource holds the same design system. `design/update` changes tokens (`{"tokens": {"color.primary": "#0f766e"}}`, `dark`, `remove`) and replaces whole sections (`styles`, `prose`, `buttons`, `fields`, `fonts`, `transition`).
+`design/get` returns the tokens, fonts, element styles, buttons, form fields, transition, breakpoints, custom code and the templates entries can use; the `cms://site/design` context resource holds the same design. `design/update` changes tokens (`{"tokens": {"color.primary": "#0f766e"}}`, `dark`, `remove`) and replaces whole sections (`styles`, `prose`, `buttons`, `fields`, `fonts`, `transition`).
