@@ -49,6 +49,8 @@ A field with `localizable: true` holds one value for each language of the site, 
 | `page` | `false` for values that are set where they're used, with no page of their own. |
 | `order` | Its place in its section, for the core's sections. Plugins are listed by name. Defaults to 50. |
 
+A field that loses something when it changes asks first with `confirmChange`: `['confirmChange' => ['from' => 'visitors', 'title' => __('Count page views only?'), 'text' => __('Switching back to page views deletes visitor data.'), 'confirm' => __('Delete Visitor Data')]]` asks while the saved value is `visitors` and the new one is not, as Analytics does. Nothing is saved until the person confirms.
+
 ### A field with its own control
 
 A field can name another admin `component` than its type's. The **Roles** page is one `json` field drawn by the permissions editor:

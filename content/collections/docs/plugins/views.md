@@ -65,7 +65,7 @@ A string in a view can hold `{params.x}` (the route), `{query.x}` (the address),
 | Component | What it draws |
 |---|---|
 | `ui/page` | The bar that names the place (`title`, `icon`), how many it holds (`count`, from an ability), the list it belongs to (`back`), its `actions`, and `width` (`narrow`, `default`, `wide`, `full`). |
-| `ui/tabs`, `ui/tab` | A page's tabs, each with an `id`, a `label`, a `count` and `actions` of its own. A plugin that keeps its settings with this place gets its Settings tab after them. |
+| `ui/tabs`, `ui/tab` | A page's tabs, each with an `id`, a `label`, a `count` and `actions` of its own. A plugin that keeps its settings with this place gets its Settings tab after them. With `display: "segmented"` they are one control that switches the same thing in another version, such as a language, named by the tabs' `label`; each tab's `label` is short (`EN`) and its `title` says it in full on hover (`English`). |
 | `ui/section` | A titled group, with `actions`. |
 | `ui/stack`, `ui/grid` | One after another, or side by side in `columns`. |
 | `ui/records` | Records from an ability: a table, cards or a calendar, with search, filters, sorting, pages, a tree, a row that opens, row actions and bulk actions. Every list in the admin is one, a collection's entries too. |
@@ -119,7 +119,7 @@ A column's `format` writes its value: `text`, `strong`, `muted`, `code`, `addres
 
 More of a column:
 
-- `muted` names a second value drawn quieter after the first, and `warning` a problem drawn in its place.
+- `muted` names a second value drawn quieter after the first, cut short before the first is; `mutedWhole: true` keeps it whole and cuts the first short instead (who is editing, beside a title). `warning` names a problem drawn in its place.
 - `icon` names the row's own icon, and `empty` what an empty value reads as.
 - `hidden: true` keeps a column in Display until someone shows it, and `fit: true` makes it as wide as its longest value.
 - `image: true` gives the list a grid of cards.
@@ -137,6 +137,11 @@ More of a column:
 
 The values are saved under `as` (`values` unless you name another key), or spread over the input with `as: "*"`. Use `into` for a list edited whole as one field, such as a repeater with `display: table`. `context` tells the fields where they are, such as `{"locale": "fr"}`. `?field=<handle>` opens the form at one of its fields.
 
+Two options of a form's fields:
+
+- `confirmChange: {from, title, text, confirm}` asks before a change that loses something is saved: when the field was `from` and is now something else, a dialog with `title`, `text` and a red `confirm` button comes first, and nothing is saved without it.
+- `removeLabel` names a table's row button (a `repeater` with `display: table`): **Remove** for a row that is part of the value, `__('Delete')` for one that is a record of its own, such as a redirect.
+
 A component of yours in a tab marks the tab while it has unsaved changes with `useTabDirty(dirty)` from `@letterncms/ui`, as a form there does.
 
 ## Actions
@@ -145,10 +150,11 @@ Buttons, row actions, a row that opens, and a notice's action all take the same 
 
 | Key | What it does |
 |---|---|
-| `ability`, `input` | Runs the ability. `success` is said once it worked. `then` is `refresh`, `manifest`, `back` or `open` (opens `to` with `{result}`), or a list of them. |
+| `ability`, `input` | Runs the ability. `success` is said once it worked. `then` is `refresh`, `manifest`, `back`, `open` (opens `to` with `{result}`) or `download` (saves a result of `{name, type, content}` as a file, with `encoding: "base64"` for one that isn't text, such as a zip), or a list of them. |
 | `form` | Asks first: `fields` in a dialog. Without `input`, their values are the input; with one, write them in as `{values.x}`. A refusal shows on its fields, and the dialog stays open. |
 | `copy` | Copies a template to the clipboard. |
 | `confirm` | Asks first: `title`, `text`, `confirm`, `danger`. |
+| `variant` | How its button looks: `default`, `primary`, `ghost`, `destructive` (red words, the way into deleting something, which asks first with a red button) or `danger` (a red button). |
 | `to`, `href` | Goes to a place of the admin, or opens a link in a new tab. |
 | `dialog` | Opens a dialog of nodes (`title`, `text`, `body`, `actions`), drawn with the row it was opened for. |
 | `component` | Opens one of your catalog components with `props`. It gets `close` and `scope`. |
