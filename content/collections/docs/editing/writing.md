@@ -82,7 +82,7 @@ The right sidebar starts with the page's own details, in a tab named after its c
 
 ## Keyboard shortcuts
 
-On Windows and Linux, use `Ctrl` for `⌘` and `Alt` for `⌥`. Press `?` anywhere in the admin to see the keys that work on the screen you are on; the list is also in the command palette.
+On Windows and Linux, use `Ctrl` for `⌘` and `Alt` for `⌥`. Press `?` anywhere in the admin to see the keys that work on the screen you are on; **Keyboard Shortcuts** under `⌘K` opens the same list.
 
 ### Formatting
 

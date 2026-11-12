@@ -12,7 +12,7 @@ A module registers its abilities, permissions, settings, sidebar items and scree
 
 | Module | What it adds | Can be off |
 |---|---|---|
-| `letterncms/admin` | The admin itself: its frame (sidebar, command palette, sign-in), design tokens and the primitives in `@letterncms/ui` | No |
+| `letterncms/admin` | The admin itself: its frame (sidebar, shortcuts, sign-in), design tokens and the primitives in `@letterncms/ui` | No |
 | `letterncms/content` | Entry lists and the entry editor, drafts, publishing, history, search; one sidebar item per collection | No |
 | `letterncms/account` | Each person's **Account** (profile and language, password, two-factor sign-in, API tokens) and, once a site turns them on, visitor accounts on the site | No |
 | `letterncms/settings` | The settings pages (one per namespace in the settings sidebar, or a Settings tab on a plugin's own screen) and the `settings/*` abilities | No |
