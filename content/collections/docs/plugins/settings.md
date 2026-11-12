@@ -20,9 +20,9 @@ $this->cms()->settingsRegistry()->register('reviews', fields: [
 
 That's all it takes for **Reviews** to appear under **Plugins** in the settings sidebar. The page is called what the plugin is, `extra.cms.label` in its `composer.json`, unless you pass a label. People change the fields and save from the save bar that rises while something changed, with **Discard** and **Save** (`⌘S`).
 
-![The SEO plugin's settings page: a form drawn from the fields the plugin registered.](/media/screens/plugins-settings.webp "The SEO plugin's settings are a list of fields like this one.")
+![The SEO plugin's settings grouped into panels.](/media/screens/plugins-settings.webp)
 
-Fields use the same format as everywhere else in Lettern, including `if` conditions, `width` and `dynamic` options. See [Field types](/reference/field-types).
+Fields use the same format as elsewhere in Lettern, including `if` conditions and `dynamic` options. Give consecutive fields the same `section` to put them in one panel under that heading. Each field gets its own row, with larger editors using the full width. A section disappears when all its fields are hidden. See [Field types](/reference/field-types).
 
 ### A value per language
 
@@ -84,7 +84,7 @@ const [tab, setTab] = useScreenTabs(['list'])
 
 ### Tabs and actions
 
-A settings page is a [view](/plugins/views), `settings`, with its form as the first tab, **Settings**. Add a tab or a button in its bar as data, with the `view.settings` filter and `SettingsModule::withTab()` or `withAction()`. SEO's **Redirects** is a tab like this:
+A settings page is a [view](/plugins/views), `settings`, with its form as the first tab, **General**. Add a tab or a button in its bar as data, with the `view.settings` filter and `SettingsModule::withTab()` or `withAction()`. SEO's **Redirects** is a tab like this:
 
 ```php
 use Cms\Modules\Settings\SettingsModule;
