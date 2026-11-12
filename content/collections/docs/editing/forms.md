@@ -69,7 +69,7 @@ The **Forms** item in the sidebar shows how many submissions are unread. Open a 
 
 The **Form Submissions** widget puts new ones on your Dashboard too.
 
-To delete old submissions automatically, open the **Settings** tab of **Forms** and set **Keep Submissions For** to a number of days. Left empty, it reads **Forever**.
+To delete old submissions automatically, open the **Settings** tab of **Forms** and choose how long to keep them in **Keep Submissions For**, from 30 days to 2 years. The default is **Forever**.
 
 ## Spam and privacy
 
