@@ -1,0 +1,28 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Links: the values of a global set",
+    "description": "The values of the global set `links`, by field handle.",
+    "type": "object",
+    "properties": {
+        "website": {
+            "title": "Website",
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "uri-reference",
+            "maxLength": 2048,
+            "description": "Website"
+        },
+        "download": {
+            "title": "Download",
+            "type": [
+                "string",
+                "null"
+            ],
+            "format": "uri-reference",
+            "maxLength": 2048,
+            "description": "Download"
+        }
+    }
+}

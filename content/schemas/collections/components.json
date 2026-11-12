@@ -1,0 +1,82 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Components: the data of an entry",
+    "description": "What `data` of an entry of the collection `components` must follow to be published. A draft may leave required fields empty.",
+    "type": "object",
+    "properties": {
+        "blocks": {
+            "title": "Component",
+            "type": "array",
+            "description": "Component. A list of blocks: {type, props, style?, children?}. See blocks/types for the catalog and cms://blocks for examples.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "props": {
+                        "type": "object"
+                    },
+                    "style": {
+                        "type": "object"
+                    },
+                    "children": {
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "type"
+                ]
+            }
+        },
+        "synced": {
+            "title": "Synced",
+            "type": "boolean",
+            "description": "Synced"
+        },
+        "category": {
+            "title": "Category",
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 500,
+            "description": "Category"
+        },
+        "description": {
+            "title": "Description",
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 20000,
+            "description": "Description"
+        },
+        "props": {
+            "title": "Properties",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "handle": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "label": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "handle",
+                    "type"
+                ]
+            },
+            "description": "Field definitions: [{handle, type, label, default?, …}]"
+        }
+    }
+}
