@@ -34,7 +34,7 @@ Under **Advanced** you can also set the **Handle** (the name used in code and fi
 
 ## Add fields
 
-Fields are the questions the form asks: a place, a plate, a short summary. On the collection's **Fields** tab, the menu at the start of the **Add Field** row is named for the blueprint on view. Choose **Add Blueprint** there, name it, and build its fields in the same editor, with every option. The same menu switches between blueprints, and for the one on view **Rename Blueprint** changes its name and handle and **Remove Blueprint** takes it away, saying first how many entries were made with it.
+Fields are the questions the form asks: a place, a plate, a short summary. On the collection's **Fields** tab, press **Add Field**, pick a type and give it a label. Drag fields to put them in order, then press **Save** in the bar that appears at the bottom (or `⌘S`).
 
 ![The Surveys collection's fields: report, summary, sheet number, discipline, client, place and more.](/media/screens/collection.webp)
 
@@ -44,7 +44,7 @@ If the page builder is on, a new collection starts with a **Content** field. Tha
 
 Sometimes one collection holds entries that need different fields: an event that is on site or online, a post that is an article or a video. Give the collection a **blueprint** for each kind.
 
-On the collection's **Fields** tab, press **Add Blueprint** beside **Add Field**, name it, and build its fields in the same editor, with every option. From then on a switch above the fields moves between the blueprints, with **+** to add another; **Remove Blueprint** takes one away, and says first how many entries were made with it.
+On the collection's **Fields** tab, the menu at the start of the **Add Field** row is named for the blueprint on view. Choose **Add Blueprint** there, name it, and build its fields in the same editor, with every option. The same menu switches between blueprints, and for the one on view **Rename Blueprint** changes its name and handle and **Remove Blueprint** takes it away, saying first how many entries were made with it.
 
 From then on, **New** asks which kind of entry to make, wherever you press it: the list, the command palette, the home screen. An entry keeps the blueprint it was made with, and the editor shows that blueprint's fields. A collection with one set of fields works as before.
 
