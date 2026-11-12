@@ -111,6 +111,7 @@ A field is a small YAML object, with the same format in a collection's `fields`,
 | `handle` | The key the value is stored under. Lowercase letters, numbers and underscores. |
 | `type` | One of the [field types](/reference/field-types). |
 | `label`, `instructions` | Shown in the editor. |
+| `about` | What the field is for, said only to agents: in the site's [schema files](/agents#the-content-model-as-json-schema-files), the API and MCP. They read `instructions` when there are any, else `about`, else the label. |
 | `required` | Must be filled before publishing. Drafts can be saved incomplete. |
 | `default` | Value for new entries. |
 | `width` | `full`, `half`, `third` or `two-thirds` of the form. |
