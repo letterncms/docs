@@ -23,6 +23,10 @@ php cms install --kit=none              # an empty site
 
 A site that already has collections (one you cloned with its content) is never given a kit.
 
+## Getting more kits
+
+Open **Design → Site Kits → Browse Store** to find and install a kit. Installed kits appear on **Site Kits**, where you can switch to them. To update a kit you got from the store, open its listing in **Browse Store**.
+
 ## Switching kits
 
 Choose a kit from the site's name at the top of the sidebar, or under **Design → Site Kits**. The site is that kit at once: no settings, nothing to decide.
@@ -75,7 +79,7 @@ A kit's name, description and thumbnail come from its `kit.json` and `previews/`
 
 ## Deleting a kit
 
-**Delete** on a kit's menu removes the kit and the copy kept of it, with what you changed in it; your site stays as it is. The kit your site is now can't be deleted (switch first): a site is always one kit that is there, or none. Minimal can be deleted like any other kit, and fetched again from the store when you want it. Agents use `kits/delete`.
+**Delete** on a kit's menu removes the kit and the copy kept of it, with what you changed in it; your site stays as it is. The kit your site is now can't be deleted (switch first): a site is always one kit that is there, or none. Minimal can be deleted like any other kit, and installed again from **Browse Store** when you want it. Agents use `kits/delete`.
 
 ## Importing a kit
 
