@@ -79,7 +79,7 @@ php cms vendor remove nothing --json
 
 | Command | Does |
 |---|---|
-| `cms install` | Installs a site: see [Installation](/getting-started/installation). `--site=<handle>` starts it from a site (`minimal`, fetched from the store, unless you say otherwise; `none` for an empty site). |
+| `cms install` | Installs a site: see [Installation](/getting-started/installation). `--start-from=<handle>` starts it from a site (`minimal`, fetched from the store, unless you say otherwise; `none` for an empty site). |
 | `cms migrate` | Runs migrations and plugin install and upgrade steps, and imports `content/media`. It never asks before it runs. `migrate:status`, `migrate:rollback` and the other `migrate:` commands cover the core's tables and the plugins'. |
 | `cms update` | Checks the signed update list and [updates the core](/getting-started/upgrading). `--check` only says what's on offer. `--security-only` does what an admin's visit would, for cron. |
 | `cms site:list` | Lists the sites this site can apply: the folders in `sites/`. |
