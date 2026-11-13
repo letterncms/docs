@@ -17,7 +17,6 @@ A module registers its abilities, permissions, settings, sidebar items and scree
 | `letterncms/account` | Each person's **Account** (profile and language, password, two-factor sign-in, API tokens) and, once a site turns them on, visitor accounts on the site | No |
 | `letterncms/settings` | The settings pages (one per namespace in the settings sidebar, or a Settings tab on a plugin's own screen) and the `settings/*` abilities | No |
 | `letterncms/packages` | The **Plugins** screen (Installed, Store, Updates), updates and the `packages/*` abilities | No |
-| `letterncms/license` | Checks the keys of paid plugins, and adds the **Licenses** tab of **Plugins** and the `license/*` abilities once one is on. It never touches the public site. `letterncms/packages` needs it | No |
 | `letterncms/workspace` | The [workspace](/getting-started/workspace): threads at the right edge of the admin, for commands, search and an agent when there is one | No |
 | `letterncms/media` | The [media library](/content/media): uploads, folders, alt text, focal points and responsive images | No |
 | `letterncms/navigation` | [Menus](/content/navigation), edited with drag and drop and kept in sync when pages move | No |
@@ -73,7 +72,7 @@ A module's options are a [settings](/plugins/settings) namespace like any plugin
 
 The content module has no settings. Entries per page (50), the autosave delay (1.2 seconds) and the revisions kept per entry (100) are fixed; a plugin can change the revisions kept with the `revisions.keep` [filter](/plugins/hooks).
 
-Values a screen needs reach every admin user through the manifest, under `config.<namespace>` (`useConfig('license')` in `@letterncms/sdk`); the settings themselves stay behind `settings.manage`.
+Values a screen needs reach every admin user through the manifest, under `config.<namespace>` (`useConfig('packages')` in `@letterncms/sdk`); the settings themselves stay behind `settings.manage`.
 
 ## Who registered what
 

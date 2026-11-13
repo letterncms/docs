@@ -22,7 +22,7 @@ Your plugin is a Composer package like [your first plugin](/plugins/your-first-p
 1. **Tag it.** Push a tag such as `v1.2.0` and Packagist picks it up, as it does for any package.
 2. **The store fetches it.** About once an hour the store asks Packagist for new stable tags and downloads each one's zip once. It keeps one folder named after the package, writes the version into `composer.json`, and leaves out dotfiles such as `.github`.
 3. **A person reviews it.** The version waits, unseen by any site, until it's approved. The review sees the code and what it may use: the network, the file system, other processes.
-4. **It's signed and listed.** Approved, the version is signed with the store's key and added to the [catalog](/plugins/store-protocol). Every site that has your plugin is offered the update in **Plugins → Updates**, with your notes.
+4. **It's signed and listed.** Approved, the version is signed with the store's key and added to the catalog. Every site that has your plugin is offered the update in **Plugins → Updates**, with your notes.
 
 A rejected version stays out of the store, and its number stays used: fix it and tag the next one. A version number is never used twice, and never goes backwards within a major version.
 

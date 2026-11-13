@@ -253,10 +253,10 @@ registry.panels.set('reviews-summary', { slot: 'entry.sidebar', label: 'Reviews'
 | `shell.dock` | A column at the right edge, on every screen. Draw it with `Dock` from `@letterncms/ui` (`open`, `full`, `floating`, `label`): the page stays usable next to it, people can drag it wider, `floating` makes it a card over the page that moves by an element with `data-dock-drag`, `full` grows it over the screen, and small windows get it over the page. The [workspace](/getting-started/workspace)'s thread is one | |
 | `sidebar.start` | Rows at the top of the main sidebar, above what's pinned: the workspace's **New Chat**. Draw them with `SidebarRow` | `onNavigate` |
 | `workspace.composer` | In the thread's composer, beside **Send**: an [agent](/plugins/agents)'s own controls, such as the assistant's model picker | `ComposerPanelProps`: `thread`, `agent` (the one answering there, its `name` and `label`, or `null`), `state`, `options`, `setOption`, `busy`, `loading` |
-| `shell.banner` | A strip above the screen, beside the sidebar, for a notice that concerns the whole admin (the license and update notices) | |
+| `shell.banner` | A strip above the screen, beside the sidebar, for a notice that concerns the whole admin (update notices) | |
 | `topbar.end` | In every screen's top bar, before the screen's own actions: the way back to what's docked | |
 
-**Account** and **Plugins** are [views](/plugins/views): add a section to Account, or a tab to Plugins after Installed, Store and Updates (as the license module adds **Licenses**), with the `view.account` and `view.plugins` filters.
+**Account** and **Plugins** are [views](/plugins/views): add a section to Account, or a tab to Plugins, with the `view.account` and `view.plugins` filters.
 
 ### Entry panels
 

@@ -87,7 +87,6 @@ Version 0.22 renamed the abilities that didn't follow this, without aliases. A s
 | `packages/stores`, `packages/store-add`, `packages/store-remove` | `package-stores/list`, `package-stores/create`, `package-stores/delete` |
 | `assistant/resources`, `assistant/resource` | `assistant-resources/list`, `assistant-resources/get` |
 | `tokens/revoke` | `tokens/delete` |
-| `license/clear` | `license/delete` |
 | `design/code` | `design-code/set-custom` |
 | `site/get` | `settings/get` with `namespace: site` |
 

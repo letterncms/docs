@@ -95,4 +95,3 @@ php cms vendor remove nothing --json
 | `cms token:create <email> --scope=… --days=` | Creates an API token for the [REST API](/agents/rest-api) or [MCP](/agents/mcp). |
 | `cms plugins` | Lists plugins and modules with their status. |
 | `cms plugin enable\|disable\|uninstall <name>` | Manages a plugin. `--delete-files` removes it from disk on uninstall. |
-| `cms license:status`, `license:set <key>`, `license:refresh`, `license:clear` | Reads or changes the [license](/reference/license#paid-plugins) of a paid plugin. They don't show in `cms list`. |
