@@ -1,7 +1,7 @@
 ---
 id: 01m5x9jmrth1ggeatmbzxcz7vk
 title: Animations
-position: 6
+position: 7
 description: Fade things in as they appear, follow the scroll, react to hover. Pick a preset, then make it your own.
 ---
 Animations bring a page to life: a heading that rises word by word, a photo that drifts as you scroll, a card that lifts when you point at it. Add them to any block, in its **Interact** tab.

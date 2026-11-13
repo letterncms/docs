@@ -253,6 +253,19 @@ The helper identifies editable source properties, exact `entry.title` text bindi
 
 Component slots support exact `props.<handle>` bindings to declared `text`, `textarea` and `richtext` properties, including exact nested forwarding. They carry an explicit plain-text format, because these bindings render escaped text; inline controls must keep that format rather than introduce rich-text markup. Let `Elements::editable()` produce the ownership, property and resolved-value attributes. Don't infer writable slots from rendered text, and don't add source node IDs to generated component descendants.
 
+### Patterns and components
+
+A plugin can ship ready-made arrangements of its blocks. [Patterns](/design/patterns) are copied into a page when someone inserts one. Add folders of them with the `blocks.pattern-sources` filter: each `<handle>.md` has front matter (`title`, `category`, `description`, `keywords`) and the blocks in Block Markdown.
+
+```php
+$this->cms()->hooks()->addFilter('blocks.pattern-sources', fn (array $sources) => [
+    ...$sources,
+    ['path' => $this->path('patterns'), 'source' => 'acme/reviews'],
+]);
+```
+
+[Components](/design/components) stay linked to every page that uses them. Ship those with `blocks.component-sources`, as folders of `<handle>.json`. Both kinds are read-only: people insert them, and save a copy under a name of their own to change one.
+
 ## Data sources
 
 A data source is a list the **Repeat** block can loop over, so designers decide how each item looks. Add one with the `blocks.data-sources` filter:

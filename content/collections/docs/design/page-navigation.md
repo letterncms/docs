@@ -1,7 +1,7 @@
 ---
 id: 01m75f2px8carsgz6n4d7rtcc4
 title: Navigation without page loads
-position: 9
+position: 10
 description: 'Swap pages in place, so a canvas keeps drawing and audio keeps playing from one page to the next.'
 ---
 Normally a link loads a new page, and everything on the old one ends. With **Instant** page loads, a link to another page of the site fetches that page and swaps it in, inside the [page transition](/design/site-design#page-transitions). The document stays, so chosen elements can stay too: a WebGL canvas keeps drawing, a player keeps playing.

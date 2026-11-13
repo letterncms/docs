@@ -107,7 +107,7 @@ A token acts as you. See [REST API](/agents/rest-api) for scopes.
 
 **Prompts**: the site's [skills](/agents/assistant#use-a-skill), ready-made workflows like *Build a page* from a brief, *Write a blog post* and *Audit the site* for SEO and GEO problems, plus whatever plugins add.
 
-**Instructions**: how to build the Lettern way. Read the collections and the design first, reuse components and templates (`components/list`, `templates/list`), style with tokens, give images alt text, and publish when done.
+**Instructions**: how to build the Lettern way. Read the collections and the design first, reuse components, patterns and templates (`components/list`, `patterns/list`, `templates/list`), style with tokens, give images alt text, and publish when done.
 
 ## For developers
 

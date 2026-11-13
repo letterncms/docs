@@ -1,0 +1,64 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Patterns: the data of an entry",
+    "description": "What `data` of an entry of the collection `patterns` must follow to be published. A draft may leave required fields empty.",
+    "type": "object",
+    "properties": {
+        "blocks": {
+            "title": "Pattern",
+            "type": "array",
+            "description": "Pattern. A list of blocks: {type, props, style?, children?}. See blocks/types for the catalog and cms://blocks for examples.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "props": {
+                        "type": "object"
+                    },
+                    "style": {
+                        "type": "object"
+                    },
+                    "children": {
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "type"
+                ]
+            }
+        },
+        "category": {
+            "title": "Category",
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 500,
+            "description": "Category"
+        },
+        "description": {
+            "title": "Description",
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 20000,
+            "description": "Description"
+        },
+        "keywords": {
+            "title": "Keywords",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "maxLength": 64
+            },
+            "maxItems": 100,
+            "description": "Keywords"
+        }
+    }
+}

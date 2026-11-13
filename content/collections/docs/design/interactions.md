@@ -1,7 +1,7 @@
 ---
 id: 01m5x92hk2a210v3pxvc1vx998
 title: Interactions
-position: 5
+position: 6
 description: Menus that open, buttons that react, lists that load more. Build them in a block's Interact tab, without writing code.
 ---
 Interactions make your pages respond to visitors: a menu that opens on a phone, a header that shrinks as you scroll, a "Load more" button under a blog list. You build them in a block's **Interact** tab, under its animations.

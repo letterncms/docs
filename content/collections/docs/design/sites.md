@@ -1,7 +1,7 @@
 ---
 id: 01m7ae1ktgdb8dac2b06k6b2bk
 title: Sites
-position: 11
+position: 12
 description: 'A whole site you can switch to and back: choosing one, trying others without losing your work, and making one from your own site.'
 ---
 Open **Settings → Sites** to browse, import, export, and switch between complete sites. Each can contain pages, posts, collections, menus, design, and media. When you switch, Lettern saves your work so you can return to it later.
@@ -50,7 +50,7 @@ php cms site:apply studio --mode=design --dry-run     # every step, nothing writ
 php cms site:apply studio --clash=rename                # refuse (the default), skip, replace or rename
 ```
 
-`--mode=design` brings the tokens, fonts, templates, components, scripts, styles and libraries; `full` (the default) its content too. While your site has something of a name the site brings, the apply refuses and names each one, until `--clash` says what happens to it: `skip` (yours stays), `replace` (the site's takes its place, after a snapshot in `storage/backups/`) or `rename` (an entry comes in beside yours under a new address, like `home-2`). Everything a site would write is checked before the first file is, and a site that fails on the way leaves your site as it was.
+`--mode=design` brings the tokens, fonts, templates, components, patterns, scripts, styles and libraries; `full` (the default) its content too. While your site has something of a name the site brings, the apply refuses and names each one, until `--clash` says what happens to it: `skip` (yours stays), `replace` (the site's takes its place, after a snapshot in `storage/backups/`) or `rename` (an entry comes in beside yours under a new address, like `home-2`). Everything a site would write is checked before the first file is, and a site that fails on the way leaves your site as it was.
 
 Entries come in under ids of their own, and whatever named them follows: relations, parents, translations, menu items, links and components on blocks. A date that was ahead of the site's making is as far ahead now; an end date that has passed brings the entry in as a draft.
 
