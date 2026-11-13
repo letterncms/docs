@@ -4,7 +4,7 @@ title: Sites
 position: 11
 description: 'A whole site you can switch to and back: choosing one, trying others without losing your work, and making one from your own site.'
 ---
-Open **Design → Sites** to browse, import, export, and switch between complete sites. Each can contain pages, posts, collections, menus, design, and media. When you switch, Lettern saves your work so you can return to it later.
+Open **Settings → Sites** to browse, import, export, and switch between complete sites. Each can contain pages, posts, collections, menus, design, and media. When you switch, Lettern saves your work so you can return to it later.
 
 **Minimal** is selected when you install Lettern. It has a home page, an about page, and a blog with three posts. Setup downloads it from the store as `letterncms/minimal`. You can also choose another site or start with an empty one.
 
@@ -25,11 +25,11 @@ If your installation already has collections, setup uses the existing content.
 
 ## Getting more sites
 
-Open **Design → Sites → Browse Store** to find and install a site. Installed sites appear on **Sites**, where you can switch to them. To update a site you got from the store, open its listing in **Browse Store**.
+Open **Settings → Sites → Browse Store** to find and install a site. Installed sites appear on **Sites**, where you can switch to them. To update a site you got from the store, open its listing in **Browse Store**.
 
 ## Switching sites
 
-Choose a site from the name at the top of the sidebar or open **Design → Sites**. The selection takes effect immediately.
+Choose a site from the name at the top of the sidebar or open **Settings → Sites**. The selection takes effect immediately.
 
 Lettern saves the current site, including drafts, before switching. Choose it again to resume where you left off, or use **Undo** immediately after switching. **Start Over** restores a site's original files and asks before deleting its saved changes.
 
