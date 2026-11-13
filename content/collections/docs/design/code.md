@@ -182,8 +182,8 @@ php cms run design-code/set-load --input='{"styles":["scene"]}'
 
 The context resource `cms://site/code` gives an agent the same lists with the rules on this page.
 
-### Minimal's example
+### Starter's example
 
-A new site, from Minimal, comes with one script and one stylesheet: `scripts/spotlight.js` and `styles/spotlight.css`, a soft light behind the home page's first section that follows the pointer. It shows where the files go and how a block names them. To be rid of it, delete the two files and the section's `behavior` and `code`.
+A new site, from Starter, keeps its code to a few lines of **Site CSS**: three section styles that a **Section** or a **Box** takes by its class (under **Content → Advanced → Classes**). `band` makes a dark band, `tint` a warm grey one, and `on-photo` turns text, lines and buttons light over a photograph. Each sets the design's colour variables for what is inside it, so buttons and muted text follow without styles of their own. To be rid of them, empty **Site CSS** and remove the classes.
 
 See [A pinned scroll scene and a 3D canvas](/design/front-end-example) for all of this working together.
