@@ -82,7 +82,6 @@ Put the folder in `plugins/`, turn it on with its switch in **Plugins** or with 
 | `namespace` | The name for its settings, views and translations. Defaults to the part after the slash (`reviews`). |
 | `modules` | The optional [modules](/plugins/modules) it builds on, such as `letterncms/blocks` or `letterncms/site`. They come with Lettern, so they aren't in `require`. |
 | `sync` | How [Sync](/plugins/sync) treats its tables. |
-| `license` | For paid plugins: see [License tokens](/plugins/license-tokens#sell-your-own-plugin). |
 
 ### Where plugins live
 

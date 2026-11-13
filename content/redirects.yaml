@@ -35,4 +35,3 @@ redirects:
   - { from: /design/seo-and-geo, to: /operations/seo-and-geo }
   # American English: licence became license.
   - { from: /reference/licence, to: /reference/license }
-  - { from: /plugins/licence-tokens, to: /plugins/license-tokens }

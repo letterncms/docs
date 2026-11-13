@@ -40,7 +40,7 @@ Press **Pull** or **Push** next to a connected site. Sync compares the two and s
 | Logs | Sent email and the audit log | No | Yes |
 | Each plugin's data | One group per plugin, such as Form Submissions and Analytics | No | Yes |
 | Site Files | Templates, components, collections kept in files, globals, forms, menus | No | No |
-| Settings | Settings, except which plugins are on and the license key | No | No |
+| Settings | Settings, except which plugins are on | No | No |
 | Other tables | Tables in the same database that no plugin claims | No | No |
 
 Pushing is for what your team makes, so what visitors leave behind on a live site, like orders and form submissions, stays there unless you tick it. Pulling brings everything, the way you want production on your machine. Site files and settings usually travel by git; tick them when they don't.
@@ -51,7 +51,7 @@ Addresses are rewritten on the way: a page that links to `https://www.example.co
 
 Whatever moves, the receiving site keeps:
 
-- its passwords and API keys, its license key and which plugins are on;
+- its passwords and API keys, and which plugins are on;
 - its Sync key and connections;
 - what a plugin keeps on each site, such as whether a store is live;
 - everyone who is signed in.
