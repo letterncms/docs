@@ -28,7 +28,7 @@ Entries are kept for a year. On the log's **Settings** tab, **Keep Entries For**
 
 Give clients a [role](/operations/users-and-roles) that covers their content and nothing else. Permissions marked **Trusted Only** are for people you trust completely: **Add Custom HTML Blocks** and **Edit Custom CSS and JavaScript**, because both can put scripts on every page, and **Install Unsigned Packages**, because a package can run any code.
 
-**Edit Custom CSS and JavaScript** (`site.code`) is worth the same trust as an administrator. The design's scripts run in the browser of everyone who opens the site, the page builder or a preview, and a [behavior that draws in the editor](/design/behaviors#draw-in-the-editor) runs in the admin itself, with the rights of whoever has it open: an administrator too. Only the **Administrator** role holds it unless you give it to another, and applying a site kit that brings scripts or styles needs it.
+**Edit Custom CSS and JavaScript** (`site.code`) is worth the same trust as an administrator. The design's scripts run in the browser of everyone who opens the site, the page builder or a preview, and a [behavior that draws in the editor](/design/behaviors#draw-in-the-editor) runs in the admin itself, with the rights of whoever has it open: an administrator too. Only the **Administrator** role holds it unless you give it to another, and applying a site that brings scripts or styles needs it.
 
 ## Keep AI and API access in check
 

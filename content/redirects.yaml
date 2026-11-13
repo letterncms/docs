@@ -18,7 +18,6 @@ redirects:
   - { from: /extending/admin-extensions, to: /plugins/admin-extensions }
   - { from: /extending/admin-themes, to: /plugins/admin-extensions }
   - { from: /plugins/admin-themes, to: /plugins/admin-extensions }
-  - { from: /design/kits, to: /design }
   - { from: /extending/generative-ui, to: /plugins/generative-ui }
   # The reference moved out of the guides, and Requirements became part of Installation.
   - { from: /getting-started/requirements, to: /getting-started/installation }

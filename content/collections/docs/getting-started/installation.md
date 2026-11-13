@@ -14,7 +14,7 @@ Best for shared hosting, or if you'd rather not use a command line.
 2. Unzip it, and upload what's inside its `site/` folder to your web root with FTP or your host's file manager.
 3. Open your site's address in a browser.
 
-Setup checks your server, then asks for your site's name, the [site kit](/design/site-kits) to start from, your database and your account. A minute later, you're in.
+Setup checks your server, then asks for your site's name, the [site](/design/sites) to start from, your database and your account. A minute later, you're in.
 ::::
 
 :::: tab-panel {"props":{"label":"Composer"}}
@@ -71,7 +71,7 @@ php cms install --site-name="Acme" --site-url="https://acme.test" \
   --name="Ada Lovelace" --email=ada@acme.test --password="a-strong-password"
 ```
 
-Choose plugins with `--plugins=seo,forms`, or none at all with `--plugins=none`: a site without plugins is a complete site. `--kit=<name>` starts it from a [site kit](/design/site-kits) other than Minimal, and `--kit=none` from nothing. From the command line, plugins are added with `composer require letterncms/<name>`, and land in `plugins/<name>` (a third party's in `plugins/<vendor>-<name>`). **Plugins** puts them in the same place on a Composer site too, and adds them to `composer.json`; the next `composer update` writes them into `composer.lock`.
+Choose plugins with `--plugins=seo,forms`, or none at all with `--plugins=none`: a site without plugins is a complete site. `--site=<name>` starts it from a [site](/design/sites) other than Minimal, and `--site=none` from nothing. From the command line, plugins are added with `composer require letterncms/<name>`, and land in `plugins/<name>` (a third party's in `plugins/<vendor>-<name>`). **Plugins** puts them in the same place on a Composer site too, and adds them to `composer.json`; the next `composer update` writes them into `composer.lock`.
 
 ### Protect the installer
 

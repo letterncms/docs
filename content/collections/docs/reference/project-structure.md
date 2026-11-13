@@ -19,14 +19,14 @@ However the site was installed, from the zip or with Composer, the folder is a C
 | `vendor/` | Lettern and the libraries it runs on, on a site managed with Composer. | No |
 | `runtime/` | The same `vendor/`, one folder per release, on a site that updates itself. | No |
 | `plugins/` | The plugins of this site: `plugins/<name>`, and a third party's in `plugins/<vendor>-<name>`. Your own go here too. | Only what you wrote |
-| `kits/` | The [site kits](/design/site-kits) this site can apply: `kits/<name>`, and a third party's in `kits/<vendor>-<name>`. Composer or the store puts them here; a kit you exported too. | Only what you made |
+| `sites/` | The [sites](/design/sites) this site can apply: `sites/<name>`, and a third party's in `sites/<vendor>-<name>`. Composer or the store puts them here; a site you exported too. | Only what you made |
 | `config/` | `site.yaml` (name, URL, languages, the admin's language), `plugins.yaml` (enabled plugins, disabled modules), `roles.yaml`, `admin.yaml` (the default sidebar and Dashboard) and one YAML file per settings namespace. | Yes |
 | `content/design/` | The design (`tokens.json`), fonts, `custom.css` and `custom.js`, and the site's own [scripts, styles and libraries](/design/code) (`scripts/`, `styles/`, `code.json`, `vendor/`). | Yes |
 | `content/collections/` | Collection definitions, and entries of file-based collections, including `templates/` and `components/`. | Yes |
 | `content/schemas/` | The content model as JSON Schema files, written by the site: see [AI and automation](/agents#the-content-model-as-json-schema-files). | Yes |
 | `content/` (the rest) | Fieldsets, globals, forms, menus, redirects. | Yes |
 | `public/` | What visitors get: built pages, uploaded media in `media/`, and in `_cms/` generated images, compiled CSS, fonts and plugin assets. | Media only |
-| `storage/` | Logs, caches, drafts of file-based entries (unpublished template and component changes too), the site kits you switched away from (`storage/kits/`), encrypted secrets, the SQLite database. | No |
+| `storage/` | Logs, caches, drafts of file-based entries (unpublished template and component changes too), the sites you switched away from (`storage/sites/`), encrypted secrets, the SQLite database. | No |
 | `.env` | Database credentials, app key, environment flags. | No |
 
 ## Where the code is

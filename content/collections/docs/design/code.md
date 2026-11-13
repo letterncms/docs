@@ -184,6 +184,6 @@ The context resource `cms://site/code` gives an agent the same lists with the ru
 
 ### Minimal's example
 
-A new site, from the kit Minimal, comes with one script and one stylesheet: `scripts/spotlight.js` and `styles/spotlight.css`, a soft light behind the home page's first section that follows the pointer. It shows where the files go and how a block names them. To be rid of it, delete the two files and the section's `behavior` and `code`.
+A new site, from Minimal, comes with one script and one stylesheet: `scripts/spotlight.js` and `styles/spotlight.css`, a soft light behind the home page's first section that follows the pointer. It shows where the files go and how a block names them. To be rid of it, delete the two files and the section's `behavior` and `code`.
 
 See [A pinned scroll scene and a 3D canvas](/design/front-end-example) for all of this working together.
