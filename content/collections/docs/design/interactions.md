@@ -97,7 +97,7 @@ Ready-made interactions you switch on under **Behaviors**:
 | **Hover Group** | Blocks inside can react when the whole block is hovered, with the **Hover on Hover Group** state |
 | **Menu** | A navigation menu with one panel that moves between items. Each child is a link or button, with an optional panel after it. A pill follows the pointer and keyboard focus, the panel's background changes shape to fit the next item, and its content cross-fades. Escape closes it, the Down arrow goes into it, and it respects reduced motion |
 | **Marquee** | The children scroll sideways in an endless loop, at a **Speed** in pixels per second, optionally reversed and paused on hover |
-| **Carousel** | A row to step through. The first child scrolls sideways (give it overflow and scroll snap in **Design**), and the first two buttons after it go back and forward by one item. A button is disabled at its end of the row. Blocks with a `data-carousel-to` attribute are thumbnails: each goes to the item in its own position, and has `data-current` while that item shows |
+| **Carousel** | A row to step through. The first child scrolls sideways (give it overflow and scroll snap in **Design**), and the first two buttons after it go back and forward by one item. A button is disabled at its end of the row. Blocks with a `data-carousel-to` attribute are thumbnails: each goes to the item in its own position, and has `data-current` while that item shows The **Carousel** block is this arrangement, ready made and styled. |
 
 ## Load more without a reload
 

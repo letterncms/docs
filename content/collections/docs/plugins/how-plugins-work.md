@@ -174,7 +174,10 @@ Turn a plugin on or off with its switch in **Plugins**, uninstall it from its ro
 
 Entries that use a plugin's blocks or fields still open and save while it's off, and everything is there when it comes back:
 
-- A block whose plugin is off is kept as it is.
+- A block whose plugin is off is kept as it is, with its settings, its styles and the blocks inside it, through saving, Block Markdown and the API. The site shows nothing of it, nor of the blocks inside it, which may only make sense in it. The build does not warn about it: a plugin that is off was turned off on purpose.
+- On the canvas, such a block shows its name and its plugin's: **Player block — its plugin, Video, is turned off**, or **is not installed**. It can be selected, moved and deleted, and its settings are shown read-only.
+- Settings a newer version of a block no longer has are kept, not dropped.
+- Uninstalling a plugin removes its data, never content: the confirmation says how many entries use its blocks. Those blocks come back as they were when the plugin is installed again.
 - A field whose type's plugin is off keeps its value, as JSON.
 - A `dynamic` select accepts a name it can't list right now, such as a form while the Forms plugin is off. So a wrong name there isn't refused on save; it renders nothing.
 
@@ -185,6 +188,8 @@ Every default plugin is tested this way, off alone and two at a time, with `Plug
 A broken plugin stops itself, not the site. If it throws while it loads, registers, boots or migrates, it stays off, plugins that require it stay off, and **Plugins** shows the error with its file and line. The error goes to the log as well. The state is kept in `storage/framework/failed-packages.json`.
 
 It starts again when its PHP files or version change, or when you turn it on again in **Plugins**. A failure PHP could catch is also retried after five minutes, in case the cause has passed. A fatal error PHP can't catch stops the request it happened in; every later request runs without the plugin. Required [modules](/plugins/modules) are part of the admin, so their failures are real errors.
+
+A block whose render function throws is left out of the page, and the page still builds. The log names the block's type, its id and the page, the build lists it among its warnings (`php cms build --strict` fails on them), and the canvas shows the error in the block's place.
 
 ## PHP libraries
 
@@ -242,8 +247,46 @@ Everything else works for your block without code: styles on every screen and st
 | `template` | Children when inserted. |
 | `example` | Example props, listed for agents in the block catalog (`blocks/types`). |
 | `view` | A Blade view instead of `render`. |
+| `uses` | Browser features (below) that every page showing the block needs. |
 
 Folders of `<name>/block.json` (plus `view.blade.php`) can be added with the `blocks.folders` filter.
+
+The core's own Audio, Gallery, Carousel and File blocks are added this way, through the same registry and the same features, so they are good examples (`Cms\Modules\Blocks\MediaBlocks`).
+
+### Scripts and styles for your blocks
+
+A block that needs its own stylesheet, or a script in the browser, names a **feature**. Register it with the files your build puts in `dist/`, and a page loads them only when a block on it uses the feature:
+
+```php
+$this->cms()->whenAvailable(\Cms\Modules\Blocks\BlockRegistry::class, function ($blocks) {
+    $blocks->feature('reviews/stars', style: $this->asset('stars.css').'?v=2');
+    $blocks->feature('reviews/slider', script: $this->asset('slider.js').'?v=2', style: $this->asset('slider.css').'?v=2');
+
+    $blocks->register([
+        'name' => 'reviews/stars',
+        'uses' => ['reviews/stars'],
+        // …
+        'render' => function (array $d) {
+            if (! empty($d['block']['slide'])) {
+                $d['renderer']->uses('reviews/slider');
+            }
+
+            return '<div '.$d['attrs'].'>…</div>';
+        },
+    ]);
+});
+```
+
+- `uses` in the definition loads a feature on every page that shows the block. `$d['renderer']->uses()` loads it only when the block asks for it while it renders, for a setting that needs a script.
+- A feature's files are addresses on the site, such as `$this->asset()` gives you. Put a version in each one (`?v=…`, or a hash in the file's name), so browsers fetch the new file after an update.
+- The stylesheet goes in the page's head. Write it in `@layer components`, as the core's blocks do, so the builder's styles win over it.
+- The script is an ES module that exports `start()`. The page loads it beside Lettern's own runtime. `start()` runs once the module has loaded, and again when a page arrives without a page load, so look for your blocks each time and skip the ones you already set up. A script that fails to load or throws stops only its own feature: the page's other features run, and your blocks stay as they are without scripts. Make them work that way, as a link or a plain row, and let the script add the rest.
+- In the block workspace, every feature's stylesheet is loaded and no script runs.
+- A name is your plugin's own, like `reviews/slider`. The runtime's names (`motion`, `logic`, `search`…) are taken.
+
+### Empty blocks on the canvas
+
+While nothing is chosen yet, show the block's shape on the canvas only, and print nothing on the site. `$d['editor']` tells you which one you're rendering for. `\Cms\Modules\Blocks\Elements::mediaPlaceholder($d, 'image', '16/9')` draws a quiet stand-in with an icon, in the shape the block will have. `Elements::placeholder($d, 'text')` gives an empty inline property the muted text from `placeholders` (or its field label).
 
 ### Text people edit on the page
 

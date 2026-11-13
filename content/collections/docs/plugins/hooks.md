@@ -126,6 +126,7 @@ The first argument is the value you return; the rest are there to help you decid
 |---|---|---|
 | `ability.input` | `$input, $ability, $context` | Validated input before the handler. |
 | `ability.result` | `$result, $ability, $input, $context` | What an ability returns. |
+| `packages.uninstall.keeps` | `$notes, $package` | Sentences for the uninstall confirmation about what stays behind, such as the entries that use the plugin's blocks. |
 | `settings.fields` | `$fields, $namespace` | A settings namespace's fields: add to another's, or take one over (Languages manages the site's language). |
 | `settings.saving` | `$values, $namespace, $stored` | Settings right before they are validated and stored. |
 | `users.fields` | `$fields` | The fields of user profiles (add your own). A field with `public: true` can be edited on the public profile page. |

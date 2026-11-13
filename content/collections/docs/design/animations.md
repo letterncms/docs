@@ -76,7 +76,7 @@ Give the animation the **On Event** trigger. Then, in an event under **Events**,
 
 ## Motion that loops
 
-A loop that runs forever needs a **Motion Toggle** block on the page, so visitors can pause it. The build warns when a page has none.
+A loop that runs forever needs a **Motion Toggle** block on the page, so visitors can pause it. A **Video** that plays by itself counts as one too: the toggle pauses it. The build warns when a page has none.
 
 Longer stories that repeat, like a product demo built from several steps, are possible too: see [A timeline that loops](#a-timeline-that-loops).
 
