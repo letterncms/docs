@@ -11,6 +11,8 @@ A few primitives compose anything: **Box** (any HTML tag: a stack, a grid, a lin
 
 A block in [Block Markdown](/reference/block-markdown) and the API is `{type, props, style, attrs, bind, logic, motion, children, label}`: settings in `props`, CSS in `style` ([Styles](/design/styles)), extra attributes in `attrs` (a `style` attribute only sets CSS variables, such as `--color-primary` for one section), data connections in `bind` ([Showing content](/design/data)), scripts in `logic` ([Interactions](/design/interactions)) and animations in `motion` ([Animations](/design/animations)). Every block accepts every style section unless it says otherwise.
 
+Media has a block for each kind of file. **Image** shows a picture; **Video** plays a file from the media library, or YouTube, Vimeo or a video file elsewhere, with an **Aspect Ratio** and a **Fit** to fill a hero or a box; **Audio** plays a song, podcast or recording under its title; **Gallery** lays out photos in 1 to 6 columns and can open each one full screen; **File** is a download that says its name, type and size. A **Carousel** shows any blocks as slides in a row, with buttons to step through them.
+
 A **Table** can head its rows with its first column and mark one column with **Highlight Column**. **Look** switches between plain lines and a soft look without rules: the marked column fills with your primary color, and on a phone a table of up to four columns stacks each row's heading above its values.
 
 An **Accordion** has a **Look** too: lines, or cards with each question on a soft panel of its own.

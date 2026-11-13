@@ -75,6 +75,15 @@ Add an **Image** block and pick an image. Lettern writes the whole responsive im
 
 An image can also be a background: select a block and pick one under **Design → Fill → Image**.
 
+## Show video, sound, galleries and files
+
+- **Video** plays a file you pick under **Video File**, or a YouTube, Vimeo or video file address under **Video URL**. The file is used when both are set. **Aspect Ratio** gives it a shape, and **Fit** says whether the video fills that shape (**Cover**) or shows whole inside it (**Contain**), so a video can fill a hero or a box. **Autoplay Muted** plays it without sound, over and over, while it is on screen. A visitor who asked their device for less motion gets the video still, with its controls to play it. A page with an autoplaying video needs a **Motion Toggle** block, so every visitor can stop it. The build warns you when one is missing.
+- **Audio** plays an MP3, M4A, OGG or WAV file from the library, or from an address, in the browser's own player. Give it a **Title** above the player and a caption below.
+- **Gallery** shows the images you pick in 1 to 6 **Columns**. On a tablet it shows three columns at most, and two on a phone. **Crop** gives every photo one shape, or leaves each as it is (**Original**). Each photo's caption from the library shows under it. Turn on **Open Large on Click** to open a photo full screen. The arrow keys, the buttons and a swipe go to the next photo, and Escape closes it. Without scripts, the photo opens on its own.
+- **File** is a download link for any file in the library. It shows the file's name, type and size, like **Menu.pdf · PDF, 240 KB**. **Label** changes the name it shows.
+
+The canvas shows where each one goes until it has a file.
+
 ## Settings
 
 The **Settings** tab of **Media** sets the **Max Upload Size** in MB, with your server's own limit under it, the **Image Quality** (40 to 95), whether to **Serve AVIF Images** (smaller than WebP, slower to make) and whether to **Remove Photo Metadata** (location and camera details). The last two are on unless you turn them off.
@@ -90,6 +99,8 @@ The **Image** block renders a complete `<picture>` element. A background image i
 ```json
 { "type": "image", "bind": { "image": "entry.hero" } }
 ```
+
+A Video, Audio or File block binds its `file` the same way, and a Gallery its `images` to a field that holds several: `{ "type": "gallery", "bind": { "images": "entry.photos" } }`.
 
 In PHP, a media field's value renders itself (`(string) $entry->hero`), and offers `img(['sizes' => …, 'priority' => true])` and `src(1200, 'jpg')`.
 
