@@ -6,13 +6,13 @@ description: 'A whole site you can switch to and back: choosing one, trying othe
 ---
 Open **Settings → Sites** to browse, import, export, and switch between complete sites. Each can contain pages, posts, collections, menus, design, and media. When you switch, Lettern saves your work so you can return to it later.
 
-**Minimal** is selected when you install Lettern. It has a home page, an about page, and a blog with three posts. Setup downloads it from the store as `letterncms/minimal`. You can also choose another site or start with an empty one.
+**Starter** is selected when you install Lettern. It is a complete site for a small studio to make your own: a home page, work with four projects, a journal with five stories, about and contact pages, and 33 ready-made [patterns](/design/patterns), with photographs, a film and a sound recording throughout. Setup downloads it from the store as `letterncms/starter`. You can also choose another site or start with an empty one.
 
 An exported site is a portable folder of Markdown, YAML, JSON, and media. You can keep it in version control, share it, or use it as the starting point for another installation.
 
 ## Choosing one when you install
 
-Setup shows the sites it can start from under **Start From**, each with its picture and its name. **Minimal** is chosen; pick another, or none for an empty site. Sites from the store appear there too, and setup fetches the one you choose as it fetches a plugin, Minimal included. If it can't, setup says so: try again, or start without a site.
+Setup shows the sites it can start from under **Start From**, each with its picture and its name. **Starter** is chosen; pick another, or none for an empty site. Sites from the store appear there too, and setup fetches the one you choose as it fetches a plugin, Starter included. If it can't, setup says so: try again, or start without a site.
 
 From the command line, `--start-from` chooses it:
 
@@ -79,7 +79,7 @@ A site's name, description and thumbnail come from its `site.json` and `previews
 
 ## Deleting a site
 
-**Delete** on a site's menu removes the site and the copy kept of it, with what you changed in it; your site stays as it is. Switch away from the active site before deleting it. Minimal can be deleted like any other site, and installed again from **Browse Store** when you want it. Agents use `sites/delete`.
+**Delete** on a site's menu removes the site and the copy kept of it, with what you changed in it; your site stays as it is. Switch away from the active site before deleting it. Starter can be deleted like any other site, and installed again from **Browse Store** when you want it. Agents use `sites/delete`.
 
 ## Importing a site
 

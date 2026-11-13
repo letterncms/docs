@@ -79,12 +79,12 @@ php cms vendor remove nothing --json
 
 | Command | Does |
 |---|---|
-| `cms install` | Installs a site: see [Installation](/getting-started/installation). `--start-from=<handle>` starts it from a site (`minimal`, fetched from the store, unless you say otherwise; `none` for an empty site). |
+| `cms install` | Installs a site: see [Installation](/getting-started/installation). `--start-from=<handle>` starts it from a site (`starter`, fetched from the store, unless you say otherwise; `none` for an empty site). |
 | `cms migrate` | Runs migrations and plugin install and upgrade steps, and imports `content/media`. It never asks before it runs. `migrate:status`, `migrate:rollback` and the other `migrate:` commands cover the core's tables and the plugins'. |
 | `cms update` | Checks the signed update list and [updates the core](/getting-started/upgrading). `--check` only says what's on offer. `--security-only` does what an admin's visit would, for cron. |
 | `cms site:list` | Lists the sites this site can apply: the folders in `sites/`. |
 | `cms site:switch <handle>` | Makes this site another site, saving what it is now: switching back brings it as you left it. `--fresh` brings the site as it came. |
-| `cms site:apply <handle>` | Copies a site into this site. `--mode=design` brings its design only, `full` (the default) its content too. `--dry-run` lists every step; while the site has something of a name the site brings, it refuses until `--clash=skip`, `replace` (after a snapshot in `storage/backups/`) or `rename`. `composer require letterncms/minimal`, then `site:apply minimal --clash=replace`, puts the site a new site starts from back. |
+| `cms site:apply <handle>` | Copies a site into this site. `--mode=design` brings its design only, `full` (the default) its content too. `--dry-run` lists every step; while the site has something of a name the site brings, it refuses until `--clash=skip`, `replace` (after a snapshot in `storage/backups/`) or `rename`. `composer require letterncms/starter`, then `site:apply starter --clash=replace`, puts the site a new site starts from back. |
 | `cms site:export <folder>` | Writes this site as a site: content, design and the media they name, never accounts, secrets or settings of this server. |
 
 ## Users, tokens and plugins
