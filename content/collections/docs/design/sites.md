@@ -14,11 +14,11 @@ An exported site is a portable folder of Markdown, YAML, JSON, and media. You ca
 
 Setup shows the sites it can start from under **Start From**, each with its picture and its name. **Minimal** is chosen; pick another, or none for an empty site. Sites from the store appear there too, and setup fetches the one you choose as it fetches a plugin, Minimal included. If it can't, setup says so: try again, or start without a site.
 
-From the command line, `--site` chooses it:
+From the command line, `--start-from` chooses it:
 
 ```bash
-php cms install --site=studio            # a site in sites/, or one to fetch: letterncms/studio
-php cms install --site=none              # an empty site
+php cms install --start-from=studio            # a site in sites/, or one to fetch: letterncms/studio
+php cms install --start-from=none              # an empty site
 ```
 
 If your installation already has collections, setup uses the existing content.
