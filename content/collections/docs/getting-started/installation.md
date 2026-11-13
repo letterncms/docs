@@ -108,7 +108,7 @@ Lettern makes WebP and AVIF versions of every uploaded image. AVIF needs GD buil
 
 The media library has rules of its own in `public/media/.htaccess`, which Lettern writes and writes again whenever it differs, on existing sites too: the right type for 3D models, textures and Rive files, `nosniff` on every file, and a long cache for the files a script loads. Change `public/.htaccess` for rules of your own, not this file. In git, commit it or ignore it.
 
-`public/.htaccess` itself has a block Lettern keeps current, between `# BEGIN cms` and `# END cms`: built pages are sent with `nosniff`, and with the site's [content security policy](/operations/security#content-security-policy) when it is on. What you write outside the block stays as it is; a site installed before gets the block on `cms migrate`.
+`public/.htaccess` itself has a block Lettern keeps current, between `# BEGIN cms` and `# END cms`: Markdown, text and other files Lettern writes are sent as UTF-8 (`text/markdown` for a page's `.md` version), built pages are sent with `nosniff`, and with the site's [content security policy](/operations/security#content-security-policy) when it is on. What you write outside the block stays as it is; a site installed before gets the block on `cms migrate`.
 
 ```apacheconf
 <IfModule mod_mime.c>
@@ -134,6 +134,12 @@ location / {
 }
 location ~ ^/(config|content|plugins|runtime|storage|vendor)/ { deny all; }
 location ~ ^/(composer\.json|composer\.lock|bundle\.json|setup\.php)$ { deny all; }
+charset utf-8;
+charset_types text/plain text/markdown text/css text/xml application/json application/javascript image/svg+xml;
+location ~ \.md$ {
+    types { } default_type text/markdown;
+    try_files /public$uri /index.php?$query_string;
+}
 location ~ \.php$ {
     try_files $uri =404;
     fastcgi_pass unix:/run/php/php8.4-fpm.sock;
