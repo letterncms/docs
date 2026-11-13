@@ -31,7 +31,7 @@ To change the global's fields later, press **Edit Fields** at the top. Its name 
 2. Point at its **Text** and press the database icon beside the label, **Connect to Data**.
 3. Under **Globals**, choose the global, then add the field's handle, so it reads like `globals.contact.phone`.
 
-The footer of a new site, from the kit Minimal, shows the **Tagline** of its **Footer** global this way.
+The footer of a new site, from Minimal, shows the **Tagline** of its **Footer** global this way.
 
 ## In other languages
 

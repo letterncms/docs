@@ -31,7 +31,7 @@ Drag items up and down to reorder them, and sideways to nest one under another, 
 
 ## Show a menu on your site
 
-A menu appears wherever a **Repeat** block lists it, usually in your header and footer. A new site, from the kit Minimal, comes with two: its header shows the menu called *Main*, and its footer the one called *Footer*, so a new item appears there as soon as you save. See [Showing content](/design/data) to show a menu somewhere else.
+A menu appears wherever a **Repeat** block lists it, usually in your header and footer. A new site, from Minimal, comes with two: its header shows the menu called *Main*, and its footer the one called *Footer*, so a new item appears there as soon as you save. See [Showing content](/design/data) to show a menu somewhere else.
 
 The link to the page a visitor is on is marked for screen readers, and you can style it with the **Active** state.
 

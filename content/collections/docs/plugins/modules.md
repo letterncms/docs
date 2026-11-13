@@ -27,7 +27,7 @@ A module registers its abilities, permissions, settings, sidebar items and scree
 | `letterncms/users` | **Users** (Team, Visitors, Profile Fields, and the visitor accounts settings as its **Settings** tab), invitations and **Roles** | Yes: accounts and `config/roles.yaml` keep working |
 | `letterncms/audit` | The **Audit Log**: who changed what, when, from where | Yes: nothing is written |
 | `letterncms/blocks` | The block editor, components, templates, styles, data bindings and Block Markdown | Yes, while nothing that builds on it is on (Site and Forms do) |
-| `letterncms/site` | The [design](/design/site-design), [templates](/design/templates), rendering, previews, [publishing](/operations/publishing) the static site, search and [site kits](/design/site-kits) | Yes, for a headless site, while no plugin that builds on it is on |
+| `letterncms/site` | The [design](/design/site-design), [templates](/design/templates), rendering, previews, [publishing](/operations/publishing) the static site, search and [sites](/design/sites) | Yes, for a headless site, while no plugin that builds on it is on |
 | `letterncms/languages` | [Languages](/content/languages): translations linked to their original, localized URLs, hreflang and the language switcher | Yes |
 | `letterncms/collaboration` | [Collaboration](/editing/collaboration): who else is on a page, comments with @mentions, and the inbox | Yes |
 | `letterncms/mcp` | The [MCP server](/agents/mcp): every ability as a tool for AI clients, signed in with OAuth | Yes |
@@ -87,4 +87,4 @@ A module is a plugin that ships with Lettern: the same `composer.json` (`type: c
 
 If you know how to write a plugin, you know how to write a module. Read `modules/audit` (a provider, one ability, one screen, one setting) next to [Your first plugin](/plugins/your-first-plugin).
 
-The `admin` module provides almost no screens of its own: it's what the others draw in. It only talks to them through the manifest, the SDK and the UI kit, so each can change without the rest.
+The `admin` module provides almost no screens of its own: it's what the others draw in. It only talks to them through the manifest, the SDK and the UI site, so each can change without the rest.
