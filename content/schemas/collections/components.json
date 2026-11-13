@@ -32,11 +32,6 @@
                 ]
             }
         },
-        "synced": {
-            "title": "Synced",
-            "type": "boolean",
-            "description": "Synced"
-        },
         "category": {
             "title": "Category",
             "type": [

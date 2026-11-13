@@ -18,6 +18,7 @@ An agent starts with what exists, so the page uses your collections, your design
 | `cms://site/design`, or `design/get` | The tokens, fonts and element styles to build with |
 | `cms://blocks`, or `blocks/types` | Every block, how blocks nest, and worked examples |
 | `components/list`, `templates/list` | The components and templates to reuse |
+| `patterns/list` | Patterns to copy in, and whole pages to start from (the category `Pages`) |
 
 ```bash
 php cms run components/list

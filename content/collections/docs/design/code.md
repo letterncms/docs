@@ -1,7 +1,7 @@
 ---
 id: 01m75f2pvmp4endmxx1t3m2qy6
 title: Scripts and styles
-position: 7
+position: 8
 description: 'Your own JavaScript and CSS beside the design, and the libraries they import, without a bundler.'
 ---
 Most sites never need code: tokens, blocks, animations and interactions cover them. An ambitious front end does. A scroll timeline in GSAP, a WebGL scene, smooth scrolling: for these a site keeps its own scripts and stylesheets beside the design, and the libraries they use beside those.

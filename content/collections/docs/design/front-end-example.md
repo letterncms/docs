@@ -1,7 +1,7 @@
 ---
 id: 01m75f2py21fbzdq42np74hh6d
 title: A pinned scroll scene and a 3D canvas
-position: 10
+position: 11
 description: 'A worked example: a section that holds while the scroll plays it, a number that counts along, and a Three.js canvas that keeps drawing from page to page.'
 ---
 This example adds three things to a new site, from start to finish:

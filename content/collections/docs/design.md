@@ -6,7 +6,7 @@ description: 'Colors, fonts, templates and reusable designs: make the site look 
 ---
 In Lettern you design in the browser, on the real site. There are no theme files to edit and nothing to build: what you see in the editor is what visitors get.
 
-Design works in layers. The **design** holds your colors, fonts and spacing. **Templates** frame your pages with a header, a footer and a layout. **Components** are pieces you reuse, like a card or a call to action. And every block can be styled, animated and made interactive on its own.
+Design works in layers. The **design** holds your colors, fonts and spacing. **Templates** frame your pages with a header, a footer and a layout. **Components** are pieces you reuse, like a card or a call to action, and **patterns** are arrangements of blocks to start from, like a hero or a whole page. And every block can be styled, animated and made interactive on its own.
 
 When a site needs more than that, such as a scroll timeline in GSAP or a WebGL scene, it keeps its own [scripts and styles](/design/code) beside the design, attaches them to blocks as [behaviors](/design/behaviors), and can [swap pages without loading them](/design/page-navigation). A whole site to start from, design and content together, is a [site](/design/sites).
 

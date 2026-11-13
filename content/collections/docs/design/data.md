@@ -1,7 +1,7 @@
 ---
 id: 01m5wn8rammpwmg59hge021ebm
 title: Showing content
-position: 4
+position: 5
 description: Connect blocks to your content, so pages show their own title, the latest posts or your menu, in your design.
 ---
 Much of what a page shows isn't typed into the page. A template shows each page's own title. A menu lists your links. A home page lists the latest dishes. In Lettern, you design a block once and connect it to that content, and the content fills it in.

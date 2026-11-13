@@ -8,27 +8,21 @@ A component is a piece of design you make once and use in many places: a header,
 
 ![The Header component open in the editor, with its settings on the right.](/media/screens/design-component.webp)
 
-There are two kinds, and both live under **Components**, in the sidebar's **Design** section:
-
-- **Components** stay linked. Edit one and every copy updates. Use them for headers, footers and cards.
-- **Sections** are copied into the page when you insert them, then edited freely. Use them as a library of starting points.
-
-The **Synced** switch in a component's settings, with its **Category**, **Description** and **Properties**, turns one kind into the other.
+Components live under **Components**, in the sidebar's **Design** section. Every copy stays linked to its component. Use them for headers, footers and cards. For blocks you want to copy once and then change freely, like a hero or a whole page to start from, use a [pattern](/design/patterns).
 
 ## Make a component
 
 1. Select the block you want to reuse, like a card. To take several blocks side by side, click the first and `⇧`-click the last.
 2. Choose **Make a Component** in the **⋯** menu at the top of the block's settings, or in the block's own **⋯** menu on the page.
 3. Give it a **Name**, and optionally a **Category** and a **Description** that tell others when to use it.
-4. Leave **Keep Every Copy in Sync** on to make a component. Turn it off to save a section instead.
 
-A component replaces the blocks you selected, so this page updates with it too. A section leaves the page as it was.
+A component replaces the blocks you selected, so this page updates with it too.
 
-Some blocks only accept certain blocks inside them. Where a component can't go, what you make is saved as a section.
+Some blocks only accept certain blocks inside them. Where a component can't go, **Make a Component** isn't offered. **Save as Pattern** keeps a copy of the blocks instead.
 
 ## Insert a component
 
-Press the `+` between two blocks, or type `/` in an empty line, and search. Components and sections are listed with the blocks, under **Components** and **Sections**.
+Press the `+` between two blocks, or type `/` in an empty line, and search. Components are listed with the blocks, under **Components**.
 
 ## Give each copy its own content
 
@@ -57,9 +51,9 @@ Pages always show a component's published version. The editor and preview show y
 
 ### Stored as files
 
-Components and sections are entries of the `components` collection, stored as Markdown files in `content/collections/components/`. The settings are in the frontmatter (`synced`, `category`, `description`, `props`) and the blocks are [Block Markdown](/reference/block-markdown). `synced: true` makes a component; `false` a section.
+Components are entries of the `components` collection, stored as Markdown files in `content/collections/components/`. The settings are in the frontmatter (`category`, `description`, `props`) and the blocks are [Block Markdown](/reference/block-markdown).
 
-Plugins can ship read-only components and sections too, with the `blocks.component-sources` filter and folders of `<handle>.json`.
+Plugins can ship read-only components too, with the `blocks.component-sources` filter and folders of `<handle>.json`.
 
 ### Properties
 
@@ -99,4 +93,4 @@ Text edited on the page is stored in the instance's `props.values`. Inline editi
 
 ### Abilities
 
-`components/list` returns every component and section with its properties and blocks (`working: true` includes drafts). `components/save` creates or replaces one by handle; for anything else use the `entries/*` abilities in the `components` collection.
+`components/list` returns every component with its properties and blocks (`working: true` includes drafts). `components/save` creates or replaces one by handle; for anything else use the `entries/*` abilities in the `components` collection.

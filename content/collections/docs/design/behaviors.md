@@ -1,7 +1,7 @@
 ---
 id: 01m75f2pwez59agde4m72jrybz
 title: Block behaviors
-position: 8
+position: 9
 description: 'Attach a script of your own to one block: it starts when the block is on the page and stops when it leaves.'
 ---
 A block behavior is a script that belongs to one element. The block names a script of the design, the site calls it when the element is in the page, and calls it again to clean up when the element leaves. This is where GSAP, Three.js or any other library attaches to a page.

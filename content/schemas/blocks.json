@@ -13,6 +13,9 @@
                     "$ref": "#/$defs/types/accordion"
                 },
                 {
+                    "$ref": "#/$defs/types/audio"
+                },
+                {
                     "$ref": "#/$defs/types/box"
                 },
                 {
@@ -31,6 +34,9 @@
                     "$ref": "#/$defs/types/card"
                 },
                 {
+                    "$ref": "#/$defs/types/carousel"
+                },
+                {
                     "$ref": "#/$defs/types/code"
                 },
                 {
@@ -47,6 +53,9 @@
                 },
                 {
                     "$ref": "#/$defs/types/embed"
+                },
+                {
+                    "$ref": "#/$defs/types/file"
                 },
                 {
                     "$ref": "#/$defs/types/filter-choice"
@@ -110,6 +119,9 @@
                 },
                 {
                     "$ref": "#/$defs/types/forms~1form"
+                },
+                {
+                    "$ref": "#/$defs/types/gallery"
                 },
                 {
                     "$ref": "#/$defs/types/gate-break"
@@ -242,6 +254,74 @@
                                     null
                                 ],
                                 "description": "Look"
+                            }
+                        }
+                    },
+                    "style": {
+                        "type": "object",
+                        "description": "Styles by property, as design tokens (token:space.8): blocks/types lists the properties of each section."
+                    }
+                },
+                "required": [
+                    "type"
+                ]
+            },
+            "audio": {
+                "title": "Audio",
+                "description": "A song, podcast or recording with a player.",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "const": "audio"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "Stable within the document. Given when left out."
+                    },
+                    "props": {
+                        "type": "object",
+                        "properties": {
+                            "file": {
+                                "title": "Audio File",
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "description": "Media id (see media/list), or an https:// or /path URL"
+                                },
+                                "maxItems": 1,
+                                "description": "Audio File — media ids from media/list or media/import"
+                            },
+                            "url": {
+                                "title": "Audio URL",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "format": "uri-reference",
+                                "maxLength": 2048,
+                                "description": "Used when no file is chosen."
+                            },
+                            "title": {
+                                "title": "Title",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "maxLength": 500,
+                                "description": "Title"
+                            },
+                            "caption": {
+                                "title": "Caption",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "description": "Caption (HTML: p, h2-h4, ul, ol, li, a, strong, em, code, blockquote)"
+                            },
+                            "loop": {
+                                "title": "Loop",
+                                "type": "boolean",
+                                "description": "Loop"
                             }
                         }
                     },
@@ -724,6 +804,81 @@
                     "type"
                 ]
             },
+            "carousel": {
+                "title": "Carousel",
+                "description": "Slides in a row to step through.",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "const": "carousel"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "Stable within the document. Given when left out."
+                    },
+                    "props": {
+                        "type": "object",
+                        "properties": {
+                            "per_view": {
+                                "title": "Slides Per View",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "enum": [
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4",
+                                    "auto",
+                                    null
+                                ],
+                                "description": "Auto: each slide keeps its own width."
+                            },
+                            "gap": {
+                                "title": "Gap",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "enum": [
+                                    "token:space.0",
+                                    "token:space.2",
+                                    "token:space.4",
+                                    "token:space.6",
+                                    "token:space.8",
+                                    "token:space.12",
+                                    "token:space.16",
+                                    null
+                                ],
+                                "description": "Gap"
+                            },
+                            "label": {
+                                "title": "Name for Screen Readers",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "maxLength": 500,
+                                "description": "Name for Screen Readers"
+                            }
+                        }
+                    },
+                    "style": {
+                        "type": "object",
+                        "description": "Styles by property, as design tokens (token:space.8): blocks/types lists the properties of each section."
+                    },
+                    "children": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/$defs/block"
+                        }
+                    }
+                },
+                "required": [
+                    "type"
+                ]
+            },
             "code": {
                 "title": "Code",
                 "description": "Code with syntax highlighting.",
@@ -1056,6 +1211,51 @@
                                     null
                                 ],
                                 "description": "Aspect Ratio"
+                            }
+                        }
+                    },
+                    "style": {
+                        "type": "object",
+                        "description": "Styles by property, as design tokens (token:space.8): blocks/types lists the properties of each section."
+                    }
+                },
+                "required": [
+                    "type"
+                ]
+            },
+            "file": {
+                "title": "File",
+                "description": "A file to download, with its type and size.",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "const": "file"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "Stable within the document. Given when left out."
+                    },
+                    "props": {
+                        "type": "object",
+                        "properties": {
+                            "file": {
+                                "title": "File",
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "description": "Media id (see media/list), or an https:// or /path URL"
+                                },
+                                "maxItems": 1,
+                                "description": "File — media ids from media/list or media/import"
+                            },
+                            "label": {
+                                "title": "Label",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "maxLength": 500,
+                                "description": "Label"
                             }
                         }
                     },
@@ -3124,6 +3324,97 @@
                     "type"
                 ]
             },
+            "gallery": {
+                "title": "Gallery",
+                "description": "Photos in a grid that open large.",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "const": "gallery"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "Stable within the document. Given when left out."
+                    },
+                    "props": {
+                        "type": "object",
+                        "properties": {
+                            "images": {
+                                "title": "Images",
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "description": "Media id (see media/list), or an https:// or /path URL"
+                                },
+                                "description": "Images — media ids from media/list or media/import"
+                            },
+                            "columns": {
+                                "title": "Columns",
+                                "type": [
+                                    "integer",
+                                    "null"
+                                ],
+                                "minimum": 1,
+                                "maximum": 6,
+                                "description": "Columns"
+                            },
+                            "aspect": {
+                                "title": "Crop",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "enum": [
+                                    "auto",
+                                    "1/1",
+                                    "4/3",
+                                    "3/2",
+                                    "16/9",
+                                    "3/4",
+                                    "4/5",
+                                    null
+                                ],
+                                "description": "Crop"
+                            },
+                            "gap": {
+                                "title": "Gap",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "enum": [
+                                    "token:space.0",
+                                    "token:space.2",
+                                    "token:space.4",
+                                    "token:space.6",
+                                    "token:space.8",
+                                    "token:space.12",
+                                    "token:space.16",
+                                    null
+                                ],
+                                "description": "Gap"
+                            },
+                            "captions": {
+                                "title": "Show Captions",
+                                "type": "boolean",
+                                "description": "Show Captions"
+                            },
+                            "lightbox": {
+                                "title": "Open Large on Click",
+                                "type": "boolean",
+                                "description": "Open Large on Click"
+                            }
+                        }
+                    },
+                    "style": {
+                        "type": "object",
+                        "description": "Styles by property, as design tokens (token:space.8): blocks/types lists the properties of each section."
+                    }
+                },
+                "required": [
+                    "type"
+                ]
+            },
             "gate-break": {
                 "title": "Teaser Ends Here",
                 "description": "Members-only content starts here.",
@@ -4572,7 +4863,7 @@
             },
             "video": {
                 "title": "Video",
-                "description": "YouTube, Vimeo or a video file.",
+                "description": "A video file, or one from YouTube or Vimeo.",
                 "type": "object",
                 "properties": {
                     "type": {
@@ -4585,6 +4876,16 @@
                     "props": {
                         "type": "object",
                         "properties": {
+                            "file": {
+                                "title": "Video File",
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "description": "Media id (see media/list), or an https:// or /path URL"
+                                },
+                                "maxItems": 1,
+                                "description": "Video File — media ids from media/list or media/import"
+                            },
                             "url": {
                                 "title": "Video URL",
                                 "type": [
@@ -4593,7 +4894,7 @@
                                 ],
                                 "format": "uri-reference",
                                 "maxLength": 2048,
-                                "description": "Video URL"
+                                "description": "Used when no file is chosen."
                             },
                             "caption": {
                                 "title": "Caption",
@@ -4613,10 +4914,41 @@
                                 "maxItems": 1,
                                 "description": "Poster Image — media ids from media/list or media/import"
                             },
+                            "aspect": {
+                                "title": "Aspect Ratio",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "enum": [
+                                    "auto",
+                                    "16/9",
+                                    "4/3",
+                                    "1/1",
+                                    "21/9",
+                                    "9/16",
+                                    "4/5",
+                                    null
+                                ],
+                                "description": "Aspect Ratio"
+                            },
+                            "fit": {
+                                "title": "Fit",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "enum": [
+                                    "cover",
+                                    "contain",
+                                    null
+                                ],
+                                "description": "How a video file fills a box of another shape."
+                            },
                             "autoplay": {
                                 "title": "Autoplay Muted",
                                 "type": "boolean",
-                                "description": "Autoplay Muted"
+                                "description": "Plays without sound, over and over. Not for visitors who ask for less motion."
                             },
                             "controls": {
                                 "title": "Show Controls",

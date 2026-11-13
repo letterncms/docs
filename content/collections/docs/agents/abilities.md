@@ -64,7 +64,7 @@ An ability is named `thing/verb`, and a verb means the same on every thing:
 | `create` | Makes a new one |
 | `update` | Changes one that exists, and answers `not_found` for one that doesn't |
 | `delete` | Removes one |
-| `save` | Creates or replaces a definition by its handle (`collections/save`, `fieldsets/save`, `globals/save`, `components/save`, `user-fields/save`), or a script or stylesheet of the design by its path (`design-code/save`). Nothing else |
+| `save` | Creates or replaces a definition by its handle (`collections/save`, `fieldsets/save`, `globals/save`, `components/save`, `patterns/save`, `user-fields/save`), or a script or stylesheet of the design by its path (`design-code/save`). Nothing else |
 
 Every other verb is an act of its own, such as `entries/publish`, `media/import` or `languages/set-default`.
 
@@ -81,7 +81,7 @@ Version 0.22 renamed the abilities that didn't follow this, without aliases. A s
 | `entries/revisions`, `entries/revision`, `entries/restore` | `revisions/list` (the entry is `entryId`), `revisions/get`, `revisions/restore` |
 | `globals/update` | `globals/set` |
 | `users/fields`, `users/fields-save` | `user-fields/get`, `user-fields/save` |
-| `patterns/list`, `patterns/save` | `components/list`, `components/save` |
+| `patterns/list`, `patterns/save` | `components/list`, `components/save`. `patterns/list` and `patterns/save` are now abilities of their own again, for [patterns](/design/patterns) |
 | `pages/customise` | `pages/customize` |
 | `packages/sync` | `packages/migrate` |
 | `packages/stores`, `packages/store-add`, `packages/store-remove` | `package-stores/list`, `package-stores/create`, `package-stores/delete` |
