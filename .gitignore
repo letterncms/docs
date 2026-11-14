@@ -8,6 +8,7 @@
 /.htaccess
 /.env
 /storage/
+/sites/
 /plugins/*
 !/plugins/reading-time/
 /plugins/reading-time/node_modules/
