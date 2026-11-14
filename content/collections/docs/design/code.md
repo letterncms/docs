@@ -184,6 +184,6 @@ The context resource `cms://site/code` gives an agent the same lists with the ru
 
 ### Starter's example
 
-A new site, from Starter, keeps its code to a few lines of **Site CSS**: three section styles that a **Section** or a **Box** takes by its class (under **Content → Advanced → Classes**). `band` makes a dark band, `tint` a warm grey one, and `on-photo` turns text, lines and buttons light over a photograph. Each sets the design's colour variables for what is inside it, so buttons and muted text follow without styles of their own. To be rid of them, empty **Site CSS** and remove the classes.
+A new site, from Starter, keeps its code to a few lines of **Site CSS**: section colours that a **Section** or a **Box** takes by its class (under **Content → Advanced → Classes**). `tide` makes it deep sea green, `clay` terracotta, `sun` yellow, `mist` pale blue and `band` near black, and `on-photo` turns text, lines and buttons light over a photograph. Each sets the design's colour variables for what is inside it, so headings, buttons and muted text follow without styles of their own. A state named after a colour does the same, so Starter's project and story cards take their colour from the entry: `is-clay` when a story's topic is *Making*. To be rid of them, empty **Site CSS** and remove the classes.
 
 See [A pinned scroll scene and a 3D canvas](/design/front-end-example) for all of this working together.
