@@ -22,7 +22,7 @@ Installing a site, with `cms install` or through the setup in the browser, write
 - How to build and check the pages: `php cms build --strict --json` and `php cms links:check`.
 - Where the content model is as files: `content/schemas/`.
 - Where the MCP server is.
-- The rules that matter: abilities instead of the database, Block Markdown in content files, design tokens instead of fixed values, secrets left alone.
+- The rules that matter: abilities instead of the database, Block Markdown in content files, Tailwind classes built from the theme instead of arbitrary values, secrets left alone.
 - The collections, modules and plugins that were on when it was written.
 
 From then on the file is yours. It is never written again, and a site that already has one keeps it.

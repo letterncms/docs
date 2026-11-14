@@ -82,7 +82,7 @@ Under **Visibility** in the **Content** tab:
 
 A menu usually marks the page you're on. Select the link inside the Repeat, open **Advanced** in the **Content** tab and press **Add State from Data**, the **+** beside **States from Data**. This adds a state named *active*: pick **Is this page or above it** as its data.
 
-The link now has the custom state *active* on the current page. Select it on the state track at the top of **Design** and style it, say in bold. See [Custom states](/design/styles#custom-states).
+The link now has the custom state *active* on the current page. Choose it under **More States** on the **State** row at the top of **Design** and style it, say in bold. See [Custom states](/design/styles#custom-states).
 
 ## Let visitors filter a list
 
@@ -115,9 +115,9 @@ A block's `bind` maps a setting to a **path**:
 |---|---|
 | A setting (`text`, `url`, `image`, `label`…) | Takes its value from the path |
 | `visible`, `hidden` | Renders the block only when the path has (or lacks) a value. On `account`, a page everyone gets the same copy of leaves it to the browser: see [Visitor accounts](/operations/public-accounts#sign-in-and-my-account-in-your-header) |
-| `state:<name>` | Adds the custom state `is-<name>` when the path has a value |
+| `state:<name>` | Sets the custom state: the attribute `data-<name>`, when the path has a value. Classes read it: `data-active:font-medium` |
 | `attr:<name>` | Sets an attribute (`attr:aria-label`, `attr:href`, `attr:title`, `attr:open` on a `details`, `aria-*`, `data-*`…) |
-| `style:<property>` | Sets one style inline: `style:backgroundImage` with an image field makes a cover background |
+| `style:<property>` | Sets one style inline, for what differs per item: `style:backgroundImage` with an image field makes a cover background. Everything else is a class |
 | `values.<handle>` | On a component instance: one of its [properties](/design/components#for-developers) |
 
 Text from data is escaped. End a path with `|raw` to keep its HTML (a rich text field). Text with braces mixes words and data: `"Posted {entry.date|date:M j, Y} in {entry.category}"`.
@@ -156,7 +156,7 @@ Text from data is escaped. End a path with `|raw` to keep its HTML (a rich text 
 {
   "type": "repeat",
   "props": { "source": "entries", "collection": "posts", "sort": "-published_at", "limit": 6, "tag": "div" },
-  "style": { "base": { "display": "grid", "gridTemplateColumns": "repeat(3, 1fr)", "gap": "token:space.8" }, "mobile": { "gridTemplateColumns": "1fr" } },
+  "class": "grid gap-8 md:grid-cols-3",
   "children": [
     { "type": "box", "props": { "tag": "article" }, "bind": { "link": "item.url" }, "children": [
       { "type": "paragraph", "props": { "tag": "time" }, "bind": { "text": "item.date|date:M j, Y" } },

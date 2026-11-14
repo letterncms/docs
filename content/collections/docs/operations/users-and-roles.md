@@ -83,14 +83,14 @@ Roles are stored in `config/roles.yaml`, a settings namespace like any other, so
 | `globals.view`, `globals.edit`, `globals.manage` | Globals: reading, changing values, creating globals and changing their fields. |
 | `collections.manage` | Creating and changing collections and fieldsets. |
 | `users.view`, `users.manage`, `tokens.manage`, `audit.view` | People, tokens and the audit log. |
-| `settings.manage`, `packages.manage` | Settings, the design and plugins. |
+| `settings.manage`, `packages.manage` | Settings, the styling (its stylesheet included) and plugins. |
 | `site.build` | Publishing the whole site. |
 | `blocks.html` | Adding raw HTML blocks. Only for trusted people. |
-| `site.code` | Editing the site's custom CSS and JavaScript, its [scripts, styles and libraries](/design/code), and putting a script or a persist name on a block. Only for trusted people. |
+| `site.code` | Editing the site's custom JavaScript, its [scripts, styles and libraries](/design/code), and putting a script or a persist name on a block. Only for trusted people. |
 
 Each permission belongs to the module or plugin that registers it, so switching one off removes its permissions from **Roles** too. Modules and plugins register their own (`navigation.manage`, `comments.moderate`, `forms.view`, `assistant.use`, `analytics.view`…). API tokens can only narrow a person's permissions, never widen them.
 
-The default roles in full: Editor has `admin.access`, `entries.*`, `globals.*`, `media.*` and `navigation.*`, plus `site.build`, `comments.view`, `comments.create`, `comments.moderate` and `assistant.use` from the modules that bring them, and what plugins give it, such as `forms.*` and `analytics.view`. Author has `admin.access`, `entries.*.view`, `.create` and `.edit`, `media.view` and `media.upload`, plus `comments.view`, `comments.create` and `assistant.use`. Visitor (handle `visitor`) has none. A permission of a module that's off isn't in them. Neither role has `site.code` (**Edit Custom CSS and JavaScript**): whoever holds it can run scripts as anyone who opens the site, the page builder or a preview, administrators included, so it stays the administrators' unless you give it to someone you trust as much.
+The default roles in full: Editor has `admin.access`, `entries.*`, `globals.*`, `media.*` and `navigation.*`, plus `site.build`, `comments.view`, `comments.create`, `comments.moderate` and `assistant.use` from the modules that bring them, and what plugins give it, such as `forms.*` and `analytics.view`. Author has `admin.access`, `entries.*.view`, `.create` and `.edit`, `media.view` and `media.upload`, plus `comments.view`, `comments.create` and `assistant.use`. Visitor (handle `visitor`) has none. A permission of a module that's off isn't in them. Neither role has `site.code` (**Edit Scripts and Stylesheets**): whoever holds it can run scripts as anyone who opens the site, the page builder or a preview, administrators included, so it stays the administrators' unless you give it to someone you trust as much.
 
 ### Profile fields
 

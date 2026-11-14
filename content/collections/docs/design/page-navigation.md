@@ -10,7 +10,7 @@ Pages stay the static HTML they were. Without JavaScript, every link loads its p
 
 ## Turn it on
 
-Open **Design → Motion → Page Transition** and set **Page Loads** to **Instant**. **Full Page** is the default.
+Open **Styling → Motion → Page Transition** and set **Page Loads** to **Instant**. **Full Page** is the default.
 
 From then on:
 
@@ -46,16 +46,16 @@ Nothing is fetched ahead for visitors who turned on data saving in their browser
 
 ### How it is stored
 
-In `content/design/tokens.json`:
+In `content/styling/settings.json`:
 
 ```json
 "transition": { "type": "fade", "duration": 0.25, "navigation": "client" }
 ```
 
-`navigation` is `client` or `document` (the default). `design/update` with only part of the transition keeps the rest:
+`navigation` is `client` or `document` (the default). `styling/update` with only part of the transition keeps the rest:
 
 ```bash
-php cms run design/update --input='{"transition":{"navigation":"client"}}'
+php cms run styling/update --input='{"transition":{"navigation":"client"}}'
 ```
 
 A block's name is its `persist`:

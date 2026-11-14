@@ -31,15 +31,17 @@ Point at a setting and a database icon appears beside its label, **Connect to Da
 
 ## Design
 
-Change how the block looks, section by section: **Layout**, **Position**, **Size**, **Spacing**, **Typography**, **Fill**, **Border**, **Effects**, **Transform** and **Transition**. A section's **+** adds any other property that belongs there.
+Change how the block looks, section by section: **Layout**, **Position**, **Size**, **Spacing**, **Typography**, **Fill**, **Border**, **Effects**, **Transform** and **Transition**. A section's **+** adds any other property that belongs there. What you set becomes Tailwind classes on the block, shown at the top of the tab, where **Add Class** gives it one of your site's own classes, like *card*.
 
-Pick colors, fonts and sizes from your [design](/design/site-design), and the block keeps matching the rest of the site when those change.
+Pick colors, fonts and sizes from your [theme](/design/site-design), and the block keeps matching the rest of the site when those change.
 
 ### Different screens and states
 
-Switch between **Desktop**, **Tablet** and **Phone** in the editor's top bar, with or without a block selected. **Desktop** always shows the desktop layout, scaled down when the window has less room. A change made for **Tablet** applies to tablets and phones, one for **Phone** only to phones; a line at the top of the **Design** tab says so, with **Back to Desktop**.
+Switch between **Desktop**, **Tablet** and **Phone** in the editor's top bar to see the page at that width, with or without a block selected. **Desktop** always shows the desktop layout, scaled down when the window has less room.
 
-The states at the top of the **Design** tab pick what you're styling: **Default**, **Hover**, **Pressed** or **Focus**, and more under **More States** (the `+`), like **Dark Mode**. See [Styles](/design/styles).
+The **Screen** row at the top of the **Design** tab picks which screens a change reaches: **All**, or from **sm**, **md**, **lg**, **xl** or **2xl** up. Styles work phone first: set what holds everywhere, then what changes on wider screens.
+
+The **State** row picks what you're styling: **Default**, **Hover**, **Pressed** or **Focus**, and more under **More States** (the `+`), like **Dark Mode**. See [Styles](/design/styles).
 
 ## Interact
 

@@ -60,9 +60,9 @@ An animation is made of one or more steps. Each step moves a **Target** from one
 
 **From** is how the step starts, **To** is how it ends. Leave a side empty to use the block's own design: from *opacity 0, move Y 32* fades the block in and slides it up into place.
 
-You can animate opacity, movement, scale, rotation (also in 3D), skew, blur, brightness, grayscale, clip path, colors, corner radius, shadow, width, height and letter spacing, plus the origin and perspective. Colors can use your design tokens.
+You can animate opacity, movement, scale, rotation (also in 3D), skew, blur, brightness, grayscale, clip path, colors, corner radius, shadow, width, height and letter spacing, plus the origin and perspective. Colors can use your theme's colors.
 
-Under **Timing**, set the duration and a delay in seconds, and, for children or words, the time between items. **Ease** sets the feel: **Smooth Out**, **Expo Out**, **Overshoot**, **Elastic**, **Bounce**, **Linear** and more, or a curve of your own. The curves of your [design](/design/site-design), under **Motion**, come first in the list.
+Under **Timing**, set the duration and a delay in seconds, and, for children or words, the time between items. **Ease** sets the feel: **Smooth Out**, **Expo Out**, **Overshoot**, **Elastic**, **Bounce**, **Linear** and more, or a curve of your own. The curves of your [theme](/design/site-design), under **Styling → Motion**, come first in the list.
 
 Press **Add Step** to animate more in the same animation. Each step starts when the one before ends, unless you give it its own start time.
 
@@ -114,7 +114,7 @@ A block's `motion` is a list of animations:
 - `trigger.type`: `appear`, `scroll`, `hover`, `press`, `load`, `loop`, `event`. `start` and `end` read `<element edge> <viewport position>`, with `top`, `center` or `bottom` for the edge and those or a percentage for the position (`top 80%`, `center center`). `node` (`#<block id>`) watches another element. A `scroll` trigger takes `pin`, a distance in `px`, `rem`, `vh`, `svh`, `lvh` or `dvh` (`"150vh"`; `true` is `100vh`), and `scrub`, between 0.05 and 3 seconds.
 - `on`: `desktop`, `tablet`, `mobile`; absent means every screen.
 - `steps[].target`: `self`, `children`, `words`, `lines`, `chars` or `#<block id>`; `steps[].mask` clips each word. `lines` are the lines the text is laid out in, with every trigger: with `load`, `scroll` and `loop` the block carries `data-cms-lines` and the runtime gives each word its line's turn. `chars` falls back to words past 600 letters, and nothing is split past 200 words. `steps[].at` is a start time in seconds; without it a step starts when the previous one ends.
-- `steps[].ease`: a name (`expo.out`, `power3.inOut`, `sine.inOut`, `back.out`, `elastic.out`, `bounce.out`, `linear`…), `cubic-bezier()`, `linear()` or `steps()` as written, or a curve of the design: `token:ease.<name>`.
+- `steps[].ease`: a name (`expo.out`, `power3.inOut`, `sine.inOut`, `back.out`, `elastic.out`, `bounce.out`, `linear`…), `cubic-bezier()`, `linear()` or `steps()` as written, or a curve of the theme: `var(--ease-<name>)`. A color is CSS too: `var(--color-primary)`.
 - `repeat` (`-1` forever) and `yoyo` repeat each step; with `hold` (seconds) on an appear animation they repeat the whole timeline.
 
 Page Load, Scroll and Loop compile to CSS (scroll-driven animations for Scroll); the other triggers use the Web Animations API. Where the browser has no scroll-driven animations, or the animation has `scrub`, a script moves the same keyframes over the same range. A pin is `position: sticky` in a wrapper as tall as the block plus the distance.

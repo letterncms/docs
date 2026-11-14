@@ -76,7 +76,8 @@ Name them after your plugin, so they never clash with Lettern's own.
 |---|---|---|
 | `users.fields.saved` | | The user profile fields changed. |
 | `settings.saved` | `$namespace, $values` | A settings namespace was saved (`site` is `config/site.yaml`). |
-| `design.saved` | | The design or custom code changed. |
+| `styling.saved` | | The stylesheet, the fonts, the page transition or custom code changed. |
+| `styling.compiled` | | The admin handed in newly compiled CSS for the site. |
 
 ### Publishing and rendering
 
@@ -117,7 +118,7 @@ The first argument is the value you return; the rest are there to help you decid
 | `collections.settings` | `$fields, $collection` | The settings a collection offers in **Collections** (Site adds its template picker). |
 | `revisions.keep` | `$count` | How many revisions each entry keeps (100). |
 | `gate.allows` | `$allowed, $user, $entry, $rule` | Whether someone may read a [gated](/content/gated-content) entry. |
-| `fields.options.<name>` | `$options` | Options of select fields with `dynamic: <name>`, in collections, settings and blocks alike: `templates`, `collections` (every collection but the system ones), `timezones`, `admin-languages`, `visitor-roles`, `components`, `sources` (what a Repeat block can list) and `button-variants` (the design adds its own). A plugin adds a name of its own (`forms`). |
+| `fields.options.<name>` | `$options` | Options of select fields with `dynamic: <name>`, in collections, settings and blocks alike: `templates`, `collections` (every collection but the system ones), `timezones`, `admin-languages`, `visitor-roles`, `components`, `sources` (what a Repeat block can list) and `button-variants` (the site's `btn-<name>` classes: `btn-primary` is the option `primary`). A plugin adds a name of its own (`forms`). |
 | `fields.definition.<name>` | `$field, $context` | Resolved definition of a `dynamic: <name>` field. The collection host supplies `$context['collection']`; use it for presentation such as the inherited template name. Raw collection YAML stays unchanged. |
 
 ### Abilities, settings and people
@@ -170,7 +171,9 @@ The first argument is the value you return; the rest are there to help you decid
 | `blocks.variants` | `$variants` | Block variants offered to editors. |
 | `blocks.folders`, `blocks.component-sources` | `$sources` | Folders with blocks (`block.json`) or read-only components (`<handle>.json`). |
 | `blocks.pattern-sources` | `$sources` | Folders with read-only [patterns](/design/patterns#patterns-from-a-plugin): `<handle>.md` (front matter and Block Markdown) or `<handle>.json`. |
-| `blocks.breakpoints` | `$breakpoints` | Breakpoints for block styles. |
+| `blocks.breakpoints` | `$breakpoints` | The widths screen sizes start at, by name, for animations that play on some screens only: `['sm' => '40rem', 'md' => '48rem', 'lg' => '64rem', 'xl' => '80rem', '2xl' => '96rem']`. The site answers with its theme's. |
+| `styling.candidates` | `$classes` | Class names your code renders with, so Tailwind makes their CSS: `[...$classes, 'grid', 'md:grid-cols-3', 'bg-primary']`. Classes in the content are found by themselves. |
+| `styling.kernel` | `$css` | A list of CSS strings compiled with every site's stylesheet, before the site's own: what your blocks look like before anybody styles them. It may use `@apply` and the theme's variables. |
 
 ### Media, email, forms and menus
 

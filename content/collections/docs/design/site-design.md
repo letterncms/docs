@@ -1,43 +1,42 @@
 ---
 id: 01m5wn8rahj942kpc5xx6pns6s
-title: Design
+title: Styling
 position: 0
-description: Your site's colors, fonts, spacing, buttons and form fields, in one place. Change them once and every page follows.
+description: Your site's colors, fonts, spacing, classes and element styles, in one place. Change them once and every page follows.
 ---
-The design holds the values your whole site is built from: colors, fonts, text sizes, spacing, corners, shadows and motion. Blocks use these values instead of fixed ones, so when you change your main color, every button, link and heading that uses it changes too.
+The styling holds the values your whole site is built from: colors, fonts, text sizes, spacing, corners, shadows and motion. Blocks use these values instead of fixed ones, so when you change your main color, every button, link and heading that uses it changes too.
 
-![The design: colors in the middle, a live preview of the site on the right.](/media/screens/design.webp)
+It is [Tailwind CSS](https://tailwindcss.com): one stylesheet holds the theme, and blocks carry Tailwind classes. You don't need to know Tailwind to use this page, and if you do, everything works the way you expect.
 
-Open **Design** in the sidebar, or press `⌘K` and type *design*. Its sections are listed under it in the sidebar. The preview on the right shows your site as you change things, on desktop, tablet or phone, in light or dark.
+![The styling: colors in the middle, a live preview of the site on the right.](/media/screens/design.webp)
+
+Open **Styling** in the sidebar, or press `⌘K` and type *styling*. Its sections are listed under it in the sidebar. The preview on the right shows your site as you change things, on desktop, tablet or phone, and in light or dark when the site has dark colors.
 
 ## What's in it
 
-The sections come in two groups. **Tokens** are the named values blocks pick from. **Styles** decide how plain elements, buttons and form fields look before you style anything.
+The sections come in two groups. **Theme** holds the named values blocks pick from. **Styles** holds your own classes, how plain elements look before you style anything, and the stylesheet itself.
 
 | Section | What you set |
 |---|---|
-| **Colors** | Your palette: background, text, your brand colors, borders. Each color can have its own dark-mode value |
-| **Typography** | The fonts your site uses, the type scale, line heights, letter spacing and weights |
-| **Spacing** | The spacing scale, content widths and the screen sizes the site adapts at |
-| **Sizes** | Small, medium and large, for buttons and form fields alike |
+| **Colors** | Your palette: background, text, your brand colors, borders. With **Dark Mode** on, each color has a light and a dark value |
+| **Typography** | The fonts your site uses, text sizes, weights, line heights and letter spacing |
+| **Layout** | The spacing unit, spaces with a name, content widths and the screen sizes the site adapts at |
 | **Shape** | Corner radius and shadows |
-| **Motion** | How pages change into each other, and durations and easing for transitions |
-| **Elements** | Default styles for headings, paragraphs, links, lists and other plain elements, everywhere on the site. Each starts empty: **Add a Property** adds what it sets, its ⋯ removes it |
-| **Prose** | Long-form text: the space between its blocks, before and after headings and between list items, and **Elements in Prose**, how its elements look there only |
-| **Buttons** | The looks a **Button** block can take: colors, border, corners, weight, shadow |
-| **Form Fields** | How every text field, dropdown, checkbox and their labels look, on every form of the site |
-| **Code** | Your own CSS and JavaScript, for what the editor can't do, and the libraries they import |
+| **Motion** | Easing curves, and how pages change into each other |
+| **Classes** | Looks with a name, like *card* or *btn-primary*, that any block can carry |
+| **Elements** | Default styles for the page, headings, paragraphs, links and other plain elements, everywhere on the site |
+| **Code** | The stylesheet as text, your own JavaScript, and the libraries it imports |
 
-A *token* is just a named value, like *primary* for your brand color or *8* for a step of spacing. You give it a value once, and use the name everywhere.
+Every value in the theme has a name, like *primary* for your brand color or *content* for a width. You give it a value once, and use the name everywhere.
 
 ## Change your colors
 
 1. Open **Colors**.
 2. Click a color and pick a new value. The preview updates right away.
-3. Switch the preview to dark to check the dark value too.
+3. With **Dark Mode** on, each color has a second value. Switch the preview to dark to check it.
 4. Press **Save** in the bar at the bottom, or `⌘S`. **Discard** puts everything back.
 
-Saving restyles every page and rebuilds the site. Use the **+** next to a group to add a token of your own, like an accent color.
+Saving restyles every page and rebuilds the site. **Add Color** adds a color of your own, like *accent*. **Tailwind Palette** keeps Tailwind's own colors, such as *red-500*, available beside yours: turn it off and only your colors exist.
 
 ## Add a font
 
@@ -45,161 +44,202 @@ Fonts are stored on your site, so visitors' browsers never contact another servi
 
 1. Open **Typography**. **Fonts** lists the roles your site uses, like *sans* and *display*.
 2. Click a role's font. Pick one already on your site, or choose **Add a Google Font…** and type a name, like *Inter Tight*, or **Upload a .woff2 File…**. The new font is used right away.
-3. Press **Save**. What a font falls back to while loading is in the row's **⋯** menu.
+3. Press **Save**. What a font falls back to while loading, and **Preload**, are in the row's **⋯** menu.
 
-## Use tokens on a block
+## Use the theme on a block
 
-In a block's **Design** settings, fields that take a color, a size or a space show a small diamond when you point at them: **Design Tokens**. Click it and pick a token. The block now follows that token, so it changes when the design does.
+In a block's **Design** tab, fields that take a color, a size or a space show a small diamond when you point at them: **Theme Values**. Click it and pick one. The block now follows that value, so it changes when the theme does.
 
-Choose **Detach Token** to turn it back into a fixed value. See [Styles](/design/styles).
+Choose **Detach** to turn it back into a fixed value. See [Styles](/design/styles).
 
-## Sizes of buttons and fields
+## Classes
 
-Buttons, form fields, tag fields and chips share one size scale: **Small**, **Medium** and **Large**. **Sizes** sets each size's height, padding and text size, and a button and a field of the same size line up, side by side or in a form; the preview shows them together. Empty, each takes Lettern's default from your type scale.
+A class is a look with a name. Make a *card* once, with its corners, border and padding, and give it to every block that should look like one. Change the class, and they all change.
 
-A **Button** block's **Size** picks S, M or L. Forms take the size set under **Form Fields → Size and Spacing**, and their send button with them.
+1. Open **Classes** and choose **New Class**. Name it, like *card*.
+2. Style it with the same controls as a block's **Design** tab, for every screen size and state.
+3. Press **Save**. The class is now offered on every block, under **Add Class** in its **Design** tab.
+
+A class's **⋯** menu has **Rename…**, **Duplicate…** and **Delete**. You can also make one from a block you already styled: see [Styles](/design/styles#classes).
+
+## Element styles
+
+**Elements** decides how plain elements look before a block says otherwise: the **Page**, **Heading 1** to **Heading 6**, **Paragraph**, **Link**, **Small Text**, **Quote**, **Code** and the **Selection**. Open one and style it like a block. **Add Element** styles anything else by its CSS selector, like `figcaption` or `h1 em`. **Clear Styles** in an element's **⋯** menu empties it.
+
+A block's own classes always win over an element's style.
 
 ## Button styles
 
-**Buttons** holds the looks a **Button** block can take, such as *primary*, *secondary*, *ghost* and *link*: fill, border, radius, weight, letter spacing, text color, shadow and opacity, for **Default**, **Hover**, **Pressed** and **Focus**. A look has no size of its own, so every look comes in every size. The preview shows each in every state and size. Add a look with **+** and it appears in every Button's **Style** menu. **Shown On** names the background a look is made for, like a dark band, and the preview shows it there.
+A **Button** block's **Style** menu lists the looks your site has, such as *primary*, *secondary*, *ghost* and *link*. Each is a class whose name starts with `btn-`: open *btn-primary* under **Classes** to change its fill, border, corners or text color, and choose **Hover** on the **State** row for how it looks when pointed at. Make a class named *btn-outline* and **Outline** appears in every Button's **Style** menu.
 
-A Button with an icon and no label is square, as wide as it is tall. **Shape** **Round** makes it a circle, or a labelled button a pill. Give an icon-only button a **Name for Screen Readers**, like *Search*.
+A look has no size of its own, so every look comes in every size: a Button's **Size** picks S, M or L. A Button with an icon and no label is square, as wide as it is tall. **Shape** **Round** makes it a circle, or a labelled button a pill. Give an icon-only button a **Name for Screen Readers**, like *Search*.
+
+## Sizes of buttons and fields
+
+Buttons, form fields, tag fields and chips share one size scale: small, medium and large. Each size has a height, a padding and a text size, so a button and a field of the same size line up, side by side or in a form. Forms use medium, and their send button with them.
+
+The sizes are values of the theme (`--control-md-height` and the like). Change them in the stylesheet under **Code**: see [Buttons](#buttons) below.
 
 ## Form fields
 
-**Form Fields** styles every field on the site once: the forms you build, the sign-in and account pages, the checkout, list filters and the **Input** block. A field reads the same values wherever it is, so a fill, a border or a corner you set here reaches text fields, dropdowns, text areas, tag fields and file pickers at the same time.
+Every field on the site looks the same: the forms you build, the sign-in and account pages, the checkout, list filters and the **Input** block. A field reads its fill, border, corners and colors from one set of values, so what you set once reaches text fields, dropdowns, text areas, checkboxes, switches, tag fields and file pickers at the same time.
 
-![Form Fields: the checkbox controls on the left, every kind of field in each state on the right.](/media/screens/design-form-fields.webp)
-
-Beside the controls, the preview shows every kind of field in each of its states, as your site draws them, in light or dark and at each screen width. Opening a row brings its part into view and marks it. You can click and type in it. Changes show at once and are saved with **Save**.
-
-| Row | What you set |
-|---|---|
-| **All Fields** | Fill, border, radius, text color, placeholder and shadow, for every boxed field |
-| **States** | How a field looks on **Hover**, with **Focus** (border and ring), when **Invalid** and when **Disabled** |
-| **Labels and Help** | Label size, weight and color, the required mark, help text |
-| **Size and Spacing** | The size of fields in forms (S, M or L), and the space between fields, from label to field, between options, and from a checkbox to its text |
-| **Dropdowns**, **Text Areas** | The arrow's color and size; a text area's minimum height and whether it can be resized |
-| **Checkboxes** | Size, radius, fill, border, checked color, and the mark: a check, a square or a dot, light, regular or bold, at any size |
-| **Radio Buttons** | Size, checked color, and the dot: on a filled circle or in a ring |
-| **Switches** | Width, height, radius, the off and on colors, and the knob with its inset and shadow |
-| **Sliders** | The track, the part that's filled, and the thumb |
-| **Tag Fields**, **Chips**, **File Pickers** | Tags in a tag field, options shown as pills, the button of a file picker |
-
-Every control shows what applies while it's empty: a token, like *raised* or *primary*, or what the default does. Radio buttons, switches and sliders take your checkbox's checked color until you give them their own, and checkboxes take the fill and border of **All Fields**. A dot beside a row means you changed something in it; **Reset to Defaults** in its menu clears it.
+Out of the box, fields follow your theme: its *raised*, *border*, *primary* and *muted* colors and its *md* radius. To give them a look of their own, set their values in the stylesheet under **Code**: see [Field variables](#field-variables) below.
 
 ## Page transitions
 
-Under **Motion**, **Page Transition** animates the change from one page to the next: **Fade**, **Slide**, **Scale** or **None**, with a duration. It needs no script, and visitors who prefer reduced motion don't get it.
+Under **Motion**, **Page Transition** animates the change from one page to the next: **Effect** is **Fade**, **Slide**, **Scale** or **None**, with a **Duration**. It needs no script, and visitors who prefer reduced motion don't get it.
 
 **Page Loads** says how a link gets to the next page: **Full Page**, or **Instant**, which swaps the page in place so chosen elements live on. See [Navigation without page loads](/design/page-navigation).
 
 ## Long-form text
 
-**Prose** is how long-form text looks: an article, a doc, a post's body. Turn on **Prose**, under **Typography** in the **Design** tab, on a template's **Page Content** block or on any **Box**. Its blocks are then spaced as one flow, whatever kind they are: set the space between blocks, before and after headings and between list items once, and an image or a block of your own keeps the same rhythm as the paragraphs around it. Below that, style how its headings, links, lists and code look. Opening one in the list shows it in the preview's sample article, which has every element prose can style.
+**Prose** is how long-form text looks: an article, a doc, a post's body. Turn on **Prose**, under **Typography** in the **Design** tab, on a template's **Page Content** block or on any **Box**. Its blocks are then spaced as one flow, whatever kind they are: an image or a block of your own keeps the same rhythm as the paragraphs around it, with more room before a heading and less after it, and lists, links, quotes and inline code are drawn as text.
 
 A block of your own inside prose keeps its own layout: prose spaces the blocks directly in it, and styles text, not a **Box** or **Repeat** drawn as a list or a link. A callout with paragraphs of its own turns on **Prose** too, and its text is spaced the same way.
 
-## Custom CSS and JavaScript
+The spaces, and how headings and other elements look inside prose only, are set in the stylesheet: see [Prose](#prose) below.
 
-**Code** holds the site's own CSS and JavaScript. **Site CSS** is added after everything else, and **Site JavaScript** runs on every page. You rarely need either: use them for the one thing the editor can't express.
+## Stylesheet and JavaScript
 
-Under them, **Styles** and **Scripts** list the design's other files, which load only where you say, and **Libraries** lists what scripts import. See [Scripts and styles](/design/code).
+**Code** shows the stylesheet as text: the same one every other section edits, so a change made here shows in the controls, and the other way around. Anything CSS can say fits in it. A stylesheet Tailwind can't read is not saved, and the page says why in Tailwind's own words.
 
-::: callout {"props":{"tone":"warning","text":"JavaScript here runs on every page of your site. Editing it needs the <strong>Edit Custom CSS and JavaScript</strong> permission, marked <strong>Trusted Only</strong>: give it only to people you trust."}}
+**Site JavaScript** runs on every page. Under it, **Scripts** and **Styles** list the site's other files, which load only where you say, and **Libraries** lists what scripts import. See [Scripts and styles](/design/code).
+
+::: callout {"props":{"tone":"warning","text":"JavaScript here runs on every page of your site. Editing it needs the <strong>Edit Scripts and Stylesheets</strong> permission, marked <strong>Trusted Only</strong>: give it only to people you trust."}}
 :::
 
 ## For developers
 
-### The file
+### The files
 
-The design settings live in `content/design/tokens.json` next to your content, so it is versioned with the site. A site without one uses Lettern's defaults until you save.
+The styling lives in `content/styling/` next to your content, so it is versioned with the site.
 
-```json
-{
-  "name": "Acme",
-  "tokens": {
-    "color": {
-      "$type": "color",
-      "background": { "$value": "#ffffff", "$extensions": { "cms": { "dark": "#0c0c0b" } } },
-      "foreground": { "$value": "#161614", "$extensions": { "cms": { "dark": "#f2f2ee" } } },
-      "primary": { "$value": "#1d4ed8" }
-    },
-    "font": { "sans": { "$value": ["Inter", "ui-sans-serif", "system-ui", "sans-serif"] } },
-    "text": { "base": { "$value": { "min": "1rem", "max": "1.0625rem" } }, "5xl": { "$value": { "min": "2.75rem", "max": "5rem" } } },
-    "space": { "4": { "$value": "1rem" }, "section": { "$value": { "min": "4rem", "max": "8rem" } } },
-    "radius": { "md": { "$value": "0.625rem" } }
-  },
-  "fonts": [
-    { "family": "Inter", "src": "fonts/InterVariable.woff2", "weight": "100 900", "style": "normal", "preload": true }
-  ],
-  "styles": {
-    "body": { "fontFamily": "token:font.sans", "fontSize": "token:text.base", "color": "token:color.foreground", "backgroundColor": "token:color.background" },
-    "h1": { "fontSize": "token:text.5xl", "lineHeight": "token:leading.tight", "textWrap": "balance" },
-    "h1 em": { "fontFamily": "token:font.display", "fontStyle": "italic" }
-  },
-  "prose": { "spacing": { "blocks": "1.1em" }, "h2": { "fontSize": "token:text.2xl" } },
-  "buttons": {
-    "primary": { "base": { "backgroundColor": "token:color.primary", "color": "token:color.primary-foreground" }, "hover": { "opacity": 0.9 } }
-  },
-  "fields": {
-    "base": { "height": "3rem", "borderRadius": "token:radius.md", "backgroundColor": "token:color.background" },
-    "focus": { "borderColor": "token:color.primary" },
-    "label": { "fontWeight": "token:weight.semibold" }
-  },
-  "transition": { "type": "fade", "duration": 0.25 }
+| File | Holds |
+|---|---|
+| `theme.css` | The stylesheet: Tailwind CSS v4. A site without one uses the stylesheet Lettern starts every site with, until you save |
+| `settings.json` | The font faces and the page transition |
+| `compiled.css` | What Tailwind made of `theme.css` for the classes the content uses. Generated: never edit it |
+| `custom.js`, `scripts/`, `styles/`, `vendor/`, `code.json` | The site's own code, see [Scripts and styles](/design/code) |
+| `fonts/` | Self-hosted `.woff2` files |
+
+```css
+@import "tailwindcss";
+@import "cms";
+
+@theme {
+  --color-background: light-dark(#ffffff, #0c0c0b);
+  --color-foreground: light-dark(#161614, #f2f2ee);
+  --color-primary: #1d4ed8;
+  --color-primary-foreground: #ffffff;
+  --color-accent: #e11d48;
+
+  --font-sans: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", "Fraunces Fallback", ui-serif, Georgia, serif;
+
+  --text-5xl: clamp(2.75rem, 2.1rem + 3vw, 5rem);
+  --spacing-section: clamp(4rem, 8vw, 8rem);
+  --radius-md: 0.625rem;
+  --container-content: 72rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+  body {
+    @apply bg-background font-sans text-base text-foreground;
+  }
+  h1 {
+    @apply font-display text-5xl leading-tight font-semibold text-balance;
+  }
+  h1 em {
+    @apply font-display italic;
+  }
+}
+
+@utility card {
+  @apply rounded-xl border border-border bg-raised p-6 hover:border-accent;
+}
+
+@utility btn-primary {
+  @apply bg-primary text-primary-foreground hover:opacity-90;
 }
 ```
 
-### Tokens
+It starts with two imports: Tailwind, then `cms`, the stylesheet blocks, buttons and form fields are built from. After them it has four kinds of things, and each section of the **Styling** page edits one of them where it stands, so comments and hand-written CSS stay as they are.
 
-Tokens use the [Design Tokens](https://www.designtokens.org/) format: groups of tokens with a `$value` and an optional `$type`.
+### The theme
 
-| Group | CSS property prefix | Used for |
+`@theme` holds the site's values as CSS variables, in Tailwind's namespaces. Every variable is a set of classes: `--color-primary` gives `bg-primary`, `text-primary` and `border-primary`, with any opacity (`bg-primary/20`).
+
+| Variable | Classes | Used for |
 |---|---|---|
-| `color` | `--color-` | Text, fills, borders, shadows |
-| `font` | `--font-` | Font stacks |
-| `text` | `--text-` | Font sizes |
-| `leading`, `tracking`, `weight` | `--leading-`, `--tracking-`, `--font-weight-` | Line height, letter spacing, font weight |
-| `space` | `--space-` | Padding, margins, gaps, offsets |
-| `radius`, `shadow` | `--radius-`, `--shadow-` | Corners and shadows |
-| `container` | `--container-` | Content widths |
-| `control` | `--control-` | The sizes of buttons and fields: `sm-height`, `sm-padding`, `sm-text`, and the same for `md` and `lg` |
-| `breakpoint` | — | Screen sizes for responsive styles |
-| `duration`, `ease` | `--duration-`, `--ease-` | Transitions |
+| `--color-*` | `bg-`, `text-`, `border-`, `ring-`, `fill-`… | Text, fills, borders, shadows |
+| `--font-*` | `font-sans`, `font-display` | Font stacks |
+| `--text-*` | `text-lg`, `text-5xl` | Font sizes |
+| `--leading-*`, `--tracking-*`, `--font-weight-*` | `leading-tight`, `tracking-wide`, `font-semibold` | Line height, letter spacing, font weight |
+| `--spacing`, `--spacing-*` | `p-4`, `gap-6`; `px-gutter`, `py-section` | The unit every step of spacing multiplies (0.25rem), and spaces with a name |
+| `--radius-*`, `--shadow-*` | `rounded-md`, `shadow-lg` | Corners and shadows |
+| `--container-*` | `max-w-content`, `max-w-prose` | Content widths |
+| `--breakpoint-*` | `sm:`, `md:`, `lg:`, `xl:`, `2xl:` | The screen sizes responsive classes start at |
+| `--ease-*` | `ease-out` | Easing curves, also offered to [animations](/design/animations) by name |
+| `--control-*` | — | The sizes of buttons and fields: `sm-height`, `sm-padding`, `sm-text`, and the same for `md` and `lg` |
 
-- **Fluid values**, like `{ "min": "1rem", "max": "1.25rem" }`, scale smoothly between a 360px and a 1280px screen.
-- **Dark mode**: a token's `$extensions.cms.dark` value applies when the visitor prefers dark, or when the page is switched with the **Light or Dark Mode** action.
-- Refer to a token anywhere a style takes a value: `token:color.primary`, with opacity `token:color.primary/20`, or inside a longer value: `0 8px 24px token:color.foreground/15`.
+Blocks, buttons and fields read a few names whatever the site: the colors `background`, `surface`, `raised`, `foreground`, `muted`, `border`, `primary`, `primary-foreground` and `danger`, the containers `prose`, `content` and `wide`, and the spaces `gutter` and `section`. Each has a default until the theme names its own value.
 
-### Element styles
+- **Fluid values** are plain CSS: `clamp(1rem, 0.9rem + 0.5vw, 1.25rem)`.
+- **Dark mode**: a value with a dark side is `light-dark(#ffffff, #0c0c0b)`, with `:root { color-scheme: light dark; }` in `@layer base`. The dark side applies when the visitor prefers dark, or when the page is switched with the **Light or Dark Mode** action. The `dark:` variant on a class follows the same two.
+- Outside a class, a theme value is a CSS variable: `var(--color-primary)`.
 
-`styles` sets defaults for HTML elements: `html`, `body`, `h1`–`h6`, `p`, `a`, `a:hover`, `small`, `strong`, `em`, `mark`, `code`, `kbd`, `pre`, `blockquote`, `hr`, `ul`, `ol`, `li`, `img`, `figcaption`, `table`, `th`, `td`, `::selection`, `:focus-visible`, and `h1 em`, `h2 em`, `h3 em`, `h1 strong`, `h2 strong` for mixed-style headings. Keys are CSS properties in camelCase, like everywhere else in Lettern.
+### Class rules
 
-Beside those, `styles` and `prose` take any tag, alone or up to three deep, with a space (inside) or ` > ` (directly inside) between them, and one state or part at the end: `"h1 em"`, `"li > a"`, `"nav a:hover"`, `"li::marker"`.
+A class of the site's own is an `@utility` rule that applies other classes. Blocks carry it like any Tailwind class, with every variant: `card`, `md:card`, `hover:card`.
 
-`styles` also takes a class a block carries, alone or on a tag, with at most two classes in a part: `".note"`, `"span.note em"`, `".card.is-open > a:hover"`. Give the block the class under **Advanced → Classes** in its **Content** panel and style it here, with tokens and states like a tag; no `custom.css` needed. Classes the CMS uses itself (`cms-…`) are not yours to style, and a key that can't be styled, such as an id or an attribute, is refused by name when the design is saved: those stay with `custom.css`. Inside prose a class still wins over the prose rule for the same tag.
+```css
+@utility card {
+  @apply rounded-xl border border-border bg-raised p-6 hover:border-accent;
+}
+```
 
-Element styles sit in a low CSS layer, so a block's own styles always win.
+The site's classes are always in its CSS, whether or not a block uses them.
+
+### Element rules
+
+Rules in `@layer base` set defaults for HTML elements, with `@apply` or plain declarations. Any selector works: `body`, `h1`, `a:hover`, `h1 em`, `li::marker`, `::selection`, `:focus-visible`. They sit in a low CSS layer, so a block's own classes always win.
 
 ### Prose
 
-`prose` is long-form text: any **Page Content** or **Box** with **Prose** on (`"props": { "prose": true }`; Starter's story templates have it). Its blocks are spaced as one flow, whatever they are, a paragraph, an image or a block of your own:
+Prose is long-form text: any **Page Content** or **Box** with **Prose** on (`"props": { "prose": true }`; Starter's story templates have it). The element carries the class `cms-prose`, and its blocks are spaced as one flow, whatever they are, a paragraph, an image or a block of your own:
 
-| `spacing` | Default | Space |
+| Variable | Default | Space |
 |---|---|---|
-| `blocks` | `1.1em` | Between one block and the next |
-| `headings` | `1.8em` | Before a heading |
-| `afterHeadings` | `0.6em` | After a heading |
-| `items` | `0.35em` | Between list items |
+| `--prose-blocks` | `1.1em` | Between one block and the next |
+| `--prose-headings` | `1.8em` | Before a heading |
+| `--prose-after-headings` | `0.6em` | After a heading |
+| `--prose-items` | `0.35em` | Between list items |
 
-The other keys style the same elements as `styles`, inside prose. An element's top margin (`marginTop`) replaces the space before it: `"h2": { "marginTop": "2.5rem" }`. A **Page Content** without a container is part of the flow around it.
+Set them, and style elements inside prose only, in `@layer components`:
+
+```css
+@layer components {
+  .cms-prose {
+    --prose-blocks: 1.25em;
+    --prose-headings: 2.2em;
+  }
+  .cms-prose h2 {
+    @apply mt-10 text-3xl;
+  }
+}
+```
+
+An element's own top margin replaces the space before it. A **Page Content** without a container is part of the flow around it.
 
 ### Buttons
 
-Each key of `buttons` is a variant editors pick as a Button's **Style**; each variant has `base`, `hover`, `active` and `focus-visible` styles, all edited in the Design, and an optional `surface`, the background it's made for (`"token:color.band"`), where the preview shows it. The core blocks offer `primary`, `secondary`, `ghost` and `link`.
+A **Button** block's **Style** is a class named `btn-<name>`: every `@utility` rule with that prefix is offered in the menu, and a Button with the style *primary* carries `btn-primary`. The stylesheet a site starts with has `btn-primary`, `btn-secondary`, `btn-ghost` and `btn-link`. States are variants inside the rule: `hover:opacity-90`, `active:scale-95`, `focus-visible:ring-2`.
 
-A variant is a look. Its height, padding and text size are the control size's, so properties that would size a button (`height`, `padding…`, `fontSize`, `lineHeight`, `width`) are left out when it compiles. Variants sit in a cascade layer between the base and the shapes, so a variant can't undo a shape or a state:
+A variant is a look. A button's height, padding and text size are the control size's (`--control-sm-height`, `--control-md-padding`, `--control-lg-text`… in `@theme`), which fields share. These attributes shape it:
 
 | Attribute | Does |
 |---|---|
@@ -207,36 +247,38 @@ A variant is a look. Its height, padding and text size are the control size's, s
 | `data-icon-only` | A square button, as wide as it is tall; give it an `aria-label` |
 | `data-shape="round"` | A circle, or with a label a pill |
 
-### Form fields
+For your own markup, a button is `class="cms-button btn-primary"`.
 
-`fields` sets every form field's look, part by part, over Lettern's defaults. Each property becomes a CSS custom property (`--field-background`, `--field-checkbox-checked`…) that one stylesheet reads for every kind of field.
+### Field variables
 
-```json
-"fields": {
-  "field": { "background": "token:color.raised", "borderColor": "token:color.border", "radius": "token:radius.md" },
-  "spacing": { "size": "lg" },
-  "focus": { "borderColor": "token:color.primary" },
-  "label": { "fontWeight": "token:weight.semibold" },
-  "checkbox": { "radius": "4px", "mark": "check", "markWeight": "bold" },
-  "radio": { "style": "ring" },
-  "switch": { "on": "field:checkbox.checked", "height": "1.5rem" }
+Everything a form field looks like is a `--field-*` CSS variable that one stylesheet reads for every kind of field. Set the ones you want to change in `@layer base`, on `:root` and on `[data-theme]`, so they hold in a section with its own color mode too:
+
+```css
+@layer base {
+  :root,
+  [data-theme] {
+    --field-radius: 0;
+    --field-focus-border-color: var(--color-accent);
+    --field-label-font-weight: var(--font-weight-semibold);
+    --field-checkbox-checked: var(--color-accent);
+  }
 }
 ```
 
-| Part | Properties |
+| Part | Variables, after `--field-` |
 |---|---|
-| `field` | `background`, `borderWidth`, `borderColor`, `radius`, `color`, `placeholder`, `shadow` |
-| `hover`, `focus`, `invalid`, `disabled` | `background`, `borderColor`; focus adds `ringWidth`, `ringColor`; invalid has `color`, `ringColor`; disabled has `opacity` |
-| `label`, `help` | `fontSize`, `fontWeight`, `color`, and `required` for the required mark |
-| `spacing` | `size` (`sm`, `md`, `lg`: fields in forms), `fields`, `label`, `list`, `choice` |
-| `select`, `textarea` | `arrowColor`, `arrowSize`; `minHeight`, `resize` (`vertical` or `none`) |
-| `checkbox` | `size`, `radius`, `background`, `borderColor`, `checked`, `markColor`, `mark` (`check`, `square`, `dot`), `markWeight` (`light`, `regular`, `bold`), `markSize` |
-| `radio` | `size`, `style` (`dot`, `ring`), `checked`, `dotColor`, `dotSize` |
-| `switch` | `width`, `height`, `radius`, `off`, `on`, `knob`, `inset`, `knobShadow` |
-| `slider` | `trackHeight`, `track`, `fill`, `radius`, `thumbSize`, `thumb`, `thumbBorder`, `thumbShadow` |
-| `tags`, `chips`, `file` | `background`, `color`, `radius`; chips add `borderColor`, `selected`, `selectedText` |
+| All fields | `background`, `border-width`, `border-color`, `radius`, `color`, `placeholder`, `shadow` |
+| States | `hover-background`, `hover-border-color`, `focus-background`, `focus-border-color`, `focus-ring-width`, `focus-ring-color`, `invalid-color`, `invalid-ring-color`, `disabled-opacity`, `disabled-background` |
+| Labels and help | `label-font-size`, `label-font-weight`, `label-color`, `label-required`, `help-font-size`, `help-color` |
+| Spacing | `spacing-fields`, `spacing-label`, `spacing-list`, `spacing-choice` |
+| Dropdowns, text areas | `select-arrow-color`, `select-arrow-size`, `textarea-min-height`, `textarea-resize` |
+| Checkboxes | `checkbox-size`, `checkbox-radius`, `checkbox-background`, `checkbox-border-color`, `checkbox-checked`, `checkbox-mark-color`, `checkbox-mark-size`, `checkbox-mark-icon`, `checkbox-dash-icon` |
+| Radio buttons | `radio-size`, `radio-checked`, `radio-dot-color`, `radio-dot-size`, `radio-on-background`, `radio-on-dot` |
+| Switches | `switch-width`, `switch-height`, `switch-radius`, `switch-off`, `switch-on`, `switch-knob`, `switch-inset`, `switch-knob-shadow` |
+| Sliders | `slider-track-height`, `slider-track`, `slider-fill`, `slider-radius`, `slider-thumb-size`, `slider-thumb`, `slider-thumb-border`, `slider-thumb-shadow` |
+| Tag fields, chips, file pickers | `tags-background`, `tags-color`, `tags-radius`, `chips-radius`, `chips-background`, `chips-border-color`, `chips-selected`, `chips-selected-text`, `file-background`, `file-color`, `file-radius` |
 
-How big a field is comes from the `control` tokens, like a button's. A value is CSS, a token, or `field:part.key` to follow another property. `design/get` returns each property's type and default as `fieldStyles`.
+Radio buttons, switches and sliders take the checkbox's checked color until you give them their own. How big a field is comes from the `--control-*` values, like a button's.
 
 To give your own markup the same look, use the classes:
 
@@ -251,26 +293,43 @@ To give your own markup the same look, use the classes:
 
 A field is invalid with `aria-invalid="true"` or inside `.is-invalid`, and takes its size from `data-size` like a button.
 
+### Compiled CSS
+
+Pages link one stylesheet, compiled by Tailwind itself from `theme.css` for exactly the classes the content uses: every `class` a block carries and every class attribute in HTML somebody wrote. It is kept as `content/styling/compiled.css`, which says what it was compiled from, so Lettern knows whether it is current. Commit it with the rest: a site deployed from git has its CSS without compiling anything.
+
+It is compiled again whenever the stylesheet or the content changes:
+
+- **In the admin's browser.** Whenever the admin is open and the CSS is behind, it compiles it and hands it back. A server needs no Node.
+- **On the server**, where it has Node 20 or newer, right when something is saved. `CMS_NODE` names the binary when it is not `node` on the `PATH`.
+- **`php cms build`** compiles first when the machine has Node. Where it has none, the build warns that the CSS is older than the content, and the admin compiles it the next time it is open.
+
+`styling/get` returns `current`: whether the published CSS is up to date.
+
 ### Fonts
 
-Font files live in `content/design/fonts/` and are served from `/_cms/fonts/`, with `preload` for the ones the first screen needs. **Add a Google Font…** in a font's picker under **Typography → Fonts** downloads the latin files and adds them to `fonts`. It takes what the family really has: a variable family is one file for the weights its axis spans (EB Garamond is 400 to 800, not 100 to 900), a static family the weights it has, and no file is saved twice. Agents use `design/fonts-import` for that, with `style` (`normal`, `italic` or `both`) and, for a static family, `weights`, and `design/fonts-upload` to upload one (the file as base64, a family, a weight such as `400` or `100 900`, and a style).
+Font files live in `content/styling/fonts/` and are served from `/_cms/fonts/`, with `preload` for the ones the first screen needs. `settings.json` lists the faces under `fonts`, and the theme names the family: `--font-sans: "Inter", "Inter Fallback", sans-serif`.
 
-A font face names what is drawn until it arrives, so text doesn't move when the font loads: `fallback`, a local font such as Arial, with `sizeAdjust`, `ascentOverride`, `descentOverride` and `lineGapOverride`. **Add a Google Font…** and `design/fonts-import` fill these in from the font's own tables: Arial, Times New Roman or Courier New, at the size and line height that match. Change one only to correct it; what you set stays when the family is imported again.
+**Add a Google Font…** in a font's picker under **Typography → Fonts** downloads the latin files and adds them to `fonts`. It takes what the family really has: a variable family is one file for the weights its axis spans (EB Garamond is 400 to 800, not 100 to 900), a static family the weights it has, and no file is saved twice. Agents use `styling/fonts-import` for that, with `style` (`normal`, `italic` or `both`) and, for a static family, `weights`, and `styling/fonts-upload` to upload one (the file as base64, a family, a weight such as `400` or `100 900`, and a style).
+
+A font face names what is drawn until it arrives, so text doesn't move when the font loads: `fallback`, a local font such as Arial, with `sizeAdjust`, `ascentOverride`, `descentOverride` and `lineGapOverride`. **Add a Google Font…** and `styling/fonts-import` fill these in from the font's own tables: Arial, Times New Roman or Courier New, at the size and line height that match. Change one only to correct it; what you set stays when the family is imported again.
 
 ```json
-{ "family": "Inter Tight", "fallback": "Arial", "sizeAdjust": "102%", "ascentOverride": "98%", "descentOverride": "26%", "lineGapOverride": "0%" }
+{ "family": "Inter Tight", "src": "fonts/inter-tight-100-900.woff2", "weight": "100 900", "style": "normal", "preload": true, "fallback": "Arial", "sizeAdjust": "102%", "ascentOverride": "98%", "descentOverride": "26%", "lineGapOverride": "0%" }
 ```
 
-Font tokens that name the family get that stand-in by themselves.
+That stand-in is the family `"Inter Tight Fallback"`: name it after the font in the theme's stack.
 
 ### Page transition
 
-`transition` uses the browser's View Transitions: `type` is `fade`, `slide`, `scale` or `none`, with a `duration` in seconds. It works on the static site with no JavaScript, and is skipped for visitors who prefer reduced motion. `navigation` is `document` (the default) or `client`: see [Navigation without page loads](/design/page-navigation).
+`transition` in `settings.json` uses the browser's View Transitions: `type` is `fade`, `slide`, `scale` or `none`, with a `duration` in seconds. It works on the static site with no JavaScript, and is skipped for visitors who prefer reduced motion. `navigation` is `document` (the default) or `client`: see [Navigation without page loads](/design/page-navigation).
 
-### Custom code files
+```json
+{ "fonts": [], "transition": { "type": "fade", "duration": 0.25, "navigation": "document" } }
+```
 
-- `content/design/custom.css` is appended after everything else.
-- `content/design/custom.js` loads as an ES module on every page. Use it to register Alpine components for behavior the builder can't express: listen for `cms:alpine` on `document` (its `detail` is Alpine), then give an element that component under **Interact → Code Component** (`logic.component`).
+### Custom JavaScript
+
+`content/styling/custom.js` loads as an ES module on every page. Use it to register Alpine components for behavior the builder can't express: listen for `cms:alpine` on `document` (its `detail` is Alpine), then give an element that component under **Interact → Code Component** (`logic.component`).
 
 ```javascript
 document.addEventListener('cms:alpine', (e) => {
@@ -281,8 +340,8 @@ document.addEventListener('cms:alpine', (e) => {
 })
 ```
 
-Both are edited under **Code** or with the `design-code/set-custom` ability, and both need the `site.code` permission. Scripts and stylesheets that load only on some pages, and the libraries they import, are on [Scripts and styles](/design/code).
+It is edited under **Code** or with the `styling-code/set-custom` ability, and needs the `site.code` permission. There is no separate file for custom CSS: it goes in `theme.css`. Scripts and stylesheets that load only on some pages, and the libraries they import, are on [Scripts and styles](/design/code).
 
 ### Abilities
 
-`design/get` returns the tokens, fonts, element styles, buttons, form fields, transition, breakpoints, custom code and the templates entries can use; the `cms://site/design` context resource holds the same design. `design/update` changes tokens (`{"tokens": {"color.primary": "#0f766e"}}`, `dark`, `remove`) and replaces whole sections (`styles`, `prose`, `buttons`, `fields`, `fonts`, `transition`).
+`styling/get` returns the stylesheet (`css`), the names of the site's classes, the fonts and font files, the transition, `custom.js`, the templates entries can use, the published stylesheet's address and `current`; the `cms://site/styling` context resource holds the stylesheet with the rules for using it. `styling/update` replaces the whole stylesheet (`{"css": "…"}`): read it, change it and send all of it back. A stylesheet Tailwind can't compile is refused with Tailwind's message, and nothing is saved. It also replaces `fonts` and merges `transition`, one setting at a time.

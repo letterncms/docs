@@ -44,7 +44,7 @@ The two ids are the heading's and the columns' on a new site. A step without a s
 
 An animation that trails the scroll tells its element how far along it is: it sets `--cms-progress`, from 0 to 1, and dispatches `cms:progress`. A behavior turns that into a number.
 
-`content/design/scripts/count.js`:
+`content/styling/scripts/count.js`:
 
 ```javascript
 // A number that counts with the scroll, from the progress its pinned section reports.
@@ -76,7 +76,7 @@ php cms vendor add three@0.160.0
    INFO  three 0.160.0: import … from "three".
 ```
 
-`content/design/scripts/scene.js`:
+`content/styling/scripts/scene.js`:
 
 ```javascript
 // A WebGL canvas behind the page. Its block is persisted, so one scene lives across pages.
@@ -94,7 +94,7 @@ export function mount(el, props, { token, reducedMotion, signal }) {
   camera.position.z = 6
   const mesh = new THREE.Mesh(
     new THREE.IcosahedronGeometry(2, 1),
-    new THREE.MeshBasicMaterial({ color: new THREE.Color(token('color.primary') || '#1d4ed8'), wireframe: true, transparent: true, opacity: 0.35 }),
+    new THREE.MeshBasicMaterial({ color: new THREE.Color(token('--color-primary') || '#1d4ed8'), wireframe: true, transparent: true, opacity: 0.35 }),
   )
   scene.add(mesh)
 
@@ -130,9 +130,9 @@ export function mount(el, props, { token, reducedMotion, signal }) {
 }
 ```
 
-The shape takes its color from the design: `token('color.primary')`. `reducedMotion` is true for visitors who ask for less motion and for those who paused it with a **Motion Toggle** block; the behavior is mounted again when that changes, so the loop starts and stops with it.
+The shape takes its color from the theme: `token('--color-primary')`. That is the value as the theme writes it, so where the theme gives the color a dark side (`light-dark(…)`), the fallback after `||` is used unless the script asks the browser for the color in effect: see [Block behaviors](/design/behaviors#write-the-script). `reducedMotion` is true for visitors who ask for less motion and for those who paused it with a **Motion Toggle** block; the behavior is mounted again when that changes, so the loop starts and stops with it.
 
-And `content/design/styles/scene.css`, which puts the canvas behind the page:
+And `content/styling/styles/scene.css`, which puts the canvas behind the page:
 
 ```css
 .stage { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
@@ -142,17 +142,17 @@ And `content/design/styles/scene.css`, which puts the canvas behind the page:
 Load the stylesheet on every page:
 
 ```bash
-php cms run design-code/set-load --input='{"styles":["scene"]}'
+php cms run styling-code/set-load --input='{"styles":["scene"]}'
 ```
 
 The two scripts need no entry there: the blocks that name them load them.
 
 ## 4. Turn on navigation without page loads
 
-Set **Design → Motion → Page Transition → Page Loads** to **Instant**, or:
+Set **Styling → Motion → Page Transition → Page Loads** to **Instant**, or:
 
 ```bash
-php cms run design/update --input='{"transition":{"navigation":"client"}}'
+php cms run styling/update --input='{"transition":{"navigation":"client"}}'
 ```
 
 ## 5. Put the stage in the templates

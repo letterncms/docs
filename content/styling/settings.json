@@ -1,0 +1,21 @@
+{
+    "fonts": [
+        {
+            "family": "Inter",
+            "src": "fonts/inter.woff2",
+            "weight": "400 600",
+            "style": "normal",
+            "preload": true
+        },
+        {
+            "family": "Geist Mono",
+            "src": "fonts/GeistMono-Variable.woff2",
+            "weight": "100 900",
+            "style": "normal"
+        }
+    ],
+    "transition": {
+        "type": "none",
+        "duration": 0.2
+    }
+}
