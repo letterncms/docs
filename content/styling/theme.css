@@ -1,5 +1,235 @@
-/* Lettern Docs: what the builder's style panels can't express. Everything else lives in
-   tokens.json (element and prose styles) and on the blocks of the templates and components. */
+@import "tailwindcss";
+@import "cms";
+
+/* The theme: every value here is a class. --color-primary gives bg-primary, text-primary, border-primary…
+   A colour written light-dark(a, b) has a second value for dark mode. */
+@theme {
+  --color-background: light-dark(#faf9f5, #1a1917);
+  --color-surface: light-dark(#f3efe6, #232220);
+  --color-raised: light-dark(#ffffff, #262523);
+  --color-foreground: light-dark(#2b2926, #e6e3dc);
+  --color-ink: light-dark(#2b2926, #f5f3ee);
+  --color-muted: light-dark(#6b6760, #aaa69d);
+  --color-faint: #8d8981;
+  --color-line: light-dark(#ece7dc, #2c2a27);
+  --color-line-strong: light-dark(#ddd7ca, #3d3a35);
+  --color-border: light-dark(rgb(43 41 38 / 0.1), rgb(245 243 238 / 0.1));
+  --color-primary: #ffe100;
+  --color-primary-foreground: #2b2926;
+  --color-yellow: #ffe100;
+  --color-yellow-deep: #f2d500;
+  --color-black: #2b2926;
+  --color-white: #ffffff;
+  --color-on-yellow: #2b2926;
+  --color-focus: light-dark(#2b2926, #f5f3ee);
+  --color-panel: light-dark(#f2f0ea, #242320);
+  --color-panel-hover: light-dark(#e9e5db, #2e2c29);
+  --color-code: light-dark(#f2f0ea, #242320);
+  --color-note: light-dark(#6b6760, #aaa69d);
+  --color-warning: light-dark(#b45309, #e0a458);
+  --color-danger: light-dark(#c2410c, #ef8a80);
+
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Text sizes are sizes alone: the line height is the element's or the block's own. */
+  --text-*: initial;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: clamp(1.0625rem, 1.0136rem + 0.2174vw, 1.1875rem);
+  --text-xl: clamp(1.25rem, 1.1522rem + 0.4348vw, 1.5rem);
+  --text-2xl: 1.375rem;
+  --text-3xl: 1.375rem;
+  --text-4xl: 1.375rem;
+  --text-5xl: clamp(1.75rem, 1.6033rem + 0.6522vw, 2.125rem);
+  --text-6xl: clamp(3.5rem, 1.7391rem + 7.8261vw, 8rem);
+  --text-display: clamp(2.75rem, 2.0652rem + 3.0435vw, 4.5rem);
+
+  --leading-tight: 1.3;
+  --leading-snug: 1.25;
+  --leading-normal: 1.55;
+  --leading-display: 1.2;
+
+  --tracking-display: -0.022em;
+  --tracking-tight: -0.014em;
+  --tracking-normal: -0.006em;
+  --tracking-caps: 0.08em;
+  --tracking-mono: -0.01em;
+
+  --font-weight-heading: 450;
+
+  --spacing-gutter: clamp(1.25rem, 0.7609rem + 2.1739vw, 2.5rem);
+  --spacing-section: clamp(4.5rem, 2.9348rem + 6.9565vw, 8.5rem);
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.875rem;
+
+  --shadow-sm: 0 1px 2px rgb(43 41 38 / 0.05);
+  --shadow-md: 0 4px 12px rgb(43 41 38 / 0.06);
+  --shadow-lg: 0 8px 24px rgb(43 41 38 / 0.07);
+  --shadow-xl: 0 12px 32px rgb(43 41 38 / 0.08);
+
+  --container-prose: 40rem;
+  --container-content: 76rem;
+  --container-wide: 90rem;
+
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 700ms;
+
+  /* The sizes buttons and fields share: S, M and L. */
+  --control-sm-height: 2rem;
+  --control-sm-padding: 0.75rem;
+  --control-sm-text: var(--text-sm);
+  --control-md-height: 2.25rem;
+  --control-md-padding: 0.875rem;
+  --control-md-text: var(--text-sm);
+  --control-lg-height: 3rem;
+  --control-lg-padding: 1rem;
+  --control-lg-text: var(--text-base);
+}
+
+/* Elements: what a heading, a link or the page looks like before a block says otherwise. */
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+  body {
+    @apply bg-background font-sans text-base leading-normal tracking-normal text-foreground;
+  }
+  h1 {
+    @apply text-5xl leading-display font-heading tracking-display text-balance text-ink;
+  }
+  h2 {
+    @apply text-2xl leading-tight font-heading tracking-tight text-balance text-ink;
+  }
+  h3 {
+    @apply text-base leading-normal font-heading tracking-normal text-ink;
+  }
+  a {
+    @apply decoration-line-strong underline-offset-[0.2em];
+  }
+  code {
+    @apply font-mono text-[0.875em] tracking-[0];
+  }
+  kbd {
+    @apply font-mono text-[0.8em];
+  }
+  ::selection {
+    @apply bg-yellow text-black;
+  }
+  p {
+    @apply text-pretty;
+  }
+  h1 em {
+    @apply not-italic;
+  }
+  h2 em {
+    @apply not-italic;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-3 outline-focus;
+  }
+
+  /* Form fields, for every form on the site. */
+  :root,
+  [data-theme] {
+    --field-focus-border-color: var(--color-focus);
+  }
+}
+
+/* Buttons: the look of each variant, a class like any other. Their size is the control size scale above. */
+@utility btn-primary {
+  @apply rounded-md bg-yellow font-medium tracking-[-0.006em] text-on-yellow transition-[background-color] duration-160 ease-[ease] hover:bg-[#f5d800] hover:not-disabled:not-aria-disabled:opacity-90;
+}
+
+@utility btn-secondary {
+  @apply rounded-md border-transparent bg-panel font-medium tracking-[-0.006em] text-ink transition-[background-color] duration-160 ease-[ease] hover:bg-panel-hover;
+}
+
+@utility btn-ghost {
+  @apply rounded-md border-transparent bg-transparent font-medium tracking-[-0.006em] text-muted transition-[background-color] duration-160 ease-[ease] hover:bg-panel hover:text-ink;
+}
+
+@utility btn-link {
+  @apply h-auto border-0 p-0 text-primary underline underline-offset-[0.2em];
+}
+
+@utility btn-yellow {
+  @apply rounded-md bg-yellow font-medium tracking-[-0.006em] text-on-yellow transition-[background-color] duration-160 ease-[ease] hover:bg-[#f5d800];
+}
+
+@layer components {
+  /* Long-form text: its elements where they differ from the page's. */
+  .cms-prose p:where(:not(.cms-box, .cms-repeat)) {
+    @apply leading-[1.6];
+  }
+  .cms-prose :where(ul:not(.cms-box, .cms-repeat), ol:not(.cms-box, .cms-repeat)) > li {
+    @apply leading-[1.6];
+  }
+  .cms-prose h2:where(:not(.cms-box, .cms-repeat)) {
+    @apply mb-0;
+  }
+  .cms-prose > * + h2:where(:not(.cms-box, .cms-repeat)),
+  .cms-prose > [data-cms-contents] > * + h2:where(:not(.cms-box, .cms-repeat)),
+  .cms-prose > * + [data-cms-contents] > h2:where(:not(.cms-box, .cms-repeat)):first-child {
+    @apply mt-11;
+  }
+  .cms-prose h3:where(:not(.cms-box, .cms-repeat)) {
+    @apply text-lg leading-[1.4];
+  }
+  .cms-prose > * + h3:where(:not(.cms-box, .cms-repeat)),
+  .cms-prose > [data-cms-contents] > * + h3:where(:not(.cms-box, .cms-repeat)),
+  .cms-prose > * + [data-cms-contents] > h3:where(:not(.cms-box, .cms-repeat)):first-child {
+    @apply mt-8;
+  }
+  .cms-prose h4:where(:not(.cms-box, .cms-repeat)) {
+    @apply text-base font-medium text-ink;
+  }
+  .cms-prose > * + h4:where(:not(.cms-box, .cms-repeat)),
+  .cms-prose > [data-cms-contents] > * + h4:where(:not(.cms-box, .cms-repeat)),
+  .cms-prose > * + [data-cms-contents] > h4:where(:not(.cms-box, .cms-repeat)):first-child {
+    @apply mt-6;
+  }
+  .cms-prose a:where(:not(.cms-box, .cms-repeat)) {
+    @apply text-ink underline decoration-yellow decoration-2 underline-offset-[0.18em];
+  }
+  .cms-prose a:where(:not(.cms-box, .cms-repeat)):hover {
+    @apply decoration-ink;
+  }
+  .cms-prose strong:where(:not(.cms-box, .cms-repeat)) {
+    @apply font-medium text-ink;
+  }
+  .cms-prose ul:where(:not(.cms-box, .cms-repeat)) {
+    @apply pl-5;
+  }
+  .cms-prose ol:where(:not(.cms-box, .cms-repeat)) {
+    @apply pl-5;
+  }
+  .cms-prose blockquote:where(:not(.cms-box, .cms-repeat)) {
+    @apply border-l-2 border-line-strong pl-4 text-muted;
+  }
+  .cms-prose hr:where(:not(.cms-box, .cms-repeat)) {
+    @apply my-10 border-t border-line;
+  }
+  .cms-prose img:where(:not(.cms-box, .cms-repeat)) {
+    @apply rounded-md;
+    box-shadow: 0 0 0 1px var(--color-border);
+  }
+  .cms-prose figcaption:where(:not(.cms-box, .cms-repeat)) {
+    @apply text-xs text-muted;
+  }
+}
+
+/* What classes on a block can't say. These rules are in no layer, so they come after everything
+   above and after the classes of a block, and win over both. */
 
 :root { --cms-scroll-offset: 5.25rem; }
 html { scroll-padding-top: var(--cms-scroll-offset); }

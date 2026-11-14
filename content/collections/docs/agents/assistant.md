@@ -61,7 +61,7 @@ The chips above the message box show what your message will carry. Without you d
 - **The block selected in the builder.** Select a block with the workspace open, and "rewrite this" means that block.
 - **Text you selected on the page.**
 
-Each chip comes off with its ×. To add something else, type `@` or click the **@** chip: a page or post, a file from the library, a global, the collections or the design. Keep typing to narrow it down. For a file, the assistant gets its details, not what the image shows.
+Each chip comes off with its ×. To add something else, type `@` or click the **@** chip: a page or post, a file from the library, a global, the collections or the styling. Keep typing to narrow it down. For a file, the assistant gets its details, not what the image shows.
 
 Something that hasn't changed since your last message isn't sent again. Each message you send shows what it carried; click it to go there.
 
@@ -77,7 +77,7 @@ A skill is a ready-made way of working. Type `/` at the start of a line and pick
 | `/build-page` | Designs a complete page from a brief, with your design and components |
 | `/write-post` | Drafts a blog post for you to review |
 | `/audit-site` | Checks every published page for SEO, GEO and accessibility problems, and proposes fixes |
-| `/adjust-design` | Changes the design so the site feels a certain way |
+| `/adjust-styling` | Changes the styling so the site feels a certain way |
 
 You see only the skills you have permission to use, and plugins can add their own.
 

@@ -92,26 +92,12 @@
     },
     "design": {
       "site": "examples",
-      "path": "/admin/design",
+      "path": "/admin/styling",
       "size": [
         1100,
         700
       ],
       "sidebar": "collapsed"
-    },
-    "design-form-fields": {
-      "site": "examples",
-      "path": "/admin/design?tab=fields",
-      "size": [
-        1100,
-        700
-      ],
-      "sidebar": "collapsed",
-      "steps": [
-        {
-          "clickText": "Checkboxes"
-        }
-      ]
     },
     "template": {
       "site": "examples",

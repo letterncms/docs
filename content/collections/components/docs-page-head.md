@@ -11,21 +11,21 @@ created_at: '2026-10-26T23:31:48+00:00'
 updated_at: '2026-10-30T12:00:00+00:00'
 ---
 
-::: box {"id":"dp","props":{"tag":"header"},"label":"Page head","style":{"base":{"marginBottom":"2.5rem"}}}
-:::: link {"id":"dp-section","style":{"base":{"display":"inline-block","marginBottom":"0.5rem","fontSize":"token:text.sm","lineHeight":"1.25rem","color":"token:color.muted","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease"},"hover":{"color":"token:color.ink"},"lg":{"display":"none"}},"bind":{"label":"entry.parent.title","url":"entry.parent.url","visible":"entry.parent"}}
+::: box {"id":"dp","props":{"tag":"header"},"label":"Page head","class":"mb-10"}
+:::: link {"id":"dp-section","class":"mb-2 inline-block text-sm leading-[1.25rem] text-muted transition-[color,background-color,border-color] duration-150 ease-[ease] hover:text-ink lg:hidden","bind":{"label":"entry.parent.title","url":"entry.parent.url","visible":"entry.parent"}}
 ::::
 
 :::: heading {"id":"dp-title","props":{"level":"1"},"bind":{"text":"entry.title"}}
 ::::
 
-:::: paragraph {"id":"dp-desc","style":{"base":{"marginTop":"0.75rem","fontSize":"token:text.lg","lineHeight":"1.45","letterSpacing":"token:tracking.normal","color":"token:color.muted","textWrap":"pretty"}},"bind":{"text":"entry.description","visible":"entry.description"}}
+:::: paragraph {"id":"dp-desc","class":"mt-3 text-lg leading-[1.45] tracking-normal text-pretty text-muted","bind":{"text":"entry.description","visible":"entry.description"}}
 ::::
 
-:::: box {"id":"dp-meta","style":{"base":{"marginTop":"1rem","display":"flex","flexWrap":"wrap","alignItems":"center","gap":"0.25rem 1rem","fontSize":"token:text.sm","lineHeight":"1.25rem","color":"token:color.muted"}}}
+:::: box {"id":"dp-meta","class":"mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm leading-[1.25rem] text-muted"}
 ::::: paragraph {"id":"dp-time","props":{"tag":"span"},"bind":{"text":"{readingTime.minutes} min read","visible":"readingTime.minutes"}}
 :::::
 
-::::: link {"id":"dp-md","props":{"label":"View as Markdown"},"style":{"base":{"color":"token:color.muted","transition":"color 150ms ease, background-color 150ms ease, border-color 150ms ease"},"hover":{"color":"token:color.ink"}},"bind":{"url":"page.markdown"}}
+::::: link {"id":"dp-md","props":{"label":"View as Markdown"},"class":"text-muted transition-[color,background-color,border-color] duration-150 ease-[ease] hover:text-ink","bind":{"url":"page.markdown"}}
 :::::
 ::::
 :::

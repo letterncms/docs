@@ -64,7 +64,7 @@ An ability is named `thing/verb`, and a verb means the same on every thing:
 | `create` | Makes a new one |
 | `update` | Changes one that exists, and answers `not_found` for one that doesn't |
 | `delete` | Removes one |
-| `save` | Creates or replaces a definition by its handle (`collections/save`, `fieldsets/save`, `globals/save`, `components/save`, `patterns/save`, `user-fields/save`), or a script or stylesheet of the design by its path (`design-code/save`). Nothing else |
+| `save` | Creates or replaces a definition by its handle (`collections/save`, `fieldsets/save`, `globals/save`, `components/save`, `patterns/save`, `user-fields/save`), or a script or stylesheet of the site by its path (`styling-code/save`). Nothing else |
 
 Every other verb is an act of its own, such as `entries/publish`, `media/import` or `languages/set-default`.
 
@@ -87,7 +87,7 @@ Version 0.22 renamed the abilities that didn't follow this, without aliases. A s
 | `packages/stores`, `packages/store-add`, `packages/store-remove` | `package-stores/list`, `package-stores/create`, `package-stores/delete` |
 | `assistant/resources`, `assistant/resource` | `assistant-resources/list`, `assistant-resources/get` |
 | `tokens/revoke` | `tokens/delete` |
-| `design/code` | `design-code/set-custom` |
+| `design/code` | `styling-code/set-custom` |
 | `site/get` | `settings/get` with `namespace: site` |
 
 Version 0.23 brought the plugins under the same rule, and gave every plugin ability an `output` schema. Again the old names are gone:
@@ -102,7 +102,9 @@ Version 0.23 brought the plugins under the same rule, and gave every plugin abil
 
 Analytics 0.8 and Brevo 0.6 keep their names (`analytics/summary`, `analytics/breakdown`, `brevo/stats`, `brevo/lists`, `brevo/subscribe`) and now say what they answer with.
 
-A token scoped by pattern follows the names: a token for `forms/*` no longer reaches submissions, which are `form-submissions/*`. In the core, `entries/*` doesn't reach `revisions/*`, `users/*` doesn't reach `user-fields/*` or `people/list`, `packages/*` doesn't reach `package-stores/*`, and `design/*` doesn't reach `design-code/*` or `design-vendor/*`.
+A token scoped by pattern follows the names: a token for `forms/*` no longer reaches submissions, which are `form-submissions/*`. In the core, `entries/*` doesn't reach `revisions/*`, `users/*` doesn't reach `user-fields/*` or `people/list`, `packages/*` doesn't reach `package-stores/*`, and `styling/*` doesn't reach `styling-code/*` or `styling-vendor/*`.
+
+With Tailwind as the site's styling, the `design/*`, `design-code/*` and `design-vendor/*` abilities became `styling/*`, `styling-code/*` and `styling-vendor/*`, again without aliases: `design/get` is `styling/get`, `design/update` is `styling/update`, `design/fonts-import` is `styling/fonts-import`. The context resource `cms://site/design` is `cms://site/styling`.
 
 ### Run an ability
 

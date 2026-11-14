@@ -222,7 +222,7 @@ $this->cms()->whenAvailable(\Cms\Modules\Blocks\BlockRegistry::class, fn ($block
 ]));
 ```
 
-Everything else works for your block without code: styles on every screen and state, data binding, interactions, animations, the block workspace and the inspector.
+Everything else works for your block without code: classes for every screen and state, data binding, interactions, animations, the block workspace and the inspector.
 
 ### What the render function gets
 
@@ -282,6 +282,7 @@ $this->cms()->whenAvailable(\Cms\Modules\Blocks\BlockRegistry::class, function (
 - The stylesheet goes in the page's head. Write it in `@layer components`, as the core's blocks do, so the builder's styles win over it.
 - The script is an ES module that exports `start()`. The page loads it beside Lettern's own runtime. `start()` runs once the module has loaded, and again when a page arrives without a page load, so look for your blocks each time and skip the ones you already set up. A script that fails to load or throws stops only its own feature: the page's other features run, and your blocks stay as they are without scripts. Make them work that way, as a link or a plain row, and let the script add the rest.
 - In the block workspace, every feature's stylesheet is loaded and no script runs.
+- Markup your block renders can carry Tailwind classes and the theme's names (`bg-surface`, `text-muted`). Name them with the [`styling.candidates`](/plugins/hooks#blocks) filter: the site's CSS holds the classes its content uses, and a class that only your PHP writes is not among them.
 - A name is your plugin's own, like `reviews/slider`. The runtime's names (`motion`, `logic`, `search`…) are taken.
 
 ### Empty blocks on the canvas

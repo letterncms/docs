@@ -15,7 +15,7 @@ An agent starts with what exists, so the page uses your collections, your design
 | It reads | To learn |
 |---|---|
 | `cms://collections`, or `collections/list` | Which collections there are and what fields they have |
-| `cms://site/design`, or `design/get` | The tokens, fonts and element styles to build with |
+| `cms://site/styling`, or `styling/get` | The site's Tailwind stylesheet: the theme, its own classes and element styles, and the fonts to build with |
 | `cms://blocks`, or `blocks/types` | Every block, how blocks nest, and worked examples |
 | `components/list`, `templates/list` | The components and templates to reuse |
 | `patterns/list` | Patterns to copy in, and whole pages to start from (the category `Pages`) |
@@ -45,7 +45,7 @@ php cms run collections/schema handle=pages
                 "content": {
                     "title": "Content",
                     "type": "array",
-                    "description": "Content. A list of blocks: {type, props, style?, children?}. See blocks/types for the catalog and cms://blocks for examples.",
+                    "description": "Content. A list of blocks: {type, props, class?, children?}. See blocks/types for the catalog and cms://blocks for examples.",
                     "items": { "type": "object", "properties": { "…": {} }, "required": ["type"] }
                 },
                 "template": {

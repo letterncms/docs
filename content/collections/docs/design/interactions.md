@@ -94,7 +94,7 @@ Ready-made interactions you switch on under **Behaviors**:
 |---|---|
 | **Scroll States** | Gives the block the state *scrolled* once the page scrolls past a distance you set, and optionally *hidden* while scrolling down. For headers that shrink or hide |
 | **Scroll Spy** | Links inside to `#sections` get the state *current* while their section is in view. For tables of contents |
-| **Hover Group** | Blocks inside can react when the whole block is hovered, with the **Hover on Hover Group** state |
+| **Hover Group** | Blocks inside can react when the whole block is hovered, with the **Hover on Group** state |
 | **Menu** | A navigation menu with one panel that moves between items. Each child is a link or button, with an optional panel after it. A pill follows the pointer and keyboard focus, the panel's background changes shape to fit the next item, and its content cross-fades. Escape closes it, the Down arrow goes into it, and it respects reduced motion |
 | **Marquee** | The children scroll sideways in an endless loop, at a **Speed** in pixels per second, optionally reversed and paused on hover |
 | **Carousel** | A row to step through. The first child scrolls sideways (give it overflow and scroll snap in **Design**), and the first two buttons after it go back and forward by one item. A button is disabled at its end of the row. Blocks with a `data-carousel-to` attribute are thumbnails: each goes to the item in its own position, and has `data-current` while that item shows The **Carousel** block is this arrangement, ready made and styled. |
@@ -118,7 +118,7 @@ Tabs follow the [ARIA tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tab
 
 ## Code components
 
-When something can't be built from state, events and actions, like a calculator, a chart or a third-party widget, a developer can write it as a small component in the site's custom JavaScript. Name it under **Interact → Code Component**. The block then uses that component instead of its own **State**; everything inside can read its values and call its functions, and the other interaction settings keep working. See [Custom CSS and JavaScript](/design/site-design#custom-css-and-javascript).
+When something can't be built from state, events and actions, like a calculator, a chart or a third-party widget, a developer can write it as a small component in the site's custom JavaScript. Name it under **Interact → Code Component**. The block then uses that component instead of its own **State**; everything inside can read its values and call its functions, and the other interaction settings keep working. See [Custom JavaScript](/design/site-design#custom-javascript).
 
 A script that works on the element itself, with a library like GSAP or Three.js, is a [block behavior](/design/behaviors) instead.
 
@@ -133,6 +133,7 @@ Interactions run on [Alpine.js](https://alpinejs.dev), in its CSP build, which n
 ```json
 {
   "type": "box", "props": { "tag": "header" },
+  "class": "border-b border-transparent data-open:border-border",
   "logic": {
     "data": { "open": false },
     "states": { "open": "open" },
@@ -141,7 +142,7 @@ Interactions run on [Alpine.js](https://alpinejs.dev), in its CSP build, which n
   "children": [
     { "type": "box", "props": { "tag": "button" }, "attrs": { "aria-label": "Menu" },
       "logic": { "attrs": { "aria-expanded": "open" }, "on": [{ "event": "click", "actions": [{ "do": "toggle", "var": "open" }] }] },
-      "children": [{ "type": "icon", "props": { "icon": "list" } }] },
+      "children": [{ "type": "icon", "props": { "icon": "list" }, "class": "transition-transform in-data-open:rotate-90" }] },
     { "type": "box", "props": { "tag": "nav" }, "logic": { "show": "open", "transition": "collapse" }, "children": [] }
   ]
 }
@@ -179,6 +180,6 @@ On the page it becomes the id that block has: its anchor, a heading's own, or on
 - Events: `click`, `mouseenter`, `mouseleave`, `focus`, `blur`, `input`, `change`, `submit`, `keydown` (with `key`), `enter`, `leave`, `scroll`, `resize`; **Page Loads** is stored as `init`, a list of actions.
 - Event options (`mods`): `prevent`, `stop`, `outside`, `window`, `once`, `self`, `debounce`.
 - Action types: `set`, `toggle`, `add`, `if`, `wait`, `play`, `scroll`, `copy`, `go`, `theme`, `focus`, `dispatch`, `fetch`, `lock` and `run`.
-- `states` add `is-<name>`; `model` is **Input Value**; `target`, `push` and `merge` are **Load Into**; `component` names a code component.
+- `states` set the attribute `data-<name>`, which classes read: `data-open:rotate-45` on the element, `in-data-open:block` inside it; `model` is **Input Value**; `target`, `push` and `merge` are **Load Into**; `component` names a code component.
 
 Lettern checks every value when it is saved; `blocks/types` lists the events, options, actions and transitions for agents.

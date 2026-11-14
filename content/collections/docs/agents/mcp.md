@@ -101,13 +101,13 @@ A token acts as you. See [REST API](/agents/rest-api) for scopes.
 
 ## What agents get
 
-**Tools**: every ability you may run that is exposed to MCP, named with a dot (`entries.create`, `design.update`). Security-sensitive abilities, like creating tokens, changing passwords, managing users and roles, or changing what a role may do, are never offered to agents.
+**Tools**: every ability you may run that is exposed to MCP, named with a dot (`entries.create`, `styling.update`). Security-sensitive abilities, like creating tokens, changing passwords, managing users and roles, or changing what a role may do, are never offered to agents.
 
-**Resources**: context to plan with. `cms://collections` (content types and their fields), `cms://collections/{handle}/schema` (the JSON Schema an entry of one collection must follow, listed by `resources/templates/list`), `cms://site/design` (the design: tokens, fonts, element styles), `cms://blocks` (how to compose pages, templates and components: the block model, styles, bindings, interactions and animations, with worked examples), `cms://site/code` (the design's [scripts and styles](/design/site-design#custom-css-and-javascript) and where they load), `cms://globals`, `cms://media`, `cms://navigation`, `cms://languages`, and more from plugins: `cms://forms` from Forms, `cms://brevo` from Brevo, `cms://webhooks/events` from Webhooks. `resources/list` names the ones on your site.
+**Resources**: context to plan with. `cms://collections` (content types and their fields), `cms://collections/{handle}/schema` (the JSON Schema an entry of one collection must follow, listed by `resources/templates/list`), `cms://site/styling` (the site's Tailwind stylesheet: the theme, its own classes and element styles, with the fonts), `cms://blocks` (how to compose pages, templates and components: the block model, classes, bindings, interactions and animations, with worked examples), `cms://site/code` (the site's [scripts and styles](/design/code) and where they load), `cms://globals`, `cms://media`, `cms://navigation`, `cms://languages`, and more from plugins: `cms://forms` from Forms, `cms://brevo` from Brevo, `cms://webhooks/events` from Webhooks. `resources/list` names the ones on your site.
 
 **Prompts**: the site's [skills](/agents/assistant#use-a-skill), ready-made workflows like *Build a page* from a brief, *Write a blog post* and *Audit the site* for SEO and GEO problems, plus whatever plugins add.
 
-**Instructions**: how to build the Lettern way. Read the collections and the design first, reuse components, patterns and templates (`components/list`, `patterns/list`, `templates/list`), style with tokens, give images alt text, and publish when done.
+**Instructions**: how to build the Lettern way. Read the collections and the styling first, reuse components, patterns and templates (`components/list`, `patterns/list`, `templates/list`), style with Tailwind classes built from the theme's names, give images alt text, and publish when done.
 
 ## For developers
 
@@ -117,8 +117,8 @@ The editor works with structured data, so an agent edits the same block document
 
 - **Pages**: `entries/create` and `entries/update` with a blocks field, as JSON or as [Block Markdown](/reference/block-markdown).
 - **Templates and components**: the same abilities, in the `templates` and `components` collections. `entries/publish` makes them live.
-- **The design**: `design/get`, `design/update`, `design/fonts-import`, and custom code with `design-code/set-custom`.
-- **What's possible**: `blocks/types` lists every block, style property, state, data source, animation property and script action. `blocks/icons` searches icons.
+- **The styling**: `styling/get`, `styling/update` (the whole stylesheet), `styling/fonts-import`, and custom JavaScript with `styling-code/set-custom`.
+- **What's possible**: `blocks/types` lists every block, data source, animation property and script action. A block's look is its `class`: Tailwind classes, see [Styles](/design/styles#for-developers). `blocks/icons` searches icons.
 
 ### Protocol
 

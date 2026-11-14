@@ -2,9 +2,9 @@
 id: 01m75f2pvmp4endmxx1t3m2qy6
 title: Scripts and styles
 position: 8
-description: 'Your own JavaScript and CSS beside the design, and the libraries they import, without a bundler.'
+description: 'Your own JavaScript and CSS beside the styling, and the libraries they import, without a bundler.'
 ---
-Most sites never need code: tokens, blocks, animations and interactions cover them. An ambitious front end does. A scroll timeline in GSAP, a WebGL scene, smooth scrolling: for these a site keeps its own scripts and stylesheets beside the design, and the libraries they use beside those.
+Most sites never need code: the theme, blocks, animations and interactions cover them. An ambitious front end does. A scroll timeline in GSAP, a WebGL scene, smooth scrolling: for these a site keeps its own scripts and stylesheets beside its styling, and the libraries they use beside those.
 
 There is no build step of your own. You write ES modules and plain CSS, say where each loads, and the site publishes them.
 
@@ -12,15 +12,15 @@ There is no build step of your own. You write ES modules and plain CSS, say wher
 
 | File | What it is |
 |---|---|
-| `content/design/scripts/<name>.js` | An ES module. Folders are allowed: `scripts/lib/ease.js` is the script `lib/ease` |
-| `content/design/styles/<name>.css` | A stylesheet |
-| `content/design/code.json` | Which of them load where |
-| `content/design/vendor/` | Libraries the scripts import by name, with `lock.json` |
-| `content/design/custom.css`, `custom.js` | One file each, on every page, as before. See [Custom CSS and JavaScript](/design/site-design#custom-css-and-javascript) |
+| `content/styling/scripts/<name>.js` | An ES module. Folders are allowed: `scripts/lib/ease.js` is the script `lib/ease` |
+| `content/styling/styles/<name>.css` | A stylesheet of plain CSS. Tailwind doesn't compile it, so it has no `@apply`; it reads the theme as CSS variables, `var(--color-primary)` |
+| `content/styling/code.json` | Which of them load where |
+| `content/styling/vendor/` | Libraries the scripts import by name, with `lock.json` |
+| `content/styling/theme.css`, `custom.js` | The site's stylesheet and its own JavaScript: one file each, on every page. See [Stylesheet and JavaScript](/design/site-design#stylesheet-and-javascript) |
 
 A name is lowercase letters, digits, `-` and `_`, in up to three folders.
 
-In the admin, all of it is under **Design → Code**: **Styles** and **Scripts** each start with the site's own file (**Site CSS**, **Site JavaScript**) and list the other files under it, and **Libraries** lists what the scripts import. Changing any of it needs the **Edit Custom CSS and JavaScript** permission, which is **Trusted Only**.
+In the admin, all of it is under **Styling → Code**, below the stylesheet: **Scripts** starts with the site's own file, **Site JavaScript**, and lists the other scripts under it, **Styles** lists the stylesheets, and **Libraries** lists what the scripts import. Changing any of it needs the **Edit Scripts and Stylesheets** permission, which is **Trusted Only**.
 
 ## Say where a file loads
 
@@ -56,7 +56,7 @@ The page's import map sends that path to the published file.
 
 ## Add a library
 
-`cms vendor` keeps the libraries. It fetches a package's ES module at one exact version from jsDelivr into `content/design/vendor/`, and from then on the site serves the file itself.
+`cms vendor` keeps the libraries. It fetches a package's ES module at one exact version from jsDelivr into `content/styling/vendor/`, and from then on the site serves the file itself.
 
 ```bash
 php cms vendor add gsap@3.12.5
@@ -102,13 +102,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 +--------------------+---------------+------------------+-------+-------------------------------------------------------------------------+
 ```
 
-In the admin, **Libraries** under **Design → Code** does the same: **Add Library** takes `name@version`, and each row has **Update** and **Remove**.
+In the admin, **Libraries** under **Styling → Code** does the same: **Add Library** takes `name@version`, and each row has **Update** and **Delete**.
 
-Commit `content/design/vendor/` with the rest of the design. The files and the lock travel together, so another checkout serves the same libraries without fetching anything.
+Commit `content/styling/vendor/` with the rest of the styling. The files and the lock travel together, so another checkout serves the same libraries without fetching anything.
 
 ### The lock and the import map
 
-`content/design/vendor/lock.json` records, for each import, the package, the exact version, where it came from, and a `sha384` hash of every file it brought:
+`content/styling/vendor/lock.json` records, for each import, the package, the exact version, where it came from, and a `sha384` hash of every file it brought:
 
 ```json
 {
@@ -126,7 +126,7 @@ Commit `content/design/vendor/` with the rest of the design. The files and the l
 }
 ```
 
-A page that loads a script gets an import map before its first module. It names every library with the hash its file must have, and every script of the design with its published file:
+A page that loads a script gets an import map before its first module. It names every library with the hash its file must have, and every script of the site with its published file:
 
 ```html
 <script type="importmap">{"imports":{"gsap":"/_cms/site/vendor/gsap@3.12.5/index.js","/_cms/site/scripts/timeline.js":"/_cms/site/scripts/timeline-6f669f87e9.js"},"integrity":{"/_cms/site/vendor/gsap@3.12.5/index.js":"sha384-vkCa24FZ…"}}</script>
@@ -150,19 +150,19 @@ Agents and scripts do all of the above through abilities. Reading the lists need
 
 | Ability | Does |
 |---|---|
-| `design-code/list` | The scripts and styles by name, and `load`: what `code.json` holds |
-| `design-code/get` | The contents of one file: `{"path": "scripts/hero.js"}` |
-| `design-code/save` | Creates or replaces a file: `{"path": "styles/hero.css", "contents": "…"}` |
-| `design-code/delete` | Removes a file, and what was published of it |
-| `design-code/set-load` | Replaces `code.json` |
-| `design-code/set-custom` | Replaces `custom.css` or `custom.js` |
-| `design-vendor/list` | The libraries: import, package, version, source, URL and hash |
-| `design-vendor/create` | `cms vendor add`: `{"package": "gsap@3.12.5"}`, with `file` and `as` |
-| `design-vendor/update` | `cms vendor update`: `{"import": "gsap", "version": "3.13.0"}` |
-| `design-vendor/delete` | `cms vendor remove`: `{"import": "gsap"}` |
+| `styling-code/list` | The scripts and styles by name, and `load`: what `code.json` holds |
+| `styling-code/get` | The contents of one file: `{"path": "scripts/hero.js"}` |
+| `styling-code/save` | Creates or replaces a file: `{"path": "styles/hero.css", "contents": "…"}` |
+| `styling-code/delete` | Removes a file, and what was published of it |
+| `styling-code/set-load` | Replaces `code.json` |
+| `styling-code/set-custom` | Replaces `custom.js`: `{"js": "…"}`. CSS goes in the stylesheet, with `styling/update` |
+| `styling-vendor/list` | The libraries: import, package, version, source, URL and hash |
+| `styling-vendor/create` | `cms vendor add`: `{"package": "gsap@3.12.5"}`, with `file` and `as` |
+| `styling-vendor/update` | `cms vendor update`: `{"import": "gsap", "version": "3.13.0"}` |
+| `styling-vendor/delete` | `cms vendor remove`: `{"import": "gsap"}` |
 
 ```bash
-php cms run design-code/set-load --input='{"styles":["scene"]}'
+php cms run styling-code/set-load --input='{"styles":["scene"]}'
 ```
 
 ```json
@@ -184,6 +184,6 @@ The context resource `cms://site/code` gives an agent the same lists with the ru
 
 ### Starter's example
 
-A new site, from Starter, keeps its code to a few lines of **Site CSS**: section colours that a **Section** or a **Box** takes by its class (under **Content → Advanced → Classes**). `tide` makes it deep sea green, `clay` terracotta, `sun` yellow, `mist` pale blue and `band` near black, and `on-photo` turns text, lines and buttons light over a photograph. Each sets the design's colour variables for what is inside it, so headings, buttons and muted text follow without styles of their own. A state named after a colour does the same, so Starter's project and story cards take their colour from the entry: `is-clay` when a story's topic is *Making*. To be rid of them, empty **Site CSS** and remove the classes.
+A new site, from Starter, keeps its code to a few rules in its stylesheet, under `@layer components`: section colours that a **Section** or a **Box** takes by its class (under **Content → Advanced → Classes**). `tide` makes it deep sea green, `clay` terracotta, `sun` yellow, `mist` pale blue and `band` near black, and `on-photo` turns text, lines and buttons light over a photograph. Each sets the theme's colour variables for what is inside it, so headings, buttons and muted text follow without styles of their own. A state named after a colour does the same, so Starter's project and story cards take their colour from the entry: `data-clay` when a story's topic is *Making*. To be rid of them, delete those rules under **Styling → Code** and remove the classes.
 
 See [A pinned scroll scene and a 3D canvas](/design/front-end-example) for all of this working together.

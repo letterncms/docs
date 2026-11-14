@@ -74,7 +74,7 @@ Show a menu with a **Repeat** whose list is the menu, and a **Link** inside boun
 ] }
 ```
 
-Each item has `label`, `url`, `newTab`, `current` (this page), `active` (this page or one of its descendants) and `children` for the next level. Nest a Repeat with `source: list` and `path: item.children` for dropdowns. Style the active link with the `is-active` state. Links to the current page get `aria-current="page"` automatically.
+Each item has `label`, `url`, `newTab`, `current` (this page), `active` (this page or one of its descendants) and `children` for the next level. Nest a Repeat with `source: list` and `path: item.children` for dropdowns. Style the active link with the *active* state: `bind: { "state:active": "item.active" }` sets `data-active` on it, and a class such as `data-active:font-medium` styles it. Links to the current page get `aria-current="page"` automatically.
 
 ### In PHP
 
