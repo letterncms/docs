@@ -82,7 +82,7 @@ Under **Visibility** in the **Content** tab:
 
 A menu usually marks the page you're on. Select the link inside the Repeat, open **Advanced** in the **Content** tab and press **Add State from Data**, the **+** beside **States from Data**. This adds a state named *active*: pick **Is this page or above it** as its data.
 
-The link now has the custom state *active* on the current page. Choose it under **More States** on the **State** row at the top of **Design** and style it, say in bold. See [Custom states](/design/styles#custom-states).
+The link now has the custom state *active* on the current page. Choose it in the state menu at the top of **Design** and style it, say in bold. See [Custom states](/design/styles#custom-states).
 
 ## Let visitors filter a list
 

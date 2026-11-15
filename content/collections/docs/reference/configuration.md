@@ -24,7 +24,6 @@ Values for this server, and secrets. Never commit this file.
 | `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`, `DB_PREFIX` | The database. |
 | `CMS_INSTALL_TOKEN` | Required by the web installer when set. |
 | `CMS_ALLOW_FILE_MODS` | `false` stops installing, updating or deleting plugin files from the admin. |
-| `CMS_NODE` | The Node binary (20 or newer) that compiles the site's [CSS](/design/site-design#compiled-css) on this machine, when it is not `node` on the `PATH`. A server needs none: the admin compiles in the browser. |
 | `CMS_<NAMESPACE>_<KEY>` | Overrides any setting, e.g. `CMS_SITE_URL`, `CMS_EMAIL_SMTP_PASSWORD` or `CMS_ASSISTANT_API_KEY`. |
 
 ## YAML in `config/`

@@ -159,7 +159,7 @@ php cms run styling/update --input='{"transition":{"navigation":"client"}}'
 
 The canvas needs an element on every page. Open each template (**Default**, **Page** and **Article** on a new site) and add a **Box** above the header:
 
-1. Under **Content → Advanced**, set **Classes** to `stage` and **Persist As** to `stage`.
+1. Under **Design → Classes**, add `stage`. Under **Content → Advanced**, set **Persist As** to `stage`.
 2. Under **Interact → Behaviors**, choose the **Script** `scene`, press **Add Option** and set `speed` to `0.2`.
 
 In the editor the box says which behavior draws it; the preview shows the canvas. In a template's file, `content/collections/templates/page.md`, it is one block:
