@@ -2,7 +2,7 @@
 id: 01m5wn8rahj942kpc5xx6pns6s
 title: Styling
 position: 0
-description: Your site's colors, fonts, spacing, text, buttons and saved styles, in one place. Change them once and every page follows.
+description: Your site's colors, fonts, spacing and how everything looks, in one place. Change them once and every page follows.
 ---
 The styling holds the values your whole site is built from: colors, fonts, text sizes, spacing, corners, shadows and motion. Blocks use these values instead of fixed ones, so when you change your main color, every button, link and heading that uses it changes too.
 
@@ -14,20 +14,16 @@ Open **Styling** in the sidebar, or press `⌘K` and type *styling*. Its section
 
 ## What's in it
 
-The sections come in two groups. **Theme** holds every value of your theme: Tailwind's own, and the ones your site adds. **Styles** holds how your text and buttons look, the looks you saved under a name, and any code of your own.
+**Colors**, **Typography**, **Layout**, **Effects** and **Motion** hold every value of your theme: Tailwind's own, and the ones your site adds. **Styles** holds how everything looks, built from those values.
 
 | Section | What you set |
 |---|---|
-| **Colors** | Your colors, each with a light and a dark value, and Tailwind's whole palette, shade by shade |
-| **Typography** | Fonts, text sizes, weights, line heights and letter spacing |
-| **Layout** | Spacing, content widths, the screen sizes the site adapts at, and aspect ratios |
-| **Shape** | Corner radius |
-| **Effects** | Shadows, inset shadows, drop shadows, text shadows, blur and perspective |
-| **Motion** | Easing curves, animations, how transitions run by default, and how pages change into each other |
-| **Text** | How the body text, headings, paragraphs, links, bold and small text, quotes, code, captions and selected text look everywhere |
-| **Buttons** | The looks a Button can have, such as *Primary* and *Secondary* |
-| **Saved Styles** | Looks you named, like *lede* or *card*, that any block can wear |
-| **Custom Code** | CSS of your own, your own JavaScript, and the libraries it imports |
+| **Colors** | Your colors, each with a light and a dark value; schemes, the colors of a section or a card of their own; and Tailwind's whole palette, shade by shade |
+| **Typography** | Fonts, text sizes, line heights and letter spacing |
+| **Layout** | Spacing, content widths, the screen sizes the site adapts at, and the sizes buttons and fields share |
+| **Effects** | Corners, shadows, inset shadows, drop shadows, text shadows, blur and perspective |
+| **Motion** | Easing curves, durations, animations, how transitions run by default, and how pages change into each other |
+| **Styles** | How the page, its text, buttons, forms and long-form text look, and the looks you named |
 
 Every value of the theme has a name, like *primary* for your brand color or *content* for a width. You give it a value once, and use the name everywhere. Tailwind's own values are all there: change one, and **Reset** in its **⋯** menu puts it back. A value your site added can be renamed and deleted.
 
@@ -40,6 +36,12 @@ Every value of the theme has a name, like *primary* for your brand color or *con
 
 Saving restyles every page and rebuilds the site. The **+** at the top of the list adds a color of your own, like *accent*. Under the list, **Palette** shows Tailwind's colors, such as *red-500*, shade by shade: point at a shade to see its name, click it to change it.
 
+## Schemes
+
+A scheme gives a section, a box or a card colors of its own: a **Background** and a **Text** color. Everything inside follows them: its text, muted text, lines, surfaces and buttons. Under **Colors**, **Schemes** lists them; **Add Scheme** makes one, and a block takes it under **Add Style** at the top of its **Design** tab.
+
+Starter has *Tide*, *Clay*, *Sun*, *Mist* and *Band*, and *Photo*, for words over a photograph: a clear background with light text.
+
 ## Add a font
 
 Fonts are stored on your site, so visitors' browsers never contact another service to load them.
@@ -50,7 +52,7 @@ Fonts are stored on your site, so visitors' browsers never contact another servi
 
 ## Sizes that grow with the screen
 
-A text size, a space or a width can be fixed, or fluid: small on a phone and larger on a wide screen, growing smoothly in between. Press **Fluid Size** beside a size to make it fluid. It then reads like *16 → 20px*: click it to set the **Smallest** and **Largest** size and the screen widths it grows between, **From Screen** and **To Screen**. Press **Fluid Size** again to make it fixed.
+A text size, a space or a width can be fixed, or grow with the screen: small on a phone and larger on a wide screen, growing smoothly in between. Press **Grow with the Screen** beside a size. It then reads like *16 → 20px*: click it to set its size **On a Phone** and **On a Desktop**, and the screen widths it grows between, **Screen From** and **Screen To**. A line above them shows how it grows. Press **Grow with the Screen** again to make it fixed.
 
 ## Use the theme on a block
 
@@ -58,39 +60,48 @@ In a block's **Design** tab, fields that take a color, a size or a space show a 
 
 Choose **Detach** to turn it back into a fixed value. See [Styles](/design/styles).
 
-## Text
+## Styles
 
-**Text** shows how your site's text looks before a block says otherwise: **Body**, **Heading 1** to **Heading 6**, **Paragraph**, **Link**, **Bold**, **Small**, **Quote**, **Code**, **Caption** and **Selection**, each drawn as your site draws it. Open one and style it with the same controls as a block's **Design** tab. For a link, choose **Hover** in the state menu at the top to style it while it is pointed at. **Reset** in the **⋯** menu takes its style away.
+**Styles** lists every look of your site, each drawn as your site draws it, by what it styles:
 
-A block's own styles always win over these.
+![Styles: the page, text and buttons, each drawn as the site draws it.](/media/screens/design-styles.webp)
 
-## Button looks
+| Group | Holds |
+|---|---|
+| **Page** | The page itself (its background, text and font), selected text, the focus ring and dividers |
+| **Text** | **Heading 1** to **Heading 6**, **Paragraph**, **Link**, **Bold**, **Small**, **Quote**, **Code** and **Caption**, and text styles you named, like *lede* |
+| **Buttons** | The looks a Button can have, such as *Primary*, *Secondary*, *Ghost* and *Link* |
+| **Forms** | **Fields**, **Labels** with their help, and **Choices**: checkboxes, radio buttons and switches, on every form of the site |
+| **Articles** | Long-form text: its **Spacing**, and its headings, paragraphs, list items, quotes, figures and links where they differ from the rest of the page |
+| **Boxes** | Looks you named for anything else, like *card* |
 
-A **Button** block's **Style** menu lists the looks under **Buttons**, such as *Primary*, *Secondary*, *Ghost* and *Link*. Open one to change its fill, border, corners or text color, and choose **Hover** in the state menu for how it looks when pointed at. **New Button** adds a look, starting as a copy of the first: name it *Outline*, and **Outline** appears in every Button's **Style** menu. Behind the scenes it is a class named `btn-outline`.
+Open one to style it with the same controls as a block's **Design** tab, for the screen the preview shows. For a link or a button, choose **Hover** in the state menu at the top to style it while it is pointed at. An element's **⋯** menu has **Reset**, which takes its style away. A block's own styles always win over these.
+
+### Looks with a name
+
+A look with a name is one you give to blocks. Make a *card* once, with its corners, border and padding, and give it to every block that should look like one. Change the look, and they all change.
+
+1. Press **+** beside **Text**, **Buttons** or **Boxes**. Name it, like *card*.
+2. Style it with the same controls as a block's **Design** tab, for each screen and state.
+3. Press **Save**. It is now offered on every block, under **Add Style** at the top of its **Design** tab.
+
+Its **⋯** menu has **Rename…**, **Duplicate…** and **Delete**. You can also save one from a block you already styled: see [Styles](/design/styles#looks-with-a-name).
+
+### Buttons
+
+A **Button** block's **Style** menu lists the looks under **Buttons**. A new one starts as a copy of the first: name it *Outline*, and **Outline** appears in every Button's **Style** menu. Behind the scenes it is a class named `btn-outline`.
 
 A look has no size of its own, so every look comes in every size: a Button's **Size** picks S, M or L. A Button with an icon and no label is square, as wide as it is tall. **Shape** **Round** makes it a circle, or a labelled button a pill. Give an icon-only button a **Name for Screen Readers**, like *Search*.
 
-## Saved styles
-
-A saved style is a look with a name. Make a *card* once, with its corners, border and padding, and give it to every block that should look like one. Change the style, and they all change.
-
-1. Open **Saved Styles** and choose **New Style**. Name it, like *card*.
-2. Style it with the same controls as a block's **Design** tab, for each screen and state.
-3. Press **Save**. The style is now offered on every block, under **Add Style** at the top of its **Design** tab.
-
-A style's **⋯** menu has **Rename…**, **Duplicate…** and **Delete**. You can also save one from a block you already styled: see [Styles](/design/styles#saved-styles).
-
 ## Sizes of buttons and fields
 
-Buttons, form fields, tag fields and chips share one size scale: small, medium and large. Each size has a height, a padding and a text size, so a button and a field of the same size line up, side by side or in a form. Forms use medium, and their send button with them.
-
-The sizes are values of the theme (`--control-md-height` and the like). Change them under **Custom Code**: see [Buttons](#buttons) below.
+Buttons, form fields, tag fields and chips share one size scale: small, medium and large. Each size has a height, a padding and a text size, so a button and a field of the same size line up, side by side or in a form. Forms use medium, and their send button with them. Set them under **Layout → Buttons and Fields**.
 
 ## Form fields
 
 Every field on the site looks the same: the forms you build, the sign-in and account pages, the checkout, list filters and the **Input** block. A field reads its fill, border, corners and colors from one set of values, so what you set once reaches text fields, dropdowns, text areas, checkboxes, switches, tag fields and file pickers at the same time.
 
-Out of the box, fields follow your theme: its *raised*, *border*, *primary* and *muted* colors and its *md* radius. To give them a look of their own, set their values under **Custom Code**: see [Field variables](#field-variables) below.
+Out of the box, fields follow your theme: its *raised*, *border*, *primary* and *muted* colors and its *md* radius. To give them a look of their own, open **Styles → Forms**: **Fields** for their fill, border, corners and how they look pointed at, focused or wrong, **Labels** for labels, help and the space between fields, **Choices** for checkboxes, radio buttons and switches.
 
 ## Page transitions
 
@@ -104,11 +115,11 @@ Under **Motion**, **Page Transition** animates the change from one page to the n
 
 A block of your own inside prose keeps its own layout: prose spaces the blocks directly in it, and styles text, not a **Box** or **Repeat** drawn as a list or a link. A callout with paragraphs of its own turns on **Prose** too, and its text is spaced the same way.
 
-The spaces, and how headings and other elements look inside prose only, are set in the stylesheet: see [Prose](#prose) below.
+Under **Styles → Articles**, **Spacing** sets the space between blocks, above and below headings and between list items, and the rows under it how headings, paragraphs, list items, quotes, figures and links look inside prose only.
 
-## Custom code
+## Code
 
-**Custom Code** is for what the other sections don't cover. **CSS** holds the CSS of your own: a rule for a selector of your own, a variable the sections have no place for, a variant of your own. What the other sections set is not in it: they keep it. A stylesheet Tailwind can't read is not saved, and the page says why in Tailwind's own words.
+**Code**, under **Design** in the sidebar, is for what the **Styling** sections don't cover. **CSS** holds the CSS of your own: a rule for a selector of your own, a variable the sections have no place for, a variant of your own. What the sections set is not in it: they keep it. A site from Starter has none. A stylesheet Tailwind can't read is not saved, and the page says why in Tailwind's own words.
 
 **Site JavaScript** runs on every page. Under it, **Scripts** and **Stylesheets** list the site's other files, which load only where you say, and **Libraries** lists what scripts import. See [Scripts and styles](/design/code).
 
@@ -169,7 +180,7 @@ The styling lives in `content/styling/` next to your content, so it is versioned
 }
 ```
 
-It starts with two imports: Tailwind, then `cms`, the stylesheet blocks, buttons and form fields are built from. After them it has four kinds of things, and each section of the **Styling** page edits one of them where it stands, so comments and hand-written CSS stay as they are. What no section shows is the site's own CSS, under **Custom Code**.
+It starts with two imports: Tailwind, then `cms`, the stylesheet blocks, buttons and form fields are built from. After them it has four kinds of things, and each section of the **Styling** page edits one of them where it stands, so comments and hand-written CSS stay as they are. What no section shows is the site's own CSS, under **Code**.
 
 ### The theme
 
@@ -200,7 +211,7 @@ Blocks, buttons and fields read a few names whatever the site: the colors `backg
 
 ### Styles
 
-A saved style, and a button's look, is an `@utility` rule that applies other classes. Blocks carry it like any Tailwind class, with every variant: `card`, `md:card`, `hover:card`.
+A look with a name, a button's look and a scheme are each an `@utility` rule that applies other classes. Blocks carry it like any Tailwind class, with every variant: `card`, `md:card`, `hover:card`. **Styles** sorts a look by what it sets: one that sets only how text looks is under **Text**, `btn-*` under **Buttons**, any other under **Boxes**.
 
 ```css
 @utility card {
@@ -208,11 +219,30 @@ A saved style, and a button's look, is an `@utility` rule that applies other cla
 }
 ```
 
+A scheme is a `scheme-<name>` rule with two colors that applies `scheme`, from `cms`. That rule sets the background and text color and makes `foreground`, `muted`, `border`, `surface`, `raised`, `primary` and `primary-foreground` follow them inside. A declaration after the `@apply` changes one of those for this scheme only:
+
+```css
+@utility scheme-tide {
+  --scheme: var(--color-tide);
+  --scheme-text: var(--color-tide-foreground);
+  @apply scheme;
+}
+
+@utility scheme-photo {
+  --scheme: transparent;
+  --scheme-text: #ffffff;
+  @apply scheme;
+  --color-primary-foreground: #111616;
+}
+```
+
+A collection's entries can each pick one with a state: `data-tide:scheme-tide` takes Tide when the entry's state is *tide*.
+
 The site's classes are always in its CSS, whether or not a block uses them.
 
 ### Text rules
 
-Rules in `@layer base` set defaults for HTML elements, with `@apply` or plain declarations: a state is a variant inside the rule (`a { @apply underline hover:decoration-current; }`). **Text** shows the rules for `body`, `h1` to `h6`, `p`, `a`, `strong`, `small`, `blockquote`, `code`, `figcaption` and `::selection`. Any other selector works too (`hr`, `h1 em`, `li::marker`, `:focus-visible`) and shows under **Custom Code**. They sit in a low CSS layer, so a block's own classes always win.
+Rules in `@layer base` set defaults for HTML elements, with `@apply` or plain declarations: a state is a variant inside the rule (`a { @apply underline hover:decoration-current; }`). **Styles** shows the rules for `body`, `h1` to `h6`, `p`, `a`, `strong`, `small`, `blockquote`, `code`, `figcaption`, `hr`, `::selection` and `:focus-visible`. Any other selector works too (`h1 em`, `li::marker`) and shows under **Code**. They sit in a low CSS layer, so a block's own classes always win.
 
 ### Prose
 
@@ -225,7 +255,7 @@ Prose is long-form text: any **Page Content** or **Box** with **Prose** on (`"pr
 | `--prose-after-headings` | `0.6em` | After a heading |
 | `--prose-items` | `0.35em` | Between list items |
 
-Set them, and style elements inside prose only, in `@layer components`:
+Set them, and style elements inside prose only, in `@layer components`. **Styles → Articles** edits `.cms-prose` and these rules, for `h2`, `h3`, `p`, `blockquote`, `figure` and `a`, and for list items; any other rule there shows under **Code**:
 
 ```css
 @layer components {
@@ -233,11 +263,16 @@ Set them, and style elements inside prose only, in `@layer components`:
     --prose-blocks: 1.25em;
     --prose-headings: 2.2em;
   }
-  .cms-prose h2 {
-    @apply mt-10 text-3xl;
+  .cms-prose h2:where(:not(.cms-box, .cms-repeat)) {
+    @apply text-3xl;
+  }
+  .cms-prose :where(ul:not(.cms-box, .cms-repeat), ol:not(.cms-box, .cms-repeat)) > li {
+    @apply text-lg;
   }
 }
 ```
+
+The `:where(:not(.cms-box, .cms-repeat))` leaves out a **Box** or **Repeat** drawn as that element.
 
 An element's own top margin replaces the space before it. A **Page Content** without a container is part of the flow around it.
 
@@ -257,7 +292,7 @@ For your own markup, a button is `class="cms-button btn-primary"`.
 
 ### Field variables
 
-Everything a form field looks like is a `--field-*` CSS variable that one stylesheet reads for every kind of field. Set the ones you want to change in `@layer base`, on `:root` and on `[data-theme]`, so they hold in a section with its own color mode too:
+Everything a form field looks like is a `--field-*` CSS variable that one stylesheet reads for every kind of field. **Styles → Forms** sets the common ones; set any in `@layer base`, on `:root` and on `[data-theme]`, so they hold in a section with its own color mode too:
 
 ```css
 @layer base {
@@ -340,7 +375,7 @@ document.addEventListener('cms:alpine', (e) => {
 })
 ```
 
-It is edited under **Custom Code** or with the `styling-code/set-custom` ability, and needs the `site.code` permission. There is no separate file for custom CSS: it goes in `theme.css`. Scripts and stylesheets that load only on some pages, and the libraries they import, are on [Scripts and styles](/design/code).
+It is edited under **Code** or with the `styling-code/set-custom` ability, and needs the `site.code` permission. There is no separate file for custom CSS: it goes in `theme.css`. Scripts and stylesheets that load only on some pages, and the libraries they import, are on [Scripts and styles](/design/code).
 
 ### Abilities
 

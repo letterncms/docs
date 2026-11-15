@@ -40,12 +40,12 @@ Fields for colors, sizes and spacing show a small diamond when you point at them
 
 A block that uses a theme value keeps matching the rest of your site: change the value, and the block follows. Prefer them over typed-in values whenever one fits. **Detach** turns one back into a fixed value.
 
-## Saved styles
+## Looks with a name
 
-A saved style is a look your site keeps under a name, like *lede* or *card*: the same on every block that wears it, and changed in one place, under **Styling → Saved Styles**.
+A look with a name is one your site keeps, like *lede*, *card* or the scheme *Tide*: the same on every block that wears it, and changed in one place, under **Styling → Styles** (a scheme under **Styling → Colors**).
 
-- The styles a block wears show at the top of the **Design** tab. A style's menu has **Edit Style**, which opens it under **Styling**, **Detach Style**, which takes the style off and leaves its look on the block, and **Remove Style**.
-- **Add Style** lists your site's styles and button looks, each drawn as your site draws it. Pick one to give it to the block.
+- The looks a block wears show at the top of the **Design** tab. A look's menu has **Edit Style**, which opens it under **Styling**, **Detach Style**, which takes the look off and leaves what it set on the block, and **Remove Style**.
+- **Add Style** lists your site's styles, button looks and schemes, each drawn as your site draws it. Pick one to give it to the block.
 - **Save as Style…**, at the end of that list, names what you set on the block, like *card*, and saves it as a style other blocks can wear. What you set for tablets and phones stays on the block.
 
 ## Classes

@@ -20,7 +20,7 @@ There is no build step of your own. You write ES modules and plain CSS, say wher
 
 A name is lowercase letters, digits, `-` and `_`, in up to three folders.
 
-In the admin, all of it is under **Styling → Code**, below the stylesheet: **Scripts** starts with the site's own file, **Site JavaScript**, and lists the other scripts under it, **Styles** lists the stylesheets, and **Libraries** lists what the scripts import. Changing any of it needs the **Edit Scripts and Stylesheets** permission, which is **Trusted Only**.
+In the admin, all of it is on the **Code** page, under **Design** in the sidebar, below the site's own CSS: **Scripts** starts with the site's own file, **Site JavaScript**, and lists the other scripts under it, **Stylesheets** lists the stylesheets, and **Libraries** lists what the scripts import. Changing any of it needs the **Edit Scripts and Stylesheets** permission, which is **Trusted Only**.
 
 ## Say where a file loads
 
@@ -102,7 +102,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 +--------------------+---------------+------------------+-------+-------------------------------------------------------------------------+
 ```
 
-In the admin, **Libraries** under **Styling → Code** does the same: **Add Library** takes `name@version`, and each row has **Update** and **Delete**.
+In the admin, **Libraries** on the **Code** page does the same: **Add Library** takes `name@version`, and each row has **Update** and **Delete**.
 
 Commit `content/styling/vendor/` with the rest of the styling. The files and the lock travel together, so another checkout serves the same libraries without fetching anything.
 
@@ -184,6 +184,6 @@ The context resource `cms://site/code` gives an agent the same lists with the ru
 
 ### Starter's example
 
-A new site, from Starter, keeps its code to a few rules in its stylesheet, under `@layer components`: section colours that a **Section** or a **Box** takes by its class (under **Content → Advanced → Classes**). `tide` makes it deep sea green, `clay` terracotta, `sun` yellow, `mist` pale blue and `band` near black, and `on-photo` turns text, lines and buttons light over a photograph. Each sets the theme's colour variables for what is inside it, so headings, buttons and muted text follow without styles of their own. A state named after a colour does the same, so Starter's project and story cards take their colour from the entry: `data-clay` when a story's topic is *Making*. To be rid of them, delete those rules under **Styling → Code** and remove the classes.
+A new site, from Starter, has no code of its own: its section colours are schemes and its long-form text is styled under **Styling → Styles → Articles**, so **Code** starts empty. A scheme such as *Tide* (deep sea green), *Clay* (terracotta), *Sun* (yellow), *Mist* (pale blue), *Band* (near black) or *Photo* (light words over a photograph) sets the theme's colours for what is inside a **Section** or a **Box**, so headings, buttons and muted text follow without styles of their own. A state can pick one, so Starter's project and story cards take their colour from the entry: `data-clay:scheme-clay` when a story's topic is *Making*. See [Schemes](/design/site-design#schemes).
 
 See [A pinned scroll scene and a 3D canvas](/design/front-end-example) for all of this working together.
