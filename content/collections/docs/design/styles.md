@@ -2,7 +2,7 @@
 id: 01m5x9f6g8vrdbm26dcz46cb9f
 title: Styles
 position: 1
-description: Style any block in its Design tab, with classes, for every screen size and for hover, focus and other states.
+description: Style any block in its Design tab, on desktop, tablet and phone, and for hover, focus and other states.
 ---
 Every block can be styled on its own: its layout, size, spacing, type, colors, borders, shadows and more. You do it in the block's **Design** tab, and the page updates as you go.
 
@@ -29,7 +29,7 @@ Every block can be styled on its own: its layout, size, spacing, type, colors, b
 
 **Layout** only shows on blocks that hold other blocks. A section's **+** adds a property it has no row for yet, such as **Snap Align** in **Size** or **Underline Offset** in **Typography**, each with its own control.
 
-Everything you set becomes a [Tailwind CSS](https://tailwindcss.com) class on the block. Type 16 for padding and the block gets `p-4`; pick your *primary* color as its fill and it gets `bg-primary`. You never have to read them, but they are always in sight at the top of the tab, and if you know Tailwind you can type them yourself.
+Everything you set becomes a [Tailwind CSS](https://tailwindcss.com) class on the block. Type 16 for padding and the block gets `p-4`; pick your *primary* color as its fill and it gets `bg-primary`. You never have to read them; if you know Tailwind, **Classes** at the end of the tab shows them, and you can type them yourself.
 
 ::: callout {"props":{"tone":"tip","text":"Drag a number field's label sideways to change its value, or press <code>↑</code> and <code>↓</code>. Hold <code>⇧</code> for steps of 10."}}
 :::
@@ -40,35 +40,36 @@ Fields for colors, sizes and spacing show a small diamond when you point at them
 
 A block that uses a theme value keeps matching the rest of your site: change the value, and the block follows. Prefer them over typed-in values whenever one fits. **Detach** turns one back into a fixed value.
 
+## Saved styles
+
+A saved style is a look your site keeps under a name, like *lede* or *card*: the same on every block that wears it, and changed in one place, under **Styling → Saved Styles**.
+
+- The styles a block wears show at the top of the **Design** tab. A style's menu has **Edit Style**, which opens it under **Styling**, **Detach Style**, which takes the style off and leaves its look on the block, and **Remove Style**.
+- **Add Style** lists your site's styles and button looks, each drawn as your site draws it. Pick one to give it to the block.
+- **Save as Style…**, at the end of that list, names what you set on the block, like *card*, and saves it as a style other blocks can wear. What you set for tablets and phones stays on the block.
+
 ## Classes
 
-The top of the **Design** tab shows the block's classes.
+**Classes**, at the end of the **Design** tab, shows the block's Tailwind classes, one by one. Type in the field to add one: it suggests your site's styles and Tailwind's classes as you type, and Enter, Tab or a space takes one. Click a class to change it, press its **×** or Backspace in the empty field to take it off. Several names pasted with spaces between are added together, and a name Tailwind can't read is underlined. The copy button copies them all.
 
-- Your site's own classes, like *card*, show as chips. A chip's menu has **Edit Class**, which opens it under **Styling → Classes**, **Detach**, which takes the class off and leaves its styles on the block, and **Remove Class**.
-- **Add Class** searches your site's classes and Tailwind's as you type. Press Enter to add one. Several names typed or pasted with spaces between are added together.
-- **Classes** opens the whole list as text. Edit it, or paste a list from anywhere. A name Tailwind can't read is underlined.
-- The **⋯** menu has **Copy Classes** and **Create Class from Styles…**: it names the block's styles, like *card*, and saves them as a class of the site that other blocks can take.
-
-The controls below write to the same list, so the two always agree.
+The controls above write the same list, so the two always agree.
 
 ## Style for different screens
 
-Styles work phone first. What you set applies to every screen, and you add what should change from a wider screen up.
+Choose **Desktop**, **Tablet** or **Phone** in the editor's top bar. The page shows at that width, and the **Design** tab styles it there.
 
-1. On the **Screen** row at the top of the **Design** tab, choose a size: **sm**, **md**, **lg**, **xl** or **2xl**. Point at one to see the width it starts at. **All** is every screen.
-2. Change what should be different from that size up, like one column becoming three.
+1. Style the block on **Desktop**: that holds on every screen.
+2. Switch to **Tablet** or **Phone** and change what should be different there, like three columns becoming one. Desktop stays as it was.
 
-A change for **md** applies to *md* and everything wider, until a wider size says otherwise. For the rare style that should hold on small screens only, **More States** has **Smaller Screens Only**.
+A change on **Tablet** holds on tablets and phones, below the *lg* screen size; one on **Phone** only on phones, below *md*. The sizes are your theme's: see **Layout → Breakpoints** in [Styling](/design/site-design).
 
-The sizes are your theme's: see **Layout → Breakpoints** in [Styling](/design/site-design). To see the page at another width, choose **Tablet** or **Phone** in the editor's top bar.
-
-Field labels tell you where a value comes from. A darker label is set here, on this screen size and state: click it to reset it. A label with a small dot is inherited from a smaller screen or from the default state. A dot on a size or a state of the rows means it has styles of its own.
+Field labels tell you where a value comes from. A darker label is set here, on this screen and state: click it to reset it. A label with a small dot comes from a larger screen or from the default state.
 
 ## Style hover, focus and other states
 
-The **State** row chooses which state you're styling: **Default**, **Hover**, **Pressed** or **Focus**. Pick **Hover**, change the color, and the block changes color when visitors point at it.
+The state menu at the top right of the **Design** tab chooses which state you're styling: **Default**, **Hover**, **Pressed** or **Focus**. Pick **Hover**, change the color, and the block changes color when visitors point at it. While you style a state, the menu stands out, so you always know you're not styling the block itself.
 
-**More States**, the **+** at the end of the row, has more:
+Further down the menu are more states:
 
 | State | Use it for |
 |---|---|
@@ -92,7 +93,7 @@ A custom state is a name, like *open* or *active*, that something else switches 
 - A [behavior](/design/interactions#behaviors) sets it: **Scroll States** marks a header *scrolled* once the page scrolls.
 - [Data](/design/data) sets it: a link is *active* when it points to the page the visitor is on.
 
-States the block or its parents set are listed under **States of This Element**, and a state with styles of its own carries a small dot. Choose a parent's state, like **in open**, to style this block while its parent is open. No script is needed.
+States the block or its parents set are listed in the menu under **States of This Element**, and a state with styles of its own carries a small dot. Choose a parent's state, like **in open**, to style this block while its parent is open. No script is needed.
 
 ## For developers
 
@@ -133,7 +134,7 @@ A picture from the media library is not a class: a block's `image` or `backgroun
 |---|---|
 | No variant | Every screen |
 | `sm:`, `md:`, `lg:`, `xl:`, `2xl:` | At that breakpoint and up: 640, 768, 1024, 1280 and 1536 pixels (40, 48, 64, 80 and 96rem) unless the theme's `--breakpoint-*` say otherwise |
-| `max-md:`, `max-lg:` | Below that breakpoint only |
+| `max-md:`, `max-lg:` | Below that breakpoint only. **Phone** writes `max-md:`, **Tablet** `max-lg:` |
 | `md:max-lg:` | Between two |
 | `@md:`, `@lg:` | Container queries, inside an element with `@container` |
 
@@ -153,6 +154,8 @@ A picture from the media library is not a class: a block's `image` or `backgroun
 
 Variants stack, the screen size first: `md:hover:bg-primary`, `max-md:in-data-open:block`.
 
+The **Design** tab reads classes written either way. It shows what wins at the screen you see: on **Desktop**, a block with `grid-cols-1 md:grid-cols-3` shows three columns, and changing them changes `md:grid-cols-3`.
+
 Custom states come from `logic.states` (`{ "open": "open" }` keeps the attribute `data-open` on the element while the `open` variable is true), from behaviors (**Scroll States** sets `data-scrolled` and `data-hidden`, **Scroll Spy** sets `data-current`) and from data (`bind: { "state:active": "item.active" }` sets `data-active`).
 
 ```json
@@ -161,4 +164,4 @@ Custom states come from `logic.states` (`{ "open": "open" }` keeps the attribute
 
 ### How it reaches the page
 
-Tailwind itself compiles the site's stylesheet for exactly the classes the content uses, and every page links that one file. A class nobody uses is not in it. The editor compiles the same stylesheet in the browser, so the canvas and the public site look the same. See [Compiled CSS](/design/site-design#compiled-css).
+Tailwind compiles the site's stylesheet for exactly the classes the content uses, and every page links that one file. A class nobody uses is not in it. The server compiles it whenever the content changes, also when an agent changes it over the API; the editor compiles the same stylesheet in the browser as you type, so the canvas and the public site look the same. See [Compiled CSS](/design/site-design#compiled-css).

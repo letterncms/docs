@@ -38,7 +38,7 @@ php cms migrate
 php cms build
 ```
 
-The site's CSS comes with the content: `content/styling/compiled.css` is committed, so the server compiles nothing and needs no Node. Where it has Node 20 or newer, `php cms build` compiles the CSS again first; where it hasn't and content arrived with classes the CSS lacks, the build warns, and the admin compiles it the next time it is open. See [Compiled CSS](/design/site-design#compiled-css).
+The server compiles the site's CSS itself, in PHP: it needs no Node, and nothing compiled is committed. Content that arrives by git or FTP is compiled for when the site is built, so `php cms build` after a deploy is all it takes. See [Compiled CSS](/design/site-design#compiled-css).
 
 `php cms migrate` brings the database up to the code. Run it on every deploy, whether or not you think something changed:
 
