@@ -99,6 +99,15 @@
       ],
       "sidebar": "collapsed"
     },
+    "design-styles": {
+      "site": "examples",
+      "path": "/admin/styling?tab=styles",
+      "size": [
+        1100,
+        700
+      ],
+      "sidebar": "collapsed"
+    },
     "template": {
       "site": "examples",
       "path": "/admin/content/templates/{entry:templates/page}",
