@@ -48,9 +48,8 @@ For a headless front end, published content is readable without a token:
 |---|---|
 | `GET /api/v1/content/{collection}` | Live entries. Query: `q`, `filter`, `sort`, `fields`, `expand`, `references`, `limit`, `page`, `locale`. See [The content API](#the-content-api). |
 | `GET /api/v1/content/{collection}/{slug}` | One live entry. |
-| `GET /api/v1/globals/{handle}` | A global's values (only globals with `api: true`). |
 
-Collections with a route are available unless they set `api: false`. Collections without a route are available only with `api: true`. Responses can be cached for a minute, and each visitor can make 120 requests a minute.
+Collections with a route are available unless they set `api: false`. Collections without a route are available only with `api: true`, such as a [global](/content/globals), whose values come as its one entry, or a [menu](/content/navigation), whose links are its entries. Responses can be cached for a minute, and each visitor can make 120 requests a minute.
 
 ## For developers
 

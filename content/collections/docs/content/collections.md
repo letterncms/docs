@@ -11,7 +11,7 @@ A collection is one kind of content on your site: blog posts, team members, proj
 
 Pages are a collection too. Your templates then show the entries in your design, so the people filling them in never have to think about layout.
 
-A collection's **type** says what its entries are. Most are **Entries**: pages, posts, dishes. **Categories** and **Tags** are [taxonomies](/content/taxonomies), vocabularies other entries are filed under; they are made under **Taxonomies** and work the same way.
+A collection's **type** says what its entries are. Most are **Entries**: pages, posts, dishes. **Categories** and **Tags** are [taxonomies](/content/taxonomies), vocabularies other entries are filed under. A **Global** holds one entry, values shown all over the site like your phone number: see [Globals](/content/globals). A **Menu**'s entries are the links of a menu: see [Navigation](/content/navigation). Each type has its own list under **Structure** and its own heading in **Content**, and they all work the same way.
 
 ## Create a collection
 
@@ -116,13 +116,14 @@ fields:
 
 | Key | Meaning |
 |---|---|
-| `type` | `entries` (the default), or a [taxonomy](/content/taxonomies): `categories` or `tags`. **Type** in its settings. |
+| `type` | `entries` (the default), a [taxonomy](/content/taxonomies): `categories` or `tags`, a [global](/content/globals): `global`, or a [menu](/content/navigation): `menu`. **Type** in its settings changes between entries, categories and tags; a global and a menu stay what they were made as, and have no `route` or `template`. |
 | `title`, `singular`, `icon`, `description` | How the collection appears in the admin. |
-| `structure` | For entries: `list` (ordered by `sort`, by title unless set), `dated` (newest first) or `tree` (nested, ordered by hand). Categories are a tree and tags a list, whatever it says. |
+| `structure` | For entries: `list` (ordered by `sort`, by title unless set), `dated` (newest first) or `tree` (nested, ordered by hand). Categories and menus are a tree, tags and globals a list, whatever it says. |
+| `max_depth` | For a menu: how many levels its links nest, 1 to 5 (`3` when omitted). **Levels** in its settings. |
 | `route` | The URL pattern (see below). Leave it out for content without pages of its own. |
 | `home` | For trees: the slug of the entry that becomes `/`. |
 | `template` | The slug of the [template](/design/templates) that frames entries. Omit or leave empty to inherit: Lettern uses `default`, or renders the content alone when there is no default template. A missing template stays visible with a warning until you choose another. Entries can override it with a `template` field (`type: select`, `dynamic: templates`); clearing that field restores the collection's template. |
-| `section` | The sidebar section it is listed in: `entries`, under **Entries** in **Content**, or for a taxonomy `taxonomies`, unless set. Each person pins it from its row to keep it under **Pinned**; *Pages* is pinned from the start. The Blocks module's templates and components use `layout`, in **Structure**. |
+| `section` | The sidebar section it is listed in: `entries`, under **Entries** in **Content**, or for a taxonomy `taxonomies`, a global `globals` and a menu `menus`, unless set. Each person pins it from its row to keep it under **Pinned**; *Pages* is pinned from the start. The Blocks module's templates and components use `layout`, in **Structure**. |
 | `nav_order` | Default place in its section (integer, lower first; `10` when omitted). A sidebar someone arranged, or the default an admin saved for everyone, overrides it. |
 | `sort` | Field to sort lists by; prefix with `-` for descending. |
 | `default_view` | `table` (default), `grid` or `calendar`. What a person chose in **Display** wins. |
@@ -217,7 +218,7 @@ A person's saved views are kept with their account and reached through `saved-vi
 
 `collections/delete` needs `deleteEntries: true` for a collection with entries. Deleting runs through the content lifecycle, so drafts, revisions and plugin data are cleaned up, and published pages are removed or rebuilt.
 
-When `collections/save` refuses a field (a type that isn't installed, a handle used twice), its `details` say which one, by path: `fields.2.handle`, `fields.0.fields.1.type`. `globals/save` and `fieldsets/save` do the same.
+When `collections/save` refuses a field (a type that isn't installed, a handle used twice), its `details` say which one, by path: `fields.2.handle`, `fields.0.fields.1.type`. `fieldsets/save` does the same.
 
 ### System collections
 

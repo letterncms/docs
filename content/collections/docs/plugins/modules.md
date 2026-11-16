@@ -19,11 +19,9 @@ A module registers its abilities, permissions, settings, sidebar items and scree
 | `letterncms/packages` | The **Plugins** screen (Installed, Store, Updates), updates and the `packages/*` abilities | No |
 | `letterncms/workspace` | The [workspace](/getting-started/workspace): threads at the right edge of the admin, for commands, search and an agent when there is one | No |
 | `letterncms/media` | The [media library](/content/media): uploads, folders, alt text, focal points and responsive images | No |
-| `letterncms/navigation` | [Menus](/content/navigation), edited with drag and drop and kept in sync when pages move | No |
 | `letterncms/email` | [Email](/operations/email) for Lettern and its plugins: SMTP, sendmail or log, provider plugins, branded templates and a delivery log | No |
 | `letterncms/dashboard` | The **Dashboard**: a greeting and the widgets each person arranges | Yes: the admin opens on the first screen of the main sidebar |
-| `letterncms/collections` | The **Collections** screen: creating collections and editing their fields | Yes: collections stay as `content/collections/*.yaml` |
-| `letterncms/globals` | Globals, their fields and `/api/v1/globals/<handle>` | Yes |
+| `letterncms/collections` | The lists of **Content Types** in Structure (Collections, Taxonomies, Globals, Menus): creating them and editing their fields | Yes: collections stay as `content/collections/*.yaml` |
 | `letterncms/users` | **Users** (Team, Visitors, Profile Fields, and the visitor accounts settings as its **Settings** tab), invitations and **Roles** | Yes: accounts and `config/roles.yaml` keep working |
 | `letterncms/audit` | The **Audit Log**: who changed what, when, from where | Yes: nothing is written |
 | `letterncms/blocks` | The block editor, components, templates, styles, data bindings and Block Markdown | Yes, while nothing that builds on it is on (Site and Forms do) |

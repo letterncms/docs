@@ -52,7 +52,7 @@ php cms site:apply studio --clash=rename                # refuse (the default), 
 
 `--mode=design` brings the stylesheet, fonts, templates, components, scripts, styles and libraries; `full` (the default) its content too. While your site has something of a name the site brings, the apply refuses and names each one, until `--clash` says what happens to it: `skip` (yours stays), `replace` (the site's takes its place, after a snapshot in `storage/backups/`) or `rename` (an entry comes in beside yours under a new address, like `home-2`). Everything a site would write is checked before the first file is, and a site that fails on the way leaves your site as it was.
 
-Entries come in under ids of their own, and whatever named them follows: relations, parents, translations, menu items, links and components on blocks. A date that was ahead of the site's making is as far ahead now; an end date that has passed brings the entry in as a draft.
+Entries come in under ids of their own, and whatever named them follows: relations, parents, translations, menu links, links and components on blocks. A date that was ahead of the site's making is as far ahead now; an end date that has passed brings the entry in as a draft.
 
 ## Exporting a site
 
@@ -60,9 +60,8 @@ Entries come in under ids of their own, and whatever named them follows: relatio
 
 | What | Where in the site |
 |---|---|
-| Collections and their published entries (drafts with `--drafts`), always in the file layout | `content/collections/` |
+| Collections and their published entries (drafts with `--drafts`), always in the file layout, globals and menus among them | `content/collections/` |
 | Templates and components | `content/collections/templates/`, `components/` |
-| Globals and menus | `content/globals/`, `content/navigation/` |
 | The stylesheet, fonts, scripts, styles and vendored libraries | `content/styling/` |
 | The images and files something in it names, with their records | `content/media/`, `public/media/` |
 | The few settings a site carries: the site's description, favicon and search index | `config/site.yaml` |

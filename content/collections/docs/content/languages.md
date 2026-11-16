@@ -40,7 +40,7 @@ A translation starts with its own place in search: it doesn't take over the orig
 Lettern takes care of the details that make a multilingual site work:
 
 - **Links follow the visitor.** A link to `/pricing` leads to `/de/preise` on a German page once that version is live, and to the original until then. This works in blocks, templates, menus and rich text.
-- **Menus** show the visitor's language where a translation is live, and each item can have its own label per language. See [Navigation](/content/navigation).
+- **Menus** show the visitor's language: each link can be translated, with its own words, and a link to a page leads to that page's translation once it is live. See [Navigation](/content/navigation).
 - **Forms** have their wording per language, and answer in it. See [Forms](/editing/forms).
 - **A missing page** under `/de/` shows your 404 page in German.
 - **Search engines** learn which pages are translations of each other, and each language gets its own sitemap.
@@ -49,7 +49,7 @@ Lettern takes care of the details that make a multilingual site work:
 
 ## Translate templates and components
 
-Templates and components exist once, so a design change reaches every language at once. Put the words in them in a [global](/content/globals), which holds a value per language, and bind the blocks to it. Switch language at the top of the global to translate them.
+Templates and components exist once, so a design change reaches every language at once. Put the words in them in a [global](/content/globals), and bind the blocks to it. Translate the global's values as you translate a page, with the language button in its toolbar.
 
 ## Add a language switcher
 

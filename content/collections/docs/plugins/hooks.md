@@ -54,11 +54,9 @@ Name them after your plugin, so they never clash with Lettern's own.
 | `entry.uri-changed` | `$entry, $old, $new` | A live entry's URL changed. |
 | `entry.structure-changed` | `$entry, $user` | An entry moves or its position changes. Its editorial draft stays unpublished; use this hook to invalidate structural output. |
 | `entries.reordered` | `$collection, $ids, $user` | Siblings were reordered. |
-| `collection.saved`, `collection.deleted` | `$collection` / `$handle` | A collection definition changed. |
-| `globals.saved` | `$global` | A global's values changed. |
-| `global.saved`, `global.deleted` | `$global` / `$handle` | A global was saved, its fields or its values, or deleted. |
+| `collection.saved`, `collection.deleted` | `$collection` / `$handle` | A collection definition changed, a global's or a menu's included. (A global's values and a menu's links are entries: use the `entry.*` hooks.) |
 | `fieldset.saved` | `$handle` | A fieldset was saved. |
-| `navigation.saved`, `form.saved` | `$handle` | A menu or form changed. (Templates and components are entries: use `entry.saved` and `entry.published`.) |
+| `form.saved` | `$handle` | A form changed. (Templates and components are entries: use `entry.saved` and `entry.published`.) |
 | `redirects.saved` | | The redirect list changed. |
 
 ### Media, forms and comments
@@ -136,7 +134,7 @@ The first argument is the value you return; the rest are there to help you decid
 
 | Filter | Value, then arguments | Lets you change |
 |---|---|---|
-| `admin.manifest` | `$manifest, $user` | What the admin receives at start-up (modules add `collections`, `globals`, the Dashboard and `config.<namespace>` here). |
+| `admin.manifest` | `$manifest, $user` | What the admin receives at start-up (modules add `collections`, the Dashboard and `config.<namespace>` here). |
 | `admin.nav` | `$items` | Sidebar items that come and go (letterncms/content adds one per collection, letterncms/settings one per settings page). |
 | `agent.guide` | `$guide` | The instructions every AI agent gets. |
 | `audit.past` | `$past` | What the Audit Log calls each change once it happened, by ability name: `$past + ['forms/delete' => __('Deleted Form')]`. Give every ability of yours that changes something its words; without them the log falls back to the ability's label. |
@@ -174,13 +172,13 @@ The first argument is the value you return; the rest are there to help you decid
 | `styling.candidates` | `$classes` | Class names your code renders with, so Tailwind makes their CSS: `[...$classes, 'grid', 'md:grid-cols-3', 'bg-primary']`. Classes in the content are found by themselves. |
 | `styling.kernel` | `$css` | A list of CSS strings compiled with every site's stylesheet, before the site's own: what your blocks look like before anybody styles them. It may use `@apply` and the theme's variables. |
 
-### Media, email, forms and menus
+### Media, email, forms and languages
 
 | Filter | Value, then arguments | Lets you change |
 |---|---|---|
 | `media.url`, `media.img` | `$url, $image` / `$html, $image, $alt, $options` | The address and markup of an image (point them at a CDN). |
 | `email.colors` | `$colors` | The background, text and button colors of every email. |
 | `form.data` | `$data, $form, $request` | A submission before it is stored. |
-| `navigation.entry`, `navigation.item` | | How menu items resolve. |
+| `entry.localized` | `$entry, $locale` | The version of an entry read in a language: a menu's link, the page it leads to, a global's values. Lettern's languages give the translation in `$locale` when it is live, and the entry itself otherwise. |
 
 Plugins add hooks of their own: see [Using accounts](/plugins/accounts#hooks).

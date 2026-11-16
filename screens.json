@@ -300,7 +300,7 @@
     },
     "content-menu": {
       "site": "examples",
-      "path": "/admin/navigation/main",
+      "path": "/admin/content/main",
       "size": [
         960,
         560
@@ -318,7 +318,7 @@
     },
     "content-globals": {
       "site": "examples",
-      "path": "/admin/globals/footer",
+      "path": "/admin/content/footer",
       "size": [
         960,
         560
