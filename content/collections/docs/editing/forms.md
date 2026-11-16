@@ -56,7 +56,7 @@ Emails go out through your [email settings](/operations/email).
 
 Open the page, add a **Form** block where you want it, and pick your form under **Choose a Form** in its settings. With no forms yet, the list offers **New Form**, which leads to **Forms** to make one.
 
-Fields look as the site's styling sets them, the same on every form of the site: see [Form fields](/design/site-design#form-fields).
+Fields look as the site's theme sets them, the same on every form of the site: see [Form fields](/design/site-design#form-fields).
 
 ## Read submissions
 

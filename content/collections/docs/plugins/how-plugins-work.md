@@ -115,7 +115,7 @@ final class ReviewsPlugin extends Plugin
         $this->cms()->permissions()->register('reviews.manage', 'Moderate reviews', 'Reviews');
         $this->cms()->abilities()->register('reviews/list', [/* … */]);
         $this->cms()->hooks()->on('entry.published', fn ($entry) => /* … */ null);
-        $this->cms()->admin()->nav('reviews', ['path' => '/reviews', 'icon' => 'star', 'section' => 'content']);
+        $this->cms()->admin()->nav('reviews', ['path' => '/reviews', 'icon' => 'star']);
         $this->cms()->admin()->widget('reviews-latest', ['label' => 'Latest reviews', 'description' => 'New reviews waiting for a reply.', 'icon' => 'star']);
         $this->adminModule();
     }
@@ -347,7 +347,7 @@ $this->cms()->hooks()->addFilter('collections', fn (array $collections) => $coll
 ]);
 ```
 
-`system: true` keeps it out of **Collections** and stops people deleting it; a site can still redefine it with its own `content/collections/<handle>.yaml`. The Blocks module adds `templates` and `components` exactly this way, with `section: design`, so they are listed under **Design** in the sidebar.
+`system: true` keeps it out of **Collections** and stops people deleting it; a site can still redefine it with its own `content/collections/<handle>.yaml`. The Blocks module adds `templates`, `components` and `patterns` exactly this way, with `section: structure`, so they are listed under **Structure** in the sidebar.
 
 ### The starting definition
 

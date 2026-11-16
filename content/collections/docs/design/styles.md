@@ -36,15 +36,15 @@ Everything you set becomes a [Tailwind CSS](https://tailwindcss.com) class on th
 
 ## Use your theme
 
-Fields for sizes and spacing show a small diamond when you point at them, **Theme Values**. Click it and pick a value from your [theme](/design/site-design), like a step of spacing. A color field opens on your theme's colors, by name; **Palette** has Tailwind's colors, shade by shade, and **Custom** any color you mix or type.
+Fields for sizes and spacing show a small diamond when you point at them, **Theme Values**. Click it and pick a value from your [theme](/design/site-design), like a step of spacing. A color field opens on your theme's colors, by name; **Palette** has Tailwind's colors, a swatch for every shade, and **Custom** any color you mix or type.
 
 A block that uses a theme value keeps matching the rest of your site: change the value, and the block follows. Prefer them over typed-in values whenever one fits. **Detach** turns one back into a fixed value.
 
 ## Looks with a name
 
-A look with a name is one your site keeps, like *lede*, *card* or the scheme *Tide*: the same on every block that wears it, and changed in one place, under **Styling → Styles** (a scheme under **Styling → Colors**).
+A look with a name is one your site keeps, like *lede*, *card* or the scheme *Tide*: the same on every block that wears it, and changed in one place, under **Design → Styles** (a scheme under **Design → Colors**).
 
-- The looks a block wears stand in the field at the top of the **Design** tab, each by its name. A look's menu has **Edit Style**, which opens it under **Styling**, **Detach Style**, which takes the look off and leaves what it set on the block, and **Remove Style**.
+- The looks a block wears stand in the field at the top of the **Design** tab, each by its name. A look's menu has **Edit Style**, which opens it under **Design → Styles**, **Detach Style**, which takes the look off and leaves what it set on the block, and **Remove Style**.
 - **Add Style**, in that field, lists your site's styles, buttons and schemes by name, each scheme in its colors. Type to find one; the one you point at is drawn below the list as your site draws it. Pick one to give it to the block.
 - **Save as Style…**, at the end of that list, names what you set on the block, like *card*, and saves it as a style other blocks can wear. What you set for tablets and phones stays on the block.
 
@@ -61,7 +61,7 @@ Choose **Desktop**, **Tablet** or **Phone** in the editor's top bar. The page sh
 1. Style the block on **Desktop**: that holds on every screen.
 2. Switch to **Tablet** or **Phone** and change what should be different there, like three columns becoming one. Desktop stays as it was.
 
-A change on **Tablet** holds on tablets and phones, below the *lg* screen size; one on **Phone** only on phones, below *md*. The sizes are your theme's: see **Layout → Breakpoints** in [Styling](/design/site-design).
+A change on **Tablet** holds on tablets and phones, below the *lg* screen size; one on **Phone** only on phones, below *md*. The sizes are your theme's: see **Design → Layout → Breakpoints** in your [theme](/design/site-design).
 
 Field labels tell you where a value comes from. A label on a colored background is set here, on this screen and state: click it to reset it. A label on a gray background comes from a larger screen, another state or the component. A section with either carries a dot beside its title.
 

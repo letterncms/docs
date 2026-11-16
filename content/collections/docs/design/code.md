@@ -20,7 +20,7 @@ There is no build step of your own. You write ES modules and plain CSS, say wher
 
 A name is lowercase letters, digits, `-` and `_`, in up to three folders.
 
-In the admin, all of it is on the **Code** page, under **Design** in the sidebar: its files are listed beside the one that is open. **Stylesheets** starts with the site's own CSS, **Site CSS**, and lists the other stylesheets; **Scripts** starts with the site's own file, **Site JavaScript**, and lists the other scripts; **Libraries** lists what the scripts import. The **+** beside each adds one. Changing any of it needs the **Edit Scripts and Stylesheets** permission, which is **Trusted Only**.
+In the admin, all of it is on the **Code** page, under **Structure** in the sidebar: its files are listed beside the one that is open. **Stylesheets** starts with the site's own CSS, **Site CSS**, and lists the other stylesheets; **Scripts** starts with the site's own file, **Site JavaScript**, and lists the other scripts; **Libraries** lists what the scripts import. The **+** beside each adds one. Changing any of it needs the **Edit Scripts and Stylesheets** permission, which is **Trusted Only**.
 
 ## Say where a file loads
 
@@ -184,6 +184,6 @@ The context resource `cms://site/code` gives an agent the same lists with the ru
 
 ### Starter's example
 
-A new site, from Starter, has no code of its own: its section colours are schemes and its long-form text is styled under **Styling → Styles → Articles**, so **Code** starts empty. A scheme such as *Tide* (deep sea green), *Clay* (terracotta), *Sun* (yellow), *Mist* (pale blue), *Band* (near black) or *Photo* (light words over a photograph) sets the theme's colours for what is inside a **Section** or a **Box**, so headings, buttons and muted text follow without styles of their own. A state can pick one, so Starter's project and story cards take their colour from the entry: `data-clay:scheme-clay` when a story's topic is *Making*. See [Schemes](/design/site-design#schemes).
+A new site, from Starter, has no code of its own: its section colours are schemes and its long-form text is styled under **Design → Styles → Articles**, so **Code** starts empty. A scheme such as *Tide* (deep sea green), *Clay* (terracotta), *Sun* (yellow), *Mist* (pale blue), *Band* (near black) or *Photo* (light words over a photograph) sets the theme's colours for what is inside a **Section** or a **Box**, so headings, buttons and muted text follow without styles of their own. A state can pick one, so Starter's project and story cards take their colour from the entry: `data-clay:scheme-clay` when a story's topic is *Making*. See [Schemes](/design/site-design#schemes).
 
 See [A pinned scroll scene and a 3D canvas](/design/front-end-example) for all of this working together.

@@ -10,7 +10,7 @@ Pages stay the static HTML they were. Without JavaScript, every link loads its p
 
 ## Turn it on
 
-Open **Styling → Motion → Page Transition** and set **Page Loads** to **Instant**. **Full Page** is the default.
+Open **Design → Motion → Page Transition** and set **Page Loads** to **Instant**. **Full Page** is the default.
 
 From then on:
 

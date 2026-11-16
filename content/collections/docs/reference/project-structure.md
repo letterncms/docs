@@ -21,7 +21,7 @@ However the site was installed, from the zip or with Composer, the folder is a C
 | `plugins/` | The plugins of this site: `plugins/<name>`, and a third party's in `plugins/<vendor>-<name>`. Your own go here too. | Only what you wrote |
 | `sites/` | The [sites](/design/sites) this site can apply: `sites/<name>`, and a third party's in `sites/<vendor>-<name>`. Composer or the store puts them here; a site you exported too. | Only what you made |
 | `config/` | `site.yaml` (name, URL, languages, the admin's language), `plugins.yaml` (enabled plugins, disabled modules), `roles.yaml`, `admin.yaml` (the default sidebar and Dashboard) and one YAML file per settings namespace. | Yes |
-| `content/styling/` | The [styling](/design/site-design): the Tailwind stylesheet (`theme.css`), fonts and the page transition (`settings.json`, `fonts/`), `custom.js`, and the site's own [scripts, styles and libraries](/design/code) (`scripts/`, `styles/`, `code.json`, `vendor/`). | Yes |
+| `content/styling/` | The [theme](/design/site-design): the Tailwind stylesheet (`theme.css`), fonts and the page transition (`settings.json`, `fonts/`), `custom.js`, and the site's own [scripts, styles and libraries](/design/code) (`scripts/`, `styles/`, `code.json`, `vendor/`). | Yes |
 | `content/collections/` | Collection definitions, and entries of file-based collections, including `templates/`, `components/` and `patterns/`. | Yes |
 | `content/schemas/` | The content model as JSON Schema files, written by the site: see [AI and automation](/agents#the-content-model-as-json-schema-files). | Yes |
 | `content/` (the rest) | Fieldsets, globals, forms, menus, redirects. | Yes |

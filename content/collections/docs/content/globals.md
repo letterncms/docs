@@ -13,7 +13,7 @@ A **global** is a group of fields that belong together, like *Contact* or *Foote
 
 ## Create a global
 
-1. Open **Globals**, under **Content** in the sidebar.
+1. Open **Globals**, under **Pinned** in the sidebar.
 2. Press **New Global**, give it a name like *Contact*, and press **Create Global**.
 3. The global opens in the fields editor, with one text field to start. Add the fields you need, like an email address and a phone number, and press **Save** in the bar at the bottom.
 

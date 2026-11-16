@@ -1,18 +1,18 @@
 ---
 id: 01m5wn8rahj942kpc5xx6pns6s
-title: Styling
+title: Theme
 position: 0
 description: Your site's colors, fonts, spacing and how everything looks, in one place. Change them once and every page follows.
 ---
-The styling holds the values your whole site is built from: colors, fonts, text sizes, spacing, corners, shadows and motion. Blocks use these values instead of fixed ones, so when you change your main color, every button, link and heading that uses it changes too.
+The theme holds the values your whole site is built from: colors, fonts, text sizes, spacing, corners, shadows and motion. Blocks use these values instead of fixed ones, so when you change your main color, every button, link and heading that uses it changes too.
 
-It is [Tailwind CSS](https://tailwindcss.com): one stylesheet holds the theme, and blocks carry Tailwind classes. You don't need to know Tailwind to use this page, and if you do, everything works the way you expect.
+It is [Tailwind CSS](https://tailwindcss.com): one stylesheet holds the theme, and blocks carry Tailwind classes. You don't need to know Tailwind to use it, and if you do, everything works the way you expect.
 
-![The styling: colors in the middle, a live preview of the site on the right.](/media/screens/design.webp)
+![Colors: your site's look on one sheet, then its colors, beside a live preview of the site.](/media/screens/design.webp)
 
-Open **Design** in the sidebar, then **Styling**, or press `⌘K` and type *styling*. It is a panel beside your site: your site's look at a glance, then its sections, each opening in the panel with the way back. The preview on the right shows your site as you change things, on desktop, tablet or phone, and in light or dark when the site has dark colors.
+Open **Design** in the sidebar: it opens on **Colors**. Under **Theme**, its sidebar lists **Colors**, **Typography**, **Layout**, **Effects**, **Motion** and **Styles**; under **Site**, your [menus](/content/navigation) and your [sites](/design/sites). You can also press `⌘K` and type a section's name, like *typography*. Each section opens beside your site: the preview on the right shows it as you change things, on desktop, tablet or phone, and in light or dark when the site has dark colors.
 
-Your site is the baseline. A change you haven't saved carries a dot beside its name, and **Revert** in its **⋯** menu takes it back to what your site has. **Undo** and **Redo** in the top bar (`⌘Z`, `⇧⌘Z`) step through your changes, and **Versions** lists every saved styling, newest first: open one to look at it, and save it to go back to it.
+Your site is the baseline. A change you haven't saved carries a dot beside its name, and it goes along when you open another section, until you save it or discard it. Every row has a **⋯** menu: **Copy Name**, **Revert**, which takes a change back to what your site has, and for a value your site added, **Rename…** and **Delete**. A value that came with your site, from Tailwind or Lettern, shows a lock: you can change it, but not rename or delete it. **Undo** and **Redo** in the top bar (`⌘Z`, `⇧⌘Z`) step through your changes, and **Versions** lists every saved theme, newest first: open one to look at it, and save it to go back to it.
 
 ## What's in it
 
@@ -20,23 +20,23 @@ Your site is the baseline. A change you haven't saved carries a dot beside its n
 
 | Section | What you set |
 |---|---|
-| **Colors** | Your colors, each with a light and a dark value; schemes, the colors of a section or a card of their own; and Tailwind's whole palette, shade by shade |
+| **Colors** | Your colors, each with a light and a dark value, and schemes, the colors of a section or a card of their own |
 | **Typography** | Fonts, text sizes, line heights and letter spacing |
 | **Layout** | Spacing, content widths, the screen sizes the site adapts at, and the sizes buttons and fields share |
 | **Effects** | Corners, shadows, inset shadows, drop shadows, text shadows, blur and perspective |
 | **Motion** | Easing curves, durations, animations, how transitions run by default, and how pages change into each other |
-| **Styles** | How the page, its text, buttons, forms and long-form text look, and the looks you named |
+| **Styles** | How the page, its text, buttons, forms and long-form text look, and the styles you named, in groups |
 
 Every value of the theme has a name, like *primary* for your brand color or *content* for a width. You give it a value once, and use the name everywhere. Tailwind's own values are all there to change. A value your site added can be renamed and deleted.
 
 ## Change your colors
 
-1. Open **Colors**.
-2. Click a color's swatch under the sun and pick a new value: one of your colors by name, a shade of the **Palette**, or any color under **Custom**. The preview updates right away.
+1. Open **Colors**. At the top, a sheet shows your site's look at a glance: its display font, large, and its main colors.
+2. Click a color's swatch under the sun and pick a new value: one of your colors by name under **Theme**, one of Tailwind's shades under **Palette** (search either by name, such as *blue 500*), or any color under **Custom**. The preview updates right away.
 3. Give a color a dark value too, its swatch under the moon, and your site follows each visitor's light or dark mode. Switch the preview to dark to check it. A color without a dark value shows its light one, faded, and is the same in both; **Clear** in the picker makes it so again.
 4. Press **Save** in the bar at the bottom, or `⌘S`. **Discard** puts everything back.
 
-Saving restyles every page and rebuilds the site. The **+** at the top of the list adds a color of your own, like *accent*. At the end, **Palette** shows Tailwind's colors, such as *red-500*, a row per color and a column per shade: point at a shade to see its name, click it to change it.
+Saving restyles every page and rebuilds the site. The **+** at the top of the list adds a color of your own, like *accent*. Tailwind's palette, such as *red-500*, isn't a list of its own: its shades are ready in every color picker, under **Palette**.
 
 ## Schemes
 
@@ -66,34 +66,34 @@ The spacing a block offers is Tailwind's scale: steps of one size, the first row
 
 ## Styles
 
-**Styles** lists every look of your site, each drawn as your site draws it, by what it styles:
+**Styles** lists every look of your site in groups. Open a group to see its styles, each drawn as your site draws it, and open a style to change it. The top bar then shows where you are, like *‹ Buttons*: click it to go back.
 
-![Styles: the page, text and buttons, each drawn as the site draws it.](/media/screens/design-styles.webp)
+![Styles: the groups of the site's looks, beside a live preview of the site.](/media/screens/design-styles.webp)
 
 | Group | Holds |
 |---|---|
-| **Page** | The page itself (its background, text and font), selected text, the focus ring and dividers |
-| **Text** | **Heading 1** to **Heading 6**, **Paragraph**, **Link**, **Bold**, **Small**, **Quote**, **Code** and **Caption**, and text styles you named, like *lede* |
+| **Elements** | The page itself (its background, text and font), **Heading 1** to **Heading 6**, **Paragraph**, **Link**, **Bold**, **Small**, **Quote**, **Code**, **Caption**, **Divider**, **Selection** and the **Focus Ring** |
 | **Buttons** | The looks a Button can have, such as *Primary*, *Secondary*, *Ghost* and *Link* |
 | **Forms** | **Fields**, **Labels** with their help, and **Choices**: checkboxes, radio buttons and switches, on every form of the site |
 | **Articles** | Long-form text: its **Spacing**, and its headings, paragraphs, list items, quotes, figures and links where they differ from the rest of the page |
-| **Boxes** | Looks you named for anything else, like *card* |
 
-Open one to style it with the same controls as a block's **Design** tab, for the screen the preview shows. For a link or a button, choose **Hover** in the state menu at the top to style it while it is pointed at. A changed element's **⋯** menu has **Revert**, which takes it back to what your site has. A block's own styles always win over these.
+After them come the groups you make, like *Cards*, and **Ungrouped**, for the styles you named that are in no group.
+
+A style opens with the same controls as a block's **Design** tab, for the screen the preview shows. For a link or a button, choose **Hover** in the state menu at the top to style it while it is pointed at. A changed style's **⋯** menu has **Revert**, which takes it back to what your site has. A block's own styles always win over these.
 
 ### Looks with a name
 
 A look with a name is one you give to blocks. Make a *card* once, with its corners, border and padding, and give it to every block that should look like one. Change the look, and they all change.
 
-1. Press **+** beside **Text**, **Buttons** or **Boxes**. Name it, like *card*.
+1. Press **New Style**. Name it, like *card*, and give it a group, like *Cards*, or leave the group empty. Inside a group, **New Style** puts it there.
 2. Style it with the same controls as a block's **Design** tab, for each screen and state.
 3. Press **Save**. It is now offered on every block, under **Add Style** at the top of its **Design** tab.
 
-Its **⋯** menu has **Rename…**, **Duplicate…** and **Delete**. You can also save one from a block you already styled: see [Styles](/design/styles#looks-with-a-name).
+Its **⋯** menu has **Copy Name**, **Rename…**, **Duplicate…**, **Move to Group…** and **Delete**. A group's **⋯** menu has **Rename…** and **Delete**, which deletes the group and keeps its styles, ungrouped. You can also save a look from a block you already styled: see [Styles](/design/styles#looks-with-a-name).
 
 ### Buttons
 
-A **Button** block's **Style** menu lists the looks under **Buttons**. A new one starts as a copy of the first: name it *Outline*, and **Outline** appears in every Button's **Style** menu. Behind the scenes it is a class named `btn-outline`.
+A **Button** block's **Style** menu lists the looks under **Buttons**. **New Button** starts one as a copy of the first: name it *Outline*, and **Outline** appears in every Button's **Style** menu. Behind the scenes it is a class named `btn-outline`.
 
 A look has no size of its own, so every look comes in every size: a Button's **Size** picks S, M or L. A Button with an icon and no label is square, as wide as it is tall. **Shape** **Round** makes it a circle, or a labelled button a pill. Give an icon-only button a **Name for Screen Readers**, like *Search*.
 
@@ -105,7 +105,7 @@ Buttons, form fields, tag fields and chips share one size scale: small, medium a
 
 Every field on the site looks the same: the forms you build, the sign-in and account pages, the checkout, list filters and the **Input** block. A field reads its fill, border, corners and colors from one set of values, so what you set once reaches text fields, dropdowns, text areas, checkboxes, switches, tag fields and file pickers at the same time.
 
-Out of the box, fields follow your theme: its *raised*, *border*, *primary* and *muted* colors and its *md* radius. To give them a look of their own, open **Styles → Forms**: **Fields** for their fill, border, corners and how they look pointed at, focused or wrong, **Labels** for labels, help and the space between fields, **Choices** for checkboxes, radio buttons and switches.
+Out of the box, fields follow your theme: its *raised*, *border*, *primary* and *muted* colors and its *md* radius. To give them a look of their own, open **Styles → Forms**. Each part shows what it styles: **Fields** a text field at rest, pointed at, focused and wrong, a text area and a dropdown, for their fill, border and corners in each state; **Labels** two fields with their labels and help, for the labels, help and the space between fields; **Choices** each kind checked and not, for checkboxes, radio buttons and switches.
 
 ## Page transitions
 
@@ -123,7 +123,7 @@ Under **Styles → Articles**, **Spacing** sets the space between blocks, above 
 
 ## Code
 
-**Code**, under **Design** in the sidebar, is for what the **Styling** sections don't cover: its files are listed beside the one that is open. **Site CSS** holds the CSS of your own: a rule for a selector of your own, a variable the sections have no place for, a variant of your own. What the sections set is not in it: they keep it. A site from Starter has none. A stylesheet Tailwind can't read is not saved, and the page says why in Tailwind's own words.
+**Code**, under **Structure** in the sidebar, is for what the sections of **Design** don't cover: its files are listed beside the one that is open. **Site CSS** holds the CSS of your own: a rule for a selector of your own, a variable the sections have no place for, a variant of your own. What the sections set is not in it: they keep it. A site from Starter has none. A stylesheet Tailwind can't read is not saved, and the page says why in Tailwind's own words.
 
 **Site JavaScript** runs on every page. Under **Stylesheets** and **Scripts**, after the site's own, are the site's other files, which load only where you say, and **Libraries** lists what scripts import. See [Scripts and styles](/design/code).
 
@@ -134,7 +134,7 @@ Under **Styles → Articles**, **Spacing** sets the space between blocks, above 
 
 ### The files
 
-The styling lives in `content/styling/` next to your content, so it is versioned with the site.
+The theme lives in `content/styling/` next to your content, so it is versioned with the site.
 
 | File | Holds |
 |---|---|
@@ -184,7 +184,7 @@ The styling lives in `content/styling/` next to your content, so it is versioned
 }
 ```
 
-It starts with two imports: Tailwind, then `cms`, the stylesheet blocks, buttons and form fields are built from. After them it has four kinds of things, and each section of the **Styling** page edits one of them where it stands, so comments and hand-written CSS stay as they are. What no section shows is the site's own CSS, under **Code**.
+It starts with two imports: Tailwind, then `cms`, the stylesheet blocks, buttons and form fields are built from. After them it has four kinds of things, and each section of **Design** edits one of them where it stands, so comments and hand-written CSS stay as they are. What no section shows is the site's own CSS, under **Code**.
 
 ### The theme
 
@@ -215,9 +215,10 @@ Blocks, buttons and fields read a few names whatever the site: the colors `backg
 
 ### Styles
 
-A look with a name, a button's look and a scheme are each an `@utility` rule that applies other classes. Blocks carry it like any Tailwind class, with every variant: `card`, `md:card`, `hover:card`. **Styles** sorts a look by what it sets: one that sets only how text looks is under **Text**, `btn-*` under **Buttons**, any other under **Boxes**.
+A look with a name, a button's look and a scheme are each an `@utility` rule that applies other classes. Blocks carry it like any Tailwind class, with every variant: `card`, `md:card`, `hover:card`. Under **Styles**, `btn-*` is under **Buttons**. Any other look is in the group named by a comment right before it, or under **Ungrouped** without one:
 
 ```css
+/* group: Cards */
 @utility card {
   @apply rounded-xl border border-border bg-raised p-6 hover:border-accent;
 }

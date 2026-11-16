@@ -10,7 +10,7 @@ Menus are the lists of links in your header, your footer or anywhere else. Build
 
 ## Make a menu
 
-1. Open **Navigation**, under **Content** in the sidebar, and press **New Menu**.
+1. Open **Design** in the sidebar, then **Navigation**, and press **New Menu**.
 2. Give it a name, like *Main*, *Footer* or *Legal*, and press **Create Menu**.
 3. Press **Add Page** to pick one of your pages, or **Add Link** for any other address.
 4. Press **Save** in the bar at the bottom, or `⌘S`. The bar shows while the menu has changes, with **Discard** beside it.

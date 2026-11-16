@@ -4,7 +4,7 @@ title: Sites
 position: 12
 description: 'A whole site you can switch to and back: choosing one, trying others without losing your work, and making one from your own site.'
 ---
-Open **Settings → Sites** to browse, import, export, and switch between complete sites. Each can contain pages, posts, collections, menus, design, and media. When you switch, Lettern saves your work so you can return to it later.
+Open **Design → Sites** to browse, import, export, and switch between complete sites. Each can contain pages, posts, collections, menus, design, and media. When you switch, Lettern saves your work so you can return to it later.
 
 **Starter** is selected when you install Lettern. It is a complete site for a small studio to make your own: a home page, work with four projects, a journal with five stories, about and contact pages, and 33 ready-made [patterns](/design/patterns), with photographs, a film and a sound recording throughout. Setup downloads it from the store as `letterncms/starter`. You can also choose another site or start with an empty one.
 
@@ -25,11 +25,11 @@ If your installation already has collections, setup uses the existing content.
 
 ## Getting more sites
 
-Open **Settings → Sites → Browse Store** to find and install a site. Installed sites appear on **Sites**, where you can switch to them. To update a site you got from the store, open its listing in **Browse Store**.
+Open **Design → Sites → Browse Store** to find and install a site. Installed sites appear on **Sites**, where you can switch to them. To update a site you got from the store, open its listing in **Browse Store**.
 
 ## Switching sites
 
-Choose a site from the name at the top of the sidebar or open **Settings → Sites**. The selection takes effect immediately.
+Choose a site in the menu beside your site's name, at the top of the sidebar, or open **Design → Sites**. The selection takes effect immediately.
 
 Lettern saves the current site, including drafts, before switching. Choose it again to resume where you left off, or use **Undo** immediately after switching. **Start Over** restores a site's original files and asks before deleting its saved changes.
 

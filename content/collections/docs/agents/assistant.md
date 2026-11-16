@@ -28,7 +28,7 @@ You can also switch models from the picker under the message box. Your choice ap
 
 ## Ask
 
-Click **Chat** in the top bar or **New Chat** in the sidebar, on any screen, or press `⌘J`. You can also press `⌘K`, type your request after the `/` and press `Enter`: words that match no command are asked. The workspace opens ready to type in.
+Click **Chat** in the top bar, on any screen, or press `⌘J`. You can also press `⌘K`, type your request after the `/` and press `Enter`: words that match no command are asked. The workspace opens ready to type in.
 
 | Press | To |
 |---|---|
@@ -99,7 +99,7 @@ To use the assistant, a person's role needs the **Use the AI Assistant** permiss
 
 ## Your threads
 
-- **Start a new one** with **New Chat**, at the top of the sidebar or the **+** at the top of the workspace. What you have on view is attached, ready for your first message.
+- **Start a new one** with the **+** at the top of the workspace. What you have on view is attached, ready for your first message.
 - **Find an old one** with the history button at the top of the workspace. A new thread lists all of them by age, and at full size they have a column of their own.
 - **Delete one** with **Delete Chat**, from the trash button on its row, its right-click menu or the three-dot menu at the top of the workspace, then confirm. It's gone for good. **Discard Draft** does the same for an unsent new one. Stop a running reply first.
 

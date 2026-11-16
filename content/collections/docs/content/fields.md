@@ -12,7 +12,7 @@ Collections and globals use fields in exactly the same way, so once you've added
 
 ## Add a field
 
-1. Open **Collections**, under **Design** in the sidebar, and pick a collection. For a global, open it and press **Edit Fields**.
+1. Open **Collections**, under **Structure** in the sidebar, and pick a collection. For a global, open it and press **Edit Fields**.
 2. On the **Fields** tab, press **Add Field** and pick a type. Type to search the list.
 3. Give the field a **Label** (what people see) and a **Handle** (the name it's stored under, like `price`).
 4. Press **Save** in the bar at the bottom, or `⌘S`.
