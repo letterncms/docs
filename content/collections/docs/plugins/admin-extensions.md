@@ -12,7 +12,7 @@ Start with a [view](/plugins/views). For a screen that is itself an editor, ther
 
 ```php
 // In your provider's boot()
-$this->cms()->admin()->nav('reviews', ['path' => '/reviews', 'icon' => 'star', 'section' => 'content']);
+$this->cms()->admin()->nav('reviews', ['path' => '/reviews', 'icon' => 'star']);
 $this->adminModule();
 ```
 
@@ -34,7 +34,7 @@ function ReviewsScreen() {
 registry.routes.set('/reviews', { path: '/reviews', component: ReviewsScreen })
 ```
 
-Build it to `dist/admin.js` (see [Build setup](#build-setup)), and **Reviews** appears under **Content** in the sidebar. Without a `label`, a plugin's main screen takes the plugin's name, `extra.cms.label` in its `composer.json`, so the screen, its settings and its row in **Plugins** are all called the same. `useAbility` runs one of your [abilities](/agents/abilities) with the signed-in person's permissions, so the screen never sees more than they may.
+Build it to `dist/admin.js` (see [Build setup](#build-setup)), and **Reviews** appears under **Pinned** in the sidebar. Without a `label`, a plugin's main screen takes the plugin's name, `extra.cms.label` in its `composer.json`, so the screen, its settings and its row in **Plugins** are all called the same. `useAbility` runs one of your [abilities](/agents/abilities) with the signed-in person's permissions, so the screen never sees more than they may.
 
 ## What you can import
 
@@ -81,8 +81,7 @@ The PHP side declares what the admin lists: sections and sidebar items, Dashboar
 
 ```php
 $admin = $this->cms()->admin();
-$admin->section('shop', 'Shop', order: 30);
-$admin->nav('reviews', ['label' => 'Reviews', 'path' => '/reviews', 'icon' => 'star', 'section' => 'shop', 'permission' => 'reviews.manage']);
+$admin->nav('reviews', ['label' => 'Reviews', 'path' => '/reviews', 'icon' => 'star', 'permission' => 'reviews.manage']);
 $admin->widget('reviews-latest', ['label' => 'Latest reviews', 'description' => 'New reviews waiting for a reply.', 'icon' => 'star', 'column' => 'main', 'permission' => 'reviews.manage']);
 $admin->command('reviews-new', ['label' => 'Moderate reviews', 'path' => '/reviews', 'keywords' => ['ratings']]);
 ```
@@ -99,7 +98,7 @@ registry.commands.set('reviews-ask', { label: 'Summarize reviews', perform: () =
 
 | Registry | For |
 |---|---|
-| `routes` | Screens. `overlay: true` draws one over the screen it was opened from, which stays open underneath: go there and back with `navigate(path, { overlay: true })`, which doesn't ask about unsaved changes. `private: true` keeps a screen's title and text out of `useScreenContext` readers. |
+| `routes` | Screens. `overlay: true` draws one over the screen it was opened from, which stays open underneath: go there and back with `navigate(path, { overlay: true })`, which doesn't ask about unsaved changes. `keep: true` makes one screen of every path it matches (`/design/*`), so going from one to another keeps it and what it holds on view. `private: true` keeps a screen's title and text out of `useScreenContext` readers. |
 | `fields` | The editing component for a field type. |
 | `panels` | Components in named [slots](#slots). |
 | `widgets` | Dashboard widgets (declared in PHP, rendered from here). |
@@ -139,15 +138,18 @@ The admin starts loading code and data on link hover or focus. While an uncached
 
 The sidebar is drawn from registered sections and items. The screen on view decides what it shows:
 
-- **The main sidebar**, where people work: every item, section by section, in the order each person put them. The kernel registers the sections `main` (no heading: Dashboard, Analytics, and the row into the design), `content` (*Content*: the collections, Media, Forms) and `site` (*Site*: Navigation, Globals). Each collection is an item too (`collection.<handle>`, in the section its definition names). Everything is there from the start; **More** appears only for what someone unpins.
-- **A room**: a sidebar of its own that takes the main one's place while one of its screens is on view, under its name and a way back (`Esc`). The kernel registers two:
-  - **Design**, entered from its row in the main sidebar, which opens on the site itself (`/design`): `design` (Styling, Templates, Components, Patterns, Code).
-  - **Settings**, opened with the gear beside your name or `⇧⌘,`: what is set up once. `system` (no heading: **General**, **Account**, **Languages**, **Collections**, **Sites**, **Plugins**, **Email**, **Audit Log**), then `people` (*People*: Users, Roles) and `plugins` (*Plugins*). Each settings page is an item (`settings.<namespace>`). Whatever a plugin puts in a section of settings is listed under **Plugins**, by the plugin's name, so no plugin makes a group of its own; that includes settings kept as a **Settings** tab on the plugin's own screen (see [Settings](/plugins/settings#a-settings-tab-on-your-own-screen)).
+- **The main sidebar**, where the work starts. First the section `main`, the same for everyone and always there: Dashboard, Analytics, and a row into each room. Then **Pinned** (`pinned`): what each person keeps a click away, in the order they put it. An item registered without a `section` is listed there, like Media, Globals and a plugin's screen such as Forms. A screen of a room is there once someone pins it; Pages is pinned from the start. What someone unpins from the `pinned` section waits under **More**, at the end of Pinned; a room's screen they unpin is in its room only.
+- **A room**: a sidebar of its own that takes the main one's place while one of its screens is on view, under its name and a way back (`Esc`). The kernel registers four:
+  - **Entries**, entered from its row in the main sidebar: `content`, an item per collection (`collection.<handle>`, in the section its definition names), like Pages and Posts.
+  - **Design**, which opens on **Colors** (`/design/colors`): `design` (*Theme*: Colors, Typography, Layout, Effects, Motion and Styles, each at `/design/<section>`), then `design-site` (*Site*: Navigation, Sites).
+  - **Structure**: `structure` (Collections, Templates, Components, Patterns, Code).
+  - **Settings**, opened with the gear beside your name or `⇧⌘,`: what is set up once. `system` (no heading: **General**, **Account**, **Languages**, **Plugins**, **Email**, **Audit Log**), then `people` (*People*: Users, Roles) and `plugins` (*Plugins*). Each settings page is an item (`settings.<namespace>`). Whatever a plugin puts in a section of settings is listed under **Plugins**, by the plugin's name, so no plugin makes a group of its own; that includes settings kept as a **Settings** tab on the plugin's own screen (see [Settings](/plugins/settings#a-settings-tab-on-your-own-screen)).
 
-  A room is a place to visit, not something to arrange: its items are never pinned. In every room, sections without a heading come first as one group, and a section with one item joins them.
+  Every screen of a room but a settings page can be pinned to the main sidebar from its row there. In every room, sections without a heading come first as one group, and a section with one item joins them.
 
 ```php
-$admin->section('shop', 'Shop', order: 30);                           // a section of the main sidebar
+$admin->nav('reviews', ['path' => '/reviews', 'icon' => 'star']);    // under Pinned
+$admin->nav('badges', ['label' => 'Review Badges', 'path' => '/badges', 'icon' => 'star', 'section' => 'design', 'pinned' => true]); // in Design, pinned from the start
 $admin->section('billing', 'Billing', order: 15, room: 'settings');   // a section of settings
 $admin->room('studio', 'Studio', icon: 'brush', section: 'main', order: 40); // a room, with a row of the main sidebar that leads in
 $admin->section('studio', '', room: 'studio');                        // and its screens' section
@@ -157,9 +159,9 @@ $admin->opens('studio', '/studio');                                   // where i
 | Item key | Meaning |
 |---|---|
 | `label`, `path`, `icon` | What the row shows and where it goes. Leave out `label` on a plugin's main screen to use the plugin's name. |
-| `section` | The section it's listed in: of the main sidebar, or of a room when the section is registered with `room:`. |
+| `section` | Where it's listed: `pinned` (the default), under Pinned; `main`, among the rows everyone starts from; or a room's section: `content` (Entries), `design` or `design-site` (Design), `structure` (Structure), `system` or `people` (Settings), or one registered with `room:`. |
 | `order` | Its default place in the section. |
-| `pinned` | `true` by default: in everyone's sidebar until they arrange their own. `false` puts it under **More**, for a screen nearly nobody opens. |
+| `pinned` | For a screen of a room: `true` pins it to the main sidebar from the start, until someone arranges their own. `false` by default. |
 | `shortcut` | A key that opens it, shown with the label (e.g. `mod+j`) and listed when someone presses `?`. |
 | `permission` | Who may open it. `visible` (a `fn (User $user): bool`) decides per person beyond that. |
 | `badge` | A callable returning a count (new form submissions), shown with the label. |
@@ -182,15 +184,15 @@ The view is the widget's alone: it has no address of its own, and only those who
 
 ### How people arrange it
 
-Every row in the sidebar (pinned, under More, settings) and every `SidebarRow` a plugin draws behaves the same:
+Every row in the sidebar (pinned, under More, in a room) and every `SidebarRow` a plugin draws behaves the same:
 
 - A label too long for the row slides to show its end on hover.
 - The row's main action (**Unpin**, **Pin to Sidebar**, **Delete Chat**) shows as a button on hover. `Tab` moves from row to row without stopping on it.
 - Right-click (long-press on touch) lists everything the row can do, starting with **Open in New Tab**.
 
-Everyone arranges their own sidebar: **Unpin**, **Move Up** and **Move Down** on a row, **Pin to Sidebar** under **More**, drag to reorder, or **Customize Sidebar…** (in every row's menu, at the end of **More** and in `⌘K`) for every item at once. Their arrangement is the `sidebar` preference, and **Reset to Default** in Customize Sidebar gives it up. Until they make one, they see the site's default: **Save as Default** writes it to the `sidebar` value of the `admin` settings, and **Reset Everyone's Default** puts back what modules and plugins registered.
+Everyone arranges their own **Pinned**: **Move Up**, **Move Down** and **Unpin** on a pinned row, **Pin to Sidebar** on a room's row or under **More**, drag to reorder, or **Customize Sidebar…** (in the site menu beside the site's name, in the menu of every row that can be pinned and in `⌘K`) for everything at once. Their arrangement is the `sidebar` preference, and **Reset to Default** in Customize Sidebar gives it up. Until they make one, they see the site's default: **Save for Everyone** writes it to the `sidebar` value of the `admin` settings, and **Reset Everyone's Default** puts back what modules and plugins registered.
 
-A new item lands in its section after what's there, pinned unless registered `pinned: false`. An item that disappears (a plugin turned off) keeps its place for when it returns. Items under More stay in `⌘K`: pinning is about focus, and the item's `permission` decides access.
+A new item of the `pinned` section lands at the end of Pinned; a screen of a room joins it once someone pins it, or from the start with `pinned: true`. An item that disappears (a plugin turned off) keeps its place for when it returns. What isn't pinned stays in its room, under More and in `⌘K`: pinning is about focus, and the item's `permission` decides access.
 
 A module puts its own item away or back with `events.emit('sidebar.pin', { id, pinned })` (unpinning offers **Undo**); `events.emit('sidebar.customize')` opens Customize Sidebar.
 
@@ -258,7 +260,7 @@ registry.panels.set('reviews-summary', { slot: 'entry.sidebar', label: 'Reviews'
 | `entry.body` | Extra content after the main body, supplied through the workspace footer | Same |
 | `entry.editor` | The shared body workspace for the explicitly configured blocks field | `EntryEditorProps` |
 | `shell.dock` | A column at the right edge, on every screen. Draw it with `Dock` from `@letterncms/ui` (`open`, `full`, `floating`, `label`): the page stays usable next to it, people can drag it wider, `floating` makes it a card over the page that moves by an element with `data-dock-drag`, `full` grows it over the screen, and small windows get it over the page. The [workspace](/getting-started/workspace)'s thread is one | |
-| `sidebar.start` | Rows at the top of the main sidebar, above what's pinned: the workspace's **New Chat**. Draw them with `SidebarRow` | `onNavigate` |
+| `sidebar.start` | Rows at the top of the main sidebar, above the dashboard. Draw them with `SidebarRow` | `onNavigate` |
 | `workspace.composer` | In the thread's composer, beside **Send**: an [agent](/plugins/agents)'s own controls, such as the assistant's model picker | `ComposerPanelProps`: `thread`, `agent` (the one answering there, its `name` and `label`, or `null`), `state`, `options`, `setOption`, `busy`, `loading` |
 | `shell.banner` | A strip above the screen, beside the sidebar, for a notice that concerns the whole admin (update notices) | |
 | `topbar.end` | In every screen's top bar, before the screen's own actions: the way back to what's docked | |
@@ -305,7 +307,7 @@ Every screen has one compact top bar: its name after the places that lead to it 
 
 A screen with tabs of its own uses `ScreenTabs` and `useScreenTabs()` from `@letterncms/ui`. When the plugin keeps its settings with the screen, they follow as its last tab, **Settings**: see [Settings](/plugins/settings#a-settings-tab-on-your-own-screen).
 
-A form is saved with `SaveBar` (`dirty`, `saving`, `error`, `onSave`, `onDiscard`): a bar over the bottom of the screen, there only while something changed, with **Discard** and **Save** (`⌘S`), that says what went wrong when saving fails. Leaving with changes asks first, and with changes in more than one form on view, one bar saves or discards them all. A screen shows no Save button of its own.
+A form is saved with `SaveBar` (`dirty`, `saving`, `error`, `onSave`, `onDiscard`, and `within`, a path whose places share the changes, so moving between them doesn't ask): a bar over the bottom of the screen, there only while something changed, with **Discard** and **Save** (`⌘S`), that says what went wrong when saving fails. Leaving with changes asks first, and with changes in more than one form on view, one bar saves or discards them all. A screen shows no Save button of its own.
 
 Something on a screen that someone should see before going on, a problem or a step still to take, is a `Notice` from `@letterncms/ui` (`tone`, `icon`, `title`, its text, an `action` and `onDismiss`): the same one a view's `ui/notice` draws. Anything that failed is a `QueryError` (`title`, `message`, `onRetry`, and `compact` in a panel or a widget), with **Try Again**; never an `EmptyState`, which is for nothing being there yet (`compact` in a widget) beside `NoMatches` for a search that finds nothing. The way into deleting something is `<Button variant="destructive">`, followed by `confirm({ title, confirm, danger: true })`, where `confirm` is the verb on its button.
 
@@ -358,7 +360,7 @@ Custom field controls use `fieldControlId(field)` from `@letterncms/ui` for thei
 
 ## Lists of records
 
-In a view, a list is `ui/records` (see [Views](/plugins/views)), drawn with `DataView`. In your own React, use `DataView` from `@letterncms/ui` for any overview of records. It gives you the same Table, Grid and Calendar views as content collections (Grid only with `image`, Calendar only with `calendar`), with search, sortable headers, a **Display** menu, saved column and view preferences, loading and error states, and keyboard navigation (`j`/`k`, `x`, Enter and Escape).
+In a view, a list is `ui/records` (see [Views](/plugins/views)), drawn with `DataView`. In your own React, use `DataView` from `@letterncms/ui` for any overview of records. It gives you the same Table, Grid and Calendar views as content collections (Grid only with `image`, Calendar only with `calendar`, and `group` to put the cards in groups), with search and a **Display** menu however short the list, sortable headers, saved column and view preferences, loading and error states, and keyboard navigation (`j`/`k`, `x`, Enter and Escape).
 
 ```typescript
 <DataView

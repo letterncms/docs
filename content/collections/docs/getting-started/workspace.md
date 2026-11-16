@@ -15,7 +15,7 @@ The workspace sits at the right edge of every screen. Run a command, find anythi
 |---|---|
 | `⌘J` | Open or close the workspace |
 | `⌘K`, or **Search** in the sidebar | Open it with `/` typed: find and do anything |
-| **New Chat** | Start a fresh thread: at the top of the sidebar, or **+** at the top of the workspace |
+| **+** | Start a fresh thread, at the top of the workspace |
 | `/` at the start of a line | Pick a command |
 | `Enter` | Search for what you typed, or with the assistant, ask it |
 | `Esc` | Put the workspace away |

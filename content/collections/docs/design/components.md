@@ -8,7 +8,7 @@ A component is a piece of design you make once and use in many places: a header,
 
 ![The Header component open in the editor, with its settings on the right.](/media/screens/design-component.webp)
 
-Components live under **Components**, in **Design**, each shown as your site draws it. Every copy stays linked to its component. Use them for headers, footers and cards. For blocks you want to copy once and then change freely, like a hero or a whole page to start from, use a [pattern](/design/patterns).
+Components live under **Components**, in **Structure**, each shown as your site draws it, grouped by category. Every copy stays linked to its component. Use them for headers, footers and cards. For blocks you want to copy once and then change freely, like a hero or a whole page to start from, use a [pattern](/design/patterns).
 
 ## Make a component
 
@@ -28,7 +28,7 @@ Press the `+` between two blocks, or type `/` in an empty line, and search. Comp
 
 A card component is more useful when each copy can show its own title, image and link. Those are the component's **properties**.
 
-1. Open the component: select a copy and press **Edit Component** (the pencil) in its **Content** tab, or open it from **Components** in the sidebar.
+1. Open the component: select a copy and press **Edit Component** (the pencil) in its **Content** tab, or open it from **Structure → Components** in the sidebar.
 2. In the component's settings, under **Properties**, press **Add Property**. Choose a type, like text, image or link, and give it a label. It works like adding a field to a collection.
 3. Select the block inside the component that should show it, like the card's heading. Point at its **Text**, press the database icon beside the label (**Connect to Data**), and pick the property under **Component Properties**.
 4. **Publish** the component.

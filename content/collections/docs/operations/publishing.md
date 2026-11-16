@@ -43,7 +43,7 @@ Lettern remembers what each page shows. So when you change something, it rebuild
 
 - **Change a dish**, and its page, the menu that lists it and the home page that features it are rebuilt.
 - **Change the header**, and the pages that show the header are rebuilt.
-- **Change something every page uses**, like the [styling](/design/site-design), a template, a menu or the site settings, and the whole site is rebuilt.
+- **Change something every page uses**, like the [theme](/design/site-design), a template, a menu or the site settings, and the whole site is rebuilt.
 
 It runs in the background, a little at a time, so you never wait for it, and there's no server to set up. The dashboard shows the progress.
 

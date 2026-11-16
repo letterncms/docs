@@ -10,7 +10,7 @@ A pattern is never linked to the pages it was copied to, and it has no propertie
 
 ## Find your patterns
 
-Open **Design** in the sidebar, then **Patterns**. Every pattern is shown as your site draws it, grouped by category. Search finds a pattern by its name, category, description or keywords. Open one to edit it in the editor, like a page, and **Publish** it.
+Open **Structure** in the sidebar, then **Patterns**. Every pattern is shown as your site draws it, with its description, grouped by category. Search finds a pattern by its name, category, description or keywords, and **Display** switches to a table, like the lists of templates and components. Open one to edit it in the editor, like a page, and **Publish** it.
 
 Categories are free words. These are offered first: **Heroes**, **Text**, **Media**, **Features**, **People**, **Lists**, **Calls to Action** and **Pages**. Any other category you type makes a new group.
 

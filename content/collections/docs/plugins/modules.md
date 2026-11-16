@@ -21,13 +21,13 @@ A module registers its abilities, permissions, settings, sidebar items and scree
 | `letterncms/media` | The [media library](/content/media): uploads, folders, alt text, focal points and responsive images | No |
 | `letterncms/navigation` | [Menus](/content/navigation), edited with drag and drop and kept in sync when pages move | No |
 | `letterncms/email` | [Email](/operations/email) for Lettern and its plugins: SMTP, sendmail or log, provider plugins, branded templates and a delivery log | No |
-| `letterncms/dashboard` | The **Dashboard**: a greeting and the widgets each person arranges | Yes: the admin opens on the first pinned sidebar item |
+| `letterncms/dashboard` | The **Dashboard**: a greeting and the widgets each person arranges | Yes: the admin opens on the first screen of the main sidebar |
 | `letterncms/collections` | The **Collections** screen: creating collections and editing their fields | Yes: collections stay as `content/collections/*.yaml` |
 | `letterncms/globals` | Globals, their fields and `/api/v1/globals/<handle>` | Yes |
 | `letterncms/users` | **Users** (Team, Visitors, Profile Fields, and the visitor accounts settings as its **Settings** tab), invitations and **Roles** | Yes: accounts and `config/roles.yaml` keep working |
 | `letterncms/audit` | The **Audit Log**: who changed what, when, from where | Yes: nothing is written |
 | `letterncms/blocks` | The block editor, components, templates, styles, data bindings and Block Markdown | Yes, while nothing that builds on it is on (Site and Forms do) |
-| `letterncms/site` | The [styling](/design/site-design), [templates](/design/templates), rendering, previews, [publishing](/operations/publishing) the static site, search and [sites](/design/sites) | Yes, for a headless site, while no plugin that builds on it is on |
+| `letterncms/site` | The [theme](/design/site-design), [templates](/design/templates), rendering, previews, [publishing](/operations/publishing) the static site, search and [sites](/design/sites) | Yes, for a headless site, while no plugin that builds on it is on |
 | `letterncms/languages` | [Languages](/content/languages): translations linked to their original, localized URLs, hreflang and the language switcher | Yes |
 | `letterncms/collaboration` | [Collaboration](/editing/collaboration): who else is on a page, comments with @mentions, and the inbox | Yes |
 | `letterncms/mcp` | The [MCP server](/agents/mcp): every ability as a tool for AI clients, signed in with OAuth | Yes |

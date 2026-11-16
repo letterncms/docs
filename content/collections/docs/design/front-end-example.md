@@ -149,7 +149,7 @@ The two scripts need no entry there: the blocks that name them load them.
 
 ## 4. Turn on navigation without page loads
 
-Set **Styling → Motion → Page Transition → Page Loads** to **Instant**, or:
+Set **Design → Motion → Page Transition → Page Loads** to **Instant**, or:
 
 ```bash
 php cms run styling/update --input='{"transition":{"navigation":"client"}}'

@@ -25,9 +25,9 @@ Change the template, and every page that uses it changes. Templates are made of 
 
 A **component** is a piece of design you use in many places: a header, a card, a call to action. Edit it once, and every copy updates. See [Components](/design/components).
 
-## The styling keeps it all consistent
+## The theme keeps it all consistent
 
-Your colors, fonts and spacing live in one place: the **styling**. Blocks use its values instead of fixed ones, so changing your main color restyles the whole site at once. See [Styling](/design/site-design).
+Your colors, fonts and spacing live in one place: the **theme**, under **Design**. Blocks use its values instead of fixed ones, so changing your main color restyles the whole site at once. See [Theme](/design/site-design).
 
 ## Content lives in collections
 

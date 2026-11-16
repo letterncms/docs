@@ -13,14 +13,14 @@ Pages are a collection too. Your templates then show the entries in your design,
 
 ## Create a collection
 
-1. Open **Settings**, then **Collections**, and press **New Collection**.
+1. Open **Structure** in the sidebar, then **Collections**, and press **New Collection**.
 2. Give it a name, like *Dishes*.
 3. Choose a **Structure** (see below).
 4. Press **Create Collection**.
 
 ![Creating a collection: a name and a structure are all it takes.](/media/screens/content-new-collection.webp)
 
-The collection opens on its **Fields**, ready for the next step, and it appears in the sidebar, under **Content**, for everyone allowed to see it.
+The collection opens on its **Fields**, ready for the next step, and it appears under **Entries** in the sidebar for everyone allowed to see it. Pin it from its row there to keep it under **Pinned**.
 
 Under **Advanced** you can also set the **Handle** (the name used in code and file names), the **Entry Name** (*Dish* for *Dishes*), the **URL Pattern**, the **Template** and the **Storage** (the database, or files you can keep in git). The entry name, URL pattern and template can be changed later, in the collection's **Settings**.
 
@@ -118,7 +118,7 @@ fields:
 | `route` | The URL pattern (see below). Leave it out for content without pages of its own. |
 | `home` | For trees: the slug of the entry that becomes `/`. |
 | `template` | The slug of the [template](/design/templates) that frames entries. Omit or leave empty to inherit: Lettern uses `default`, or renders the content alone when there is no default template. A missing template stays visible with a warning until you choose another. Entries can override it with a `template` field (`type: select`, `dynamic: templates`); clearing that field restores the collection's template. |
-| `section` | The sidebar section it is listed in: `content` unless set. Every collection is in the sidebar from the start; people unpin and reorder it in their own sidebar, and what they unpin waits under **More**. The Blocks module's templates and components use `design`. |
+| `section` | The sidebar section it is listed in: `content`, under **Entries**, unless set. Each person pins it from its row to keep it under **Pinned**; *Pages* is pinned from the start. The Blocks module's templates, components and patterns use `structure`. |
 | `nav_order` | Default place in its section (integer, lower first; `10` when omitted). A sidebar someone arranged, or the default an admin saved for everyone, overrides it. |
 | `sort` | Field to sort lists by; prefix with `-` for descending. |
 | `default_view` | `table` (default), `grid` or `calendar`. What a person chose in **Display** wins. |

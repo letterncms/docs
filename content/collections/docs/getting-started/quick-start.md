@@ -12,7 +12,7 @@ After signing in you land on the **Dashboard**: what changed recently, and wheth
 
 ![The Dashboard, with the sidebar on the left.](/media/screens/dashboard.webp)
 
-The sidebar on the left is where you work. Under **Content** are your pages, your other content, media, menus, forms and globals; under **Design**, the styling, templates, components and collections. **Settings**, the gear next to your name (`⌘⇧,`), holds what you set up once: your account, the site's general settings, email, users and roles, and the settings of each plugin.
+The sidebar on the left is where you work. After the **Dashboard** come three rows, each leading to a sidebar of its own: **Entries**, your pages, posts and other content; **Design**, your colors, fonts, styles, menus and sites; and **Structure**, your collections, templates, components, patterns and code. Under them, **Pinned** keeps what you open most, Pages, Media and Globals to begin with: pin any screen from its row, and **Customize Sidebar…**, in the menu beside your site's name, arranges them all. **Settings**, the gear next to your name (`⌘⇧,`), holds what you set up once: your account, the site's general settings, email, users and roles, and the settings of each plugin.
 
 A few shortcuts save a lot of clicking:
 
@@ -48,17 +48,17 @@ Learn more in [Writing](/editing/writing) and [Block settings](/editing/canvas).
 
 ## 3. Set your style
 
-Open **Styling** in the sidebar. This is where your site's colors, fonts and spacing live, with a live preview on the right.
+Open **Design** in the sidebar. It opens on your colors, and beside them **Typography**, **Layout** and the rest of your site's look, with a live preview on the right.
 
-![The styling: colors in the middle, a preview of the site on the right.](/media/screens/design.webp)
+![Design: colors in the middle, a preview of the site on the right.](/media/screens/design.webp)
 
-Every block on every page uses these values. Change your main color once, and the whole site follows: there's nothing to update page by page. See [Styling](/design/site-design).
+Every block on every page uses these values. Change your main color once, and the whole site follows: there's nothing to update page by page. See [Theme](/design/site-design).
 
 ## 4. Add your own kind of content
 
 Pages aren't the only content a site has. A restaurant has dishes, an agency has projects, a blog has posts. Each kind of content is a **collection**, with its own fields.
 
-Open **Collections**, under **Design**, to make one, say *Dishes* with a price, a description and a photo. Then everyone fills in a simple form, and your pages show the dishes in your design.
+Open **Collections**, under **Structure**, to make one, say *Dishes* with a price, a description and a photo. Then everyone fills in a simple form, and your pages show the dishes in your design.
 
 ![Filling in a dish: one simple form, with the fields the collection asks for.](/media/screens/entry.webp)
 
@@ -72,7 +72,7 @@ When you're happy, press **Publish**. The page goes live straight away: there's 
 
 ## 6. Work from the workspace
 
-Press `⌘J`, or **New Chat** at the top of the sidebar, and the [workspace](/getting-started/workspace) opens beside the page. Type `/` for a command, such as **New Page** or **Add to Menu**, or type a few words to search the whole admin. Every answer is something to act on: open it, publish it, undo it.
+Press `⌘J`, or **Chat** in the top bar, and the [workspace](/getting-started/workspace) opens beside the page. Type `/` for a command, such as **New Page** or **Add to Menu**, or type a few words to search the whole admin. Every answer is something to act on: open it, publish it, undo it.
 
 With the [assistant](/agents/assistant) set up, ask in plain words in the same place, for example: *"Add a pricing section with three plans to the home page."* It works in the admin just as you do, and asks before anything that goes live or is hard to undo. Lettern works fully without it.
 

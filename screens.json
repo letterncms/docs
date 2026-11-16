@@ -92,7 +92,7 @@
     },
     "design": {
       "site": "examples",
-      "path": "/admin/styling",
+      "path": "/admin/design/colors",
       "size": [
         1100,
         700
@@ -101,7 +101,7 @@
     },
     "design-styles": {
       "site": "examples",
-      "path": "/admin/styling?tab=styles",
+      "path": "/admin/design/styles",
       "size": [
         1100,
         700
