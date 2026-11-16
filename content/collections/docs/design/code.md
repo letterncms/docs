@@ -20,9 +20,13 @@ There is no build step of your own. You write ES modules and plain CSS, say wher
 
 A name is lowercase letters, digits, `-` and `_`, in up to three folders.
 
-In the admin, all of it is on the **Code** page, under **More** in the sidebar, an editor like the ones you write code in elsewhere. Its files are listed on the left: **Stylesheets** starts with the site's own CSS, **Site CSS**, and lists the other stylesheets; **Scripts** starts with the site's own file, **Site JavaScript**, and lists the other scripts; **Libraries** lists what the scripts import. The **+** beside each adds one. Changing any of it needs the **Edit Scripts and Stylesheets** permission, which is **Trusted Only**.
+In the admin, all of it is on the **Code** page, under **More** in the sidebar, an editor like the ones you write code in elsewhere. Its files are listed on the left as they lie in `content/styling`: `theme.css` and `custom.js` first, then the folders `scripts`, `styles` and `vendor`, each with the folders and files in it. A folder opens and closes with a click or the arrow keys, and stays as you left it. The **+** at the top makes a script or a stylesheet, or adds a library; right-click a folder to do it there, so a script made in `scripts/lib` starts as `lib/`. Right-click a file to delete it. Changing any of it needs the **Edit Scripts and Stylesheets** permission, which is **Trusted Only**.
 
 A file opens in a tab, and stays open with its undo and its place until you close it. A dot marks a file with changes that aren't saved; a tab closed with changes keeps them. Nothing saves by itself: **Save**, or `⌘S`, formats every changed file with Prettier and saves them together, and **Discard** drops the changes. A file Prettier can't read, say with a brace never closed, is saved as you wrote it, and **Show Line** takes you to the mistake. **Format Document**, in the **⋯** menu, formats the open file without saving it. The line under the editor says where the cursor is.
+
+### Undo and history
+
+**Undo** and **Redo** in the top bar (`⌘Z`, `⇧⌘Z`) step through the changes of the open file, as in every editor of the admin. **History**, beside them, lists the versions of the open file, newest first: who saved it and when. Every save is kept as a version, and saves by the same person within ten minutes count as one. Open an older one to see, line by line, what bringing it back would change, then **Restore Version**: it comes back into the editor as a change, to save, or to undo. `theme.css` shares its history with **Design**, since both save the site's stylesheet: a version shows only the CSS of your own. Deleting a file deletes its history too.
 
 ### The console
 
@@ -117,7 +121,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 +--------------------+---------------+------------------+-------+-------------------------------------------------------------------------+
 ```
 
-In the admin, **Libraries** on the **Code** page does the same: its **+**, **Add Library**, takes `name@version`, and each library has **Update** and **Delete** in its menu.
+In the admin, the `vendor` folder on the **Code** page does the same: **Add Library**, under the **+** or in the folder's menu, takes `name@version`, and each library shows its version and has **Update** and **Delete** in its menu.
 
 Commit `content/styling/vendor/` with the rest of the styling. The files and the lock travel together, so another checkout serves the same libraries without fetching anything.
 
