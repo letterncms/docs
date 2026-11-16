@@ -78,7 +78,8 @@ Version 0.22 renamed the abilities that didn't follow this, without aliases. A s
 | `languages/default`, `languages/prefix` | `languages/set-default`, `languages/set-prefix` |
 | `entries/lookup`, `media/lookup` | `entries/get-many`, `media/get-many` |
 | `users/lookup` | `people/list` |
-| `entries/revisions`, `entries/revision`, `entries/restore` | `revisions/list` (the entry is `entryId`), `revisions/get`, `revisions/restore` |
+| `entries/revisions`, `entries/revision`, `entries/restore` | `revisions/list` (`kind` `entry` and the entry's id as `subject`), `revisions/get`, `revisions/restore` |
+| `styling-versions/list`, `styling-versions/get` | `revisions/list` with `kind` `styling` and `subject` `theme`, `revisions/get`, `revisions/restore` |
 | `globals/update` | `entries/update` on the global's entry |
 | `users/fields`, `users/fields-save` | `user-fields/get`, `user-fields/save` |
 | `patterns/list`, `patterns/save` | `components/list`, `components/save`: a pattern is a [component](/design/components) that isn't synced (`synced: false`) |
