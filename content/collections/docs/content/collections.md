@@ -122,7 +122,7 @@ fields:
 | `route` | The URL pattern (see below). Leave it out for content without pages of its own. |
 | `home` | For trees: the slug of the entry that becomes `/`. |
 | `template` | The slug of the [template](/design/templates) that frames entries. Omit or leave empty to inherit: Lettern uses `default`, or renders the content alone when there is no default template. A missing template stays visible with a warning until you choose another. Entries can override it with a `template` field (`type: select`, `dynamic: templates`); clearing that field restores the collection's template. |
-| `section` | The sidebar section it is listed in: `entries`, under **Entries** in **Content**, or for a taxonomy `taxonomies`, unless set. Each person pins it from its row to keep it under **Pinned**; *Pages* is pinned from the start. The Blocks module's templates, components and patterns use `layout`, in **Structure**. |
+| `section` | The sidebar section it is listed in: `entries`, under **Entries** in **Content**, or for a taxonomy `taxonomies`, unless set. Each person pins it from its row to keep it under **Pinned**; *Pages* is pinned from the start. The Blocks module's templates and components use `layout`, in **Structure**. |
 | `nav_order` | Default place in its section (integer, lower first; `10` when omitted). A sidebar someone arranged, or the default an admin saved for everyone, overrides it. |
 | `sort` | Field to sort lists by; prefix with `-` for descending. |
 | `default_view` | `table` (default), `grid` or `calendar`. What a person chose in **Display** wins. |

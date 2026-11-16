@@ -8,6 +8,7 @@ redirects:
   - { from: /themes/seo-and-geo, to: /operations/seo-and-geo }
   - { from: /editing/design-canvas, to: /editing/canvas }
   - { from: /editing/patterns, to: /design/components }
+  - { from: /design/patterns, to: /design/components }
   # Extending became Plugins, so people looking for plugins find them.
   - { from: /extending, to: /plugins }
   - { from: /extending/plugins, to: /plugins/how-plugins-work }
