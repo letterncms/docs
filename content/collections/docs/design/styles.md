@@ -19,7 +19,7 @@ Every block can be styled on its own: its layout, size, spacing, type, colors, b
 | **Layout** | How a block arranges what's inside it: as a stack, a grid, or one after the other, with alignment and gaps |
 | **Position** | Sticky, fixed or placed on top of other blocks |
 | **Size** | Width and height: fill the space, fit the content or a fixed size, with limits, aspect ratio and overflow |
-| **Spacing** | Margin outside and padding inside, drawn as a box you can drag |
+| **Spacing** | Margin outside and padding inside, drawn as a box you can drag. Click a side to type a value or pick one from the spacing scale, in pixels, or one of your theme's named spaces |
 | **Typography** | Font, size, weight, line height, letter spacing, style (upright or italic), case and decoration |
 | **Fill** | A color, a gradient or an image behind the block, or gradient text |
 | **Border** | Borders, outline and corner radius |
@@ -29,14 +29,14 @@ Every block can be styled on its own: its layout, size, spacing, type, colors, b
 
 **Layout** only shows on blocks that hold other blocks. A section's **+** adds a property it has no row for yet, such as **Snap Align** in **Size** or **Underline Offset** in **Typography**, each with its own control.
 
-Everything you set becomes a [Tailwind CSS](https://tailwindcss.com) class on the block. Type 16 for padding and the block gets `p-4`; pick your *primary* color as its fill and it gets `bg-primary`. You never have to read them; if you know Tailwind, **Classes** at the end of the tab shows them, and you can type them yourself.
+Everything you set becomes a [Tailwind CSS](https://tailwindcss.com) class on the block. Type 16 for padding and the block gets `p-4`; pick your *primary* color as its fill and it gets `bg-primary`. You never have to read them; if you know Tailwind, the **Classes** button at the top of the tab shows them, and you can type them yourself.
 
 ::: callout {"props":{"tone":"tip","text":"Drag a number field's label sideways to change its value, or press <code>↑</code> and <code>↓</code>. Hold <code>⇧</code> for steps of 10."}}
 :::
 
 ## Use your theme
 
-Fields for colors, sizes and spacing show a small diamond when you point at them, **Theme Values**. Click it and pick a value from your [theme](/design/site-design), like *primary* or a step of spacing.
+Fields for sizes and spacing show a small diamond when you point at them, **Theme Values**. Click it and pick a value from your [theme](/design/site-design), like a step of spacing. A color field opens on your theme's colors, by name; **Palette** has Tailwind's colors, shade by shade, and **Custom** any color you mix or type.
 
 A block that uses a theme value keeps matching the rest of your site: change the value, and the block follows. Prefer them over typed-in values whenever one fits. **Detach** turns one back into a fixed value.
 
@@ -44,13 +44,13 @@ A block that uses a theme value keeps matching the rest of your site: change the
 
 A look with a name is one your site keeps, like *lede*, *card* or the scheme *Tide*: the same on every block that wears it, and changed in one place, under **Styling → Styles** (a scheme under **Styling → Colors**).
 
-- The looks a block wears show at the top of the **Design** tab. A look's menu has **Edit Style**, which opens it under **Styling**, **Detach Style**, which takes the look off and leaves what it set on the block, and **Remove Style**.
-- **Add Style** lists your site's styles, button looks and schemes, each drawn as your site draws it. Pick one to give it to the block.
+- The looks a block wears stand in the field at the top of the **Design** tab, each by its name. A look's menu has **Edit Style**, which opens it under **Styling**, **Detach Style**, which takes the look off and leaves what it set on the block, and **Remove Style**.
+- **Add Style**, in that field, lists your site's styles, buttons and schemes by name, each scheme in its colors. Type to find one; the one you point at is drawn below the list as your site draws it. Pick one to give it to the block.
 - **Save as Style…**, at the end of that list, names what you set on the block, like *card*, and saves it as a style other blocks can wear. What you set for tablets and phones stays on the block.
 
 ## Classes
 
-**Classes**, at the end of the **Design** tab, shows the block's Tailwind classes, one by one. Type in the field to add one: it suggests your site's styles and Tailwind's classes as you type, and Enter, Tab or a space takes one. Click a class to change it, press its **×** or Backspace in the empty field to take it off. Several names pasted with spaces between are added together, and a name Tailwind can't read is underlined. The copy button copies them all.
+The **Classes** button at the top of the **Design** tab, beside the state menu, shows the block's Tailwind classes under the bar, one by one, and stays open until you close it. Type in the field to add one: it suggests your site's styles and Tailwind's classes as you type, and Enter, Tab or a space takes one. Click a class to change it, press its **×** or Backspace in the empty field to take it off. Several names pasted with spaces between are added together, and a name Tailwind can't read is underlined. The copy button beside them copies them all.
 
 The controls above write the same list, so the two always agree.
 
@@ -63,7 +63,7 @@ Choose **Desktop**, **Tablet** or **Phone** in the editor's top bar. The page sh
 
 A change on **Tablet** holds on tablets and phones, below the *lg* screen size; one on **Phone** only on phones, below *md*. The sizes are your theme's: see **Layout → Breakpoints** in [Styling](/design/site-design).
 
-Field labels tell you where a value comes from. A darker label is set here, on this screen and state: click it to reset it. A label with a small dot comes from a larger screen or from the default state.
+Field labels tell you where a value comes from. A label on a colored background is set here, on this screen and state: click it to reset it. A label on a gray background comes from a larger screen, another state or the component. A section with either carries a dot beside its title.
 
 ## Style hover, focus and other states
 

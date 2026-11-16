@@ -30,15 +30,15 @@ Every value of the theme has a name, like *primary* for your brand color or *con
 ## Change your colors
 
 1. Open **Colors**.
-2. Click a color and pick a new value. The preview updates right away.
-3. Give a color a **Dark** value too, and your site follows each visitor's light or dark mode. Switch the preview to dark to check it. A color without a dark value is the same in both.
+2. Click a color's swatch under the sun and pick a new value: one of your colors by name, a shade of the **Palette**, or any color under **Custom**. The preview updates right away.
+3. Give a color a dark value too, its swatch under the moon, and your site follows each visitor's light or dark mode. Switch the preview to dark to check it. A color without a dark value shows its light one, faded, and is the same in both; **Clear** in the picker makes it so again.
 4. Press **Save** in the bar at the bottom, or `⌘S`. **Discard** puts everything back.
 
-Saving restyles every page and rebuilds the site. The **+** at the top of the list adds a color of your own, like *accent*. Under the list, **Palette** shows Tailwind's colors, such as *red-500*, shade by shade: point at a shade to see its name, click it to change it.
+Saving restyles every page and rebuilds the site. The **+** at the top of the list adds a color of your own, like *accent*. At the end, **Palette** shows Tailwind's colors, such as *red-500*, a row per color and a column per shade: point at a shade to see its name, click it to change it.
 
 ## Schemes
 
-A scheme gives a section, a box or a card colors of its own: a **Background** and a **Text** color. Everything inside follows them: its text, muted text, lines, surfaces and buttons. Under **Colors**, **Schemes** lists them; **Add Scheme** makes one, and a block takes it under **Add Style** at the top of its **Design** tab.
+A scheme gives a section, a box or a card colors of its own: a background and a text color. Everything inside follows them: its text, muted text, lines, surfaces and buttons. Under **Colors**, **Schemes** shows each as a card in its colors, with its two swatches beside its name; **Add Scheme** makes one, and a block takes it under **Add Style** at the top of its **Design** tab, where the same colors stand beside its name.
 
 Starter has *Tide*, *Clay*, *Sun*, *Mist* and *Band*, and *Photo*, for words over a photograph: a clear background with light text.
 
@@ -56,9 +56,11 @@ A text size, a space or a width can be fixed, or grow with the screen: small on 
 
 ## Use the theme on a block
 
-In a block's **Design** tab, fields that take a color, a size or a space show a small diamond when you point at them: **Theme Values**. Click it and pick one. The block now follows that value, so it changes when the theme does.
+In a block's **Design** tab, a color field opens on your colors by name, and fields that take a size or a space show a small diamond when you point at them: **Theme Values**. Click it and pick one. The block now follows that value, so it changes when the theme does.
 
 Choose **Detach** to turn it back into a fixed value. See [Styles](/design/styles).
+
+The spacing a block offers is Tailwind's scale: steps of one size, the first row of **Layout → Spacing**. The row shows the scale it makes, in pixels, as a block's spacing offers it; the names under it, like *gutter* and *section*, are offered beside it.
 
 ## Styles
 
@@ -119,9 +121,9 @@ Under **Styles → Articles**, **Spacing** sets the space between blocks, above 
 
 ## Code
 
-**Code**, under **Design** in the sidebar, is for what the **Styling** sections don't cover. **CSS** holds the CSS of your own: a rule for a selector of your own, a variable the sections have no place for, a variant of your own. What the sections set is not in it: they keep it. A site from Starter has none. A stylesheet Tailwind can't read is not saved, and the page says why in Tailwind's own words.
+**Code**, under **Design** in the sidebar, is for what the **Styling** sections don't cover: a list of the site's code beside the file that is open. **Site CSS** holds the CSS of your own: a rule for a selector of your own, a variable the sections have no place for, a variant of your own. What the sections set is not in it: they keep it. A site from Starter has none. A stylesheet Tailwind can't read is not saved, and the page says why in Tailwind's own words.
 
-**Site JavaScript** runs on every page. Under it, **Scripts** and **Stylesheets** list the site's other files, which load only where you say, and **Libraries** lists what scripts import. See [Scripts and styles](/design/code).
+**Site JavaScript** runs on every page. Under **Stylesheets** and **Scripts**, after the site's own, are the site's other files, which load only where you say, and **Libraries** lists what scripts import. See [Scripts and styles](/design/code).
 
 ::: callout {"props":{"tone":"warning","text":"JavaScript here runs on every page of your site. Editing it needs the <strong>Edit Scripts and Stylesheets</strong> permission, marked <strong>Trusted Only</strong>: give it only to people you trust."}}
 :::

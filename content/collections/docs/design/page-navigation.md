@@ -23,11 +23,11 @@ From then on:
 
 ## Keep an element across pages
 
-Give a block a name under **Content → Advanced → Persist As**, like `stage`. When both the page being left and the page arriving have a block with that name, it stays the same element: it is moved to where the new page has it, not replaced. A [behavior](/design/behaviors) on it stays mounted.
+Turn on **Keep Across Pages** under **Content → Advanced**. When both the page being left and the page arriving have that block, it stays the same element: it is moved to where the new page has it, not replaced. A [behavior](/design/behaviors) on it stays mounted.
 
-Put the block in a template or a component, so every page has it. A page that doesn't have it lets it go, and its behavior is unmounted.
+Put the block in a template or a component, so every page has the same one. A page that doesn't have it lets it go, and its behavior is unmounted.
 
-A name is lowercase letters, digits and `-`, starting with a letter.
+In a block's JSON the setting is `persist`, the name it is kept by: the admin uses the block's own id. A name is lowercase letters, digits and `-`, starting with a letter, and two blocks with the same name on two pages are one element.
 
 ## Which links load the page anyway
 
