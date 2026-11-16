@@ -61,7 +61,7 @@ The chips above the message box show what your message will carry. Without you d
 - **The block selected in the builder.** Select a block with the workspace open, and "rewrite this" means that block.
 - **Text you selected on the page.**
 
-Each chip comes off with its ×. To add something else, type `@` or click the **@** chip: a page or post, a file from the library, a global, the collections or the styling. Keep typing to narrow it down. For a file, the assistant gets its details, not what the image shows.
+Each chip comes off with its ×. To add something else, type `@` or click the **@** chip: a page or post, a file from the library, the collections or the styling. Keep typing to narrow it down. For a file, the assistant gets its details, not what the image shows.
 
 Something that hasn't changed since your last message isn't sent again. Each message you send shows what it carried; click it to go there.
 

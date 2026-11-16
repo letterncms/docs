@@ -22,9 +22,9 @@ However the site was installed, from the zip or with Composer, the folder is a C
 | `sites/` | The [sites](/design/sites) this site can apply: `sites/<name>`, and a third party's in `sites/<vendor>-<name>`. Composer or the store puts them here; a site you exported too. | Only what you made |
 | `config/` | `site.yaml` (name, URL, languages, the admin's language), `plugins.yaml` (enabled plugins, disabled modules), `roles.yaml`, `admin.yaml` (the default sidebar and Dashboard) and one YAML file per settings namespace. | Yes |
 | `content/styling/` | The [theme](/design/site-design): the Tailwind stylesheet (`theme.css`), fonts and the page transition (`settings.json`, `fonts/`), `custom.js`, and the site's own [scripts, styles and libraries](/design/code) (`scripts/`, `styles/`, `code.json`, `vendor/`). | Yes |
-| `content/collections/` | Collection definitions, and entries of file-based collections, including `templates/` and `components/`. | Yes |
+| `content/collections/` | Collection definitions, and entries of file-based collections, including `templates/` and `components/`, and the globals and menus. | Yes |
 | `content/schemas/` | The content model as JSON Schema files, written by the site: see [AI and automation](/agents#the-content-model-as-json-schema-files). | Yes |
-| `content/` (the rest) | Fieldsets, globals, forms, menus, redirects. | Yes |
+| `content/` (the rest) | Fieldsets, forms, redirects. | Yes |
 | `public/` | What visitors get: built pages, uploaded media in `media/`, and in `_cms/` generated images, compiled CSS, fonts and plugin assets. | Media only |
 | `storage/` | Logs, caches, drafts of file-based entries (unpublished template and component changes too), the sites you switched away from (`storage/sites/`), encrypted secrets, the SQLite database. | No |
 | `.env` | Database credentials, app key, environment flags. | No |
@@ -36,7 +36,7 @@ Lettern itself is the Composer package `letterncms/cms`, at `vendor/letterncms/c
 | Folder | What it holds |
 |---|---|
 | `src/` | The kernel: content, users, abilities, the package system, HTTP and CLI. |
-| `modules/` | The admin's [modules](/plugins/modules): the admin itself, content, collections, globals, users, account, audit, the Dashboard, settings, the Plugins screen, the assistant and Sync. |
+| `modules/` | The admin's [modules](/plugins/modules): the admin itself, content, collections, users, account, audit, the Dashboard, settings, the Plugins screen, the assistant and Sync. |
 | `brand/` | `brand.json` (the product's name and links), `wordmark.svg` and `mark.svg`; see [Configuration](/reference/configuration). |
 
 A site that updates itself keeps that `vendor/` in `runtime/<version>/vendor/`, and the one-line file `runtime/current` names the release in use. That is how [an update](/getting-started/upgrading) goes live and goes back. On a site managed with Composer there is no `runtime/`, and `vendor/` sits in the site folder.

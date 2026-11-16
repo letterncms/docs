@@ -39,7 +39,7 @@ Press **Pull** or **Push** next to a connected site. Sync compares the two and s
 | Chats | Each person's threads in the workspace, with the assistant's answers | No | Yes |
 | Logs | Sent email and the audit log | No | Yes |
 | Each plugin's data | One group per plugin, such as Form Submissions and Analytics | No | Yes |
-| Site Files | Templates, components, collections kept in files, globals, forms, menus | No | No |
+| Site Files | Templates, components, collections kept in files (globals and menus are, unless you chose the database), forms | No | No |
 | Settings | Settings, except which plugins are on | No | No |
 | Other tables | Tables in the same database that no plugin claims | No | No |
 

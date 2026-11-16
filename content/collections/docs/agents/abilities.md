@@ -64,7 +64,7 @@ An ability is named `thing/verb`, and a verb means the same on every thing:
 | `create` | Makes a new one |
 | `update` | Changes one that exists, and answers `not_found` for one that doesn't |
 | `delete` | Removes one |
-| `save` | Creates or replaces a definition by its handle (`collections/save`, `fieldsets/save`, `globals/save`, `components/save`, `user-fields/save`), or a script or stylesheet of the site by its path (`styling-code/save`). Nothing else |
+| `save` | Creates or replaces a definition by its handle (`collections/save`, `fieldsets/save`, `components/save`, `user-fields/save`), or a script or stylesheet of the site by its path (`styling-code/save`). Nothing else |
 
 Every other verb is an act of its own, such as `entries/publish`, `media/import` or `languages/set-default`.
 
@@ -72,14 +72,14 @@ Version 0.22 renamed the abilities that didn't follow this, without aliases. A s
 
 | Was | Is |
 |---|---|
-| `navigation/save` | `navigation/update` for a menu that exists, `navigation/create` to make one |
-| `navigation/add` | `navigation/add-item` |
+| `navigation/save` | `collections/save` with `type: menu` |
+| `navigation/add` | `entries/create` in the menu's collection |
 | `languages/save`, `languages/add`, `languages/remove` | `languages/update`, `languages/create`, `languages/delete` |
 | `languages/default`, `languages/prefix` | `languages/set-default`, `languages/set-prefix` |
 | `entries/lookup`, `media/lookup` | `entries/get-many`, `media/get-many` |
 | `users/lookup` | `people/list` |
 | `entries/revisions`, `entries/revision`, `entries/restore` | `revisions/list` (the entry is `entryId`), `revisions/get`, `revisions/restore` |
-| `globals/update` | `globals/set` |
+| `globals/update` | `entries/update` on the global's entry |
 | `users/fields`, `users/fields-save` | `user-fields/get`, `user-fields/save` |
 | `patterns/list`, `patterns/save` | `components/list`, `components/save`: a pattern is a [component](/design/components) that isn't synced (`synced: false`) |
 | `pages/customise` | `pages/customize` |
@@ -171,7 +171,7 @@ php cms run entries/delete id=01m75ewmnmrmh0d80z43axs3k5 --dry-run
 | `"full"` | The dry run is refused exactly where the real run would be, by the same code, and `changes` lists what would change or be removed |
 | `"input"` | Only the input and your permission were checked. `changes` is `null`, and the real run may still refuse |
 
-Checked in full: entries (create, update, publish, unpublish, discard, delete, duplicate, move, reorder, restore, and `pages/customize`), `settings/update`, and every ability marked destructive or that asks first: deleting a collection, a file, a user, a global, a menu, a comment, a chat or a token, removing a language, switching or uninstalling a plugin, starting or undoing a sync. Anything else is checked as input, like this import, which would have to fetch the file to know more:
+Checked in full: entries (create, update, publish, unpublish, discard, delete, duplicate, move, reorder, restore, and `pages/customize`), `settings/update`, and every ability marked destructive or that asks first: deleting a collection (a global or a menu too), a file, a user, a comment, a chat or a token, removing a language, switching or uninstalling a plugin, starting or undoing a sync. Anything else is checked as input, like this import, which would have to fetch the file to know more:
 
 ```bash
 php cms run media/import url=https://example.com/a.png --dry-run

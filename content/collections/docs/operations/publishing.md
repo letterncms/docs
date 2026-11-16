@@ -66,7 +66,7 @@ Pages behind a [gate](/content/gated-content) are never written as files, becaus
 
 ### How a build works
 
-Every page records what it read while rendering: the entry itself, the collections it listed, globals, menus, linked pages, media and the components it shows. A change queues only the pages that recorded it. Site-wide changes (the styling, a template, site settings, a collection's definition, globals, menus, reordering entries) queue a full rebuild. So does updating Lettern or a plugin: built pages name scripts and styles by version, so the first request after an update rebuilds them.
+Every page records what it read while rendering: the entry itself, the collections it listed, globals, menus, linked pages, media and the components it shows. A change queues only the pages that recorded it. A global's values and a menu's links are entries too: a change rebuilds the pages that read that global or show that menu. Site-wide changes (the styling, a template, site settings, a collection's definition, reordering entries) queue a full rebuild. So does updating Lettern or a plugin: built pages name scripts and styles by version, so the first request after an update rebuilds them.
 
 Pages are rendered with their [templates](/design/templates) and written to `public/`: `/about` becomes `public/about/index.html`. Paginated pages, the 404 page and the site files are written too: `sitemap.xml`, `robots.txt`, `llms.txt`, `search.json` and each page's Markdown twin. The web server serves these files directly.
 

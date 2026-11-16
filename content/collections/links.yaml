@@ -1,0 +1,13 @@
+type: global
+title: Links
+icon: link
+driver: files
+fields:
+  -
+    handle: website
+    type: url
+    label: Website
+  -
+    handle: download
+    type: url
+    label: Download

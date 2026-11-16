@@ -1,7 +1,7 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "Links: the values of a global",
-    "description": "The values of the global `links`, by field handle.",
+    "title": "Links: the data of an entry",
+    "description": "What `data` of an entry of the collection `links` must follow to be published. A draft may leave required fields empty.",
     "type": "object",
     "properties": {
         "website": {

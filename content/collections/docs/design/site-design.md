@@ -10,7 +10,7 @@ It is [Tailwind CSS](https://tailwindcss.com): one stylesheet holds the theme, a
 
 ![Colors: your site's look on one sheet, then its colors, beside a live preview of the site.](/media/screens/design.webp)
 
-Open **Design** in the sidebar: it opens on **Colors**. Its sidebar starts with **Site**: your [sites](/design/sites) and **Browse Store**, for more of them. Under **Theme** come **Colors**, **Typography**, **Layout**, **Effects**, **Motion** and **Classes**. Your [menus](/content/navigation) are under **Structure**, in **Navigation**. You can also press `⌘K` and type a section's name, like *typography*. Each section opens beside your site: the preview on the right shows it as you change things, on desktop, tablet or phone, and in light or dark when the site has dark colors.
+Open **Design** in the sidebar: it opens on **Colors**. Its sidebar starts with **Site**: your [sites](/design/sites) and **Browse Store**, for more of them. Under **Theme** come **Colors**, **Typography**, **Layout**, **Effects**, **Motion** and **Classes**. Your [menus](/content/navigation) are under **Content**, in **Menus**. You can also press `⌘K` and type a section's name, like *typography*. Each section opens beside your site: the preview on the right shows it as you change things, on desktop, tablet or phone, and in light or dark when the site has dark colors.
 
 Your site is the baseline. A change you haven't saved carries a dot beside its name, and it goes along when you open another section, until you save it or discard it. Every row has a **⋯** menu: **Copy Name**, **Revert**, which takes a change back to what your site has, and for a value your site added, **Rename…** and **Delete**. A value that came with your site, from Tailwind or Lettern, shows a lock: you can change it, but not rename or delete it. **Undo** and **Redo** in the top bar (`⌘Z`, `⇧⌘Z`) step through your changes, and **Versions** lists every saved theme, newest first: open one to look at it, and save it to go back to it.
 
@@ -123,7 +123,7 @@ Under **Classes → Articles**, **Spacing** sets the space between blocks, above
 
 ## Code
 
-**Code**, under **Structure** in the sidebar, is for what the sections of **Design** don't cover: its files are listed beside the ones open, each in a tab, with a console of the site's page under them. **Site CSS** holds the CSS of your own: a rule for a selector of your own, a variable the sections have no place for, a variant of your own. What the sections set is not in it: they keep it. A site from Starter has none. A stylesheet Tailwind can't read is not saved, and the page says why in Tailwind's own words.
+**Code**, under **More** in the sidebar (pin it to keep it in view), is for what the sections of **Design** don't cover: its files are listed beside the ones open, each in a tab, with a console of the site's page under them. **Site CSS** holds the CSS of your own: a rule for a selector of your own, a variable the sections have no place for, a variant of your own. What the sections set is not in it: they keep it. A site from Starter has none. A stylesheet Tailwind can't read is not saved, and the page says why in Tailwind's own words.
 
 **Site JavaScript** runs on every page. Under **Stylesheets** and **Scripts**, after the site's own, are the site's other files, which load only where you say, and **Libraries** lists what scripts import. See [Scripts and styles](/design/code).
 
