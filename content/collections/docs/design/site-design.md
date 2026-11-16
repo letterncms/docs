@@ -66,7 +66,7 @@ The spacing a block offers is Tailwind's scale: steps of one size, the first row
 
 ## Classes
 
-**Classes** lists every look of your site in groups. Open a group to see its classes, by name, and open one to change it: it is drawn there as your site draws it. The top bar names it, and **Back**, in the top-left corner, goes up one level at a time: from a class to its group, then to Classes. The search at the top finds a class in every group; a long group has a search of its own.
+**Classes** lists every look of your site in groups. Open a group to see its classes, by name, and open one to change it: it is drawn there as your site draws it. The top bar shows where you are, like *Design / Classes / Elements / Heading 1*, and **Back**, in the top-left corner, goes up one level at a time: from a class to its group, then to Classes. The search at the top finds a class in every group; a long group has a search of its own.
 
 ![Classes: the groups of the site's looks, beside a live preview of the site.](/media/screens/design-styles.webp)
 
