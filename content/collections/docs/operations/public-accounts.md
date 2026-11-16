@@ -39,16 +39,16 @@ Sign-up and password resets work by email, so [set up email](/operations/email) 
 | `/account/privacy` | Download everything held about the account, or delete it |
 | `/account/deleted` | What someone sees after deleting their account |
 
-On a site in several languages, each page is also at its language's prefix (`/de/sign-in`). If one of your own pages already has one of these addresses, yours wins, and **Pages** › **Account** marks that page *Address Taken*.
+On a site in several languages, each page is also at its language's prefix (`/de/sign-in`). If one of your own pages already has one of these addresses, yours wins, and **Pages** marks that page *Address Taken*.
 
 ## Change how they look
 
 The account pages use your default template and your design, so they already look like the rest of the site. To change one:
 
-1. Open **Pages**, then the **Accounts** tab. It lists the sign-in and account pages, each with the **Version** **Standard**.
+1. Open **Pages**. The sign-in and account pages are listed with your own.
 2. Click the page. It opens in the editor as your own version, made from the standard one.
 3. Edit it like any page: move the forms, restyle them, or add your own text around them. The forms are blocks in the **Account** category.
-4. Publish. Your version takes over, and the page's **Version** says **Customized**. Until then the standard one stays live, and the page stays **Standard**. To go back, choose **Use Standard Version** in the page's ⋯ menu.
+4. Publish. Your version takes over; until then the standard one stays live. To go back, choose **Use Standard Version** in the page's ⋯ menu.
 
 The **Account Navigation** block links to all account pages, in a row or in a column for a sidebar. The standard pages come in every language the plugins are translated into, and your versions are translated like any page.
 
