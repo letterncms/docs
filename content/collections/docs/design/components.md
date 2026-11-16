@@ -8,7 +8,7 @@ A component is a piece of design you make once and use in many places: a header,
 
 ![The Header component open in the editor, with its settings on the right.](/media/screens/design-component.webp)
 
-Components live under **Components**, in the sidebar's **Design** section. Every copy stays linked to its component. Use them for headers, footers and cards. For blocks you want to copy once and then change freely, like a hero or a whole page to start from, use a [pattern](/design/patterns).
+Components live under **Components**, in **Design**, each shown as your site draws it. Every copy stays linked to its component. Use them for headers, footers and cards. For blocks you want to copy once and then change freely, like a hero or a whole page to start from, use a [pattern](/design/patterns).
 
 ## Make a component
 
