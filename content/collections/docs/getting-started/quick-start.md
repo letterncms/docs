@@ -12,7 +12,7 @@ After signing in you land on the **Dashboard**: what changed recently, and wheth
 
 ![The Dashboard, with the sidebar on the left.](/media/screens/dashboard.webp)
 
-The sidebar on the left is where you work. After the **Dashboard** come three rows, each leading to a sidebar of its own: **Entries**, your pages, posts and other content; **Design**, your colors, fonts, styles, menus and sites; and **Structure**, your collections, templates, components, patterns and code. Under them, **Pinned** keeps what you open most, Pages, Media and Globals to begin with: pin any screen from its row, and **Customize Sidebar…**, in the menu beside your site's name, arranges them all. **Settings**, the gear next to your name (`⌘⇧,`), holds what you set up once: your account, the site's general settings, email, users and roles, and the settings of each plugin.
+The sidebar on the left is where you work. After the **Dashboard** come three rows, each leading to a sidebar of its own: **Entries**, your pages, posts and other content; **Design**, your sites, colors, fonts and classes; and **Structure**, your collections, templates, components, patterns, menus and code. Under them, **Pinned** keeps what you open most, Pages, Media and Globals to begin with: pin any screen from its row, and **Customize Sidebar…**, in the menu beside your site's name, arranges them all. **Settings**, the gear next to your name (`⌘⇧,`), holds what you set up once: your account, the site's general settings, email, users and roles, and the settings of each plugin. Its **Back**, or `Esc`, returns you to exactly where you were.
 
 A few shortcuts save a lot of clicking:
 

@@ -83,7 +83,7 @@ Roles are stored in `config/roles.yaml`, a settings namespace like any other, so
 | `globals.view`, `globals.edit`, `globals.manage` | Globals: reading, changing values, creating globals and changing their fields. |
 | `collections.manage` | Creating and changing collections and fieldsets. |
 | `users.view`, `users.manage`, `tokens.manage`, `audit.view` | People, tokens and the audit log. |
-| `settings.manage`, `packages.manage` | Settings, the theme and styles under **Design** (the stylesheet included), **Sites** and plugins. |
+| `settings.manage`, `packages.manage` | Settings, the theme and classes under **Design** (the stylesheet included), **Sites** and plugins. |
 | `site.build` | Publishing the whole site. |
 | `blocks.html` | Adding raw HTML blocks. Only for trusted people. |
 | `site.code` | Editing the site's custom JavaScript, its [scripts, styles and libraries](/design/code), and putting a script on a block or keeping one across pages. Only for trusted people. |

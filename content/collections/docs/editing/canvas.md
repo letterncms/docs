@@ -31,7 +31,7 @@ Point at a setting and a database icon appears beside its label, **Connect to Da
 
 ## Design
 
-Change how the block looks, section by section: **Layout**, **Position**, **Size**, **Spacing**, **Typography**, **Fill**, **Border**, **Effects**, **Transform** and **Transition**. A section's **+** adds any other property that belongs there. What you set becomes Tailwind classes on the block, shown by the **Classes** button at the top of the tab. **Add Style**, in the field beside it, gives it one of your site's saved styles, like *card*.
+Change how the block looks, section by section: **Layout**, **Position**, **Size**, **Spacing**, **Typography**, **Fill**, **Border**, **Effects**, **Transform** and **Transition**. A section's **+** adds any other property that belongs there. What you set becomes Tailwind classes on the block, all listed under **Classes** at the top of the tab, where you can also give it one of your site's own classes, like `card`.
 
 Pick colors, fonts and sizes from your [theme](/design/site-design), and the block keeps matching the rest of the site when those change.
 
@@ -41,7 +41,7 @@ Switch between **Desktop**, **Tablet** and **Phone** in the editor's top bar to 
 
 The same switch picks which screens a change reaches: on **Desktop** every screen, on **Tablet** tablets and phones, on **Phone** phones only. Style the desktop first, then what is different on smaller screens.
 
-The state menu at the top right of the **Design** tab picks what you're styling: **Default**, **Hover**, **Pressed** or **Focus**, and further down more, like **Dark Mode**. See [Styles](/design/styles).
+**State**, the first row of the **Design** tab, picks what you're styling: **Default**, **Hover**, **Pressed** or **Focus**, and further down more, like **Dark Mode**. While you style one, the selected block is drawn in it on the page. See [Classes](/design/classes).
 
 ## Interact
 

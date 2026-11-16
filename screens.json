@@ -101,7 +101,7 @@
     },
     "design-styles": {
       "site": "examples",
-      "path": "/admin/design/styles",
+      "path": "/admin/design/classes",
       "size": [
         1100,
         700

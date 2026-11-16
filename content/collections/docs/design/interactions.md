@@ -29,7 +29,7 @@ Here's the whole thing, start to finish. You need a header that holds a menu but
 
 Choose **Preview** in **More Actions**, the **⋯** at the top of the editor, to try it.
 
-::: callout {"props":{"tone":"tip","text":"To restyle the header while the menu is open, add a state under <strong>Bindings → States</strong>: <code>open</code> when <code>open</code>. Then style it in <strong>Design</strong>. See <a href=\"/design/styles#custom-states\">Custom states</a>."}}
+::: callout {"props":{"tone":"tip","text":"To restyle the header while the menu is open, add a state under <strong>Bindings → States</strong>: <code>open</code> when <code>open</code>. Then style it in <strong>Design</strong>. See <a href=\"/design/classes#custom-states\">Custom states</a>."}}
 :::
 
 ## State
@@ -81,7 +81,7 @@ Conditions and values are short expressions: `open`, `!open`, `tab === 'a'`, `co
 Under **Bindings**, a block reacts to its variables:
 
 - **Show When** shows the block only while a condition is true, with an optional **Fade**, **Scale** or **Collapse** transition. To select a block it hides, use the **Outline** in the sidebar.
-- **States** add a custom state while a condition is true, like `open`. Style it in **Design**, and style children with **in open**: see [Custom states](/design/styles#custom-states).
+- **States** add a custom state while a condition is true, like `open`. Style it in **Design**, and style children with **in open**: see [Custom states](/design/classes#custom-states).
 - **Text** replaces the block's text with a value, like `count`.
 - **Attributes** keep `aria-expanded`, `aria-selected`, `hidden`, `disabled`, `href` and others in sync with a variable.
 - **Input Value**, on an **Input** block, keeps a variable in sync with what visitors type. Use it for live filters and calculators.
@@ -92,7 +92,7 @@ Ready-made interactions you switch on under **Behaviors**:
 
 | Behavior | Does |
 |---|---|
-| **Scroll States** | Gives the block the state *scrolled* once the page scrolls past a distance you set, and optionally *hidden* while scrolling down. For headers that shrink or hide |
+| **Scroll States** | Gives the block the state *scrolled* once the page scrolls past a distance you set, and optionally *hidden* while scrolling down. For headers that shrink or hide, in the editor as on the site |
 | **Scroll Spy** | Links inside to `#sections` get the state *current* while their section is in view. For tables of contents |
 | **Hover Group** | Blocks inside can react when the whole block is hovered, with the **Hover on Group** state |
 | **Menu** | A navigation menu with one panel that moves between items. Each child is a link or button, with an optional panel after it. A pill follows the pointer and keyboard focus, the panel's background changes shape to fit the next item, and its content cross-fades. Escape closes it, the Down arrow goes into it, and it respects reduced motion |
