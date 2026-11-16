@@ -169,8 +169,7 @@ The first argument is the value you return; the rest are there to help you decid
 | `blocks.data-sources` | `$sources` | Lists the Repeat block can loop over: see [Data sources](/plugins/how-plugins-work#data-sources). |
 | `blocks.scope` | `$scope` | Data for blocks rendered outside a page (Markdown twins, search). |
 | `blocks.variants` | `$variants` | Block variants offered to editors. |
-| `blocks.folders`, `blocks.component-sources` | `$sources` | Folders with blocks (`block.json`) or read-only components (`<handle>.json`). |
-| `blocks.pattern-sources` | `$sources` | Folders with read-only [patterns](/design/patterns#patterns-from-a-plugin): `<handle>.md` (front matter and Block Markdown) or `<handle>.json`. |
+| `blocks.folders`, `blocks.component-sources` | `$sources` | Folders with blocks (`block.json`) or read-only [components](/design/components#components-from-a-plugin): `<handle>.md` (front matter and Block Markdown) or `<handle>.json`. |
 | `blocks.breakpoints` | `$breakpoints` | The widths screen sizes start at, by name, for animations that play on some screens only: `['sm' => '40rem', 'md' => '48rem', 'lg' => '64rem', 'xl' => '80rem', '2xl' => '96rem']`. The site answers with its theme's. |
 | `styling.candidates` | `$classes` | Class names your code renders with, so Tailwind makes their CSS: `[...$classes, 'grid', 'md:grid-cols-3', 'bg-primary']`. Classes in the content are found by themselves. |
 | `styling.kernel` | `$css` | A list of CSS strings compiled with every site's stylesheet, before the site's own: what your blocks look like before anybody styles them. It may use `@apply` and the theme's variables. |

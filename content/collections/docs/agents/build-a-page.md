@@ -17,8 +17,7 @@ An agent starts with what exists, so the page uses your collections, your design
 | `cms://collections`, or `collections/list` | Which collections there are and what fields they have |
 | `cms://site/styling`, or `styling/get` | The site's Tailwind stylesheet: the theme, its own classes and element styles, and the fonts to build with |
 | `cms://blocks`, or `blocks/types` | Every block, how blocks nest, and worked examples |
-| `components/list`, `templates/list` | The components and templates to reuse |
-| `patterns/list` | Patterns to copy in, and whole pages to start from (the category `Pages`) |
+| `components/list`, `templates/list` | The components and templates to reuse: synced components to place, the others to copy in, and whole pages to start from (unsynced, of the category `Pages`) |
 
 ```bash
 php cms run components/list

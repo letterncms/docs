@@ -293,22 +293,22 @@ While nothing is chosen yet, show the block's shape on the canvas only, and prin
 
 For an inline text property, declare it in `inline` and print `\Cms\Modules\Blocks\Elements::editable($d, 'text')` on the element that holds it. This gives the editor an explicit editing slot in the live output: it never guesses which text belongs to a field.
 
-The helper identifies editable source properties, exact `entry.title` text bindings and supported declared component-instance text properties. Instance edits write an override on the owning pattern node rather than changing its shared source. Other bindings and generated repeated or sample content stay controlled through their source settings.
+The helper identifies editable source properties, exact `entry.title` text bindings and supported declared component-instance text properties. Instance edits write an override on the owning component instance rather than changing its shared source. Other bindings and generated repeated or sample content stay controlled through their source settings.
 
 Component slots support exact `props.<handle>` bindings to declared `text`, `textarea` and `richtext` properties, including exact nested forwarding. They carry an explicit plain-text format, because these bindings render escaped text; inline controls must keep that format rather than introduce rich-text markup. Let `Elements::editable()` produce the ownership, property and resolved-value attributes. Don't infer writable slots from rendered text, and don't add source node IDs to generated component descendants.
 
-### Patterns and components
+### Components
 
-A plugin can ship ready-made arrangements of its blocks. [Patterns](/design/patterns) are copied into a page when someone inserts one. Add folders of them with the `blocks.pattern-sources` filter: each `<handle>.md` has front matter (`title`, `category`, `description`, `keywords`) and the blocks in Block Markdown.
+A plugin can ship ready-made arrangements of its blocks as [components](/design/components). A synced one stays linked to every page that uses it; one with `synced: false` is copied into a page when someone inserts it. Add folders of them with the `blocks.component-sources` filter: each `<handle>.md` has front matter (`title`, `synced`, `category`, `description`, `keywords`, `props`) and the blocks in Block Markdown, or each `<handle>.json` has the same keys and `blocks`.
 
 ```php
-$this->cms()->hooks()->addFilter('blocks.pattern-sources', fn (array $sources) => [
+$this->cms()->hooks()->addFilter('blocks.component-sources', fn (array $sources) => [
     ...$sources,
-    ['path' => $this->path('patterns'), 'source' => 'acme/reviews'],
+    ['path' => $this->path('components'), 'source' => 'acme/reviews'],
 ]);
 ```
 
-[Components](/design/components) stay linked to every page that uses them. Ship those with `blocks.component-sources`, as folders of `<handle>.json`. Both kinds are read-only: people insert them, and save a copy under a name of their own to change one.
+They are read-only: people insert them, and save a copy under a name of their own to change one.
 
 ## Data sources
 
@@ -347,7 +347,7 @@ $this->cms()->hooks()->addFilter('collections', fn (array $collections) => $coll
 ]);
 ```
 
-`system: true` keeps it out of **Collections** and stops people deleting it; a site can still redefine it with its own `content/collections/<handle>.yaml`. The Blocks module adds `templates`, `components` and `patterns` exactly this way, with `section: layout`, so they are listed under **Layout** in **Structure** in the sidebar.
+`system: true` keeps it out of **Collections** and stops people deleting it; a site can still redefine it with its own `content/collections/<handle>.yaml`. The Blocks module adds `templates` and `components` exactly this way, with `section: layout`, so they are listed under **Layout** in **Structure** in the sidebar.
 
 ### The starting definition
 

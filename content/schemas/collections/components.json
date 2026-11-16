@@ -7,7 +7,7 @@
         "blocks": {
             "title": "Component",
             "type": "array",
-            "description": "Component. A list of blocks: {type, props, style?, children?}. See blocks/types for the catalog and cms://blocks for examples.",
+            "description": "Component. A list of blocks: {type, props, class?, children?}. See blocks/types for the catalog and cms://blocks for examples.",
             "items": {
                 "type": "object",
                 "properties": {
@@ -20,8 +20,8 @@
                     "props": {
                         "type": "object"
                     },
-                    "style": {
-                        "type": "object"
+                    "class": {
+                        "type": "string"
                     },
                     "children": {
                         "type": "array"
@@ -31,6 +31,11 @@
                     "type"
                 ]
             }
+        },
+        "synced": {
+            "title": "Synced",
+            "type": "boolean",
+            "description": "Synced"
         },
         "category": {
             "title": "Category",
@@ -49,6 +54,16 @@
             ],
             "maxLength": 20000,
             "description": "Description"
+        },
+        "keywords": {
+            "title": "Keywords",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "maxLength": 64
+            },
+            "maxItems": 100,
+            "description": "Keywords"
         },
         "props": {
             "title": "Properties",

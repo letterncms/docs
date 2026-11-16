@@ -2,29 +2,41 @@
 id: 01m5x9ea75bkfh9a0v0gsww8g7
 title: Components
 position: 3
-description: Design something once, like a header or a card, and reuse it everywhere. Change it once and every copy updates.
+description: Design something once, like a header, a card or a whole page, and reuse it everywhere. A synced one updates everywhere; one that isn't is a copy to change freely.
 ---
-A component is a piece of design you make once and use in many places: a header, a footer, a card, a call to action. Edit the component, and every page that uses it changes with it.
+A component is a piece of design you make once and use in many places: a header, a footer, a card, a hero, a whole about page. A component is either synced or not:
+
+- **Synced** (the default): every page that uses it stays linked to it. Edit the component, and every page changes with it. Use it for headers, footers and cards.
+- **Not synced**: inserting it puts a copy of its blocks on your page, to change however you like. The component stays as it was, and nothing you change on the page reaches it. Use it for blocks to start from, like a hero with a photo, a row of three features, a team or a whole page.
 
 ![The Header component open in the editor, with its settings on the right.](/media/screens/design-component.webp)
 
-Components live under **Components**, in **Structure**, each shown as your site draws it, grouped by category. Every copy stays linked to its component. Use them for headers, footers and cards. For blocks you want to copy once and then change freely, like a hero or a whole page to start from, use a [pattern](/design/patterns).
+Components live under **Components**, in **Structure**, each shown as your site draws it, grouped by category. Search finds a component by its name, category, description or keywords, and **Display** switches to a table, like the list of templates. Open one to edit it in the editor, like a page, and **Publish** it. **Synced**, in its settings, switches between the two kinds.
+
+Categories are free words. These are offered first: **Heroes**, **Text**, **Media**, **Features**, **People**, **Lists**, **Calls to Action** and **Pages**. Any other category you type makes a new group.
 
 ## Make a component
 
-1. Select the block you want to reuse, like a card. To take several blocks side by side, click the first and `⇧`-click the last.
+1. Select the blocks you want to reuse, like a card or a section. To take several blocks side by side, click the first and `⇧`-click the last.
 2. Choose **Make a Component** in the **⋯** menu at the top of the block's settings, or in the block's own **⋯** menu on the page.
 3. Give it a **Name**, and optionally a **Category** and a **Description** that tell others when to use it.
+4. Leave **Synced** on to replace the blocks you selected with the component, so this page updates with it too. Turn it off to save a copy to start from: the page keeps its blocks as they are.
 
-A component replaces the blocks you selected, so this page updates with it too.
-
-Some blocks only accept certain blocks inside them. Where a component can't go, **Make a Component** isn't offered. **Save as Pattern** keeps a copy of the blocks instead.
+Some blocks only accept certain blocks inside them. Where a synced component can't go, **Synced** isn't offered, and the blocks are saved as a copy. You can also make a component from scratch with **New Component** in **Components**.
 
 ## Insert a component
 
-Press the `+` between two blocks, or type `/` in an empty line, and search. Components are listed with the blocks, under **Components**.
+Press the `+` between two blocks, or the `+` at the top of the editor, and open the **Components** tab. Components are shown as pictures, by category. Click one: a synced component is placed as itself, and one that isn't puts a copy of its blocks where you are. Search, or `/` in an empty line, lists matching components with the blocks, under **Components**.
+
+A component that isn't synced can only go where all of its blocks are allowed. Where it can't, it isn't offered.
+
+## Start a page from a component
+
+A new, empty page offers **Start From a Component** next to **Write, or press “/” for blocks**. It lists the components in the category **Pages** that aren't synced, as pictures. Choose one and the page starts with a copy of it. Or don't: a page starts blank otherwise.
 
 ## Give each copy its own content
+
+Properties belong to a synced component: a copy of one that isn't synced is ordinary blocks, and has none.
 
 A card component is more useful when each copy can show its own title, image and link. Those are the component's **properties**.
 
@@ -51,9 +63,41 @@ Pages always show a component's published version. The editor and preview show y
 
 ### Stored as files
 
-Components are entries of the `components` collection, stored as Markdown files in `content/collections/components/`. The settings are in the frontmatter (`category`, `description`, `props`) and the blocks are [Block Markdown](/reference/block-markdown).
+Components are entries of the `components` collection, one Markdown file each in `content/collections/components/<handle>.md`. The settings are in the front matter (`synced`, `category`, `description`, `keywords`, `props`) and the body is the blocks, in [Block Markdown](/reference/block-markdown). `synced: false` makes a component a copy to start from; left out, it is synced:
 
-Plugins can ship read-only components too, with the `blocks.component-sources` filter and folders of `<handle>.json`.
+```markdown
+---
+id: 01m7b9q2yk5r3s1a4t6w8x0zcb
+title: Hero With Photo
+status: published
+synced: false
+category: Heroes
+description: A photograph filling the screen, with a headline and a button.
+keywords: [intro, cover]
+---
+
+::: section {"props":{"width":"wide","background_image":["01m7b9q2yk5r3s1a4t6w8x0zcc"],"overlay":"dark"}}
+# Eleven kilometres of coast
+
+:::: buttons
+::::: button {"props":{"label":"Walk with us","url":"/walks","variant":"primary"}}
+:::::
+::::
+:::
+```
+
+Lettern writes the `id` and `status`. A file in a [site package](/design/sites) may leave them out. A site carries its components when it is applied, in `design` mode too, and when it is exported. One whose name the site already has follows the same `clash` choice as templates.
+
+### Components from a plugin
+
+A plugin ships read-only components with the `blocks.component-sources` filter: folders of `<handle>.md` files in the same form, or `<handle>.json` files with `title`, `synced`, `category`, `description`, `keywords`, `props` and `blocks`. They are listed and inserted like the site's own, marked as coming from a plugin:
+
+```php
+$this->cms()->hooks()->addFilter('blocks.component-sources', fn (array $sources) => [
+    ...$sources,
+    ['path' => $this->path('components'), 'source' => 'acme/reviews'],
+]);
+```
 
 ### Properties
 
@@ -83,7 +127,7 @@ props:
 
 ### Instances
 
-A copy on a page is a `component` block. Its `props.values` holds the values set for this copy, and `bind` with `values.<handle>` takes a value from data:
+A copy of a synced component on a page is a `component` block. Its `props.values` holds the values set for this copy, and `bind` with `values.<handle>` takes a value from data:
 
 ```json
 { "type": "component", "props": { "ref": "card", "values": { "link": "/pricing" } }, "bind": { "values.title": "item.title", "values.image": "item.cover" } }
@@ -93,4 +137,4 @@ Text edited on the page is stored in the instance's `props.values`. Inline editi
 
 ### Abilities
 
-`components/list` returns every component with its properties and blocks (`working: true` includes drafts). `components/save` creates or replaces one by handle; for anything else use the `entries/*` abilities in the `components` collection.
+`components/list` returns every component with `synced`, its properties and its blocks, in category order (`working: true` includes drafts, `category: "Pages"` only that category, `synced: false` only the copies to start from). `components/save` creates or replaces one by handle, with `synced` and its blocks as a list of nodes or as Block Markdown. To insert a synced component, place a `component` block; to insert one that isn't, copy its `blocks` into the document. For anything else use the `entries/*` abilities in the `components` collection.

@@ -6,7 +6,7 @@ description: 'A whole site you can switch to and back: choosing one, trying othe
 ---
 Open **Design → Sites** to switch between complete sites, import them and export them, and **Browse Store**, right under it, to find more. Each can contain pages, posts, collections, menus, design, and media. When you switch, Lettern saves your work so you can return to it later.
 
-**Starter** is selected when you install Lettern. It is a complete site for a small studio to make your own: a home page, work with four projects, a journal with five stories, about and contact pages, and 33 ready-made [patterns](/design/patterns), with photographs, a film and a sound recording throughout. Setup downloads it from the store as `letterncms/starter`. You can also choose another site or start with an empty one.
+**Starter** is selected when you install Lettern. It is a complete site for a small studio to make your own: a home page, work with four projects, a journal with five stories, about and contact pages, and 33 ready-made [components](/design/components) to start from, with photographs, a film and a sound recording throughout. Setup downloads it from the store as `letterncms/starter`. You can also choose another site or start with an empty one.
 
 An exported site is a portable folder of Markdown, YAML, JSON, and media. You can keep it in version control, share it, or use it as the starting point for another installation.
 
@@ -50,7 +50,7 @@ php cms site:apply studio --mode=design --dry-run     # every step, nothing writ
 php cms site:apply studio --clash=rename                # refuse (the default), skip, replace or rename
 ```
 
-`--mode=design` brings the stylesheet, fonts, templates, components, patterns, scripts, styles and libraries; `full` (the default) its content too. While your site has something of a name the site brings, the apply refuses and names each one, until `--clash` says what happens to it: `skip` (yours stays), `replace` (the site's takes its place, after a snapshot in `storage/backups/`) or `rename` (an entry comes in beside yours under a new address, like `home-2`). Everything a site would write is checked before the first file is, and a site that fails on the way leaves your site as it was.
+`--mode=design` brings the stylesheet, fonts, templates, components, scripts, styles and libraries; `full` (the default) its content too. While your site has something of a name the site brings, the apply refuses and names each one, until `--clash` says what happens to it: `skip` (yours stays), `replace` (the site's takes its place, after a snapshot in `storage/backups/`) or `rename` (an entry comes in beside yours under a new address, like `home-2`). Everything a site would write is checked before the first file is, and a site that fails on the way leaves your site as it was.
 
 Entries come in under ids of their own, and whatever named them follows: relations, parents, translations, menu items, links and components on blocks. A date that was ahead of the site's making is as far ahead now; an end date that has passed brings the entry in as a draft.
 
