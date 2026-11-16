@@ -159,13 +159,13 @@ php cms run styling/update --input='{"transition":{"navigation":"client"}}'
 
 The canvas needs an element on every page. Open each template (**Default**, **Page** and **Article** on a new site) and add a **Box** above the header:
 
-1. Under **Design → Classes**, add `stage`. Under **Content → Advanced**, set **Persist As** to `stage`.
+1. In the **Design** tab, press **Classes** at the top and add `stage`. Under **Content → Advanced**, turn on **Keep Across Pages**.
 2. Under **Interact → Behaviors**, choose the **Script** `scene`, press **Add Option** and set `speed` to `0.2`.
 
 In the editor the box says which behavior draws it; the preview shows the canvas. In a template's file, `content/collections/templates/page.md`, it is one block:
 
 ```
-::: box {"id":"t-stage","label":"Stage","class":"stage","persist":"stage","behavior":{"module":"scene","props":{"speed":0.2}},"attrs":{"aria-hidden":"true"}}
+::: box {"id":"t-stage","label":"Stage","class":"stage","persist":"t-stage","behavior":{"module":"scene","props":{"speed":0.2}},"attrs":{"aria-hidden":"true"}}
 :::
 ```
 
@@ -199,6 +199,6 @@ In a browser:
 
 - Reach for an animation first. Pinning, playing with the scroll and telling scripts the progress are settings, not code.
 - A script's work belongs in `mount`, and its undoing in what `mount` returns or in `signal`. Then it survives every way a block can arrive and leave.
-- An element that should outlive its page gets a **Persist As** name and sits in the templates.
+- An element that should outlive its page is kept across pages and sits in the templates.
 - Neither script trusts its props, and both stand still for visitors who ask for less motion or pause it.
 - When a library is the right tool, such as GSAP for a timeline these settings can't say, add it with [`cms vendor`](/design/code#add-a-library) and drive it from a behavior the same way.

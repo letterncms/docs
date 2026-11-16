@@ -25,13 +25,13 @@ To rename the block, double-click its name, or choose **Rename** in its **⋯** 
 Change what the block says or shows, like a heading's level or a button's link. Then, further down:
 
 - **Visibility** hides a block on the site, or shows it only when some data says so.
-- **Advanced** holds the technical settings: the HTML tag, a button's type, how an image loads (**Load First**, **Shown Width**), and a **Layer Name**, an **Anchor** to link to (`#menu`) and HTML **Attributes**.
+- **Advanced**, folded each time you select a block, holds the technical settings: the HTML tag, a button's type, how an image loads (**Load First**, **Shown Width**), and a **Layer Name**, an **Anchor** to link to (`#menu`), [**Keep Across Pages**](/design/page-navigation#keep-an-element-across-pages) and HTML **Attributes**.
 
 Point at a setting and a database icon appears beside its label, **Connect to Data**: the setting then comes from your content instead of being typed in, like a dish's price or the latest posts. See [Showing content](/design/data).
 
 ## Design
 
-Change how the block looks, section by section: **Layout**, **Position**, **Size**, **Spacing**, **Typography**, **Fill**, **Border**, **Effects**, **Transform** and **Transition**. A section's **+** adds any other property that belongs there. What you set becomes Tailwind classes on the block, under **Classes** at the end of the tab. **Add Style** at the top gives it one of your site's saved styles, like *card*.
+Change how the block looks, section by section: **Layout**, **Position**, **Size**, **Spacing**, **Typography**, **Fill**, **Border**, **Effects**, **Transform** and **Transition**. A section's **+** adds any other property that belongs there. What you set becomes Tailwind classes on the block, shown by the **Classes** button at the top of the tab. **Add Style**, in the field beside it, gives it one of your site's saved styles, like *card*.
 
 Pick colors, fonts and sizes from your [theme](/design/site-design), and the block keeps matching the rest of the site when those change.
 

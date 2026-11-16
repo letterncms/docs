@@ -21,7 +21,7 @@ It is for what [animations](/design/animations) and [interactions](/design/inter
 | **When Idle** | Once the browser has nothing else to do |
 | **When Loaded** | After the page's load event and its fonts: for a script that measures text or layout |
 
-The same panel lists the scripts and styles the block loads. Putting a script, a style, a behavior or a persist name on a block needs the **Edit Scripts and Stylesheets** permission, in the admin and through every ability. Without it, a block keeps what it has.
+The same panel lists the scripts and styles the block loads. Putting a script, a style or a behavior on a block, or keeping it across pages, needs the **Edit Scripts and Stylesheets** permission, in the admin and through every ability. Without it, a block keeps what it has.
 
 Scripts don't run in the editor on their own: there the block is only its design. A block that a behavior draws, such as a canvas or a chart, would be a blank there, so while it is empty it says which behavior draws it and that the preview shows it. Give such a block a size in **Design**, so the editor shows its place.
 
