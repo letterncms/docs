@@ -20,7 +20,22 @@ There is no build step of your own. You write ES modules and plain CSS, say wher
 
 A name is lowercase letters, digits, `-` and `_`, in up to three folders.
 
-In the admin, all of it is on the **Code** page, under **Structure** in the sidebar: its files are listed beside the one that is open. **Stylesheets** starts with the site's own CSS, **Site CSS**, and lists the other stylesheets; **Scripts** starts with the site's own file, **Site JavaScript**, and lists the other scripts; **Libraries** lists what the scripts import. The **+** beside each adds one. Changing any of it needs the **Edit Scripts and Stylesheets** permission, which is **Trusted Only**.
+In the admin, all of it is on the **Code** page, under **Structure** in the sidebar, an editor like the ones you write code in elsewhere. Its files are listed on the left: **Stylesheets** starts with the site's own CSS, **Site CSS**, and lists the other stylesheets; **Scripts** starts with the site's own file, **Site JavaScript**, and lists the other scripts; **Libraries** lists what the scripts import. The **+** beside each adds one. Changing any of it needs the **Edit Scripts and Stylesheets** permission, which is **Trusted Only**.
+
+A file opens in a tab, and stays open with its undo and its place until you close it. A dot marks a file with changes that aren't saved; a tab closed with changes keeps them. Nothing saves by itself: **Save**, or `⌘S`, formats every changed file with Prettier and saves them together, and **Discard** drops the changes. A file Prettier can't read, say with a brace never closed, is saved as you wrote it, and **Show Line** takes you to the mistake. **Format Document**, in the **⋯** menu, formats the open file without saving it. The line under the editor says where the cursor is.
+
+### The console
+
+**Show Console**, the terminal button at the top (`⌃` `` ` ``), opens the console under the editor. It runs a page of your site with the code as saved, and runs it again after each save. It lists what the page logs, its errors, and anything it failed to load; where a message came from one of your files, its name and line open that file there. Type JavaScript on the last line and press `↵` to run it on the page: an expression shows its value. `⇧↵` starts a new line, `↑` brings back what you ran before, and `⌃L` clears the console.
+
+The field at its top is the page it runs: type another address, or follow a link on the page. **Show Page** shows the page beside the messages.
+
+| Keys | Does |
+|---|---|
+| `⌘S` | Format and save every changed file |
+| `⌥⇧F` | Format the open file |
+| `⌃` `` ` `` | Show or hide the console |
+| `⌥⌘←` `⌥⌘→` | The previous or next tab |
 
 ## Say where a file loads
 

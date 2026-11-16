@@ -123,7 +123,7 @@ Under **Classes → Articles**, **Spacing** sets the space between blocks, above
 
 ## Code
 
-**Code**, under **Structure** in the sidebar, is for what the sections of **Design** don't cover: its files are listed beside the one that is open. **Site CSS** holds the CSS of your own: a rule for a selector of your own, a variable the sections have no place for, a variant of your own. What the sections set is not in it: they keep it. A site from Starter has none. A stylesheet Tailwind can't read is not saved, and the page says why in Tailwind's own words.
+**Code**, under **Structure** in the sidebar, is for what the sections of **Design** don't cover: its files are listed beside the ones open, each in a tab, with a console of the site's page under them. **Site CSS** holds the CSS of your own: a rule for a selector of your own, a variable the sections have no place for, a variant of your own. What the sections set is not in it: they keep it. A site from Starter has none. A stylesheet Tailwind can't read is not saved, and the page says why in Tailwind's own words.
 
 **Site JavaScript** runs on every page. Under **Stylesheets** and **Scripts**, after the site's own, are the site's other files, which load only where you say, and **Libraries** lists what scripts import. See [Scripts and styles](/design/code).
 
