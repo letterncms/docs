@@ -210,6 +210,20 @@
       "sidebar": "collapsed",
       "tab": "SEO"
     },
+    "operations-analytics": {
+      "site": "examples",
+      "path": "/admin/analytics",
+      "size": [
+        1100,
+        680
+      ],
+      "sidebar": "collapsed",
+      "steps": [
+        {
+          "waitText": "Visit Duration"
+        }
+      ]
+    },
     "operations-sync": {
       "site": "examples",
       "path": "/admin/sync",
