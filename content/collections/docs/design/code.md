@@ -20,7 +20,7 @@ There is no build step of your own. You write ES modules and plain CSS, say wher
 
 A name is lowercase letters, digits, `-` and `_`, in up to three folders.
 
-In the admin, all of it is on the **Code** page, under **Design** in the sidebar: its files take the sidebar's place, and the one that is open fills the page. **Stylesheets** starts with the site's own CSS, **Site CSS**, and lists the other stylesheets; **Scripts** starts with the site's own file, **Site JavaScript**, and lists the other scripts; **Libraries** lists what the scripts import. The **+** beside each adds one. Changing any of it needs the **Edit Scripts and Stylesheets** permission, which is **Trusted Only**.
+In the admin, all of it is on the **Code** page, under **Design** in the sidebar: its files are listed beside the one that is open. **Stylesheets** starts with the site's own CSS, **Site CSS**, and lists the other stylesheets; **Scripts** starts with the site's own file, **Site JavaScript**, and lists the other scripts; **Libraries** lists what the scripts import. The **+** beside each adds one. Changing any of it needs the **Edit Scripts and Stylesheets** permission, which is **Trusted Only**.
 
 ## Say where a file loads
 

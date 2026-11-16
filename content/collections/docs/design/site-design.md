@@ -10,7 +10,9 @@ It is [Tailwind CSS](https://tailwindcss.com): one stylesheet holds the theme, a
 
 ![The styling: colors in the middle, a live preview of the site on the right.](/media/screens/design.webp)
 
-Open **Design** in the sidebar, then **Styling**, or press `⌘K` and type *styling*. Its sections take the sidebar's place, with the way back to Design, and the site fills the page until you choose one. The preview on the right shows your site as you change things, on desktop, tablet or phone, and in light or dark when the site has dark colors.
+Open **Design** in the sidebar, then **Styling**, or press `⌘K` and type *styling*. It is a panel beside your site: your site's look at a glance, then its sections, each opening in the panel with the way back. The preview on the right shows your site as you change things, on desktop, tablet or phone, and in light or dark when the site has dark colors.
+
+Your site is the baseline. A change you haven't saved carries a dot beside its name, and **Revert** in its **⋯** menu takes it back to what your site has. **Undo** and **Redo** in the top bar (`⌘Z`, `⇧⌘Z`) step through your changes, and **Versions** lists every saved styling, newest first: open one to look at it, and save it to go back to it.
 
 ## What's in it
 
@@ -25,7 +27,7 @@ Open **Design** in the sidebar, then **Styling**, or press `⌘K` and type *styl
 | **Motion** | Easing curves, durations, animations, how transitions run by default, and how pages change into each other |
 | **Styles** | How the page, its text, buttons, forms and long-form text look, and the looks you named |
 
-Every value of the theme has a name, like *primary* for your brand color or *content* for a width. You give it a value once, and use the name everywhere. Tailwind's own values are all there: change one, and **Reset** in its **⋯** menu puts it back. A value your site added can be renamed and deleted.
+Every value of the theme has a name, like *primary* for your brand color or *content* for a width. You give it a value once, and use the name everywhere. Tailwind's own values are all there to change. A value your site added can be renamed and deleted.
 
 ## Change your colors
 
@@ -77,7 +79,7 @@ The spacing a block offers is Tailwind's scale: steps of one size, the first row
 | **Articles** | Long-form text: its **Spacing**, and its headings, paragraphs, list items, quotes, figures and links where they differ from the rest of the page |
 | **Boxes** | Looks you named for anything else, like *card* |
 
-Open one to style it with the same controls as a block's **Design** tab, for the screen the preview shows. For a link or a button, choose **Hover** in the state menu at the top to style it while it is pointed at. An element's **⋯** menu has **Reset**, which takes its style away. A block's own styles always win over these.
+Open one to style it with the same controls as a block's **Design** tab, for the screen the preview shows. For a link or a button, choose **Hover** in the state menu at the top to style it while it is pointed at. A changed element's **⋯** menu has **Revert**, which takes it back to what your site has. A block's own styles always win over these.
 
 ### Looks with a name
 
@@ -121,7 +123,7 @@ Under **Styles → Articles**, **Spacing** sets the space between blocks, above 
 
 ## Code
 
-**Code**, under **Design** in the sidebar, is for what the **Styling** sections don't cover: its files take the sidebar's place, as Styling's sections do, and the one that is open fills the page. **Site CSS** holds the CSS of your own: a rule for a selector of your own, a variable the sections have no place for, a variant of your own. What the sections set is not in it: they keep it. A site from Starter has none. A stylesheet Tailwind can't read is not saved, and the page says why in Tailwind's own words.
+**Code**, under **Design** in the sidebar, is for what the **Styling** sections don't cover: its files are listed beside the one that is open. **Site CSS** holds the CSS of your own: a rule for a selector of your own, a variable the sections have no place for, a variant of your own. What the sections set is not in it: they keep it. A site from Starter has none. A stylesheet Tailwind can't read is not saved, and the page says why in Tailwind's own words.
 
 **Site JavaScript** runs on every page. Under **Stylesheets** and **Scripts**, after the site's own, are the site's other files, which load only where you say, and **Libraries** lists what scripts import. See [Scripts and styles](/design/code).
 
