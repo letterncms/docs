@@ -168,7 +168,7 @@ Text from data is escaped. End a path with `|raw` to keep its HTML (a rich text 
 
 | Source | Settings | Items |
 |---|---|---|
-| `entries` | `collection`, `sort`, `limit`, `offset`, `parent` (`any`, `top`, `current` page, outer `item`), `hasTag`, `where`, `skipCurrent`, `paginate` | Entries, like `entry.*` |
+| `entries` | `collection`, `sort`, `limit`, `offset`, `parent` (`any`, `top`, `current` page, outer `item`), `hasTag` (the slug or name of a [tag](/content/taxonomies) the entries are filed under), `where`, `skipCurrent`, `paginate` | Entries, like `entry.*` |
 | `children` | `of`: `entry` (this page), `item` (the outer item), `parent` (this page's parent) or `root` (the top of this page's branch) | Child entries |
 | `breadcrumbs` | `self`: include this page | The pages above this one |
 | `headings` | `depth`: down to H2, H3 or H4 | `text`, `id`, `level`, `url` |
