@@ -347,7 +347,7 @@ $this->cms()->hooks()->addFilter('collections', fn (array $collections) => $coll
 ]);
 ```
 
-`system: true` keeps it out of **Collections** and stops people deleting it; a site can still redefine it with its own `content/collections/<handle>.yaml`. The Blocks module adds `templates`, `components` and `patterns` exactly this way, with `section: structure`, so they are listed under **Structure** in the sidebar.
+`system: true` keeps it out of **Collections** and stops people deleting it; a site can still redefine it with its own `content/collections/<handle>.yaml`. The Blocks module adds `templates`, `components` and `patterns` exactly this way, with `section: layout`, so they are listed under **Layout** in **Structure** in the sidebar.
 
 ### The starting definition
 

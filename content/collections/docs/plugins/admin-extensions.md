@@ -140,12 +140,12 @@ The sidebar is drawn from registered sections and items. The screen on view deci
 
 - **The main sidebar**, where the work starts. First the section `main`, the same for everyone and always there: Dashboard, Analytics, and a row into each room. Then **Pinned** (`pinned`): what each person keeps a click away, in the order they put it. An item registered without a `section` is listed there, like Media, Globals and a plugin's screen such as Forms. A screen of a room is there once someone pins it; Pages is pinned from the start. What someone unpins from the `pinned` section waits under **More**, at the end of Pinned; a room's screen they unpin is in its room only.
 - **A room**: a sidebar of its own that takes the main one's place while one of its screens is on view, under its name and a way back (`Esc`). The kernel registers four:
-  - **Entries**, entered from its row in the main sidebar: `content`, an item per collection (`collection.<handle>`, in the section its definition names), like Pages and Posts.
+  - **Content**, entered from its row in the main sidebar: an item per collection (`collection.<handle>`, in the section its definition names), grouped by type: `entries` (*Entries*: Pages, Posts) and `taxonomies` (*Taxonomies*: categories and tags).
   - **Design**, which opens on **Colors** (`/design/colors`): `design-site` (*Site*: Sites, Browse Store), then `design` (*Theme*: Colors, Typography, Layout, Effects, Motion and Classes, each at `/design/<section>`, such as `/design/classes`).
-  - **Structure**: `structure` (Collections, Templates, Components, Patterns, Navigation, Code).
+  - **Structure**: `structure` (*Content Types*: Collections, Taxonomies), `layout` (*Layout*: Templates, Components, Patterns) and `site-wide` (*Site*: Navigation, Code).
   - **Settings**, opened with the gear beside your name or `⇧⌘,`, whose way back returns to exactly the screen it was opened from: what is set up once. `system` (no heading: **General**, **Account**, **Languages**, **Plugins**, **Email**, **Audit Log**), then `people` (*People*: Users, Roles) and `plugins` (*Plugins*). Each settings page is an item (`settings.<namespace>`). Whatever a plugin puts in a section of settings is listed under **Plugins**, by the plugin's name, so no plugin makes a group of its own; that includes settings kept as a **Settings** tab on the plugin's own screen (see [Settings](/plugins/settings#a-settings-tab-on-your-own-screen)).
 
-  Every screen of a room but a settings page can be pinned to the main sidebar from its row there. In every room, sections without a heading come first as one group, and a section with one item joins them.
+  Every screen of a room but a settings page can be pinned to the main sidebar from its row there. In every room, sections without a heading come first as one group, and a section with one item joins them; in a room whose sections all have a heading, as Content's and Structure's, each keeps it.
 
 ```php
 $admin->nav('reviews', ['path' => '/reviews', 'icon' => 'star']);    // under Pinned
@@ -159,7 +159,7 @@ $admin->opens('studio', '/studio');                                   // where i
 | Item key | Meaning |
 |---|---|
 | `label`, `path`, `icon` | What the row shows and where it goes. Leave out `label` on a plugin's main screen to use the plugin's name. |
-| `section` | Where it's listed: `pinned` (the default), under Pinned; `main`, among the rows everyone starts from; or a room's section: `content` (Entries), `design-site` or `design` (Design), `structure` (Structure), `system` or `people` (Settings), or one registered with `room:`. |
+| `section` | Where it's listed: `pinned` (the default), under Pinned; `main`, among the rows everyone starts from; or a room's section: `entries` or `taxonomies` (Content), `design-site` or `design` (Design), `structure`, `layout` or `site-wide` (Structure), `system` or `people` (Settings), or one registered with `room:`. |
 | `order` | Its default place in the section. |
 | `pinned` | For a screen of a room: `true` pins it to the main sidebar from the start, until someone arranges their own. `false` by default. |
 | `shortcut` | A key that opens it, shown with the label (e.g. `mod+j`) and listed when someone presses `?`. |

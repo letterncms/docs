@@ -31,7 +31,7 @@ A few types cover most sites:
 | **Select** | One choice from a list, like *Starter*, *Main* or *Dessert* |
 | **Media** | Images, documents or videos from the [media library](/content/media) |
 | **Entries** | A link to other entries, like a post's author or related products |
-| **Terms** | Topics or categories from a [taxonomy](/content/taxonomies) |
+| **Terms** | Categories or tags from a [taxonomy](/content/taxonomies): picked from a list, or typed, where a new word becomes a tag |
 | **File** | Documents, audio or video from the media library: anything but images |
 | **Link** | A link to a page, an address, an email, a phone number or a file, with its label |
 | **Date Range**, **Time** | When an event starts and ends, when the doors open |
@@ -40,7 +40,7 @@ A few types cover most sites:
 | **Location** | A place: latitude, longitude and an address |
 | **Group**, **Repeater**, **Matrix** | A set of fields together: once, as a list, or as a list of rows of several kinds (see below) |
 
-There are more, like **Color**, **URL**, **Tags** and **Blocks**. See [Field types](/reference/field-types) for every one and its options.
+There are more, like **Color**, **URL**, **List** (short values typed one after another, like email addresses) and **Blocks**. See [Field types](/reference/field-types) for every one and its options.
 
 ## Set it up
 
@@ -170,7 +170,7 @@ A `matrix` field lists its kinds under `types`, each with a `handle`, a `label` 
     - handle: facts
       label: Facts
       fields:
-        - { handle: items, type: tags }
+        - { handle: items, type: list }
 ```
 
 A row is its fields' values and `type`, the handle of its kind:
@@ -197,7 +197,8 @@ The [field types reference](/reference/field-types) lists every type with its op
 | `table` | `[["Time", "What"], ["18:00", "Welcome"]]`: rows of text cells. Every row is made as wide as the widest | `header` (on by default): the first row is the header. `max` rows |
 | `geo` | `{"lat": 51.0543, "lng": 3.7174, "address": "Korenmarkt, Gent"}` in decimal degrees. The address is text and optional; no map service is called | |
 | `file` | `["<file id>"]`: ids of files that are not images | `max`, and `accept`, such as `application/pdf, video/*` |
-| `terms` | `["<term id>"]`. A term's slug or title is taken too, and stored as its id | `taxonomy` (required), `max` |
+| `terms` | `["<term id>"]`. A term's slug or title is taken too, and stored as its id; a name no tag has becomes a new tag | `taxonomy` (required), `max` |
+| `list` | `["name@example.com", "sales@example.com"]`: short text values, each kept once | |
 | `matrix` | A list of rows, each with its `type` | `types`, `max` |
 
 Stored exactly as sent, this entry:

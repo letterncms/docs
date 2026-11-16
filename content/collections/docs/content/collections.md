@@ -11,6 +11,8 @@ A collection is one kind of content on your site: blog posts, team members, proj
 
 Pages are a collection too. Your templates then show the entries in your design, so the people filling them in never have to think about layout.
 
+A collection's **type** says what its entries are. Most are **Entries**: pages, posts, dishes. **Categories** and **Tags** are [taxonomies](/content/taxonomies), vocabularies other entries are filed under; they are made under **Taxonomies** and work the same way.
+
 ## Create a collection
 
 1. Open **Structure** in the sidebar, then **Collections**, and press **New Collection**.
@@ -20,9 +22,9 @@ Pages are a collection too. Your templates then show the entries in your design,
 
 ![Creating a collection: a name and a structure are all it takes.](/media/screens/content-new-collection.webp)
 
-The collection opens on its **Fields**, ready for the next step, and it appears under **Entries** in the sidebar for everyone allowed to see it. Pin it from its row there to keep it under **Pinned**.
+The collection opens on its **Fields**, ready for the next step, and it appears in **Content**, under **Entries**, in the sidebar for everyone allowed to see it. Pin it from its row there to keep it under **Pinned**.
 
-Under **Advanced** you can also set the **Handle** (the name used in code and file names), the **Entry Name** (*Dish* for *Dishes*), the **URL Pattern**, the **Template** and the **Storage** (the database, or files you can keep in git). The entry name, URL pattern and template can be changed later, in the collection's **Settings**.
+Under **Advanced** you can also set the **Handle** (the name used in code and file names), the **Entry Name** (*Dish* for *Dishes*), the **URL Pattern**, the **Template** and the **Storage** (the database, or files you can keep in git). The entry name, URL pattern and template can be changed later, in the collection's **Settings**, and so can its **Type**: a collection of entries can become categories or tags, and moves to **Taxonomies**. Entries that nest can't become tags, and a taxonomy that a field picks from stays one until the field is gone.
 
 ### Pick a structure
 
@@ -105,7 +107,8 @@ fields:
     type: blocks
     body: true
   - handle: tags
-    type: tags
+    type: terms
+    taxonomy: tags
     section: sidebar
 ```
 
@@ -113,12 +116,13 @@ fields:
 
 | Key | Meaning |
 |---|---|
+| `type` | `entries` (the default), or a [taxonomy](/content/taxonomies): `categories` or `tags`. **Type** in its settings. |
 | `title`, `singular`, `icon`, `description` | How the collection appears in the admin. |
-| `structure` | `list` (ordered by `sort`, by title unless set), `dated` (newest first) or `tree` (nested, ordered by hand). |
+| `structure` | For entries: `list` (ordered by `sort`, by title unless set), `dated` (newest first) or `tree` (nested, ordered by hand). Categories are a tree and tags a list, whatever it says. |
 | `route` | The URL pattern (see below). Leave it out for content without pages of its own. |
 | `home` | For trees: the slug of the entry that becomes `/`. |
 | `template` | The slug of the [template](/design/templates) that frames entries. Omit or leave empty to inherit: Lettern uses `default`, or renders the content alone when there is no default template. A missing template stays visible with a warning until you choose another. Entries can override it with a `template` field (`type: select`, `dynamic: templates`); clearing that field restores the collection's template. |
-| `section` | The sidebar section it is listed in: `content`, under **Entries**, unless set. Each person pins it from its row to keep it under **Pinned**; *Pages* is pinned from the start. The Blocks module's templates, components and patterns use `structure`. |
+| `section` | The sidebar section it is listed in: `entries`, under **Entries** in **Content**, or for a taxonomy `taxonomies`, unless set. Each person pins it from its row to keep it under **Pinned**; *Pages* is pinned from the start. The Blocks module's templates, components and patterns use `layout`, in **Structure**. |
 | `nav_order` | Default place in its section (integer, lower first; `10` when omitted). A sidebar someone arranged, or the default an admin saved for everyone, overrides it. |
 | `sort` | Field to sort lists by; prefix with `-` for descending. |
 | `default_view` | `table` (default), `grid` or `calendar`. What a person chose in **Display** wins. |
@@ -127,7 +131,6 @@ fields:
 | `revisions` | `false` turns off revision history. |
 | `fields` | The blueprint: see [Fields](/content/fields). One `blocks`, `markdown` or `richtext` field in it can have `body: true`: that is the entry's main content (see [The body](#the-body)). |
 | `blueprints` | More sets of fields, for entries that come in kinds: see [Several blueprints](#several-blueprints). |
-| `taxonomy` | `true` makes the collection a [taxonomy](/content/taxonomies): its entries are terms that `terms` fields pick from. The **Taxonomy** switch in its settings. |
 | `archives` | A page per term of a taxonomy that lists this collection's entries filed under it: `{topics: '/blog/topics/{slug}'}`. See [Give a collection a page per term](/content/taxonomies#give-a-collection-a-page-per-term). **Term Archives** in its settings. |
 
 ### The body

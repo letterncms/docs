@@ -289,6 +289,15 @@
       ],
       "sidebar": "collapsed"
     },
+    "content-new-taxonomy": {
+      "site": "examples",
+      "path": "/admin/taxonomies/new",
+      "size": [
+        960,
+        640
+      ],
+      "sidebar": "collapsed"
+    },
     "content-menu": {
       "site": "examples",
       "path": "/admin/navigation/main",
