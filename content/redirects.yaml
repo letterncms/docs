@@ -34,3 +34,5 @@ redirects:
   - { from: /design/seo-and-geo, to: /operations/seo-and-geo }
   # American English: licence became license.
   - { from: /reference/licence, to: /reference/license }
+  # Styles became Classes, as the admin and the stylesheet call them.
+  - { from: /design/styles, to: /design/classes }

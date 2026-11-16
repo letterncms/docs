@@ -60,7 +60,9 @@ A selected block gets a small toolbar above it, with:
 - an arrow to select the block it sits in,
 - the block's name,
 - **Move Up** and **Move Down**,
-- **⋯** for **Insert Before**, **Insert After**, **Duplicate**, **Make a Component** and **Delete**.
+- **⋯** for everything else you can do with it: **Cut**, **Copy**, **Paste**, **Duplicate**, **Insert Before**, **Insert After**, selecting the block it sits in, **Make a Component**, **Save as Pattern** and **Delete**.
+
+Right-click a block, on the page or in the **Outline**, for the same menu, right where you clicked. Inside text you're typing in, right-click keeps your browser's own menu, for spelling and pasting plain text.
 
 While you drag, a line shows where the block will land, and the page scrolls when you near an edge. Press `Esc`, or let go somewhere it can't go, to cancel.
 
