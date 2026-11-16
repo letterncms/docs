@@ -12,7 +12,7 @@ Templates are made of blocks, just like pages, so you design them the same way.
 
 ## Edit a template
 
-1. Open **Templates**, under **Design** in the sidebar, and choose one, like *Page*.
+1. Open **Design** in the sidebar, then **Templates**: each is shown as your site draws it. Choose one, like *Page*.
 2. Edit it like any page: select blocks, style them, add new ones.
 3. Press **Publish**. Every page that uses the template is rebuilt.
 

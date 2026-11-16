@@ -13,7 +13,7 @@ Pages are a collection too. Your templates then show the entries in your design,
 
 ## Create a collection
 
-1. Open **Collections**, under **Design** in the sidebar, and press **New Collection**.
+1. Open **Settings**, then **Collections**, and press **New Collection**.
 2. Give it a name, like *Dishes*.
 3. Choose a **Structure** (see below).
 4. Press **Create Collection**.

@@ -137,20 +137,27 @@ The admin starts loading code and data on link hover or focus. While an uncached
 
 ## The sidebar
 
-The sidebar has two states, both drawn from registered sections and items. The screen on view decides which one shows:
+The sidebar is drawn from registered sections and items. The screen on view decides what it shows:
 
-- **The main sidebar**, where people work: every item, section by section, in the order each person put them. The kernel registers the sections `main` (no heading: Dashboard, Analytics, Plugins), `content` (*Content*) and `design` (*Design*). Each collection is an item too (`collection.<handle>`, in the section its definition names), so Templates and Components sit under Design. Everything is there from the start; **More** appears only for what someone unpins.
-- **The settings sidebar**, opened with the gear beside your name or `⇧⌘,`: a way back, then what is set up once. The kernel registers `account`, `site` and `system`, shown together without a heading (**General**, **Account**, **Languages**, **Media**, **Email**, **Audit Log**), then `people` (*People*: Users, Roles) and `plugins` (*Plugins*). Each settings page is an item (`settings.<namespace>`). Whatever a plugin puts in a settings section is listed under **Plugins**, by the plugin's name, so no plugin makes a group of its own; that includes settings kept as a **Settings** tab on the plugin's own screen (see [Settings](/plugins/settings#a-settings-tab-on-your-own-screen)). Settings are a place to visit, not something to arrange: these items are never pinned.
+- **The main sidebar**, where people work: every item, section by section, in the order each person put them. The kernel registers the sections `main` (no heading: Dashboard, Analytics, and the row into the design), `content` (*Content*: the collections, Media, Forms) and `site` (*Site*: Navigation, Globals). Each collection is an item too (`collection.<handle>`, in the section its definition names). Everything is there from the start; **More** appears only for what someone unpins.
+- **A room**: a sidebar of its own that takes the main one's place while one of its screens is on view, under its name and a way back (`Esc`). The kernel registers two:
+  - **Design**, entered from its row in the main sidebar, which opens on the site itself (`/design`): `design` (Styling, Templates, Components, Patterns, Code).
+  - **Settings**, opened with the gear beside your name or `⇧⌘,`: what is set up once. `system` (no heading: **General**, **Account**, **Languages**, **Collections**, **Sites**, **Plugins**, **Email**, **Audit Log**), then `people` (*People*: Users, Roles) and `plugins` (*Plugins*). Each settings page is an item (`settings.<namespace>`). Whatever a plugin puts in a section of settings is listed under **Plugins**, by the plugin's name, so no plugin makes a group of its own; that includes settings kept as a **Settings** tab on the plugin's own screen (see [Settings](/plugins/settings#a-settings-tab-on-your-own-screen)).
+
+  A room is a place to visit, not something to arrange: its items are never pinned. In every room, sections without a heading come first as one group, and a section with one item joins them.
 
 ```php
-$admin->section('shop', 'Shop', order: 30);                       // a section of the main sidebar
-$admin->section('billing', 'Billing', order: 15, settings: true); // a section of the settings sidebar
+$admin->section('shop', 'Shop', order: 30);                           // a section of the main sidebar
+$admin->section('billing', 'Billing', order: 15, room: 'settings');   // a section of settings
+$admin->room('studio', 'Studio', icon: 'brush', section: 'main', order: 40); // a room, with a row of the main sidebar that leads in
+$admin->section('studio', '', room: 'studio');                        // and its screens' section
+$admin->opens('studio', '/studio');                                   // where it opens: a screen of its own, else its first item
 ```
 
 | Item key | Meaning |
 |---|---|
 | `label`, `path`, `icon` | What the row shows and where it goes. Leave out `label` on a plugin's main screen to use the plugin's name. |
-| `section` | The section it's listed in: of the main sidebar, or of the settings sidebar when the section is registered with `settings: true`. |
+| `section` | The section it's listed in: of the main sidebar, or of a room when the section is registered with `room:`. |
 | `order` | Its default place in the section. |
 | `pinned` | `true` by default: in everyone's sidebar until they arrange their own. `false` puts it under **More**, for a screen nearly nobody opens. |
 | `shortcut` | A key that opens it, shown with the label (e.g. `mod+j`) and listed when someone presses `?`. |
@@ -289,7 +296,7 @@ Site owns the single **Preview** dialog, opened from that menu. It previews the 
 
 A screen has two side panels at most, one on each side:
 
-- **On the left**, `ScreenSidebar` from `@letterncms/ui` (`title`, `backTo`, `backLabel`) brings a state of the screen's own to the sidebar, in the same frame as the settings one. It's out or folded away as each person last left it (folded the first time), brought out by the same button and `⌘\`, with its way back beside that button, in or out. It takes the sidebar over at once, without sliding, and a screen can claim it while what fills it still loads. The block workspace's **Outline** does this. With `nested`, the list is a screen's sections instead, set in under the screen's row while the sidebar stays as it is, as the Design's are; only when that row is under **More** do they take the sidebar over. `useScreenSidebar()` gives its state, `nested` included.
+- **On the left**, `ScreenSidebar` from `@letterncms/ui` (`title`, `backTo`, `backLabel`) brings a state of the screen's own to the sidebar, in the same frame as a room. It's out or folded away as each person last left it (folded the first time), brought out by the same button and `⌘\`, with its way back beside that button, in or out. It takes the sidebar over at once, without sliding, and a screen can claim it while what fills it still loads. The block workspace's **Outline** does this. With `step`, it is a step into where you are, as **Styling** and **Code** are into Design: out whenever the sidebar is, with who is signed in under it, and `Esc` goes back. `useScreenSidebar()` gives its state.
 - **On the right** is `InspectorPanel`. A screen that uses it says so with `useScreenContext({ rightEdge: true })`, and a dock floats there instead.
 
 Every screen has one compact top bar: its name after the places that lead to it (`crumbs`) on the left, what it can do on the right, ending with its main action. An editor's own tools go there through the `toolbar` element in `EntryEditorProps`, and keep to a few. A screen about one thing gives `Topbar` a `back` and a `title` instead of `crumbs`. With a `ScreenSidebar`, the sidebar's way back stands in for `back`.

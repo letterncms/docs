@@ -23,7 +23,7 @@ Your team can always read every entry in a collection they're allowed to see.
 
 ## Lock a whole collection
 
-Open the collection under **Collections** (in the sidebar's **Design** section), choose its **Settings** tab and set **Who Can Read This** there. It applies to every entry that doesn't say otherwise.
+Open the collection under **Collections** (in **Settings**), choose its **Settings** tab and set **Who Can Read This** there. It applies to every entry that doesn't say otherwise.
 
 That's what **Same as Above** means: an entry follows the version it was translated from, then its parent page, then its collection. So a course locks all its lessons in one place, and one free lesson simply says **Everyone**.
 

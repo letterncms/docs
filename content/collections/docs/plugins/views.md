@@ -115,7 +115,7 @@ Your own components are in the catalog too (see [Generative UI](/plugins/generat
 - **Empty:** `empty` with an `icon`, a `title`, a `text` and an `action`, or `size: "sm"` for one quiet line inside a section.
 - **Literal rows:** `rows` in place of `source` lists records as they are, such as what a command found when the [workspace](/getting-started/workspace) answers with it.
 
-A column's `format` writes its value: `text`, `strong`, `muted`, `code`, `address` (a path of the site), `badge` and `badges`, `status` (a dot and a word), `date`, `datetime`, `ago`, `number`, `money` (in cents, with `currency`), `bytes`, `share` (a bar for a part of the whole, 0 to 1), `compact` (1.2K), `yesno`, `person`, `count`, `image`, `media` (thumbnails of files, looked up), `languages` (which of the `locales` a record has), `field` (as a blueprint `field` of that `type` reads) and `link`. `tones` and `labels` give a value its color and its words.
+A column's `format` writes its value: `text`, `strong`, `muted`, `code`, `address` (a path of the site), `badge` and `badges`, `status` (a dot and a word), `date`, `datetime`, `ago`, `number`, `money` (in cents, with `currency`), `bytes`, `share` (a bar for a part of the whole, 0 to 1), `compact` (1.2K), `yesno`, `person`, `count`, `image`, `media` (thumbnails of files, looked up), `page` (a page of the site at that address, drawn small by the site; a card's whole picture with `image`), `languages` (which of the `locales` a record has), `field` (as a blueprint `field` of that `type` reads) and `link`. `tones` and `labels` give a value its color and its words.
 
 More of a column:
 
