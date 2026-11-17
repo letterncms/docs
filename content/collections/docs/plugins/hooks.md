@@ -154,7 +154,7 @@ The first argument is the value you return; the rest are there to help you decid
 | `site.llms` | `$document` | The site's `llms.txt` before it is written: `title`, `summary` and `sections` (a list of pages per heading, each with `title`, `url`, `description` and its `entry`). Change it instead of writing a second file. |
 | `schemas.documents` | `$documents` | The JSON Schema files of `content/schemas/`, by path: add your own (`'reviews.json' => $schema`). |
 | `site.search.record` | `$record, $entry` | A page's search index record (`null` leaves it out). |
-| `site.search.records` | `$records` | Every record of the search index, to add pages that are no entry: `['id', 'title', 'url', 'section', 'collection', 'locale', 'description', 'headings', 'text']`. |
+| `site.search.records` | `$records` | Every record of the search index, to add pages that are no entry: `['id', 'title', 'url', 'section', 'collection', 'kind', 'date', 'keywords', 'locale', 'description', 'headings', 'text']`. |
 | `site.links.answered` | `$answered, $path` | Whether an address your plugin answers itself is real, so `cms links:check` accepts it. |
 | `seo.alternates` | `$alternates, $entry` | `hreflang` alternates. |
 | `seo.sitemap` | `$urls, $locale` | Addresses your plugin answers itself, for the sitemap: `['uri' => …, 'updated' => …]`. With `'locale' => 'de'` an address is in that language's sitemap; without, in the default language's. `$locale` is the language whose sitemap is written, or `null` on a site with one. |

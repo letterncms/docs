@@ -4,9 +4,9 @@ title: Site search
 position: 6
 description: A search field on any page and a page of results, for sites people come to with a question, like a council’s or a support site.
 ---
-Site Search is a free plugin that adds two blocks: a **Search Field** you can put anywhere, such as in the header or at the top of the home page, and **Search Results**, for the page the field sends people to. Install it from **Plugins**, or with `composer require letterncms/site-search`.
+Two blocks make a search of your own: a **Search Field** you can put anywhere, such as in the header or at the top of the home page, and **Search Results**, for the page the field sends people to. They come with Lettern, like the **Search** block.
 
-The core's **Search** block opens a search box over the page and suits a small site. Site Search is for sites where most visitors arrive with a task and type it in: results get a page of their own, with a link people can share, and filters by kind of page.
+The **Search** block opens a search box over the page (`⌘K`) and suits a small site. The Search Field and Search Results are for sites where most visitors arrive with a task and type it in: results get a page of their own, with a link people can share, and filters by kind of page.
 
 ## Add a search field
 
@@ -36,17 +36,17 @@ People don't always use your words. Add a field named **keywords** to a collecti
 ### The blocks
 
 ```markdown
-::: site-search/form {"props":{"label":"Search the site","show_label":true,"button_style":"primary","size":"lg","results_page":"/search"}}
+::: search-field {"props":{"label":"Search the site","show_label":true,"button_style":"primary","size":"lg","results_page":"/search"}}
 :::
 
-::: site-search/results {"props":{"heading_level":"2","per_page":20,"show_filters":true}}
+::: search-results {"props":{"heading_level":"2","per_page":20,"show_filters":true}}
 :::
 ```
 
-`site-search/form` takes `label`, `show_label`, `placeholder`, `button_label`, `button_style` (a site button look, written as `btn-<style>`), `icon_only`, `size` (`sm`, `md`, `lg`) and `results_page`. It renders a `form` with `role="search"` that sends `q`.
+`search-field` takes `label`, `show_label`, `placeholder`, `button_label`, `button_style` (a site button look, written as `btn-<style>`), `icon_only`, `size` (`sm`, `md`, `lg`) and `results_page`. It renders a `form` with `role="search"` that sends `q`.
 
-`site-search/results` takes `heading_level` (`2` to `4`, the level of each result's title), `per_page`, `show_filters`, `filters_label`, the texts `no_query`, `none`, `one`, `many`, `all_label`, `no_script` and `more_label`, and `more_style`. It reads `q` and `kind` from the address, so a filtered search has its own link: `/search?q=parking&kind=Service`.
+`search-results` takes `heading_level` (`2` to `4`, the level of each result's title), `per_page`, `show_filters`, `filters_label`, the texts `no_query`, `none`, `one`, `many`, `all_label`, `no_script` and `more_label`, and `more_style`. It reads `q` and `kind` from the address, so a filtered search has its own link: `/search?q=parking&kind=Service`.
 
 ### The index
 
-Both read the `/search.json` index the site publishes. The plugin adds three things to each page in it through the core's `site.search.record` filter: `kind` (the collection's singular name), `date` for dated collections, and `keywords`. A plugin of your own can change records with the same filter.
+Both read the `/search.json` index the site publishes, which the **Search** block reads too. Each page in it has, besides its title, address, headings and text, a `kind` (its collection's singular name), a `date` for a dated collection, and its `keywords`. A plugin can change a page's record with the `site.search.record` filter, and add pages with `site.search.records`: see [Hooks](/plugins/hooks).
