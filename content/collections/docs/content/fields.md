@@ -233,6 +233,7 @@ In templates and bindings the values come out ready to use:
 
 | Type | A template gets |
 |---|---|
+| `select` | The option: its label as text, `value` for what is stored, and equal to either with `\|is:`. A multiple select gives a list of them |
 | `link` | `url` (the page's address, `mailto:`, `tel:` or the file) and a `label` that falls back to the page's title or the file's name, with `type`, `value` and `new_tab`. `url` is empty when the page is not published |
 | `date-range` | `start` and `end` as dates: `entry.when.start\|date:j F` |
 | `table` | `header` (the first row) and `rows` (the others) |

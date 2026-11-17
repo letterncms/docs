@@ -30,6 +30,8 @@ You can also type into a connected setting. Put data in braces, and write words 
 
 The part after `|` is a filter that changes how a value looks: a date format, a short excerpt, upper case. The list shows a few examples at the bottom, and the full set is under [For developers](#filters).
 
+A field with options, like a *Kind* with *Condition* and *Test or scan*, shows the option’s label. To style a block by the option, compare it with either its label or its stored value.
+
 ## Show a list with Repeat
 
 A **Repeat** block shows its contents once for every item of a list: every dish, every link of a menu, every page in a section. You design one item, and the Repeat makes the rest.
@@ -70,6 +72,14 @@ To show sub-menus, put a Repeat inside a Repeat. Give the outer one an **Item Na
 
 Turn on **Split into Pages** for a Repeat of collection entries. Publishing then writes `/page/2`, `/page/3` and so on. Add links after the Repeat and connect them to **Previous Page of a List** and **Next Page of a List**. To load the next items in place instead, see [Load more without a reload](/design/interactions#load-more-without-a-reload).
 
+### Show what is still to come
+
+To list only the events that haven’t happened yet, add a condition under **Only Entries Where**: the event’s date field, **is more than**, and the value `{site.today}`. An event with a time keeps its place until the day is over. Choose **is less than** to list what has been instead. The page is built again every day, so an event leaves the list the day after it.
+
+### List from A to Z
+
+To file a list under its first letters, like a directory of doctors or conditions from A to Z, group the Repeat by `item.title|initial`. Each letter becomes a group, from A to Z: a title starting with *É* is under E, and one starting with a digit under #. Show each letter with a heading connected to the group’s **Label**, and its items with a Repeat inside. See [Groups](#repeat) under For developers.
+
 ## Show a block only sometimes
 
 Under **Visibility** in the **Content** tab:
@@ -97,6 +107,8 @@ Put a Repeat in a **List Filter** block, and visitors can narrow it down right o
 
 Which fields can be filtered, searched and sorted is set on the Repeat itself, as **Filter By**, **Search In** and **Sort By**. These aren't in its settings panel: ask the [assistant](/agents/assistant) to set them, or see [For developers](#filtering-a-repeat).
 
+A list grouped from A to Z filters the same way: the items inside the letters are filtered, a letter with nothing left hides, and a sort orders each letter on its own.
+
 Choices stay real radio buttons, the filtered list has its own link, like `?category=seo&q=image&sort=name`, and screen readers hear the count. Without JavaScript the controls go and the whole list shows. Don't combine it with **Split into Pages**: it can only filter the items on the current page.
 
 ## For developers
@@ -120,7 +132,7 @@ A block's `bind` maps a setting to a **path**:
 | `style:<property>` | Sets one style inline, for what differs per item: `style:backgroundImage` with an image field makes a cover background. Everything else is a class |
 | `values.<handle>` | On a component instance: one of its [properties](/design/components#for-developers) |
 
-Text from data is escaped. End a path with `|raw` to keep its HTML (a rich text field). Text with braces mixes words and data: `"Posted {entry.date|date:M j, Y} in {entry.category}"`.
+Text from data is escaped. End a path with `|raw` to keep its HTML (a rich text field). A select field gives its option: its label as text, its stored value as `.value` (`entry.kind.value`), and `|is:` matches either. Text with braces mixes words and data: `"Posted {entry.date|date:M j, Y} in {entry.category}"`.
 
 ### Filters
 
@@ -133,7 +145,8 @@ Text from data is escaped. End a path with `|raw` to keep its HTML (a rich text 
 | `count` | `entry.tags\|count` |
 | `first` | `entry.gallery\|first` |
 | `not` | `visible: "entry.cover\|not"` |
-| `is:value` | `state:featured: "item.kind\|is:featured"` |
+| `is:value` | `state:featured: "item.kind\|is:featured"`: an option matches by its value or its label |
+| `initial` | `item.title\|initial`: the letter a value is filed under, capital and without accents, # for a digit |
 | `raw` | Keep HTML |
 
 ### Paths
@@ -141,7 +154,7 @@ Text from data is escaped. End a path with `|raw` to keep its HTML (a rich text 
 | Path | Holds |
 |---|---|
 | `entry.*` | The page: `title`, `url`, `slug`, `date`, `updated`, `collection`, `locale`, any field by handle, and `parent`, `children`, `ancestors`, `root`, `prev`, `next` (other entries: `entry.next.url`), `current` (this is the page being rendered) and `active` (it is, or sits above it) |
-| `site.*` | `name`, `url`, `description`, `locale`, `locales`, `year` |
+| `site.*` | `name`, `url`, `description`, `locale`, `locales`, `year`, and `today`, the day the page is built on (`2026-11-17`): a page that reads it is built again when the day turns |
 | `globals.<global>.<field>` | A [global](/content/globals) value in the page's language: its published translation, or the original's |
 | `page.*` | `uri` of the page being rendered, `number` for paginated listings, `markdown`: the URL of its [Markdown version](/operations/seo-and-geo) |
 | `item.*`, `index`, `first`, `last` | Inside a Repeat: the current item, its position, whether it is the first or last |
@@ -181,8 +194,8 @@ Text from data is escaped. End a path with `|raw` to keep its HTML (a rich text 
 
 The Repeat's own props: `tag` (`div`, `ul`, `ol`, `section`, `nav`), `as` (the item name, default `item`), `empty` (the **When Empty** text), `group_by`, `filter_by`, `search_in` and `sort_by`.
 
-- **Where**: `where` narrows `entries` by any field, as a list of `{"field": "category", "op": "=", "value": "{entry.category}"}`. `op` is one of `=`, `!=`, `<`, `>`, `<=`, `>=`, `like`, `in`, `not in`, `contains`, `null` and `not null`, and the value may use data as in text.
-- **Groups**: `group_by` names a field of the items. The Repeat then runs once per group, in the order groups first appear, with `item.label` and `item.items`; nest a Repeat with `source: "list", path: "item.items"` for the items. Items without a value share a group with an empty label.
+- **Where**: `where` narrows `entries` by any field, as a list of `{"field": "category", "op": "=", "value": "{entry.category}"}`. `{"field": "starts", "op": ">=", "value": "{site.today}"}` keeps what is still to come. `op` is one of `=`, `!=`, `<`, `>`, `<=`, `>=`, `like`, `in`, `not in`, `contains`, `null` and `not null`, and the value may use data as in text.
+- **Groups**: `group_by` names a field of the items, with filters if you like. The Repeat then runs once per group, in the order groups first appear, with `item.label` and `item.items`; nest a Repeat with `source: "list", path: "item.items"` for the items. Items without a value share a group with an empty label. Grouped by `item.title|initial`, the groups are the letters, from A to Z.
 - **Previous and next**: `source: "neighbors"` lists the entry before and the entry after the current one: newest last in a dated collection, the tree's reading order, else the collection's own order. `show` is `both`, `previous` or `next`, and `wrap: true` goes round at the ends. Each item says which side it is on: `item.side` is `previous` or `next`, and `item.previous` and `item.following` are that as yes or no. So one Repeat draws both with the right label and arrow: bind `visible` to `item.following`, put the block in a `next` state with `state:next` bound to `item.following`, or test `item.side|is:next`.
 - **Sections**: in a tree, `source: "children", of: "root"` lists the section the page is in from any depth, and `state:active` bound to `item.active` marks the section or link the reader is in. This documentation's navigation is built that way.
 - **Pagination**: with `paginate` on, the static build writes `/page/2`, `/page/3`…; bind links after the Repeat to `pagination.prev` and `pagination.next`.
@@ -192,4 +205,6 @@ Lettern describes itself with the same sources anyone can use: this documentatio
 
 ### Filtering a Repeat
 
-In a **List Filter**, the Repeat's `filter_by` lists the fields its **Filter Choice** blocks use (`item.category, item.tags`), `search_in` the fields **Filter Search** looks through (`item.title, item.summary`), and `sort_by` the fields **Filter Sort** can order by (`item.title, item.price_minor`). A **Filter Sort** option names a `sort_by` field and a direction; an option with no field is the order the Repeat already has, so make that the first.
+In a **List Filter**, the first Repeat inside it is the list. Its `filter_by` lists the fields its **Filter Choice** blocks use (`item.category, item.tags`), `search_in` the fields **Filter Search** looks through (`item.title, item.summary`), and `sort_by` the fields **Filter Sort** can order by (`item.title, item.price_minor`). A **Filter Sort** option names a `sort_by` field and a direction; an option with no field is the order the Repeat already has, so make that the first.
+
+Grouped (`group_by: "item.title|initial"`), the list's settings reach the Repeat over each group's items (`source: "list", path: "item.items"`): its items are what is filtered, searched and sorted, and each group is hidden while none of them shows.
