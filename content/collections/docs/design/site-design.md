@@ -85,11 +85,13 @@ A class opens with the same controls as a block's **Design** tab, for the screen
 
 A class of your own is a look you give to blocks. Make a *card* once, with its corners, border and padding, and give it to every block that should look like one. Change the look, and they all change.
 
-1. Press **New Class**. Name it, like *card*, and give it a group, like *Cards*, or leave the group empty, then press **Create Class**. Inside a group, **New Class** puts it there.
+1. Press **New Class**. Name it, like *card*, pick a group for it or leave it at **No Group**, then press **Create Class**. Inside a group, **New Class** starts in that group.
 2. Style it with the same controls as a block's **Design** tab, for each screen and state.
 3. Press **Save**. It is now offered on every block, in the **Classes** field at the top of its **Design** tab.
 
-Its **⋯** menu has **Copy Name**, **Rename…**, **Duplicate…**, **Move to Group…** and **Delete**. A group's **⋯** menu has **Rename…** and **Delete**, which deletes the group and keeps its classes, ungrouped. You can also save a look from a block you already styled with **Save as Class…**: see [Classes](/design/classes#classes-of-your-site).
+To make a group, press **New Group** under the list and name it, like *Cards*. It stays, empty or not, until you delete it.
+
+A class's **⋯** menu has **Copy Name**, **Rename…**, **Duplicate…**, **Move to Group…** and **Delete**. A group's **⋯** menu has **Rename…** and **Delete**, which deletes the group and keeps its classes, ungrouped. You can also save a look from a block you already styled with **Save as Class…**: see [Classes](/design/classes#classes-of-your-site).
 
 ### Buttons
 
@@ -215,13 +217,15 @@ Blocks, buttons and fields read a few names whatever the site: the colors `backg
 
 ### Classes
 
-A class of the site, a button's look and a scheme are each an `@utility` rule that applies other classes. Blocks carry it like any Tailwind class, with every variant: `card`, `md:card`, `hover:card`. Under **Classes**, `btn-*` is under **Buttons**. Any other class is in the group named by a comment right before it, or under **Ungrouped** without one:
+A class of the site, a button's look and a scheme are each an `@utility` rule that applies other classes. Blocks carry it like any Tailwind class, with every variant: `card`, `md:card`, `hover:card`. Under **Classes**, `btn-*` is under **Buttons**. Any other class is in the group named by a comment on the line right before it, or under **Ungrouped** without one. A group with no class in it yet is the same comment on a line of its own, set apart by a blank line:
 
 ```css
 /* group: Cards */
 @utility card {
   @apply rounded-xl border border-border bg-raised p-6 hover:border-accent;
 }
+
+/* group: Heroes */
 ```
 
 A scheme is a `scheme-<name>` rule with two colors that applies `scheme`, from `cms`. That rule sets the background and text color and makes `foreground`, `muted`, `border`, `surface`, `raised`, `primary` and `primary-foreground` follow them inside. A declaration after the `@apply` changes one of those for this scheme only:
