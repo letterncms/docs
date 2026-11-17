@@ -99,7 +99,7 @@ A look has no size of its own, so every look comes in every size: a Button's **S
 
 ## Sizes of buttons and fields
 
-Buttons, form fields, tag fields and chips share one size scale: small, medium and large. Each size has a height, a padding and a text size, so a button and a field of the same size line up, side by side or in a form. Forms use medium, and their send button with them. Set them under **Layout → Buttons and Fields**, where **Small**, **Medium** and **Large** each have a row for their **Height**, **Padding** and **Text**.
+Buttons, form fields, tag fields and chips share one size scale: small, medium and large. Each size has a height, a padding and a text size, so a button and a field of the same size line up, side by side or in a form. Forms use medium, and their send button with them. Set them under **Layout → Buttons and Fields**: pick **Small**, **Medium** or **Large** beside the title, then set that size's **Height**, **Padding** and **Text**.
 
 ## Form fields
 
