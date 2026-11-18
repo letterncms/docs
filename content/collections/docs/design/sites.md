@@ -52,7 +52,7 @@ php cms site:apply studio --clash=rename                # refuse (the default), 
 
 `--mode=design` brings the stylesheet, fonts, templates, components, scripts, styles and libraries; `full` (the default) its content too. While your site has something of a name the site brings, the apply refuses and names each one, until `--clash` says what happens to it: `skip` (yours stays), `replace` (the site's takes its place, after a snapshot in `storage/backups/`) or `rename` (an entry comes in beside yours under a new address, like `home-2`). Everything a site would write is checked before the first file is, and a site that fails on the way leaves your site as it was.
 
-Entries come in under ids of their own, and whatever named them follows: relations, parents, translations, menu links, links and components on blocks. A date that was ahead of the site's making is as far ahead now, counted in whole days so an evening event keeps its hour, an entry's own dates too, like an event's start; an end date that has passed brings the entry in as a draft.
+Entries come in under ids of their own, and whatever named them follows: relations, parents, translations, menu links, links and components on blocks. A date that was ahead of the site's making is still ahead now, an entry's own dates too, like an event's start: they move by whole weeks, so an event keeps its day of the week and its hour; an end date that has passed brings the entry in as a draft.
 
 ## Exporting a site
 
