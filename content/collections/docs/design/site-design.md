@@ -72,14 +72,16 @@ The spacing a block offers is Tailwind's scale: steps of one size, the first row
 
 | Group | Holds |
 |---|---|
-| **Elements** | The page itself (its background, text and font), **Heading 1** to **Heading 6**, **Paragraph**, **Link**, **Bold**, **Small**, **Quote**, **Code**, **Caption**, **Divider**, **Selection** and the **Focus Ring** |
+| **Elements** | The page itself (its background, text and font), **Heading 1** to **Heading 6**, **Paragraph**, **Link**, **Bold**, **Small**, **Quote**, **Code**, **Caption**, **Divider**, **Selection** and the **Focus Ring**, and any element you add |
 | **Buttons** | The looks a Button can have, such as `btn-primary`, `btn-secondary`, `btn-ghost` and `btn-link` |
-| **Forms** | **Fields**, **Labels** with their help, and **Choices**: checkboxes, radio buttons and switches, on every form of the site |
-| **Articles** | Long-form text: its **Spacing**, and its headings, paragraphs, list items, quotes, figures and links where they differ from the rest of the page |
+| **Forms** | Each part of every form on the site: **Fields** (what all fields share), **Text Field**, **Text Area**, **Dropdown**, **Choices** (what all choices share), **Checkbox**, **Radio Button**, **Switch**, **Option Text**, **Label**, **Help Text** and **Error Message** |
+| **Articles** | Long-form text: the **Article** as a whole with its spacing, and its headings, paragraphs, list items, quotes, figures and links where they differ from the rest of the page, and any element you add |
 
 After them come the groups you make, like *Cards*, and **Ungrouped**, for your classes that are in no group. A class of your site is named as it is written, like `card`, everywhere in the admin.
 
-A class opens with the same controls as a block's **Design** tab, for the screen the preview shows. For a link or a button, choose **Hover** under **State** at the top to style it while it is pointed at: its sample is drawn hovered. A changed class's **⋯** menu has **Revert**, which takes it back to what your site has. A block's own classes always win over these.
+Everything in Classes opens the same way: the same controls as a block's **Design** tab, for the screen the preview shows, under a sample drawn as your site draws it. Choose a state under **State** at the top, like **Hover** for a link, and the controls style it in that state while the sample shows it. What a class can't reach has a section of its own above the controls, like a dropdown's **Arrow**. A changed class's **⋯** menu has **Revert**, which takes it back to what your site has. A block's own classes always win over these.
+
+Every group takes classes of your own: **New Class** under its list. **Elements** and **Articles** also have **Add Element**, for an element they don't list yet, like a **Table**, an **Image** or a **Numbered List**. It opens at once and stays in the list once you style it; its **⋯** menu has **Remove**.
 
 ### Classes of your own
 
@@ -105,9 +107,25 @@ Buttons, form fields, tag fields and chips share one size scale: small, medium a
 
 ## Form fields
 
-Every field on the site looks the same: the forms you build, the sign-in and account pages, the checkout, list filters and the **Input** block. A field reads its fill, border, corners and colors from one set of values, so what you set once reaches text fields, dropdowns, text areas, checkboxes, switches, tag fields and file pickers at the same time.
+Every field on the site looks the same: the forms you build, the sign-in and account pages, the checkout, list filters and the **Input** block. Out of the box, fields follow your theme: its *raised*, *border*, *primary* and *muted* colors and its *md* radius.
 
-Out of the box, fields follow your theme: its *raised*, *border*, *primary* and *muted* colors and its *md* radius. To give them a look of their own, open **Classes → Forms**. Each part shows what it styles: **Fields** a text field at rest, pointed at, focused and wrong, a text area and a dropdown, for their fill, border and corners in each state; **Labels** two fields with their labels and help, for the labels, help and the space between fields; **Choices** each kind checked and not, for checkboxes, radio buttons and switches.
+To give them a look of their own, open **Classes → Forms**. Each part of a form is a class there, styled like any other:
+
+- **Fields** is what every field shares: a text field, a dropdown and a text area take its font, fill, border, corners and padding. **Text Field**, **Text Area** and **Dropdown** each set what is theirs alone, and win over **Fields**. A **Dropdown** also has its **Arrow**: its color and size.
+- **Choices** is what checkboxes, radio buttons and switches share, like their fill when checked. **Checkbox**, **Radio Button** and **Switch** each have their own, with what is drawn inside them: a checkbox's **Check Mark**, a radio button's **Dot**, a switch's **Track** and **Knob**. **Option Text** is the text beside them.
+- **Label**, **Help Text** and **Error Message** are the words around a field.
+
+Under **State**, a field also has **Invalid**, **Disabled** and **Placeholder**, and a choice **Checked**: pick one and the sample shows that state while you style it.
+
+### Where labels stand
+
+Open **Classes → Forms → Label**. Under **Layout**, **Position** puts every label:
+
+- **Above** its field, the default.
+- **Beside** it, in a column as wide as **Label Width**. On a narrow screen the label goes back above its field.
+- **Inside** it, where the placeholder is, until someone clicks into the field or it holds something: then the label moves above it. A dropdown or a field with a value shows its label above.
+
+**Under Label** is the space between a label and its field, **Between Fields** the space from one field to the next.
 
 ## Page transitions
 
@@ -121,7 +139,7 @@ Under **Motion**, **Page Transition** animates the change from one page to the n
 
 A block of your own inside prose keeps its own layout: prose spaces the blocks directly in it, and styles text, not a **Box** or **Repeat** drawn as a list or a link. A callout with paragraphs of its own turns on **Prose** too, and its text is spaced the same way.
 
-Under **Classes → Articles**, **Spacing** sets the space between blocks, above and below headings and between list items, and the rows under it how headings, paragraphs, list items, quotes, figures and links look inside prose only.
+Under **Classes → Articles**, **Article** styles the text as a whole, and its **Text Spacing** sets the space between blocks, above and below headings and between list items. The rows under it set how headings, paragraphs, list items, quotes, figures and links look inside prose only; **Add Element** adds others, like tables, images or code blocks.
 
 ## Code
 
@@ -251,7 +269,7 @@ The site's classes are always in its CSS, whether or not a block uses them.
 
 ### Text rules
 
-Rules in `@layer base` set defaults for HTML elements, with `@apply` or plain declarations: a state is a variant inside the rule (`a { @apply underline hover:decoration-current; }`). **Classes → Elements** shows the rules for `body`, `h1` to `h6`, `p`, `a`, `strong`, `small`, `blockquote`, `code`, `figcaption`, `hr`, `::selection` and `:focus-visible`. Any other selector works too (`h1 em`, `li::marker`) and shows under **Code**. They sit in a low CSS layer, so a block's own classes always win.
+Rules in `@layer base` set defaults for HTML elements, with `@apply` or plain declarations: a state is a variant inside the rule (`a { @apply underline hover:decoration-current; }`). **Classes → Elements** shows the rules for `body`, `h1` to `h6`, `p`, `a`, `strong`, `small`, `blockquote`, `code`, `figcaption`, `hr`, `::selection` and `:focus-visible`, and those it adds for `em`, `mark`, `del`, `sup`, `sub`, `abbr`, `cite`, `kbd`, `pre`, `ul`, `ol`, `li`, `dl`, `dt`, `dd`, `table`, `caption`, `th`, `td`, `img`, `figure`, `address`, `details` and `summary`. Any other selector works too (`h1 em`, `li::marker`) and shows under **Code**. They sit in a low CSS layer, so a block's own classes always win.
 
 ### Prose
 
@@ -264,7 +282,7 @@ Prose is long-form text: any **Page Content** or **Box** with **Prose** on (`"pr
 | `--prose-after-headings` | `0.6em` | After a heading |
 | `--prose-items` | `0.35em` | Between list items |
 
-Set them, and style elements inside prose only, in `@layer components`. **Classes → Articles** edits `.cms-prose` and these rules, for `h2`, `h3`, `p`, `blockquote`, `figure` and `a`, and for list items; any other rule there shows under **Code**:
+Set them, and style elements inside prose only, in `@layer components`. **Classes → Articles** edits `.cms-prose` and these rules, for `h2`, `h3`, `p`, `blockquote`, `figure` and `a`, and for list items, and those it adds for `h4` to `h6`, `ul`, `ol`, `strong`, `em`, `code`, `pre`, `img`, `figcaption`, `hr`, `table`, `th` and `td` (the same `:where(…)`, and `.cms-prose :not(pre) > code` for code); any other rule there shows under **Code**:
 
 ```css
 @layer components {
@@ -299,27 +317,47 @@ A variant is a look. A button's height, padding and text size are the control si
 
 For your own markup, a button is `class="cms-button btn-primary"`.
 
-### Field variables
+### Forms
 
-Everything a form field looks like is a `--field-*` CSS variable that one stylesheet reads for every kind of field. **Classes → Forms** sets the common ones; set any in `@layer base`, on `:root` and on `[data-theme]`, so they hold in a section with its own color mode too:
+Each part of every form is a rule in `@layer components` that applies classes, with its states as variants. **Classes → Forms** edits these rules:
+
+| Rule | Part |
+|---|---|
+| `.cms-input` | Every boxed field: text fields, text areas, dropdowns, tag fields, file pickers |
+| `input.cms-input`, `textarea.cms-input`, `select.cms-input` | A text field, a text area, a dropdown |
+| `:is(.cms-check, .cms-radio, .cms-switch)` | Every choice |
+| `input.cms-check`, `input.cms-radio`, `input.cms-switch` | A checkbox, a radio button, a switch |
+| `.cms-choice`, `.cms-label`, `.cms-help`, `.cms-msg` | A choice's text, a label, help text, an error message |
+| `.cms-field`, `.cms-form` | A field with its label, and a form: where labels stand and the space between fields |
+
+A kind's rule weighs more than what the kinds share, so it wins whatever their order, and every look the kernel gives a field weighs nothing, so any rule of yours wins over it. States are variants: `hover:`, `focus-visible:`, `aria-invalid:`, `disabled:`, `checked:`, `placeholder:`.
 
 ```css
-@layer base {
-  :root,
-  [data-theme] {
-    --field-radius: 0;
-    --field-focus-border-color: var(--color-accent);
-    --field-label-font-weight: var(--font-weight-semibold);
-    --field-checkbox-checked: var(--color-accent);
+@layer components {
+  .cms-input {
+    @apply rounded-none border-2 border-foreground focus-visible:border-primary aria-invalid:border-danger;
+  }
+  select.cms-input {
+    --field-select-arrow-color: var(--color-primary);
+  }
+  :is(.cms-check, .cms-radio, .cms-switch) {
+    @apply checked:bg-primary checked:border-primary;
+  }
+  .cms-field {
+    @apply label-inside;
   }
 }
 ```
+
+`label-inside` puts a label in its field, where the placeholder is, until the field is focused or filled; `label-beside` puts it in a column of `--field-label-width`, above the field again below 40rem. Without either it stands above.
+
+What no class reaches is a `--field-*` property, set in the part's rule like the arrow above. The kernel reads its defaults from them, and a site may set any on `:root, [data-theme]` in `@layer base` for every form at once (it then shows under **Code**):
 
 | Part | Variables, after `--field-` |
 |---|---|
 | All fields | `background`, `border-width`, `border-color`, `radius`, `color`, `placeholder`, `shadow` |
 | States | `hover-background`, `hover-border-color`, `focus-background`, `focus-border-color`, `focus-ring-width`, `focus-ring-color`, `invalid-color`, `invalid-ring-color`, `disabled-opacity`, `disabled-background` |
-| Labels and help | `label-font-size`, `label-font-weight`, `label-color`, `label-required`, `help-font-size`, `help-color` |
+| Labels and help | `label-font-size`, `label-font-weight`, `label-color`, `label-required`, `label-width`, `help-font-size`, `help-color` |
 | Spacing | `spacing-fields`, `spacing-label`, `spacing-list`, `spacing-choice` |
 | Dropdowns, text areas | `select-arrow-color`, `select-arrow-size`, `textarea-min-height`, `textarea-resize` |
 | Checkboxes | `checkbox-size`, `checkbox-radius`, `checkbox-background`, `checkbox-border-color`, `checkbox-checked`, `checkbox-mark-color`, `checkbox-mark-size`, `checkbox-mark-icon`, `checkbox-dash-icon` |
@@ -328,7 +366,7 @@ Everything a form field looks like is a `--field-*` CSS variable that one styles
 | Sliders | `slider-track-height`, `slider-track`, `slider-fill`, `slider-radius`, `slider-thumb-size`, `slider-thumb`, `slider-thumb-border`, `slider-thumb-shadow` |
 | Tag fields, chips, file pickers | `tags-background`, `tags-color`, `tags-radius`, `chips-radius`, `chips-background`, `chips-border-color`, `chips-selected`, `chips-selected-text`, `file-background`, `file-color`, `file-radius` |
 
-Radio buttons, switches and sliders take the checkbox's checked color until you give them their own. How big a field is comes from the `--control-*` values, like a button's.
+How big a field is comes from the `--control-*` values, like a button's.
 
 To give your own markup the same look, use the classes:
 
