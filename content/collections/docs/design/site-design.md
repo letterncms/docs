@@ -74,14 +74,20 @@ The spacing a block offers is Tailwind's scale: steps of one size, the first row
 |---|---|
 | **Elements** | The page itself (its background, text and font), **Heading 1** to **Heading 6**, **Paragraph**, **Link**, **Bold**, **Small**, **Quote**, **Code**, **Caption**, **Divider**, **Selection** and the **Focus Ring**, and any element you add |
 | **Buttons** | The looks a Button can have, such as `btn-primary`, `btn-secondary`, `btn-ghost` and `btn-link` |
-| **Forms** | Each part of every form on the site: **Fields** (what all fields share), **Text Field**, **Text Area**, **Dropdown**, **Choices** (what all choices share), **Checkbox**, **Radio Button**, **Switch**, **Option Text**, **Label**, **Help Text** and **Error Message** |
+| **Forms** | Each part of every form on the site: **All Fields** and **All Choices** (what every field and every choice share), **Text Field**, **Text Area**, **Dropdown**, **Checkbox**, **Radio Button**, **Switch**, **Option Text**, **Label**, **Help Text** and **Error Message** |
 | **Articles** | Long-form text: the **Article** as a whole with its spacing, and its headings, paragraphs, list items, quotes, figures and links where they differ from the rest of the page, and any element you add |
 
 After them come the groups you make, like *Cards*, and **Ungrouped**, for your classes that are in no group. A class of your site is named as it is written, like `card`, everywhere in the admin.
 
-Everything in Classes opens the same way: the same controls as a block's **Design** tab, for the screen the preview shows, under a sample drawn as your site draws it. Choose a state under **State** at the top, like **Hover** for a link, and the controls style it in that state while the sample shows it. What a class can't reach has a section of its own above the controls, like a dropdown's **Arrow**. A changed class's **⋯** menu has **Revert**, which takes it back to what your site has. A block's own classes always win over these.
+Everything in Classes opens the same way: a sample drawn as your site draws it at the top, then the same controls as a block's **Design** tab, for the screen the preview shows. Choose a state under **State** at the top, like **Hover** for a link, and the controls style it in that state while the sample shows it. What a class can't reach has a section of its own above the controls, like a dropdown's **Arrow**. A changed class's **⋯** menu has **Revert**, which takes it back to what your site has. A block's own classes always win over these.
 
 Every group takes classes of your own: **New Class** under its list. **Elements** and **Articles** also have **Add Element**, for an element they don't list yet, like a **Table**, an **Image** or a **Numbered List**. It opens at once and stays in the list once you style it; its **⋯** menu has **Remove**.
+
+### Groups and order
+
+Every group can hold groups of its own, like *Headings* in **Elements** or *Choices* in **Forms**: press **New Group** under its list and name it. Drag a row by its handle, which shows when you point at the row, to put it in another order; drag it under a group and to the right to put it in that group. **Move to Group…** in a row's **⋯** menu does the same without dragging, and for a class of your own it also moves it to another group of Classes. A group's **⋯** menu has **Rename…** and **Delete**, which keeps its rows where it stood. The groups on the first page of Classes are dragged into another order the same way.
+
+The order and the groups are saved with your styling, with its versions.
 
 ### Classes of your own
 
@@ -111,8 +117,8 @@ Every field on the site looks the same: the forms you build, the sign-in and acc
 
 To give them a look of their own, open **Classes → Forms**. Each part of a form is a class there, styled like any other:
 
-- **Fields** is what every field shares: a text field, a dropdown and a text area take its font, fill, border, corners and padding. **Text Field**, **Text Area** and **Dropdown** each set what is theirs alone, and win over **Fields**. A **Dropdown** also has its **Arrow**: its color and size.
-- **Choices** is what checkboxes, radio buttons and switches share, like their fill when checked. **Checkbox**, **Radio Button** and **Switch** each have their own, with what is drawn inside them: a checkbox's **Check Mark**, a radio button's **Dot**, a switch's **Track** and **Knob**. **Option Text** is the text beside them.
+- **All Fields** is what every field shares: a text field, a dropdown and a text area take its font, fill, border, corners and padding. **Text Field**, **Text Area** and **Dropdown** each set what is theirs alone, and win over **All Fields**. A **Dropdown** also has its **Arrow**: its color and size.
+- **All Choices** is what checkboxes, radio buttons and switches share, like their fill when checked. **Checkbox**, **Radio Button** and **Switch** each have their own, with what is drawn inside them: a checkbox's **Check Mark**, a radio button's **Dot**, a switch's **Track** and **Knob**. **Option Text** is the text beside them.
 - **Label**, **Help Text** and **Error Message** are the words around a field.
 
 Under **State**, a field also has **Invalid**, **Disabled** and **Placeholder**, and a choice **Checked**: pick one and the sample shows that state while you style it.
@@ -244,6 +250,22 @@ A class of the site, a button's look and a scheme are each an `@utility` rule th
 }
 
 /* group: Heroes */
+```
+
+A group the site was given is named by its id: `/* group: forms */` puts a class in **Forms** (also `elements` and `articles`).
+
+The order of the groups and of the rows in each, and the groups inside a group, are `arrangement` in `content/styling/settings.json` (and in `styling/get` and `styling/update`). A group the site was given is named by its id, one of its own by its name; a row is an element's or a form part's id, or a class's name. What it leaves out comes after, in its usual order:
+
+```json
+{
+  "arrangement": {
+    "order": ["elements", "forms", "Cards", "buttons", "articles"],
+    "groups": {
+      "elements": [{ "name": "Headings", "items": ["h1", "h2", "h3"] }, "body", "p"],
+      "forms": [{ "name": "Shared", "items": ["fields", "choices"] }]
+    }
+  }
+}
 ```
 
 A scheme is a `scheme-<name>` rule with two colors that applies `scheme`, from `cms`. That rule sets the background and text color and makes `foreground`, `muted`, `border`, `surface`, `raised`, `primary` and `primary-foreground` follow them inside. A declaration after the `@apply` changes one of those for this scheme only:
