@@ -185,7 +185,7 @@ Text from data is escaped. End a path with `|raw` to keep its HTML (a rich text 
 | `children` | `of`: `entry` (this page), `item` (the outer item), `parent` (this page's parent) or `root` (the top of this page's branch) | Child entries |
 | `breadcrumbs` | `self`: include this page | The pages above this one |
 | `headings` | `depth`: down to H2, H3 or H4 | `text`, `id`, `level`, `url` |
-| `menu` | `menu`: a menu | `label`, `url`, `newTab`, `current`, `active`, `children` |
+| `menu` | `menu`: a menu | `label`, `url`, `newTab`, `current`, `active`, `children`, and the link's own fields, like `icon` |
 | `languages` | — | `locale`, `name`, `url`, `current` |
 | `list` | `path`: any list in scope (`item.children`, `entry.tags`, `props.items`) | Whatever the list holds |
 | `numbers` | `count` | `number` |

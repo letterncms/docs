@@ -107,6 +107,8 @@ Show a menu with a **Repeat** whose list is the menu, and a **Link** inside boun
 
 Each item has `label`, `url`, `newTab`, `current` (this page), `active` (this page or one of its descendants) and `children` for the next level. Nest a Repeat with `source: list` and `path: item.children` for dropdowns. Style the active link with the *active* state: `bind: { "state:active": "item.active" }` sets `data-active` on it, and a class such as `data-active:font-medium` styles it. Links to the current page get `aria-current="page"` automatically.
 
+A menu can have fields of its own beside **Link**, such as an **Icon** or a **Description**. Each link then carries them too: `item.icon`, `item.description`. Quick links with an icon, or a mega menu with a line under each link, are a Repeat over such a menu.
+
 A page that shows a menu is rebuilt when one of its links changes, and when a page it links to is renamed, moved or unpublished.
 
 ### In PHP
