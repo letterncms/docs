@@ -21,7 +21,7 @@ php cms install --start-from=studio            # a site in sites/, or one to fet
 php cms install --start-from=none              # an empty site
 ```
 
-If your installation already has collections, setup uses the existing content.
+If your installation already has collections, setup uses the existing content. Otherwise the new site speaks the languages of the site it starts from, its main one first: a site in Dutch alone makes Dutch the site's language, with its pages at the root.
 
 ## Getting more sites
 
