@@ -19,15 +19,28 @@ An interaction has three parts. **State** remembers something, like whether the 
 
 ## Build a mobile menu
 
-Here's the whole thing, start to finish. You need a header that holds a menu button and the menu itself.
+Here's the whole thing, start to finish. You need a header that holds a **Menu Button** block and the menu itself.
 
 1. **Remember whether it's open.** Select the header, open **Interact**, and under **State** press **Add Variable**. Name it `open`, with the value `false`.
 2. **Open and close it.** Select the menu button. Under **Events**, press **Add Event** and keep **Click**. Press **Add Action** and choose **Toggle State**, then the variable `open`.
 3. **Show the menu while it's open.** Select the menu. Under **Bindings**, set **Show When** to `open`, and pick the **Collapse** transition.
 4. **Close it with Escape.** Select the header again and add an event: **Key Pressed**, with the key `escape`. In its options, choose **Anywhere on the Page**. Add the action **Set State**: `open` to `false`.
-5. **Tell screen readers.** On the menu button, under **Bindings → Attributes**, press **Bind Attribute** and set `aria-expanded` to `open`.
+5. **Tell screen readers.** On the menu button, under **Bindings → Attributes**, press **Bind Attribute** and set `aria-expanded` to `open`. The Menu Button's lines follow it: they turn into a cross while the menu is open.
 
 Choose **Preview** in **More Actions**, the **⋯** at the top of the editor, to try it.
+
+### The menu button
+
+The **Menu Button** block is a button with lines and a label. Its **Content** settings:
+
+| Setting | Does |
+|---|---|
+| **Label** | What it says, *Menu* unless you write another word. It stays the same while the menu is open, so nothing jumps |
+| **Show Label** | Off: only screen readers read the label, and only the lines show |
+| **Animation** | How the lines turn into a cross while the menu is open: **Cross** (the outer lines turn, the middle one fades), **Squeeze** (they meet in the middle, then turn; closing, they turn back, then part), **Spin** (the whole icon turns half a circle as the cross forms) or **None** |
+| **Lines** | Two or three |
+
+It holds no state of its own: the lines follow the button's `aria-expanded`, which the interaction above keeps true or false. For visitors who ask for less motion, and while motion is paused, the lines change without moving. Style it like any block in **Design**: its colour is the colour of its lines.
 
 ::: callout {"props":{"tone":"tip","text":"To restyle the header while the menu is open, add a state under <strong>Bindings → States</strong>: <code>open</code> when <code>open</code>. Then style it in <strong>Design</strong>. See <a href=\"/design/classes#custom-states\">Custom states</a>."}}
 :::
@@ -140,9 +153,8 @@ Interactions run on [Alpine.js](https://alpinejs.dev), in its CSP build, which n
     "on": [{ "event": "keydown", "key": "escape", "mods": ["window"], "actions": [{ "do": "set", "var": "open", "value": "false" }] }]
   },
   "children": [
-    { "type": "box", "props": { "tag": "button" }, "attrs": { "aria-label": "Menu" },
-      "logic": { "attrs": { "aria-expanded": "open" }, "on": [{ "event": "click", "actions": [{ "do": "toggle", "var": "open" }] }] },
-      "children": [{ "type": "icon", "props": { "icon": "list" }, "class": "transition-transform in-data-open:rotate-90" }] },
+    { "type": "menu-button", "props": { "label": "Menu", "animation": "cross", "lines": "3" },
+      "logic": { "attrs": { "aria-expanded": "open" }, "on": [{ "event": "click", "actions": [{ "do": "toggle", "var": "open" }] }] } },
     { "type": "box", "props": { "tag": "nav" }, "logic": { "show": "open", "transition": "collapse" }, "children": [] }
   ]
 }
