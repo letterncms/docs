@@ -63,6 +63,19 @@
         }
       ]
     },
+    "editing-maps": {
+      "site": "examples",
+      "path": "/admin/content/pages/{entry:pages/find-us}",
+      "sidebar": "collapsed",
+      "steps": [
+        {
+          "select": ".cms-map"
+        },
+        {
+          "blur": true
+        }
+      ]
+    },
     "entry": {
       "site": "examples",
       "as": "client",
