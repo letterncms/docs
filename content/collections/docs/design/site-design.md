@@ -10,13 +10,13 @@ It is [Tailwind CSS](https://tailwindcss.com): one stylesheet holds the theme, a
 
 ![Colors: your site's look on one sheet, then its colors, beside a live preview of the site.](/media/screens/design.webp)
 
-Open **Design** in the sidebar: it opens on **Colors**. Its sidebar starts with **Site**: your [sites](/design/sites) and **Browse Store**, for more of them. Under **Theme** come **Colors**, **Typography**, **Layout**, **Effects**, **Motion** and **Classes**. Your [menus](/content/navigation) are under **Content**, in **Menus**. You can also press `⌘K` and type a section's name, like *typography*. Each section opens beside your site: the preview on the right shows it as you change things, on desktop, tablet or phone, and in light or dark when the site has dark colors.
+Open **Design** in the sidebar: it opens on **Colors**. Its sidebar starts with **Site**: your [sites](/design/sites) and **Browse Store**, for more of them. Under **Theme** come **Colors**, **Typography**, **Layout**, **Effects**, **Motion** and **Styles**. Your [menus](/content/navigation) are under **Content**, in **Menus**. You can also press `⌘K` and type a section's name, like *typography*. Each section opens beside your site: the preview on the right shows it as you change things, on desktop, tablet or phone, and in light or dark when the site has dark colors.
 
 Your site is the baseline. A change you haven't saved carries a dot beside its name, and it goes along when you open another section, until you save it or discard it. Every row has a **⋯** menu: **Copy Name**, **Revert**, which takes a change back to what your site has, and for a value your site added, **Rename…** and **Delete**. A value that came with your site, from Tailwind or Lettern, shows a lock: you can change it, but not rename or delete it. **Undo** and **Redo** in the top bar (`⌘Z`, `⇧⌘Z`) step through your changes, and **History** lists every saved version of the theme, newest first, with who saved it and when: open one to look at it, and save it to go back to it. Saves by the same person within ten minutes count as one version.
 
 ## What's in it
 
-**Colors**, **Typography**, **Layout**, **Effects** and **Motion** hold every value of your theme: Tailwind's own, and the ones your site adds. **Classes** holds how everything looks, built from those values.
+**Colors**, **Typography**, **Layout**, **Effects** and **Motion** hold every value of your theme: Tailwind's own, and the ones your site adds. **Styles** holds how everything looks, built from those values.
 
 | Section | What you set |
 |---|---|
@@ -25,7 +25,7 @@ Your site is the baseline. A change you haven't saved carries a dot beside its n
 | **Layout** | Spacing, content widths, the screen sizes the site adapts at, and the sizes buttons and fields share |
 | **Effects** | Corners, shadows, inset shadows, drop shadows, text shadows, blur and perspective |
 | **Motion** | Easing curves, durations, animations, how transitions run by default, and how pages change into each other |
-| **Classes** | How the page, its text, buttons, forms and long-form text look, and the classes your site keeps, in groups |
+| **Styles** | How the page, its text, buttons, forms and long-form text look, and the classes, elements and IDs your site styles, in groups |
 
 Every value of the theme has a name, like *primary* for your brand color or *content* for a width. You give it a value once, and use the name everywhere. Tailwind's own values are all there to change. A value your site added can be renamed and deleted.
 
@@ -64,42 +64,42 @@ Choose **Detach** to turn it back into a fixed value. See [Classes](/design/clas
 
 The spacing a block offers is Tailwind's scale: steps of one size, the first row of **Layout → Spacing**. The row shows the scale it makes, in pixels, as a block's spacing offers it; the names under it, like *gutter* and *section*, are offered beside it.
 
-## Classes
+## Styles
 
-**Classes** lists every look of your site in groups. Open a group to see its classes, by name, and open one to change it: it is drawn there as your site draws it. The top bar shows where you are, like *Design / Classes / Elements / Heading 1*, and **Back**, in the top-left corner, goes up one level at a time: from a class to its group, then to Classes. The search at the top finds a class in every group; a long group has a search of its own.
+**Styles** lists every look of your site in groups. Open a group to see its styles, and open one to change it: it is drawn there as your site draws it. The top bar shows where you are, like *Design / Styles / Elements / Heading 1*, and **Back**, in the top-left corner, goes up one level at a time: from a style to its group, then to Styles. The search at the top finds a style in every group; a long group has a search of its own.
 
-![Classes: the groups of the site's looks, beside a live preview of the site.](/media/screens/design-styles.webp)
+![Styles: the groups of the site's looks, beside a live preview of the site.](/media/screens/design-styles.webp)
 
 | Group | Holds |
 |---|---|
-| **Elements** | The page itself (its background, text and font), **Heading 1** to **Heading 6**, **Paragraph**, **Link**, **Bold**, **Small**, **Quote**, **Code**, **Caption**, **Divider**, **Selection** and the **Focus Ring**, and any element you add |
+| **Elements** | The page itself (its background, text and font), **Heading 1** to **Heading 6**, **Paragraph**, **Link**, **Bold**, **Small**, **Quote**, **Code**, **Caption**, **Divider**, **Selection** and the **Focus Ring** |
 | **Buttons** | The looks a Button can have, such as `btn-primary`, `btn-secondary`, `btn-ghost` and `btn-link` |
 | **Forms** | Each part of every form on the site: **All Fields** and **All Choices** (what every field and every choice share), **Text Field**, **Text Area**, **Dropdown**, **Checkbox**, **Radio Button**, **Switch**, **Option Text**, **Label**, **Help Text** and **Error Message** |
-| **Articles** | Long-form text: the **Article** as a whole with its spacing, and its headings, paragraphs, list items, quotes, figures and links where they differ from the rest of the page, and any element you add |
+| **Articles** | Long-form text: the **Article** as a whole with its spacing, and its headings, paragraphs, list items, quotes, figures and links where they differ from the rest of the page |
 
-After them come the groups you make, like *Cards*, and **Ungrouped**, for your classes that are in no group. A class of your site is named as it is written, like `card`, everywhere in the admin.
+After them come the groups you make, like *Cards*, and **Ungrouped**, for your styles that are in no group. A class of your site is named as it is written, like `card`, and an ID style like `#hero`, everywhere in the admin.
 
-Everything in Classes opens the same way: a sample drawn as your site draws it at the top, then the same controls as a block's **Design** tab, for the screen the preview shows. Choose a state under **State** at the top, like **Hover** for a link, and the controls style it in that state while the sample shows it. What a class can't reach has a section of its own above the controls, like a dropdown's **Arrow**. A changed class's **⋯** menu has **Revert**, which takes it back to what your site has. A block's own classes always win over these.
-
-Every group takes classes of your own: **New Class** under its list. **Elements** and **Articles** also have **Add Element**, for an element they don't list yet, like a **Table**, an **Image** or a **Numbered List**. It opens at once and stays in the list once you style it; its **⋯** menu has **Remove**.
+Every style opens the same way: a sample drawn as your site draws it at the top, then the same controls as a block's **Design** tab, for the screen the preview shows. Choose a state under **State** at the top, like **Hover** for a link, and the controls style it in that state while the sample shows it. What a style can't reach with classes has a section of its own above the controls, like a dropdown's **Arrow**. A changed style's **⋯** menu has **Revert**, which takes it back to what your site has. A block's own classes always win over these.
 
 ### Groups and order
 
-Every group can hold groups of its own, like *Headings* in **Elements** or *Choices* in **Forms**: press **New Group** under its list and name it. Drag a row by its handle, which shows when you point at the row, to put it in another order; drag it under a group and to the right to put it in that group. **Move to Group…** in a row's **⋯** menu does the same without dragging, and for a class of your own it also moves it to another group of Classes. A group's **⋯** menu has **Rename…** and **Delete**, which keeps its rows where it stood. The groups on the first page of Classes are dragged into another order the same way.
+Every group can hold groups of its own, like *Headings* in **Elements** or *Choices* in **Forms**: press **New Group** under its list and name it. Drag a row by its handle, which shows when you point at the row, to put it in another order; drag it under a group and to the right to put it in that group. **Move to Group…** in a row's **⋯** menu does the same without dragging, and for a style you made it also moves it to another group of Styles. A group's **⋯** menu has **Rename…** and **Delete**, which keeps its rows where it stood. The groups on the first page of Styles are dragged into another order the same way.
 
 The order and the groups are saved with your styling, with its versions.
 
-### Classes of your own
+### Styles of your own
 
-A class of your own is a look you give to blocks. Make a *card* once, with its corners, border and padding, and give it to every block that should look like one. Change the look, and they all change.
+Press **New Style** under any list. Under **Type**, pick what it styles:
 
-1. Press **New Class**. Name it, like *card*, pick a group for it or leave it at **No Group**, then press **Create Class**. Inside a group, **New Class** starts in that group.
-2. Style it with the same controls as a block's **Design** tab, for each screen and state.
-3. Press **Save**. It is now offered on every block, in the **Classes** field at the top of its **Design** tab.
+- **Class**: a look you give to blocks. Make a *card* once, with its corners, border and padding, and give it to every block that should look like one; change the look, and they all change. Once saved it is offered on every block, in the **Classes** field at the top of its **Design** tab.
+- **Element**: every element of one kind on the site that the list doesn't have yet, like a **Table**, an **Image** or a **Numbered List**.
+- **ID**: the one block with that id, like `#hero`. A block's id is its **Anchor**, under **Content → Advanced**.
+
+Name it (or pick the element), pick a group for it or leave it at **No Group**, then press **Create Style**. Inside a group, **New Style** starts in that group. It opens at once, to style with the same controls as a block's **Design** tab, for each screen and state. Press **Save**.
 
 To make a group, press **New Group** under the list and name it, like *Cards*. It stays, empty or not, until you delete it.
 
-A class's **⋯** menu has **Copy Name**, **Rename…**, **Duplicate…**, **Move to Group…** and **Delete**. A group's **⋯** menu has **Rename…** and **Delete**, which deletes the group and keeps its classes, ungrouped. You can also save a look from a block you already styled with **Save as Class…**: see [Classes](/design/classes#classes-of-your-site).
+A style you made has the same **⋯** menu whatever it is: **Copy Name** (a class or an ID), **Rename…** and **Duplicate…** (a class or an ID), **Move to Group…** and **Delete**. What your site was given stays in its group. A group's **⋯** menu has **Rename…** and **Delete**, which deletes the group and keeps its styles, ungrouped. You can also save a look from a block you already styled with **Save as Class…**: see [Classes](/design/classes#classes-of-your-site).
 
 ### Buttons
 
@@ -115,7 +115,7 @@ Buttons, form fields, tag fields and chips share one size scale: small, medium a
 
 Every field on the site looks the same: the forms you build, the sign-in and account pages, the checkout, list filters and the **Input** block. Out of the box, fields follow your theme: its *raised*, *border*, *primary* and *muted* colors and its *md* radius.
 
-To give them a look of their own, open **Classes → Forms**. Each part of a form is a class there, styled like any other:
+To give them a look of their own, open **Styles → Forms**. Each part of a form is a style there, styled like any other:
 
 - **All Fields** is what every field shares: a text field, a dropdown and a text area take its font, fill, border, corners and padding. **Text Field**, **Text Area** and **Dropdown** each set what is theirs alone, and win over **All Fields**. A **Dropdown** also has its **Arrow**: its color and size.
 - **All Choices** is what checkboxes, radio buttons and switches share, like their fill when checked. **Checkbox**, **Radio Button** and **Switch** each have their own, with what is drawn inside them: a checkbox's **Check Mark**, a radio button's **Dot**, a switch's **Track** and **Knob**. **Option Text** is the text beside them.
@@ -125,7 +125,7 @@ Under **State**, a field also has **Invalid**, **Disabled** and **Placeholder**,
 
 ### Where labels stand
 
-Open **Classes → Forms → Label**. Under **Layout**, **Position** puts every label:
+Open **Styles → Forms → Label**. Under **Layout**, **Position** puts every label:
 
 - **Above** its field, the default.
 - **Beside** it, in a column as wide as **Label Width**. On a narrow screen the label goes back above its field.
@@ -145,7 +145,7 @@ Under **Motion**, **Page Transition** animates the change from one page to the n
 
 A block of your own inside prose keeps its own layout: prose spaces the blocks directly in it, and styles text, not a **Box** or **Repeat** drawn as a list or a link. A callout with paragraphs of its own turns on **Prose** too, and its text is spaced the same way.
 
-Under **Classes → Articles**, **Article** styles the text as a whole, and its **Text Spacing** sets the space between blocks, above and below headings and between list items. The rows under it set how headings, paragraphs, list items, quotes, figures and links look inside prose only; **Add Element** adds others, like tables, images or code blocks.
+Under **Styles → Articles**, **Article** styles the text as a whole, and its **Text Spacing** sets the space between blocks, above and below headings and between list items. The rows under it set how headings, paragraphs, list items, quotes, figures and links look inside prose only
 
 ## Code
 
@@ -241,7 +241,7 @@ Blocks, buttons and fields read a few names whatever the site: the colors `backg
 
 ### Classes
 
-A class of the site, a button's look and a scheme are each an `@utility` rule that applies other classes. Blocks carry it like any Tailwind class, with every variant: `card`, `md:card`, `hover:card`. Under **Classes**, `btn-*` is under **Buttons**. Any other class is in the group named by a comment on the line right before it, or under **Ungrouped** without one. A group with no class in it yet is the same comment on a line of its own, set apart by a blank line:
+A class of the site, a button's look and a scheme are each an `@utility` rule that applies other classes. Blocks carry it like any Tailwind class, with every variant: `card`, `md:card`, `hover:card`. Under **Styles**, `btn-*` is under **Buttons**. Any other class is in the group named by a comment on the line right before it, or under **Ungrouped** without one. A style for an element or an ID is a rule that applies classes, `table { @apply …; }` in `@layer base` or `#hero { @apply …; }` in `@layer components`, and the same comment puts it in a group: an element without one is under **Elements**, an ID under **Ungrouped**. A group with no class in it yet is the same comment on a line of its own, set apart by a blank line:
 
 ```css
 /* group: Cards */
@@ -252,9 +252,9 @@ A class of the site, a button's look and a scheme are each an `@utility` rule th
 /* group: Heroes */
 ```
 
-A group the site was given is named by its id: `/* group: forms */` puts a class in **Forms** (also `elements` and `articles`).
+A group the site was given is named by its id: `/* group: forms */` puts a style in **Forms** (also `elements` and `articles`).
 
-The order of the groups and of the rows in each, and the groups inside a group, are `arrangement` in `content/styling/settings.json` (and in `styling/get` and `styling/update`). A group the site was given is named by its id, one of its own by its name; a row is an element's or a form part's id, or a class's name. What it leaves out comes after, in its usual order:
+The order of the groups and of the rows in each, and the groups inside a group, are `arrangement` in `content/styling/settings.json` (and in `styling/get` and `styling/update`). A group the site was given is named by its id, one of its own by its name; a row is an element's tag or a form part's id, a class's name, or an ID style's selector (`#hero`). What it leaves out comes after, in its usual order:
 
 ```json
 {
@@ -291,7 +291,7 @@ The site's classes are always in its CSS, whether or not a block uses them.
 
 ### Text rules
 
-Rules in `@layer base` set defaults for HTML elements, with `@apply` or plain declarations: a state is a variant inside the rule (`a { @apply underline hover:decoration-current; }`). **Classes → Elements** shows the rules for `body`, `h1` to `h6`, `p`, `a`, `strong`, `small`, `blockquote`, `code`, `figcaption`, `hr`, `::selection` and `:focus-visible`, and those it adds for `em`, `mark`, `del`, `sup`, `sub`, `abbr`, `cite`, `kbd`, `pre`, `ul`, `ol`, `li`, `dl`, `dt`, `dd`, `table`, `caption`, `th`, `td`, `img`, `figure`, `address`, `details` and `summary`. Any other selector works too (`h1 em`, `li::marker`) and shows under **Code**. They sit in a low CSS layer, so a block's own classes always win.
+Rules in `@layer base` set defaults for HTML elements, with `@apply` or plain declarations: a state is a variant inside the rule (`a { @apply underline hover:decoration-current; }`). **Styles → Elements** shows the rules for `body`, `h1` to `h6`, `p`, `a`, `strong`, `small`, `blockquote`, `code`, `figcaption`, `hr`, `::selection` and `:focus-visible`, and those it adds for `em`, `mark`, `del`, `sup`, `sub`, `abbr`, `cite`, `kbd`, `pre`, `ul`, `ol`, `li`, `dl`, `dt`, `dd`, `table`, `caption`, `th`, `td`, `img`, `figure`, `address`, `details` and `summary`. Any other selector works too (`h1 em`, `li::marker`) and shows under **Code**. They sit in a low CSS layer, so a block's own classes always win.
 
 ### Prose
 
@@ -306,7 +306,7 @@ Prose is long-form text: any **Page Content** or **Box** with **Prose** on (`"pr
 
 An `em` here is the size of the prose's text, wherever it is used: a large heading doesn't make the space around it larger. Keep the space after a heading at least as large as the space between blocks, and the space before it about twice that, so a heading reads with the text it opens.
 
-Set them, and style elements inside prose only, in `@layer components`. **Classes → Articles** edits `.cms-prose` and these rules, for `h2`, `h3`, `p`, `blockquote`, `figure` and `a`, and for list items, and those it adds for `h4` to `h6`, `ul`, `ol`, `strong`, `em`, `code`, `pre`, `img`, `figcaption`, `hr`, `table`, `th` and `td` (the same `:where(…)`, and `.cms-prose :not(pre) > code` for code); any other rule there shows under **Code**:
+Set them, and style elements inside prose only, in `@layer components`. **Styles → Articles** edits `.cms-prose` and these rules, for `h2`, `h3`, `p`, `blockquote`, `figure` and `a`, and for list items, and those it adds for `h4` to `h6`, `ul`, `ol`, `strong`, `em`, `code`, `pre`, `img`, `figcaption`, `hr`, `table`, `th` and `td` (the same `:where(…)`, and `.cms-prose :not(pre) > code` for code); any other rule there shows under **Code**:
 
 ```css
 @layer components {
@@ -343,7 +343,7 @@ For your own markup, a button is `class="cms-button btn-primary"`.
 
 ### Forms
 
-Each part of every form is a rule in `@layer components` that applies classes, with its states as variants. **Classes → Forms** edits these rules:
+Each part of every form is a rule in `@layer components` that applies classes, with its states as variants. **Styles → Forms** edits these rules:
 
 | Rule | Part |
 |---|---|

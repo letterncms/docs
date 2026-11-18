@@ -54,9 +54,9 @@ The controls under it write the same list, so the two always agree. The **⋯** 
 
 ## Classes of your site
 
-A class of your site is a look it keeps under a name, like `lede`, `card`, `btn-primary` or the scheme `scheme-tide`: the same on every block that wears it, and changed in one place, under **Design → Classes** (a scheme under **Design → Colors**). In the **Classes** field, your site's classes come first, as names on a raised chip; Tailwind's follow, as code.
+A class of your site is a look it keeps under a name, like `lede`, `card`, `btn-primary` or the scheme `scheme-tide`: the same on every block that wears it, and changed in one place, under **Design → Styles** (a scheme under **Design → Colors**). In the **Classes** field, your site's classes come first, as names on a raised chip; Tailwind's follow, as code.
 
-- Click one of them for its menu: **Edit Class** opens it under **Design → Classes**, **Detach Class** takes it off and leaves what it set on the block, and **Remove Class** takes it off.
+- Click one of them for its menu: **Edit Class** opens it under **Design → Styles**, **Detach Class** takes it off and leaves what it set on the block, and **Remove Class** takes it off.
 - **Save as Class…**, in the **⋯** of **Classes**, names what you set on the block, like *card*, and saves it as a class other blocks can wear. What you set for tablets and phones stays on the block.
 
 ## Style for different screens
