@@ -29,7 +29,7 @@ updated_at: '2026-11-02T12:00:00+00:00'
 ::::::::
 :::::::
 
-::::::: search {"id":"h-search","props":{"label":"Search the docs","placeholder":"Search the docs","empty":"Nothing found. Try other words.","shortcut":true},"class":"docs-search docs-search--big mt-7 flex h-12 w-full max-w-lg"}
+::::::: search-field {"id":"h-search","props":{"label":"Search the docs","placeholder":"Search the docs","button_label":"Search the docs","button_style":"ghost","icon_only":true,"size":"lg","results_page":"/search"},"class":"docs-search docs-search--big mt-7 max-w-lg"}
 :::::::
 ::::::
 

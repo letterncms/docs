@@ -49,7 +49,7 @@ It runs in the background, a little at a time, so you never wait for it, and the
 
 ## Fast by default
 
-A published page is HTML and CSS. It only loads JavaScript for what it actually uses, like an [interaction](/design/interactions) or the Search block. A page with none of those has no JavaScript at all.
+A published page is HTML and CSS. It only loads JavaScript for what it actually uses, like an [interaction](/design/interactions) or [search results](/editing/site-search). A page with none of those has no JavaScript at all.
 
 ## Turn it off
 
@@ -80,7 +80,7 @@ The `site/build` and `site/build-status` abilities let agents and scripts start 
 
 ### What a page loads
 
-JavaScript comes only with what a page uses: the scripts runtime for [interactions](/design/interactions), a small player for [animations](/design/animations) that wait for scrolling or hover (the rest are plain CSS), syntax highlighting for code blocks, and instant search for the Search block. Each is a separate file, loaded on demand, plus `custom.js` if the site has one and the site's own [scripts](/design/code) where a page loads them.
+JavaScript comes only with what a page uses: the scripts runtime for [interactions](/design/interactions), a small player for [animations](/design/animations) that wait for scrolling or hover (the rest are plain CSS), syntax highlighting for code blocks, and the search for a Search Results block. Each is a separate file, loaded on demand, plus `custom.js` if the site has one and the site's own [scripts](/design/code) where a page loads them.
 
 ### Nothing personal reaches a built page
 
