@@ -25,7 +25,7 @@ updated_at: '2026-10-30T12:00:00+00:00'
 :::::
 
 ::::: box {"id":"dh-end","class":"ml-auto flex items-center gap-0.5 max-lg:-mr-2"}
-:::::: search {"id":"dh-search","props":{"label":"Search","placeholder":"Search the docs","empty":"Nothing found. Try other words.","shortcut":true,"compact":"mobile"},"class":"docs-search mr-2 h-8 w-60 max-lg:w-44 max-md:mr-0 max-md:size-11"}
+:::::: search-field {"id":"dh-search","props":{"label":"Search","placeholder":"Search","button_label":"Search the docs","button_style":"ghost","icon_only":true,"size":"sm","results_page":"/search"},"class":"docs-search docs-search--bar mr-2 w-60 max-lg:w-44 max-md:mr-0 max-md:w-auto"}
 ::::::
 
 :::::: link {"id":"dh-web","props":{"label":"Website","url":"https://lettern.org"},"class":"hidden rounded-md px-3 py-1.5 text-sm leading-[1.25rem] font-normal whitespace-nowrap text-foreground transition-[color,background-color,border-color] duration-150 ease-[ease] hover:bg-ink/6 lg:inline-block"}

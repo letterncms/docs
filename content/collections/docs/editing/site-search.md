@@ -4,9 +4,7 @@ title: Site search
 position: 6
 description: A search field on any page and a page of results, for sites people come to with a question, like a council’s or a support site.
 ---
-Two blocks make a search of your own: a **Search Field** you can put anywhere, such as in the header or at the top of the home page, and **Search Results**, for the page the field sends people to. They come with Lettern, like the **Search** block.
-
-The **Search** block opens a search box over the page (`⌘K`) and suits a small site. The Search Field and Search Results are for sites where most visitors arrive with a task and type it in: results get a page of their own, with a link people can share, and filters by kind of page.
+Two blocks make your site's search: a **Search Field** you can put anywhere, such as in the header or at the top of the home page, and **Search Results**, for the page the field sends people to. They come with Lettern. Results get a page of their own, with a link people can share, and filters by kind of page. These docs search the same way: the field at the top of every page opens [their search page](/search).
 
 ## Add a search field
 
@@ -49,4 +47,4 @@ People don't always use your words. Add a field named **keywords** to a collecti
 
 ### The index
 
-Both read the `/search.json` index the site publishes, which the **Search** block reads too. Each page in it has, besides its title, address, headings and text, a `kind` (its collection's singular name), a `date` for a dated collection, and its `keywords`. A plugin can change a page's record with the `site.search.record` filter, and add pages with `site.search.records`: see [Hooks](/plugins/hooks).
+Both read the `/search.json` index the site publishes. Each page in it has, besides its title, address, headings and text, a `kind` (its collection's singular name), a `date` for a dated collection, and its `keywords`. A plugin can change a page's record with the `site.search.record` filter, and add pages with `site.search.records`: see [Hooks](/plugins/hooks).
