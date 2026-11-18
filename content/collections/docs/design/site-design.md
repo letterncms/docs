@@ -299,10 +299,12 @@ Prose is long-form text: any **Page Content** or **Box** with **Prose** on (`"pr
 
 | Variable | Default | Space |
 |---|---|---|
-| `--prose-blocks` | `1.1em` | Between one block and the next |
-| `--prose-headings` | `1.8em` | Before a heading |
-| `--prose-after-headings` | `0.6em` | After a heading |
-| `--prose-items` | `0.35em` | Between list items |
+| `--prose-blocks` | `1.25em` | Between one block and the next |
+| `--prose-headings` | `2.25em` | Before a heading |
+| `--prose-after-headings` | `1em` | After a heading |
+| `--prose-items` | `0.5em` | Between list items |
+
+An `em` here is the size of the prose's text, wherever it is used: a large heading doesn't make the space around it larger. Keep the space after a heading at least as large as the space between blocks, and the space before it about twice that, so a heading reads with the text it opens.
 
 Set them, and style elements inside prose only, in `@layer components`. **Classes → Articles** edits `.cms-prose` and these rules, for `h2`, `h3`, `p`, `blockquote`, `figure` and `a`, and for list items, and those it adds for `h4` to `h6`, `ul`, `ol`, `strong`, `em`, `code`, `pre`, `img`, `figcaption`, `hr`, `table`, `th` and `td` (the same `:where(…)`, and `.cms-prose :not(pre) > code` for code); any other rule there shows under **Code**:
 
