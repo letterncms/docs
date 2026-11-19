@@ -118,7 +118,7 @@ Every field on the site looks the same: the forms you build, the sign-in and acc
 To give them a look of their own, open **Styles → Forms**. Each part of a form is a style there, styled like any other:
 
 - **All Fields** is what every field shares: a text field, a dropdown and a text area take its font, fill, border, corners and padding. **Text Field**, **Text Area** and **Dropdown** each set what is theirs alone, and win over **All Fields**. A **Dropdown** also has its **Arrow**: its color and size.
-- **All Choices** is what checkboxes, radio buttons and switches share, like their fill when checked. **Checkbox**, **Radio Button** and **Switch** each have their own, with what is drawn inside them: a checkbox's **Check Mark**, a radio button's **Dot**, a switch's **Track** and **Knob**. **Option Text** is the text beside them.
+- **All Choices** is what checkboxes, radio buttons and switches share, like their fill when checked. **Checkbox**, **Radio Button** and **Switch** each have their own, with what is drawn inside them: a checkbox's **Check Mark**, a radio button's **Dot**, a switch's **Track** (its width, height and **Border**, a line around it that keeps the knob centred) and **Knob** (its color, its **Color When On**, inset and shadow). **Option Text** is the text beside them.
 - **Label**, **Help Text** and **Error Message** are the words around a field.
 
 Under **State**, a field also has **Invalid**, **Disabled** and **Placeholder**, and a choice **Checked**: pick one and the sample shows that state while you style it.
@@ -386,9 +386,9 @@ What no class reaches is a `--field-*` property, set in the part's rule like the
 | Dropdowns, text areas | `select-arrow-color`, `select-arrow-size`, `textarea-min-height`, `textarea-resize` |
 | Checkboxes | `checkbox-size`, `checkbox-radius`, `checkbox-background`, `checkbox-border-color`, `checkbox-checked`, `checkbox-mark-color`, `checkbox-mark-size`, `checkbox-mark-icon`, `checkbox-dash-icon` |
 | Radio buttons | `radio-size`, `radio-checked`, `radio-dot-color`, `radio-dot-size`, `radio-on-background`, `radio-on-dot` |
-| Switches | `switch-width`, `switch-height`, `switch-radius`, `switch-off`, `switch-on`, `switch-knob`, `switch-inset`, `switch-knob-shadow` |
+| Switches | `switch-width`, `switch-height`, `switch-radius`, `switch-off`, `switch-on`, `switch-border-width`, `switch-border-color`, `switch-knob`, `switch-knob-on`, `switch-inset`, `switch-knob-shadow` |
 | Sliders | `slider-track-height`, `slider-track`, `slider-fill`, `slider-radius`, `slider-thumb-size`, `slider-thumb`, `slider-thumb-border`, `slider-thumb-shadow` |
-| Tag fields, chips, file pickers | `tags-background`, `tags-color`, `tags-radius`, `chips-radius`, `chips-background`, `chips-border-color`, `chips-selected`, `chips-selected-text`, `file-background`, `file-color`, `file-radius` |
+| Tag fields, chips, file pickers | `tags-background`, `tags-color`, `tags-radius`, `chips-radius`, `chips-background`, `chips-border-color`, `chips-selected`, `chips-selected-text`, `file-background`, `file-color`, `file-radius`, `file-inset` |
 
 How big a field is comes from the `--control-*` values, like a button's.
 
